@@ -1,33 +1,33 @@
-Return-Path: <open-iscsi+bncBDUNBGN3R4KRBEEMU7TAKGQECAYGELI@googlegroups.com>
+Return-Path: <open-iscsi+bncBDUNBGN3R4KRBDEMU7TAKGQEZGAIDUI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-vs1-xe39.google.com (mail-vs1-xe39.google.com [IPv6:2607:f8b0:4864:20::e39])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E65410ADB
-	for <lists+open-iscsi@lfdr.de>; Wed,  1 May 2019 18:15:13 +0200 (CEST)
-Received: by mail-vs1-xe39.google.com with SMTP id f84sf1277087vsd.21
-        for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 09:15:13 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1556727312; cv=pass;
+Received: from mail-pl1-x63c.google.com (mail-pl1-x63c.google.com [IPv6:2607:f8b0:4864:20::63c])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E49210AD9
+	for <lists+open-iscsi@lfdr.de>; Wed,  1 May 2019 18:15:10 +0200 (CEST)
+Received: by mail-pl1-x63c.google.com with SMTP id g6sf9052928plp.18
+        for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 09:15:10 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1556727308; cv=pass;
         d=google.com; s=arc-20160816;
-        b=DnFwkp6yro6n5loC1Cnb8m7kejjqPI2prEOCxWqDxP8RXI9IlQ2Ukhwjeiq7ZSdzSX
-         HnuvQiBljGcPW09ASYi5mnrjrO3WmLVS2QUvEWQznMs7kJgFDQqfez29qOMRRDgsCavJ
-         6yq2G9tZzyv+NvEfLcZEJNizy0rYIWB8b3ewz5/ZBd3jp4cnhpTzD2jqGuzBaW+4j/zP
-         wAv3YvmtPlw4X3V0GJ9yWfZrJfmf5d2eFC6qKHB98TkleZ1olaz7IZzzfo0ePciurz+b
-         OLmcokCvafv2nCRa+Ke7nmiruwCnA4O+ytS8m4s9aR6MQBZ7EgGMDvUWj0FtldsYZMn4
-         CrDg==
+        b=HVx0f+UuqvMBx8eOjlcmsJWeqAzFLAfhnpJ2hOWaP8RroswdGOJ40ihm4S3/D2n1ga
+         w4zOq4i9lFrPVAiU2IN0nNDMJoe48BaaeItP7A8fhV20F+SG3gpriuT3Skx2vSlO9w4D
+         QEVn37G8taIBkR9U8+q0fhTNEiiyFk7QcwFAlIpPu28EsOohSUQr07rp7zRG6vh9i30v
+         b16aEIkneKRGrMHKmpOtyFd64ZYPjkK767f+0uzi7sRHSIRq7it1qn6ww62ljdLhfA6m
+         dcZquvdLwx6v2uafDnFf77XntDC3RSY+YAPMFhxPwWwYnUp9F6L745/JadfNsctQu8X2
+         a4+A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=eRiBk14vWplbP5kOnirEID6wiraoY5HfAkwwGFDuuE8=;
-        b=xTb/8ifMoPTcdTKva6oyCcmZIMyZmOx6Jk2dS/O/yy98I7XTVYJYoT+CgKiP/SS5LL
-         abua7idS6fjsRgoabm7HYg9vBkvsmzzBzbkaIciF6gL83irrFEGlvEODNUght4NyH1T3
-         10trqYqLFm2xVLccNDWXpzrQXfgIdhqWdkyuc5iDHhl69u+ZYuqp1uXN5K9nE47FKKgi
-         yCb0LRZb8CtUeT653+iyck2PvcKBLDAWKKLXhQzl5iIsanN8QYf4ld4v8vE59bzSY11s
-         CeOAqZHepz8/yLyN9A4zFc6XEhGKDI4eKnhZ3azoGYZ0N914csUN1ScVUumEcYGc1m1T
-         QqLQ==
+        bh=mWcV0VFGwajVVupcBkZzWOJrO8kLBI65jAyB1hAgZ3A=;
+        b=fSXi2OradxCAUsFB6DVo1fqH0l/2rkTegSdw+me/O3YZET09+5MPpj+yqSisbP6KNZ
+         6C9ukjNClcnYO22PJJEDyHHJ8uLQ0D2LF6M+RBPJt7FHcT8LuNkxIayblCNvesdtEEwC
+         c33mVwPVcnZ6e8q5OhtWIZ+dT+uj4CcT0yFiO5CYvPssVcgpZxXGdRHYcpBzvvb/HyGn
+         67GD9bdHSPeE6hyDABVjxKVQNPAxWyRzTl0dB5NgQgV8tYJQHnv16Mu7YnMt9WqQthUg
+         +y8C6k/0eZV879XYUZHMqWoc1pNPn7yXNRoiClCOWK7eIkJYBNfI63QXEt3AuluwR8HK
+         3BiQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=AVw7QCQZ;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=A92pWCzA;
        spf=pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
@@ -35,13 +35,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=eRiBk14vWplbP5kOnirEID6wiraoY5HfAkwwGFDuuE8=;
-        b=tdbMMsOgQW/oSfJN2WCH2pdvjqlwJlzLDPxTXWTZnVi+hfK/AUDVDBnx/ZUQjfkFdD
-         AQ/4EbI2RCvruE0UEvLqOeai9IHaUhNH6Ylb8KEl7vPzT/vqNo/NhwzGq78NtZGaxM+1
-         VDzzvAGdaoxoxsllVSP+VpVfBKVjaMFtB3dLrEls7yYGjalr5CGEEKn4k3yAUXR79Dw2
-         +7/b81+s4eGZOs7jb7sVH6j+pSDR4tzoEL98XT35AEs21sgkgom4qlqHyuUhTx2e8x0l
-         6EsFHzVf1+4tq7Acf72Oxei+QYOwvr4bgxFSkw9RFmq4Si7QdtPju7DIk09bFM0DTjFD
-         v00Q==
+        bh=mWcV0VFGwajVVupcBkZzWOJrO8kLBI65jAyB1hAgZ3A=;
+        b=ksGYNo7KL0EnU6y/LDNYkhdryFoSvtaRZDcOL+9IbwFVjHxgbxrZ+rW6s7l8WE8rGT
+         2O+Te2Rab+dCI77zn/sivNIOFAFw4WdBTgsl/OgUXLoo2LtEsbWelYNkVw2cVbNG0Q+i
+         H5xqH7lsAA9DK1X69/vCr6xyvFQVHpt/tHlvh4MFFw1ARY5Xv79dPdHi+A1cgcglgKyI
+         i3z2jHr3WyJA05NPgqfPHL9oaMY15Ut6FBRbq+ps3Pz8mPjvotUlGK3bfSnwQZkDii2s
+         XFuRGm+Uo/pv1YFgV1nFf/NaMmN7tJpxfqEyz1wd+RE1XarTcKrR4bkkbeAaSmlPDURE
+         RTHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -49,54 +49,54 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=eRiBk14vWplbP5kOnirEID6wiraoY5HfAkwwGFDuuE8=;
-        b=l9VoPaKYIIAuRVbxwWk8It7BRYUk7xB1MR/eEtdhKkbxHqN7PKuYBr+8xNNNLdO3aZ
-         9p9aI+6qxVlpT8Cjv6Ors+ksrFdiGjVc6b+CJjOWB2DQfLLiSwS7dmDIpNd4OPiGDXT3
-         YscDMgcueYZT7RlZyeN3DyOBmNU1x/s7hrz/lYkLIxYIrLPJgvRKfPfhOfCphDJURtwC
-         IkTwrcRWfdYJb7X9e6xjtoAPbEowUEIyc5Tvh/cyPkxKUOVr1wHy8iXJNosCkL2LUEqh
-         1ONrL2MsOEjh1OmpydltNxWdJ230honBxsfL/DdHlryfwZtuCCovtJCrIRXrJAdhLVEH
-         Qh4A==
+        bh=mWcV0VFGwajVVupcBkZzWOJrO8kLBI65jAyB1hAgZ3A=;
+        b=WOp9YRUaunsLRghttmrfYYbwuH2FshyhUWFQ7z2/Kik86UQ6B/KUwh2VXhDmHkCl2z
+         j4EZ1bSOKPI0ypuTmyJYuxQsrab+y95wtmMirmH6spRXP6JBHfXGnfSJaW4csm4vdjPU
+         Vb+Vh2PCw/cCbAzogEsGlaAEhnAvTeYvulqWb+QStF0pauTI2JAVo2iLdnEY6V7g5pJl
+         h6FTboOxDJe+7zsqtkMjCVyC2a1XkNmFLZuBbWoO8LZ0r7hHudjAPNKf27KfPQ6liuKc
+         B725maPtEL0+6psUFqYJ94Vn8dnIpVQpg3I1DyGj3gFhE8ofQ//YOb7/QWjfzOPfnVeU
+         JIGg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAWYlBvBODtsHGtvROgqRkIeqr1heYvxxdA0Tzm/fjs9z08gj+tN
-	zN68KgHa95gwGBZfNHb3+yM=
-X-Google-Smtp-Source: APXvYqwOzxpzvsVTE9semRJBJBCV62cIK9K179vL/wQBfFb6qrb6pXdgnfKw7u9Ydt+J58EBYQuRwQ==
-X-Received: by 2002:a67:fac5:: with SMTP id g5mr17824455vsq.82.1556727312461;
-        Wed, 01 May 2019 09:15:12 -0700 (PDT)
+X-Gm-Message-State: APjAAAUWni5SS2R7mAZMSX34F9NJ5uVlTiIrYPr0/8D3CGF2/p6aXB//
+	UYSPc5rTLnUmUdMS/l3srxM=
+X-Google-Smtp-Source: APXvYqyN0cySWB6sdeY/WO3ec0o+Ce5PLu6iU7xuUVvnvrPO+g95iOILbvJZPWK7yswOEjHQeGfWwA==
+X-Received: by 2002:a17:902:9042:: with SMTP id w2mr18166501plz.91.1556727308614;
+        Wed, 01 May 2019 09:15:08 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a67:84c1:: with SMTP id g184ls3229242vsd.8.gmail; Wed, 01
- May 2019 09:15:12 -0700 (PDT)
-X-Received: by 2002:a67:de97:: with SMTP id r23mr65736vsk.6.1556727312156;
-        Wed, 01 May 2019 09:15:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1556727312; cv=none;
+Received: by 2002:a17:902:28a2:: with SMTP id f31ls6986017plb.11.gmail; Wed,
+ 01 May 2019 09:15:08 -0700 (PDT)
+X-Received: by 2002:a17:902:968b:: with SMTP id n11mr77178322plp.118.1556727308105;
+        Wed, 01 May 2019 09:15:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1556727308; cv=none;
         d=google.com; s=arc-20160816;
-        b=uq8FWrzYOaPXVDCdNYTL0wkRPayz1/Pi9ONiD4svWBit4jvOh4grQ6NGNc3mnilB3k
-         IJ6PmCdeo6hPVguUHFZ0H+ruLd6GurzVhWoO31f4UeYdmaF0d0Y52oUlfj0dPyIelNkl
-         eTaMcd/HcGIXKN0FVXw+TvSStZO/Lz5hdDOmP1bWvopva3aXwnr6yzsc72L3yJhe9MJX
-         l7RnE/61dltRsp0rqG0YHqmDp6GJ43FcVP9dkgr6URt6rPz0y1lp30+CJMhDIjfHWJCQ
-         7l/zzVKucuQ7YbLYjmmswBQ5pdJLfZP6W8nAo5ZTTLdG+S3sQ5JO04SI52YuHmYqVIYz
-         FtrQ==
+        b=SHMjvwjEfC/l9YqmnkpPV/lqYyBPrhAaVnBYOkaO8J+LhBGK+tabkPwje7jrzUrW2a
+         8cPjGG/jpN7mHkJBKXyC7Is1WfUHM2+uSfsWFKwCqM/rsFqij8ORbQN9IL0qfmVW0siV
+         nlqcd5qJqPj/GcVl7A8C758Msb8NBid6zCm0Gdr6bMDzkjMbN2YptHWKfDpqhwnQYVnT
+         6zjs2Jh1cV91sDUHWb4O4cNIzgDPbuZ4tCRe3n1EFjWr6E6+aTCmH0SiZPeyeCwJ5GSr
+         ZoPIanUvpRJpm22EZdhikwscsl5j7bQXiMSs+iEuqyQ3kBKts9OyibxM0c+DDCtSGDE4
+         YpaQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=ETKz6gU+Zh1sVT+wHucAZ2tKu04QiQsyCfpwI3943/o=;
-        b=bvfMAzbFA0AyYOrA3MtPIVbhiyQKp9M/gA5B5/Ldanl6psP7Vv/iLrWfWQhKtXWlQc
-         TzNvfbM/LiL0XfMjXzIepKLk3ue5MmsQtQjdT2FhiYVyS9rXuIBW4VioXZ5Q8fw9d2jb
-         g7p5YR4ZFhl5g6F5oHKHF4Y7cg/Gimqddgwd0WyfKl78GQK1tGf8dB9+P6RLO8xAZfSP
-         ZWOApcGFPSuGXJcTl7VH+NXvfw+pWcCkwc2yfyhWINJkUe1D1WOMc3Yx7eg6bEF0Ep10
-         pb0G3qsdcES5PB8h0E9o9LQYTgz76Bn9pomldnFbVRX4z0A4XnDEt5gxQ/5mHlPDbXdC
-         PhwQ==
+        bh=9gqGkobIhZryEowiPA+7IhnJAwe31pJ4qW8m9/0O+C8=;
+        b=Y/qVd9VVT1Meh17/JcQ8ogQmv84V3I9QMVV5kbQdKr09FhOyPgVBduymSxhTF5IPD0
+         7lWTo1rehhY6mOEYmJDvy+6ntkcL0XbzNhqRNsEZJVjqRuD2OHirpA+wmUIEf9jnfllT
+         AzA9gkMg4AMQxQbA+VHCtuqLcrqtT2ftDcshRaUqcTsvK4+e2nMoAOVxiagc4sTW4eSN
+         32ioylZv9sq9s15xT1QxFu/NRzC9aRQkiULsYx3uamwVqVBUuAaNryt10iueUABj9kNJ
+         X4/e61IRfKImLkG5vtD3DgkdpHIP+jTjrqWbzsFHoEPl8KU+fWXq1cox60DNa9rfYlHr
+         D6+A==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=AVw7QCQZ;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=A92pWCzA;
        spf=pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
 Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:e::133])
-        by gmr-mx.google.com with ESMTPS id k77si2362797vke.3.2019.05.01.09.15.09
+        by gmr-mx.google.com with ESMTPS id f132si460256pgc.3.2019.05.01.09.15.08
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 09:15:09 -0700 (PDT)
+        Wed, 01 May 2019 09:15:08 -0700 (PDT)
 Received-SPF: pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) client-ip=2607:7c80:54:e::133;
 Received: from adsl-173-228-226-134.prtc.net ([173.228.226.134] helo=localhost)
 	by bombadil.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hLrsp-0004P5-4N; Wed, 01 May 2019 16:14:59 +0000
+	id 1hLrsq-0004PG-Fj; Wed, 01 May 2019 16:15:00 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "James E . J . Bottomley" <jejb@linux.ibm.com>,
 	"Martin K . Petersen" <martin.petersen@oracle.com>
@@ -111,9 +111,9 @@ Cc: Hannes Reinecke <hare@suse.de>,
 	open-iscsi@googlegroups.com,
 	osst-users@lists.sourceforge.net,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 03/24] scsi_netlink: remove duplicate GPL boilerplate text
-Date: Wed,  1 May 2019 12:13:56 -0400
-Message-Id: <20190501161417.32592-4-hch@lst.de>
+Subject: [PATCH 04/24] scsi_transport.h: switch to SPDX tags
+Date: Wed,  1 May 2019 12:13:57 -0400
+Message-Id: <20190501161417.32592-5-hch@lst.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190501161417.32592-1-hch@lst.de>
 References: <20190501161417.32592-1-hch@lst.de>
@@ -121,7 +121,7 @@ MIME-Version: 1.0
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Original-Sender: hch@lst.de
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@infradead.org header.s=bombadil.20170209 header.b=AVw7QCQZ;
+ header.i=@infradead.org header.s=bombadil.20170209 header.b=A92pWCzA;
        spf=pass (google.com: best guess record for domain of
  batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
  designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
@@ -139,22 +139,23 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-The SCSI netlink uapi header already has a proper SPDX tag, remove the
-duplicate boilerplate text.
+Use the the GPLv2+ SPDX tag instead of verbose boilerplate text.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- include/uapi/scsi/scsi_netlink.h | 15 ---------------
- 1 file changed, 15 deletions(-)
+ include/scsi/scsi_transport.h | 15 +--------------
+ 1 file changed, 1 insertion(+), 14 deletions(-)
 
-diff --git a/include/uapi/scsi/scsi_netlink.h b/include/uapi/scsi/scsi_netlink.h
-index 5ccc2333acab..5dd382054e45 100644
---- a/include/uapi/scsi/scsi_netlink.h
-+++ b/include/uapi/scsi/scsi_netlink.h
-@@ -4,21 +4,6 @@
-  *    Used for the posting of outbound SCSI transport events
+diff --git a/include/scsi/scsi_transport.h b/include/scsi/scsi_transport.h
+index a3dcb1bfb362..a0643b9f6f13 100644
+--- a/include/scsi/scsi_transport.h
++++ b/include/scsi/scsi_transport.h
+@@ -1,21 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /* 
+  *  Transport specific attributes.
   *
-  *  Copyright (C) 2006   James Smart, Emulex Corporation
+  *  Copyright (c) 2003 Silicon Graphics, Inc.  All rights reserved.
 - *
 - *  This program is free software; you can redistribute it and/or modify
 - *  it under the terms of the GNU General Public License as published by
@@ -169,10 +170,9 @@ index 5ccc2333acab..5dd382054e45 100644
 - *  You should have received a copy of the GNU General Public License
 - *  along with this program; if not, write to the Free Software
 - *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-- *
   */
- #ifndef SCSI_NETLINK_H
- #define SCSI_NETLINK_H
+ #ifndef SCSI_TRANSPORT_H
+ #define SCSI_TRANSPORT_H
 -- 
 2.20.1
 
