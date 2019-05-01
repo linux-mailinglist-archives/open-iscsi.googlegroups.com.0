@@ -1,33 +1,33 @@
-Return-Path: <open-iscsi+bncBDUNBGN3R4KRBEEMU7TAKGQECAYGELI@googlegroups.com>
+Return-Path: <open-iscsi+bncBDUNBGN3R4KRBE4MU7TAKGQE5H5ZH5Q@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-io1-xd3d.google.com (mail-io1-xd3d.google.com [IPv6:2607:f8b0:4864:20::d3d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E35F10AE0
-	for <lists+open-iscsi@lfdr.de>; Wed,  1 May 2019 18:15:14 +0200 (CEST)
-Received: by mail-io1-xd3d.google.com with SMTP id i21sf9500938iog.9
-        for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 09:15:14 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1556727313; cv=pass;
+Received: from mail-vs1-xe3d.google.com (mail-vs1-xe3d.google.com [IPv6:2607:f8b0:4864:20::e3d])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBFC510AE2
+	for <lists+open-iscsi@lfdr.de>; Wed,  1 May 2019 18:15:16 +0200 (CEST)
+Received: by mail-vs1-xe3d.google.com with SMTP id r3sf2990671vsn.22
+        for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 09:15:16 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1556727316; cv=pass;
         d=google.com; s=arc-20160816;
-        b=GhpeNxz30sBJb+LT/LNvH+UWH9eaXxPnUhQcajBaFYEh3xtl7/CYVCRih/gAqrOLkA
-         Tkyg5SNI8Ez5zud/ceDo4iccz3lYq5IRKx6VxjZQxP7XcBIykLwA6EYOI4sW5XLRXC5I
-         VRUToCgwFPLtQ8pFH+OF+qcDAIYP0lU3OGE/fFOgWkk1oZ6hqhglOHeyIWBMXSJfkLxI
-         6hGb6MxXI3FGLHMDqjW13frnmKgGXgf1jgGmpBYz6mwkQ6uH9f0pLfNYYZ7Yq8KF9KZs
-         347eLByHP+HgBqIaAEUfiU3zzbxgMMMYf9VEEi2FYZxWxc1PgL3n3blqeAzUEOBoYi2u
-         3clA==
+        b=RyCERGpJGWWbRy0ALWSgVcoKi8guPjR3dN+VNrE5Y+uQs671Y1wGc9JyjYtI3LOz3h
+         M4QgDWMm/4IvKpyV6wIsSdX2l/zHF68/xhGBQBSL/C6eguN/3Kp2kk9tJfZRMtwHgmRz
+         7hU3EBPqGWYgJDZxEx6Mn44SxBjqpEXiihniHavAtKFFDcSpLjabOYIH6XKmbjZf4SX3
+         pXYlQHaHk6uhEIfABx8XSt6hqZpAdQpuJ61hTEgwQubzfVzOH2biUV69UXack2i7+ddc
+         OWDct6wEFj//QeYyJsF6lhFQVnnHNewWxf5HSq1+Y2oUKh0+ZtnxeoFIxd8ZxnHtozYO
+         NmBA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=my8hfwPkOjM/G6nrp3qUqciAw0h2ncm/qLm+sjdfxHQ=;
-        b=dQbGAtMb8bYJdddxxiS1j6E8SPGbUM/f003CbCPKAQywceYwgnmaYB1utoUx6Jn4mM
-         FwcSRaA29EL7rRp2ru3Z8aJwsLUITV1KTRZQs2KlcODyG2tmIJk3kt2GQyYhXno+BiN+
-         HH5T4K32H+PhadOGWYGnHMSU0RAHExPTIpqnPJN6zSu5whp2p/09bSZNw0t+3+nIg4zV
-         ntGhWuM0h9NrjjQr1hjuJLJtu40UBjh/3VZEfyh8Jrk05iqoNvdLSgPVI5tbEUOhOtQU
-         WP9yYGme0/aBn0deNgYwwo6OiDl7j7mp6RvwOSThndh4odIoeeCC8PB1lxLHrbBqVLaQ
-         82eQ==
+        bh=J3pnI1V0ZvWss87E8S1Tieuhzn4BOByCJJUN7rE1aqU=;
+        b=xy9sashLzVh8FUn0jDuvuLbO/xyxBd3n/wxBwUBBCQVcUFVyUnVd1Ktog7HrxUpc26
+         5o4HkqoKF9Tv8EMtgveFy2kqI/Ow/fR6oNHNV7EDMACPY11X0hnnqXPNUZtb5qiNiEy/
+         JRTcdifPJ2a7z5ffr5z4SWbrBNdDKJ65c5kXiUObEo3pOgELr+UkuPOV2G1QrIFVcA7b
+         tT9ZXk+SG9cNSJ5ivYzYD+5V5r6HzSilXMYO3nOFLeBuSAHBO8PyFgP7Wa71pPqAL9Op
+         aMz7U0YNGFtgDYDYVoXq7jtVBehG8tqDEuzJi0PGXisrzRTgVEJSmSuHPkcFEpKNAXCx
+         OIHQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=MRoqOlbJ;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=Q7AWxcBI;
        spf=pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
@@ -35,13 +35,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=my8hfwPkOjM/G6nrp3qUqciAw0h2ncm/qLm+sjdfxHQ=;
-        b=MTZHOqkGkFAoZaHsRL1boePQtkP4ZQz+g4S2Z1g2D5ULLDvtoE1S2c83c/1a/xEOA8
-         qH1eIde5GFVLOpxrWiE4LBsp+YSC12sbHVtiREylV0jSp0svMwvLra2kmCooji6oDkla
-         EF4+3gj8Sb0lNM1SiRFmX4iuncZiWZpbjV4Ye0QCB/IirFbqA7LfTHg6ST4As1N+E1lb
-         VRABYgvSInTY80qj9C0ketCHG2gHKaIeDPC6BgyC5x1ztt1aRiG1GQTwy1lD+KS70te2
-         qyAszfEHcVxkGMx6ED+q7tOa2K4pr94YVgDWrecxaKV+dRpkx4zggnrnZ76SgdVxtld3
-         dv5g==
+        bh=J3pnI1V0ZvWss87E8S1Tieuhzn4BOByCJJUN7rE1aqU=;
+        b=SanmHxP2tsc/ZP/eVGNJ67lwcbcHnVNrl1t/3G7RoWKpL0H4CFoixdJLoqcES7qnJX
+         y4c1NIP9RE1plqjzJlDf4kc2ZcGOXXqJ/53adJ61yo6+dA1si652l8J8jBnCbjRmbxZH
+         Xey4m1CvkY/wDZ2OqZpssX4iU3Njns+Lzh0fSABO5XsLkz49b3uYQVNACPC7wZSfwQG/
+         xN6CqFT9WMQGUOLVIUNRlPnl6rFXvOR+GYCDbSzFV/7bGJmrzYQSnQ2jrrFq4U/67c0I
+         HUfAMqvrNLYLVK5Z9fAYD7EqRlhNAl2X6o2YT86cvienkbCgBE6Aj79/4ljd4kN/oKb3
+         +kVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -49,54 +49,54 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=my8hfwPkOjM/G6nrp3qUqciAw0h2ncm/qLm+sjdfxHQ=;
-        b=PUSI5jhxXdkJ9+oFQkj4i33WYjhVnXWM2IUnMGjyk1asiMHml/z9r8tWuoY7dglPyX
-         tAvAFGmv5kCNLSG7hVw5ryiMmPhLRkr3cal4OjgUnKTCMu1pox/rAJbr/YJ7xxL8wMHT
-         MpPTav0NytfleKssJK15wEv+905atDLd+6rkT9vmmurgEkhyCekqDlwe/XJ9NdQqmfRq
-         mnC0SY4U2YYtvyhKCKS7q/efA7dp9h4w4wjcuOvYIVssjWe8W1hwqtNc89JJHP6CC08a
-         Tb2k4V97w/yu8UtoS4vJKF9xXBz1prtHDaGzXrZ0VN+Zqba1vVpDMEyDjT8GkHMa1mQw
-         MWRg==
+        bh=J3pnI1V0ZvWss87E8S1Tieuhzn4BOByCJJUN7rE1aqU=;
+        b=SeKaa67yqzlCrOMdxaOddqeKynwdRVfuHev9uhQ97NNFqSkc+nVUq5zBiew3Afmri2
+         rQh0Fc36VSL+R/+U8wIBi+Vz+vRuiBsuYJWaXJKA3nig6NcyF24RufBWVfxYWay8djxO
+         a/B59t10cRCwH4NqLADMxmhS7p8OiCJ1ux8dPPj7MUhfCr9U3phSTa2hA51XMyjrXu4P
+         mDbPlXSCZIDpCKy5LcprDaRNpjQYekAh4oWDH/WUgSbefL0kRLPurMVTwTAFQypFT8+G
+         XsUvVyp4ombaA2DTDenNPTI3HspIUyn4wIVS2iP4HPMC8Xefin56WZUyuh5Wta2Wf5Cv
+         xvww==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAVmL8S07YCsYzwPoaZV7Z51G35pJHzgbRvY+kQGTpuWM1lDshtO
-	ljHIz+4os8p++mCBH6NgUMU=
-X-Google-Smtp-Source: APXvYqw+C/s1od36llooDWjq0hskWxJI1NH7v+UnC+8ZMFKJkUSfCbbuB3jdjK8gdKrkkV4JrW+kqw==
-X-Received: by 2002:a24:4a81:: with SMTP id k123mr9302314itb.159.1556727312883;
-        Wed, 01 May 2019 09:15:12 -0700 (PDT)
+X-Gm-Message-State: APjAAAXJJYjU57dzX4v7twjsRmq37rRMRXvPcz57DRCc1WLh24vGaJX3
+	elDCijvaBEPkZ+muXAuCBi0=
+X-Google-Smtp-Source: APXvYqxH3JYssaETA1Q+uOGMlVEvTdz3XvNzFmp3rs8H+d+9efsRJriBu31oIhRW+XQyF1/AcmkNHQ==
+X-Received: by 2002:a67:ed84:: with SMTP id d4mr39991197vsp.207.1556727316040;
+        Wed, 01 May 2019 09:15:16 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a02:c6d8:: with SMTP id r24ls2249227jan.1.gmail; Wed, 01 May
- 2019 09:15:12 -0700 (PDT)
-X-Received: by 2002:a02:3ecb:: with SMTP id s194mr30994759jas.29.1556727312532;
-        Wed, 01 May 2019 09:15:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1556727312; cv=none;
+Received: by 2002:ab0:2812:: with SMTP id w18ls451479uap.14.gmail; Wed, 01 May
+ 2019 09:15:15 -0700 (PDT)
+X-Received: by 2002:ab0:7586:: with SMTP id q6mr17619035uap.133.1556727315648;
+        Wed, 01 May 2019 09:15:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1556727315; cv=none;
         d=google.com; s=arc-20160816;
-        b=L46uGBEv/3Vc4UvEENdJoDPTFs1ndC7kRYB5yrNyW2dPg/VMCVs18444J4fqeWs54+
-         GdNBr9q5FOCXYl4KSIxxMh4RA2WoM9zGRKrD4LwnkhA9d9Y5k2LY85TwRbAdDM/2udi8
-         arjW7qWCk+4Nn560/cGYcyaFTA6EHxZ+M6fab1obtLsyDSL/we5Sxm+fhfCR46pxl+OM
-         hJ/y/Jbyzfp/LPrpI0v6SdTXA/szqhXBCuas+aUX4xKuei83KkVRGbkF/04GONvN589J
-         Aq9dboCNR+p0uO9KmD7TpRqTwZenaQsy7GATRfpJ5tvK5NX+CLYMVq9RVFhfYnapSAsa
-         KmUg==
+        b=ImxlCgpYlHGcTM9HDsAzht4aEDj2YlTILGxYAyoIA0ugBu8PKrQFFUaZsLqGlGhDxc
+         wg8B0pJn6aI158pF4yBJEJYhnQVRqa37qT9QKXGlb4vAcxbRwru6nprgeqssFRnzvdUX
+         CKoXSshhWY8XD3L5ksO9j2NxjBRPfgKU/vQf/a3gK1WMByK4VYputmfOV69l59PgrLbS
+         TLbOK+eG0Vo1ykMZGlTM4PEGZisgy3GicmPM30wv2QgazK5O621oejedwg9CduR0+ABU
+         jrul57khpHz5nhawj/P3XC+wuihA1T1OtcrycG5t6WFNr4f2A+O6WgfCqGekFArmL887
+         k3/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=p8F4y+aWtrMcsvCid13qnpga0eKjm0mbCAH5j6Ry8KA=;
-        b=QWlbpTJtxF6rLQk2fiSx5WWWnbb2zMd6RQc2AEiouEgp7z2g/CG9fpaVJWQMn6ttdW
-         EuRI4DliUfs5DhNKm7VhtQxXA1j1d99KSyYkWQ72N7lE37HqCE+NYzGUKbh23ANXLwaq
-         J5aNJpNbd8Q1/WlDH7oq138VfQMt/4U85YyMTNim/OLy2JELmmkDwMc+E3J8LfCDpu15
-         lkaIeS59AvjkOXn8WiOO9GHEKkSXJ0G0KoSrEtQBfaQza9O0FJ71///OwOCfuBchXXfd
-         E9g3hVTL6MSTRN8TgMaLfhylNhgeHLsB7kUKZWiH2w2gDtuUYtpnLsdqhMPpGJ2V+F9r
-         gMOA==
+        bh=Vqy9GYMIb0rH6XPVOPvJOsTv8lYc6QyM7vi2h2ENsu8=;
+        b=Vx0cFwZ24NTXploVBQP0Vc9KAK18fPP31mAv1jCtmCRAbCZYnDcb4Xomug2hTsOCgx
+         1WqzVzZE/zSpy1YO/SF7+VSDtsEqea7DCBH3ZM68okBMNJMhrz3lPsgT6gYURDWLGJp/
+         G7ChvChGtS7HvqtJppmeZyBj2oQzxYA+xL9u4ApnJI3lN42UO5bLq5O6jLmuXtl/CEZO
+         oeQsJPJeFXqPoJaQODNw9jIpQb/P3oHzSAasKLuLsoyjopC+cqRXOiIWBwdg1SaY8VT2
+         0xUZNNZ1gGe7uwsLCpc8Xb7Csg3K9tX8398xVFPFktWObzTEGghH7KUTf8q6jiuHabSs
+         tnAw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=MRoqOlbJ;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=Q7AWxcBI;
        spf=pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
 Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:e::133])
-        by gmr-mx.google.com with ESMTPS id 5si336790ity.1.2019.05.01.09.15.10
+        by gmr-mx.google.com with ESMTPS id k77si2362811vke.3.2019.05.01.09.15.15
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 09:15:10 -0700 (PDT)
+        Wed, 01 May 2019 09:15:15 -0700 (PDT)
 Received-SPF: pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) client-ip=2607:7c80:54:e::133;
 Received: from adsl-173-228-226-134.prtc.net ([173.228.226.134] helo=localhost)
 	by bombadil.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hLrst-0004UB-Ds; Wed, 01 May 2019 16:15:03 +0000
+	id 1hLrsv-0004k9-5Y; Wed, 01 May 2019 16:15:05 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "James E . J . Bottomley" <jejb@linux.ibm.com>,
 	"Martin K . Petersen" <martin.petersen@oracle.com>
@@ -111,9 +111,9 @@ Cc: Hannes Reinecke <hare@suse.de>,
 	open-iscsi@googlegroups.com,
 	osst-users@lists.sourceforge.net,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 06/24] scsi_transport_fc: switch to SPDX tags
-Date: Wed,  1 May 2019 12:13:59 -0400
-Message-Id: <20190501161417.32592-7-hch@lst.de>
+Subject: [PATCH 07/24] scsi_transport_iscsi: switch to SPDX tags
+Date: Wed,  1 May 2019 12:14:00 -0400
+Message-Id: <20190501161417.32592-8-hch@lst.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190501161417.32592-1-hch@lst.de>
 References: <20190501161417.32592-1-hch@lst.de>
@@ -121,7 +121,7 @@ MIME-Version: 1.0
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Original-Sender: hch@lst.de
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@infradead.org header.s=bombadil.20170209 header.b=MRoqOlbJ;
+ header.i=@infradead.org header.s=bombadil.20170209 header.b=Q7AWxcBI;
        spf=pass (google.com: best guess record for domain of
  batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
  designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
@@ -143,70 +143,70 @@ Use the the GPLv2+ SPDX tag instead of verbose boilerplate text.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- drivers/scsi/scsi_transport_fc.c | 18 +-----------------
- include/scsi/scsi_transport_fc.h | 18 +-----------------
- 2 files changed, 2 insertions(+), 34 deletions(-)
+ drivers/scsi/scsi_transport_iscsi.c | 15 +--------------
+ include/scsi/scsi_transport_iscsi.h | 15 +--------------
+ 2 files changed, 2 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/scsi/scsi_transport_fc.c b/drivers/scsi/scsi_transport_fc.c
-index d9e3cf3721f6..8be503da7edb 100644
---- a/drivers/scsi/scsi_transport_fc.c
-+++ b/drivers/scsi/scsi_transport_fc.c
-@@ -1,24 +1,8 @@
+diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+index 0a82e93566dc..828b242e28b0 100644
+--- a/drivers/scsi/scsi_transport_iscsi.c
++++ b/drivers/scsi/scsi_transport_iscsi.c
+@@ -1,3 +1,4 @@
 +// SPDX-License-Identifier: GPL-2.0+
  /*
-  *  FiberChannel transport specific attributes exported to sysfs.
+  * iSCSI transport class definitions
   *
-  *  Copyright (c) 2003 Silicon Graphics, Inc.  All rights reserved.
+@@ -5,20 +6,6 @@
+  * Copyright (C) Mike Christie, 2004 - 2005
+  * Copyright (C) Dmitry Yusupov, 2004 - 2005
+  * Copyright (C) Alex Aizman, 2004 - 2005
 - *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2 of the License, or
-- *  (at your option) any later version.
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
 - *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
 - *
-- *  You should have received a copy of the GNU General Public License
-- *  along with this program; if not, write to the Free Software
-- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-- *
-- *  ========
-- *
-  *  Copyright (C) 2004-2007   James Smart, Emulex Corporation
-  *    Rewrite for host, target, device, and remote port attributes,
-  *    statistics, and service functions...
-diff --git a/include/scsi/scsi_transport_fc.h b/include/scsi/scsi_transport_fc.h
-index b375c3303fe2..b990091d5c20 100644
---- a/include/scsi/scsi_transport_fc.h
-+++ b/include/scsi/scsi_transport_fc.h
-@@ -1,24 +1,8 @@
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+  */
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
+index b266d2a3bcb1..98149e82926b 100644
+--- a/include/scsi/scsi_transport_iscsi.h
++++ b/include/scsi/scsi_transport_iscsi.h
+@@ -1,3 +1,4 @@
 +/* SPDX-License-Identifier: GPL-2.0+ */
  /*
-  *  FiberChannel transport specific attributes exported to sysfs.
+  * iSCSI transport class definitions
   *
-  *  Copyright (c) 2003 Silicon Graphics, Inc.  All rights reserved.
+@@ -5,20 +6,6 @@
+  * Copyright (C) Mike Christie, 2004 - 2006
+  * Copyright (C) Dmitry Yusupov, 2004 - 2005
+  * Copyright (C) Alex Aizman, 2004 - 2005
 - *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2 of the License, or
-- *  (at your option) any later version.
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
 - *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
 - *
-- *  You should have received a copy of the GNU General Public License
-- *  along with this program; if not, write to the Free Software
-- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-- *
-- *  ========
-- *
-  *  Copyright (C) 2004-2007   James Smart, Emulex Corporation
-  *    Rewrite for host, target, device, and remote port attributes,
-  *    statistics, and service functions...
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+  */
+ #ifndef SCSI_TRANSPORT_ISCSI_H
+ #define SCSI_TRANSPORT_ISCSI_H
 -- 
 2.20.1
 
