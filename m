@@ -1,33 +1,33 @@
 Return-Path: <open-iscsi+bncBDUNBGN3R4KRBHMMU7TAKGQE3KJRTIA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-vs1-xe3b.google.com (mail-vs1-xe3b.google.com [IPv6:2607:f8b0:4864:20::e3b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1167A10AE8
+Received: from mail-qk1-x73f.google.com (mail-qk1-x73f.google.com [IPv6:2607:f8b0:4864:20::73f])
+	by mail.lfdr.de (Postfix) with ESMTPS id A37E410AE9
 	for <lists+open-iscsi@lfdr.de>; Wed,  1 May 2019 18:15:26 +0200 (CEST)
-Received: by mail-vs1-xe3b.google.com with SMTP id h23sf3211023vsp.14
+Received: by mail-qk1-x73f.google.com with SMTP id t63sf15329456qkh.0
         for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 09:15:26 -0700 (PDT)
 ARC-Seal: i=2; a=rsa-sha256; t=1556727325; cv=pass;
         d=google.com; s=arc-20160816;
-        b=FImB2Z1XeUtBQ0rvSjCSHTTVMFFicDH3lfaQLmq1BICxL+1xtOFM5a4czYkVx0xLbw
-         LYQTmlRXZ2Sal3xe922ecFVP/QW4uNyZBtUL4sesdRQHFakB4CtVyj3dQ0Hy6vEGcGmf
-         o/1neHTufiSqeveJTeL9qwNKcDuWuco4sk0DHZ79W6QpEPDx5OISj4Z+BiIlhu64R4QM
-         jH7Bsxu9eyjAb3rt62dFunQ8TGYWBFQRARpY4nrFU1xxx1NygYpFnBwF1xmK38rrDhmM
-         n9rOqLsPcmLE+k50TEHFgjqm4DwowEEj7rkqIv7aOQo+QoZU3/CZAvEwrTJXnNWgGgYy
-         kStg==
+        b=fOQISefd/lj6WyyqmV7/qMYMllW6uxXGc8vAlyLsYg4M7jsUs7rXzLh6pjuyH+2Nm0
+         goz92QLKcTQ/AfVScAkIEZVWdauc5fJm5YtIAQo7eJWL7mhuWk6eu02yB6Iz4CKxnIvn
+         6hTgYtXxT0L9rHqqCH9mmT4aIDEDDmG50KbY+1+aOn8kwcx2QFpLBzumKZ8NquuEesah
+         qwPmy+hDUXam3f1eI/TdXvz+pkN2nO1O0lgcANVIO/TUV/oF/F/ArfXG2lS3ndGbgYwZ
+         kTzAgYGz0Is1ZNSC56uxL2BPyjJxiBP9U/jJ3JCzZI0MkJcvmdWg8tHogUFlAlNtT5AK
+         MN2g==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=B6G0Lmv3qdFC3rSire8nyuuiVwj39q+UULGd8bXFneU=;
-        b=VfuKbqaiF3WYpTj3vdWCo8OmtlRUUEovNMM+zECiIJSPsFv/ZBq7TaJpLdIQpq56bg
-         V3jgTIkHhQ56n7QcGP+/Ofdbl/QqlnqlGSYwPUJUit68pBWzHWcN4Jtbrqpr9x8yNyX6
-         IGZigZ3gsnB1ia/1MouVN5jrBuAjjEYiyejpJrYc3asje1YQ3mw1+il+wQQRvU/HTyK1
-         c+ocOHGW/l0128jbG31KRr/4j6kYKMZoH2VlLgLOWOJ8tfQpqzfp23FftEgy/Gx3Gzdw
-         fyYEZ76BBFxW/nKQhCcbPyRRev6UyjvnFz2c7IXLwTFXzJ2EWfkpJMg+TWjOLDsmqcKN
-         RHEA==
+        bh=FwD+uITDg4vDoQ4lqSuuNosdOHbY3ueUZ/OjnbwklkQ=;
+        b=1CePcFjxQq5XAPpKrfK3S75Mjw/JA2NiH1GB2nFBStetHVrgvy1+wqCQRhcry+zexO
+         arEf8n1elZANRAQxdxpbD4hFOj9eb4o2ZxOZApSejoiIgRkbmJGNb3NUg7yO7e8QBIvM
+         F5x0v5d95E/wr1ncd+vzcQOiRhn6RAVaZ4Dk7i0t03Z4+TgxmSCTiRxgyRddfs2BXiI7
+         OgvkDQ/mWCW3WCrUF4noTsLWOIA9fS8Muex+hTliOH0f6PaZtw0sm3Lw9t4KCGpRn16Z
+         6hFoJ1XXDqnYOcPT4drl+7Wul3uPJx0UlCwVAc9S6GmQwJTwbLxZvTyjjU88XxrHL8h+
+         2Mcg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=cfaw2NiU;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=WMqFGkHF;
        spf=pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
@@ -35,13 +35,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=B6G0Lmv3qdFC3rSire8nyuuiVwj39q+UULGd8bXFneU=;
-        b=TIUh4vdBgM4+grxOIWNIVwmcyUASvbEN51yPXPw3e5I7n6K3TL62VTKA2809uUL/HH
-         zE1vk4oe6bjJbe40Dez/MmyoQrpFDytQPECxwiUFCempOZ+45iXy28D1HXXo912LnGqj
-         mhlH63WS6Bw8lGdCOzf6UOo1e+RF8DAkB1DQ2sonLFpu5Qc8YqDvOXNxPwV0jnImKKJP
-         OTIQjSooC8hfiaRxr7MOVMQkcHkoOk1X8GKoNo+mp60RrDSmpJF4GqOeanVp7VdcMdWf
-         O9aJdWBuVYxd06g0VpOUBMJ+sKZrEXovtfe6wCYumyWxyEo7TEwmX7BBpLv1Gv0BVMOk
-         DWuw==
+        bh=FwD+uITDg4vDoQ4lqSuuNosdOHbY3ueUZ/OjnbwklkQ=;
+        b=nkIctiBqM+T6pWv/X1Pskbksp/kKXWzGOGjevO0YpVwmW3YD9iYBRj78nEpzfYwHBb
+         FQUlsxCHmm9vJSS7ilrIjTXyRMhy+R5DgHIKjuDkGE5ivN4QXerAqDijuU4ioqSv3Y39
+         djvI1nchpkbGS1D5Hmhuhv9yFCqPMTIAa5e22uCEujlUKcaRoAaFZPVDStUhjPNgaERi
+         TrHqb1/U8/NRxu3PVXScfS+VXunnp9aJnks2WOtcaksZi+IKZ4Dj1plRu7W8GaKiJgGC
+         9mcx/jt7wc9Plz9BXtntjTNvDEBVkpw+1+aCyH9D6sK234dqICRvez98uV6pzdnV2gGt
+         bFPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -49,54 +49,54 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=B6G0Lmv3qdFC3rSire8nyuuiVwj39q+UULGd8bXFneU=;
-        b=g5dsf43bb4gwmWzQGoRrKjVr3ObJwhuyAw6G5yym1g+hcqHo0NWx/1xyIHf907pU9t
-         N2LTZnNPT8pBeDwajPoUdNScxfyrz06UKU9NF1Dvi2QLoEdOrgd0ttMRNTsxKwtoTqje
-         EP4RIoWTuombyXnRi5SxZGR71kye8VLyZrm5B4XQO5RQoR1GlfueFLwMvQwO1HSgBB7H
-         Qc9189odhA27/SqlfrT7Rj/+dc7AkJITqcpdmhSFvfAfTzfw8j6bSHcHkxWcCd4CxXAt
-         jNqOzhTF4MrrbS0PrsFXzPvl0OjKqR8x3jpiU1EuSQbTe9v/X3zRRjKh1smbSrXjJT/J
-         EsaA==
+        bh=FwD+uITDg4vDoQ4lqSuuNosdOHbY3ueUZ/OjnbwklkQ=;
+        b=bBMMZdZuYGPYpD8pckzQc12ze3ntYIz+1m2+h4BtKC7Uda1fEf/JUTBmzo7cYLq4ni
+         U8LZTwKi3h0LbNvmlpRBZCtgdqBIu1U6VP350MCdbAkK00PSFuS95FuSIGEJQKBDxMny
+         W7YlX8hLznbmsaX4yRmvzv/8/KpRbT0SUh6/8Z7D8DTUAJ0Pjbucnbyc9G5TNGR0Oza2
+         3oSF9o6r+myghJE0Yqe0TKNV6IxBE4PfWFnyvchhIbhtRo7zf01zxKZOpTZ/Q7jruW4n
+         6Uku2n55lcUhwF2a3iNPj3xJtN8HfGqb30q/AvmdJUy73537sBfTgcr1Va6b0wNrsxgm
+         oNxw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAUWUiYQSMTk++qKHJm2FhF3UgFH0kv8UFrdEfSkB4Osv6mCV7ij
-	8fDH6ForG9fiyfwnCItcJyA=
-X-Google-Smtp-Source: APXvYqxQydgQi1Qhyna6HjZSgTtmUpe7xSv/N5gpeKVL70o1KrJ0hdenytofecxn0GlOQAWLcUcHow==
-X-Received: by 2002:ab0:3117:: with SMTP id e23mr3095027ual.102.1556727325155;
+X-Gm-Message-State: APjAAAVBVo3+yrXBSZ04rAlo4KXLyz/F1vQ/Dp13+hM7qM/7v8wDHc1E
+	3h2m2Yxx3bz0HDl3qmKjGag=
+X-Google-Smtp-Source: APXvYqwL6A8MUcynAUFGCnbNkKmMeoeIL7oX4gkOZil3jq1950NkbBIlpP8BxYZPkxGlheTsyzN3sw==
+X-Received: by 2002:a37:9103:: with SMTP id t3mr58362502qkd.78.1556727325770;
         Wed, 01 May 2019 09:15:25 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ab0:224:: with SMTP id 33ls2203083uas.0.gmail; Wed, 01 May
- 2019 09:15:24 -0700 (PDT)
-X-Received: by 2002:ab0:7298:: with SMTP id w24mr3889983uao.119.1556727324802;
-        Wed, 01 May 2019 09:15:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1556727324; cv=none;
+Received: by 2002:a0c:b885:: with SMTP id y5ls4875900qvf.16.gmail; Wed, 01 May
+ 2019 09:15:25 -0700 (PDT)
+X-Received: by 2002:a0c:aee6:: with SMTP id n38mr60258836qvd.43.1556727325312;
+        Wed, 01 May 2019 09:15:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1556727325; cv=none;
         d=google.com; s=arc-20160816;
-        b=0CYszJjMhx58mqn2Xp04D54+RA9+9TLitYZlisBI3M/PCFjErUj4IUiedRDKoZB7Ku
-         X4XUMp4elLe9QAyBFeDdcTKGFANi8Ppefm1niq8gbhv34PbKUJoKCSp8GT6Mg/VVB6aD
-         vQB1AONeETbgEafjKqovI3cmJws1TJQfMLBkyyQTE3j54//u7Gd5/dgDOEic6fHf1Fbs
-         8bPInScUXBWNpksnjjqF/jvxgjeDKZmchUU7fYdK2pB0YRs2sSKI6fO/5bYnAG+c2LDQ
-         I6h2xjLKFDe4e2RZAayMYJ0hxTkhoBANhMWWbQqYAAeke8PK1XGhDpvG5zRpaOVyxexX
-         XVdw==
+        b=rFPqTxs83oAhgkPC/Ha14U7yb/lG958H92ear1xxbTvLyCWCbYXvCtDX/vjJS3Hr3S
+         1TIYcU+Rv0N1yJ2105o5RR4930NYtQCEtw8DsQKHhyIZIczAaH4H7R52exMyUOGH/mRX
+         v+WP7XQIi14FMGH0qD1DTMD9o7nw+cwVKukFzkWSgynNqogoRmR+xKNdtUazy39f8XX2
+         p0d7hk5boLT9ZeIwfnXIjW5yG9MhFccbfANk1prfz6/X6DpaAcTewHRI/TpK1XHswVe4
+         aGYLIZKlZ3zlZG5eJv9xxLXrgtPOFtXA+0MKpQcyAZC++n2H85QR5e8kVyfol+L5m4Jj
+         AK4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=uE0SUF9R6HRjOzvlq5LUiCSk/9QnkZULKelbq3k3kpo=;
-        b=zl9SfyZgODivdv0cxZzt154pAIRWBNgUKqtzvSmk3dUncd9ze6GOC3n7cpGcTU18K7
-         xJlqTEwTbcmR+y4E3RbeC0tb217XMCbNgiudUMLVjQaeQW8Gj2qvNAtY2WF9Kae4R+/i
-         MmPEA46nj4Dws+o7q1d0yOQhcKPqQYg4ua0AeytBLGnjOOpFrBrwoiUeMvINWWAH/EzR
-         Sb94JqD+ta+WlJ16hxApLuMMk3xiyiVvHj/f6rACuyc6DgYgKtPR4bR8+joa5W8e3l/c
-         wsvbh09Jb7GNWSHNxnaJ+DZEJ2JPT4r3/EjIdgFETq8PMI2nW52ibNcDp44k0o7vzvmh
-         vE5A==
+        bh=NfTQBgYcxK0mzG73An5I8H0OrL/vxG/1o8Trp8Fhb7M=;
+        b=TND8FndKzGWI5a9GIRdMy04glxv2fb3mKwGBAOndhhoteUz0bZyIZminJoEUtJF76J
+         ZK7ua6OCO+v/YpjMYI0B4NRMiCpe/IY1bMyWsEJQc0UtaBcu0jKax3yKjWwSfjjHwa4D
+         FG/wGpsbzXFUtJxUJBlcNF5lv9QM+odpOBPNMR03pHMhWeaJrm//1QgXbWWIQ9GME3DO
+         R2f8onfKjHIq1FVCbRbFs5ujlwzOaaaIjUS9yZJ9IXXAvJeFgtM0YkY1TPAMek/JmlN+
+         Ck3f/hZJhXm2fXAleLoaqMiXDowN32h90qN6qy1oKg0fez4uK2IVf0ai1Mlm9hkX1wFG
+         LCGg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=cfaw2NiU;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=WMqFGkHF;
        spf=pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
 Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:e::133])
-        by gmr-mx.google.com with ESMTPS id x9si2167199uar.1.2019.05.01.09.15.24
+        by gmr-mx.google.com with ESMTPS id f92si1833607qtb.1.2019.05.01.09.15.25
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 09:15:24 -0700 (PDT)
+        Wed, 01 May 2019 09:15:25 -0700 (PDT)
 Received-SPF: pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) client-ip=2607:7c80:54:e::133;
 Received: from adsl-173-228-226-134.prtc.net ([173.228.226.134] helo=localhost)
 	by bombadil.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hLrt5-0005eQ-De; Wed, 01 May 2019 16:15:15 +0000
+	id 1hLrt7-0005ek-1d; Wed, 01 May 2019 16:15:17 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "James E . J . Bottomley" <jejb@linux.ibm.com>,
 	"Martin K . Petersen" <martin.petersen@oracle.com>
@@ -111,9 +111,9 @@ Cc: Hannes Reinecke <hare@suse.de>,
 	open-iscsi@googlegroups.com,
 	osst-users@lists.sourceforge.net,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 13/24] libfcoe: switch to SPDX tags
-Date: Wed,  1 May 2019 12:14:06 -0400
-Message-Id: <20190501161417.32592-14-hch@lst.de>
+Subject: [PATCH 14/24] libiscsi: switch to SPDX tags
+Date: Wed,  1 May 2019 12:14:07 -0400
+Message-Id: <20190501161417.32592-15-hch@lst.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190501161417.32592-1-hch@lst.de>
 References: <20190501161417.32592-1-hch@lst.de>
@@ -121,7 +121,7 @@ MIME-Version: 1.0
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Original-Sender: hch@lst.de
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@infradead.org header.s=bombadil.20170209 header.b=cfaw2NiU;
+ header.i=@infradead.org header.s=bombadil.20170209 header.b=WMqFGkHF;
        spf=pass (google.com: best guess record for domain of
  batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
  designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
@@ -139,170 +139,216 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Use the the GPLv2 SPDX tag instead of verbose boilerplate text.
+Use the the GPLv2+ SPDX tag instead of verbose boilerplate text.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- drivers/scsi/fcoe/fcoe.c           | 14 +-------------
- drivers/scsi/fcoe/fcoe.h           | 14 +-------------
- drivers/scsi/fcoe/fcoe_ctlr.c      | 14 +-------------
- drivers/scsi/fcoe/fcoe_sysfs.c     | 14 +-------------
- drivers/scsi/fcoe/fcoe_transport.c | 14 +-------------
- include/scsi/libfcoe.h             | 14 +-------------
- 6 files changed, 6 insertions(+), 78 deletions(-)
+ drivers/scsi/libiscsi.c       | 15 +--------------
+ drivers/scsi/libiscsi_tcp.c   | 13 +------------
+ include/scsi/iscsi_if.h       | 13 +------------
+ include/scsi/iscsi_proto.h    | 13 +------------
+ include/scsi/libiscsi.h       | 15 +--------------
+ include/scsi/libiscsi_tcp.h   | 13 +------------
+ include/scsi/scsi_bsg_iscsi.h | 16 +---------------
+ 7 files changed, 7 insertions(+), 91 deletions(-)
 
-diff --git a/drivers/scsi/fcoe/fcoe.c b/drivers/scsi/fcoe/fcoe.c
-index 8ba8862d3292..4ee69560cc8c 100644
---- a/drivers/scsi/fcoe/fcoe.c
-+++ b/drivers/scsi/fcoe/fcoe.c
-@@ -1,19 +1,7 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
+diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+index e893949a3d11..040b58a3d7d3 100644
+--- a/drivers/scsi/libiscsi.c
++++ b/drivers/scsi/libiscsi.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0+
  /*
-  * Copyright(c) 2007 - 2009 Intel Corporation. All rights reserved.
+  * iSCSI lib functions
   *
-- * This program is free software; you can redistribute it and/or modify it
-- * under the terms and conditions of the GNU General Public License,
-- * version 2, as published by the Free Software Foundation.
+@@ -6,20 +7,6 @@
+  * Copyright (C) 2004 - 2005 Dmitry Yusupov
+  * Copyright (C) 2004 - 2005 Alex Aizman
+  * maintained by open-iscsi@googlegroups.com
 - *
-- * This program is distributed in the hope it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-- * more details.
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
 - *
-- * You should have received a copy of the GNU General Public License along with
-- * this program; if not, write to the Free Software Foundation, Inc.,
-- * 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
 - *
-  * Maintained at www.Open-FCoE.org
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+  */
+ #include <linux/types.h>
+ #include <linux/kfifo.h>
+diff --git a/drivers/scsi/libiscsi_tcp.c b/drivers/scsi/libiscsi_tcp.c
+index c3fe3f3a78f5..e0255bb2748f 100644
+--- a/drivers/scsi/libiscsi_tcp.c
++++ b/drivers/scsi/libiscsi_tcp.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0+
+ /*
+  * iSCSI over TCP/IP Data-Path lib
+  *
+@@ -7,18 +8,6 @@
+  * Copyright (C) 2006 Red Hat, Inc.  All rights reserved.
+  * maintained by open-iscsi@googlegroups.com
+  *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published
+- * by the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+- * General Public License for more details.
+- *
+- * See the file COPYING included with this distribution for more details.
+- *
+  * Credits:
+  *	Christoph Hellwig
+  *	FUJITA Tomonori
+diff --git a/include/scsi/iscsi_if.h b/include/scsi/iscsi_if.h
+index d66c07077d68..5b8af179b7ac 100644
+--- a/include/scsi/iscsi_if.h
++++ b/include/scsi/iscsi_if.h
+@@ -1,21 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
+ /*
+  * iSCSI User/Kernel Shares (Defines, Constants, Protocol definitions, etc)
+  *
+  * Copyright (C) 2005 Dmitry Yusupov
+  * Copyright (C) 2005 Alex Aizman
+  * maintained by open-iscsi@googlegroups.com
+- *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published
+- * by the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+- * General Public License for more details.
+- *
+- * See the file COPYING included with this distribution for more details.
   */
  
-diff --git a/drivers/scsi/fcoe/fcoe.h b/drivers/scsi/fcoe/fcoe.h
-index 6aa4820f6cc0..15ee5a83ec04 100644
---- a/drivers/scsi/fcoe/fcoe.h
-+++ b/drivers/scsi/fcoe/fcoe.h
-@@ -1,19 +1,7 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
+ #ifndef ISCSI_IF_H
+diff --git a/include/scsi/iscsi_proto.h b/include/scsi/iscsi_proto.h
+index df156f1d50b2..3e930ab9b859 100644
+--- a/include/scsi/iscsi_proto.h
++++ b/include/scsi/iscsi_proto.h
+@@ -1,21 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
  /*
-  * Copyright(c) 2009 Intel Corporation. All rights reserved.
+  * RFC 3720 (iSCSI) protocol data types
   *
-- * This program is free software; you can redistribute it and/or modify it
-- * under the terms and conditions of the GNU General Public License,
-- * version 2, as published by the Free Software Foundation.
+  * Copyright (C) 2005 Dmitry Yusupov
+  * Copyright (C) 2005 Alex Aizman
+  * maintained by open-iscsi@googlegroups.com
 - *
-- * This program is distributed in the hope it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-- * more details.
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published
+- * by the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
 - *
-- * You should have received a copy of the GNU General Public License along with
-- * this program; if not, write to the Free Software Foundation, Inc.,
-- * 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+- * General Public License for more details.
 - *
-  * Maintained at www.Open-FCoE.org
+- * See the file COPYING included with this distribution for more details.
   */
  
-diff --git a/drivers/scsi/fcoe/fcoe_ctlr.c b/drivers/scsi/fcoe/fcoe_ctlr.c
-index 7dc4ffa24430..d2d17ed113ed 100644
---- a/drivers/scsi/fcoe/fcoe_ctlr.c
-+++ b/drivers/scsi/fcoe/fcoe_ctlr.c
-@@ -1,20 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
+ #ifndef ISCSI_PROTO_H
+diff --git a/include/scsi/libiscsi.h b/include/scsi/libiscsi.h
+index c9bd935f4fd1..7992f6bb2ebc 100644
+--- a/include/scsi/libiscsi.h
++++ b/include/scsi/libiscsi.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
  /*
-  * Copyright (c) 2008-2009 Cisco Systems, Inc.  All rights reserved.
-  * Copyright (c) 2009 Intel Corporation.  All rights reserved.
+  * iSCSI lib definitions
   *
-- * This program is free software; you can redistribute it and/or modify it
-- * under the terms and conditions of the GNU General Public License,
-- * version 2, as published by the Free Software Foundation.
+@@ -5,20 +6,6 @@
+  * Copyright (C) 2004 - 2006 Mike Christie
+  * Copyright (C) 2004 - 2005 Dmitry Yusupov
+  * Copyright (C) 2004 - 2005 Alex Aizman
 - *
-- * This program is distributed in the hope it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-- * more details.
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
 - *
-- * You should have received a copy of the GNU General Public License along with
-- * this program; if not, write to the Free Software Foundation, Inc.,
-- * 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
 - *
-  * Maintained at www.Open-FCoE.org
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+  */
+ #ifndef LIBISCSI_H
+ #define LIBISCSI_H
+diff --git a/include/scsi/libiscsi_tcp.h b/include/scsi/libiscsi_tcp.h
+index 30520d5ee3d1..b7ce80422215 100644
+--- a/include/scsi/libiscsi_tcp.h
++++ b/include/scsi/libiscsi_tcp.h
+@@ -1,21 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
+ /*
+  * iSCSI over TCP/IP Data-Path lib
+  *
+  * Copyright (C) 2008 Mike Christie
+  * Copyright (C) 2008 Red Hat, Inc.  All rights reserved.
+  * maintained by open-iscsi@googlegroups.com
+- *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published
+- * by the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+- * General Public License for more details.
+- *
+- * See the file COPYING included with this distribution for more details.
   */
  
-diff --git a/drivers/scsi/fcoe/fcoe_sysfs.c b/drivers/scsi/fcoe/fcoe_sysfs.c
-index c3dcbdc3aa64..b6a3bbe9ee2b 100644
---- a/drivers/scsi/fcoe/fcoe_sysfs.c
-+++ b/drivers/scsi/fcoe/fcoe_sysfs.c
-@@ -1,19 +1,7 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
+ #ifndef LIBISCSI_TCP_H
+diff --git a/include/scsi/scsi_bsg_iscsi.h b/include/scsi/scsi_bsg_iscsi.h
+index fd5689d4c052..aa76c1e5b36f 100644
+--- a/include/scsi/scsi_bsg_iscsi.h
++++ b/include/scsi/scsi_bsg_iscsi.h
+@@ -1,22 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
  /*
-  * Copyright(c) 2011 - 2012 Intel Corporation. All rights reserved.
+  *  iSCSI Transport BSG Interface
   *
-- * This program is free software; you can redistribute it and/or modify it
-- * under the terms and conditions of the GNU General Public License,
-- * version 2, as published by the Free Software Foundation.
+  *  Copyright (C) 2009   James Smart, Emulex Corporation
 - *
-- * This program is distributed in the hope it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-- * more details.
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2 of the License, or
+- *  (at your option) any later version.
 - *
-- * You should have received a copy of the GNU General Public License along with
-- * this program; if not, write to the Free Software Foundation, Inc.,
-- * 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
 - *
-  * Maintained at www.Open-FCoE.org
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+- *
   */
  
-diff --git a/drivers/scsi/fcoe/fcoe_transport.c b/drivers/scsi/fcoe/fcoe_transport.c
-index 29fe3426f9f2..0d5363ee8ecb 100644
---- a/drivers/scsi/fcoe/fcoe_transport.c
-+++ b/drivers/scsi/fcoe/fcoe_transport.c
-@@ -1,19 +1,7 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
- /*
-  * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
-  *
-- * This program is free software; you can redistribute it and/or modify it
-- * under the terms and conditions of the GNU General Public License,
-- * version 2, as published by the Free Software Foundation.
-- *
-- * This program is distributed in the hope it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-- * more details.
-- *
-- * You should have received a copy of the GNU General Public License along with
-- * this program; if not, write to the Free Software Foundation, Inc.,
-- * 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
-- *
-  * Maintained at www.Open-FCoE.org
-  */
- 
-diff --git a/include/scsi/libfcoe.h b/include/scsi/libfcoe.h
-index bb8092fa1e36..ecf3e5978166 100644
---- a/include/scsi/libfcoe.h
-+++ b/include/scsi/libfcoe.h
-@@ -1,20 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
- /*
-  * Copyright (c) 2008-2009 Cisco Systems, Inc.  All rights reserved.
-  * Copyright (c) 2007-2008 Intel Corporation.  All rights reserved.
-  *
-- * This program is free software; you can redistribute it and/or modify it
-- * under the terms and conditions of the GNU General Public License,
-- * version 2, as published by the Free Software Foundation.
-- *
-- * This program is distributed in the hope it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-- * more details.
-- *
-- * You should have received a copy of the GNU General Public License along with
-- * this program; if not, write to the Free Software Foundation, Inc.,
-- * 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
-- *
-  * Maintained at www.Open-FCoE.org
-  */
- 
+ #ifndef SCSI_BSG_ISCSI_H
 -- 
 2.20.1
 
