@@ -1,33 +1,33 @@
-Return-Path: <open-iscsi+bncBDUNBGN3R4KRBIMMU7TAKGQEOV73L6Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBDUNBGN3R4KRBIUMU7TAKGQEFCNLBYY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yw1-xc3c.google.com (mail-yw1-xc3c.google.com [IPv6:2607:f8b0:4864:20::c3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DDC510AEA
+Received: from mail-pg1-x53b.google.com (mail-pg1-x53b.google.com [IPv6:2607:f8b0:4864:20::53b])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF0410AEC
 	for <lists+open-iscsi@lfdr.de>; Wed,  1 May 2019 18:15:31 +0200 (CEST)
-Received: by mail-yw1-xc3c.google.com with SMTP id n203sf18454084ywd.20
+Received: by mail-pg1-x53b.google.com with SMTP id l13sf11179124pgp.3
         for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 09:15:31 -0700 (PDT)
 ARC-Seal: i=2; a=rsa-sha256; t=1556727330; cv=pass;
         d=google.com; s=arc-20160816;
-        b=jRbN1H38dZtLaJVlFWXNbPEVbV3hVr+L1m8pWINaJ6rOvrZI4UHDH1/q/rDZaweiyP
-         P3iVvpGECZDyCcJkte1m7JubDZv4znxHxqM94OIxP2ttHMY3YEehB2Kw1hDUr3Tc0i4f
-         BLcg1pinKlXESPQdHO5xMokoEJ5plBrpxbKwT9fy/SkjlIZAYLH8Q59WtbG5USuXrwlF
-         HTY2Jt5jU6u87zG6vO+3A7R+wsLuELeAUqm3U/VMnkwrGPcF/IuJPC4Kt+3iC4GP57VX
-         5k5NWtcPj1wYelHlBxT8B5SMLcjIq68uvxGRgMNWQkGYeWBpjWJbEqb/We0dHEDbc3yO
-         JStQ==
+        b=0d6/+Dga04PVjB8NmVl2wXGCXlxDsPIUg2bsGRzng4xFkJdazOidZP0zN9i5DDM6fQ
+         DV7L57UimxgGoU0TdjLZdUibNcRNGiZOoWcSoTvCN+1uq/F9mda5/P5QuYPFlOQdSu/H
+         3chOWcTIfmkzPqg+/dQ7IzGOa9aqWCE7QfIqOVq/9iGkAi10GhJDDh7Si6lYkP5sk4HW
+         fTy/pHDPWOCMR8mpHxORpniztBsl6Qt4GIaTijuAXgLeStLGY3vTzc6wTgZBFY6wz36+
+         ZwNIBdeg4RlTfqmqHsBuWk2Z22Wp1Fhy2yHEfXU/uhh29u2ux0Os0gp5T/0iY1RVCiEH
+         tcrA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=z6uANFdNkXZ1ZYoMHzGEzUFy/ChtpnmQf52Z9EcGdbQ=;
-        b=VXfVZlRHKHiWdGIORJwHMywKINq1WV8Fmq+iB8/1K34ve9eQdUIOoV0Mb0yI8TE0r4
-         A/t0dSb0HdtyFveRg7bLyyVARr78FUWudJbtSK6+hyt9zwS0X/wqwt5wF+3yssiJkJVs
-         hML3NRqv81eESTlA2NiIctqby7BH4PejBJT16vmlVrBUZ3wrTYDL1XdXcnwpr6CW+qxF
-         DaFdjILNhfPnSN1V0apwIPWUQzdggQ/TKH/vzA/sYOa0JoIl6TQRzK68v8WCUzc3RDrO
-         UyBOJQgH6jGcdt4euJSdMUuSTOSIZKr4DSetJhMxsUKRl7QxqbWvI/qnQTKVdmmYrzhT
-         CzNw==
+        bh=mRTm5IoAzlId70QwqBjO6uWi/NRYGpRugbA93nOYXag=;
+        b=svCRH7OeVMURT1I4xbxRl7TUvphA7CxApugt/rAUdKeDSuOERpuFaEE4tdvPMv4CVA
+         H8QSLr39uXHA1IE3dS24L48e94VDjAkuuOEqn5JED728ay6u9rNjkSk6r72OO1nw5AdH
+         7NDim6W6Od4AfCrI0uoV45dhtCk+2G27T9YIKWzxdn0tEESdeQyhD+moPV/IX9OJ5Iym
+         aCcQMoxYtZBt1FE9DaLv3GxRNZLN539EaGlsUNq16ogLHom2+lD49PbhtBqM06Vi4S00
+         yDCvUIBo16j1EBVTTF+nB/c42qkBbUCi2STZFbFkZiBlCcYMxgjSKRFFKabr2Aohk0st
+         8sYg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=BDgjLltT;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=sTSEliLx;
        spf=pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
@@ -35,13 +35,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=z6uANFdNkXZ1ZYoMHzGEzUFy/ChtpnmQf52Z9EcGdbQ=;
-        b=TazpiOn4vFtF92F157Kq8rM8GTTY0xSRuZ5+VXF+eYWTSToMkJiklzzwLX66f911u2
-         FB4S2AfDd0VOJid3uTUtpqXjZ72X4Js5EDHbfODH682K+l3e7OjWkbt++V96RSjT+Y3u
-         M/7oamKS8I9OKGVSqu00BpW+7xybgjIbyN2AdWPiUIUoqPC2me/mXpzK/OuI0RWiui4l
-         QihPCcHW31Ju96vb9L6asW5PUikk8cwqGm4LueD8UZVXFQbxMTPb8UYxOfxVimd0s2W+
-         mx6Ejpufe5nrhqB4tSCpZaUgJmNc+f1ISaAoW1aXDh39i7KHUNALJ1uPJearDvTtbccS
-         x/oQ==
+        bh=mRTm5IoAzlId70QwqBjO6uWi/NRYGpRugbA93nOYXag=;
+        b=n18WUSQtkrCozViGEPTtvZoidYD5DuDw1/M3YfTZ9mVgp7c5lJ7zZQ4ExL1kOFUeGx
+         c2ic+bwVD4addMmx5m9ijic+R8MbK2TP1oquWD8Fo1MtVsc9u+UrrxgTXDvwOxm/KmGH
+         bJaQOj6ygSy8zwj7W7cgXTbEf/xmsEVLX9F5J/QT8S8KfhUgiEfuNeBG+oz58QmsJ+X1
+         EIfr5K1y4Gl21O9rDE5V6o15YiSzKQ4h8596EPUK8cIgvORYPV+vHtZv4TOF6BXLuLfV
+         eXW1hKFf1nWTc8OWqdlIT3OiAld86/a3/6zgwr+eN1Zag7pbXdaLr1ZF05vS76kqNfgl
+         eW/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -49,54 +49,54 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=z6uANFdNkXZ1ZYoMHzGEzUFy/ChtpnmQf52Z9EcGdbQ=;
-        b=U8g/3e7xKr/aZtPcwaX5q+B9Q7ThK0vc4YhGS/nWzOQtorybAHRtA7smqyj5PiB5Bx
-         BnIMqP5OUJ74dcBtmzTY0mGxhFTOWJYxNiT32U8ZP9nmtzPt1fJGmXbPyjoj6oGKzCcB
-         TYT0/75l6Pmq6ZsrYRJn/d/Yx43e9DzYmRLC/Hx1weLcU3bB9DEgdYlHG3Riey00+/rk
-         TmH/uqJ7G0g9IRA0fIsCcJf5EEFyjfdzmQY44Bid3as+F4p+UvDcWWNKfYK+YWICSoSw
-         e9MDXnTV3kaJTrnYRJK7i83OYwPf3FiG+qJBoWC++rDRb+UUwsoP1+IWjOAiKJs2Zpct
-         lEVw==
+        bh=mRTm5IoAzlId70QwqBjO6uWi/NRYGpRugbA93nOYXag=;
+        b=AL9Lj4YNNeWeoRYxECSJ7sFurBsQCYza095YjsiCbVi9/EowDz5/ZVtciIfylh5xR3
+         PJpJPGmAwk836SFFse6cp0AbTEhd4TF+0TGLPRc9RLwNNSMyyIFdn1ON0PGN8x8JPGMX
+         /95NZ+gXIwvhKfBgvGEwswqXOuNZ+ZcqdBjIyw0aFHq54ILCe8mBLvpKDqYlGnWJDZXc
+         U2jaYn+XGjiczH4nMAnMWMKdLJ3vhImGk6q01z9FZqG7a2SwKsRXk6uXDAyIpi88vcy3
+         qSSCSeAYFYWPW8Av5D6AA0urzwACGcwCDSQ+ObR520WfRBxl5zZu37+35BmKKrnuD3D9
+         fSkg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAXHl+t795qFS78ubMW6CpbXhyod+lt18H/7sM/n9+Kt5WODQiBM
-	SsMoNUmKJXOQCZrFidbp5cY=
-X-Google-Smtp-Source: APXvYqxe32Yqp0jpcIK2EnBQdEI0RKbr82zTXnelvkmlRhEVLZfBHlruizfFxD0yCIymsiixtRXP9A==
-X-Received: by 2002:a25:b949:: with SMTP id s9mr38750971ybm.20.1556727330133;
+X-Gm-Message-State: APjAAAXzK/XHpFzHlNXT45Xa2Qm7iFe/y82TqkLL/wsACLHo0fvVcWX+
+	LW/zXtOsQSU26hfih62kznQ=
+X-Google-Smtp-Source: APXvYqxgfSE9V/jPjzO93e7Cvle4GeoVq/74Dt/cHjG1lq/zE9laFlF+r+LVid4Vv0UkMHU8se3Wmg==
+X-Received: by 2002:a17:902:6946:: with SMTP id k6mr22906872plt.81.1556727330324;
         Wed, 01 May 2019 09:15:30 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a25:4190:: with SMTP id o138ls125119yba.2.gmail; Wed, 01 May
+Received: by 2002:a63:ff24:: with SMTP id k36ls2232378pgi.2.gmail; Wed, 01 May
  2019 09:15:29 -0700 (PDT)
-X-Received: by 2002:a25:40d:: with SMTP id 13mr62991089ybe.9.1556727329770;
+X-Received: by 2002:a62:e201:: with SMTP id a1mr10487753pfi.67.1556727329907;
         Wed, 01 May 2019 09:15:29 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; t=1556727329; cv=none;
         d=google.com; s=arc-20160816;
-        b=JUT/vYQQ7xU4G3V9WIxCWoET0R6VD51kjmINASMiamqNiqfom93M3sdubrsFUPKnU/
-         EnM3ZCXoLt6P0XN8T/p1BcwkqF0izLJXGiNKfYznywewh+g3xAuwJa8ZK10qLY1J3vAa
-         KKIn7oZAXKBOzCB7NmqeEPamOePmn3gN13NnNUF0qtnJIn5H4l3NuCt2bOAXfRCbW28H
-         LxLe6E4gtBVkQwBGc2+j3QFZjZgv9BeiquFaSRIPdHvnv2Lk+p+312vE/qT8Cc3hmsVz
-         7CDZ4in7q1eVKocuz49h6hArZ7jvP3qwOSWjnEvf72+s7vrP51zlXdXi2y/sMDS5JVAW
-         ZSyg==
+        b=UnLadXAPrGLDzenFEWpyimhhYFcfBvCUKYFCWlAuOKLrPkr9GYW0YEZUopo1WIPE3K
+         JcY4f+WrxOlviX9iewXIeS+lKh1HBlVCgOSOoqRsEURKVebrVs95YoWhpQgzKV695LRZ
+         bAofqzkNFJdoOhrDx+wY7bTYo0bOpUO8M6lckL3uFfce+cNPjYK3S3k0aFH0/tglOuJ8
+         +X/ajcgKxRwpu9EjaqxX/kE18w1IImrqIqls2GbL0PaiqHP6mWrmE8usHUr3GZ/8OYDb
+         /CiPJRK3RXYTkdx4WIlVDNV1b7oeD5PuiZD/pZBIw46d1I1B/yIX8bFdhD1o8cdgGpID
+         yH9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=k4OnnUyFmbeLhGLBfOcOJu0lbj7o+R+gou5c25z7QlM=;
-        b=y6eEhr+CFLR9UsBDnyUzkU87aYutCYK3mEwx4zL0OpNoaUF8PlVaqZvfJLI0aezUsS
-         aeMGKqhdIEihaGZSiToPxye97hTjUryorafZlCeqp7aplwMxclJlp3cXvazfJSXZPaPY
-         gbPLmF07+o0ySOmPdJEfRRAPwWDrDtdPauk277/THCO9fgnCoP2I5i27zd4/JMRl4J5R
-         CwfXLSjJNnDB84I5HwVZcnbgOfcVwdYcXFAQYpfjb5q4kk+EXBq//5EZVmUwadMot/Y0
-         tBiO6wFWk1WpydH8NGvgB3q9wVD3kCnZzR7OMbRK/t3WVsUquVpCfZAjoeQQoTn5eGQz
-         lAUg==
+        bh=qeu4XawShc08TSDZ6EHrswB6lLFZ3eL+4JnriJ6bcNA=;
+        b=Bku+YxuuZLVBoI8EJQ5WqdX0DFD1ITJPiWZTqjRpjrjzNO1h5Pyk7Me3WwSL99CjqM
+         nggx75u6grr4FOXDo7B7nLq+H+R8RhW8ALJ9h/ptuL91eeEIaj/cL5Dfiyr6bse1HASU
+         E6JU2bDer+KC/Zne/aqHU3DnYkMfgDQ2jjJ7ipb2UlD5+lJX1VhFMT9BX7DycSe2Fmqh
+         w26kHAsSg31S+A14P6Xt7sMsp87bPc4nbOmMn/Tknd6O75ZGyzdUc+AOQVEE/1nyY0wn
+         sweJ6wChGI366KiXS+VYVn6zAT2ybhqMGDBfgqrhfcZhGlFfRcvQWI+Lg0kH7/Koo/lS
+         xTQA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=BDgjLltT;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20170209 header.b=sTSEliLx;
        spf=pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
 Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:e::133])
-        by gmr-mx.google.com with ESMTPS id a193si820701ywh.3.2019.05.01.09.15.27
+        by gmr-mx.google.com with ESMTPS id q203si2363244pgq.4.2019.05.01.09.15.29
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 09:15:27 -0700 (PDT)
+        Wed, 01 May 2019 09:15:29 -0700 (PDT)
 Received-SPF: pass (google.com: best guess record for domain of batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org designates 2607:7c80:54:e::133 as permitted sender) client-ip=2607:7c80:54:e::133;
 Received: from adsl-173-228-226-134.prtc.net ([173.228.226.134] helo=localhost)
 	by bombadil.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hLrtA-0005fC-UM; Wed, 01 May 2019 16:15:21 +0000
+	id 1hLrtC-0005fS-Ij; Wed, 01 May 2019 16:15:22 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "James E . J . Bottomley" <jejb@linux.ibm.com>,
 	"Martin K . Petersen" <martin.petersen@oracle.com>
@@ -111,9 +111,9 @@ Cc: Hannes Reinecke <hare@suse.de>,
 	open-iscsi@googlegroups.com,
 	osst-users@lists.sourceforge.net,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 16/24] libsas: switch sas_ata.[ch] to SPDX tags
-Date: Wed,  1 May 2019 12:14:09 -0400
-Message-Id: <20190501161417.32592-17-hch@lst.de>
+Subject: [PATCH 17/24] libsas: switch remaining files to SPDX tags
+Date: Wed,  1 May 2019 12:14:10 -0400
+Message-Id: <20190501161417.32592-18-hch@lst.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190501161417.32592-1-hch@lst.de>
 References: <20190501161417.32592-1-hch@lst.de>
@@ -121,7 +121,7 @@ MIME-Version: 1.0
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Original-Sender: hch@lst.de
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@infradead.org header.s=bombadil.20170209 header.b=BDgjLltT;
+ header.i=@infradead.org header.s=bombadil.20170209 header.b=sTSEliLx;
        spf=pass (google.com: best guess record for domain of
  batv+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
  designates 2607:7c80:54:e::133 as permitted sender) smtp.mailfrom=BATV+fbe6eae7536a933b5243+5729+infradead.org+hch@bombadil.srs.infradead.org
@@ -139,19 +139,363 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Use the the GPLv2+ SPDX tag instead of verbose boilerplate text.
+Use the the GPLv2 SPDX tag instead of verbose boilerplate text.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- drivers/scsi/libsas/sas_ata.c | 16 +---------------
- 1 file changed, 1 insertion(+), 15 deletions(-)
+ drivers/scsi/libsas/sas_discover.c  | 18 +-----------------
+ drivers/scsi/libsas/sas_event.c     | 18 +-----------------
+ drivers/scsi/libsas/sas_expander.c  | 16 +---------------
+ drivers/scsi/libsas/sas_host_smp.c  |  5 +----
+ drivers/scsi/libsas/sas_init.c      | 19 +------------------
+ drivers/scsi/libsas/sas_internal.h  | 19 +------------------
+ drivers/scsi/libsas/sas_phy.c       | 18 +-----------------
+ drivers/scsi/libsas/sas_port.c      | 18 +-----------------
+ drivers/scsi/libsas/sas_scsi_host.c | 19 +------------------
+ include/scsi/libsas.h               | 19 +------------------
+ include/scsi/sas.h                  | 19 +------------------
+ include/scsi/sas_ata.h              | 17 +----------------
+ 12 files changed, 12 insertions(+), 193 deletions(-)
 
-diff --git a/drivers/scsi/libsas/sas_ata.c b/drivers/scsi/libsas/sas_ata.c
-index 1ecca71df8b5..d9131746737e 100644
---- a/drivers/scsi/libsas/sas_ata.c
-+++ b/drivers/scsi/libsas/sas_ata.c
-@@ -1,24 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0+
+diff --git a/drivers/scsi/libsas/sas_discover.c b/drivers/scsi/libsas/sas_discover.c
+index 726ada9b8c79..2518cecb7edf 100644
+--- a/drivers/scsi/libsas/sas_discover.c
++++ b/drivers/scsi/libsas/sas_discover.c
+@@ -1,25 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Serial Attached SCSI (SAS) Discover process
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+- *
+  */
+ 
+ #include <linux/scatterlist.h>
+diff --git a/drivers/scsi/libsas/sas_event.c b/drivers/scsi/libsas/sas_event.c
+index b1e0f7d2b396..a1852f6c042b 100644
+--- a/drivers/scsi/libsas/sas_event.c
++++ b/drivers/scsi/libsas/sas_event.c
+@@ -1,25 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Serial Attached SCSI (SAS) Event processing
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+- *
+  */
+ 
+ #include <linux/export.h>
+diff --git a/drivers/scsi/libsas/sas_expander.c b/drivers/scsi/libsas/sas_expander.c
+index 83f2fd70ce76..76ea83ddafa7 100644
+--- a/drivers/scsi/libsas/sas_expander.c
++++ b/drivers/scsi/libsas/sas_expander.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Serial Attached SCSI (SAS) Expander discovery and configuration
+  *
+@@ -5,21 +6,6 @@
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+  *
+  * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+- *
+  */
+ 
+ #include <linux/scatterlist.h>
+diff --git a/drivers/scsi/libsas/sas_host_smp.c b/drivers/scsi/libsas/sas_host_smp.c
+index 9ead93df3a6e..55dcc9c934b2 100644
+--- a/drivers/scsi/libsas/sas_host_smp.c
++++ b/drivers/scsi/libsas/sas_host_smp.c
+@@ -1,12 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Serial Attached SCSI (SAS) Expander discovery and configuration
+  *
+  * Copyright (C) 2007 James E.J. Bottomley
+  *		<James.Bottomley@HansenPartnership.com>
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; version 2 only.
+  */
+ #include <linux/scatterlist.h>
+ #include <linux/blkdev.h>
+diff --git a/drivers/scsi/libsas/sas_init.c b/drivers/scsi/libsas/sas_init.c
+index 28a460c36c0b..8f2608995726 100644
+--- a/drivers/scsi/libsas/sas_init.c
++++ b/drivers/scsi/libsas/sas_init.c
+@@ -1,26 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Serial Attached SCSI (SAS) Transport Layer initialization
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+- * USA
+- *
+  */
+ 
+ #include <linux/module.h>
+diff --git a/drivers/scsi/libsas/sas_internal.h b/drivers/scsi/libsas/sas_internal.h
+index 2cdb981cf476..1bc248a1b4ea 100644
+--- a/drivers/scsi/libsas/sas_internal.h
++++ b/drivers/scsi/libsas/sas_internal.h
+@@ -1,26 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * Serial Attached SCSI (SAS) class internal header file
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+- * USA
+- *
+  */
+ 
+ #ifndef _SAS_INTERNAL_H_
+diff --git a/drivers/scsi/libsas/sas_phy.c b/drivers/scsi/libsas/sas_phy.c
+index e030e1452136..2455199e5ffc 100644
+--- a/drivers/scsi/libsas/sas_phy.c
++++ b/drivers/scsi/libsas/sas_phy.c
+@@ -1,25 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Serial Attached SCSI (SAS) Phy class
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+- *
+  */
+ 
+ #include "sas_internal.h"
+diff --git a/drivers/scsi/libsas/sas_port.c b/drivers/scsi/libsas/sas_port.c
+index 38a10478605c..11f028a441dd 100644
+--- a/drivers/scsi/libsas/sas_port.c
++++ b/drivers/scsi/libsas/sas_port.c
+@@ -1,25 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Serial Attached SCSI (SAS) Port class
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+- *
+  */
+ 
+ #include "sas_internal.h"
+diff --git a/drivers/scsi/libsas/sas_scsi_host.c b/drivers/scsi/libsas/sas_scsi_host.c
+index b775445892af..602bd1a17a63 100644
+--- a/drivers/scsi/libsas/sas_scsi_host.c
++++ b/drivers/scsi/libsas/sas_scsi_host.c
+@@ -1,26 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * Serial Attached SCSI (SAS) class SCSI Host glue.
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+- * USA
+- *
+  */
+ 
+ #include <linux/kthread.h>
+diff --git a/include/scsi/libsas.h b/include/scsi/libsas.h
+index b08febec7895..901355a1bc53 100644
+--- a/include/scsi/libsas.h
++++ b/include/scsi/libsas.h
+@@ -1,26 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * SAS host prototypes and structures header file
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+- * USA
+- *
+  */
+ 
+ #ifndef _LIBSAS_H_
+diff --git a/include/scsi/sas.h b/include/scsi/sas.h
+index 42a84ef42683..ded4d6b7a377 100644
+--- a/include/scsi/sas.h
++++ b/include/scsi/sas.h
+@@ -1,26 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0 */
+ /*
+  * SAS structures and definitions header file
+  *
+  * Copyright (C) 2005 Adaptec, Inc.  All rights reserved.
+  * Copyright (C) 2005 Luben Tuikov <luben_tuikov@adaptec.com>
+- *
+- * This file is licensed under GPLv2.
+- *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+- * USA
+- *
+  */
+ 
+ #ifndef _SAS_H_
+diff --git a/include/scsi/sas_ata.h b/include/scsi/sas_ata.h
+index 00f41aeeecf5..9f5ce0a3e63e 100644
+--- a/include/scsi/sas_ata.h
++++ b/include/scsi/sas_ata.h
+@@ -1,25 +1,10 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
  /*
   * Support for SATA devices on Serial Attached SCSI (SAS) controllers
   *
@@ -173,9 +517,10 @@ index 1ecca71df8b5..d9131746737e 100644
 - * along with this program; if not, write to the Free Software
 - * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
 - * USA
+- *
   */
  
- #include <linux/scatterlist.h>
+ #ifndef _SAS_ATA_H_
 -- 
 2.20.1
 
