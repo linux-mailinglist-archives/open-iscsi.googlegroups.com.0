@@ -1,31 +1,31 @@
-Return-Path: <open-iscsi+bncBCHZVHVFVMARBVMQVLTAKGQE2C25E3A@googlegroups.com>
+Return-Path: <open-iscsi+bncBCHZVHVFVMARBZUQVLTAKGQERSYESRQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x13e.google.com (mail-lf1-x13e.google.com [IPv6:2a00:1450:4864:20::13e])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F62112FA
-	for <lists+open-iscsi@lfdr.de>; Thu,  2 May 2019 08:04:05 +0200 (CEST)
-Received: by mail-lf1-x13e.google.com with SMTP id w13sf204255lfl.10
-        for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 23:04:05 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1556777045; cv=pass;
+Received: from mail-lj1-x239.google.com (mail-lj1-x239.google.com [IPv6:2a00:1450:4864:20::239])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E94112FD
+	for <lists+open-iscsi@lfdr.de>; Thu,  2 May 2019 08:04:22 +0200 (CEST)
+Received: by mail-lj1-x239.google.com with SMTP id m11sf159208ljj.6
+        for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 23:04:22 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1556777062; cv=pass;
         d=google.com; s=arc-20160816;
-        b=o3U83QJkOXgieFXHxT8LYwgaITllV5KMf1Rs0Y64a8gGJYRDY51Y2ycTtIlJu2NOYD
-         nBaCjIrqXS+t2riQiV1PXhy9drDL896pBPKShnlFS1dgFkSybSk/sXB8io1YTuk3eZW2
-         NZXvdTTy4T1jHdldUAThQMw8YSzW3++kivDxZ56da/xVnNnzqxvIvxb4KQLLsIOHdgjV
-         TiuEwbSXS3OM0pksq3RK1x4ZIYytueaEfpWi3T5vhKIIMU+4YRaYH/bF4Q2r3ey4ITJP
-         gAyKl5N4ty6XiOvaGLH4n6FyOkQA1rEYP6xgSoTze5cBtpL3LYYH3Oh1s+eomGCxjfEz
-         nyKg==
+        b=jq1NEzEdHwIG8YmtCfE/eQfj0iRuaEhKl3Y/P7PaDmMvxyFFXChcrgwT4zeM68hsrr
+         495/0LpfOrSr3veX/IHVr/wz5XKOOWq17GuXmxhbaYOADZGIQ3nxFT0CVXua/SXx9Dwj
+         yNOAFyLoCbEhu2OqPz13/7enVX6pYsLYd5eDfe6RWkqER5dtUJU2jS4/gfuuRmqW/5mo
+         ol69TcQOVe5q8sh8tdUimsVgo68J/pr0mbdS2WvEYWBL2GHJXef5SZflIua9POp8z+BX
+         YJiIbTfBJXquRIIIPWmovOiS53Pc0tPN0TvKmiusdswCU679m5brdAR9A02kSNzX2hhz
+         GTQA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
          :content-language:in-reply-to:mime-version:user-agent:date
          :message-id:from:references:cc:to:subject:sender:dkim-signature;
-        bh=ldvPBbAjBDM7Yy23Evl8tCgxL/l6NR/wnd2t1x8GOTk=;
-        b=veke+KjUoMDVm9mi954Z97OlDAVsZreUAGHl48qAqXr2LYeM3+rnieXRmXrlSxC6os
-         zGssM/18FVPp6cWIqgVv+ztr4JSF0X6NXMiaGieMWqaY3Jp6DNgS9ksNGyacQs5/7ovN
-         RUK9AjSlx4Gc55tfsKsdmpW+LvhhS2/kU9UhgFqsW28+muHWeliqKSX+yjkEF+8vSkAJ
-         STGXS2UHSmg7HdTQMvS/dV3OWK4B4NNeSmoOSedRThhNyQO0Xs6D5tBBo2r049qq4ozC
-         FBBVrkXiydf4bMVLvftX7IByNMnMWJB5o28wKfgWXZLfcawwSuNnSvd2pkKkSrhtyzqE
-         UFUQ==
+        bh=/6KjF8znHX9y3QegIUbtAMkHonZCq6aLDN5lHUebzLo=;
+        b=vHnKbZVJDy6x9Ynl3WkUCPbSnx1G3Q5JTt4TFs06+LCTrj21ksJIKSMDLoJtjVz4fb
+         +RlF0+sdFwsY6HZSxhNy7GW7IWodDdkDwAq3BHYMSveAYqYUgSSjpbT4sD102BfaMMeq
+         EJo9iToQd4QnZ8cG0O03FjQ7KHUteXbxMllR2rJkQuB1U8HQS+BzYqbVAsqShWxiIf4X
+         9bz7rJIKR/bSdPswUrZw9X4T2x58+qq70KQRWiC/eYqyBCCqKPW43k7u21W4OB3B8kwm
+         XydYlcT6WiDq2OFNQyuoOiXppsIQM4S2BJyeCfkl2xgifVzXnTe2+bLChgBduu2nitMD
+         69qg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
        spf=pass (google.com: domain of hare@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=hare@suse.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
@@ -35,13 +35,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=ldvPBbAjBDM7Yy23Evl8tCgxL/l6NR/wnd2t1x8GOTk=;
-        b=JJ/H30XHzgCzfjtn1OiKxQKorHFGTl0acgwazuZAifzN7GFQlpNu3mDc/DZrFLAnwT
-         jJSFTgafmWuyvLxL7xXxJm0qhfg++KOhiQIRAWbXgM/uE2PZU1bw0YU7VDT04rZEl9mj
-         0aSnm824zJG/hytaDkqlfE6niJ+o7EXK2NnM84Su0+K+8XVs1cARHws0axz+8I5mgi5B
-         fokJR+JERkQpXb0Ifd74XSvFP7oJMXs4X/JPQFB4/7TmKV43S59NqMLUbgT18u8plHuN
-         CyV2weSfsJ/V73YM6JiYFs1lnO2XEPklKxyia0gTpNPEMYkmJMeNfQ/TGOUvYdRVq5LO
-         o0Jg==
+        bh=/6KjF8znHX9y3QegIUbtAMkHonZCq6aLDN5lHUebzLo=;
+        b=g2KBNb0DicEYnDiVR6VhK49+fu7GtqwWVPIJYSUYSIIsWpMikup+U9gNISNQrytzuD
+         jTilzVKdiZyPkYXei2GhE/Y7qhh6fVTckDq2/rmuZQovkUnCxe/CqBG+Sts/VbaS9kL3
+         yCR7Z2de2h9GJ76sYNzH1AFvMrqRS/0n8nNmdHTYZIelz/YgeWXAzDbkym7sRCX9yws7
+         hRqhClM0hopVMHQISPgGmtpQdT239uz9SuM7MFlMz85powHZ6IH70t8ZBlMa1oIubeTa
+         AzRvvWzHUqxXP29L46t6GZykToesiK6BmYEP0Rggh7znpEWCl+5LYqhEpzc6NUj3TYgb
+         r8Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
@@ -50,55 +50,55 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=ldvPBbAjBDM7Yy23Evl8tCgxL/l6NR/wnd2t1x8GOTk=;
-        b=Wex8FZndYc4Gnkx7NYAjYIRN0k3s9YvbH2gGjGawWEo1mvuIuiFZOib8nfKYskI6/G
-         FN9129/iaT8cUFNaY/brwzDQTrqIf2gtuNFv0Z5xV9B23DDOU0fcWkpqHiIIis5SZHqv
-         DuKgdYtch1kDMxRhDFDibEZcc5TVcxteQTSl8uaYzHkLTzI91n5VbnksScUz0irIcHml
-         jX64cSbA4lddA56F1sISmAwSwysxettPjQPAg13+iDUqVj78ZvNBLR0CFhEq7thK7Dnt
-         d7o4OypyRWFfIbOceQ8gkc+YB/p7kQ2P7yZ/ZXJ0KLpe1yyL1RK80imnqw3o3WeiJKGo
-         Opng==
+        bh=/6KjF8znHX9y3QegIUbtAMkHonZCq6aLDN5lHUebzLo=;
+        b=cn0h9tDHmzMyZr1pRZq8EibHQdlsboAMSLPFJiaH9xVw+aFrLVvTkmVwvBLW4zV8wS
+         npOSfMQUuYU6JVsnvd1CdpoOJrIfKyOw+1r0UrQ5h5ibiHPOOTZXZyKY3+VKvUDT+6OC
+         DSOwM/TjAA4wdoPZACSlmx9heT51p9YoWseCkikFsZHGs2JFty7cRTbrjgRMF0mz06/3
+         KW3sEb/XYGuWTcAiBSyR7ULk2J4mxMkFKqVYhE4HPjQKaqOHbF9jbSJzJbRgybGMugHt
+         kLc7P3i+9Xr6tSw/JadYDOLEeaMxHUq2IBowXYBwR4ysmmOPordAujkpwvrkYLaBM8+1
+         70xQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAXIjYz2kS/17C4z6O7O1OdN7twIp3YTihujYiqoZz1lManxcj/w
-	HuGSG4cv0kO8iWrSNSO5+Ts=
-X-Google-Smtp-Source: APXvYqz8Lk0McfKS06DcHh4m2g7kyZY7P6icuJXSgI7dyaSmWcT8tuBOfF7MUxcyRuPQZ9DtgTnpnQ==
-X-Received: by 2002:a2e:8496:: with SMTP id b22mr767461ljh.9.1556777045292;
-        Wed, 01 May 2019 23:04:05 -0700 (PDT)
+X-Gm-Message-State: APjAAAUYZ1INyhOJh1Utn1JG4Z59To/c7NX8H7Omb4MtPQGP21NRLXdf
+	kVbrTEVLkEpCe8jEnL99ouM=
+X-Google-Smtp-Source: APXvYqyymgrnIy6y+XQc/GjpbU3pKMqvWoM/a2rYOfaFYeusnngx2FSirHFZFl5LI1WadVaEqSm3FA==
+X-Received: by 2002:a2e:88cc:: with SMTP id a12mr836910ljk.55.1556777062495;
+        Wed, 01 May 2019 23:04:22 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a2e:2f07:: with SMTP id v7ls91098ljv.12.gmail; Wed, 01 May
- 2019 23:04:04 -0700 (PDT)
-X-Received: by 2002:a2e:880b:: with SMTP id x11mr394374ljh.4.1556777044864;
-        Wed, 01 May 2019 23:04:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1556777044; cv=none;
+Received: by 2002:a2e:8013:: with SMTP id j19ls94579ljg.0.gmail; Wed, 01 May
+ 2019 23:04:22 -0700 (PDT)
+X-Received: by 2002:a2e:80c5:: with SMTP id r5mr68911ljg.131.1556777062022;
+        Wed, 01 May 2019 23:04:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1556777062; cv=none;
         d=google.com; s=arc-20160816;
-        b=m+OD3aYMJLY/cXAg/8zPS2ROZJG7WAfOdwuNUfBoK8IropATj8gzMCMNrq5p/MnPV8
-         A5iZWanvUcb7LOcz5KlMNpyP4pgOheLPH4QoKs17nXXlokp6z0VLXRm6PjIoqUAe12Pd
-         +Slxrqtk5ghxf4h3TQ2d1I444RWCrboQspkVzq/5Ff6nTKEDPTTxB+rsgz9Nf8nYt/iA
-         58qBjj55WTKKe8BKigqHb/2uHAby0pqcZcCxfwZuX0CqcIUtkMYz7Z+7wsherNMKBTUJ
-         8m4fRxIB+95xCcusphfEvcwYctdPkFlDPJjiuPcf4hwU9A4NAqY8ssaJevsZuu2DekAh
-         upjw==
+        b=DfuVkqRSp45OzobZ/yOFNR0k53EETPrGZzE3WPhR1rXUZHz4w/p3BfktdTxL3AeVyJ
+         yJIq4Mqvz769nQEp6X3ZJwm2HrEVSmWy71kGBHDOLzYraMr6ZX+LopN0Z5nYLEa8q8Gs
+         2PuMyERZfW9WbOZKQ9uXAi2hRF3Z71bWC/LV/AHUv3WWCSDBYAciufYXJmtgMWHT5ov8
+         8sG9cWn8UvYa3/WMokNmlDcNgZfw4IY83cIEUIEI/h+fUJuM/hFe2bsWHXOVnjXQyFSu
+         TYzHL/jDMVt4WuI4IaKZz4FBpNlpvQ9rsGT2zWJe6ohUKz75qTnmVIB/bDszil8OS4fu
+         8Brg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:content-language:in-reply-to:mime-version
          :user-agent:date:message-id:from:references:cc:to:subject;
-        bh=H+FpmUulN1PC+TCHoBhONiuKqwXFirbkZ32ktRqB5W0=;
-        b=NH2H2z00j4xFc7AQPVctZEB8v0JGaQNdHL2Db7uFjPENqTfn8vVXd17OMcbqJdvb8x
-         XODaJg7Gs9s2dxXq8pnKWTJgQNjJPInlGLK/rPZrQHiE6et/VscDCuJT4LFBLEQGw66g
-         laz0cM0OUi667sr9dadfbtfZRdb98TShq8NuTt/ce85c8JgHg05xqlF9ZYCdqe419/tH
-         Xv9rzff4fDG1ngKzzCLy962sqzpuhZLJEt4AkzQP4kv/1JDZhTzflMCB6tqjX4sBe9JX
-         R9W2MWLiJ9G+44Hi5vajHwkRLC90P/LbV1f3CkayYL9Vj06WLvySZT2AoiuTqSJjrDu9
-         5gYw==
+        bh=urJF/Usf3jdbZu1ZXS90QWu18tFNxqr57ptQUMWtXmU=;
+        b=YNoVw5wNxyfTY4vn8qpdPcfuIlFdd9Api8r3+Q1KONj87bCTFXE1gtx3pPFzpCyH5I
+         peXZcQ86KVd98jet1G9sGS/Yjee25PZxbD0lsErIxF0RbrjuAlplhauvDenPRELnXXnK
+         A+7gVg7bU5Mpyooetl8DJSQ5VuoZONCNx0M31lVId7NJU8u8hvXmxtOSfAknFThgJ5To
+         iVP76m9go45pyK5Ko4oHt0L7C+MOT8XuKJ7fDEAxMHyxmh3Df5cIFH68pIzsJZ13o3DW
+         ItxuLSTbAEZmOVswKT7lgjPQQ6tTQOZDrBm+EsMR9cPcyCiEUXz4dSqbhICMWNSZQyGk
+         0FJQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
        spf=pass (google.com: domain of hare@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=hare@suse.de
 Received: from mx1.suse.de (mx2.suse.de. [195.135.220.15])
-        by gmr-mx.google.com with ESMTPS id x14si74784ljh.1.2019.05.01.23.04.04
+        by gmr-mx.google.com with ESMTPS id x14si74835ljh.1.2019.05.01.23.04.21
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 01 May 2019 23:04:04 -0700 (PDT)
+        Wed, 01 May 2019 23:04:22 -0700 (PDT)
 Received-SPF: pass (google.com: domain of hare@suse.de designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.220.254])
-	by mx1.suse.de (Postfix) with ESMTP id 3ADBEAEF4;
-	Thu,  2 May 2019 06:04:04 +0000 (UTC)
-Subject: Re: [PATCH 15/24] libsas: add a SPDX tag to sas_task.c
+	by mx1.suse.de (Postfix) with ESMTP id 5AD08AF0A;
+	Thu,  2 May 2019 06:04:21 +0000 (UTC)
+Subject: Re: [PATCH 16/24] libsas: switch sas_ata.[ch] to SPDX tags
 To: Christoph Hellwig <hch@lst.de>,
  "James E . J . Bottomley" <jejb@linux.ibm.com>,
  "Martin K . Petersen" <martin.petersen@oracle.com>
@@ -109,14 +109,14 @@ Cc: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
  open-iscsi@googlegroups.com, osst-users@lists.sourceforge.net,
  linux-kernel@vger.kernel.org
 References: <20190501161417.32592-1-hch@lst.de>
- <20190501161417.32592-16-hch@lst.de>
+ <20190501161417.32592-17-hch@lst.de>
 From: Hannes Reinecke <hare@suse.de>
-Message-ID: <98bba5a6-33a4-8862-edcc-a93ae7cc3354@suse.de>
-Date: Thu, 2 May 2019 08:04:03 +0200
+Message-ID: <693d368b-785a-3d4b-15d5-b3facd9973a9@suse.de>
+Date: Thu, 2 May 2019 08:04:21 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190501161417.32592-16-hch@lst.de>
+In-Reply-To: <20190501161417.32592-17-hch@lst.de>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
@@ -138,25 +138,44 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
  <https://groups.google.com/group/open-iscsi/subscribe>
 
 On 5/1/19 6:14 PM, Christoph Hellwig wrote:
-> sas_task.c is the only libsas file missing licensing information.  Add a
-> GPLv2 tag for the default kernel license.
+> Use the the GPLv2+ SPDX tag instead of verbose boilerplate text.
 >=20
 > Signed-off-by: Christoph Hellwig <hch@lst.de>
 > ---
->   drivers/scsi/libsas/sas_task.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/scsi/libsas/sas_ata.c | 16 +---------------
+>   1 file changed, 1 insertion(+), 15 deletions(-)
 >=20
-> diff --git a/drivers/scsi/libsas/sas_task.c b/drivers/scsi/libsas/sas_tas=
-k.c
-> index c3b9befad4e6..a46e8e4c0684 100644
-> --- a/drivers/scsi/libsas/sas_task.c
-> +++ b/drivers/scsi/libsas/sas_task.c
-> @@ -1,4 +1,4 @@
-> -
-> +// SPDX-License-Identifier: GPL-2.0
->   #include "sas_internal.h"
+> diff --git a/drivers/scsi/libsas/sas_ata.c b/drivers/scsi/libsas/sas_ata.=
+c
+> index 1ecca71df8b5..d9131746737e 100644
+> --- a/drivers/scsi/libsas/sas_ata.c
+> +++ b/drivers/scsi/libsas/sas_ata.c
+> @@ -1,24 +1,10 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+>   /*
+>    * Support for SATA devices on Serial Attached SCSI (SAS) controllers
+>    *
+>    * Copyright (C) 2006 IBM Corporation
+>    *
+>    * Written by: Darrick J. Wong <djwong@us.ibm.com>, IBM Corporation
+> - *
+> - * This program is free software; you can redistribute it and/or
+> - * modify it under the terms of the GNU General Public License as
+> - * published by the Free Software Foundation; either version 2 of the
+> - * License, or (at your option) any later version.
+> - *
+> - * This program is distributed in the hope that it will be useful, but
+> - * WITHOUT ANY WARRANTY; without even the implied warranty of
+> - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+> - * General Public License for more details.
+> - *
+> - * You should have received a copy of the GNU General Public License
+> - * along with this program; if not, write to the Free Software
+> - * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+> - * USA
+>    */
 >  =20
->   #include <linux/kernel.h>
+>   #include <linux/scatterlist.h>
 >=20
 Reviewed-by: Hannes Reinecke <hare@suse.com>
 
