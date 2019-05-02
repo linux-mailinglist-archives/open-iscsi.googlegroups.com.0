@@ -1,129 +1,125 @@
-Return-Path: <open-iscsi+bncBCHZVHVFVMARB4MRVLTAKGQERBOWRJA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDUNBGN3R4KRBSWQVPTAKGQE5PMLMXQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ed1-x539.google.com (mail-ed1-x539.google.com [IPv6:2a00:1450:4864:20::539])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0755511319
-	for <lists+open-iscsi@lfdr.de>; Thu,  2 May 2019 08:06:42 +0200 (CEST)
-Received: by mail-ed1-x539.google.com with SMTP id r48sf534310eda.11
-        for <lists+open-iscsi@lfdr.de>; Wed, 01 May 2019 23:06:42 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1556777201; cv=pass;
+Received: from mail-lf1-x13f.google.com (mail-lf1-x13f.google.com [IPv6:2a00:1450:4864:20::13f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B3F11963
+	for <lists+open-iscsi@lfdr.de>; Thu,  2 May 2019 14:53:31 +0200 (CEST)
+Received: by mail-lf1-x13f.google.com with SMTP id n6sf329531lfe.1
+        for <lists+open-iscsi@lfdr.de>; Thu, 02 May 2019 05:53:31 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1556801610; cv=pass;
         d=google.com; s=arc-20160816;
-        b=TCujB8L/4p4VbT3k1uFtj4nviHQFceqDt8xBfNDWF0eK2oOqtsT/ovyYJj4yX4VPHf
-         7+Q3WhyuREcSO/mVBdtKWzZmYeh4I1zBhA6hzzdE3QszLOGziB1sH8s0LVjtGRaKQkBH
-         /ZSiphnKH0wgtpx3Yr93ltT942+S9KemqEPOE86SuPZI7zOaap4QG63m8kzGvrsP91/U
-         ovde8+XO6R/a0HZT2fVB9g00I2bUyReHKb+dViR7MvwqF7vvSFFjb4xaGqq0nUaPWXgZ
-         CASnTcBXhUeaI/RGD2jEqI78Ppx3+E7FKa8Sgz0uJyEIzh6P7Q9snO+8OEj2vn8NJrx+
-         43mQ==
+        b=KZMAr0j55UZlWtYHBLdnoYTe9T3Pk7qvWuPrN2SFAghiqUBcGU87d+f0/0bFoSXv1P
+         l+uPAyEFphK1yD4JKs3LhUgZ1dbBEEnN+XoaH3jODzAxnbd9CEaVB/wTFSyqOggFu+qE
+         JJLRMD2hBYJYohlLtoL/DQVq3gARAx0yJBeewIYwaSkT1LdqJp/CpaG9AM/jf5HD0DpJ
+         dKXGAQGXd5gg+aI4NHUEkComuw0S0jJAXCii4OEG1ytPz4lTT0nhyXjDHVk0nvDPOaab
+         ziAI62pZgh4Ykyl6tIqLBrvL26cGtxsuKIMglfb/yrgoPWy5EaKhsCju+azO304gwEMu
+         9kQQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
-         :content-language:in-reply-to:mime-version:user-agent:date
-         :message-id:from:references:cc:to:subject:sender:dkim-signature;
-        bh=OH4/lZznDoYP+ZPOTFunNFO4j5dPmlrVTAYYdW6if3s=;
-        b=rXgwnvIdGEQbbQP3F0rQv9mShJ/quF+C7Ug0iCsQwk113SBsOUmA1JP+2MVaMpt4SF
-         uK/EtdNT6eFGvXqAloLGTFQjrDy+jyxtIiE/wemcrsmyvSyP2BkW7ZIqHeh16xMaEdcl
-         uwdiFVPM4HuEjQaVlJ1zZIY+8XIbEUeZ4FpVILjoqsXuGYSntj+jl0l66kgn/zT86uCd
-         Kz25Y0q8NtYOjWQTg8YnDlmJ9+vIf/9u+uLDJSnzYU/Nc988+Ck7DecroBaWPRRHzAMz
-         45iUPxn38P8ZAUOTtoDBObghLaX53rlTq3K+izT7ZGKadVWg3neNDlOy6C8byQPEUZmE
-         RlAA==
+         :list-id:mailing-list:precedence:reply-to:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:sender:dkim-signature;
+        bh=dK7/tCS9HdM8UMFzDKnivMF6BRZoa3nnVcdK0pwGIlU=;
+        b=aTD91UHs7d6WtUoeRKwJmM58+U/Rsys1KDK3H3dQnv6uJzwShiczY9ETK6JTgjai7Z
+         suyQgYmL2Hwvsz0V+yD3R5eKWwHif9eO4yCVVmvJ/ydUcmw7ybXIWfXttbKY96NmGKqO
+         qYr17Mohq7fXkcMT8xpawFwnXOuajClCpjuvaemFsCnbOXFBtw+96/6iZLGQ6Mf8BiMt
+         qltsgycT50P3Z09gGRveNeLDfnY1enzjE6kokaxosWGQQSTvyMWN2449bNmgrZ9/svvh
+         EcIOUDipY91spT4JGiC6hc2ocSYeYS/BD9WYbQZmROuAMM/GqxdUytAPG+w5BI/Mt7F2
+         fnSA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of hare@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=hare@suse.de
+       spf=pass (google.com: best guess record for domain of hch@lst.de designates 213.95.11.211 as permitted sender) smtp.mailfrom=hch@lst.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=OH4/lZznDoYP+ZPOTFunNFO4j5dPmlrVTAYYdW6if3s=;
-        b=DnP83ir0i9gdQtxezTwyGx3JCtVC76GvvcXvmCj6l7IOLcXTS2AVmMWQU/dHAvLa21
-         EJ1pcMYq91QXhFMdDdUpHOMQSxXVC6RiIbupAe4CbTDu75rrNM76ULZPVbUtIiHHYFfG
-         8BL/g1Wv6mWEtFrSvLZxvya+dN1NoPVNnBEs0xPTXBqgdB5/CJ2RmTaHNte2Wo7US3uD
-         pvhc0S5SpliSOVNo0cpH7nSpd/BPqDulQQA7WqlKR5pLR04yclAk3jb5LhYDyki4j7u/
-         c/HV65EmmaruDGMysdtA+g0uVgYovASqqUNOupdtWlKVqbcnCS4o61yJuIfIJm+yY3Nb
-         3ohQ==
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=dK7/tCS9HdM8UMFzDKnivMF6BRZoa3nnVcdK0pwGIlU=;
+        b=NFLbh5DWG5JV7bzrKH11F4yZq5niuD9aE9Ma3Kv3/6CrQE4107QY6CngevDdWmbn82
+         wfIo/7vtviuwgxlXjxllxIZoWKbEogZ/5H0BuyW3TjUtboIzWn2o7mgaPWsF153bAYIR
+         ItNI5rny+7EcIsTaUkS0oqHynM/oFpXctKLMh1i+b94m1WPy+IvKbE8t/2ZEUfrNUP7q
+         RpMSnGBVHg+MFO9MhJrtNsN9NvpvIz6lBsIVH39i2MiMjUSjCCFuKetpE02PKxBSaNEi
+         vEon3ytCDcHlxvRHR/4vIkyXKkFNd1VEr58Wj6gMDJPaNtr3z9XcR7Y7A76YwZM4N5l+
+         ug5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=OH4/lZznDoYP+ZPOTFunNFO4j5dPmlrVTAYYdW6if3s=;
-        b=R8d1EZOyYai9+RkidhT58mXadiWHBzbx5pGAyuN37UpUtoExkoGfuxubp279YQ188E
-         U8M6th/uq3zbCnohVGpJz5MIkJKMKRO91I3JUxGrpnKQXrxjm3NPKptYOzQcmPo20UOW
-         BTrl/pZsGEqaJmTZZbDLhbUxaok2dxMon3avyhr/bAIOXQT3zpAtaPbzxkQ2ZK2uf0rS
-         6/zYlqBE2npY3JV+8w3iF3OBJ2rkdDLOkzb6wrMn9BnKDypPy2WX2Y60WvJ1F71xTWGZ
-         OxMD8Tx8AXCg5NZmdIwWRTEeaWV6ayRVZxbYm5P6ia6jBnrAJhFXdlH8lFxHOGPQ7pGN
-         HU/g==
+        h=sender:x-gm-message-state:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=dK7/tCS9HdM8UMFzDKnivMF6BRZoa3nnVcdK0pwGIlU=;
+        b=FrrK4RSfDOetPp2DuNWK05Y6oxHUZP1aA8D7PwpqS/NjRjazQN568p6yys9z2R9DQD
+         /OgkPwRj1aIQMigIt9dZTHR5BwobEPpKLqe6EPZ2wMeeZDaYU5DzodMzCqlEd/8rkRcI
+         Xi6ZvORZiTZ3wQZepwzzMkChvmbIr6xZer7Mzclfnh2t1b9ip4tu1NbukMbvlaAnedSK
+         rvmwLuliU8YtimeSVkb8xvcNQB6lxyKCYrHOvepWYWsKdS4mIB8FcPl12TBkzLVm8K4D
+         DaB/iT6WZiHftN0OKKpz0XobZHtd13nX3QXHIvdjr0ifCrQRg+dTNiYwvNafzqMtp1MI
+         RvXg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAVgYan+O4jZBgjDTOL44WCQRXl/mFpp3qK7/5j6uLs0MYVsCVUi
-	5GZovZmUCyQRZ1F+jJhBzMU=
-X-Google-Smtp-Source: APXvYqwMS9DMEfi7bCkHjdE5s5m9K6dzwdPb7EeidkdIdjm9dtailVwB7piNVYGVUSSUwphok222qQ==
-X-Received: by 2002:a17:906:c782:: with SMTP id cw2mr880284ejb.102.1556777201810;
-        Wed, 01 May 2019 23:06:41 -0700 (PDT)
+X-Gm-Message-State: APjAAAV5HnNDaze4RwIFBy1E72TVFF9eVcAkDhzswOpAEVjlfT3Fv/8m
+	56mI8RXyC2ZmRjA7EdOgSlk=
+X-Google-Smtp-Source: APXvYqzUL7hKnOMw63QMTM8oN+yvFEheMmxYL6grTL1bXfDOiCFgKTMFAPFVOHF3RVRGe8e0YKB39Q==
+X-Received: by 2002:a19:f601:: with SMTP id x1mr1897723lfe.142.1556801610774;
+        Thu, 02 May 2019 05:53:30 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a50:a641:: with SMTP id d59ls183031edc.6.gmail; Wed, 01 May
- 2019 23:06:41 -0700 (PDT)
-X-Received: by 2002:a50:b865:: with SMTP id k34mr1346781ede.16.1556777201372;
-        Wed, 01 May 2019 23:06:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1556777201; cv=none;
+Received: by 2002:a2e:9c88:: with SMTP id x8ls213899lji.1.gmail; Thu, 02 May
+ 2019 05:53:30 -0700 (PDT)
+X-Received: by 2002:a2e:9689:: with SMTP id q9mr1717590lji.194.1556801609986;
+        Thu, 02 May 2019 05:53:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1556801609; cv=none;
         d=google.com; s=arc-20160816;
-        b=ksWwsfR5DnklO6Drkm52+ZCbAFhhglGNrNoICAZK6PUbjHSdaJ0cMc1tlEiiIpxe+o
-         jI9lpz8tz7P4Nq/nztQ2C1BJvR1iHOVAKa74KxnZtg9+G5GXSz5nR5BkKJNWJviVnqUW
-         hP+4ajV6TUe/pjTrmrbvvAjNrXYQtPrPUHE/D0fyXq1MLkdJMI2OcJXz3SqKX7Z7boQR
-         Zys/avbUEMmnwb1btQtJTPrs/9ONmYvYa7a92xFFgEVcW5V6r5TNP7lWh7nGmBJNcred
-         eayeJ81DpD5GfweFidYBSD2WLxacvJy/H4wrXvCJWTogCaN6lJTLiovRAqGhanH8jXEk
-         wyug==
+        b=HmL1cMTOFA8SK/PZYIiB76pxycHd/0uB8ejzyq7YHBiDSF7U2nxNQQmie5NwZ/zqI+
+         A/80AdmPrPaTHQ2Llh/QQd6VDw+P7e0FWf/v6A0KdIIAnjq12Erz5i/rEDMecdq/fobu
+         nNAnBYz7AtS1+7yAPxH3bMPMZ4ABDOt+yMR635Txo0ziAq/vyYU7fAugT0ae76SYJVzK
+         QbPTRJaDIqeQpCWmERANlc8icZ3py/mZdX9I059PPORureB4BVLNKvzr93eKNmQ0TqS2
+         POGUYFdosqZzaYsccMmLOIH0VhRHibxLAbAmOErvA4ivdzA6NrGRuRuXZFDDpjWc/Nmz
+         d22Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject;
-        bh=YTKXHPFUkjH3So/pj1F2dsD7IlfZKav4ULp/eXMVZ94=;
-        b=UTbEbTaFswJ1evPEgHlb2QvgrPyAvPAUVxQIcGkU+O4UA65NPG4hAthGruJHxxRPDy
-         gJ67ZDwrqjZqNsiVvtFb9xwI4uGSBvB01VBb0T9weiLUHobl7BCbUL8PtqTXuGjPgQRV
-         E979r0ecs/dp7rID60oG9hqJK95FKbtbxBIQm2OMjd+2yVZQ+BfrT+QyEThA3EJp/J+G
-         H4W31C0QjgDL+XeUh1OLtwmCLlKIc6wg1+FLk/JdpsdY52oGphD3hmdqkw9gQ9JAsrZc
-         p5eoguZOFPhqfxsOA72RHgyeF0zGAnA0pjwvx/+rtbG/r/I34/vfe3VIh06MzQ/0FVpM
-         kBLA==
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date;
+        bh=rID1Ifrk2Atu/VgpBbdi4WJMj5o67ru2D9at9CYpOK0=;
+        b=CSbdkogXh5TUcgArz2o16Sg08i+I3rluB27Lt/Pj3VKoD7NCBZbx4SS7beyReRkyeq
+         CT7n3U8nOMc1TNYfrK0axytBJ35uvsLWGfTO9tIBTRSfEiZ3CgXRKXGRcsF1qsNISPeY
+         /z+OCwhwHCs6Qf5jl4sAlp0Npvy2VEY/kunfaBcbZpakvoA7eq0Dg7bzyO5uuAqFZm/S
+         sW6zhjVyKeZTlIfKwSAqghF2zmNabnY2zU904vnp5/dk4Mbm4r03u/1OIjTaIvwzzyRR
+         hnOpSsTI+bVDBgsk9GYCxNGeeruO6hSb7iV1glpc9lKQtlAZeN0JO72gwx+O41HJtSvL
+         cdEQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of hare@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=hare@suse.de
-Received: from mx1.suse.de (mx2.suse.de. [195.135.220.15])
-        by gmr-mx.google.com with ESMTPS id j5si1847573ejm.1.2019.05.01.23.06.41
+       spf=pass (google.com: best guess record for domain of hch@lst.de designates 213.95.11.211 as permitted sender) smtp.mailfrom=hch@lst.de
+Received: from newverein.lst.de (verein.lst.de. [213.95.11.211])
+        by gmr-mx.google.com with ESMTPS id x14si116839ljh.1.2019.05.02.05.53.29
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 01 May 2019 23:06:41 -0700 (PDT)
-Received-SPF: pass (google.com: domain of hare@suse.de designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-	by mx1.suse.de (Postfix) with ESMTP id 16E97AF8F;
-	Thu,  2 May 2019 06:06:41 +0000 (UTC)
+        Thu, 02 May 2019 05:53:29 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of hch@lst.de designates 213.95.11.211 as permitted sender) client-ip=213.95.11.211;
+Received: by newverein.lst.de (Postfix, from userid 2407)
+	id E2FAA68AA6; Thu,  2 May 2019 14:53:12 +0200 (CEST)
+Date: Thu, 2 May 2019 14:53:12 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Hannes Reinecke <hare@suse.de>
+Cc: Christoph Hellwig <hch@lst.de>,
+	"James E . J . Bottomley" <jejb@linux.ibm.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
+	Willem Riede <osst@riede.org>, Doug Gilbert <dgilbert@interlog.com>,
+	Jens Axboe <axboe@kernel.dk>,
+	Kai =?iso-8859-1?Q?M=E4kisara?= <Kai.Makisara@kolumbus.fi>,
+	linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com,
+	osst-users@lists.sourceforge.net, linux-kernel@vger.kernel.org,
+	Chriosstoph Hellwig <hch@losst.de>
 Subject: Re: [PATCH 24/24] osst: add a SPDX tag to osst.c
-To: Christoph Hellwig <hch@lst.de>,
- "James E . J . Bottomley" <jejb@linux.ibm.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>
-Cc: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
- Willem Riede <osst@riede.org>, Doug Gilbert <dgilbert@interlog.com>,
- Jens Axboe <axboe@kernel.dk>, =?UTF-8?Q?Kai_M=c3=a4kisara?=
- <Kai.Makisara@kolumbus.fi>, linux-scsi@vger.kernel.org,
- open-iscsi@googlegroups.com, osst-users@lists.sourceforge.net,
- linux-kernel@vger.kernel.org, Chriosstoph Hellwig <hch@losst.de>
-References: <20190501161417.32592-1-hch@lst.de>
- <20190501161417.32592-25-hch@lst.de>
-From: Hannes Reinecke <hare@suse.de>
-Message-ID: <70277444-5b5b-6e3c-5af3-c658a841b144@suse.de>
-Date: Thu, 2 May 2019 08:06:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+Message-ID: <20190502125312.GA2560@lst.de>
+References: <20190501161417.32592-1-hch@lst.de> <20190501161417.32592-25-hch@lst.de> <70277444-5b5b-6e3c-5af3-c658a841b144@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <20190501161417.32592-25-hch@lst.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Original-Sender: hare@suse.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Disposition: inline
+In-Reply-To: <70277444-5b5b-6e3c-5af3-c658a841b144@suse.de>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Original-Sender: hch@lst.de
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of hare@suse.de designates 195.135.220.15 as permitted
- sender) smtp.mailfrom=hare@suse.de
+ (google.com: best guess record for domain of hch@lst.de designates
+ 213.95.11.211 as permitted sender) smtp.mailfrom=hch@lst.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -137,43 +133,21 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 5/1/19 6:14 PM, Christoph Hellwig wrote:
-> osst.c is the only osst file missing licensing information.  Add a
-> GPLv2 tag for the default kernel license.
->=20
-> Signed-off-by: Chriosstoph Hellwig <hch@losst.de>
-> ---
->   drivers/scsi/osst.c | 1 +
->   1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/scsi/osst.c b/drivers/scsi/osst.c
-> index be3c73ebbfde..fe4f0e7d6359 100644
-> --- a/drivers/scsi/osst.c
-> +++ b/drivers/scsi/osst.c
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: GPL-2.0
->   /*
->     SCSI Tape Driver for Linux version 1.1 and newer. See the accompanyin=
-g
->     file Documentation/scsi/st.txt for more information.
->=20
-Reviewed-by: Hannes Reinecke <hare@suse.com>
+On Thu, May 02, 2019 at 08:06:38AM +0200, Hannes Reinecke wrote:
+> On 5/1/19 6:14 PM, Christoph Hellwig wrote:
+>> osst.c is the only osst file missing licensing information.  Add a
+>> GPLv2 tag for the default kernel license.
+>>
+>> Signed-off-by: Chriosstoph Hellwig <hch@losst.de>
 
-Cheers,
+FYI, my s/st/osst/ on the commit message message up my signoff, this
+should be:
 
-Hannes
---=20
-Dr. Hannes Reinecke		   Teamlead Storage & Networking
-hare@suse.de			               +49 911 74053 688
-SUSE LINUX GmbH, Maxfeldstr. 5, 90409 N=C3=BCrnberg
-GF: Felix Imend=C3=B6rffer, Mary Higgins, Sri Rasiah
-HRB 21284 (AG N=C3=BCrnberg)
+Signed-off-by: Christoph Hellwig <hch@lst.de>
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
 To post to this group, send email to open-iscsi@googlegroups.com.
 Visit this group at https://groups.google.com/group/open-iscsi.
 For more options, visit https://groups.google.com/d/optout.
