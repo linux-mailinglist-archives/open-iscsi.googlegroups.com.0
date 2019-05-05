@@ -1,131 +1,138 @@
-Return-Path: <open-iscsi+bncBCNZBX4ASILBB6742DTAKGQE5S3S56Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBDGIZD433YCRB44DXXTAKGQEY6ENYVA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x739.google.com (mail-qk1-x739.google.com [IPv6:2607:f8b0:4864:20::739])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34D018C53
-	for <lists+open-iscsi@lfdr.de>; Thu,  9 May 2019 16:51:40 +0200 (CEST)
-Received: by mail-qk1-x739.google.com with SMTP id v198sf2328940qka.5
-        for <lists+open-iscsi@lfdr.de>; Thu, 09 May 2019 07:51:40 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1557413499; cv=pass;
+Received: from mail-lj1-x238.google.com (mail-lj1-x238.google.com [IPv6:2a00:1450:4864:20::238])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232F614234
+	for <lists+open-iscsi@lfdr.de>; Sun,  5 May 2019 22:05:08 +0200 (CEST)
+Received: by mail-lj1-x238.google.com with SMTP id f6sf1863459ljg.12
+        for <lists+open-iscsi@lfdr.de>; Sun, 05 May 2019 13:05:08 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1557086707; cv=pass;
         d=google.com; s=arc-20160816;
-        b=v+lFF4XSOROzDhJY+066TCTcXst4puCyliQISFfib/Bg6K2us4b99IdKEEchu7KNmb
-         eyzwQydyu8CtJ1UpTM89mcfmJFdC/i2iFbYKlacR9iH9JuVIf40J+ZHp0WifjbCgaTaG
-         Rzkxogt3h707fBO/rCNBL41FucaNB83aUcNHpyuD+nqAhm1LSBqcMr2klQiMfIpu6OFY
-         OVZT+MYc8jnvKYoK87gz47pV8nlUsWDhOpjo5Dpw9Jpg33X4Jrh+sXmzw1X+dWsyz33J
-         3sL9iqGkJx6LiQ+fF3Kz/IEr/TQZh96LWp6KgCW7CLtOnx03SbdjqVWOC3Wj7D4f0rDJ
-         TAGA==
+        b=cAH0Z5MgjHZiJwy/oeeRouV8mj3UDu4y4Y0jwyt0Uy6jED2fV6Np1d7bVEXSUDZ8m1
+         W0MdM243aYphJOvgR38zYGvJ1YX1hQ/++2wQkazglcoonL+b6KS3VEwEF57PZoANkIoM
+         tTkWyoMKbfNtCwltbn7+NU918bxR00EcaSewRZcn5iLSUbdwOCU20gGYOccb22Iacwi5
+         qQt4KWw3kwFWHdSCfRKEo0YJql71I65QIAihwjdPopEz/QV4xBsPfaWhb383hZYUT8n+
+         jq2/jdzw6m84QrL5orfIUC7csAmodTywJXVxkmR2MMkSG0ve2+Gz7XCUoRO2UJxRga1J
+         PTbQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:sender:dkim-signature;
-        bh=3rvAkPSit4w5sadzTMlVsulCNAYvBnViGcsJRlH1XEo=;
-        b=O0tAMDX13opFrOi8x9rmT49kO9u9fm9kp0QEe4B2Iay6LR2qs7XYqAITHA5H4XKXBL
-         aUGIZIFaQqqaTCJcMgFnDeP6wZQibwPp6srRSDbAviofc1RrhdiNA2qxtZWSVes+oyBZ
-         kBlov8X15hyELPSNjw2Hf2Bk9pKddIVJ+fX9uLC56BhxrSsoAtsdlvOYtlZfTS5JdaOF
-         CVc0GlhyYKNckU2QJI56zqLKaOJM+/wKHLlcnJfI3OkBbiC7egTAcBHZfqQjrYcbEgBz
-         rNgvDKy1WO+/3FSy+7zRzntnPfH1XfQdmB2KAJ8iZFpECPPoGj/w167ZYOBaxMHKKBF0
-         hndQ==
+         :list-id:mailing-list:precedence:content-language:in-reply-to
+         :mime-version:user-agent:date:message-id:from:references:cc:to
+         :subject:reply-to:sender:dkim-signature;
+        bh=6YzRPH7K4DbDPfQ7Ls9L6uLn/nGF9hHBDyEVMlpwauA=;
+        b=DHRVIpEnZ56vtoo9iUne2gLqGglw/k1iNpAqQt134CfGHHhGxYn6+uxu7cK/7p2f9y
+         KICg1UXUSLE2QN7rqkfuYAoR+dHhWE4b6P1kanxFuqCFikVsA08Zd4n1bfjpr6Q5A7Xm
+         YoPddMYS2c9maG0DKtFFVBzWFtUejTwVjYo9eTcJ28b2RhWtfAs6unnhZ3F1vJkv9A8D
+         2f+SJ5vguFUKy/r4NzHNrhWpbJOsRkPhmGy43Iz2Dtr4IjF2cW/ezWTkXKgsVl7nlWQ6
+         SLQoVw17QYI3GBc9PnPTi6Ga8QvPI17jAuHjNjnTbx+eswweYdMc0HL+dlxUFpj3sjkE
+         cfvg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of wriede@gmail.com designates 209.85.217.68 as permitted sender) smtp.mailfrom=wriede@gmail.com
+       spf=permerror (google.com: permanent error in processing during lookup of dgilbert@interlog.com: smarthost.freephoneline.ca not found) smtp.mailfrom=dgilbert@interlog.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:cc:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=3rvAkPSit4w5sadzTMlVsulCNAYvBnViGcsJRlH1XEo=;
-        b=CSrkfTabKpIjx2v+3YTwJ8lOI71m2bySKrJpGHyYbU0vhH+wqQKCKjDWdvmCV8A0zE
-         hy7jKzj43SEQIKtX8xnUG9DK9swn2Ui2pDUUa7k/FRIEHu7LboJhxs6R3xCDLRGhvDV9
-         ZkjRZmJCMKLTyRy/KVqJf1ZQ9rvxn5AHZJ2Ez3RfZ57qupSFuzAjxkxFTZuhZ5i9Wz67
-         Qys4AjmftsiFKVgeK2K7GrUO+7LssTF7N7kn37Qw2zAmRDI5lnHWyVlA9TfINHQtibSW
-         mVvX3PICP0nRb/2aPepjZNFngvjjxsYCf41qTY8mMVEEjEBjkTrEkU7tpQsTEQM+Pm4Z
-         ceRw==
+        h=sender:reply-to:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :x-original-sender:x-original-authentication-results:precedence
+         :mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=6YzRPH7K4DbDPfQ7Ls9L6uLn/nGF9hHBDyEVMlpwauA=;
+        b=nPoTJn5Dg0Rfl8R+6SCd0YjdpVYqZH9R/4Fn1ngyLsKtgdl1yxszJwmySDH8YLy15m
+         5B8zge6bd1BBtxdn3xUjb2RQ5rE3DlhzVk1+jVT/rkPYUQerzM0Kseh6NLKMAqHnX6P+
+         VHjCifIw4sCxZ+N7S95D1sruUPjQAAbbNRNBdXzEqaePF5IOuQxNgcHZhiwdZvx/rmnR
+         0lvsKSA8O8cmY9P8kz/v9kczBmLqCI1jrIKnl3CIpYwxCdw0PD1C1CozMAsKc51OcqiC
+         yklxeMr5ZJtThS0McbehLXca7sIV4HcdJhBsc/jz22g4spLI2ZWc1/HTMaOw77tsLe+b
+         4wig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:cc:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=3rvAkPSit4w5sadzTMlVsulCNAYvBnViGcsJRlH1XEo=;
-        b=Z5IWB81vJxWXhdfMOMqwzq20f0CsdgRz6fuw+N0g7tmsP/bNAxpBejjqcPBAVij/ND
-         jcocMk9K1Ij22bpGZudwTKSTWujnlJzHfq/8ejfNP2BEzRXbXE3wjIl0XzmfkC1XNSLA
-         hQnGlKE8Ey/TNWkycl++ZIKeIMm1+EwCGQiKmOluKkmIGGpNcuIzxfmsSW9uwRHP/ILQ
-         j9lo/JGhi1bb99y/PMi9QfkQmgf9xqMivcp/kmq224G8P288NMjYG4MRjh6r7p+SPf3F
-         TiXAgzjrvO11J4lsuiFc4JV9Q53FVDJmSAEmRl8VB/TR5tQIUXDajPJE6EmGTBFm1a9J
-         FUYQ==
+        h=sender:x-gm-message-state:reply-to:subject:to:cc:references:from
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=6YzRPH7K4DbDPfQ7Ls9L6uLn/nGF9hHBDyEVMlpwauA=;
+        b=Q6w8b5GrK0qwik7mQqzocSXHTA6nCQ2j4wX+hSe88N/GwmXGxORXlU2KxKgRlmw4rd
+         6CUo597COi41YgVVMbx1wrzK6solngfnLRvCgzNJf2A80FGfOC7KIOwJEmiqT1AwIitC
+         QKLaJgMl1WVd/lqAi738zd/+FfRdzE49HFXXugkWmGhnqW5Krh5HafzER4jFUKCaGCMo
+         qofzij689CZslf+Stu2B3gOyZQnXeJSGa8scT7cuQmyhXpOmHhPRjsHU6zK/FIOG6nDj
+         cyHIw/VO2UI5ATM0+4WLgo0gjqtP75Oz5jz1X4sOi1ta+jqk8LVMsHl4gAOMe3hVcSC3
+         Cewg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAWtdDeQw62j6+wEdLztzID0spysB17AXgrCwv7MOCbVh8C2YrW4
-	3V/4NZItcXIBdzzI2tC6jys=
-X-Google-Smtp-Source: APXvYqzCFdyaZ9vsmQsDMSBCVRMc1S8lzcIbd4imBZsb3v94MviGtOVphxQrahVXGjgKWOWzHFXC4g==
-X-Received: by 2002:ac8:2f98:: with SMTP id l24mr4160735qta.78.1557413499746;
-        Thu, 09 May 2019 07:51:39 -0700 (PDT)
+X-Gm-Message-State: APjAAAUePrtZMscUt7Ur0RuMh3ppCJc7Zk2kLJxXyWSD6AzwWl/Kxq1N
+	ZdkwmaBifGfK8zH6VoMhy08=
+X-Google-Smtp-Source: APXvYqyZWhaut9x+c7yJBa7FEfwaZFbkovhURbwPpGmwOFWIx1aAYXwaZIwrlCs1vqjxvMzfefLyQA==
+X-Received: by 2002:a2e:81d0:: with SMTP id s16mr11450594ljg.145.1557086707601;
+        Sun, 05 May 2019 13:05:07 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac8:2306:: with SMTP id a6ls781865qta.14.gmail; Thu, 09 May
- 2019 07:51:39 -0700 (PDT)
-X-Received: by 2002:ac8:c8c:: with SMTP id n12mr4041571qti.73.1557413499610;
-        Thu, 09 May 2019 07:51:39 -0700 (PDT)
-Received: by 2002:a37:4c4e:0:0:0:0:0 with SMTP id z75msqka;
-        Fri, 3 May 2019 09:09:42 -0700 (PDT)
-X-Received: by 2002:a0c:b141:: with SMTP id r1mr8533814qvc.177.1556899781829;
-        Fri, 03 May 2019 09:09:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1556899781; cv=none;
+Received: by 2002:ac2:539a:: with SMTP id g26ls883533lfh.12.gmail; Sun, 05 May
+ 2019 13:05:06 -0700 (PDT)
+X-Received: by 2002:a19:40d8:: with SMTP id n207mr11350199lfa.70.1557086706779;
+        Sun, 05 May 2019 13:05:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1557086706; cv=none;
         d=google.com; s=arc-20160816;
-        b=sDvCsxvl9y4rHE16vw5zjd3kpOLMv7cNCT7oyBIhMa8ji6JeemxXeXzHUFXofgw9+/
-         Y/HdAY58JRHgSEDrzINFZFz8GPhkozgsf9akHdIee4+jGGvnx6A0HCOTVY+iTRYeIO25
-         znau5FQ8VzZKs7Gr3jJxhmpe2rvdELOG7nKcUyzoCGE7OpuXxfgqcpFlDjqTVcUauMiM
-         7MH7yOxficWfWQcbyT783nTWGYP8lufTi8DuxvwB7RHXCg1zX89t1sY4ghqey0o3Txwj
-         u1JcVLihSIHRrniNUx/lz6wHdqyCKkAlrvxX3miFv7ZyLyF3vD8b7KmdJ916Nd2ITKpf
-         cTaw==
+        b=D6fhdMcLzz9IfT0ch6LBT28P2qrRFi5axrs8l7R/pjQh6IACkrQXSgNYpTEXORwolB
+         eT0cwlXhWLq9i7kanTtzrRdAaTD9e4m3a/MBLCU/V/E7lg8bOJEX4puuyS+OYygCCyq9
+         Kuo/F0GN6uIiAqwr45VICJZHqlOQKXUygmyfPxriG7KUZ/yH+PA67wKKJ0cLS013IFQu
+         uO0UgDX2g/O44teyhxQAhrWEQmEeU6b6V9+CSsVDOo4XyVHaKbridy2oWTsY/gmQNcdg
+         sOIfOGZ4tiXMLJo52Enfoe/KP9B6zrO+sGqEongZalxvsThBQWp4mAIcnxDRaFtMgxqp
+         nNng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version;
-        bh=+Y7zLsXgOgdUaVYtaV4n6NkIRnWZJJqo6ILlE8PgPDA=;
-        b=mGD2SKL6vr6Il6QlxR/Ntxs8p68Pdht5k/TFX++BSzLHL3qZMk0Hz/cQhhE8e973PT
-         52zu7fc3ZnjZ/IM/YKYd3NUE7Tw3acNQhfyOC3pGrhOfK3SGdeeYZARiMHzaJdQWBqIk
-         YhNZSh6tn5cuBaR3yi/cJXJmjjNB713Gk1OnmZGAZsfR90DeZI9+NF7FxRm0AFso8TKG
-         IRWM7d5mcAyolHAhcWCQ4afbhmie5+LbK5hnfru2VyI66xRJ6MqSQQMiuEYSQ5ZKsBFP
-         ji0nBH9TEOM3gG1Vz/WNpGwfVf5rmdvh5D4VG0ajYYyzXTHPor/1KenbK9ooMQG1BLmI
-         wnXw==
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:reply-to;
+        bh=2aEpPU2j4zy6ixUlrv8NTA4P++b3moiWnNZO0iFerUs=;
+        b=dSJ3M9h7TYa91MG7dmEzNjQWcKZoI2yQnFriV9mB6V1JhlvGlv4MUF5bb8+HutPJ/j
+         enCLqDiDl8hPh69pQAvfNHWsE5DSP4yi7btWo7DkVSlqv74NI6AY2n747Lr6nfTDQOg1
+         sO0ZqJfDBP+FYOyIiqagYetZkzECeSFq/trLahyU5FSUdTJvRLcUL0zay5PW9srFIwkx
+         +P6gup/5XwlczmWuevT6J03k7qLIuDRKVRQM9gkDQ1o0GYqodZz0FIfrmNa/8NrDeeha
+         7F0l1s6wwxmmS0jK4gd426bMQi7rCw1mpazGs/GqX/+SLNTmOhVkAz4jW4tEmUbRgiNM
+         +5ZQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of wriede@gmail.com designates 209.85.217.68 as permitted sender) smtp.mailfrom=wriede@gmail.com
-Received: from mail-vs1-f68.google.com (mail-vs1-f68.google.com. [209.85.217.68])
-        by gmr-mx.google.com with ESMTPS id s48si172988qth.2.2019.05.03.09.09.41
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Fri, 03 May 2019 09:09:41 -0700 (PDT)
-Received-SPF: pass (google.com: domain of wriede@gmail.com designates 209.85.217.68 as permitted sender) client-ip=209.85.217.68;
-Received: by mail-vs1-f68.google.com with SMTP id x78so3941713vsc.3
-        for <open-iscsi@googlegroups.com>; Fri, 03 May 2019 09:09:41 -0700 (PDT)
-X-Received: by 2002:a67:f455:: with SMTP id r21mr2066639vsn.194.1556899781308;
- Fri, 03 May 2019 09:09:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190501161417.32592-1-hch@lst.de> <20190501161417.32592-25-hch@lst.de>
- <70277444-5b5b-6e3c-5af3-c658a841b144@suse.de> <20190502125312.GA2560@lst.de>
- <10a8c8f5-879c-685f-f43c-d5af678b2187@suse.de> <CAKnBiiaSyW27tCqU4i6zStF3AoLPcndSL2gjz1b17LdoFddiiw@mail.gmail.com>
- <c9a58611-13e2-8e13-b573-b504032c017c@suse.de>
-In-Reply-To: <c9a58611-13e2-8e13-b573-b504032c017c@suse.de>
-From: Willem Riede <osst@riede.org>
-Date: Fri, 3 May 2019 09:09:30 -0700
-Message-ID: <CAKnBiiYqwPNFU709s8bb+UhX18oqkTRyHpkO2pBAenisHiPUig@mail.gmail.com>
-Subject: Re: [PATCH 24/24] osst: add a SPDX tag to osst.c
-To: Hannes Reinecke <hare@suse.de>
-Cc: Christoph Hellwig <hch@lst.de>, "James E . J . Bottomley" <jejb@linux.ibm.com>, 
-	"Martin K . Petersen" <martin.petersen@oracle.com>, Lee Duncan <lduncan@suse.com>, 
-	Chris Leech <cleech@redhat.com>, Doug Gilbert <dgilbert@interlog.com>, Jens Axboe <axboe@kernel.dk>, 
-	=?UTF-8?Q?Kai_M=C3=A4kisara?= <Kai.Makisara@kolumbus.fi>, 
-	linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com, 
-	osst-users@lists.sourceforge.net, linux-kernel@vger.kernel.org, 
-	Chriosstoph Hellwig <hch@losst.de>
-Content-Type: multipart/alternative; boundary="0000000000006a76a80587fdfab6"
-X-Original-Sender: wriede@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of wriede@gmail.com designates 209.85.217.68 as permitted
- sender) smtp.mailfrom=wriede@gmail.com
+       spf=permerror (google.com: permanent error in processing during lookup of dgilbert@interlog.com: smarthost.freephoneline.ca not found) smtp.mailfrom=dgilbert@interlog.com
+Received: from smtp.infotech.no (smtp.infotech.no. [82.134.31.41])
+        by gmr-mx.google.com with ESMTP id p12si188248ljh.5.2019.05.05.13.05.06
+        for <open-iscsi@googlegroups.com>;
+        Sun, 05 May 2019 13:05:06 -0700 (PDT)
+Received-SPF: permerror (google.com: permanent error in processing during lookup of dgilbert@interlog.com: smarthost.freephoneline.ca not found) client-ip=82.134.31.41;
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.infotech.no (Postfix) with ESMTP id 4051120423D;
+	Sun,  5 May 2019 22:05:06 +0200 (CEST)
+X-Virus-Scanned: by amavisd-new-2.6.6 (20110518) (Debian) at infotech.no
+Received: from smtp.infotech.no ([127.0.0.1])
+	by localhost (smtp.infotech.no [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Fv7CIxAIjNDX; Sun,  5 May 2019 22:04:59 +0200 (CEST)
+Received: from [192.168.10.165] (c56B33E56.static.as2116.net [86.62.179.86])
+	by smtp.infotech.no (Postfix) with ESMTPA id E8A17204152;
+	Sun,  5 May 2019 22:04:58 +0200 (CEST)
 Reply-To: open-iscsi@googlegroups.com
+Subject: Re: [PATCH 21/24] sg: switch to SPDX tags
+To: Christoph Hellwig <hch@lst.de>,
+ "James E . J . Bottomley" <jejb@linux.ibm.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>
+Cc: Hannes Reinecke <hare@suse.de>, Lee Duncan <lduncan@suse.com>,
+ Chris Leech <cleech@redhat.com>, Willem Riede <osst@riede.org>,
+ Jens Axboe <axboe@kernel.dk>, =?UTF-8?Q?Kai_M=c3=a4kisara?=
+ <Kai.Makisara@kolumbus.fi>, linux-scsi@vger.kernel.org,
+ open-iscsi@googlegroups.com, osst-users@lists.sourceforge.net,
+ linux-kernel@vger.kernel.org
+References: <20190501161417.32592-1-hch@lst.de>
+ <20190501161417.32592-22-hch@lst.de>
+From: Douglas Gilbert <dgilbert@interlog.com>
+Message-ID: <4285486a-b30c-300c-e794-e74999b15fb2@interlog.com>
+Date: Sun, 5 May 2019 22:04:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190501161417.32592-22-hch@lst.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Language: en-CA
+X-Original-Sender: dgilbert@interlog.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=permerror
+ (google.com: permanent error in processing during lookup of
+ dgilbert@interlog.com: smarthost.freephoneline.ca not found) smtp.mailfrom=dgilbert@interlog.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -134,149 +141,59 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---0000000000006a76a80587fdfab6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 2019-05-01 6:14 p.m., Christoph Hellwig wrote:
+> Use the the GPLv2+ SPDX tag instead of verbose boilerplate text.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 
-On Fri, May 3, 2019 at 1:05 AM Hannes Reinecke <hare@suse.de> wrote:
+This scripts/checkpatch.pl noise seems to be related to the patch below:
 
-> On 5/2/19 9:55 PM, Willem Riede wrote:
-> > On Thu, May 2, 2019 at 7:19 AM Hannes Reinecke <hare@suse.de
-> > <mailto:hare@suse.de>> wrote:
-> >
-> >      >
-> >     Maybe it's time to kill osst.c for good ...
-> >
-> >
-> > Yes. I've been thinking about doing just that. The devices it supports
-> > are now thoroughly obsolete. The manufacturer has gone out of business.
-> > All my test drives have broken down over time, so I can't even test any
-> > changes any more.
-> >
-> Just when I thought to reach out to you :-)
->
-> Thing is, we've done numerous changes to the 'st' driver in the course
-> of the years, most of which seem to have avoided osst :-(
->
-> So what's your suggestion here?
-> Just drop it completely?
-> Or can we somehow fold the OnStream-specific things back into st.c?
->
-> I sincerely doubt anyone in the entire world still has an Onstream drive
-working.
-These days cheap flash drives have larger capacity and are way more
-convenient.
+$ scripts/checkpatch.pl /tmp/t.patch
+Traceback (most recent call last):
+   File "scripts/spdxcheck.py", line 6, in <module>
+     from ply import lex, yacc
+ImportError: No module named ply
+total: 0 errors, 0 warnings, 98 lines checked
 
-I recommend to drop osst entirely and not to contaminate st.
-
-Regards, Willem Riede.
+That happens both in the mkp/scsi/5.2/scsi-queue and the latest linux-stable
+trees.
 
 
+BTW Are C++ comments (as used in this patch) now permitted in lk code?
 
-> Cheers,
->
-> Hannes
-> --
-> Dr. Hannes Reinecke                Teamlead Storage & Networking
-> hare@suse.de                                   +49 911 74053 688
-> SUSE LINUX GmbH, Maxfeldstr. 5, 90409 N=C3=BCrnberg
-> GF: Felix Imend=C3=B6rffer, Mary Higgins, Sri Rasiah
-> HRB 21284 (AG N=C3=BCrnberg)
->
+Doug Gilbert
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
+> ---
+>   drivers/scsi/sg.c | 7 +------
+>   1 file changed, 1 insertion(+), 6 deletions(-)
+> 
+> diff --git a/drivers/scsi/sg.c b/drivers/scsi/sg.c
+> index d3f15319b9b3..bcdc28e5ede7 100644
+> --- a/drivers/scsi/sg.c
+> +++ b/drivers/scsi/sg.c
+> @@ -1,3 +1,4 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+>   /*
+>    *  History:
+>    *  Started: Aug 9 by Lawrence Foard (entropy@world.std.com),
+> @@ -8,12 +9,6 @@
+>    *        Copyright (C) 1992 Lawrence Foard
+>    * Version 2 and 3 extensions to driver:
+>    *        Copyright (C) 1998 - 2014 Douglas Gilbert
+> - *
+> - * This program is free software; you can redistribute it and/or modify
+> - * it under the terms of the GNU General Public License as published by
+> - * the Free Software Foundation; either version 2, or (at your option)
+> - * any later version.
+> - *
+>    */
+>   
+>   static int sg_version_num = 30536;	/* 2 digits for each component */
+> 
+
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
 To post to this group, send email to open-iscsi@googlegroups.com.
 Visit this group at https://groups.google.com/group/open-iscsi.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/CAKnBiiYqwPNFU709s8bb%2BUhX18oqkTRyHpkO2pBAenisHiPUig%40mail.gma=
-il.com.
 For more options, visit https://groups.google.com/d/optout.
-
---0000000000006a76a80587fdfab6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-family:arial,helvetica,sans-serif;font-size:small"><span style=3D"font-fa=
-mily:Arial,Helvetica,sans-serif">On Fri, May 3, 2019 at 1:05 AM Hannes Rein=
-ecke &lt;<a href=3D"mailto:hare@suse.de">hare@suse.de</a>&gt; wrote:</span>=
-<br></div></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">On 5/2/19 9:55 PM, Willem Riede wrote:<br>
-&gt; On Thu, May 2, 2019 at 7:19 AM Hannes Reinecke &lt;<a href=3D"mailto:h=
-are@suse.de" target=3D"_blank">hare@suse.de</a> <br>
-&gt; &lt;mailto:<a href=3D"mailto:hare@suse.de" target=3D"_blank">hare@suse=
-.de</a>&gt;&gt; wrote:<br>
-&gt; <br>&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Maybe it&#39;s time to kill osst.c for good ...<br>
-&gt; <br>
-&gt; <br>
-&gt; Yes. I&#39;ve been thinking about doing just that. The devices it supp=
-orts <br>
-&gt; are now thoroughly obsolete. The manufacturer has gone out of business=
-. <br>
-&gt; All my test drives have broken down over time, so I can&#39;t even tes=
-t any <br>
-&gt; changes any more.<br>
-&gt; <br>
-Just when I thought to reach out to you :-)<br>
-<br>
-Thing is, we&#39;ve done numerous changes to the &#39;st&#39; driver in the=
- course <br>
-of the years, most of which seem to have avoided osst :-(<br>
-<br>
-So what&#39;s your suggestion here?<br>
-Just drop it completely?<br>
-Or can we somehow fold the OnStream-specific things back into st.c?<br>
-<br></blockquote><div><div class=3D"gmail_default" style=3D"font-family:ari=
-al,helvetica,sans-serif">I sincerely doubt anyone in the entire world still=
- has an Onstream drive working.=C2=A0</div><div class=3D"gmail_default" sty=
-le=3D"font-family:arial,helvetica,sans-serif">These days cheap flash drives=
- have larger capacity and are way more convenient.</div><div class=3D"gmail=
-_default" style=3D"font-family:arial,helvetica,sans-serif"><br></div><div c=
-lass=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">I r=
-ecommend to drop osst entirely and not to contaminate st.</div><div class=
-=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><br></d=
-iv><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-s=
-erif">Regards, Willem Riede.</div></div><div><br></div><div>=C2=A0</div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">
-Cheers,<br>
-<br>
-Hannes<br>
--- <br>
-Dr. Hannes Reinecke=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-Teamlead Storage &amp; Networking<br>
-<a href=3D"mailto:hare@suse.de" target=3D"_blank">hare@suse.de</a>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0+49 911 74053 688<br>
-SUSE LINUX GmbH, Maxfeldstr. 5, 90409 N=C3=BCrnberg<br>
-GF: Felix Imend=C3=B6rffer, Mary Higgins, Sri Rasiah<br>
-HRB 21284 (AG N=C3=BCrnberg)<br>
-</blockquote></div></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To post to this group, send email to <a href=3D"mailto:open-iscsi@googlegro=
-ups.com">open-iscsi@googlegroups.com</a>.<br />
-Visit this group at <a href=3D"https://groups.google.com/group/open-iscsi">=
-https://groups.google.com/group/open-iscsi</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAKnBiiYqwPNFU709s8bb%2BUhX18oqkTRyHpkO2pBAenisHiPUig=
-%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.go=
-ogle.com/d/msgid/open-iscsi/CAKnBiiYqwPNFU709s8bb%2BUhX18oqkTRyHpkO2pBAenis=
-HiPUig%40mail.gmail.com</a>.<br />
-For more options, visit <a href=3D"https://groups.google.com/d/optout">http=
-s://groups.google.com/d/optout</a>.<br />
-
---0000000000006a76a80587fdfab6--
