@@ -1,165 +1,68 @@
-Return-Path: <open-iscsi+bncBDVIJONZ3YDRBT5N5DTAKGQEEYL7Q2Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBCG5HL4D24JBBHMFXHUAKGQEUKM42EI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-it1-x137.google.com (mail-it1-x137.google.com [IPv6:2607:f8b0:4864:20::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932301C04C
-	for <lists+open-iscsi@lfdr.de>; Tue, 14 May 2019 03:16:00 +0200 (CEST)
-Received: by mail-it1-x137.google.com with SMTP id t196sf1109955ita.7
-        for <lists+open-iscsi@lfdr.de>; Mon, 13 May 2019 18:16:00 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1557796559; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=jQqEbswr8ESW7C7u5AfTCAr4K/qxAXDkiaAyO5hn603BA9tVwsNjVitNfq23rEDj34
-         XLVg34eNsZy1hui0gUNrXPkHa4uPn6eIvP97uStRx1+/vIS/chZEwSVtFPjgi9Yjd9R2
-         w4sclnVklhdglb3Bpp0faE0p4YMaE42NuUCn42NsBY3l2gUDaFVpd7rh4fpJvCDpzJED
-         6JMRtEt2F+rPr7E2hXNhNpXJ/6sPPg9i/XjfXxXzgJJEhVdQanGUZQFwF0WLOuiue+cS
-         HVb1rWXdE0kXJUi7llEAdRQntrNrM6g/IFsv2+RlAuPBVwLsx0TiSA8KXGFNPLsAT1RZ
-         z7jg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:user-agent
-         :message-id:in-reply-to:date:references:organization:from:subject:cc
-         :to:sender:dkim-signature;
-        bh=0uuollQ/NptyaJepakz19ILfI1rgco8tmJmLU8XcwMo=;
-        b=LgKEu5aitoznfiVpj0e/CUQF4zTEpzFlOlLjOWBX7F5GNFIDbNadw3LnUUAeeX+Krq
-         rE7kvFJ0GbhrRYNBZ/O1GPBWGByDY7qSQz/FLsKzXBEWR6tYxQKDBMVjPfro9dp4jJ35
-         HZqGY1EAXQgFXpjcXseR7WsScTDcfCvSXIPcZML/uLuJpw02H2Z0u2ZQsKL9rAumiKw4
-         D6PvoO1zm1IpoIjOaJiMhOcQ5p8e5pV/oJiZRM2muxZ1tScE6s15WjWFPLdqbMKC1WZp
-         qqkqAnwHGjqSNdnLsxdg6WygiSDJlaImNy8/MRRZs80IWmAJINtrhyZTZzfoASPBWNxh
-         l8RA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2018-07-02 header.b=Oy3MGfga;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from mail-qk1-x738.google.com (mail-qk1-x738.google.com [IPv6:2607:f8b0:4864:20::738])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A394F661
+	for <lists+open-iscsi@lfdr.de>; Sat, 22 Jun 2019 17:00:48 +0200 (CEST)
+Received: by mail-qk1-x738.google.com with SMTP id q62sf2698724qkb.12
+        for <lists+open-iscsi@lfdr.de>; Sat, 22 Jun 2019 08:00:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:to:cc:subject:from:organization:references:date:in-reply-to
-         :message-id:user-agent:mime-version:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=0uuollQ/NptyaJepakz19ILfI1rgco8tmJmLU8XcwMo=;
-        b=dtf8lb8QQKUf/7akg0Xi2901w2i8IrGZbhPkzjAvVqaXpOhOpNILF9HL8FpmDKVCiR
-         ENYZZcAbN8QiCHk3SmLlLLWLFo8uDZxlMRWQCxOlFjSw+J+tlmKhBVzpf/wdknmnmPT+
-         ON/N9+uCVZpQ2EyjRrXV0ICicHahTNrUpRS64UKWzohnczFV3ZofkVs3HTw4ipbgPGb4
-         HUrwGx++KZlTs6sIFWWxcX4Zc5Bf4qpQ/qhZpkyxKMQ8JYbUpbyyAMJ16SQl+QG05j8B
-         jKU7H73T82ws1DESFSlJiwRHeA6cJY+TkRu+6tCyIioJDmbgnjut2KpbSdf7rNMkIiiW
-         1G4g==
+        h=sender:date:from:to:message-id:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=NXN0KxnX9Iiaek2jUro2jSAtDfaMF85T+ty8QZTje9U=;
+        b=j/hC+1OVcAzTpzDh61phTP0fahY96/ix2gkXskcoRbAAfuwK8TtPgmIu0xcTBm4h35
+         432lyIJnpxC/8c/xYwiDTLVTp0d01pUpE5WGOc9f0ym5eompBTunxG3GzpDYydoOZ9T/
+         cfZ9SHzJSJi8mJnHiyNajEIHZpPJ0P+CXDJO4caxi/vsawyWlWXZnMCiqvHeBXRa7tgF
+         PE2Sp/zsJ3Fa06d/dUV+kzOP5ACixkzpJsw7Moh0ssIpovT6ghIM+eE/LgLrn1zBqdY8
+         7p08dQ4tEJm1TjRbJAIINfK9UKlnlXHsu6g1xD5jMBHuyBDogSBAh6i71AjEA33XDIbA
+         nhIw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:subject:mime-version:x-original-sender
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=NXN0KxnX9Iiaek2jUro2jSAtDfaMF85T+ty8QZTje9U=;
+        b=JmHFU4vBfzR3v56uOVQdCJWoyKcUAjbtAvbyRmwnqwDs+rsu1mXS4WPmPy4O2O3OK4
+         thjMjbJ/80m0MZaTpK2cYU1EMF1nz9gjZEBIS55lxDiTwHOZbwc+aLgtsV/MYtp2sfB2
+         x2thWnz1sxleWLQqWc5WtiZusg62kaPXWaWnq99ruHNx70cxLoNsebIGHFjLjfi9GROL
+         WgQNfgBveoeKr4iRoSlGwSKL7KA20BMmRQRJhuK2NbhfC7XFT2N9iD8MUpM4RTt1ZoMa
+         7ryOk4nk0M5SIrTxsERM5Yhxpaqzn5e+Fpy5O+M5ZK4rR7cCkvNtaHLCllaK2wsYCPZU
+         +MDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:to:cc:subject:from:organization
-         :references:date:in-reply-to:message-id:user-agent:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=0uuollQ/NptyaJepakz19ILfI1rgco8tmJmLU8XcwMo=;
-        b=cr9ffCTQekOrEK5TOSPSuM5eDksywF2zL9e1cp0638f6qWlUTrGnwoCCF48Nsj1CdM
-         YsJ57r0H1X80O8WGk9xLqMj4yjBKUcMK20eXcKz3nwCbwLR2KrHSqkoL4dGyFl3EVqMy
-         8s1wjYiMw+bPntsqhLRmNbo+cjIxnJ5Zjrt003zIj8ub0yauLo5448goMY435lH73i1z
-         /2ktP08nEnJgJz2WudKGuJOWVy5jkf16ZmFhr9t3CqD5RYLZ5qKQImIXPHGsU47Q+nFI
-         e8r1orJ3a8rGDCdfx6l7C0lVxwqN3kH8Asvp5TUBqtsjhzfMqXZVnSwNOVNW3hFfZfb8
-         3bLg==
+        h=sender:x-gm-message-state:date:from:to:message-id:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=NXN0KxnX9Iiaek2jUro2jSAtDfaMF85T+ty8QZTje9U=;
+        b=nOJTFm8KbLsjtkHvtuG07sGCOyLRouIlOd376jnx4eSoBTS0Djjsvgg0RCXDYP5LEt
+         KSiBH2pM5nyfo/QDeY1aODCToqMgUg5DDEXubaCxuwy9tHRsQCY6sApfVbJIpR1Bm1B2
+         CFVaV+y3mAxhg5WwPPek16OhkGvnVFxIfm0HyP2nMUwiQMixL2K8MsqtQ7ygLk04DjBr
+         mpsycHYmvsYPsWcUoag/pnAqBz5NhBSzJraN/n7hK0U5H2ukKu3KnBtq1IQG+c8hRBbD
+         k7rZdrhg9YnYyOcGIzQBoQCqdIsSl3jiitL/U3dJCdrPr8MEpfI/OJCV5VIZmdOx7n8h
+         wDAA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAUz00WufOlUnycQlZfbx7Wqmqwx74pUz8ILbIVJROToKDoO3mAI
-	rVrL2oCE4zeJIrTOwVOOHDM=
-X-Google-Smtp-Source: APXvYqxshYDcVspw04ZwWpS/IWtDta6LUVEwr77Qxk3Puu1spHHaOz1rf7GrsSqvDlCeqta4qf3Omg==
-X-Received: by 2002:a24:2e03:: with SMTP id i3mr1671952ita.110.1557796559244;
-        Mon, 13 May 2019 18:15:59 -0700 (PDT)
+X-Gm-Message-State: APjAAAX8cWa1NP5t+v2C9VJGdYV33276UVA87mu2LftlRaZYRXVOXd1P
+	SI3TcMo4aW6IgDN4pbl9vCM=
+X-Google-Smtp-Source: APXvYqzJDBdtZCImP4xMb1O+aUi4+HlQkK5/VQIoLlnDiu1KRhMEnTmjZdk1OtO7CWOwecxXdI5Nwg==
+X-Received: by 2002:ae9:ed4b:: with SMTP id c72mr10345233qkg.400.1561215645566;
+        Sat, 22 Jun 2019 08:00:45 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a6b:4015:: with SMTP id k21ls893657ioa.11.gmail; Mon, 13 May
- 2019 18:15:58 -0700 (PDT)
-X-Received: by 2002:a5e:8b4a:: with SMTP id z10mr14115361iom.260.1557796558794;
-        Mon, 13 May 2019 18:15:58 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1557796558; cv=none;
-        d=google.com; s=arc-20160816;
-        b=OIdXlMgtkT0RqCfyFJRZZCNvGRDmRAXakmJschQVpARDYZJW5+wRRvFH0pEFJJgSS/
-         KbxV2jw97KKdmrHwXRqsFAQPh/AUBOokRflhlCRpCXrrjC8at2Uv/gc82kHanggGsc4r
-         Jnqhr0s5anFwgFMklrdUQM9+GyXItN0cey5lBUWcxedhK46+u80Pktgv+92AhTkafR6+
-         f2gaPJeM6BVY38VyGDzh+xvTG5LzaPuDo5lK4GFkOcwUbf6jw9DaTonfNA2WuTymVy6O
-         QK414scaB0StdPtrZE6H7ptIQp2K3cDrCBouyL3SEgoT6qAwItEhgoqYoDrxPHNI8Pnw
-         +Z7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:user-agent:message-id:in-reply-to:date:references
-         :organization:from:subject:cc:to:dkim-signature;
-        bh=h/UbqC2oX84wkD3CvF5pdNFqnK4WJfFeeWXpModvaYc=;
-        b=AfuzYe1klk+krGmhfVx9W5I7MXqYYJOxfmkza3UA56hscEsK5PtVL4bzXRH9av8Hxf
-         aP7+6Dt4ZCIOOs8O6G/DFHzilwEvxmJWqRKHJOXYeMr0yhrE1/iYicbPfQ8+yvCF4lMZ
-         aw7H100zPeHGtEMAaF6gvvOOw8CgybRAiRpHsK3ZCz3pO8p/T07N3d2x3GXMqaFHHJ20
-         mN6Pjw0uxvz43rrpokfmvD1/Isz4yhgyUBgj1fncqZNsjbUdMhjVuhtdmUkCPjZnPZoK
-         rQpZx+0JTJl541S4aL5LES0Y7mAn06lY8z7mE23fMhOTuJ6OzgaGqvk0bWmS5UYmihNF
-         RK+Q==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2018-07-02 header.b=Oy3MGfga;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from userp2130.oracle.com (userp2130.oracle.com. [156.151.31.86])
-        by gmr-mx.google.com with ESMTPS id d197si2113671iof.2.2019.05.13.18.15.58
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 13 May 2019 18:15:58 -0700 (PDT)
-Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) client-ip=156.151.31.86;
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-	by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x4E19prM112805;
-	Tue, 14 May 2019 01:15:57 GMT
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
-	by userp2130.oracle.com with ESMTP id 2sdnttjm82-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 14 May 2019 01:15:57 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
-	by userp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x4E1E8eX126817;
-	Tue, 14 May 2019 01:15:57 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-	by userp3030.oracle.com with ESMTP id 2sf3cmyq8x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 14 May 2019 01:15:57 +0000
-Received: from abhmp0019.oracle.com (abhmp0019.oracle.com [141.146.116.25])
-	by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id x4E1FmW1024036;
-	Tue, 14 May 2019 01:15:48 GMT
-Received: from ca-mkp.ca.oracle.com (/10.159.214.123)
-	by default (Oracle Beehive Gateway v4.0)
-	with ESMTP ; Mon, 13 May 2019 18:15:47 -0700
-To: Christoph Hellwig <hch@lst.de>
-Cc: "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen"
- <martin.petersen@oracle.com>,
-        Hannes Reinecke <hare@suse.de>, Lee Duncan
- <lduncan@suse.com>,
-        Chris Leech <cleech@redhat.com>, Willem Riede
- <osst@riede.org>,
-        Doug Gilbert <dgilbert@interlog.com>, Jens Axboe
- <axboe@kernel.dk>,
-        Kai =?utf-8?Q?M=C3=A4kisara?=
- <Kai.Makisara@kolumbus.fi>,
-        linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com,
-        osst-users@lists.sourceforge.net, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 12/24] libfc: switch to SPDX tags
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-Organization: Oracle Corporation
-References: <20190501161417.32592-1-hch@lst.de>
-	<20190501161417.32592-13-hch@lst.de>
-Date: Mon, 13 May 2019 21:15:44 -0400
-In-Reply-To: <20190501161417.32592-13-hch@lst.de> (Christoph Hellwig's message
-	of "Wed, 1 May 2019 12:14:05 -0400")
-Message-ID: <yq1ef51g7jz.fsf@oracle.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1.92 (gnu/linux)
+Received: by 2002:ac8:2bb6:: with SMTP id m51ls3430458qtm.8.gmail; Sat, 22 Jun
+ 2019 08:00:45 -0700 (PDT)
+X-Received: by 2002:ac8:2d19:: with SMTP id n25mr84298145qta.180.1561215644979;
+        Sat, 22 Jun 2019 08:00:44 -0700 (PDT)
+Date: Sat, 22 Jun 2019 08:00:44 -0700 (PDT)
+From: Randy Broman <randy.broman@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <9d371bfb-b339-4d1c-960a-e5bcf30be292@googlegroups.com>
+Subject: Open-iscsi slow boot
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9256 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=679
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1905140006
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9256 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=716 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
- definitions=main-1905140006
-X-Original-Sender: martin.petersen@oracle.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2018-07-02 header.b=Oy3MGfga;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates
- 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_1122_726483295.1561215644085"
+X-Original-Sender: randy.broman@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -173,22 +76,112 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
+------=_Part_1122_726483295.1561215644085
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1123_1174326274.1561215644086"
 
-Christoph,
+------=_Part_1123_1174326274.1561215644086
+Content-Type: text/plain; charset="UTF-8"
 
-> Use the the GPLv2 SPDX tag instead of verbose boilerplate text.
+I have open-iscsi installed on Kubuntu 19.04, to access shared storage on a 
+QNAP NAS server. The setup works, but open-iscsi slows boot:
 
-Applied to 5.3/scsi-queue except for patch #24.
+$ systemd-analyze blame
+     2min 6.105s open-iscsi.service
+         10.076s rtslib-fb-targetctl.service
+          6.042s NetworkMan.....
+          ..
+          
+and I don't need QNAP/open-iscsi to boot, so I'm trying to set up a timer 
+to delay iscsi connection until after the boot completes and the 
+Kubuntu/Plasma desktop 
+loads. Here's what I have:
 
-Patch #13 used /* */ syntax on some of the .c files. I fixed those up.
+$ cat /lib/systemd/system/open-iscsi.timer
+[Unit]
+Description=open-iscsi timer
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+[Timer]
+# Time to wait after booting before it run for first time
+OnBootSec=3min
+Unit=open-iscsi.service
+
+[Install]
+WantedBy=timers.target
+
+$ ls -l /lib/systemd/system/open-iscsi.service
+-rw-r--r-- 1 root root 1068 Dec 11  2018 
+/lib/systemd/system/open-iscsi.service
+
+ls -l /etc/systemd/system/timers.target.wants/open-iscsi.timer
+lrwxrwxrwx 1 root root 36 Jun 21 20:59 
+/etc/systemd/system/timers.target.wants/open-iscsi.timer -> 
+/lib/systemd/system/open-iscsi.timer
+
+(I ran $ sudo systemctl daemon-reload and $ sudo systemctl enable 
+open-iscsi.timer after creating the timer)
+
+What am I doing wrong, and/or what do I need to do to fix this?
+
+Thx!
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
 To post to this group, send email to open-iscsi@googlegroups.com.
 Visit this group at https://groups.google.com/group/open-iscsi.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/yq1ef51g7jz.fsf%40oracle.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/9d371bfb-b339-4d1c-960a-e5bcf30be292%40googlegroups.com.
 For more options, visit https://groups.google.com/d/optout.
+
+------=_Part_1123_1174326274.1561215644086
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I have open-iscsi installed on Kubuntu 19.04, to acce=
+ss shared storage on a QNAP NAS server. The setup works, but open-iscsi slo=
+ws boot:</div><div><br></div><div>$ systemd-analyze blame</div><div>=C2=A0 =
+=C2=A0 =C2=A02min 6.105s open-iscsi.service</div><div>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A010.076s rtslib-fb-targetctl.service</div><div>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 6.042s NetworkMan.....</div><div>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 ..</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><d=
+iv>and I don&#39;t need QNAP/open-iscsi to boot, so I&#39;m trying to set u=
+p a timer to delay iscsi connection until after the boot completes and the =
+Kubuntu/Plasma desktop=C2=A0</div><div>loads. Here&#39;s what I have:</div>=
+<div><br></div><div>$ cat /lib/systemd/system/open-iscsi.timer</div><div>[U=
+nit]</div><div>Description=3Dopen-iscsi timer</div><div><br></div><div>[Tim=
+er]</div><div># Time to wait after booting before it run for first time</di=
+v><div>OnBootSec=3D3min</div><div>Unit=3Dopen-iscsi.service</div><div><br><=
+/div><div>[Install]</div><div>WantedBy=3Dtimers.target</div><div><br></div>=
+<div>$ ls -l /lib/systemd/system/open-iscsi.service</div><div>-rw-r--r-- 1 =
+root root 1068 Dec 11=C2=A0 2018 /lib/systemd/system/open-iscsi.service</di=
+v><div><br></div><div>ls -l /etc/systemd/system/timers.target.wants/open-is=
+csi.timer</div><div>lrwxrwxrwx 1 root root 36 Jun 21 20:59 /etc/systemd/sys=
+tem/timers.target.wants/open-iscsi.timer -&gt; /lib/systemd/system/open-isc=
+si.timer</div><div><br></div><div>(I ran $ sudo systemctl daemon-reload and=
+ $ sudo systemctl enable open-iscsi.timer after creating the timer)</div><d=
+iv><br></div><div>What am I doing wrong, and/or what do I need to do to fix=
+ this?</div><div><br></div><div>Thx!</div></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To post to this group, send email to <a href=3D"mailto:open-iscsi@googlegro=
+ups.com">open-iscsi@googlegroups.com</a>.<br />
+Visit this group at <a href=3D"https://groups.google.com/group/open-iscsi">=
+https://groups.google.com/group/open-iscsi</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/9d371bfb-b339-4d1c-960a-e5bcf30be292%40googlegroups.c=
+om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
+d/open-iscsi/9d371bfb-b339-4d1c-960a-e5bcf30be292%40googlegroups.com</a>.<b=
+r />
+For more options, visit <a href=3D"https://groups.google.com/d/optout">http=
+s://groups.google.com/d/optout</a>.<br />
+
+------=_Part_1123_1174326274.1561215644086--
+
+------=_Part_1122_726483295.1561215644085--
