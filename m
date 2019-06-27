@@ -1,74 +1,75 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBOUS2TUAKGQEWJNTFHI@googlegroups.com>
+Return-Path: <open-iscsi+bncBCG5HL4D24JBB2OW2TUAKGQEW46MMWI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x83d.google.com (mail-qt1-x83d.google.com [IPv6:2607:f8b0:4864:20::83d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53F3A589C2
-	for <lists+open-iscsi@lfdr.de>; Thu, 27 Jun 2019 20:21:47 +0200 (CEST)
-Received: by mail-qt1-x83d.google.com with SMTP id z16sf3295735qto.10
-        for <lists+open-iscsi@lfdr.de>; Thu, 27 Jun 2019 11:21:47 -0700 (PDT)
+Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECE9B58BF8
+	for <lists+open-iscsi@lfdr.de>; Thu, 27 Jun 2019 22:47:38 +0200 (CEST)
+Received: by mail-qk1-x73a.google.com with SMTP id d62sf3821293qke.21
+        for <lists+open-iscsi@lfdr.de>; Thu, 27 Jun 2019 13:47:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=1/ylNwVFNY9TEV1LOJiAGTIsRMjZiWuEZFivCEcZtDg=;
-        b=s5/G4P09WX0lzSdQoHQR0pxKWAzUvQHmauVQP5/JOZZGVe7GQyeEdbRVsGzU6ETibv
-         lbWHfd0bPqn1Z5NqCsClqCoF4cB6BjL9/jXw/0QgJkiqCEPPRHaKZyqf/+J5rhpbV5YI
-         7/cv6LbpFJgOyWnYoEv85puOJDaQt1TZE+XXa7Ib96m00ta4EKxhk3nj5ZSINLLIxP89
-         cYpjBEEsVIUPje/k5O588zwbSdDx7zQOUTPXa8hKjijSX+eD9u4Zk6C6OmkZIj5rYq7H
-         5+xwLr8/WyDDn3UMMmYbRPwun17DMtLXZjnIcXeWQ3WzylA9m2ZsaP9SnGT7ZAGK6v88
-         zKuQ==
+        bh=MI1Dm4HijdmUrlETnHWDfyzt265Ryar0vxC0GV3FtHc=;
+        b=g9Jv8tqcbaCAuJlHp4pWtgZr+TwtjRbAUK0iju9WTYpNylUjeiDpkSHDVlLqHluut+
+         n14hof3fHnWDgQo7iiVyulavA+XCH0YfCvhRlSdfcnAIQs5Y97R6/sRgKH5AKVXaHdso
+         bMJ72gh5VboL/0WCRpuWBatK2JBKFs1FoGSlwtnUAtn6qEWRZYUJSow8rweuBnTVaghL
+         RhCitj63O1gbudklFZ+0kgkaebGf3ZDez5AuXCyjlsTNLYkrmIJIODk0XDr7RduYarCf
+         G5/k104pAkKCXwAPtZTsKTgHYR7BoLTFGTlfi7TKBrM1fzQ6k5SB2evJLkOaxUZFsxtY
+         7GJA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=1/ylNwVFNY9TEV1LOJiAGTIsRMjZiWuEZFivCEcZtDg=;
-        b=XEWLRCF4EqzlQI0ety1I5FbbV6C9TZ99SPylqM5DZ2mdCKqgnni6clKDwVeARdIlCR
-         TL+9sAo8Cq5CFE0RtD7pLdN8NR8IqbkqB7JymoYT0CzWYz1dtTnu68KPEC9ixO/N0W6x
-         MfhC/9XJrB+OeHQHVAd1byaxFZ++VThHonHf2mpEc79sNNwM9rzwvR/angrHoPVCXHbY
-         SywmoSEqVlJAvdQn6w8AvB36Npj5CTNJR2SFgMYRFM7NKVLO47G8BHT0UecjWf4GRz9t
-         waPvHJQ2BQGzYzyu+WMJch7mYGialJ9Jr8j7QGjc2Q2FL5UnTcAcLjr4O6SHVAcIFXnt
-         1Xiw==
+        bh=MI1Dm4HijdmUrlETnHWDfyzt265Ryar0vxC0GV3FtHc=;
+        b=Q4efWWuPNWJyxofkmU1by2XynecyxFIc9wqUPDEOHrva6OXj094kA0ABSsK1hRRs91
+         6QhJ1n/RhkvaBF29wJfHYGiG4DgDtcn9WVfz4uHSAZPrP0lrxSBwb4A0QLK69+mO5h1r
+         DgDcF4JkZwLzBVu3n9aPKLFGwSGu/wB5ynrroGEAjVdRZvb/XObT1vERtXsz8FtnJid6
+         E7XHCYkgfFZ+eieWQWYKqAyJ2lQDyQCcapoZhNCzK+terxDKmaRt70q2o0ixtCCFYRXi
+         1eRokAYBxCC+hQjL49lIdOJEnnep7WnFWPcmE0P1vzsFC4m87pPnOJOre+S3BgZFbVw0
+         25aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=1/ylNwVFNY9TEV1LOJiAGTIsRMjZiWuEZFivCEcZtDg=;
-        b=M9Da4IRro5kVKpzTpfLg+feyANsyAyg53HyfW+m3pi7Bn5W7jnaZndkjOJOOHf3rPb
-         XemUIwZYUy8ihhSc3Hw1TrWfnHQTaiiwgQhaVNoVaozp6xf1RZ5LcGaIUZGJKHzYFekk
-         oKviTfthsp/5LOUn0j4VKfmLpoUt7fh1vyDntOkOH/V52PDQn1MI+u4d5A2HBoHkB2YG
-         oSEFe2O9muSYdWqRDB8cSO06xeHsZAAwh+YFfzTq1dGTyx8EfK9PtPpTLCBOhd1jAdy2
-         cwubzhs6Tol0/OgvAQEGF4V+cthiWaLZfpfTChczuMtnYoZINGdOLBIZAgiA0ZVFRMFt
-         Pg+w==
+        bh=MI1Dm4HijdmUrlETnHWDfyzt265Ryar0vxC0GV3FtHc=;
+        b=bxbpCrMpEm/tik4ziWz+5LDi1fi9ix4S5MIc6bTPlqXYhmMbaVPkrHPtsLWp6XkRTF
+         xGdl+DTOglZoUG3Gf0TXjawtJo1DRlrkW04FL4Y6qVHflANkNltK2XmxS4VYnFYh7/hI
+         6jL3BB2SJqzQDefS02idC/jQRa1l3kgttnnQkUC+FMPHKDW3If8MwbM732SS4wzkqhGX
+         CQ5UNrVIzfUcAuOpoR9kZUf5jfzK4+hVBfv/qxbc6ECKhFnEThabSwm7uqSYWYPzBzCm
+         cgwc9lAdgOwS9MEysUZeWNIDlKy7ZFwu0tGOqPVQMdDb9uEXADNWyeXj5kUzHDJ8cNLD
+         RyBQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAU31X5xbYNbvk5fX0k5c7ko4XnUAbIrL8QVnENnNOUezFzXC7ul
-	66EuRUw3+NrjQhJ9gv74PxY=
-X-Google-Smtp-Source: APXvYqzpHwKhIhrvz3rJvXcXZRCC6Ay5Eaqb+3wUzk5D2eAR/TLv+uGr0O5AKtbc5gzl3RAkaO3Wqg==
-X-Received: by 2002:aed:353d:: with SMTP id a58mr4432877qte.42.1561659706218;
-        Thu, 27 Jun 2019 11:21:46 -0700 (PDT)
+X-Gm-Message-State: APjAAAUA9QdAfxUfZ7wDkYIYgFx9+mzRjgu3DJehPsHO5sdLR/1rX/4M
+	GtqAExMGQ1dknKScqlVH3sE=
+X-Google-Smtp-Source: APXvYqxuHCbVoJtNICQYdVbswCapyMbERmGMig5Ffg5itY2JAuphwKcPKqmZsavwmAQy3tGFg+20Zg==
+X-Received: by 2002:aed:3b94:: with SMTP id r20mr4867369qte.207.1561668457914;
+        Thu, 27 Jun 2019 13:47:37 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:aed:21fd:: with SMTP id m58ls2805qtc.10.gmail; Thu, 27 Jun
- 2019 11:21:46 -0700 (PDT)
-X-Received: by 2002:ac8:2d19:: with SMTP id n25mr4507670qta.180.1561659705882;
-        Thu, 27 Jun 2019 11:21:45 -0700 (PDT)
-Date: Thu, 27 Jun 2019 11:21:45 -0700 (PDT)
-From: The Lee-Man <leeman.duncan@gmail.com>
+Received: by 2002:aed:3f50:: with SMTP id q16ls119360qtf.6.gmail; Thu, 27 Jun
+ 2019 13:47:37 -0700 (PDT)
+X-Received: by 2002:ac8:1978:: with SMTP id g53mr4967210qtk.3.1561668457427;
+        Thu, 27 Jun 2019 13:47:37 -0700 (PDT)
+Date: Thu, 27 Jun 2019 13:47:36 -0700 (PDT)
+From: Randy Broman <randy.broman@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <485a70e6-e456-42d3-ad52-9f1e570cff0a@googlegroups.com>
-In-Reply-To: <CAAixNYGu7RLUwvYZvFV8LzuorUcAXpwjXbuA6PqoeZmDL1rX1g@mail.gmail.com>
+Message-Id: <e452fddf-5f5b-417f-9900-33e48d487b9e@googlegroups.com>
+In-Reply-To: <485a70e6-e456-42d3-ad52-9f1e570cff0a@googlegroups.com>
 References: <9d371bfb-b339-4d1c-960a-e5bcf30be292@googlegroups.com>
  <2604ac31-fea0-4963-9077-1942c71f8a85@googlegroups.com> <37c0b6be-68ec-474e-b95d-e9450bfc4000@googlegroups.com>
  <8fe010f4-fc0f-4021-a20e-9d7bdfaf0a76@googlegroups.com>
  <CAAixNYGu7RLUwvYZvFV8LzuorUcAXpwjXbuA6PqoeZmDL1rX1g@mail.gmail.com>
+ <485a70e6-e456-42d3-ad52-9f1e570cff0a@googlegroups.com>
 Subject: Re: Open-iscsi slow boot
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_543_1966099929.1561659705352"
-X-Original-Sender: leeman.duncan@gmail.com
+	boundary="----=_Part_562_1108468478.1561668456906"
+X-Original-Sender: randy.broman@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -82,75 +83,92 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_543_1966099929.1561659705352
+------=_Part_562_1108468478.1561668456906
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_544_1387255104.1561659705352"
+	boundary="----=_Part_563_669250990.1561668456906"
 
-------=_Part_544_1387255104.1561659705352
+------=_Part_563_669250990.1561668456906
 Content-Type: text/plain; charset="UTF-8"
 
-On Thursday, June 27, 2019 at 11:44:11 AM UTC-4, Randy Broman wrote:
->
-> I appreciate your interest, and I've attached a text file which I hope 
-> is responsive to your request. 
->
-> R 
->
-> On Wed, Jun 26, 2019 at 8:55 AM The Lee-Man wrote: 
-> > 
-> > On Tuesday, June 25, 2019 at 11:31:03 AM UTC-4, Randy Broman wrote: 
-> >> 
-> >> Thanks for your response. I'm using Kubuntu 19.04. I disabled the iscsi 
-> service and in fact the boot was much faster: 
-> >> 
-> >> 
-> > I'm not understanding what's going on with your system. I suspect 
-> there's more than just an unused open-iscsi initiator involved here. 
-> > 
-> > Do you have any iscsi targets set up? Existing sessions? 
-> > 
-> > I downloaded kunbuntu, and open-iscsi.service is enabled by default. Can 
-> you give me the systemctl status for open-iscsi.service, iscsid.socket, and 
-> iscsid.service? Also, an "ls" of /etc/iscsi/nodes and 
-> /sys/class/iscsi_session? 
-> > 
-> > And please don't assume that the numbers that "systemd-analyze blame" 
-> show -- they don't always mean what you think. Can you just please time the 
-> boot (or reboot) sequence yourself, using the log files? 
-> > 
-> > On my test VM, I have iscsid.socket, iscsid.service, and 
-> open-iscsi.service at their default settings, but I have never discovered 
-> any targets, so I don't have any history of nodes or sessions. And when I 
-> run "systemd-analyze blame", iscsi does not show up at all. 
-> > 
->
->
-Your error messages make it clear that you are having initiator/target 
-issues. If you look at the status of the open-iscsi.service unit, you can 
-see it waits for the target to connect, then times out. Timing out always 
-adds lots of time to a boot process.
+I understand your analysis and appreciate your help. I've now posted on a 
+QNAP forum
+to get help in diagnosis on that side. I'll post the solution here when I 
+find it.
 
-It seems there is some issue with your "QNAP Target". I cannot help you 
-with that. But you might want to check there for error messages, if there 
-is some way to do that.
+R
 
+On Thursday, June 27, 2019 at 11:21:45 AM UTC-7, The Lee-Man wrote:
+>
+> On Thursday, June 27, 2019 at 11:44:11 AM UTC-4, Randy Broman wrote:
+>>
+>> I appreciate your interest, and I've attached a text file which I hope 
+>> is responsive to your request. 
+>>
+>> R 
+>>
+>> On Wed, Jun 26, 2019 at 8:55 AM The Lee-Man wrote: 
+>> > 
+>> > On Tuesday, June 25, 2019 at 11:31:03 AM UTC-4, Randy Broman wrote: 
+>> >> 
+>> >> Thanks for your response. I'm using Kubuntu 19.04. I disabled the 
+>> iscsi service and in fact the boot was much faster: 
+>> >> 
+>> >> 
+>> > I'm not understanding what's going on with your system. I suspect 
+>> there's more than just an unused open-iscsi initiator involved here. 
+>> > 
+>> > Do you have any iscsi targets set up? Existing sessions? 
+>> > 
+>> > I downloaded kunbuntu, and open-iscsi.service is enabled by default. 
+>> Can you give me the systemctl status for open-iscsi.service, iscsid.socket, 
+>> and iscsid.service? Also, an "ls" of /etc/iscsi/nodes and 
+>> /sys/class/iscsi_session? 
+>> > 
+>> > And please don't assume that the numbers that "systemd-analyze blame" 
+>> show -- they don't always mean what you think. Can you just please time the 
+>> boot (or reboot) sequence yourself, using the log files? 
+>> > 
+>> > On my test VM, I have iscsid.socket, iscsid.service, and 
+>> open-iscsi.service at their default settings, but I have never discovered 
+>> any targets, so I don't have any history of nodes or sessions. And when I 
+>> run "systemd-analyze blame", iscsi does not show up at all. 
+>> > 
+>>
+>>
+> Your error messages make it clear that you are having initiator/target 
+> issues. If you look at the status of the open-iscsi.service unit, you can 
+> see it waits for the target to connect, then times out. Timing out always 
+> adds lots of time to a boot process.
+>
+> It seems there is some issue with your "QNAP Target". I cannot help you 
+> with that. But you might want to check there for error messages, if there 
+> is some way to do that.
+>
+>
+>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
 To post to this group, send email to open-iscsi@googlegroups.com.
 Visit this group at https://groups.google.com/group/open-iscsi.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/485a70e6-e456-42d3-ad52-9f1e570cff0a%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/e452fddf-5f5b-417f-9900-33e48d487b9e%40googlegroups.com.
 For more options, visit https://groups.google.com/d/optout.
 
-------=_Part_544_1387255104.1561659705352
+------=_Part_563_669250990.1561668456906
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On Thursday, June 27, 2019 at 11:44:11 AM UTC-4, Randy Bro=
-man wrote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left:=
- 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;">I appreciate your in=
-terest, and I&#39;ve attached a text file which I hope
+<div dir=3D"ltr">I understand your analysis and appreciate your help. I&#39=
+;ve now posted on a QNAP forum<div>to get help in diagnosis on that side. I=
+&#39;ll post the solution here when I find it.</div><div><br></div><div>R<b=
+r><br>On Thursday, June 27, 2019 at 11:21:45 AM UTC-7, The Lee-Man wrote:<b=
+lockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;borde=
+r-left: 1px #ccc solid;padding-left: 1ex;"><div dir=3D"ltr">On Thursday, Ju=
+ne 27, 2019 at 11:44:11 AM UTC-4, Randy Broman wrote:<blockquote class=3D"g=
+mail_quote" style=3D"margin:0;margin-left:0.8ex;border-left:1px #ccc solid;=
+padding-left:1ex">I appreciate your interest, and I&#39;ve attached a text =
+file which I hope
 <br>is responsive to your request.
 <br>
 <br>R
@@ -192,7 +210,7 @@ he open-iscsi.service unit, you can see it waits for the target to connect,=
 v><div><br></div><div>It seems there is some issue with your &quot;QNAP Tar=
 get&quot;. I cannot help you with that. But you might want to check there f=
 or error messages, if there is some way to do that.<br></div><div><br></div=
-><div> <br></div></div>
+><div> <br></div></div></blockquote></div></div>
 
 <p></p>
 
@@ -207,13 +225,13 @@ ups.com">open-iscsi@googlegroups.com</a>.<br />
 Visit this group at <a href=3D"https://groups.google.com/group/open-iscsi">=
 https://groups.google.com/group/open-iscsi</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/485a70e6-e456-42d3-ad52-9f1e570cff0a%40googlegroups.c=
+om/d/msgid/open-iscsi/e452fddf-5f5b-417f-9900-33e48d487b9e%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/485a70e6-e456-42d3-ad52-9f1e570cff0a%40googlegroups.com</a>.<b=
+d/open-iscsi/e452fddf-5f5b-417f-9900-33e48d487b9e%40googlegroups.com</a>.<b=
 r />
 For more options, visit <a href=3D"https://groups.google.com/d/optout">http=
 s://groups.google.com/d/optout</a>.<br />
 
-------=_Part_544_1387255104.1561659705352--
+------=_Part_563_669250990.1561668456906--
 
-------=_Part_543_1966099929.1561659705352--
+------=_Part_562_1108468478.1561668456906--
