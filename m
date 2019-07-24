@@ -1,46 +1,46 @@
 Return-Path: <open-iscsi+bncBAABB47J4LUQKGQEBNZUTJI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x739.google.com (mail-qk1-x739.google.com [IPv6:2607:f8b0:4864:20::739])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC7E739C8
+Received: from mail-qt1-x83f.google.com (mail-qt1-x83f.google.com [IPv6:2607:f8b0:4864:20::83f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84576739C9
 	for <lists+open-iscsi@lfdr.de>; Wed, 24 Jul 2019 21:43:48 +0200 (CEST)
-Received: by mail-qk1-x739.google.com with SMTP id t196sf40355116qke.0
+Received: by mail-qt1-x83f.google.com with SMTP id o16sf42364920qtj.6
         for <lists+open-iscsi@lfdr.de>; Wed, 24 Jul 2019 12:43:48 -0700 (PDT)
 ARC-Seal: i=2; a=rsa-sha256; t=1563997427; cv=pass;
         d=google.com; s=arc-20160816;
-        b=BrAptHPHbraXvQNZvHmrVCPnwJsgoWkbaAHKFM3zx9sSOH5qN2EkbPkin0AyYYxnAn
-         vHO/dTGdBDyi6eSMA2hs9JP162n2SO/aKZdTlW/TECHCVyaHc1B9r+ZcMhZKIFt7MEPn
-         PK+pVzcsWlB+VTDMxkIEw52S83gIEwVlSAY0dBU3CRvLk5tXhygukEmlKTFzM+9Z/bZY
-         cEM59D2LTNqHcvHWssW5Es3NNvGmxuczcq4p+/f9efOlE631+lQ9/M1PLpyfho6VSqpC
-         vrDo8k+YapMbdPK18F+3+OITc+TVZ3tF2pf3tmgNVuiyCMVdNCy+tRXgkO7IEIITp25f
-         lPIw==
+        b=rb2q9mJDhDsiX7CPLzCG4+Wb2H8Q3LdV371fXNKFG0uUG1zkxV3YsGNmznhN3ecXKB
+         wrPC/1bxYx7LWG4n1li/w8wYFybnXL4LHKvRfjG516dD3IPdLeDFgnvrWwsJRScROUTy
+         vGNtFK0Qdf+5gmI2S4alefp/H752BfBcVQbxhqnokZKn1IpLmp2qKLKO+F7Au+kf1I04
+         VLPX4kkz5TNgI23K1mNKpozaQUlaJyMal8YmiZwajgBul6+yK3K7hSuhdSFGDFaafW11
+         LBuLUfccMmPrioCSHcxt6H9jZTZUOJX8Sq7N8ZLXPTpVB6S051vaLMWloGi0eW7tDbkB
+         9QPA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=gAu5/PhmjDPm1p+Q8zd8ygIVBLVPQEhNznd449xjwOA=;
-        b=cwpo50EpVOzSIhZornKQNZEknOEwJOvnFqTAlSu+eyBFKe1SJ3PSLB2lL6XIAuTEOZ
-         CXXJHRoRMhFi2S9OXki0DDYqBpjw+MtRvTUafhif6CugqxucsUsv5uEpNMaIjHblQC5x
-         UFx+OgXhiZhatd94qUeCfUKQEsb1BtP+7H72l4vZCONmUURQmGDpff/mg3Fhfo/r3vcu
-         dE3sXrStIRx60mSYTk7X4veWKznwCfUPNV3gWkpN0JGEHS57nz+QuXCpkvHUhD02casQ
-         CwW2N8QtKM6kH3zrhMC5ISJNgo2lNbIbjtTY6TZNvmN410ItlR0um2K8j97m0RFlor6c
-         4ROg==
+        bh=JcEBJlb8kWsCQT8ucxoDi45TQZTiyI16/P2II6vAoLg=;
+        b=fCqhsdVrAvGk/a5jYKpoDOG36hQPne6awBI0Lx+kdE/4FiLiwck2mYpWQi4kMkWhl7
+         FF4X5E0/Ai83EeJZSxWAVx2DFw9ij4mnptpaT5tbSQC5//jzTwooXYZFg+yfiN39Errj
+         d4V2khXwopaKCoQx8xKk+7rJQM9kPXuFuw9Zj6p1jEzloJcEPrIAQhkqQowz2iNd6DIz
+         uhzIEQuSX5hUMvFToliWP4J3kSHaaxnyklvf5hWD5Ld5V2qmFZ40wp5ol/lah7ZTIqt0
+         BrCyFrjizRs2zgyrr3UHO3AIoGiGa8eZrpoQedpZoJoQ1GEM0Jczq/m46onXnjb8VmQo
+         3Kxg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of yebiaoxiang@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=yebiaoxiang@huawei.com
+       spf=pass (google.com: domain of yebiaoxiang@huawei.com designates 45.249.212.190 as permitted sender) smtp.mailfrom=yebiaoxiang@huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=gAu5/PhmjDPm1p+Q8zd8ygIVBLVPQEhNznd449xjwOA=;
-        b=VL9AR0CjFfppqIFRAEG2xWpcq4legYbx0+xrSn5AxZBjYngUUNWjY40bgI9+duuyaY
-         rrJybgnXYIYBIoTjC7972LMWkLthnkby6K+IUQT/id/bjgTQIUQdCOEPdStSSfKo2WVH
-         tCHFba2FlY+raHwdUriIIJCWVgD3Zzxk0P7xGcbVvXimtYBE/+wb1K3GH4XfkAuaev0J
-         Hdq5mVg3NSGstjDoNPyYLWR2GXQKKSp4fQiRwVaVGRxDB3gRx4Yb6lQKNZ66+i8ZeSoD
-         QupDDMJHPGnh+FKO/gMcm8VQnJWBWO+nM/kRwocmCriwo7uRSAO01dy3sh4nEMgnKzuu
-         YJVA==
+        bh=JcEBJlb8kWsCQT8ucxoDi45TQZTiyI16/P2II6vAoLg=;
+        b=DnzQ46hUdQzhiegZqXJdToAzKA7ZB85vseczsim2oDY2Tk7B0zich9OvtP02y2K9Ay
+         OX2OUDVrbamFZOwdCZJ7INSzJ07GcnlXCOrbWP58upW8k0k/dp3nIsBGa7WNW/k5LIke
+         QK7zb78EtywrxJUFbydiJPlkFGw+0TL/kEZtE/ZT+oVsb3dSNIg4ISZxFvWMwaWXhHwV
+         n5rpgJLUiDY0Fk/AEaJRqqBXCwmRnzswALjnEmojIaLcdpq49RP7foB/eqCTVrAZz2mH
+         ftDaGB16SyVZPV+PaUUJWbNzwNDiBl0DURO+CyqLLc9RlX1wY8dI5m9DN0Rbx2au4pyr
+         WR6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -48,68 +48,68 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=gAu5/PhmjDPm1p+Q8zd8ygIVBLVPQEhNznd449xjwOA=;
-        b=NlsQ5XX22CXOi0iIceA8rKmPkDBVrLM3v8KQRrd8jOXDMl3yCFv4c8SAGFEVKeNidg
-         5+8GRn73l+BL1OYCm5sbc5HEnYDN7oU3Ke7YoSNOxCwPwNTPtuNM/feGIEKLTc833oAq
-         L4E7rShJQEqQucib+5fCnRhYupEKqNkdKHqY9MValMA8FFYt6Z3NYBXg10Xd8NOFBZBv
-         V1RHbQf7BgzbaQVS4sW/P6rq04X/9gzntY7Fk79zrYfV63vwZqNKkc7xPS2WoBuVi3FL
-         JJSzhkGnm+exlpsu4ZtjVGEfyjc2T3/+2UDg7re+wlijJ/u01RfWSLJK67+oCAmAXI8Y
-         p+uA==
+        bh=JcEBJlb8kWsCQT8ucxoDi45TQZTiyI16/P2II6vAoLg=;
+        b=g/jFjB0RumRvNbMpHmsNIw5Q/yRjyKokcNbbJyCSx0j4wzag6SAPMOXEiH0n3+h3cq
+         9+fF6928xJyeCW9riocuN+rn0gR2dESa0h3vPFWPfSEw8afLijY2BiXXJhZKJZ2G4iJk
+         fmjBumTR//zL01AB4fDmCSX1vGmjwhG/CTH1XNqzbxZs52FssPwMJHzft4A8s6Eah8Q+
+         gdIYqkU6BnmUpyXbFGakDOquAIrlwJebM0yQt6rpWH6oovMjk6JnGJkbpyN81aACaS1q
+         6faxez/GqHf5QXIQpRRtiRpLrMiPu//wuwUBWztHcY4JOS/EXHQ6S9+JxCCNsIVYyyG9
+         h+mQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAX6aEZ0hgihiticofGDy2cEoBTpBJGzjpMyvLal7SLfd4WquSuF
-	I7kYGUFa+ks/SnTZ52zClG0=
-X-Google-Smtp-Source: APXvYqyEYYVChxT3AbE6F7RndxPOPCoQaEki0QD+wUAx5uBV3CW9TZbwbSTWyiBtCIhv95MChX/CYQ==
-X-Received: by 2002:a0c:b4ab:: with SMTP id c43mr58640625qve.157.1563997427351;
+X-Gm-Message-State: APjAAAUFVMGdXOnuq7iGZfxdTpDO5Gqp44W+QUHOrxgApDORVQS+DXQR
+	04CFZTEvqPsHj4vhuP2S0Hw=
+X-Google-Smtp-Source: APXvYqxzsTqurX6Z9OPNPrrEX7rNS+e0y9HbrjYg11+j3tmndihSna+fhM89KB2RmQZHdyJrWF460A==
+X-Received: by 2002:a05:620a:16cc:: with SMTP id a12mr53827827qkn.256.1563997427369;
         Wed, 24 Jul 2019 12:43:47 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:7906:: with SMTP id u6ls14312205qkc.11.gmail; Wed, 24
+Received: by 2002:a37:a297:: with SMTP id l145ls14309162qke.12.gmail; Wed, 24
  Jul 2019 12:43:47 -0700 (PDT)
-X-Received: by 2002:a37:aa06:: with SMTP id t6mr55372258qke.226.1563997427194;
+X-Received: by 2002:a37:3c9:: with SMTP id 192mr55016966qkd.37.1563997427192;
         Wed, 24 Jul 2019 12:43:47 -0700 (PDT)
 Received: by 2002:ae9:e016:0:0:0:0:0 with SMTP id m22msqkk;
-        Wed, 24 Jul 2019 11:00:34 -0700 (PDT)
-X-Received: by 2002:aed:2fa7:: with SMTP id m36mr60083017qtd.344.1563991234440;
-        Wed, 24 Jul 2019 11:00:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1563991234; cv=none;
+        Wed, 24 Jul 2019 11:00:40 -0700 (PDT)
+X-Received: by 2002:a0c:b2da:: with SMTP id d26mr59870904qvf.48.1563991240549;
+        Wed, 24 Jul 2019 11:00:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1563991240; cv=none;
         d=google.com; s=arc-20160816;
-        b=SSR9FdXvEF5HUszgbEROiKkFhPZf3WD66S6+FswKBvRz+RpPCSzQYSONbqq6tHWVq1
-         pCTWI8anKQyk7giWB3TWYvMpjKSI6hzKKu+CiiUegRp90L/814afFv4ATtSE96kj3S02
-         I4rlsOQyFYVKm+eqM+zzrz9Hya+Dbcn7XmLELu5Rfqb6OeiZHXhdkvKXN3AO7MrQuC2d
-         H1G3q1KwFe7W2wfcvCI9+VyzfG1bnm7iodc8fP0dYzt0HKP5Bf624swZhmgY1KaNqrlL
-         9tR53ZY/pZ9wXwpF49QqEKhPilVhSD0hpuPAiHFo3MxifV1Thlg3ZD5U6JQe5u0Eqmf8
-         Cg4w==
+        b=zAk80NuRNY/IYOL1jlfYFQh8+9+sPmq5S+a5tR/swlQrD9D0H5roTft8PTQXNcX5PW
+         YC5zWVVj0XgQjxfnjiGge/htlMfu2Y02Z/S42Cx4C9Zf580/VilfrsYJ6isyxijq24Gw
+         peAmclKys+E0uLnfLfnA2RF8KAk2UHB/u5vAAHCBrseG/2/0oXSU77h2+uXIlmpq47ht
+         4SUpoXkPOGC0nnYpZp7WQDjk3l3PFKgZMJBRP1vBNucRxkbWXBybbPtiFSEuBwFM9cBJ
+         sEUWOrnUiQaPfSVz/TGY5nxkc1FVsrcEsQSqLiwfM8ZhLOVrERhQ8lMyPowU9I8aYNuv
+         U9HQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from;
-        bh=UhcLZPKwWfXFKkgKkB2GVauskr6hGHuy1hT0KxtQpv0=;
-        b=K4blo6EvIjnUPHE62+/gSTyqFv8cpWNWQFhCcGPa8xPLENDfgqy5x/rVLaYS39Ebq5
-         Y+RIx0mMBXTP8IfbxQBj6Q28qiBdIngxFrvEZ2xBn0eRLVnntcp7T3WGexQj7kZOS6lv
-         RA0YxlfHvn+9IUnybdUKWG4OZCd0A4EsJeRoyXd8MGplE5C0R34ob69XPmk6pOO6mDSu
-         GxvVBb8vHJwKFGKOb+API8KwFW+QpjBAPavcxJUzadmhyCDmTUQr3r2RAE3AaOWzd5Xt
-         mPoidLtxu7pLDviL9+ER+hfTb8mGG9UNO/TGlLMfZfSkpbgvZFIbIRPNlujgMpAhicAH
-         /dJQ==
+        bh=E/0FUlqtkUbpWDnv5AT2gICaSEDIvr5XW4TxsemKoPw=;
+        b=fXs6c0tA1dfuEMwng8wYpHg4JMXfP0g+JZIBS1yNflPDeKjNuEytBMkNftanZTFtzM
+         +hzuf8T3WKsPwyjH9ixK+ToyuXePmyQxAtx7jKedPxEJOMkiWvL6eAaxOS1DYMEMxhAQ
+         wDocazJShIw+V6RQq6jKbiBVO6XViIHBVCmi5cGuufcjv6zPdDeztnQRvuSex0d55AVx
+         Vf3H4RFl5efZ59Ijt5tv3aicmOWi+DOhQMQ5rZMunMSD2X8NkdNmL88/fW7xGH8ExKW8
+         aqmqdQ8cB/GIvKfQJ+DacjjjFM+N3IIkinw9z5kHRRY3K0COGY1S7SkEXMe7SU9+9tTW
+         Y2QQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of yebiaoxiang@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=yebiaoxiang@huawei.com
-Received: from huawei.com (szxga05-in.huawei.com. [45.249.212.191])
-        by gmr-mx.google.com with ESMTPS id 34si2170052qtz.2.2019.07.24.11.00.34
+       spf=pass (google.com: domain of yebiaoxiang@huawei.com designates 45.249.212.190 as permitted sender) smtp.mailfrom=yebiaoxiang@huawei.com
+Received: from huawei.com (szxga04-in.huawei.com. [45.249.212.190])
+        by gmr-mx.google.com with ESMTPS id m23si2971499qtc.0.2019.07.24.11.00.40
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 24 Jul 2019 11:00:34 -0700 (PDT)
-Received-SPF: pass (google.com: domain of yebiaoxiang@huawei.com designates 45.249.212.191 as permitted sender) client-ip=45.249.212.191;
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.58])
-	by Forcepoint Email with ESMTP id 97A42B773FAD552DCFCF;
-	Thu, 25 Jul 2019 02:00:31 +0800 (CST)
+        Wed, 24 Jul 2019 11:00:40 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yebiaoxiang@huawei.com designates 45.249.212.190 as permitted sender) client-ip=45.249.212.190;
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.59])
+	by Forcepoint Email with ESMTP id ABF2C3A18F035230CC58;
+	Thu, 25 Jul 2019 02:00:36 +0800 (CST)
 Received: from huawei.com (10.184.191.68) by DGGEMS403-HUB.china.huawei.com
  (10.3.19.203) with Microsoft SMTP Server id 14.3.439.0; Thu, 25 Jul 2019
- 02:00:25 +0800
+ 02:00:26 +0800
 From: Biaoxiang Ye <yebiaoxiang@huawei.com>
 To: <tj@kernel.org>, <lduncan@suse.com>
 CC: <jiangshanlai@gmail.com>, <cleech@redhat.com>,
 	<open-iscsi@googlegroups.com>, <jiangyiwen@huawei.com>,
 	<xiexiangyou@huawei.com>
-Subject: [RFC PATCH 1/2] workqueue: implement NUMA affinity for single thread workqueue
-Date: Wed, 24 Jul 2019 17:59:39 +0000
-Message-ID: <1563991180-11532-2-git-send-email-yebiaoxiang@huawei.com>
+Subject: [RFC PATCH 2/2] iscsi: use dynamic single thread workqueue to improve performance
+Date: Wed, 24 Jul 2019 17:59:40 +0000
+Message-ID: <1563991180-11532-3-git-send-email-yebiaoxiang@huawei.com>
 X-Mailer: git-send-email 2.6.4.windows.1
 In-Reply-To: <1563991180-11532-1-git-send-email-yebiaoxiang@huawei.com>
 References: <1563991180-11532-1-git-send-email-yebiaoxiang@huawei.com>
@@ -119,7 +119,7 @@ X-Originating-IP: [10.184.191.68]
 X-CFilter-Loop: Reflected
 X-Original-Sender: yebiaoxiang@huawei.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of yebiaoxiang@huawei.com designates 45.249.212.191 as
+ (google.com: domain of yebiaoxiang@huawei.com designates 45.249.212.190 as
  permitted sender) smtp.mailfrom=yebiaoxiang@huawei.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -133,152 +133,78 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Currently, single thread workqueue only have single pwq, all of
-works are queued the same workerpool. This is not optimal on
-NUMA machines, will cause workers jump around across node.
+On NUMA machines the kworker of iscsi created always jump around
+across node boundaries. If it work on the different node even
+different cpu package with the softirq of network interface, memcpy
+with in iscsi_tcp_segment_recv will be slow down, and iscsi got an
+terrible performance.
 
-This patch add a new wq flags __WQ_DYNAMIC, and a new macros
-create_singlethread_dynamic_workqueue, this new kind of
-single thread workqueue creates a separate pwq covering the
-intersecting CPUS for each NUMA node which has online CPUS
-in @attrs->cpumask instead of mapping all entries of numa_pwq_tbl[]
-to the same pwq. After this, we can specify the @cpu of
-queue_work_on, so the work can be executed on the same NUMA
-node of the specified @cpu.
+In this patch, we trace the cpu of softirq, and tell queue_work_on
+to execute iscsi_xmitworker on the same NUMA node.
 
 Signed-off-by: Biaoxiang Ye <yebiaoxiang@huawei.com>
 ---
- include/linux/workqueue.h |  7 +++++++
- kernel/workqueue.c        | 40 ++++++++++++++++++++++++++++++++++------
- 2 files changed, 41 insertions(+), 6 deletions(-)
+ drivers/scsi/iscsi_tcp.c |  8 ++++++++
+ drivers/scsi/libiscsi.c  | 12 +++++++++---
+ 2 files changed, 17 insertions(+), 3 deletions(-)
 
-diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
-index b7c585b..b2e8121 100644
---- a/include/linux/workqueue.h
-+++ b/include/linux/workqueue.h
-@@ -106,6 +106,7 @@ struct work_struct {
- #ifdef CONFIG_LOCKDEP
- 	struct lockdep_map lockdep_map;
- #endif
-+	int intimate_cpu;
- };
+diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
+index 7bedbe8..dbac244 100644
+--- a/drivers/scsi/iscsi_tcp.c
++++ b/drivers/scsi/iscsi_tcp.c
+@@ -127,6 +127,7 @@ static void iscsi_sw_tcp_data_ready(struct sock *sk)
+ 	struct iscsi_conn *conn;
+ 	struct iscsi_tcp_conn *tcp_conn;
+ 	read_descriptor_t rd_desc;
++	int current_cpu;
  
- #define WORK_DATA_INIT()	ATOMIC_LONG_INIT((unsigned long)WORK_STRUCT_NO_POOL)
-@@ -235,6 +236,7 @@ static inline void destroy_delayed_work_on_stack(struct delayed_work *work) { }
- 		lockdep_init_map(&(_work)->lockdep_map, "(work_completion)"#_work, &__key, 0); \
- 		INIT_LIST_HEAD(&(_work)->entry);			\
- 		(_work)->func = (_func);				\
-+		(_work)->intimate_cpu = -1;			\
- 	} while (0)
- #else
- #define __INIT_WORK(_work, _func, _onstack)				\
-@@ -243,6 +245,7 @@ static inline void destroy_delayed_work_on_stack(struct delayed_work *work) { }
- 		(_work)->data = (atomic_long_t) WORK_DATA_INIT();	\
- 		INIT_LIST_HEAD(&(_work)->entry);			\
- 		(_work)->func = (_func);				\
-+		(_work)->intimate_cpu = -1;			\
- 	} while (0)
- #endif
+ 	read_lock_bh(&sk->sk_callback_lock);
+ 	conn = sk->sk_user_data;
+@@ -136,6 +137,13 @@ static void iscsi_sw_tcp_data_ready(struct sock *sk)
+ 	}
+ 	tcp_conn = conn->dd_data;
  
-@@ -344,6 +347,7 @@ enum {
- 	__WQ_ORDERED		= 1 << 17, /* internal: workqueue is ordered */
- 	__WQ_LEGACY		= 1 << 18, /* internal: create*_workqueue() */
- 	__WQ_ORDERED_EXPLICIT	= 1 << 19, /* internal: alloc_ordered_workqueue() */
-+	__WQ_DYNAMIC		= 1 << 20, /* internal: workqueue is dynamic  */
- 
- 	WQ_MAX_ACTIVE		= 512,	  /* I like 512, better ideas? */
- 	WQ_MAX_UNBOUND_PER_CPU	= 4,	  /* 4 * #cpus for unbound wq */
-@@ -432,6 +436,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
- 			WQ_MEM_RECLAIM, 1, (name))
- #define create_singlethread_workqueue(name)				\
- 	alloc_ordered_workqueue("%s", __WQ_LEGACY | WQ_MEM_RECLAIM, name)
-+#define create_singlethread_dynamic_workqueue(name)     \
-+	alloc_ordered_workqueue("%s", __WQ_LEGACY | WQ_MEM_RECLAIM| \
-+			__WQ_DYNAMIC, name)
- 
- extern void destroy_workqueue(struct workqueue_struct *wq);
- 
-diff --git a/kernel/workqueue.c b/kernel/workqueue.c
-index 601d611..418081c 100644
---- a/kernel/workqueue.c
-+++ b/kernel/workqueue.c
-@@ -1395,8 +1395,11 @@ static void __queue_work(int cpu, struct workqueue_struct *wq,
- 			 struct work_struct *work)
- {
- 	struct pool_workqueue *pwq;
-+	struct pool_workqueue *last_pwq;
- 	struct worker_pool *last_pool;
- 	struct list_head *worklist;
-+	struct work_struct *work_tmp;
-+	bool pending = false;    /* is work pending in last worker pool */
- 	unsigned int work_flags;
- 	unsigned int req_cpu = cpu;
- 
-@@ -1441,7 +1444,27 @@ static void __queue_work(int cpu, struct workqueue_struct *wq,
- 		if (worker && worker->current_pwq->wq == wq) {
- 			pwq = worker->current_pwq;
- 		} else {
--			/* meh... not running there, queue here */
-+			/*
-+			 * meh... not running there, queue here
-+			 * we can't break the ordering guarantee of dynamic single thread wq,
-+			 * so have to check whethere the work are still pending in last pool or not.
-+			 */
-+			if (wq->flags & __WQ_DYNAMIC) {
-+				list_for_each_entry(work_tmp, &last_pool->worklist, entry) {
-+					if (work_tmp == work) {
-+						pending = true;
-+						break;
-+					}
-+				}
-+				if (pending) {
-+					last_pwq = get_work_pwq(work);
-+					if (likely(last_pwq))
-+						pwq = last_pwq;
-+					else    /* queue here */
-+						pr_warn("workqueue: work pending in last pool, "
-+								"but can't get pwq.\n");
-+				}
-+			}
- 			spin_unlock(&last_pool->lock);
- 			spin_lock(&pwq->pool->lock);
- 		}
-@@ -3906,6 +3929,9 @@ static void apply_wqattrs_cleanup(struct apply_wqattrs_ctx *ctx)
- 	 * wq_unbound_cpumask, we fallback to the wq_unbound_cpumask.
- 	 */
- 	copy_workqueue_attrs(new_attrs, attrs);
-+	if (wq->flags & __WQ_DYNAMIC)
-+		new_attrs->no_numa = false;
++	/* save intimate cpu when in softirq */
++	if (!sock_owned_by_user_nocheck(sk)) {
++		current_cpu = smp_processor_id();
++		if (conn->xmitwork.intimate_cpu != current_cpu)
++			conn->xmitwork.intimate_cpu = current_cpu;
++	}
 +
- 	cpumask_and(new_attrs->cpumask, new_attrs->cpumask, wq_unbound_cpumask);
- 	if (unlikely(cpumask_empty(new_attrs->cpumask)))
- 		cpumask_copy(new_attrs->cpumask, wq_unbound_cpumask);
-@@ -4154,10 +4180,12 @@ static int alloc_and_link_pwqs(struct workqueue_struct *wq)
- 		return 0;
- 	} else if (wq->flags & __WQ_ORDERED) {
- 		ret = apply_workqueue_attrs(wq, ordered_wq_attrs[highpri]);
--		/* there should only be single pwq for ordering guarantee */
--		WARN(!ret && (wq->pwqs.next != &wq->dfl_pwq->pwqs_node ||
--			      wq->pwqs.prev != &wq->dfl_pwq->pwqs_node),
--		     "ordering guarantee broken for workqueue %s\n", wq->name);
-+		if (!(wq->flags & __WQ_DYNAMIC)) {
-+			/* there should only be single pwq for ordering guarantee */
-+			WARN(!ret && (wq->pwqs.next != &wq->dfl_pwq->pwqs_node ||
-+					wq->pwqs.prev != &wq->dfl_pwq->pwqs_node),
-+					"ordering guarantee broken for workqueue %s\n", wq->name);
-+		}
- 		return ret;
- 	} else {
- 		return apply_workqueue_attrs(wq, unbound_std_wq_attrs[highpri]);
-@@ -5217,7 +5245,7 @@ static int workqueue_apply_unbound_cpumask(void)
- 		if (!(wq->flags & WQ_UNBOUND))
- 			continue;
- 		/* creating multiple pwqs breaks ordering guarantee */
--		if (wq->flags & __WQ_ORDERED)
-+		if ((wq->flags & __WQ_ORDERED) && !(wq->flags & __WQ_DYNAMIC))
- 			continue;
+ 	/*
+ 	 * Use rd_desc to pass 'conn' to iscsi_tcp_recv.
+ 	 * We set count to 1 because we want the network layer to
+diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+index ebd47c0..3bbe326 100644
+--- a/drivers/scsi/libiscsi.c
++++ b/drivers/scsi/libiscsi.c
+@@ -87,9 +87,15 @@ inline void iscsi_conn_queue_work(struct iscsi_conn *conn)
+ {
+ 	struct Scsi_Host *shost = conn->session->host;
+ 	struct iscsi_host *ihost = shost_priv(shost);
++	int intimate_cpu = conn->xmitwork.intimate_cpu;
  
- 		ctx = apply_wqattrs_prepare(wq, wq->unbound_attrs);
+-	if (ihost->workq)
+-		queue_work(ihost->workq, &conn->xmitwork);
++	if (ihost->workq) {
++		/* we expect it to be excuted on the same numa of the intimate cpu */
++		if ((intimate_cpu >= 0) && cpu_possible(intimate_cpu))
++			queue_work_on(intimate_cpu, ihost->workq, &conn->xmitwork);
++		else
++			queue_work(ihost->workq, &conn->xmitwork);
++	}
+ }
+ EXPORT_SYMBOL_GPL(iscsi_conn_queue_work);
+ 
+@@ -2627,7 +2633,7 @@ struct Scsi_Host *iscsi_host_alloc(struct scsi_host_template *sht,
+ 	if (xmit_can_sleep) {
+ 		snprintf(ihost->workq_name, sizeof(ihost->workq_name),
+ 			"iscsi_q_%d", shost->host_no);
+-		ihost->workq = create_singlethread_workqueue(ihost->workq_name);
++		ihost->workq = create_singlethread_dynamic_workqueue(ihost->workq_name);
+ 		if (!ihost->workq)
+ 			goto free_host;
+ 	}
 -- 
 1.8.3.1
 
@@ -286,4 +212,4 @@ index 601d611..418081c 100644
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1563991180-11532-2-git-send-email-yebiaoxiang%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1563991180-11532-3-git-send-email-yebiaoxiang%40huawei.com.
