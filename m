@@ -1,132 +1,137 @@
-Return-Path: <open-iscsi+bncBAABBEU67DUQKGQEJULBSDY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDQ2FCEAWYLRBLES7XUQKGQEVMDYANY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C581781AB
-	for <lists+open-iscsi@lfdr.de>; Sun, 28 Jul 2019 23:09:40 +0200 (CEST)
-Received: by mail-qk1-x73a.google.com with SMTP id x1sf50313853qkn.6
-        for <lists+open-iscsi@lfdr.de>; Sun, 28 Jul 2019 14:09:39 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1564348179; cv=pass;
+Received: from mail-pl1-x639.google.com (mail-pl1-x639.google.com [IPv6:2607:f8b0:4864:20::639])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9799F7943D
+	for <lists+open-iscsi@lfdr.de>; Mon, 29 Jul 2019 21:29:49 +0200 (CEST)
+Received: by mail-pl1-x639.google.com with SMTP id a5sf33743325pla.3
+        for <lists+open-iscsi@lfdr.de>; Mon, 29 Jul 2019 12:29:49 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1564428588; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Gl9XFEaZQ60UhfLzVjxNNby9M4zthSC42zD2l6LdflEYV/9P5BmaolTeqqAenhaLSS
-         RhjmYmQVh52arH3nFIxFZSCU4Pg/ZTBmlEjusD/64KYn+Cf6/MEKhELPwfpnnKN8baSY
-         KZRcaMTjrMcZQqkyuuzd1WiCM2R53/TLjCwTvXYIxsMONiLI5GBI/we22/nltoGmKsyv
-         f84Yrm443cTLxPAGtT/5YxqXpYGt0OSXyAUo8wIhL2c4ZUFf9pAvOWRi0fFxI5WiVD0s
-         x0j6aWkDKwtS2EKflcboiMDOziWp8Oy/oFTEFOcQhEbuS3XfoHXB4Mp//Jkjar1ncHIE
-         f/ow==
+        b=JsBKaexvRMH0oR3mAWBTGbxqmgR8fK7TuiD3xT/puFX7DUhTr7kWy8B1OkpN60SbSV
+         12T4t6lXm4kVwIHG0oNMVNc0ViZd0/r8EQR5Gk3j6CM8H+QFzYVj3WJ9EIv7oeUDLICf
+         GmFIpcM/0+jI2XTHY23XwaHXo4bAEJFlJBtC5mzrp6OJdY3XHEtEuv6moAKhwBv6oOvu
+         goY2M3Uj7+FIUEVuzsC1nmD7jVaJX0JAHB/1bPo+zoyyT7qqq6gIWYhyunb1xKWIUwEP
+         x/Rxpe+AmMa1nYF7D7o4tXiCd/D3n/pU1nSHE+WXAvxoNoEjyl4RWTSHCMYuymWbaHU1
+         h86A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:message-id:date:subject:cc
-         :to:from:mime-version:sender:dkim-signature;
-        bh=QXyc7OW96tTdwrUPS5CkGpF5W1u1upMefqcVx1HrabM=;
-        b=Y4zZ6G5VKZKezXzF/zRGClQkNtud84GruTobpAMD4R0IFOAgM9AAQ4shM0PCKzx8ws
-         nbUWU2neFLNs8U3zxnzpN4k16h6TLV+D4bwdevjWU+LbpSPf+jrju98TjXcB3MbVPUAm
-         xYyqCwKqwvyMXJ8LNK1qpnBaiViKqoJQIKreGCCLKl2VLbXdVC/zTA2fDbwxyOKyBzzX
-         TSKFzexYfAg+GRA/SjfMCkkQiM9Dnb8mux1iNmbd62XY/byxlXbX5uxn8bu+piNwFDYN
-         rf7a70U65FbzftJfIsy+5rMc9Y6VlBFKPQg47cSZdYBVlsv4T6ldmmH9JqBJI+y8WfsI
-         xglA==
+         :list-id:mailing-list:precedence:reply-to:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:sender:dkim-signature;
+        bh=i0fPKHqiQoRJZ5/oV1bTPkyIhTLr77sTjW1PrefqzDQ=;
+        b=hKgfqvK7UvKeCMNQHz0KExrQ4IhBfnUHZdA5m6KqiW6qtZ9yl8d9TLue+tLUpEVmrn
+         FMqVXclOp3I1l59QoU9Mo7dpHiZLHKPOHhGJyxW4ntLa67vRq3c5HQwAz9baxHIVb5LW
+         zgqBHDZTh+4zqdF7ZItERV1jg0sTU1g4IqHJ2wEtRmm+v6yRPkuKp54eWV5SWBtZWkA+
+         523Kd7r4IV6ru5m4z8VoyVq4+it4K/SphVxKnDVg7MGXdtFtd7Ib/+6Bs5lcg3oA1kYo
+         D6wKyDjchjP8VS9sQKjf5wmCp86me8ImFqPV8C4HHhW90wqwmJaMoiVrFC1k0cPTXDgx
+         J+FQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of xywang.sjtu@sjtu.edu.cn designates 202.120.2.180 as permitted sender) smtp.mailfrom=xywang.sjtu@sjtu.edu.cn
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=Z30Zvpox;
+       spf=pass (google.com: domain of htejun@gmail.com designates 2607:f8b0:4864:20::644 as permitted sender) smtp.mailfrom=htejun@gmail.com;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20161025;
-        h=sender:mime-version:from:to:cc:subject:date:message-id
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=QXyc7OW96tTdwrUPS5CkGpF5W1u1upMefqcVx1HrabM=;
-        b=SzFmYmhKr80bUGFTIiG3nPiGMwA7pwfmHHN9h+LoMfVqv5MVfNadQce5mFHQZQ3YZ9
-         /mR67mIAZ6Ney+KlIejkWiQmy/jOH30c1/i3sEtz3dR2qcfSW6TVZPvHW23EuI6RJZgW
-         8cIl5F/ADbuT6FH8wMriXfTg0Z28puYRrHDiABfvSX7fHQ75PTAEE6L/e6CuAE3YBcWx
-         e2GTe5IGjGR4FJaunoIe+ianEXufnX972bZj4Kg69EVfzoeNFJ9t54rOzgkZnx9Px2Bw
-         JzjyMA/nu7/1ysUBvn9T3Se5FPqQWSArkQ3UJ7O4z6bWo8PTVfZ6cY6G7jIRWz9ttSf3
-         fq0g==
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=i0fPKHqiQoRJZ5/oV1bTPkyIhTLr77sTjW1PrefqzDQ=;
+        b=XVTdfeV32xLR6WlJPJOKQ4c3+dG4FpSVghx4ugjC2MqW6wSXEouc3osuQtsJwK4zP8
+         1oiggLS1CH3N8qlo0jIRQjjRPIX0WgUlSP+NcH2w0kc29YKWoYyED6iMLBKWGF7JGX3b
+         hMSGTmRgDFzvsKo5fVTDmmRNe6C4fdw3LowLCst7P47WAh1i/Fti5Tvk7p+Kipdnbkxt
+         sBNmEQjJUfptCUv6e1CuliTz6Tx45SwdbfWTMRfkII7fPNPQa970usvHMWy0cnRp9ToF
+         GteS64CL5+iGJ8znVXq9JSUUojsuuphCN6f0pLxAhlfGPw2JkidpKAcorsjN4L+gGLun
+         3w7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:from:to:cc:subject:date
-         :message-id:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=QXyc7OW96tTdwrUPS5CkGpF5W1u1upMefqcVx1HrabM=;
-        b=fCKYfc/D0sdc4qeYiW7grln+MhwE0uLqJL8kev0RY2OKyGVHDVaHOjMwBFYGgxnhkX
-         EaJ88QXGY5TWSUpKsQITkehQi0ON6CuXfK1hRvV/b55Ew2HiRT0p5p+4Nn8pTNdzQ3Wq
-         c5wjXWh0DSycHlIF58RN+xVsla5S6wVm8NuLmnmW6M+XpY/JI8nsWDFKzLwX4HAV61wm
-         hCOliKWaVjRq1v3WrnukN3CDMEDU3C3NGuJdig1JJNUzv4+q/PUjVCdQVq4/J7ECIRkt
-         E1p6JgZ1gewKOO2+04eG8TjLP57NmrtmGa7nUp2fMHjpGJuG2Kv5IJpwmsDAHszsgQkk
-         gNLA==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAVgEaR9Heq3FQo9NdbZQi3XY2A8Xt7Ju16bRqclVKhynMnDmhup
-	OKRWluluhhiBtTv4ImPZKJI=
-X-Google-Smtp-Source: APXvYqwbEqij+BUI9Pm60Bh0XMrN1wfI4dI3eERqzE9mjJvIhbbmGk9ng5Z+WxPikmiLYpZVIuBawA==
-X-Received: by 2002:a0c:895b:: with SMTP id 27mr74749559qvq.94.1564348178764;
-        Sun, 28 Jul 2019 14:09:38 -0700 (PDT)
-MIME-Version: 1.0
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=i0fPKHqiQoRJZ5/oV1bTPkyIhTLr77sTjW1PrefqzDQ=;
+        b=S1dNNAh0nRkH5AZ+BEn12L3oyMI6i9K68wLVtMFbNg/6fFIaOP/q0VKx52kd5CJGWU
+         3Hd7y57n3tAKb09rfx+lz5cTE2a+8WS6rirgePs64JZICltt7WCS97tO841LQ1lDdgbI
+         ozhSFOHE5RlPUF5xZ/Rv6zEBL8vMEr2NowN8zcLMRR0k1tzAomc7myoA51aGQnPls4aN
+         UWUVD5BnVkJuNZbxYRZskhDjUTF+su+LOzeTeDCnApNmJngkRy8pO+xEc2utQn2p+jai
+         vRBIIAk6ZfQLWLzoKk0ug432EDFOXOPR0m1hf0m1b7b8HhHYUI8k4LvvCLn1PNTB9UFY
+         M9Ew==
+X-Gm-Message-State: APjAAAW4Ituu8f97OTPoCZDy/yhflD4wrSJrY110kTXkaA7VyYVlHt2Y
+	gAhCbVLVGBc4ahTFxaO/bug=
+X-Google-Smtp-Source: APXvYqxOuGxJB08G77584rK8x1pHhqX+163098iJV6Xy1cLaEciv69MS+BASlfPJDduqwn95IvtsIw==
+X-Received: by 2002:a17:90a:a410:: with SMTP id y16mr114438605pjp.62.1564428588404;
+        Mon, 29 Jul 2019 12:29:48 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac8:3507:: with SMTP id y7ls2606008qtb.0.gmail; Sun, 28 Jul
- 2019 14:09:38 -0700 (PDT)
-X-Received: by 2002:ac8:5311:: with SMTP id t17mr73301204qtn.304.1564348178409;
-        Sun, 28 Jul 2019 14:09:38 -0700 (PDT)
-Received: by 2002:a37:4789:0:0:0:0:0 with SMTP id u131msqka;
-        Sat, 27 Jul 2019 03:40:15 -0700 (PDT)
-X-Received: by 2002:ac8:26d5:: with SMTP id 21mr69493187qtp.266.1564224015332;
-        Sat, 27 Jul 2019 03:40:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1564224015; cv=none;
+Received: by 2002:a62:52d2:: with SMTP id g201ls12865862pfb.9.gmail; Mon, 29
+ Jul 2019 12:29:48 -0700 (PDT)
+X-Received: by 2002:aa7:8a99:: with SMTP id a25mr38456673pfc.127.1564428588039;
+        Mon, 29 Jul 2019 12:29:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1564428588; cv=none;
         d=google.com; s=arc-20160816;
-        b=ACurbYMBhGs0vyR4KhTC6uN66y1bvehrk+1K3VKMnboxUghuM1I9uTyA5egY2SbGgZ
-         NYG+tnoArtNFtAVgEeLvQTxFopGqsNVWx8BedPfg0ziITUfvhzwZ4oKSx70SawVX9A3U
-         bmw7QWm08R+YZkQvGHIPRLsi1ZW5GnQ2UOygLedfSjW79PSUcWYpMRjSctMiODuORsoP
-         O1YV7n2jyH3QLwUdefR5kV1hvc7aovAN5btOsZNi8/OQCfsPplGxmQ3VI/TyxQiTB+fs
-         6o8oK/0AYOEWYgUtFDhXDR0ZkLmeKNN/H5YvQhn87DptYeW7HhrOjPkr9A7q+kkizdtq
-         z5yg==
+        b=Cu1JAi7BZnD44bILHoiFvAIySKkrqWMvuyxbkBg3OxSik7mr/PLVFoAmVy6b7NVKrL
+         fHTfafjpWDtEsuB3PVXdOvp3kbYDR2KmsmZCKPWHx2rcw4pX5its3Nl+nJin84LqQO6d
+         QfREd+GDBc5jBS5RqBhjjY0kikvMWGTnn4j8YT2/c89yOvdxbqsN83sFhiH3iyfKLHEu
+         kHmOpM0BU09jPyNUDGNPRwmupDf/zX/LTMqiKe/mf9x+WHpVsFVg1s0qORl4XBZxyk7B
+         d8MinKquMZTkFZtAXtP3dQyqhMIx2dZqJ7YZPVk2bPbd09/HxpuQ5stqdfwg/3Ggehfy
+         5bRA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=message-id:date:subject:cc:to:from;
-        bh=VHvOL/RjA7gWPexbI+dUM9aJAMRrtfHSfwIMO9nhpSc=;
-        b=RYlHEv0VbSmDdYP3oF7zBnVlILKhB1F1sgw8RjpONVSOlJR34XalcZDv240IHgVlpM
-         v1wigqrFuBKz9cwcJDPm7QCkME7UKuAO2NBkCC9jfsbhAMVpTrkesyTiTzlDeq5gLKJI
-         OvoMEK7OoCvVB5X6S+vyqwiXlYF1xZvAFYbz5b9zfNtgi12bxALSEStJU5hYObAz3YGi
-         UWAVJ0hTImGPg/srC48vHIuczCu9WP1Jw6Wh05A8m8MbLhmIKZSbCi6i0tkjDJeGvQXz
-         4mf37SO1P/hlIzDMCPosEIpG6Vgu+JsIg6a0ZN4EOkI7mSI2OvjCBFNnKHDmKeIT0LMB
-         7Jdw==
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:sender:dkim-signature;
+        bh=Yi56AIDxn6UImSoMY/Le7abjGwllulsxYXXJnIk8Vrc=;
+        b=fK5rNVgkgPd3fqbX2HS3l0Hr+ZCVgKHYY9OuE+pf1SBpNk+dYkC6+ULo4nk0m/vHUc
+         nrFLCXFKNT7u0R/18SL0j33s+2/vcU59hrq1Gn3zmVCNUOYs55nG4f2JgArffphTfsMt
+         ZI/rqZKZR3ahegyUI3nSQlXCQjBlq40N7x1/QtJyFWrsPSxp6jd/qnKQajDSJNcAG/q5
+         a8cKpyqLToUedBRyRX4ieDYfWWNHmHzyu5tJdwB0CF9rPU2HaMTfQJUwhtbRQ/Kc83kH
+         IE42xmph3UFzuj5oJwwO5ZW9WWi4Aqg1SZ+yDhsTQ7KAFo3sosB+r93Ue8UYrUF5M0QU
+         YWYw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of xywang.sjtu@sjtu.edu.cn designates 202.120.2.180 as permitted sender) smtp.mailfrom=xywang.sjtu@sjtu.edu.cn
-Received: from smtp180.sjtu.edu.cn (smtp180.sjtu.edu.cn. [202.120.2.180])
-        by gmr-mx.google.com with ESMTPS id v19si904841qth.1.2019.07.27.03.40.14
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=Z30Zvpox;
+       spf=pass (google.com: domain of htejun@gmail.com designates 2607:f8b0:4864:20::644 as permitted sender) smtp.mailfrom=htejun@gmail.com;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com. [2607:f8b0:4864:20::644])
+        by gmr-mx.google.com with ESMTPS id b12si1489997pfd.4.2019.07.29.12.29.48
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 27 Jul 2019 03:40:15 -0700 (PDT)
-Received-SPF: pass (google.com: domain of xywang.sjtu@sjtu.edu.cn designates 202.120.2.180 as permitted sender) client-ip=202.120.2.180;
-Received: from proxy01.sjtu.edu.cn (unknown [202.112.26.54])
-	by smtp180.sjtu.edu.cn (Postfix) with ESMTPS id 797F01008CBC3;
-	Sat, 27 Jul 2019 18:40:10 +0800 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by proxy01.sjtu.edu.cn (Postfix) with ESMTP id 69E8020424204;
-	Sat, 27 Jul 2019 18:40:10 +0800 (CST)
-X-Virus-Scanned: amavisd-new at proxy01.sjtu.edu.cn
-Received: from proxy01.sjtu.edu.cn ([127.0.0.1])
-	by localhost (proxy01.sjtu.edu.cn [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id F3CLmvPZ_FnY; Sat, 27 Jul 2019 18:40:10 +0800 (CST)
-Received: from xywang-pc.ipads-lab.se.sjtu.edu.cn (unknown [202.120.40.82])
-	(Authenticated sender: xywang.sjtu@sjtu.edu.cn)
-	by proxy01.sjtu.edu.cn (Postfix) with ESMTPA id 3E51E20424202;
-	Sat, 27 Jul 2019 18:40:10 +0800 (CST)
-From: Wang Xiayang <xywang.sjtu@sjtu.edu.cn>
-To: 
-Cc: lduncan@suse.com,
-	cleech@redhat.com,
-	open-iscsi@googlegroups.com,
-	Wang Xiayang <xywang.sjtu@sjtu.edu.cn>
-Subject: [PATCH] scsi: use kzfree to free password
-Date: Sat, 27 Jul 2019 18:39:58 +0800
-Message-Id: <20190727103958.2260-1-xywang.sjtu@sjtu.edu.cn>
-X-Mailer: git-send-email 2.11.0
-X-Original-Sender: xywang.sjtu@sjtu.edu.cn
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of xywang.sjtu@sjtu.edu.cn designates 202.120.2.180 as
- permitted sender) smtp.mailfrom=xywang.sjtu@sjtu.edu.cn
-Reply-To: open-iscsi@googlegroups.com
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Jul 2019 12:29:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of htejun@gmail.com designates 2607:f8b0:4864:20::644 as permitted sender) client-ip=2607:f8b0:4864:20::644;
+Received: by mail-pl1-x644.google.com with SMTP id t14so27860739plr.11
+        for <open-iscsi@googlegroups.com>; Mon, 29 Jul 2019 12:29:48 -0700 (PDT)
+X-Received: by 2002:a17:902:f213:: with SMTP id gn19mr114783709plb.35.1564428587491;
+        Mon, 29 Jul 2019 12:29:47 -0700 (PDT)
+Received: from localhost ([2620:10d:c091:500::1:309b])
+        by smtp.gmail.com with ESMTPSA id j5sm54278281pgp.59.2019.07.29.12.29.46
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Jul 2019 12:29:46 -0700 (PDT)
+Sender: Tejun Heo <htejun@gmail.com>
+Date: Mon, 29 Jul 2019 12:29:45 -0700
+From: Tejun Heo <tj@kernel.org>
+To: Biaoxiang Ye <yebiaoxiang@huawei.com>
+Cc: lduncan@suse.com, jiangshanlai@gmail.com, cleech@redhat.com,
+	open-iscsi@googlegroups.com, jiangyiwen@huawei.com,
+	xiexiangyou@huawei.com
+Subject: Re: [RFC PATCH 1/2] workqueue: implement NUMA affinity for single
+ thread workqueue
+Message-ID: <20190729192945.GE569612@devbig004.ftw2.facebook.com>
+References: <1563991180-11532-1-git-send-email-yebiaoxiang@huawei.com>
+ <1563991180-11532-2-git-send-email-yebiaoxiang@huawei.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Disposition: inline
+In-Reply-To: <1563991180-11532-2-git-send-email-yebiaoxiang@huawei.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Original-Sender: tj@kernel.org
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@gmail.com header.s=20161025 header.b=Z30Zvpox;       spf=pass
+ (google.com: domain of htejun@gmail.com designates 2607:f8b0:4864:20::644 as
+ permitted sender) smtp.mailfrom=htejun@gmail.com;       dmarc=fail (p=NONE
+ sp=NONE dis=NONE) header.from=kernel.org
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -135,33 +140,46 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Similar to commit 34bca9bbe7a8 ("cifs: Use kzfree() to free password"),
-password strings allocated for CHAP should be zero-ed before freed.
+Hello,
 
-Signed-off-by: Wang Xiayang <xywang.sjtu@sjtu.edu.cn>
----
- drivers/scsi/libiscsi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Wed, Jul 24, 2019 at 05:59:39PM +0000, Biaoxiang Ye wrote:
+> @@ -1441,7 +1444,27 @@ static void __queue_work(int cpu, struct workqueue_struct *wq,
+>  		if (worker && worker->current_pwq->wq == wq) {
+>  			pwq = worker->current_pwq;
+>  		} else {
+> -			/* meh... not running there, queue here */
+> +			/*
+> +			 * meh... not running there, queue here
+> +			 * we can't break the ordering guarantee of dynamic single thread wq,
+> +			 * so have to check whethere the work are still pending in last pool or not.
+> +			 */
+> +			if (wq->flags & __WQ_DYNAMIC) {
+> +				list_for_each_entry(work_tmp, &last_pool->worklist, entry) {
+> +					if (work_tmp == work) {
+> +						pending = true;
+> +						break;
+> +					}
+> +				}
+> +				if (pending) {
+> +					last_pwq = get_work_pwq(work);
+> +					if (likely(last_pwq))
+> +						pwq = last_pwq;
+> +					else    /* queue here */
+> +						pr_warn("workqueue: work pending in last pool, "
+> +								"but can't get pwq.\n");
+> +				}
+> +			}
 
-diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
-index ebd47c0cf9e9..67d66e6dbdb0 100644
---- a/drivers/scsi/libiscsi.c
-+++ b/drivers/scsi/libiscsi.c
-@@ -2854,8 +2854,8 @@ void iscsi_session_teardown(struct iscsi_cls_session *cls_session)
- 
- 	iscsi_remove_session(cls_session);
- 
--	kfree(session->password);
--	kfree(session->password_in);
-+	kzfree(session->password);
-+	kzfree(session->password_in);
- 	kfree(session->username);
- 	kfree(session->username_in);
- 	kfree(session->targetname);
+So, I'm not against the idea of making ordered workqueues numa-aware
+but this implementation is a bit too ugly.  Maybe the cleanest way to
+implement this is by synchronizing and ordering the pwqs?
+
+Thanks.
+
 -- 
-2.11.0
+tejun
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20190727103958.2260-1-xywang.sjtu%40sjtu.edu.cn.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20190729192945.GE569612%40devbig004.ftw2.facebook.com.
