@@ -1,139 +1,203 @@
-Return-Path: <open-iscsi+bncBDQ2FCEAWYLRBVG7UHVAKGQEIRAMMVA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDZIFAMNOMIIZO5F5MCRUBDTW2SNS@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x737.google.com (mail-qk1-x737.google.com [IPv6:2607:f8b0:4864:20::737])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFA982498
-	for <lists+open-iscsi@lfdr.de>; Mon,  5 Aug 2019 20:05:09 +0200 (CEST)
-Received: by mail-qk1-x737.google.com with SMTP id d11sf73294978qkb.20
-        for <lists+open-iscsi@lfdr.de>; Mon, 05 Aug 2019 11:05:09 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1565028308; cv=pass;
+Received: from mail-qk1-x73b.google.com (mail-qk1-x73b.google.com [IPv6:2607:f8b0:4864:20::73b])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1B3EA3D0B
+	for <lists+open-iscsi@lfdr.de>; Fri, 30 Aug 2019 19:31:58 +0200 (CEST)
+Received: by mail-qk1-x73b.google.com with SMTP id q62sf8121872qkd.3
+        for <lists+open-iscsi@lfdr.de>; Fri, 30 Aug 2019 10:31:58 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1567186317; cv=pass;
         d=google.com; s=arc-20160816;
-        b=FTjRyAwxYnhVyumWT+3nZtbtVSLiBDqby3ntOHjRBWwvY87ERG1EAdJIb/1mrBjezj
-         HlBtyTk188X10nCaGmfPqLJlfPUfIlKLv9weLyiiWn4eZ6SbSM3WNiNjYCc6/I6EGrLc
-         1biZcddFLC7UCIUoLYHNTZqPPF/GxwRqVFsgrUFDLzpPUp0aC7RfozS5wNs3nv5xcaIZ
-         7HBsr63hSajtWRFbtKz/XY32k6umUgChGSOVr9iRoFe3GpTCC3WgTuKtTIVMF+VL9cey
-         2wj/AFRKD9Q6F50fSQlQ39qNB3mQ3u/Fftc316uc0JpopJRpky2VzFBr9JHqF9Hq/xSY
-         uUxA==
+        b=mqXHly7C8lr9ZD8dDVw3fJ0fDRmH6+vXo7RY9lQVLAowcHzkAweIwI8cMfrhAncSVO
+         j0vCar7sueUBMDXnwJ3KZ3UiPfb/L9CkUFh6XSRSNKT1uxPrkDnYXfK3oj+eI1A20MQz
+         cOw2AkEncB3TqKUwbK1mnnHWAc3I/C9euMmbvS4Y7OUeUx1P05gWcyOVOFea5/uTyocj
+         YztINdFDoFS4h8uelNao3vTMqnmGj6A0wSQ3lzUbUIkOD7pflfN1XHqX1jeW+PaMTRH8
+         To/KDWahBoAt0Y1JZVrhkmoiBGWnmoe3lvOEmq56onZZoUYMPZNH4lR/dMBgIEZe82BG
+         Cg/A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:user-agent:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:dkim-signature;
-        bh=xg3s4jnog2MRZ6aOsQ25Usq44orR0iblvjj5GUkoFsA=;
-        b=hg1oWmXK+Lkarl6s3EHOdbM9QTnNp2UiStGh7XtV5m3bvGiog/1RRKzSu89mLbHgfH
-         DRIvU/Rn56mhexr68NlK0/MhMoyKvScqmPiqzHMI3nzQuratNId1k7cKe6NjDDlHhrhs
-         sBuqDz91aqAJzB+T8OTUNJQrTgykILf+WFOE3p7i/qXsbbm3Yz7Cr+edeSgrucq16Zc0
-         q/llN5095zMQk/JiewDZbFaFGJ7dnAmXbXoajK4XxafOoGn+qGregStbTVnYZ55qE93y
-         hoGaxtOHzDDkQA8aAJg9lsrikXeftx1l+AsZqegzv2CSlkgKWmPuak3orT9DenCzb/iM
-         LpcA==
+         :list-id:mailing-list:precedence:reply-to:content-language
+         :in-reply-to:mime-version:user-agent:date:message-id:autocrypt
+         :openpgp:from:subject:references:cc:to:sender:dkim-signature;
+        bh=mS2QfoJP4H2qdrxobMllKWqdLa2RzWb1xNGdUmxNlCg=;
+        b=UsA48VsXsm3efFNeI6CrDGaLkwFfDVG5Gi4wVK/4cTOpBsk+Xh8u9zpTlgPRok8P+T
+         hkbq4x/ZJZWot5FVsptgtAPUlOIxZeSOWL+f8uxDgnWhhe1qPwJ2L4IvkXGQhmiOPhKD
+         6d0v1P0uPZEczEPlx9UtUztW+cMhEtycmCSOQkgPHOPGizOZ1kDbf31Pb/deorOMhzHg
+         TiGqYSgOL45we6auHDsyFtfP7msP16p15J69v11WHvrkTq766JtpUxNXQQopbyf/E4Jr
+         qurbOq3HdP0jGJVH8SKO1IIo6SMf6MkEmoEgG1kVDRHc70qCJwgqy3LPyIMTLOpSL5q/
+         hbsQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b="rltn/ixZ";
-       spf=pass (google.com: domain of htejun@gmail.com designates 2607:f8b0:4864:20::842 as permitted sender) smtp.mailfrom=htejun@gmail.com;
-       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+       dkim=pass header.i=@web.de header.s=dbaedf251592 header.b=YFnlFasJ;
+       spf=pass (google.com: domain of markus.elfring@web.de designates 212.227.17.11 as permitted sender) smtp.mailfrom=Markus.Elfring@web.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent:x-original-sender
+        d=googlegroups.com; s=20161025;
+        h=sender:to:cc:references:subject:from:openpgp:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=mS2QfoJP4H2qdrxobMllKWqdLa2RzWb1xNGdUmxNlCg=;
+        b=j3mXnKwUcl2czz/9rB8I+mrcjPf5Z1a75WLlw9RbqV571kHiKhjljOUcJCsHOH5Oje
+         c69Y5XECRIkHEYtgCZEuqWo278Zom4u2jh2OZB9AUmurMkhoW+SUGPkLVgTGOvjPv8Re
+         N3xd2Uc0XHXZhT5T+HlwKWrYfxs/0Xn0v7li4YTd8H97+j1nCZjMZ7qHj0V1tnfyRm5i
+         wVpUCBa9T+TkUf5w7VgsEENTJ6A5g6Bc3rrQyfnjnp9AO7l0XaRxIDwKUDMWoSIlNGS7
+         ZWaZ0OSSyYDzEFYRkDShuaC+s6OjJE5qnkJr67MfuTKEZBstemsXgP3tIdpUUpADGVrJ
+         IvUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=sender:x-gm-message-state:to:cc:references:subject:from:openpgp
+         :autocrypt:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=xg3s4jnog2MRZ6aOsQ25Usq44orR0iblvjj5GUkoFsA=;
-        b=N2wi2WtYFziAsHEkwAFiN9/DiOhg6H5hhCATE1+Q62dyy1HXuxiW573Megod3+iLvl
-         Ko4TXA9qozwLrVKdI7Fjh34WcbvXYyXHg/ghNhmkCuJolSrSPqsmiUQt//cFymY66UwE
-         5ofLgOEDvcly6Gv68H7xpLXAYGkVQm8IingRdAPp4Z5mtyc5BhGMGp4vR1+YFdNmE5nT
-         WcdY75Ilx69ULigZ8VRZ9UAWq3Z+7pHplVsJSj6+9uP8M7y7Wlwgz4r7ZoYW2hEIdgty
-         oeZ8qllX+Nyjhj+nLbT/2dpSpncZdAIAnxo2BB2BvdP8jj5BsQFor/7ipR0MDj+e8JDv
-         leQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=xg3s4jnog2MRZ6aOsQ25Usq44orR0iblvjj5GUkoFsA=;
-        b=Ny6ubAUCVtg7ur0KIJmCcz9jdONcWC6CVjkUqtqsKD3eZYh0kdpDeHfYzOSxeScrf9
-         VO976Taw5TmpoxQFk8NzI4vPW/JtyQ9/KzTtowQ2gjXH4BZAbIBqM3HG1CcZ+JoGbWcu
-         loRicKX1bJD1EDceAYfKW06PIlCvZLM/+3qq3fEeRaK3nZNFXq+cXy3UkcpMf2uq6rjM
-         YWblkBnhcKR0kn2FBX//nd2dbTKuQ8cekPhcYBUOstlg5iyRaWxBeao4GYnF410CH41L
-         b2LRxKYg5BYY2X2buOYuoceWlqM9xthYJO/p3Z01WYKQO+2i4wnuI1TlSZz6lWe9YHZr
-         vUWQ==
-X-Gm-Message-State: APjAAAWXQDxk015iNxr1JHoY278rFFsW63vdwaclEjA7PUbK3WtGtpLC
-	PtD3KKfDwqSa5WJimu8V7Ys=
-X-Google-Smtp-Source: APXvYqyoumLnQgdB26+QSrwbiEs15QksBW+yLQG77mv8BAcriNZAuv7kWJTmptVTaR3CHGlu/gwVxw==
-X-Received: by 2002:a0c:ba0b:: with SMTP id w11mr110583611qvf.71.1565028308225;
-        Mon, 05 Aug 2019 11:05:08 -0700 (PDT)
+        bh=mS2QfoJP4H2qdrxobMllKWqdLa2RzWb1xNGdUmxNlCg=;
+        b=TM/pN8ir4+ZqRFiRnqMQ0g20f7lhYZIPbuzIn/aufLJtwrMOXKQrpYRd+nKnPHZnRM
+         gUOJshs06F+5KTAUrMmC74hb7QES7mGM6tfKA6dRcpF3zaH2zVPNqyw3MpEKfsiE5oyK
+         vzUC7wdaWQA89zCiIOKEcndvMcgiizOvUGm47DUuywUoHrW/lL7W10RjO9fZVFrtQw6r
+         s2rQmJRcRTceocixFt2YtT32/2zhG5xViojVLGkmh4WsUI+L59fc/DJIUNjPaYTkrb7e
+         ZNnsFWvhgAB+OxTjGS7uktxlXnUvbW0jDVuZJ8X2zQdDfnlDBRwkQD7E1Njh2ggdgx2x
+         bEKg==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: APjAAAVZgRVej/ik0Mie2NU60kxJ0oabTtjzkJPFayiIk7w02HR17Y9Y
+	tCLWCRSCj5VjLBjjVRRA6wU=
+X-Google-Smtp-Source: APXvYqx/Ajqxdx4Xq59Zcq3yblcn761qFzYKEzDH8Lr8Gu7VJc42u5g1a7w6z0GJLoGQS79iYnxjlw==
+X-Received: by 2002:a37:4ed0:: with SMTP id c199mr16965619qkb.309.1567186316514;
+        Fri, 30 Aug 2019 10:31:56 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6214:1112:: with SMTP id e18ls2334629qvs.15.gmail; Mon,
- 05 Aug 2019 11:05:07 -0700 (PDT)
-X-Received: by 2002:a0c:8791:: with SMTP id 17mr111850681qvj.215.1565028307932;
-        Mon, 05 Aug 2019 11:05:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1565028307; cv=none;
+Received: by 2002:a0c:d081:: with SMTP id z1ls496389qvg.7.gmail; Fri, 30 Aug
+ 2019 10:31:56 -0700 (PDT)
+X-Received: by 2002:a0c:e6ab:: with SMTP id j11mr10862929qvn.178.1567186316244;
+        Fri, 30 Aug 2019 10:31:56 -0700 (PDT)
+Received: by 2002:ae9:e406:0:0:0:0:0 with SMTP id q6msqkc;
+        Mon, 26 Aug 2019 22:33:35 -0700 (PDT)
+X-Received: by 2002:a19:8c14:: with SMTP id o20mr6401469lfd.158.1566884014679;
+        Mon, 26 Aug 2019 22:33:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1566884014; cv=none;
         d=google.com; s=arc-20160816;
-        b=Dud+qXBI8oDaB1f+7n5NPCzyfXw2MdlG/7q1Tp2gr4btVR16MavO0jJoHcy9tAhPnT
-         h9l6zxgaEJLMIyFdZ0YD3tHtJRt2pv/PoIyd4ASNpCEGOwDZHzFKhapwJtywucSn6A1u
-         jdaIHZpoi2HhZzqLHP6n5v14PGV4Om/UKTpo0c7/Q0i1PtBNJINZO6aQMzFFV3ZpOf3I
-         hb2Du8mJeFyKkDwSmckN85sLIh6mwHFYj1N6J/Rn3sHe5zy0zMK6FxrBBdg9B9gko67V
-         0L+HLk1QgCk2W+6oX0YvlJCt2KnZ51K3IalntLE9+q827VUSdbsVRHp0vfDEPekVHsEj
-         JuNw==
+        b=W+0TOdWXNRxZO0t/7wWlI0wVtmj1Pk6KqPfbSm/rojaoSLyMDK7wuj9lVGCg3faXPC
+         FyDraf377SvzWKMskCL3X5ewlYOU1gkZpucgkCoE2qx3iXq23GaDklcvdCRG7IBsc9r1
+         uuEeLrNJDQRFlkdYOyE5uZi6FcNX8XXQjRS4AWVT5djGafOJnYFnkkIDI5Q2LDvN6DCC
+         g8lQF2YrXcFWNJ+D8iHOpGpjlN1R9oONcWdmaXUd2TSs4slboZxHUjy73dbGZdZIaLx6
+         esXH/NI6Nrnaaqemsb8YcOwdbsd+7H21yfO0A6hzrizhuleczOwK7mg1oCsc+egM8pEy
+         SGvw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:sender:dkim-signature;
-        bh=LV+YeSNCdStMOfOQN7ceZijyMi7hzUft4ZtEXjhGCPk=;
-        b=V6ybYLvIo4t6E3M6ht5kyPuXW4R6I1Y8tnpyHZ9KyCjA/DyPVtWQ0te/u4e3Y/DKAA
-         9yVk0AnBNkoUNLmWSs5jOqO0zR0mrd4hYv/gDZ5gk14xLOuQez5LsEt3R1cSbH5rERpR
-         hFC57LWt/A22Kn6115lpAYtPxZ5Il/m2SYwFx/hif1m4D90c6w3rWpQxMX9Fdj6uxTsZ
-         MnsnFITquhbMkKkmxvver37hfhtmTZGduJiHUSLTtGWPgN7H+TC02c/HKS31e3aVR7zc
-         A0hRAaadSKA8ykSb5s8FoZtLtpjHTIyrfUzOeaMhNAyxehQeAWidUGn9CvLFYIwq9/dw
-         XSUw==
+        h=content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:autocrypt:openpgp:from:subject:references:cc:to
+         :dkim-signature;
+        bh=/nekiW6MnMYef0+et4HGmSzRulN/vr7UdPk6serwXNc=;
+        b=Tc/l5KAtGO52g6LY1tj3NLg0ToeQP0N0wU42lnXiklVBmu/yUkEh7tWGSlQW5+8y1o
+         n0pO4GdGyU8CbazmHlDwbn1YBYc5Q4ZZbUn8WgLTfPQGfNEP7enk4w2vjZZlH1yhVIV9
+         Mu3JhyLSkQXOoLTco4pMyViDksrJ/mxLrxYeGjz8fza4kkHim3WgKCZOEF3anlGr1kBs
+         9Ni35Fvq09rrIwM3Levu/DyhTELqQEbHzSEtH8uPk9klGOr9qtfI/4eLSnffcPHrnf39
+         6gGAcC1LtRNwASNeJjeo+gwDwCdFGZnUSAbc1sgaK33c5jFirT2ygg1V47SRj1Y/yUHh
+         9DjQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b="rltn/ixZ";
-       spf=pass (google.com: domain of htejun@gmail.com designates 2607:f8b0:4864:20::842 as permitted sender) smtp.mailfrom=htejun@gmail.com;
-       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com. [2607:f8b0:4864:20::842])
-        by gmr-mx.google.com with ESMTPS id o56si1008551qtf.0.2019.08.05.11.05.07
+       dkim=pass header.i=@web.de header.s=dbaedf251592 header.b=YFnlFasJ;
+       spf=pass (google.com: domain of markus.elfring@web.de designates 212.227.17.11 as permitted sender) smtp.mailfrom=Markus.Elfring@web.de
+Received: from mout.web.de (mout.web.de. [212.227.17.11])
+        by gmr-mx.google.com with ESMTPS id q25si622727lfm.4.2019.08.26.22.33.34
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 05 Aug 2019 11:05:07 -0700 (PDT)
-Received-SPF: pass (google.com: domain of htejun@gmail.com designates 2607:f8b0:4864:20::842 as permitted sender) client-ip=2607:f8b0:4864:20::842;
-Received: by mail-qt1-x842.google.com with SMTP id r6so77602618qtt.0
-        for <open-iscsi@googlegroups.com>; Mon, 05 Aug 2019 11:05:07 -0700 (PDT)
-X-Received: by 2002:aed:2d67:: with SMTP id h94mr54499287qtd.154.1565028307522;
-        Mon, 05 Aug 2019 11:05:07 -0700 (PDT)
-Received: from localhost ([2620:10d:c091:480::39f3])
-        by smtp.gmail.com with ESMTPSA id w19sm32732793qkj.66.2019.08.05.11.05.05
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 05 Aug 2019 11:05:06 -0700 (PDT)
-Sender: Tejun Heo <htejun@gmail.com>
-Date: Mon, 5 Aug 2019 11:05:04 -0700
-From: Tejun Heo <tj@kernel.org>
-To: yebiaoxiang <yebiaoxiang@huawei.com>
-Cc: lduncan@suse.com, jiangshanlai@gmail.com, cleech@redhat.com,
-	open-iscsi@googlegroups.com, jiangyiwen@huawei.com,
-	xiexiangyou@huawei.com
-Subject: Re: [RFC PATCH 1/2] workqueue: implement NUMA affinity for single
- thread workqueue
-Message-ID: <20190805180504.GH136335@devbig004.ftw2.facebook.com>
-References: <1563991180-11532-1-git-send-email-yebiaoxiang@huawei.com>
- <1563991180-11532-2-git-send-email-yebiaoxiang@huawei.com>
- <20190729192945.GE569612@devbig004.ftw2.facebook.com>
- <5D3FFCFA.2030001@huawei.com>
+        Mon, 26 Aug 2019 22:33:34 -0700 (PDT)
+Received-SPF: pass (google.com: domain of markus.elfring@web.de designates 212.227.17.11 as permitted sender) client-ip=212.227.17.11;
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.2] ([93.135.143.232]) by smtp.web.de (mrweb103
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0Lpw2l-1ifh551XwF-00fmGk; Tue, 27
+ Aug 2019 07:33:28 +0200
+To: Jia-Ju Bai <baijiaju1990@gmail.com>, linux-scsi@vger.kernel.org,
+ open-iscsi@googlegroups.com, Chris Leech <cleech@redhat.com>,
+ "James E. J. Bottomley" <jejb@linux.ibm.com>, Lee Duncan <lduncan@suse.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc: linux-kernel@vger.kernel.org
+References: <20190729091339.30815-1-baijiaju1990@gmail.com>
+Subject: Re: libiscsi: Fix possible null-pointer dereferences in
+ iscsi_conn_get_addr_param()
+From: Markus Elfring <Markus.Elfring@web.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
+ 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 FEE=
+Message-ID: <b1e07f98-f376-9617-a491-b916152251cf@web.de>
+Date: Tue, 27 Aug 2019 07:33:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190729091339.30815-1-baijiaju1990@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
-In-Reply-To: <5D3FFCFA.2030001@huawei.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Original-Sender: tj@kernel.org
+Content-Language: en-US
+X-Provags-ID: V03:K1:tl0+mgXQOGwRsIeFa+UbFRkl1Jmz+YOpWrzInliNBHhviGs569z
+ A2/JJYk0VGswZy4Lg7pkeCYhARU+tFRsq5XZvDzoaoMFkY6OoZOis0s+ajaa2858NhJ1jbO
+ XwFJ0DpAfETdl3Qg6lRG2rQzBOhiooj66YHVmdREFgUtae2v64bIEfWp9bGjrCui1plfO6S
+ t0MmJBsiR2we0wFtiBlEQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:rlIg6ZFyLio=:Gld43aEV9E20oKBbGnYWPJ
+ xZmf1HtIXTS7lZ+08V7pPLmJUAVRFWLRRtPJ+XUqFgzMI8r1ftGsjgoHs4QQvi8eEiNIkI6hv
+ vl8LYCtrdXiGfkTgjpB8HL13TvxCpIkUH0elP3BV0CPhdNfcpoYFNzPAAn4u7pk0xK3LXAEUq
+ igqxFABC8HwOyb6t0/RjCGKZtafrbbpdZQk3ILF+u1euIVIcQH4b+QGxyeZEcdNAPO4+jaoC4
+ L8mODAbnI/zgUKY80SW3W/JwTpv7O0r8fe7O5cpE7bVA7oVjAXUHTGk/7GD9N5XcbkrbEh9SB
+ 4Xb8G68PqzNid9Y7c9L29uOvHuHiNHzT1e6FhFJ1QJWsHTuS2T1QXC32OMC+UhOLJ5tamHYps
+ JbxJDwclUT1y9yr6uE/XABpf4uB/9oqZH790i2YVxaqHwNi465ePSoEIWTNM/N/pI0dE0g9sv
+ GvD+rgObUw0OkuAgWW8I3BkkUXpMpU59o1Z6D4SLqfUQezvOZBNbqMl0tM5AT6mjYe3erMua+
+ D2faKPx3iITEF7woMUQZcJCQbi/xS8aZrqycZ3MrZBQAHHoYdd/OQS+9pAPTZJvTziWRGE8dV
+ vZO19sHobkulyMPJ4hZUelOTQw2i0w+1k9FmID9CIP+rN2wFf4ZzgpHwHr2B7oED8oJHAEtLR
+ rY6dV53Plo7DG9PtBor9wKHlOqSV5xtsXeYYVaN2iOkm+I47xMWbnbFgBbm2LkDdS4iOXqq91
+ T/psggX2+LtGwxg6ZoJhaSrEe5tAoZE8cXRs+dEpCQJjN+dxW27Qb398urZmXuszvdvW0kmeq
+ HPokkRZfVRkSJtVnnJaotA+K0Dhb97aKvem7KnxgVZASbRovzGit8S1sHPNNZKcVDoKP4zYRx
+ CMYxdfGvLdXipR94ja56kbCto3HA9WYEQlpbKHBiJsYeQezTJztZebm40q54SIhuYjXOuIul5
+ +ZZnzTGBHg01B35Tsut5rqhC+ntveu+MfvrZGeL3D895ChuIsnwQk2h2371oXqf5Hdl88uZoj
+ 2pGhRx1TrAcKmBb89XTwc8zmm/qaeVbH3AZBgFl2750mClmsrWxVkAMZ3a2YtUT3uVU/CkCY2
+ 7773DHZMUaR25U3iytwrAsz6Pt47Aj0UASSUFqCMB93Ey4IAKarFHPT8RJFqkts0YpFFty/YN
+ gOzcmUc3O98HNu4TrGyuQNa2y+THQD44zvbJ0A7um01yd9/w==
+X-Original-Sender: Markus.Elfring@web.de
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b="rltn/ixZ";       spf=pass
- (google.com: domain of htejun@gmail.com designates 2607:f8b0:4864:20::842 as
- permitted sender) smtp.mailfrom=htejun@gmail.com;       dmarc=fail (p=NONE
- sp=NONE dis=NONE) header.from=kernel.org
+ header.i=@web.de header.s=dbaedf251592 header.b=YFnlFasJ;       spf=pass
+ (google.com: domain of markus.elfring@web.de designates 212.227.17.11 as
+ permitted sender) smtp.mailfrom=Markus.Elfring@web.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
-X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -142,39 +206,15 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Hello,
+> These bugs are found by a static analysis tool STCheck written by us.
 
-On Tue, Jul 30, 2019 at 04:16:58PM +0800, yebiaoxiang wrote:
-> For single work, the order can guaranteed already, single work will only
-> queued on single pwq at a time. The challenge is how to guarantee the order
-> between different works, they may queued on different pwqs, and executed
-> by each worker without synchronizing.
-> 
-> One of immature scheme is add two members enqueue_num and process_num to WQ,
-> when a task enqueue in function __queue_work, save the enqueue_num to task,
-> and then increase enqueue_num. When process_one_work check the enqueue_num of
-> work whether equal with current_num or not. Keep waitting if false, if true
-> then execute the work and increase current_num after done.
-> like below:
+Would you like to improve any more commit descriptions also by
+adjusting such a wording?
 
-So, I'd much preper if this is something which is implemented in front
-of the core logic.  e.g. build a separate pre-queue to order the work
-items.
-
-> This immature scheme seems still too ugly, I tested it and got a smack in the eye.
-> So is there any good idea to making ordered workqueues numa-aware faultlessly?
-> BTW, I have no idea if is necessary to guarantee the order between different works.
-
-That said, if strict ordering isn't an requirement, just using
-unordered workqueue where each work item is grabbing mutex would be
-enough, right?
-
-Thanks.
-
--- 
-tejun
+Regards,
+Markus
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20190805180504.GH136335%40devbig004.ftw2.facebook.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/b1e07f98-f376-9617-a491-b916152251cf%40web.de.
