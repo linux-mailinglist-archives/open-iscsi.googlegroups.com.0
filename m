@@ -1,70 +1,70 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBLPAZHWAKGQEKES5UXY@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBY7CZHWAKGQECYOY7DI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x837.google.com (mail-qt1-x837.google.com [IPv6:2607:f8b0:4864:20::837])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7045C285E
-	for <lists+open-iscsi@lfdr.de>; Mon, 30 Sep 2019 23:14:22 +0200 (CEST)
-Received: by mail-qt1-x837.google.com with SMTP id r19sf5564621qtk.15
-        for <lists+open-iscsi@lfdr.de>; Mon, 30 Sep 2019 14:14:22 -0700 (PDT)
+Received: from mail-qt1-x840.google.com (mail-qt1-x840.google.com [IPv6:2607:f8b0:4864:20::840])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9094EC2885
+	for <lists+open-iscsi@lfdr.de>; Mon, 30 Sep 2019 23:19:32 +0200 (CEST)
+Received: by mail-qt1-x840.google.com with SMTP id h10sf15255835qtq.11
+        for <lists+open-iscsi@lfdr.de>; Mon, 30 Sep 2019 14:19:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=pwLZaIFzNrnqXgWTnCXmnKUWoAR1LL7iafkRHa/mY8I=;
-        b=a/JtnoNNartaYTaq9LIldmtdRX1A2vK53rapYw6EoweWxQ7PwKgBMISJDbiY2AQI4c
-         ibTZHBQaeShTrsUfLjrRSUvMwZv3jBUoVPEYT1ctILZNCFxb9S2M3JaLXEKCl3WO1uKR
-         eJO16VVfxr4l7C6dYJxDbwDLFmCP7bPmkI7Xzu2jSRg1ekDdvIiogA0NrE5lje8z+G0q
-         h5lw8liRb3wYHqqP7Pyl+kmM4TTWuGQpQrMY+L9Y9GZ3TMR5Yoi2S9kFozOkl6rXOcWC
-         Ysc1sWyu9U/mwcRztzURfg3UyJAG8ROi8dzPbP4pAPhXA13YU54pUb4yvAhLEP4W73vS
-         VWQA==
+        bh=TY68XKYcMAnpqoVLI6eNzEGFwEz9hfqEyozSZkUqiMg=;
+        b=IkKghyLptunwyBrOhSFEBaAEBdMoMTGk1l+SGIyEx+2rLK6ncco9PgUs78vyY+SoUd
+         sJcvRPPWoYypeWT9SWScT0UzMOloqvY4OofieYCzP1R/NfKVsnbfYt5TKDvUKP5CHELg
+         Imt/bMzW7cMWi0PKSOxnohfZKvT8Ml/quaDW4QT48YN8ghQ7Q5ygZjj0IYidaPitvDkb
+         QVHYezAx/wle8DSSA6C93WwVRMjY2guWgp3bR987pUPEZXJX0b77dxDb6rbp54y1XvhT
+         a1FdyKc5nL8oQwT6jmHVVn8F2L65wZu4XbHbjydOZTI/oIDIBtCpzsKtKUNi7ye66nni
+         Txdw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=pwLZaIFzNrnqXgWTnCXmnKUWoAR1LL7iafkRHa/mY8I=;
-        b=afyDksCSUgmuplNRso/zVqVG7ZZq7wKeZgceyuxLzJ6cXh4vljg1pQm4kfP+xLE1sC
-         jvFQy1y10YIIUn0RI0SRreqkTqe/NHbC/QsKDTP+hejs9G+Udw9tvBvs8apQS+9fPuI5
-         wZqwY/7WroesrrVYtolXx1aslVmbbtMKTtW+/bo8d5u6g7fT1ZGn1r6NDcmLTSq6RZEn
-         +RtO0CnyAu1qFtH8+u7Mt+/eYyIfVLGgPKVdUYP5bJUroiKUjEuoHRmoOAMX4q61n8uR
-         u8X7xkxh4ICn/3tEpP65BLyyTdWDJ+jF7U0z+NldNG5qb1iLbJnXCx3QwcSC6YjAiJ0T
-         wDPg==
+        bh=TY68XKYcMAnpqoVLI6eNzEGFwEz9hfqEyozSZkUqiMg=;
+        b=KrEUe/qhW88BV6tnXEp6PZA2ePzQLM00dHjuoLpqjXVXwGIYamWzxeiTdu3GOvL+qy
+         wQsBZNStDqLWdN8SjAxXY8BEHlXhC/G5zQxk4qzRpFU4Tv/IM0uea404Hno4bRlTw9nl
+         KZTMEohUJx5B1BGZ6GlcO0W3GyvvnH/2OQzQsnf2coX6yt4yw/uZSZD5EfEbzrwCr7yY
+         2RNR8vEBe1BeIWPCbOHgxz+9dJ6RRoRYRyHBSMiE5F1d29QP1Qj0tNxXh9kNT0pR2tVg
+         ky/ZyjiwcSzDy0HNeOXZ5CcHS7M4HbsESl9m2bsgGXBWyJC5x1gkauCC4l9oB/lSxWPb
+         t2Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=pwLZaIFzNrnqXgWTnCXmnKUWoAR1LL7iafkRHa/mY8I=;
-        b=fwoSoIAM4ExdkomvLLaU3kwF8xwpuxo9ks9GP/vn6m7e+fLAlK0NAv/DOuXmb21HmX
-         mF+B8i13+mdZD5kUvfQUsQ9MM23b+U7RPRptdv79ukz8LEabgylViX8dTVbRK3hDz1kD
-         VrGns9hD1mSKsVM+yl6mIIUnvhzjC3U/r+WIcEDPfHeYFScAUXndQVy1KZB8E/AnjHdH
-         MDcYmj4gLaBspX/13u3pdlpJx2uixq4YOTAmDZkHGqVANIM8MG//wcG8u452yksBxkUA
-         /0Qy/BCSJqg81n7n/IjCCepuR7AIBq4UYNtAK/jSsF828hYgdxUJbOuT1y/PkRJHmZ2w
-         EFIA==
+        bh=TY68XKYcMAnpqoVLI6eNzEGFwEz9hfqEyozSZkUqiMg=;
+        b=izwx81ez6Grs7Qwk3sYMOkWMvkF9/UXOsOHR1quK3By7JPARN177iAlRo6UmMvqWUB
+         879Nhui+1dq5YujS2wNIiSL5Q7/SyZ3EqFF1S9WuzmEmKvp4bDKhZH50G2LzONp/LFio
+         GxRe3q46HJT2hraxMS3Z1pOh5mzp8mirye1H2eOdVIkW/kdVUN7BEbXovm+3DDU58IX4
+         lFuISG/D6Q7GwKhUe9vXTA8ZAYb6jrCFlEDbESsqBZmnwBdsVt0sFQmmOr6Jdiqrd1Mz
+         NZvKZZvNsil/W/qIQRkN23OsYfz19xjLamdTFVHBGUG0fSg1ll5qXNz5QTGfGdwKX8an
+         18lA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAWFF8YkZWHEuN+zSQC01nHXd3SMKLxSM6kZ3sngVpp335woM6KZ
-	ob5jNPdLRoBchCICnVLcPqI=
-X-Google-Smtp-Source: APXvYqwINn7CPsBY67mmfYvi3131SMzpUxTgLRiHpd9hcyPb3gGmj0/Xsyp1/Uz1f+m4S8ox3OLMhA==
-X-Received: by 2002:a37:684f:: with SMTP id d76mr2377291qkc.415.1569878061342;
-        Mon, 30 Sep 2019 14:14:21 -0700 (PDT)
+X-Gm-Message-State: APjAAAXV0yzYw3/iXhsCdvjahdUwYChsA6SMz6dG5+FtX6LaGQ3uVLnm
+	ohjpXpjyCunSLeSPpXY/SoM=
+X-Google-Smtp-Source: APXvYqwup+GEFz4RLw9u1P/rgvy2v2scLJv8YLH/aX2ywFe1t6BS328cgfKOHv94FSnBPFiTkN3lcQ==
+X-Received: by 2002:a37:9bd4:: with SMTP id d203mr2353848qke.257.1569878371572;
+        Mon, 30 Sep 2019 14:19:31 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:4852:: with SMTP id v79ls4559077qka.2.gmail; Mon, 30 Sep
- 2019 14:14:20 -0700 (PDT)
-X-Received: by 2002:a37:4c4d:: with SMTP id z74mr2229798qka.459.1569878060769;
-        Mon, 30 Sep 2019 14:14:20 -0700 (PDT)
-Date: Mon, 30 Sep 2019 14:14:20 -0700 (PDT)
+Received: by 2002:ac8:19c7:: with SMTP id s7ls4957205qtk.10.gmail; Mon, 30 Sep
+ 2019 14:19:31 -0700 (PDT)
+X-Received: by 2002:aed:3fe9:: with SMTP id w38mr27459621qth.180.1569878371171;
+        Mon, 30 Sep 2019 14:19:31 -0700 (PDT)
+Date: Mon, 30 Sep 2019 14:19:30 -0700 (PDT)
 From: The Lee-Man <leeman.duncan@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <30c2ecf6-5d7b-42be-9487-4d07b18fd5c5@googlegroups.com>
+Message-Id: <f4da4808-aa2a-4de5-ace3-8f8a072b6593@googlegroups.com>
 In-Reply-To: <ab9746b4-36ec-4866-b76c-2c5ea11cdd7b@googlegroups.com>
 References: <ab9746b4-36ec-4866-b76c-2c5ea11cdd7b@googlegroups.com>
 Subject: Re: iscsiadm unable to connect to iscsd
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_1824_542678541.1569878060245"
+	boundary="----=_Part_1159_609853302.1569878370609"
 X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -79,41 +79,65 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1824_542678541.1569878060245
+------=_Part_1159_609853302.1569878370609
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_1825_1072477389.1569878060245"
+	boundary="----=_Part_1160_389020292.1569878370609"
 
-------=_Part_1825_1072477389.1569878060245
+------=_Part_1160_389020292.1569878370609
 Content-Type: text/plain; charset="UTF-8"
 
-Okay, I believe I found the problem, and it's one that I've seen before. On 
-one particular path -- in this case, when you specify "-s" as well as "-r 
-N" -- the code path forgets to set the timeout to "none" when communicating 
-with iscsid.
+See https://github.com/open-iscsi/open-iscsi/pull/174
 
-I have pushed my change to https://github.com/gonzoleeman/open-iscsi branch 
-fix-session-display-error
-
-Please feel free to try this out before I merge it into the main line, but 
-it seems to fix the problem for me.
+On Friday, September 20, 2019 at 2:02:20 AM UTC-7, Dirk Laurenz wrote:
+>
+> Hi,
+>
+> want to read the session stats for a connection, but iscsiadm claims not 
+> to be able to connect to iscsd.
+> I'm not sure how to debug this:
+>
+> $host:/etc/iscsi # iscsiadm -m session
+> tcp: [1] $IP1:3260,1032 $host1-lun01 (non-flash)
+> tcp: [2] $IP2:3260,1032 $host2-lun01 (non-flash)
+> tcp: [3] $IP3:3260,1 $host3:lun01 (non-flash)
+> $host:/etc/iscsi # iscsiadm -m session -r 2 -s
+> iscsiadm: Could not execute operation on all sessions: could not connect 
+> to iscsid
+>
+> any idea?
+>
+> OS is SLES4SAP12 SP4
+>
+> Regards,
+>
+> Dirk
+>
+>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/30c2ecf6-5d7b-42be-9487-4d07b18fd5c5%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/f4da4808-aa2a-4de5-ace3-8f8a072b6593%40googlegroups.com.
 
-------=_Part_1825_1072477389.1569878060245
+------=_Part_1160_389020292.1569878370609
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Okay, I believe I found the problem, and it&#39;s one=
- that I&#39;ve seen before. On one particular path -- in this case, when yo=
-u specify &quot;-s&quot; as well as &quot;-r N&quot; -- the code path forge=
-ts to set the timeout to &quot;none&quot; when communicating with iscsid.</=
-div><div><br></div><div>I have pushed my change to https://github.com/gonzo=
-leeman/open-iscsi branch fix-session-display-error</div><div><br></div><div=
->Please feel free to try this out before I merge it into the main line, but=
- it seems to fix the problem for me.<br></div></div>
+<div dir=3D"ltr">See <a href=3D"https://github.com/open-iscsi/open-iscsi/pu=
+ll/174">https://github.com/open-iscsi/open-iscsi/pull/174</a><br><br>On Fri=
+day, September 20, 2019 at 2:02:20 AM UTC-7, Dirk Laurenz wrote:<blockquote=
+ class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1=
+px #ccc solid;padding-left: 1ex;"><div dir=3D"ltr">Hi,<div><br></div><div>w=
+ant to read the session stats for a connection, but iscsiadm claims not to =
+be able to connect to iscsd.</div><div>I&#39;m not sure how to debug this:<=
+/div><div><br></div><div><div>$host:/etc/iscsi # iscsiadm -m session</div><=
+div>tcp: [1] $IP1:3260,1032 $host1-lun01 (non-flash)</div><div>tcp: [2] $IP=
+2:3260,1032 $host2-lun01 (non-flash)</div><div>tcp: [3] $IP3:3260,1 $host3:=
+lun01 (non-flash)</div><div>$host:/etc/iscsi # iscsiadm -m session -r 2 -s<=
+/div><div>iscsiadm: Could not execute operation on all sessions: could not =
+connect to iscsid</div></div><div><br></div><div>any idea?</div><div><br></=
+div><div>OS is SLES4SAP12 SP4</div><div><br></div><div>Regards,</div><div><=
+br></div><div>Dirk</div><div><br></div></div></blockquote></div>
 
 <p></p>
 
@@ -124,11 +148,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/30c2ecf6-5d7b-42be-9487-4d07b18fd5c5%40googlegroups.c=
+om/d/msgid/open-iscsi/f4da4808-aa2a-4de5-ace3-8f8a072b6593%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/30c2ecf6-5d7b-42be-9487-4d07b18fd5c5%40googlegroups.com</a>.<b=
+d/open-iscsi/f4da4808-aa2a-4de5-ace3-8f8a072b6593%40googlegroups.com</a>.<b=
 r />
 
-------=_Part_1825_1072477389.1569878060245--
+------=_Part_1160_389020292.1569878370609--
 
-------=_Part_1824_542678541.1569878060245--
+------=_Part_1159_609853302.1569878370609--
