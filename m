@@ -1,72 +1,186 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBP43QPWQKGQE5DSFUQY@googlegroups.com>
+Return-Path: <open-iscsi+bncBD54HHNYIIIM7W645UCRUBAA57YUS@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x837.google.com (mail-qt1-x837.google.com [IPv6:2607:f8b0:4864:20::837])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C697D47CF
-	for <lists+open-iscsi@lfdr.de>; Fri, 11 Oct 2019 20:45:21 +0200 (CEST)
-Received: by mail-qt1-x837.google.com with SMTP id r15sf10319864qtn.12
-        for <lists+open-iscsi@lfdr.de>; Fri, 11 Oct 2019 11:45:21 -0700 (PDT)
+Received: from mail-io1-xd3d.google.com (mail-io1-xd3d.google.com [IPv6:2607:f8b0:4864:20::d3d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02B05E780F
+	for <lists+open-iscsi@lfdr.de>; Mon, 28 Oct 2019 19:05:05 +0100 (CET)
+Received: by mail-io1-xd3d.google.com with SMTP id 125sf8969815iou.7
+        for <lists+open-iscsi@lfdr.de>; Mon, 28 Oct 2019 11:05:04 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1572285904; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=v9/00HxqqIZekX8x3zhr27Jx88CRrz5hvhEDpWC4W06v9Q3Aen5pdwvVignM3un0KS
+         9kYvg/BraSRq7ltWUTehAHAy3fItcd9vmLS5b58ijWfLt+BbojqKArFHzY5f4axJdhDA
+         VLn1Fu3vDJekZzRy9fr/0PudfcMCWDP730BwEUNQQKZeWQ/+nYpD4BxcHLU/2OJSb8ha
+         Rptp8K3ZUbXbAGpjv0oLuLT7s0nmnyARcMgWIj/gdPrr500Sae0BEAtw0uYrYMrG0988
+         wE8zCnOVgTWgyFM0hjHprGtoGveTD2BihOlYgg9HaBKDQhdJ7xXjEf8fdYbqugfGcUFR
+         s/0g==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:mime-version:content-id
+         :content-language:accept-language:in-reply-to:references:message-id
+         :date:thread-index:thread-topic:subject:cc:to:from:sender
+         :dkim-signature;
+        bh=wJD91ldl3dauzuw6w9xweJugJuJKg+HrtX5UPdVIw7M=;
+        b=Fv+rU60K5NdrgHxQYxbtw59nCOHP4WR6W3WhkTDPxG2YQrzk3lZ0A7tIKEW/FZvj1n
+         LFc+YCvPyc9IccsKUZfAHmg40MXzjzcbbTohYl+wNxZhfl0u7VUUgjStNz5eCbARJvPj
+         Vjzv28VtN6Rmanu8zpmZZCdFLYD/zpp+O/pSLZcS8hrslIv9FIC90iNtNUI6414lz/wF
+         4+ILWkmt1gZgeymZ6PuDKbJaXsDjc4mwC0gmDTp37TSaMsPLDuKSbD22tXiuk1TtMrBu
+         NvD4h8eLw6FBNpSRUSagWBi5z4QeS0XiYww5FdKJk8NGBtZwFC8CvYPdh/US5WXO++0n
+         k3Lw==
+ARC-Authentication-Results: i=3; gmr-mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
+       spf=pass (google.com: domain of lduncan@suse.com designates 15.124.64.67 as permitted sender) smtp.mailfrom=LDuncan@suse.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=oq7j22YS0MiI4yLyNvgP4EyhbhofnJNnFVeN/ObLQsY=;
-        b=odIr6Sk3U2SXQowHaiQdK47byTNTv6OW6qSpDMkXpAzdM415WW/HRUtJOXswmb+NiJ
-         P1gpDg0fWDHIRdnE05pys7jsZHUFL1kNeGVLE+WiIeIGrh+/ku1FGcIACeOIgm64pDPK
-         Fh+yqt8zkJIjpwsAbRMwNRth9zidLG1xo0+UtEdRFfPbY2yQ4Po0Rv2Y6AvIqYiImJGC
-         bxyMcXzN8JWTBi45O0AitgfEwaVUKDKCxM8OE4NU2G1dyJR0tWmPfdY2LVBNJWT2VRKa
-         uZQ5CejOWg8CW26PKJ009c42bGTI3z4Ou2vRk/TMonA5xKvlw+br+J7pGAbQ3hySenBk
-         ywsA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=oq7j22YS0MiI4yLyNvgP4EyhbhofnJNnFVeN/ObLQsY=;
-        b=TZRTOKoWMuTMnHyzu44XwTHrggBqRtwVu4e2HBPtYTcoio+ozONxd++Q3PMa9c7QaS
-         wHb9OKPQH4OwIWABi/JL/gWOIozvz6LKOK+LgCOD6K1y+h2QHpemjMUrClwLf//H04rS
-         xbopeCNRZgxphKcwlQoUui6SAq4QlikQm/Vr+2wXc5NiBYJAAeMbISRpaFC3R4/P2njR
-         qtCGofpMn7L1QPAHbSuDezH2yjgtSXrGPZ+GTOT/8AEG727ibNyF43Eut5UyWInhSIpm
-         bO1S5dWWMpy8g2tT4GklSx1Y42kD6uKDuP7rW8IofIh3qIUPg9zOHBHWlT0GrYiCBJPa
-         7/1g==
+        h=sender:from:to:cc:subject:thread-topic:thread-index:date:message-id
+         :references:in-reply-to:accept-language:content-language:content-id
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=wJD91ldl3dauzuw6w9xweJugJuJKg+HrtX5UPdVIw7M=;
+        b=FxsLIDillop9QFoGATBNuV7VewUvJrVIud2iXAaZQ5e2Iy7YprH6kEImg9w74QhV3G
+         4w9cFPwmWvmdIec3DZMepQjqNYDjNxrDfYc7eRop8WDuMdoWAUWh/lQjCdE5G/ugpyyl
+         +WhVC7d5080lyQkWVt6AFRXLNYHYIAbPhjdhFLzkYAsWHSrkyUkEbF7hckwYlk161+zU
+         6xd3VcHWayqRp7YIxw+Eu2NTigu8OP3+5aVQ9SGcPhBmWqNVqITnX8e27MzCOXRjPIb/
+         IJOZ2fOOd+QF5x67JOoA8vGQP1LHQ2YZcbQIcXouO06MDYHI6zHj9CO+3D2k6yhx4WZx
+         ZR3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=oq7j22YS0MiI4yLyNvgP4EyhbhofnJNnFVeN/ObLQsY=;
-        b=O9FqmGphLMf90CHwbs5p0Zxv/qGLI/jEPTxkDtbew6VuY2siQc2S6T80JlJ6o4bk6p
-         Yg4HU5FMOsTwYY7N/RRZnvGsGq/IPJn820340vD9G8jH6ITUM0r9LOsj+nvh3MbQodge
-         i1rNj5cTMBqw5IB2aLmIJaVStuPpDobPOU8vigeF9LPR++fGY92NtvsT8JHV9LM8EgVK
-         mwjXa2NPOBb9EPT1547q5TXmuWDNdjFZSBZB2+xZDfhx4QEcHRa9hQ+dFPxmt6LNPn2l
-         nW/FWEhRif3yocvkWwFG4ps9I2dVj4qoapCEpOpK2EhY4NxRrLmGas66ZFkKRqpNjzev
-         ZSAw==
+        h=sender:x-gm-message-state:from:to:cc:subject:thread-topic
+         :thread-index:date:message-id:references:in-reply-to:accept-language
+         :content-language:content-id:mime-version:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=wJD91ldl3dauzuw6w9xweJugJuJKg+HrtX5UPdVIw7M=;
+        b=DARND9pG7RVyaprIZ1RSeAM/ipVvRUZ/Ali6kawNNMQCiGnJn+f1f9OTSMaKX49aIL
+         hsbFMHls0ajzx1WArb8f5W3xNRXFbzbWnsU6hC3MDkxVzcOOjnsQS7oOhC6zirSv5K1x
+         Znx/NX1mcYSr6PQ4WeEGbkk57Y43ztjgFS8XhnEbC9LUW8FdrGVlKvG5mZHLWvVKIIfs
+         I2V35h0OtyQZJxIi4mcclsU6L2ln4URbJoHUnDCl5UWYSTzvz7mUnC2avrsPlL9mxLMM
+         YoNHXe/UKTu/kuQ2LZYb/18H48XT9y2jJ2XeNDB1UxYX66Mk92+6yPdC6BqtwsxHyBdD
+         up2Q==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAXdQHFRpShqhxqOv0xQu5t+kawUlvqmGXxz5ukKd3M0/bgMlOAv
-	raSSLwaoHNXMI9M8YIOV0t4=
-X-Google-Smtp-Source: APXvYqwnHAkzhp2wGIpKQTz0FIQdhxROCmEShir7BzASN4UshBol4qn40uZutVPk9PDJ62jf2vjzKw==
-X-Received: by 2002:a37:9847:: with SMTP id a68mr17562300qke.223.1570819520073;
-        Fri, 11 Oct 2019 11:45:20 -0700 (PDT)
+X-Gm-Message-State: APjAAAV8Tey3ALFBNuuJBbNjrwy76fXhJ0cptQdJmHOUSQUfvZuUMqXw
+	z7fxSNl1iCuzYDx8YaGidCQ=
+X-Google-Smtp-Source: APXvYqzJ8YSoHq60EoRV3hfNeN/W6kAmGtXJizbjeXs+Uk2s8j9j45gkM+NFqxSWSQRcrkiMofoSYA==
+X-Received: by 2002:a92:6510:: with SMTP id z16mr20689336ilb.183.1572285903945;
+        Mon, 28 Oct 2019 11:05:03 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a0c:aed6:: with SMTP id n22ls1457837qvd.6.gmail; Fri, 11 Oct
- 2019 11:45:19 -0700 (PDT)
-X-Received: by 2002:a0c:fd46:: with SMTP id j6mr17116231qvs.209.1570819519378;
-        Fri, 11 Oct 2019 11:45:19 -0700 (PDT)
-Date: Fri, 11 Oct 2019 11:45:18 -0700 (PDT)
-From: The Lee-Man <leeman.duncan@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <4616b5ef-9fc2-492e-8688-584518256bed@googlegroups.com>
-In-Reply-To: <0fc26f37-c17b-46e8-b7c8-fd642c4573f9@googlegroups.com>
-References: <0fc26f37-c17b-46e8-b7c8-fd642c4573f9@googlegroups.com>
-Subject: Re: after changing storage ports from 1Gig to 10Gig unable to
- access the vm, Openstack level vm is going to error state
+Received: by 2002:a5d:9e4a:: with SMTP id i10ls2792009ioi.6.gmail; Mon, 28 Oct
+ 2019 11:05:03 -0700 (PDT)
+X-Received: by 2002:a6b:6011:: with SMTP id r17mr2873599iog.245.1572285903378;
+        Mon, 28 Oct 2019 11:05:03 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1572285903; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=wOGNX+5YUydXxpIdXq7U6HwilXkWyOMZdDKobKzT6Gt0cKPct/LAtegaTXzcikYr6G
+         OT2kHYWYAkPyi9LW8PXsxe3tQNN7I+/u3u49t5DJWOaptpNJgkDggy77XYxOl0dgYe0K
+         r1AJtFBW7KDDVXWXGFgYGnw6B5MiE3vHbCCL9pXxjylR5uMbsWIBNUmCQuRbUcBbGlwO
+         ypcegKyIPksssn+ZCdKKij+v4iO9CbQKTIQBqL2YAa6U2SmULTjTgEkQ4fHuwVxfwiw7
+         GIoiuiVuGk1bp84FrYC92JehVBJz4wOT/b8RHcr/QwgurwxEnudlHefvQgpNMiOk77FE
+         3zMw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-transfer-encoding:content-id:content-language
+         :accept-language:in-reply-to:references:message-id:date:thread-index
+         :thread-topic:subject:cc:to:from;
+        bh=EBCqRrfB4l68Dsxfc+7eIS8wJi93wNvkXn6u6caCMKM=;
+        b=KVWoTxQZseCx6Fn3Ch93gLVbUGxuqUGHghVCzj6r3WAW8D4PkzyU6U/xuagFHgjkDo
+         hvbA2MhkQsnGAL8Q61vlZy8FdxPrGkLKRqcE0oFU5J0AhLSov53a10Kzyf9Y064ndOKu
+         9AM+DjlxcgtCgxV/X80B0z9jtIA51Hvb82ArAXV+x4slnMkUdFk5L3SPJTJcxHxHBUoD
+         lPLzf/99tb80Nj2d0P8D3d7i/wQ+ASNF/dx3bxZTaVRbiZgUz/sgXXjZVzd7HvqobMrS
+         yo35zRk/OriWU6dwEXu3KAGagQuncQ609yrSfuslkeF9J2fHTnJJI8T1qyRsE1Jnm4GL
+         VfqA==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
+       spf=pass (google.com: domain of lduncan@suse.com designates 15.124.64.67 as permitted sender) smtp.mailfrom=LDuncan@suse.com
+Received: from m9a0002g.houston.softwaregrp.com (m9a0002g.houston.softwaregrp.com. [15.124.64.67])
+        by gmr-mx.google.com with ESMTPS id h14si36281ilc.0.2019.10.28.11.04.55
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 28 Oct 2019 11:05:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lduncan@suse.com designates 15.124.64.67 as permitted sender) client-ip=15.124.64.67;
+Received: FROM m9a0002g.houston.softwaregrp.com (15.121.0.190) BY m9a0002g.houston.softwaregrp.com WITH ESMTP;
+ Mon, 28 Oct 2019 18:04:16 +0000
+Received: from M9W0068.microfocus.com (2002:f79:bf::f79:bf) by
+ M9W0067.microfocus.com (2002:f79:be::f79:be) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1591.10; Mon, 28 Oct 2019 18:04:40 +0000
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com (15.124.72.10) by
+ M9W0068.microfocus.com (15.121.0.191) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1591.10 via Frontend Transport; Mon, 28 Oct 2019 18:04:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DCZR9n+aOhp9unMfOGUg2MWK9zgl0cMkxbm+ohMkNRhnm5uYXfASCp+0yqhA+Omc60Yn6A8OawjbmgX62kkU5k0PHreWpcjRDml0QcaAqAuzZeYOJEttvgL3Lr36hpgWpztbLOOdhrJhpRCjmgo3qNGJdP5yMDxoumGABMZbgIn2KjrN6BEXkaN9V4/1HzOnck3QoH2uUQOob+bjmgr1eWJy4x4quqtlsQROFMiiFSI0+OEEtJr5u3wbs6jkq4RieAajETZC8iYItVDdkADSR+OxmmH74GXTJwHqUrz7zSg4Qg8OkXSMwFgGtYaVJ2z5hKvFtCFH5TIkBqUmOaV5/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EBCqRrfB4l68Dsxfc+7eIS8wJi93wNvkXn6u6caCMKM=;
+ b=Wf0PQe2H+UQCTdjDMZ/bv8dX/XltzfU0OA0/SNMNaianHf8N4KsyznASHJjdHrykRahW6gs1Zk039M3nWWy4d/yXSILnK8WfvW5/zNGWa7M5Lv4TyNs9fUM0uRbbuHK1yUsINSCZHGqqa7UZiIkhRB/bZM5SDr4S1Q8bFydY8xb6i0m51+s7Eph6qHeNWCdf+Y5BL1E+uE2ULNvjg7VSIB+S3mMKZiO3ZVdeGxp6K+LclasKSkbIfIC43jkzTxpT8O0182J+ejb4ZZzLJEogoL0wTE4l7k2HSD+5kgc16OaXowjO2Z4ZMMXz8yReNXnHojAFePX8UfEXJxgohG47Cg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+Received: from MN2PR18MB3278.namprd18.prod.outlook.com (10.255.237.204) by
+ MN2PR18MB2654.namprd18.prod.outlook.com (20.179.84.28) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2387.24; Mon, 28 Oct 2019 18:04:39 +0000
+Received: from MN2PR18MB3278.namprd18.prod.outlook.com
+ ([fe80::b499:7a76:fb32:b220]) by MN2PR18MB3278.namprd18.prod.outlook.com
+ ([fe80::b499:7a76:fb32:b220%6]) with mapi id 15.20.2387.025; Mon, 28 Oct 2019
+ 18:04:39 +0000
+From: Lee Duncan <LDuncan@suse.com>
+To: "wubo (T)" <wubo40@huawei.com>, "cleech@redhat.com" <cleech@redhat.com>,
+	"jejb@linux.ibm.com" <jejb@linux.ibm.com>, "martin.petersen@oracle.com"
+	<martin.petersen@oracle.com>, "open-iscsi@googlegroups.com"
+	<open-iscsi@googlegroups.com>, "linux-scsi@vger.kernel.org"
+	<linux-scsi@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+CC: Mingfangsen <mingfangsen@huawei.com>, "liuzhiqiang (I)"
+	<liuzhiqiang26@huawei.com>
+Subject: Re: [PATCH] scsi: avoid potential deadloop in iscsi_if_rx func
+Thread-Topic: [PATCH] scsi: avoid potential deadloop in iscsi_if_rx func
+Thread-Index: AdWL2reJ1uh470cQT+idNsWy+95OAQB3236A
+Date: Mon, 28 Oct 2019 18:04:39 +0000
+Message-ID: <92b221da-18a8-8b7b-0436-ca59088fd45b@suse.com>
+References: <EDBAAA0BBBA2AC4E9C8B6B81DEEE1D6915DE9E71@DGGEML525-MBS.china.huawei.com>
+In-Reply-To: <EDBAAA0BBBA2AC4E9C8B6B81DEEE1D6915DE9E71@DGGEML525-MBS.china.huawei.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: LO2P265CA0188.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:a::32) To MN2PR18MB3278.namprd18.prod.outlook.com
+ (2603:10b6:208:168::12)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [73.25.22.216]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d3d2cc07-cfdb-43a6-1b20-08d75bd14d0e
+x-ms-traffictypediagnostic: MN2PR18MB2654:
+x-microsoft-antispam-prvs: <MN2PR18MB26548845768C58A7FA235B76DA660@MN2PR18MB2654.namprd18.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0204F0BDE2
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(136003)(346002)(376002)(39860400002)(366004)(199004)(189003)(66946007)(66476007)(66556008)(66446008)(64756008)(8676002)(81156014)(81166006)(476003)(6512007)(11346002)(486006)(76176011)(52116002)(2616005)(99286004)(6246003)(2906002)(8936002)(446003)(186003)(102836004)(6486002)(229853002)(5660300002)(386003)(6506007)(53546011)(66066001)(6436002)(25786009)(14444005)(256004)(31696002)(478600001)(7736002)(71190400001)(31686004)(305945005)(2501003)(110136005)(316002)(54906003)(3846002)(71200400001)(6116002)(36756003)(4326008)(2201001)(14454004)(80792005)(86362001)(26005);DIR:OUT;SFP:1102;SCL:1;SRVR:MN2PR18MB2654;H:MN2PR18MB3278.namprd18.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: suse.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EOHwDFZqLwCVKBT7no7fuFqLe/Y/qz8ZV8iQvrTBdQmRfkNY92LAWrngfmUaLntZXxyxBuRplkkSi+SmpGJZ7enB1MltbYgYFIU0puXsqlD4aboe+PnFn1FtI6aUI4b+3ESUYOtbrgrV4NeYzSSQyyGxtF7IsO7EcZAmtvJtGf2b5sp1cRHYY4fuloAgQaDqeRcB9uXeJKt8FjbPHV9jJvD8IsWN99EmOzGAXLSN8+jDbyaA+aEJzr+JSmRGf/DPZ5UQ0i+n23zR+LAkoHVz5bbEnUUmOa9EBTq305Mbg0B/1Gv2eS/jgbG/PmRakyFRp8ic1hPccoWIteGNO0A762LOS0AcLtHn940Ei9VVHLq4Z+gP+8RzwmyPaRcf3255JQ10vmUNMKbhSyXqA9kQmMYFuW4sE0PKBIqKig0QhhVqpGI9QirGd25GzaRLhb/k
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="UTF-8"
+Content-ID: <A01683403433E34B9164BF4A357C6CF5@namprd18.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_4020_1092905396.1570819518413"
-X-Original-Sender: leeman.duncan@gmail.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3d2cc07-cfdb-43a6-1b20-08d75bd14d0e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Oct 2019 18:04:39.6376
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 856b813c-16e5-49a5-85ec-6f081e13b527
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 989AR3NvcfrtIwZYVDk3052DEou2NX8A46SkLpETzUDGQ/VUrmfIXq0cvtfFlVqj5TUkXAdgkWiEZgB9HCI1KQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR18MB2654
+X-OriginatorOrg: suse.com
+X-Original-Sender: lduncan@suse.com
+X-Original-Authentication-Results: gmr-mx.google.com;       arc=pass (i=1
+ spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass
+ fromdomain=suse.com);       spf=pass (google.com: domain of lduncan@suse.com
+ designates 15.124.64.67 as permitted sender) smtp.mailfrom=LDuncan@suse.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -80,450 +194,129 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_4020_1092905396.1570819518413
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_4021_510925984.1570819518414"
+On 10/26/19 1:55 AM, wubo (T) wrote:
+> From: Bo Wu <wubo40@huawei.com>
+> 
+> In iscsi_if_rx func, after receiving one request through iscsi_if_recv_msg
+> func,iscsi_if_send_reply will be called to try to reply the request in 
+> do-loop. If the return of iscsi_if_send_reply func fails all the time, one
+> deadloop will occur.
+>  
+> For example, a client only send msg without calling recvmsg func, then it
+> will result in the watchdog soft lockup. The details are given as follows,
+> 
+> Details of the special case which can cause deadloop:
+> sock_fd = socket(AF_NETLINK, SOCK_RAW, NETLINK_ISCSI); 
+> ... 
+> retval = bind(sock_fd, (struct sock addr*) & src_addr, sizeof (src_addr); 
+> ... 
+> while (1) { 
+> 	state_smg = sendmsg(sock_fd, &msg, 0); 
+> } 
+> // Note: recvmsg (sock_fd, & msg, 0) is not processed here. 
+> close(sock_fd); 
+> 
+> watchdog: BUG: soft lockup - CPU#7 stuck for 22s! [netlink_test:253305]
+> Sample time: 4000897528 ns(HZ: 250)
+> Sample stat: 
+> curr: user: 675503481560, nice: 321724050, sys: 448689506750, idle: 4654054240530, iowait: 40885550700, irq: 14161174020, softirq: 8104324140, st: 0
+> deta: user: 0, nice: 0, sys: 3998210100, idle: 0, iowait: 0, irq: 1547170, softirq: 242870, st: 0
+> Sample softirq:
+> 	TIMER:        992
+> 	SCHED:          8
+> Sample irqstat:
+>  irq    2: delta       1003, curr:    3103802, arch_timer
+> CPU: 7 PID: 253305 Comm: netlink_test Kdump: loaded Tainted: G           OE     
+> Hardware name: QEMU KVM Virtual Machine, BIOS 0.0.0 02/06/2015
+> pstate: 40400005 (nZcv daif +PAN -UAO)
+> pc : __alloc_skb+0x104/0x1b0
+> lr : __alloc_skb+0x9c/0x1b0
+> sp : ffff000033603a30
+> x29: ffff000033603a30 x28: 00000000000002dd 
+> x27: ffff800b34ced810 x26: ffff800ba7569f00 
+> x25: 00000000ffffffff x24: 0000000000000000 
+> x23: ffff800f7c43f600 x22: 0000000000480020 
+> x21: ffff0000091d9000 x20: ffff800b34eff200 
+> x19: ffff800ba7569f00 x18: 0000000000000000 
+> x17: 0000000000000000 x16: 0000000000000000 
+> x15: 0000000000000000 x14: 0001000101000100 
+> x13: 0000000101010000 x12: 0101000001010100 
+> x11: 0001010101010001 x10: 00000000000002dd 
+> x9 : ffff000033603d58 x8 : ffff800b34eff400 
+> x7 : ffff800ba7569200 x6 : ffff800b34eff400 
+> x5 : 0000000000000000 x4 : 00000000ffffffff 
+> x3 : 0000000000000000 x2 : 0000000000000001 
+> x1 : ffff800b34eff2c0 x0 : 0000000000000300 
+> Call trace:
+> __alloc_skb+0x104/0x1b0
+> iscsi_if_rx+0x144/0x12bc [scsi_transport_iscsi]
+> netlink_unicast+0x1e0/0x258
+> netlink_sendmsg+0x310/0x378
+> sock_sendmsg+0x4c/0x70
+> sock_write_iter+0x90/0xf0
+> __vfs_write+0x11c/0x190
+> vfs_write+0xac/0x1c0
+> ksys_write+0x6c/0xd8
+> __arm64_sys_write+0x24/0x30
+> el0_svc_common+0x78/0x130
+> el0_svc_handler+0x38/0x78
+> el0_svc+0x8/0xc
+> 
+> Here, we add one limit of retry times in do-loop to avoid the deadloop.
+> 
+> Signed-off-by: Bo Wu <wubo40@huawei.com>
+> Reviewed-by: Zhiqiang Liu <liuzhiqiang26@huawei.com>
+> ---
+>  drivers/scsi/scsi_transport_iscsi.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+> index 417b868d8735..f377bfed6b0c 100644
+> --- a/drivers/scsi/scsi_transport_iscsi.c
+> +++ b/drivers/scsi/scsi_transport_iscsi.c
+> @@ -24,6 +24,8 @@
+>  
+>  #define ISCSI_TRANSPORT_VERSION "2.0-870"
+>  
+> +#define ISCSI_SEND_MAX_ALLOWED     10
+> +
+>  #define CREATE_TRACE_POINTS
+>  #include <trace/events/iscsi.h>
+>  
+> @@ -3682,6 +3684,7 @@ iscsi_if_rx(struct sk_buff *skb)
+>  		struct nlmsghdr	*nlh;
+>  		struct iscsi_uevent *ev;
+>  		uint32_t group;
+> +		int retries = ISCSI_SEND_MAX_ALLOWED;
+>  
+>  		nlh = nlmsg_hdr(skb);
+>  		if (nlh->nlmsg_len < sizeof(*nlh) + sizeof(*ev) ||
+> @@ -3710,8 +3713,11 @@ iscsi_if_rx(struct sk_buff *skb)
+>  				break;
+>  			if (ev->type == ISCSI_UEVENT_GET_CHAP && !err)
+>  				break;
+> +			if (retries <= 0)
+> +				break;
+>  			err = iscsi_if_send_reply(portid, nlh->nlmsg_type,
+>  						  ev, sizeof(*ev));
+> +			retries--;
+>  		} while (err < 0 && err != -ECONNREFUSED && err != -ESRCH);
+>  		skb_pull(skb, rlen);
+>  	}
+> 
 
-------=_Part_4021_510925984.1570819518414
-Content-Type: text/plain; charset="UTF-8"
+You could have used "if (--retries < 0)" (or some variation thereof) but
+that may not be as clear, and certainly is only a nit. So I'm fine with
+that.
 
-On Monday, October 7, 2019 at 7:46:04 AM UTC-7, Kuruva Maddileti wrote:
->
-> Hi Team,
->
-> We have changed the Unity storage ports from 1Gig to 10Gig. After that we 
-> have deleted the old iqn's from storage level and compute level.
->
-> old iqn's :
->
-> 170.0.0.10
-> 170.0.0.11
->
-> New 10Gig iqn's :
->
-> 170.0.0.20
-> 170.0.0.21
->
->  After deleting old iqn's we are able to access the storage at compute 
-> level, that storage is assigned to openstack vm.
->
-> We have rebooted one compute host, after that we are unable to access the 
-> storage and the openstack vm is going to error state. 
->
-> As per the nova-compute logs, the nova is trying to search for old iqn's 
-> which is not present that's the reason vm is going to error state.
->
-> Could you please find the below logs and advise further...
->
->
->
->
-> root@compute75 ~]# iscsiadm -m session
-> tcp: [1] 170.0.0.11:3260,8 iqn.1992-04.com.emc:cx.ckm00185002995.b0 
-> (non-flash)
-> tcp: [2] 170.0.0.10:3260,9 iqn.1992-04.com.emc:cx.ckm00185002995.a0 
-> (non-flash)
-> tcp: [3] 170.0.0.20:3260,7 iqn.1992-04.com.emc:cx.ckm00185002995.a1 
-> (non-flash)
-> tcp: [4] 170.0.0.21:3260,6 iqn.1992-04.com.emc:cx.ckm00185002995.b1 
-> (non-flash)
->
-> We have rebooted the old iqn's from compute level, Storage team already 
-> removed 1Gig ports from Unity storage side.
->
-> [root@compute75 ~]# iscsiadm -m node -T  
-> iqn.1992-04.com.emc:cx.ckm00185002995.b0 -p 170.0.0.11 -u
-> Logging out of session [sid: 1, target: 
-> iqn.1992-04.com.emc:cx.ckm00185002995.b0, portal: 170.0.0.11,3260]
-> Logout of [sid: 1, target: iqn.1992-04.com.emc:cx.ckm00185002995.b0, 
-> portal: 170.0.0.11,3260] successful.
-> [root@compute75 ~]# iscsiadm -m node -T  
-> iqn.1992-04.com.emc:cx.ckm00185002995.a0  -p 170.0.0.10 -u
-> Logging out of session [sid: 2, target: 
-> iqn.1992-04.com.emc:cx.ckm00185002995.a0, portal: 170.0.0.10,3260]
-> Logout of [sid: 2, target: iqn.1992-04.com.emc:cx.ckm00185002995.a0, 
-> portal: 170.0.0.10,3260] successful.
-> [root@compute75 ~]# iscsiadm -m node -o delete -T  
-> iqn.1992-04.com.emc:cx.ckm00185002995.b0
-> [root@compute75 ~]# iscsiadm -m node -o delete -T  
-> iqn.1992-04.com.emc:cx.ckm00185002995.a0
-> [root@compute75 ~]#
-> [root@compute75 ~]# systemctl restart iscsi
-> [root@compute75 ~]# systemctl restart multipathd
->
-> Try `iscsiadm --help' for more information.
-> [root@compute75 ~]# iscsiadm --m node
-> 170.0.0.20:3260,7 iqn.1992-04.com.emc:cx.ckm00185002995.a1
-> 170.0.0.21:3260,6 iqn.1992-04.com.emc:cx.ckm00185002995.b1
-> [root@compute75 ~]#
->
->
-> After reboot of the compute host 
->
->
-> root@compute75 ~]# iscsiadm --m session
-> tcp: [3] 170.0.0.20:3260,7 iqn.1992-04.com.emc:cx.ckm00185002995.a1 
-> (non-flash)
-> tcp: [4] 170.0.0.21:3260,6 iqn.1992-04.com.emc:cx.ckm00185002995.b1 
-> (non-flash)
-> [root@compute75 ~]# multipath -ll
-> mpathb (36006016029104b0084e7955d71109aa0) dm-1 DGC     ,VRAID
-> size=1.0G features='2 queue_if_no_path retain_attached_hw_handler' 
-> hwhandler='1 alua' wp=rw
-> |-+- policy='service-time 0' prio=50 status=active
-> | `- 10:0:0:12395 sdm 8:192 active ready running
-> `-+- policy='service-time 0' prio=10 status=enabled
->   `- 11:0:0:12395 sdn 8:208 active ready running
-> mpatha (36006016029104b0050e3955d0d37f4ae) dm-0 DGC     ,VRAID
-> size=10G features='2 queue_if_no_path retain_attached_hw_handler' 
-> hwhandler='1 alua' wp=rw
-> |-+- policy='service-time 0' prio=50 status=active
-> | `- 11:0:0:4390  sdl 8:176 active ready running
-> `-+- policy='service-time 0' prio=10 status=enabled
->   `- 10:0:0:4390  sdk 8:160 active ready running
-> [root@compute75 ~]#
->
->
-> After removing old paths, still we are able to access the storage.
->
->
-> [root@compute75 ~]# ssh sdn@192.0.2.14
-> sdn@192.0.2.14's password:
-> Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-142-generic x86_64)
->
->  * Documentation:  https://help.ubuntu.com
->  * Management:     https://landscape.canonical.com
->  * Support:        https://ubuntu.com/advantage
->
-> 98 packages can be updated.
-> 56 updates are security updates.
->
->
-> Last login: Fri Oct  4 16:49:06 2019 from 192.0.2.1
-> sdn@ubuntu:~$ df -hT /mnt/test
-> Filesystem     Type  Size  Used Avail Use% Mounted on
-> /dev/vdb1      ext3  991M   35M  906M   4% /mnt/test
-> sdn@ubuntu:~$ cd /mnt/test
-> sdn@ubuntu:/mnt/test$ touch bb
-> touch: cannot touch 'bb': Permission denied
-> sdn@ubuntu:/mnt/test$ sudo su -
-> [sudo] password for sdn:
-> root@ubuntu:~# cd /mnt/test
-> root@ubuntu:/mnt/test# touch bb
-> root@ubuntu:/mnt/test# ls
-> aa  bb  docs  docs2  lost+found
-> root@ubuntu:/mnt/test#
->
->
-> Now rebooted the compute node. The vm is going to error state.
->
->
->
-> [root@compute75 ~]# reboot
-> Connection to compute75 closed by remote host.
-> Connection to compute75 closed.
-> [root@osc ~(keystone_admin)]#
->
->
->
-> [root@osc ~(keystone_admin)]# openstack server list
->
-> +--------------------------------------+-----------+--------+-----------------+------------+
-> | ID                                   | Name      | Status | Networks    
->     | Image Name |
->
-> +--------------------------------------+-----------+--------+-----------------+------------+
-> | 15c064ca-8bd0-40be-b384-c796db1da953 | test_vol3 | ERROR  | 
-> net1=192.0.2.14 | ubuntu     |
-> | afd5c571-2152-4313-988e-c74a8fc7f586 | test_vol2 | ACTIVE | 
-> net1=192.0.2.13 | ubuntu     |
-> | 34d6b9aa-4642-461c-ba22-508de8f5ba5a | test_vol1 | ERROR  | 
-> net1=192.0.2.2  | ubuntu     |
->
-> +--------------------------------------+-----------+--------+-----------------+------------+
-> [root@osc ~(keystone_admin)]#
->
->
-> 2019-10-07 16:09:52.456 28347 WARNING os_brick.initiator.connectors.iscsi 
-> [req-1f65b818-108d-41cb-9ea1-ca18761a673f - - - - -] Failed to login iSCSI 
-> target iqn.1992-04.com.emc:cx.ckm00185002995.b0 on portal 170.0.0.11:3260 
-> (exit code 8).
-> 2019-10-07 16:09:52.458 28347 INFO os_brick.initiator.connectors.iscsi 
-> [req-1f65b818-108d-41cb-9ea1-ca18761a673f - - - - -] Trying to connect to 
-> iSCSI portal 170.0.0.10:3260
-> 2019-10-07 16:11:52.636 28347 WARNING os_brick.initiator.connectors.iscsi 
-> [req-1f65b818-108d-41cb-9ea1-ca18761a673f - - - - -] Failed to login iSCSI 
-> target iqn.1992-04.com.emc:cx.ckm00185002995.a0 on portal 170.0.0.10:3260 
-> (exit code 8).
-> 2019-10-07 16:11:52.789 28347 ERROR os_brick.initiator.connectors.iscsi 
-> [req-1f65b818-108d-41cb-9ea1-ca18761a673f - - - - -] Could not login to any 
-> iSCSI portal.
-> 2019-10-07 16:11:52.790 28347 WARNING nova.compute.manager 
-> [req-1f65b818-108d-41cb-9ea1-ca18761a673f - - - - -] [instance: 
-> 15c064ca-8bd0-40be-b384-c796db1da953] Failed to resume instance 
->
->
-> Could you please advise further on this.
->
->
-No, not really. This does not seem like an iSCSI issue, unless I'm missing 
-something. It seems like something you have is caching your old IP address.
+But I would like to see some sort of error or even debug kernel message
+if we time out waiting to receive a response. Otherwise, how will some
+human diagnose this problem?
 
-As you noted, you can clear the iscsi database with:
-
-> # iscsiadm -m session -u
-
-to log out of all sessions, and:
-
-> # iscsiadm -m node --op delete
-
-to delete all database records. Then do:
-
-> # iscsiadm -m discovery -t st <TARGET-HOSTNAME>
-
-to rediscover targets.
-
-I assume you have no interface files, since you did not mention that.
+-- 
+Lee Duncan
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/4616b5ef-9fc2-492e-8688-584518256bed%40googlegroups.com.
-
-------=_Part_4021_510925984.1570819518414
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">On Monday, October 7, 2019 at 7:46:04 AM UTC-7, Kuruva Mad=
-dileti wrote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-le=
-ft: 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;"><div dir=3D"ltr">=
-Hi Team,<div><br></div><div>We have changed the Unity storage ports from 1G=
-ig to 10Gig. After that we have deleted the old iqn&#39;s from storage leve=
-l and compute level.</div><div><br></div><div>old iqn&#39;s :</div><div><br=
-></div><div>170.0.0.10</div><div>170.0.0.11</div><div><br></div><div>New 10=
-Gig iqn&#39;s :</div><div><br></div><div>170.0.0.20</div><div>170.0.0.21</d=
-iv><div><br></div><div>=C2=A0After deleting old iqn&#39;s we are able to ac=
-cess the storage at compute level, that storage is assigned to openstack vm=
-.</div><div><br></div><div>We have rebooted one compute host, after that we=
- are unable to access the storage and the openstack vm is going to error st=
-ate.=C2=A0</div><div><br></div><div>As per the nova-compute logs, the nova =
-is trying to search for old iqn&#39;s which is not present that&#39;s the r=
-eason vm is going to error state.</div><div><br></div><div>Could you please=
- find the below logs and advise further...</div><div><br></div><div><br></d=
-iv><div><br></div><div><br></div><div><div>root@compute75 ~]# iscsiadm -m s=
-ession</div><div>tcp: [1] <a href=3D"http://170.0.0.11:3260" target=3D"_bla=
-nk" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;http://www.google.com/=
-url?q\x3dhttp%3A%2F%2F170.0.0.11%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dA=
-FQjCNEypsh-EddtAPg29l3BI4D0KVlcMg&#39;;return true;" onclick=3D"this.href=
-=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.11%3A3260\x26sa=
-\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEypsh-EddtAPg29l3BI4D0KVlcMg&#39;;return=
- true;">170.0.0.11:3260</a>,8 iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.b0=
- (non-flash)</div><div>tcp: [2] <a href=3D"http://170.0.0.10:3260" target=
-=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;http://www.goo=
-gle.com/url?q\x3dhttp%3A%2F%2F170.0.0.10%3A3260\x26sa\x3dD\x26sntz\x3d1\x26=
-usg\x3dAFQjCNGKq5urUc0bHfikjdmwnqO7tRGD8A&#39;;return true;" onclick=3D"thi=
-s.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.10%3A3260=
-\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNGKq5urUc0bHfikjdmwnqO7tRGD8A&#39;;=
-return true;">170.0.0.10:3260</a>,9 iqn.1992-04.com.emc:cx.<wbr>ckm00185002=
-995.a0 (non-flash)</div><div>tcp: [3] <a href=3D"http://170.0.0.20:3260" ta=
-rget=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;http://www=
-.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.20%3A3260\x26sa\x3dD\x26sntz\x3d1=
-\x26usg\x3dAFQjCNEEm4DNTuH_869QQH8fdPuxWj2eBA&#39;;return true;" onclick=3D=
-"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.20%3A=
-3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEEm4DNTuH_869QQH8fdPuxWj2eBA&#=
-39;;return true;">170.0.0.20:3260</a>,7 iqn.1992-04.com.emc:cx.<wbr>ckm0018=
-5002995.a1 (non-flash)</div><div>tcp: [4] <a href=3D"http://170.0.0.21:3260=
-" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;http:/=
-/www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.21%3A3260\x26sa\x3dD\x26sntz\=
-x3d1\x26usg\x3dAFQjCNGb7FN4-Nn0MazYSuwOMbTkdo0pBg&#39;;return true;" onclic=
-k=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.2=
-1%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNGb7FN4-Nn0MazYSuwOMbTkdo0p=
-Bg&#39;;return true;">170.0.0.21:3260</a>,6 iqn.1992-04.com.emc:cx.<wbr>ckm=
-00185002995.b1 (non-flash)</div><div><br></div><div>We have rebooted the ol=
-d iqn&#39;s from compute level, Storage team already removed 1Gig ports fro=
-m Unity storage side.</div><div><br></div><div>[root@compute75 ~]# iscsiadm=
- -m node -T=C2=A0 iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.b0 -p 170.0.0.=
-11 -u</div><div>Logging out of session [sid: 1, target: iqn.1992-04.com.emc=
-:cx.<wbr>ckm00185002995.b0, portal: 170.0.0.11,3260]</div><div>Logout of [s=
-id: 1, target: iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.b0, portal: 170.0=
-.0.11,3260] successful.</div><div>[root@compute75 ~]# iscsiadm -m node -T=
-=C2=A0 iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.a0=C2=A0 -p 170.0.0.10 -u=
-</div><div>Logging out of session [sid: 2, target: iqn.1992-04.com.emc:cx.<=
-wbr>ckm00185002995.a0, portal: 170.0.0.10,3260]</div><div>Logout of [sid: 2=
-, target: iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.a0, portal: 170.0.0.10=
-,3260] successful.</div><div>[root@compute75 ~]# iscsiadm -m node -o delete=
- -T=C2=A0 iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.b0</div><div>[root@com=
-pute75 ~]# iscsiadm -m node -o delete -T=C2=A0 iqn.1992-04.com.emc:cx.<wbr>=
-ckm00185002995.a0</div><div>[root@compute75 ~]#</div><div>[root@compute75 ~=
-]# systemctl restart iscsi</div><div>[root@compute75 ~]# systemctl restart =
-multipathd</div><div><br></div><div>Try `iscsiadm --help&#39; for more info=
-rmation.</div><div>[root@compute75 ~]# iscsiadm --m node</div><div><a href=
-=3D"http://170.0.0.20:3260" target=3D"_blank" rel=3D"nofollow" onmousedown=
-=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.20=
-%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEEm4DNTuH_869QQH8fdPuxWj2eB=
-A&#39;;return true;" onclick=3D"this.href=3D&#39;http://www.google.com/url?=
-q\x3dhttp%3A%2F%2F170.0.0.20%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjC=
-NEEm4DNTuH_869QQH8fdPuxWj2eBA&#39;;return true;">170.0.0.20:3260</a>,7 iqn.=
-1992-04.com.emc:cx.<wbr>ckm00185002995.a1</div><div><a href=3D"http://170.0=
-.0.21:3260" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&=
-#39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.21%3A3260\x26sa\x3d=
-D\x26sntz\x3d1\x26usg\x3dAFQjCNGb7FN4-Nn0MazYSuwOMbTkdo0pBg&#39;;return tru=
-e;" onclick=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2=
-F170.0.0.21%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNGb7FN4-Nn0MazYSu=
-wOMbTkdo0pBg&#39;;return true;">170.0.0.21:3260</a>,6 iqn.1992-04.com.emc:c=
-x.<wbr>ckm00185002995.b1</div><div>[root@compute75 ~]#</div></div><div><br>=
-</div><div><br></div><div>After reboot of the compute host=C2=A0</div><div>=
-<br></div><div><br></div><div><div>root@compute75 ~]# iscsiadm --m session<=
-/div><div>tcp: [3] <a href=3D"http://170.0.0.20:3260" target=3D"_blank" rel=
-=3D"nofollow" onmousedown=3D"this.href=3D&#39;http://www.google.com/url?q\x=
-3dhttp%3A%2F%2F170.0.0.20%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEE=
-m4DNTuH_869QQH8fdPuxWj2eBA&#39;;return true;" onclick=3D"this.href=3D&#39;h=
-ttp://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.20%3A3260\x26sa\x3dD\x26=
-sntz\x3d1\x26usg\x3dAFQjCNEEm4DNTuH_869QQH8fdPuxWj2eBA&#39;;return true;">1=
-70.0.0.20:3260</a>,7 iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.a1 (non-fla=
-sh)</div><div>tcp: [4] <a href=3D"http://170.0.0.21:3260" target=3D"_blank"=
- rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;http://www.google.com/url=
-?q\x3dhttp%3A%2F%2F170.0.0.21%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQj=
-CNGb7FN4-Nn0MazYSuwOMbTkdo0pBg&#39;;return true;" onclick=3D"this.href=3D&#=
-39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.21%3A3260\x26sa\x3dD=
-\x26sntz\x3d1\x26usg\x3dAFQjCNGb7FN4-Nn0MazYSuwOMbTkdo0pBg&#39;;return true=
-;">170.0.0.21:3260</a>,6 iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.b1 (non=
--flash)</div><div>[root@compute75 ~]# multipath -ll</div><div>mpathb (<wbr>=
-36006016029104b0084e7955d71109<wbr>aa0) dm-1 DGC=C2=A0 =C2=A0 =C2=A0,VRAID<=
-/div><div>size=3D1.0G features=3D&#39;2 queue_if_no_path retain_attached_hw=
-_handler&#39; hwhandler=3D&#39;1 alua&#39; wp=3Drw</div><div>|-+- policy=3D=
-&#39;service-time 0&#39; prio=3D50 status=3Dactive</div><div>| `- 10:0:0:12=
-395 sdm 8:192 active ready running</div><div>`-+- policy=3D&#39;service-tim=
-e 0&#39; prio=3D10 status=3Denabled</div><div>=C2=A0 `- 11:0:0:12395 sdn 8:=
-208 active ready running</div><div>mpatha (<wbr>36006016029104b0050e3955d0d=
-37f<wbr>4ae) dm-0 DGC=C2=A0 =C2=A0 =C2=A0,VRAID</div><div>size=3D10G featur=
-es=3D&#39;2 queue_if_no_path retain_attached_hw_handler&#39; hwhandler=3D&#=
-39;1 alua&#39; wp=3Drw</div><div>|-+- policy=3D&#39;service-time 0&#39; pri=
-o=3D50 status=3Dactive</div><div>| `- 11:0:0:4390=C2=A0 sdl 8:176 active re=
-ady running</div><div>`-+- policy=3D&#39;service-time 0&#39; prio=3D10 stat=
-us=3Denabled</div><div>=C2=A0 `- 10:0:0:4390=C2=A0 sdk 8:160 active ready r=
-unning</div><div>[root@compute75 ~]#</div><div><br></div><div><br></div><di=
-v>After removing old paths, still we are able to access the storage.</div><=
-div><br></div><div><br></div><div>[root@compute75 ~]# ssh <a href=3D"mailto=
-:sdn@192.0.2.14" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.hre=
-f=3D&#39;mailto:sdn@192.0.2.14&#39;;return true;" onclick=3D"this.href=3D&#=
-39;mailto:sdn@192.0.2.14&#39;;return true;">sdn@192.0.2.14</a></div><div><a=
- href=3D"mailto:sdn@192.0.2.14" target=3D"_blank" rel=3D"nofollow" onmoused=
-own=3D"this.href=3D&#39;mailto:sdn@192.0.2.14&#39;;return true;" onclick=3D=
-"this.href=3D&#39;mailto:sdn@192.0.2.14&#39;;return true;">sdn@192.0.2.14</=
-a>&#39;s password:</div><div>Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0=
--142-generic x86_64)</div><div><br></div><div>=C2=A0* Documentation:=C2=A0 =
-<a href=3D"https://help.ubuntu.com" target=3D"_blank" rel=3D"nofollow" onmo=
-usedown=3D"this.href=3D&#39;https://www.google.com/url?q\x3dhttps%3A%2F%2Fh=
-elp.ubuntu.com\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNHFeOo15MUU2PpUqzD8UN=
-jmfwpOfQ&#39;;return true;" onclick=3D"this.href=3D&#39;https://www.google.=
-com/url?q\x3dhttps%3A%2F%2Fhelp.ubuntu.com\x26sa\x3dD\x26sntz\x3d1\x26usg\x=
-3dAFQjCNHFeOo15MUU2PpUqzD8UNjmfwpOfQ&#39;;return true;">https://help.ubuntu=
-.com</a></div><div>=C2=A0* Management:=C2=A0 =C2=A0 =C2=A0<a href=3D"https:=
-//landscape.canonical.com" target=3D"_blank" rel=3D"nofollow" onmousedown=
-=3D"this.href=3D&#39;https://www.google.com/url?q\x3dhttps%3A%2F%2Flandscap=
-e.canonical.com\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNHZaoMC6tt--JvFzAQ8y=
-ZFmWixa4g&#39;;return true;" onclick=3D"this.href=3D&#39;https://www.google=
-.com/url?q\x3dhttps%3A%2F%2Flandscape.canonical.com\x26sa\x3dD\x26sntz\x3d1=
-\x26usg\x3dAFQjCNHZaoMC6tt--JvFzAQ8yZFmWixa4g&#39;;return true;">https://la=
-ndscape.canonical.<wbr>com</a></div><div>=C2=A0* Support:=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 <a href=3D"https://ubuntu.com/advantage" target=3D"_blank" rel=
-=3D"nofollow" onmousedown=3D"this.href=3D&#39;https://www.google.com/url?q\=
-x3dhttps%3A%2F%2Fubuntu.com%2Fadvantage\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dA=
-FQjCNET3VL79eChps9vsYApmr1fQpjVSw&#39;;return true;" onclick=3D"this.href=
-=3D&#39;https://www.google.com/url?q\x3dhttps%3A%2F%2Fubuntu.com%2Fadvantag=
-e\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNET3VL79eChps9vsYApmr1fQpjVSw&#39;=
-;return true;">https://ubuntu.com/advantage</a></div><div><br></div><div>98=
- packages can be updated.</div><div>56 updates are security updates.</div><=
-div><br></div><div><br></div><div>Last login: Fri Oct=C2=A0 4 16:49:06 2019=
- from 192.0.2.1</div><div>sdn@ubuntu:~$ df -hT /mnt/test</div><div>Filesyst=
-em=C2=A0 =C2=A0 =C2=A0Type=C2=A0 Size=C2=A0 Used Avail Use% Mounted on</div=
-><div>/dev/vdb1=C2=A0 =C2=A0 =C2=A0 ext3=C2=A0 991M=C2=A0 =C2=A035M=C2=A0 9=
-06M=C2=A0 =C2=A04% /mnt/test</div><div>sdn@ubuntu:~$ cd /mnt/test</div><div=
->sdn@ubuntu:/mnt/test$ touch bb</div><div>touch: cannot touch &#39;bb&#39;:=
- Permission denied</div><div>sdn@ubuntu:/mnt/test$ sudo su -</div><div>[sud=
-o] password for sdn:</div><div>root@ubuntu:~# cd /mnt/test</div><div>root@u=
-buntu:/mnt/test# touch bb</div><div>root@ubuntu:/mnt/test# ls</div><div>aa=
-=C2=A0 bb=C2=A0 docs=C2=A0 docs2=C2=A0 lost+found</div><div>root@ubuntu:/mn=
-t/test#</div><div><br></div><div><br></div><div>Now rebooted the compute no=
-de. The vm is going to error state.</div><div><br></div><div><br></div><div=
-><br></div><div>[root@compute75 ~]# reboot</div><div>Connection to compute7=
-5 closed by remote host.</div><div>Connection to compute75 closed.</div><di=
-v>[root@osc ~(keystone_admin)]#</div></div><div><br></div><div><br></div><d=
-iv><br></div><div><div>[root@osc ~(keystone_admin)]# openstack server list<=
-/div><div>+-----------------------------<wbr>---------+-----------+--------=
-<wbr>+-----------------+-----------<wbr>-+</div><div>| ID=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Name=C2=A0 =C2=A0 =C2=A0 | Status | Net=
-works=C2=A0 =C2=A0 =C2=A0 =C2=A0 | Image Name |</div><div>+----------------=
--------------<wbr>---------+-----------+--------<wbr>+-----------------+---=
---------<wbr>-+</div><div>| 15c064ca-8bd0-40be-b384-<wbr>c796db1da953 | tes=
-t_vol3 | ERROR=C2=A0 | net1=3D192.0.2.14 | ubuntu=C2=A0 =C2=A0 =C2=A0|</div=
-><div>| afd5c571-2152-4313-988e-<wbr>c74a8fc7f586 | test_vol2 | ACTIVE | ne=
-t1=3D192.0.2.13 | ubuntu=C2=A0 =C2=A0 =C2=A0|</div><div>| 34d6b9aa-4642-461=
-c-ba22-<wbr>508de8f5ba5a | test_vol1 | ERROR=C2=A0 | net1=3D192.0.2.2=C2=A0=
- | ubuntu=C2=A0 =C2=A0 =C2=A0|</div><div>+-----------------------------<wbr=
->---------+-----------+--------<wbr>+-----------------+-----------<wbr>-+</=
-div><div>[root@osc ~(keystone_admin)]#</div></div><div><br></div><div><br><=
-/div><div>2019-10-07 16:09:52.456 28347 WARNING os_brick.initiator.connecto=
-rs.<wbr>iscsi [req-1f65b818-108d-41cb-9ea1-<wbr>ca18761a673f - - - - -] Fai=
-led to login iSCSI target iqn.1992-04.com.emc:cx.<wbr>ckm00185002995.b0 on =
-portal <a href=3D"http://170.0.0.11:3260" target=3D"_blank" rel=3D"nofollow=
-" onmousedown=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F=
-%2F170.0.0.11%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEypsh-EddtAPg2=
-9l3BI4D0KVlcMg&#39;;return true;" onclick=3D"this.href=3D&#39;http://www.go=
-ogle.com/url?q\x3dhttp%3A%2F%2F170.0.0.11%3A3260\x26sa\x3dD\x26sntz\x3d1\x2=
-6usg\x3dAFQjCNEypsh-EddtAPg29l3BI4D0KVlcMg&#39;;return true;">170.0.0.11:32=
-60</a> (exit code 8).<br>2019-10-07 16:09:52.458 28347 INFO os_brick.initia=
-tor.connectors.<wbr>iscsi [req-1f65b818-108d-41cb-9ea1-<wbr>ca18761a673f - =
-- - - -] Trying to connect to iSCSI portal <a href=3D"http://170.0.0.10:326=
-0" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;http:=
-//www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.10%3A3260\x26sa\x3dD\x26sntz=
-\x3d1\x26usg\x3dAFQjCNGKq5urUc0bHfikjdmwnqO7tRGD8A&#39;;return true;" oncli=
-ck=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.=
-10%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNGKq5urUc0bHfikjdmwnqO7tRG=
-D8A&#39;;return true;">170.0.0.10:3260</a><br>2019-10-07 16:11:52.636 28347=
- WARNING os_brick.initiator.connectors.<wbr>iscsi [req-1f65b818-108d-41cb-9=
-ea1-<wbr>ca18761a673f - - - - -] Failed to login iSCSI target iqn.1992-04.c=
-om.emc:cx.<wbr>ckm00185002995.a0 on portal <a href=3D"http://170.0.0.10:326=
-0" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;http:=
-//www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.10%3A3260\x26sa\x3dD\x26sntz=
-\x3d1\x26usg\x3dAFQjCNGKq5urUc0bHfikjdmwnqO7tRGD8A&#39;;return true;" oncli=
-ck=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2F170.0.0.=
-10%3A3260\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNGKq5urUc0bHfikjdmwnqO7tRG=
-D8A&#39;;return true;">170.0.0.10:3260</a> (exit code 8).<br>2019-10-07 16:=
-11:52.789 28347 ERROR os_brick.initiator.connectors.<wbr>iscsi [req-1f65b81=
-8-108d-41cb-9ea1-<wbr>ca18761a673f - - - - -] Could not login to any iSCSI =
-portal.<br>2019-10-07 16:11:52.790 28347 WARNING nova.compute.manager [req-=
-1f65b818-108d-41cb-9ea1-<wbr>ca18761a673f - - - - -] [instance: 15c064ca-8b=
-d0-40be-b384-<wbr>c796db1da953] Failed to resume instance=C2=A0<br></div><d=
-iv><br></div><div><br></div><div>Could you please advise further on this.</=
-div><div><br></div></div></blockquote><div><br></div><div>No, not really. T=
-his does not seem like an iSCSI issue, unless I&#39;m missing something. It=
- seems like something you have is caching your old IP address.</div><div><b=
-r></div><div>As you noted, you can clear the iscsi database with:</div><div=
-><br></div><div>&gt; # iscsiadm -m session -u</div><div><br></div><div>to l=
-og out of all sessions, and:</div><div><br></div><div>&gt; # iscsiadm -m no=
-de --op delete</div><div><br></div><div>to delete all database records. The=
-n do:</div><div><br></div><div>&gt; # iscsiadm -m discovery -t st &lt;TARGE=
-T-HOSTNAME&gt;</div><div><br></div><div>to rediscover targets.</div><div><b=
-r></div><div>I assume you have no interface files, since you did not mentio=
-n that.<br></div></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/4616b5ef-9fc2-492e-8688-584518256bed%40googlegroups.c=
-om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/4616b5ef-9fc2-492e-8688-584518256bed%40googlegroups.com</a>.<b=
-r />
-
-------=_Part_4021_510925984.1570819518414--
-
-------=_Part_4020_1092905396.1570819518413--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/92b221da-18a8-8b7b-0436-ca59088fd45b%40suse.com.
