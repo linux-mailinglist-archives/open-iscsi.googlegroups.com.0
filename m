@@ -1,72 +1,122 @@
-Return-Path: <open-iscsi+bncBC24JGEJRMKRBC4ARXXAKGQEKZXFYMA@googlegroups.com>
+Return-Path: <open-iscsi+bncBCDKFKEK2EMRBDMERXXAKGQEHMBB6ZY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x737.google.com (mail-qk1-x737.google.com [IPv6:2607:f8b0:4864:20::737])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23DDDF2111
-	for <lists+open-iscsi@lfdr.de>; Wed,  6 Nov 2019 22:50:05 +0100 (CET)
-Received: by mail-qk1-x737.google.com with SMTP id a129sf26218396qkg.22
-        for <lists+open-iscsi@lfdr.de>; Wed, 06 Nov 2019 13:50:05 -0800 (PST)
+Received: from mail-lf1-x13e.google.com (mail-lf1-x13e.google.com [IPv6:2a00:1450:4864:20::13e])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9882F212D
+	for <lists+open-iscsi@lfdr.de>; Wed,  6 Nov 2019 22:58:37 +0100 (CET)
+Received: by mail-lf1-x13e.google.com with SMTP id h3sf12916lfp.17
+        for <lists+open-iscsi@lfdr.de>; Wed, 06 Nov 2019 13:58:37 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1573077517; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=LfdkwC/2CbSatxUNZ7apwRiUO4b9wn8jf7QUlHVLwqqMGhqav805CwexazpUQlloao
+         1ZncEUNTpZPEo2yCtS6iYv+3Ue1MMQVKkfFJH28pD0DriRvGbOjdsNNMtfaVz3HlkWSF
+         8v8GQOEOtu5KweJFqF1KV4Fu41VNljDBV7ZmXvGPQH46QeJ/bXxTVR5Xj4X0j6aeJs0l
+         iRJFunUUhf9KLSYXc8W3AHBKrQKIXLudEcNN45B40Ni1jhZObLDDGoHE41SeVVpydyFG
+         Bban6c4xb69MQDKRs3bOozZwn8Mf7Q9E26qQNNT0qIhUcfQ6EWlonlAHhGWKKaOVJ3x6
+         BX6A==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:thread-index
+         :content-language:mime-version:message-id:date:subject:in-reply-to
+         :references:to:from:sender:dkim-signature;
+        bh=T0G8cMa1k2fHTeVlP7Rok7BG3XP3LoL0QoIoZYCmoAc=;
+        b=OA2aotT7wrkpV7knBe6hQEmWobIpnT6+D77xRA4iKL8vRNyzHcWZBWkeipIcld8uZ1
+         ajG876k9htwE1MIjrbt67jjk/lTe8F7I5chTtth3ExdrtqIrO+IitnHygB9ovgXarlVi
+         eoDwKLAEqIZTdCbWM1Bcw4CDL+ekqK1/V3L2gFaV386GGtKfKeEnfFLkjRrkcbjf1KKl
+         +Zy5Xj3kaPnQ9a0CLB8edDZQV0plK10g/ORZ6nFFMSn5ye+EiV0PEnNsbrkNPPK40fZS
+         38mVW2UJk3HXcggZSAdnggygz1+Ba9tPO9hSZcb4taKEztxo5nfnykREXFV7tA8qLJHP
+         bPuw==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       spf=neutral (google.com: 134.119.228.105 is neither permitted nor denied by best guess record for domain of dirk@laurenz.ws) smtp.mailfrom=dirk@laurenz.ws
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+        h=sender:from:to:references:in-reply-to:subject:date:message-id
+         :mime-version:content-language:thread-index:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=HhZy+0HNM5vdpminWpvnN/0nnVP0S20VycnDDxMtegM=;
-        b=Gfc0nVbTn7WIG3wOqIX4h/nC4Jed8A6mowhnIt4YZK6jm/3vTts8bjsQyVPvHrushe
-         44qTTPppZCbVzSFPckjOY2XJLor8tP1DsMdepgc/WPSUT6iZNPojYXS2bhuhNNT4R/ay
-         ZxDxnK1in3C7Q8k+V9nwcra4NwUY/DBbGseZxeae5haJ6FpBKdv3savHkAGdhN+Tm1c8
-         10Eh4bSx5oInNE9fFSfEzzT8mmECMVYgC/tb04KOz4dBT/RNAcaVA8uAwASO4ZDUtx72
-         zZB3rOPu7QoO3WeR0RQ1e4oaHBF4TIqAp+pcB2X09kJVQIkhzHDMc1JmT3N0xlP1eD9x
-         kgxw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=HhZy+0HNM5vdpminWpvnN/0nnVP0S20VycnDDxMtegM=;
-        b=Mcqys9Xc0iYMwmH7XBQBv3mLjBz65Iwok6iIPSjKCf74qTrd0QGcTntRgIpY7I0hd+
-         TBoPcMLxiFWl/RAhfVWVYtE7H4GM266xaeOTsFK20sZpeo22vEsAs9y8oHTcnXXXvHp1
-         caSjz0OlrVM45K+Kg4nD1eN+AdsbAexN86dtAPj75W2jiSGPRYIHhIBUjwytZcMhBB0i
-         Gc/foME7jzwwBIiYG99k+IBiBnxk95dzd3q2XOikPKRD0XJALRvH2cqqvgYOijkJdsIt
-         iHAI62P5o67ekq/4U2o96avPuwEI7DyAdMjrVKNIi5YP5AKo9kRLatpyEWCoKlfDWrfs
-         zwIQ==
+        bh=T0G8cMa1k2fHTeVlP7Rok7BG3XP3LoL0QoIoZYCmoAc=;
+        b=p1ekZGl4jW3VLxe57htuPquXn0skOqewv1G1d8MgJROiPZBWD6Kl4HczrRD6z+EEWL
+         koAbDRyuthOUI5pZ6ccXBXCbXO+taL1VjuR1bywEZvQgzoUHBa65Jy8EYWESwerONoVx
+         VOdujWdACZtHe9DrkKxp+TXuTwoMlnNaBCbqMUO8f4fxbA0/BI7kMK5ri0uy8FJgCT3o
+         +PCPG8VONdNy0+LxqF4ZmyMV6RKDT7HsMrfIl6YZvvcrXSNoy9qj4k5riknCB7uQIxC2
+         hXLYosXRTTP8IVrErzezZ/36McuSezlR8FDibXEZK2lPxZNBFScs5HiA2vaRM0exqphH
+         Aj1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
+        h=sender:x-gm-message-state:from:to:references:in-reply-to:subject
+         :date:message-id:mime-version:content-language:thread-index
+         :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=HhZy+0HNM5vdpminWpvnN/0nnVP0S20VycnDDxMtegM=;
-        b=UbHoX5TIOAw1glAj41vrFpjyGzmClbDBfrZ+NyKxO56rAKDnktQilVLpYB03RP/cCJ
-         9SMuWEHYX/TYdV2Yyq9mzUPbsmudPFK1xiZUPHJSGpaItyhPX+LyrWS7xnEWcKtswB/d
-         NAtQzqxizJvuxvKALpS5Gj0maGkD3ZnRQ2GhuyQK7IF6UXksQs/q9YV3PrYdzsdWHENf
-         YmDMPaDhfKyUSZURoV+0iWEYkhlA925oLFiB7N1JFPGQccAt6mp8RPybH2ZLY5NmKsvh
-         EiqdT5LHkET80xTooLFqLAbf5Ic8MWuvxba7t+aeSwGcK+IXjMJ1oMffcGePlwZ4YWi0
-         9a6Q==
+        bh=T0G8cMa1k2fHTeVlP7Rok7BG3XP3LoL0QoIoZYCmoAc=;
+        b=tiHL9nTKm7N4gaJPw5HCNtJBcSbp06Vj6fB744wZCUxqYxaPaZGfsRmt2OR1lC7ivQ
+         c6FwNa96yEU0OXWW9e5iaMEKL+6bzX6w+NvkLZ+QI0Tdj8CWjcw8exeJhhI7XWelkD4G
+         iWCGVeJA80/7ZqGHqnQv9eyuou//MuYRUfmUFa4YtjQMsOVXFONscZzQsTQVsGIvz3n2
+         4DEyBF2eoopaK8P1WBLPTEIHNkbb69VMx1dGaG+MWqACupHXtSdDsdjb5po4XFODtmtY
+         qPspuNBKmActuXXwe3XLnzzsYzTuguF+elf12v0cDDFSbEQOoczmEe46NzahWWRLXK1h
+         ikkA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAU+tYL1rrjtopAAJC+0fplbvGbNvhhELaVnQiNGC+fKLV/XFqNK
-	LP6s/Qz+3px0bRGMviW2FYE=
-X-Google-Smtp-Source: APXvYqx5YNrS4EY6L8koTqGET285ebp9+SNfXAGEw//ypb6YUKvpIAXChZGyAkUaqPUY3CpbtREJAg==
-X-Received: by 2002:ac8:724f:: with SMTP id l15mr207810qtp.234.1573077004014;
-        Wed, 06 Nov 2019 13:50:04 -0800 (PST)
+X-Gm-Message-State: APjAAAV5inRQR89gZCKTy2qFxaU7u/uU4rUMszOTZAXjLaWaM+5q1c1+
+	AyOsBkjHjOmYJCRookOgfa0=
+X-Google-Smtp-Source: APXvYqz0SbwoM6+IRxVgacg9pXl7kYdnsp+M4rYaR2eJBqw+zaWscXGOlrBFKJlX2nofE7DCEO/Pow==
+X-Received: by 2002:ac2:5295:: with SMTP id q21mr25485567lfm.93.1573077517301;
+        Wed, 06 Nov 2019 13:58:37 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:620a:386:: with SMTP id q6ls1268332qkm.13.gmail; Wed, 06
- Nov 2019 13:50:03 -0800 (PST)
-X-Received: by 2002:ae9:ec01:: with SMTP id h1mr4111162qkg.377.1573077003341;
-        Wed, 06 Nov 2019 13:50:03 -0800 (PST)
-Date: Wed, 6 Nov 2019 13:50:02 -0800 (PST)
-From: Bobby <italienisch1987@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <7fe0dd60-7da1-4027-9f1e-c5c717c94ddd@googlegroups.com>
-In-Reply-To: <CAK3e-Eamy-nQLNqruGuUDcOd1cF4nmGQ8GqBxCnuuy4rrM7cpQ@mail.gmail.com>
-References: <8a89dcdb-8fae-4c97-9a76-db621b01bcaf@googlegroups.com>
- <CAK3e-Eamy-nQLNqruGuUDcOd1cF4nmGQ8GqBxCnuuy4rrM7cpQ@mail.gmail.com>
-Subject: Re: iSCSI packet generator
+Received: by 2002:a2e:904c:: with SMTP id n12ls1165493ljg.8.gmail; Wed, 06 Nov
+ 2019 13:58:36 -0800 (PST)
+X-Received: by 2002:a2e:998a:: with SMTP id w10mr3573507lji.66.1573077516581;
+        Wed, 06 Nov 2019 13:58:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1573077516; cv=none;
+        d=google.com; s=arc-20160816;
+        b=RVNYiQbQpZQWpSoekJIU9+8EodPwtwY5CQ2XigDhgY4moMC7AB4pRZDg4EBp4nXb4t
+         KU7GmPSXHuNn2v7QAVQkn3FoK8iBDzIZakRihHfvFfkXjpbizJTSU328yEzW/FXFubyo
+         ThA6YuNodAj72sH6b0MqGauaMZup8j4xkDmm2AB6uNf960Em2QekMPQU5Dt+WBUrq+5x
+         k0Fj8zcy/wSWNrRLHLKjNqEpCOGZQlMgwo1xUBZ6x/ttDgJ4Ih37f2QetZ5UVnwXJrnU
+         7KnLaOKMPJhg8ecRtY0qKANNeOIzmO03QfL6kGgnBc+6HfVw5tOAUrPxmsLkB+zjgbmQ
+         73xw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=thread-index:content-language:mime-version:message-id:date:subject
+         :in-reply-to:references:to:from;
+        bh=11FCF6lkJI0H9uuCYQCYhnw3U53fhXvYAcv3R8+aAes=;
+        b=dmHVX2jPDWGF7Ok0dYKFizfTKumtgSxnjqmuNh859JUK9pw0RH0KLDDEMcUwo41Te8
+         vsJ2OupUNZReEiMnIkzvZFeN0MydDnxUkgF/ClmaefMPrVY8Eq0euPNA236/JNglDu0W
+         /GxG3noZvWIjj5l98bNs1RMiGuSesv6XRDInUsyyzqiBCpL/QM+79/sPM/Jj3dv6fFvq
+         woQRXi1UvEwlwMdOTECuuz1s8qJqd9YwYovy90zPBz7mevXcGmf+8ije0qip2bwFbxj3
+         FWK/FXuFDIv2Yz1K5wBlW07GJs5eS0WUZk/l9PKiZEmJcczUrw++AuBgBpW0WcYWHpQU
+         Nh3w==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       spf=neutral (google.com: 134.119.228.105 is neither permitted nor denied by best guess record for domain of dirk@laurenz.ws) smtp.mailfrom=dirk@laurenz.ws
+Received: from smtprelay07.ispgateway.de (smtprelay07.ispgateway.de. [134.119.228.105])
+        by gmr-mx.google.com with ESMTPS id x23si8235lfq.0.2019.11.06.13.58.36
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 06 Nov 2019 13:58:36 -0800 (PST)
+Received-SPF: neutral (google.com: 134.119.228.105 is neither permitted nor denied by best guess record for domain of dirk@laurenz.ws) client-ip=134.119.228.105;
+Received: from [87.153.233.88] (helo=w10test)
+	by smtprelay07.ispgateway.de with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.92.3)
+	(envelope-from <dirk@laurenz.ws>)
+	id 1iSTJz-0007cM-LX
+	for open-iscsi@googlegroups.com; Wed, 06 Nov 2019 22:58:35 +0100
+From: <dirk@laurenz.ws>
+To: <open-iscsi@googlegroups.com>
+References: <ab9746b4-36ec-4866-b76c-2c5ea11cdd7b@googlegroups.com> <30c2ecf6-5d7b-42be-9487-4d07b18fd5c5@googlegroups.com>
+In-Reply-To: <30c2ecf6-5d7b-42be-9487-4d07b18fd5c5@googlegroups.com>
+Subject: AW: iscsiadm unable to connect to iscsd
+Date: Wed, 6 Nov 2019 22:58:35 +0100
+Message-ID: <256d01d594ed$56711830$03534890$@laurenz.ws>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_2445_1373745008.1573077002758"
-X-Original-Sender: Italienisch1987@gmail.com
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_256E_01D594F5.B8364380"
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: de
+Thread-Index: AQLi69J0l8SstMgfWRhKPVD2VyC++wHwqIkBpVR9oUA=
+X-Df-Sender: ZGlya0BsYXVyZW56Lndz
+X-Original-Sender: dirk@laurenz.ws
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=neutral
+ (google.com: 134.119.228.105 is neither permitted nor denied by best guess
+ record for domain of dirk@laurenz.ws) smtp.mailfrom=dirk@laurenz.ws
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -80,174 +130,142 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_2445_1373745008.1573077002758
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2446_550673630.1573077002758"
+This is a multipart message in MIME format.
 
-------=_Part_2446_550673630.1573077002758
+------=_NextPart_000_256E_01D594F5.B8364380
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Donald,
-Hi Lee-man,
+Hi,
 
-Thanks for the reply. Both replies were helpful and both replies actually 
-clarified my concepts. And I realized, the question was not clear....You 
-were kind enough to reply in detail even when the question of was not clear 
-!
+=20
 
-*The Lee-man*, your guess was right. I was thinking something like that and 
-I realized it makes no sense.
+i want ot give feedback. That fix solved our issue.
 
-*Donald*: Yes, you are right. I took this point of yous "*then doing normal 
-I/O to that iSCSI disk will provide all the traffic you will typically need*"....the 
-wireshark showed me ! 
+Thanks a lot
 
-I'm a complete novice in Open-iSCSI yet very much interested in it. Please 
-excuse my simple questions. It is written, Open-iSCSI acts as "*kernel 
-driver*" between "*block layer*" and "*network layer*". Therefore 
-following two questions:
+=20
 
-- Linux block layer perform IO scheduling IO submissions to storage device 
-driver. If there is a physical device, the block layer interacts with it 
-through SCSI mid layer and SCSI low level drivers. So, how *actually* a 
-software initiator (*Open-iSCSI*) interacts with "*block layer*"?  I will 
-be really grateful if you can explain me. 
+Von: open-iscsi@googlegroups.com <open-iscsi@googlegroups.com> Im Auftrag v=
+on The Lee-Man
+Gesendet: Montag, 30. September 2019 23:14
+An: open-iscsi <open-iscsi@googlegroups.com>
+Betreff: Re: iscsiadm unable to connect to iscsd
 
-- What confuses me, where does the "*disk driver*" comes into play?
+=20
 
-Thanks :-)
+Okay, I believe I found the problem, and it's one that I've seen before. On=
+ one particular path -- in this case, when you specify "-s" as well as "-r =
+N" -- the code path forgets to set the timeout to "none" when communicating=
+ with iscsid.
 
-On Monday, November 4, 2019 at 2:32:00 PM UTC+1, Donald Williams wrote:
->
-> Hello, 
->
->  Can you provide a little more info?   iSCSI is for storage, so unless 
-> your 'server' is running an iSCSI target service there won't be 'iSCSI' 
-> traffic to monitor.  
->
->  If you do have an iSCSI service running then providing a disk via that 
-> service to the 'client' then doing normal I/O to that iSCSI disk will 
-> provide all the traffic you will typically need.  I.e. discovering the 
-> device, formatting the disk, doing writes and reads, etc.  
->
->  What is it that you are trying to do?   iSCSI is the transport for SCSI 
-> commands over a network.   You can use SCSI tools to generate SCSI commands 
-> to that disk, then the iSCSI initiator on the 'client' will create the 
-> respective iSCSI packets. 
->
->  Regards,
-> Don 
->
->
->
->
-> On Mon, Nov 4, 2019 at 5:49 AM Bobby <italien...@gmail.com <javascript:>> 
-> wrote:
->
->> Hi
->>
->> I have two virtual machines. One is a client and other is a sever (SAN). 
->> I am using Wireshark to  analyze the iSCSI protocols between them.
->>
->> Someone recommended me, in addition to a packet analyzer, I can also use 
->> a packet generator. Any good packet generator for iSCSI client/server model?
->>
->> Thanks
->>
->> -- 
->> You received this message because you are subscribed to the Google Groups 
->> "open-iscsi" group.
->> To unsubscribe from this group and stop receiving emails from it, send an 
->> email to open-...@googlegroups.com <javascript:>.
->> To view this discussion on the web visit 
->> https://groups.google.com/d/msgid/open-iscsi/8a89dcdb-8fae-4c97-9a76-db621b01bcaf%40googlegroups.com 
->> <https://groups.google.com/d/msgid/open-iscsi/8a89dcdb-8fae-4c97-9a76-db621b01bcaf%40googlegroups.com?utm_medium=email&utm_source=footer>
->> .
->>
->
+=20
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/7fe0dd60-7da1-4027-9f1e-c5c717c94ddd%40googlegroups.com.
+I have pushed my change to https://github.com/gonzoleeman/open-iscsi branch=
+ fix-session-display-error
 
-------=_Part_2446_550673630.1573077002758
+=20
+
+Please feel free to try this out before I merge it into the main line, but =
+it seems to fix the problem for me.
+
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com <mailto:open-iscsi+unsubscr=
+ibe@googlegroups.com> .
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/30c2ecf6-5d7b-42be-9487-4d07b18fd5c5%40googlegroups.com <https:/=
+/groups.google.com/d/msgid/open-iscsi/30c2ecf6-5d7b-42be-9487-4d07b18fd5c5%=
+40googlegroups.com?utm_medium=3Demail&utm_source=3Dfooter> .
+
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/256d01d594ed%2456711830%2403534890%24%40laurenz.ws.
+
+------=_NextPart_000_256E_01D594F5.B8364380
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Donald,<div>Hi Lee-man,<br><br>Thanks for the reply. Bo=
-th replies were helpful and both replies actually clarified my concepts. An=
-d I realized, the question was not clear....You were kind enough to reply i=
-n detail even when the question of was not clear !</div><div><br></div><div=
-><b>The Lee-man</b>, your guess was right. I was thinking something like th=
-at and I realized it makes no sense.</div><div><br></div><div><b>Donald</b>=
-: Yes, you are right. I took this point of yous &quot;<b><i>then doing norm=
-al I/O to that iSCSI disk will provide all the traffic you will typically n=
-eed</i></b>&quot;....the wireshark showed me !=C2=A0</div><div><br></div><d=
-iv>I&#39;m a complete novice in Open-iSCSI yet very much interested in it. =
-Please excuse=C2=A0my simple questions. It is written, Open-iSCSI acts as &=
-quot;<b>kernel driver</b>&quot; between &quot;<b>block layer</b>&quot; and =
-&quot;<b>network layer</b>&quot;. Therefore following=C2=A0two questions:<b=
-r><br>-=20
-
-Linux block layer perform IO scheduling IO submissions to storage device dr=
-iver. If there is a physical device, the block layer interacts with it thro=
-ugh SCSI mid layer and SCSI low level drivers. So, how *actually* a softwar=
-e initiator (<b>Open-iSCSI</b>) interacts with &quot;<b>block layer</b>&quo=
-t;?=C2=A0 I will be really grateful if you can explain me.=C2=A0</div><div>=
-<br>- What confuses me, where does the &quot;<b>disk driver</b>&quot; comes=
- into play?<br><br>Thanks :-)</div><br>On Monday, November 4, 2019 at 2:32:=
-00 PM UTC+1, Donald Williams wrote:<blockquote class=3D"gmail_quote" style=
-=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;padding-left: =
-1ex;"><div dir=3D"ltr">Hello,=C2=A0<div><br></div><div>=C2=A0Can you provid=
-e a little more info?=C2=A0 =C2=A0iSCSI is for storage, so unless your &#39=
-;server&#39; is running an iSCSI target service there won&#39;t be &#39;iSC=
-SI&#39; traffic to monitor.=C2=A0=C2=A0</div><div><br></div><div>=C2=A0If y=
-ou do have an iSCSI service running then providing a disk via that service =
-to the &#39;client&#39; then doing normal I/O to that iSCSI disk will provi=
-de all the traffic you will typically need.=C2=A0 I.e. discovering=C2=A0the=
- device, formatting the disk, doing writes and reads, etc.=C2=A0=C2=A0</div=
-><div><br></div><div>=C2=A0What is it that you are trying to do?=C2=A0 =C2=
-=A0iSCSI is the transport for SCSI commands over a network.=C2=A0 =C2=A0You=
- can use SCSI tools to generate SCSI commands to that disk, then the iSCSI =
-initiator=C2=A0on the &#39;client&#39; will create the respective iSCSI pac=
-kets.=C2=A0</div><div><br></div><div>=C2=A0Regards,</div><div>Don=C2=A0</di=
-v><div><br></div><div><br></div><div><br></div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr">On Mon, Nov 4, 2019 at 5:49 AM Bobby &lt;<a href=
-=3D"javascript:" target=3D"_blank" gdf-obfuscated-mailto=3D"PaUJeCTsAQAJ" r=
-el=3D"nofollow" onmousedown=3D"this.href=3D&#39;javascript:&#39;;return tru=
-e;" onclick=3D"this.href=3D&#39;javascript:&#39;;return true;">italien...@g=
-mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr">Hi<div><br></div><div>I have two virtual machines.=
- One is a client and other is a sever (SAN). I am using Wireshark to=C2=A0 =
-analyze the iSCSI protocols between them.<br></div><div><br></div><div>Some=
-one recommended=C2=A0me, in addition to a packet analyzer, I can also use a=
- packet generator. Any good packet generator for iSCSI client/server model?=
-</div><div><br></div><div>Thanks</div></div>
-
-<p></p>
-
--- <br>
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br>
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"javascript:" target=3D"_blank" gdf-obfuscated-mailto=3D"=
-PaUJeCTsAQAJ" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;javascript:&=
-#39;;return true;" onclick=3D"this.href=3D&#39;javascript:&#39;;return true=
-;">open-...@<wbr>googlegroups.com</a>.<br>
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/8a89dcdb-8fae-4c97-9a76-db621b01bcaf%40googlegroups.c=
-om?utm_medium=3Demail&amp;utm_source=3Dfooter" target=3D"_blank" rel=3D"nof=
-ollow" onmousedown=3D"this.href=3D&#39;https://groups.google.com/d/msgid/op=
-en-iscsi/8a89dcdb-8fae-4c97-9a76-db621b01bcaf%40googlegroups.com?utm_medium=
-\x3demail\x26utm_source\x3dfooter&#39;;return true;" onclick=3D"this.href=
-=3D&#39;https://groups.google.com/d/msgid/open-iscsi/8a89dcdb-8fae-4c97-9a7=
-6-db621b01bcaf%40googlegroups.com?utm_medium\x3demail\x26utm_source\x3dfoot=
-er&#39;;return true;">https://groups.google.com/d/<wbr>msgid/open-iscsi/8a8=
-9dcdb-<wbr>8fae-4c97-9a76-db621b01bcaf%<wbr>40googlegroups.com</a>.<br>
-</blockquote></div>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
+=3D"text/html; charset=3Dutf-8"><meta name=3DGenerator content=3D"Microsoft=
+ Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.E-MailFormatvorlage20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDE link=3Dblue vlink=
+=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span style=3D'mso=
+-fareast-language:EN-US'>Hi,<o:p></o:p></span></p><p class=3DMsoNormal><spa=
+n style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p class=
+=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>i want ot give feed=
+back. That fix solved our issue.<o:p></o:p></span></p><p class=3DMsoNormal>=
+<span style=3D'mso-fareast-language:EN-US'>Thanks a lot<o:p></o:p></span></=
+p><p class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'><o:p>&nbs=
+p;</o:p></span></p><p class=3DMsoNormal><b>Von:</b> open-iscsi@googlegroups=
+.com &lt;open-iscsi@googlegroups.com&gt; <b>Im Auftrag von </b>The Lee-Man<=
+br><b>Gesendet:</b> Montag, 30. September 2019 23:14<br><b>An:</b> open-isc=
+si &lt;open-iscsi@googlegroups.com&gt;<br><b>Betreff:</b> Re: iscsiadm unab=
+le to connect to iscsd<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p>=
+</p><div><div><p class=3DMsoNormal>Okay, I believe I found the problem, and=
+ it's one that I've seen before. On one particular path -- in this case, wh=
+en you specify &quot;-s&quot; as well as &quot;-r N&quot; -- the code path =
+forgets to set the timeout to &quot;none&quot; when communicating with iscs=
+id.<o:p></o:p></p></div><div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></di=
+v><div><p class=3DMsoNormal>I have pushed my change to <a href=3D"https://g=
+ithub.com/gonzoleeman/open-iscsi">https://github.com/gonzoleeman/open-iscsi=
+</a> branch fix-session-display-error<o:p></o:p></p></div><div><p class=3DM=
+soNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal>Please feel f=
+ree to try this out before I merge it into the main line, but it seems to f=
+ix the problem for me.<o:p></o:p></p></div></div><p class=3DMsoNormal>-- <b=
+r>You received this message because you are subscribed to the Google Groups=
+ &quot;open-iscsi&quot; group.<br>To unsubscribe from this group and stop r=
+eceiving emails from it, send an email to <a href=3D"mailto:open-iscsi+unsu=
+bscribe@googlegroups.com">open-iscsi+unsubscribe@googlegroups.com</a>.<br>T=
+o view this discussion on the web visit <a href=3D"https://groups.google.co=
+m/d/msgid/open-iscsi/30c2ecf6-5d7b-42be-9487-4d07b18fd5c5%40googlegroups.co=
+m?utm_medium=3Demail&amp;utm_source=3Dfooter">https://groups.google.com/d/m=
+sgid/open-iscsi/30c2ecf6-5d7b-42be-9487-4d07b18fd5c5%40googlegroups.com</a>=
+.<o:p></o:p></p></div></body></html>
 
 <p></p>
 
@@ -258,11 +276,9 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/7fe0dd60-7da1-4027-9f1e-c5c717c94ddd%40googlegroups.c=
-om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/7fe0dd60-7da1-4027-9f1e-c5c717c94ddd%40googlegroups.com</a>.<b=
-r />
+om/d/msgid/open-iscsi/256d01d594ed%2456711830%2403534890%24%40laurenz.ws?ut=
+m_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgid/ope=
+n-iscsi/256d01d594ed%2456711830%2403534890%24%40laurenz.ws</a>.<br />
 
-------=_Part_2446_550673630.1573077002758--
+------=_NextPart_000_256E_01D594F5.B8364380--
 
-------=_Part_2445_1373745008.1573077002758--
