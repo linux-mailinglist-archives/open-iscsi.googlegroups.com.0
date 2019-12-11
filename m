@@ -1,133 +1,142 @@
-Return-Path: <open-iscsi+bncBCEJDZGXJAIMRYF654CRUBDQINEOE@googlegroups.com>
+Return-Path: <open-iscsi+bncBD73JN6PTQMBBRPFYDXQKGQEGEYFSFY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3a.google.com (mail-qv1-xf3a.google.com [IPv6:2607:f8b0:4864:20::f3a])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0E0118B76
-	for <lists+open-iscsi@lfdr.de>; Tue, 10 Dec 2019 15:48:41 +0100 (CET)
-Received: by mail-qv1-xf3a.google.com with SMTP id g15sf6948411qvk.11
-        for <lists+open-iscsi@lfdr.de>; Tue, 10 Dec 2019 06:48:41 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1575989321; cv=pass;
+Received: from mail-wr1-x43a.google.com (mail-wr1-x43a.google.com [IPv6:2a00:1450:4864:20::43a])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C26119FC0
+	for <lists+open-iscsi@lfdr.de>; Wed, 11 Dec 2019 01:05:25 +0100 (CET)
+Received: by mail-wr1-x43a.google.com with SMTP id r2sf9610602wrp.7
+        for <lists+open-iscsi@lfdr.de>; Tue, 10 Dec 2019 16:05:25 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1576022725; cv=pass;
         d=google.com; s=arc-20160816;
-        b=eAltDFjv6r54klHt7H8OW5AR0tSclldHjQZuYYYsCqLyP8mKJI1QJpSqOJrlzdxcdt
-         dXTX8954Jb/twTHxsbDHH8p6HNw1vVMjPAT8tzXUoA8kiPLHXl6p3XZdQUWTFAGz4DdO
-         +0MiUmIqUHcYKW0nQwgOTRoLToxtlnJrFfAkWxacWZc7CWVh5cs1XwS7W8whOqE9DC02
-         xUUeif14L8u8NMkGf6GnS7QdMYtX43LWrV62jAJFu9ePoAd7d1f/ZZVDeHbruYj8s//r
-         dE2BOMAjDPqMqiD9K6uhUBSvFw/2KXFzC5P7VR0kxdK2wkGdo9gOGmaet89g7UKBT8W4
-         lhaw==
+        b=IOPF6eTAwmW+IBcwqLtd0jAXr0LpxeYcRDIHKvcn6plJ/QcQpHTJcjO2PeIgIHLoAv
+         QH6Pug0nWSQqovVyloJS805EBufF6dQ5iXw8ug2B+dCInugH6CbHPNJ19A1bukLvcyJN
+         Sqr5UPwgTZM+VunvdKfnvR+V9Dx+soJsAawK5/BPZ211RtgnnBjYYrbqXY0I4EULW+DN
+         ODnr5Be/E+a868RGkLpF5Mv96K4dBkCw7O2t2DvEmNi1uX8SbBt6P0r8X71Hf7lUyvOr
+         igC1QAa1FAA2tLvWV3R66Ps646Kd8JuBWFUnfHuTQFsHxGPGphsA332tVM0lyLpYIFsb
+         TxYA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
-         :from:in-reply-to:references:mime-version:sender:dkim-signature
+         :list-id:mailing-list:precedence:reply-to:in-reply-to:mime-version
+         :user-agent:date:message-id:from:cc:references:to:subject:sender
          :dkim-signature;
-        bh=0exRWamr62likAVS/N/Iys4bYVykyrVNxR5b8rc9dto=;
-        b=kKlU7dKq1Lv1vS74g7Yo582mR9UVxFYTVhL91FxL3oSloSakSHs/f5m77hdIju3g/T
-         mswcFMAp/+eQWMjO/Bq5DQk7blMcVaRKmRron2v1w+whTG/7DHp8eI63HC2NGbeW4xin
-         L+VHSytJJGEpoeIpMrxShSQHLrkGa59QA6JCkpGTVOy38cRm12E97k3HaWakBm+7pYw/
-         0EfaLvBbxMI+3Vw+DucBiRGqgJ3H3QhSYO3uBBGsqESqL4wIR/FFJXFEMb/cs9AXn3a9
-         ZsfkC14AlCvhDWiB+3g+s+ptPo+vfm087KWvtg5iu4K2P9/yVjjM+xc+IXj0brZbka72
-         3LgA==
+        bh=DbU2V+ZE2o88gup7N2hBRm+DiGnfEd54nYqvlaF5gZw=;
+        b=O0CvlYnVWN5Gjpp5wtKYPfYKyr6yFeyBbUFW2MslfX6zWDnbnz6NN8hRs0oxOcG01D
+         A3SPp92jj9pE5Gqu3y/FenRhkW0MkL4nRogsIYaSw+eMYzEWTCQYGTKC0eBDXUc63Tkp
+         B1IUubnXxnZTnfBL7A/GrMEAROaAuuI0be6Zja3hr1yXBZxXU0piIkvJoCQWRngNcE3n
+         yYH+PSh8BtANcHp2kNBfxs7KBw+8h/EyneDrea5PrB1xqc7a5lWeDNYfce9pNOfEcYGF
+         OwyGB9yrFR0OeGN4RSZecSugEu72dxnQ0TO1+vQ5CKUHgXwfhAhUZ19B8wesGbswkfc2
+         RuHA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=d8q9Rfe5;
-       spf=pass (google.com: domain of zhucan.k8s@gmail.com designates 2607:f8b0:4864:20::b29 as permitted sender) smtp.mailfrom=zhucan.k8s@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=Hir70AQj;
+       spf=pass (google.com: domain of mchristi@redhat.com designates 207.211.31.120 as permitted sender) smtp.mailfrom=mchristi@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=0exRWamr62likAVS/N/Iys4bYVykyrVNxR5b8rc9dto=;
-        b=NXFXx5s3f80oLXl+hr5qEJjv5EpnWpUuLcdc1WtoJnmINxqxXP5KvKis3HNVEeoJVf
-         qzRo94P6jk1BAP+9dLuzwqTgK2thQO9icWSq/U+lAvUOwSskmYNv1Om/3UzOdH1mqj7K
-         3VqclHgunoiWJn1OgW5SDL0ivymDBIoaLjC8BLe6SrkLsYRJZR2Yd4QvTREQR5TaccXQ
-         yv9NYrqnaNoI0u6tyD+eDQkvputwd+yTLxyEId51pJ5diYw6dPqoiA3pDLjdh9pfPOF6
-         yL9i4n6iXik8BBfOKk2uykhyofM/M3Rm96vTLYNV9kccx/2/AUTBpNOzFr18wmYrO8Xc
-         SZmQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=0exRWamr62likAVS/N/Iys4bYVykyrVNxR5b8rc9dto=;
-        b=SybtkxdqZ9tM6oqsgEiW+CAf2ksgVojvn05KR6eStKDdaawPEuWKa2Epbjyo26erYB
-         M5eztflqvJgV4UOoNOJ6STDd790ry5aJL/67ZCW9b+yqeHZRQasj6Nyjihnk4ceFcfp+
-         8W4PoV2HUo0XUNNa4nrBIVvxFqGytDAeJg2kRtXYC3V5s7kgUmRLDZNtJaDW5QGWvQ7S
-         4kIFZnsJjZ5do7qRInVQDvJRfLM6sLBSDBm44/zabX5InENT0RduIlQKUCIJnHogPKWu
-         nIW2TbcKXanfFpchN9SBLtnqHLAu3/7fyuGAz57FQMX/QhalXtvsNgmkSYl2d3UkXTdM
-         tPpA==
+        h=sender:subject:to:references:cc:from:message-id:date:user-agent
+         :mime-version:in-reply-to:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=DbU2V+ZE2o88gup7N2hBRm+DiGnfEd54nYqvlaF5gZw=;
+        b=Pnfp7e0LJEKVL1F/eMJWkQtVdpBpCxD2tl+OIrOqoXGfLgQBM5jEcgEJLHa9ZkQhYe
+         Z8PwYaxxw9JDTxX3H5aOrk82nVqPJPtvtve327WEIm9PRqy9ji4/MjkVyLvJ164Y/SWT
+         XCcHvH0NluDtJy2XvUR0NJjmUzpRVzD1OBqsD5TUYklFarJXydJ7ykie145OCrYA5gdB
+         XqbNhTNqHV9UB2OyR+VPWDZg4WREVFqY8V071cv+7O8puzhGfOB7Lq0D62GLf3ayLiVa
+         EQTGqHx7v4HE8pRMbwT8UWNykMAnjotUHtqkUgIS3uhnMNveZQJGAk47fjx752VnOxJg
+         PcgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:x-original-sender
+        h=sender:x-gm-message-state:subject:to:references:cc:from:message-id
+         :date:user-agent:mime-version:in-reply-to:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=0exRWamr62likAVS/N/Iys4bYVykyrVNxR5b8rc9dto=;
-        b=JzIsR8AhqBJaOU+IWWhH9SxueZHSSyqMtd4kp1ZQoN5jNDCvsFgXbNItB0LbbtLbj2
-         mzx7MtvkJfUDrvXQ1X0p++41ZTdrntAPl+1k3y44tScx6eYjf0DuPMXqUnhcMpUKfikB
-         YIuqdCP5UP1LIsFPjAsG7c6vnmFFpRQTMz8/89i6KzM77tolYQxNlNke2tI9qxxag0r0
-         7yYhnUsRcjEa+0J05n5Fn+lYIFrF7zbWXuwQT0nMogvPcHJp2XQhwg4xpk2tSFh8OMDc
-         XZZoMeScL9426u1zXE1itfywpLr3pu3Sw/CySKGRip3brDMHpD2QQlPSIYeiYXQP2vYu
-         N6Cw==
+        bh=DbU2V+ZE2o88gup7N2hBRm+DiGnfEd54nYqvlaF5gZw=;
+        b=lWIrnAb5O6Q+AT15sXOGxs41jMSURHzOsK9sqzDulg1ujtQKQVspX82THdl7S8km0a
+         yRMCdpgZlvWwdk3FFQULFcPqYNA6rQ+22ZY0PaD3jpyrsKECQizR4+8E9iLvipmd1dqZ
+         PAgfDCLYD6pTU9XgB5r5PkZdSGTnBOYbYJgzZzp23Zv93U+FC7FA1ExtaZC8e3k24q3p
+         T03s/SdDCUEmAJfTPFRNjKxOJYgaYTgXxvDOZytkklim8cEVJnJpTU6wNLGsaE0tdGw8
+         KI2GfYXCvkjvjvQnMNmp8NoVWiq/RnlLKpVdwDyPg0dNjcXbCdM7BAGpQIPVObRQYvv2
+         dx2A==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAVQDDcebooZnGhIC8Yk+GeTl4d+KCcR/qzEyb3rcO1Vq1D3Xy9S
-	Ej2X4dlYmuqP9oOUhJnr354=
-X-Google-Smtp-Source: APXvYqw1aXJIwf4bFc75JlUY2jDOzkxuuxIxR/m85TXWtP5Q34fefkHYw7pPWpA3N8fuZklUnisQQA==
-X-Received: by 2002:ac8:6784:: with SMTP id b4mr13200299qtp.27.1575989320910;
-        Tue, 10 Dec 2019 06:48:40 -0800 (PST)
+X-Gm-Message-State: APjAAAX7+zq7vpqYIiR/U01RCqjTckSSPHzmODTnBQkVRhV2//BBqOU5
+	aDL/EHIvLT3kKdjK9i76sbU=
+X-Google-Smtp-Source: APXvYqxXK/WQW24Ub4YWlb6fZ4W0MusGqluCH4ZcwL7c4Ma96OVWzYkebHQYdpdoCvjd86WNzazRog==
+X-Received: by 2002:adf:9b83:: with SMTP id d3mr258388wrc.54.1576022725537;
+        Tue, 10 Dec 2019 16:05:25 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:620a:218b:: with SMTP id g11ls6271211qka.10.gmail; Tue,
- 10 Dec 2019 06:48:40 -0800 (PST)
-X-Received: by 2002:a37:9547:: with SMTP id x68mr34623399qkd.206.1575989320495;
-        Tue, 10 Dec 2019 06:48:40 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1575989320; cv=none;
+Received: by 2002:a7b:c452:: with SMTP id l18ls144155wmi.1.canary-gmail; Tue,
+ 10 Dec 2019 16:05:24 -0800 (PST)
+X-Received: by 2002:a1c:3803:: with SMTP id f3mr61558wma.134.1576022724898;
+        Tue, 10 Dec 2019 16:05:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1576022724; cv=none;
         d=google.com; s=arc-20160816;
-        b=nckRdtI4JpZDU1tbZtWUwMNBSSWsW5eMUDu7Z5+lZwpE7u0oO9ROtZR+mGOMLpVQMd
-         nNBw33XVEIe26KgRmKRrKMZ9ORAOu9mntk6DQKKkv+7hD9ligaiwE/oWYUXh1vLVYoz5
-         98KIGZL8GnyM8Cq2L40NYtFcpi8oBZnw9UJZCR9Cp6CpX6xcPt/RVuRrzvLPdQpKqnin
-         sTmNcIxpRfDMTL2mL3jzO3bzfrg6xFKmBANbmnyvEI2P/Q1ZEOANkKQDdDIAbKdWfNKe
-         CqwOCDS3GZLwxXSXXUjSeqAP+4/mzggvFtwwEnEr+aH9yyKGwgX5lVFLWN9rK0iLvICK
-         wRtQ==
+        b=s60vWU4gh407AtZuOuepGzEZcEuUVBIdgtP2E8mp41/bWLFk9AqmqLvE1HUF1mHWfo
+         N+XSDoAJa1rSiyEzQmPwh1rH1XLf4mcPLxYgQBAZvfjjCGCh2SUTwzdoc9jWFo3yfM77
+         a0OlTojuVJ8mWIg3FdUwJSV4X14pZRfNjCPFZBoJ2R+8xdl5ULEH3h2z2KV8pfTbIqa3
+         ZfyDj8h9Z9l67o6e+kTK/6VyU5+viDmDczN25IyBDmWHnVwcSolcR7sl+F33xeBZqCLN
+         EbY9+nicvz/NnlMMr5vlLiqFlmBGmcQLwrY9FzikDD1WGFHeFJi98svay5qdrpIXwuGk
+         4f3Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=nzB6ROVX82u/ojkFz74o8OQQp3Hkbm/E6HKif8mNSRQ=;
-        b=JUl2c77IBN434pP8u9Qex+F2PEFv6fHrRjD/XLGibevtmbRNhtIK8tKbvN70arYhX5
-         f1SvSr4zh5iePPDEi/GkFwpthPiyxzfsqzGUpkCqyvEQPJ3NRMY88plEhbopsgIJ61wZ
-         4KSv661PvVLMsnSVHVmHC/Xsv/ZJ/YOJ8IpME6XnUzCzXZyEyQMknOb1hacq07gs4wYw
-         BmfCteF0t/23EiF2LEXb1kJY2S2VyvMq66DiYdEWsW/TcsVoPL5WAGG6ck/3Xxs3MRkE
-         QtzAyrIxa7tkbrEUoxQyjB3YW3wFiI9WWxvhwgkT2KML7MZD+lYKb43Q3BMZvk0LUCY5
-         oKrQ==
+        h=content-transfer-encoding:in-reply-to:mime-version:user-agent:date
+         :message-id:from:cc:references:to:subject:dkim-signature;
+        bh=2eZRMsvPn7LP982w0cdi/MHoqkHlzMVDnha32MiKbgE=;
+        b=AlP9pT0+FAFyhZXwQTxtwVd8vmB1Hez19pt1wynUWWZP+K+OETMvc5fdDjeRFbWqS7
+         3CG4GdiMmkNcH/Ni+BrFENzWqBbByLj8tqi9o/BLIFnMvw8WPwDX/Zihhv6nyjgsk6mY
+         AHqAljZYpiOmmgJlN4B+HLGG3PZWQPXhYhzFxZ13v0xUlCNLOr+5P6tSeM5qwcSAIRvY
+         5tckUiQV6aBaYmtpUVtzcS0oNH1Yo6UaZclFk06FcOdg0NcMmtfT6YVI7MyIEjzmJKWx
+         yy2qglyFaPHt2YnxKog1DvJaJaZ9wRwV2RIJYUQIz2//ps5mp86ZFN/TOfYDBOyvuC+M
+         BBUg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=d8q9Rfe5;
-       spf=pass (google.com: domain of zhucan.k8s@gmail.com designates 2607:f8b0:4864:20::b29 as permitted sender) smtp.mailfrom=zhucan.k8s@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com. [2607:f8b0:4864:20::b29])
-        by gmr-mx.google.com with ESMTPS id d16si105755qtp.5.2019.12.10.06.48.40
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=Hir70AQj;
+       spf=pass (google.com: domain of mchristi@redhat.com designates 207.211.31.120 as permitted sender) smtp.mailfrom=mchristi@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com. [207.211.31.120])
+        by gmr-mx.google.com with ESMTPS id m2si203361wmi.3.2019.12.10.16.05.24
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2019 06:48:40 -0800 (PST)
-Received-SPF: pass (google.com: domain of zhucan.k8s@gmail.com designates 2607:f8b0:4864:20::b29 as permitted sender) client-ip=2607:f8b0:4864:20::b29;
-Received: by mail-yb1-xb29.google.com with SMTP id j6so7646885ybc.11
-        for <open-iscsi@googlegroups.com>; Tue, 10 Dec 2019 06:48:40 -0800 (PST)
-X-Received: by 2002:a25:4192:: with SMTP id o140mr13898405yba.70.1575989319909;
- Tue, 10 Dec 2019 06:48:39 -0800 (PST)
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 10 Dec 2019 16:05:24 -0800 (PST)
+Received-SPF: pass (google.com: domain of mchristi@redhat.com designates 207.211.31.120 as permitted sender) client-ip=207.211.31.120;
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-399-FgbbO8t8MTS8frQodtyUAA-1; Tue, 10 Dec 2019 19:05:22 -0500
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
+	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4651718A8CA4;
+	Wed, 11 Dec 2019 00:05:20 +0000 (UTC)
+Received: from [10.10.120.90] (ovpn-120-90.rdu2.redhat.com [10.10.120.90])
+	by smtp.corp.redhat.com (Postfix) with ESMTP id C51885D6A5;
+	Wed, 11 Dec 2019 00:05:17 +0000 (UTC)
+Subject: Re: [PATCH] iscsi: Perform connection failure entirely in kernel
+ space
+To: Gabriel Krisman Bertazi <krisman@collabora.com>, lduncan@suse.com,
+ cleech@redhat.com, martin.petersen@oracle.com
+References: <20191209182054.1287374-1-krisman@collabora.com>
+Cc: linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com,
+ Bharath Ravi <rbharath@google.com>, kernel@collabora.com,
+ Dave Clausen <dclausen@google.com>, Nick Black <nlb@google.com>,
+ Vaibhav Nagarnaik <vnagarnaik@google.com>, Anatol Pomazau
+ <anatol@google.com>, Tahsin Erdogan <tahsin@google.com>,
+ Frank Mayhar <fmayhar@google.com>, Junho Ryu <jayr@google.com>,
+ Khazhismel Kumykov <khazhy@google.com>
+From: Mike Christie <mchristi@redhat.com>
+Message-ID: <5DF032BD.3070509@redhat.com>
+Date: Tue, 10 Dec 2019 18:05:17 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.6.0
 MIME-Version: 1.0
-References: <372db1a3-424d-4063-bcdb-ccb0b821df0b@googlegroups.com> <5DEFAC49020000A10003598D@gwsmtp.uni-regensburg.de>
-In-Reply-To: <5DEFAC49020000A10003598D@gwsmtp.uni-regensburg.de>
-From: can zhu <zhucan.k8s@gmail.com>
-Date: Tue, 10 Dec 2019 22:48:28 +0800
-Message-ID: <CAGJK1Kk1LhxJHx0r9wVcfM4gjH8ypKnjHgu3Ne8cY_CcMkVhqw@mail.gmail.com>
-Subject: Re: reboot hangs with "Reached target shutdown", who can help me?
-To: open-iscsi@googlegroups.com
-Content-Type: multipart/alternative; boundary="00000000000095480305995a9b33"
-X-Original-Sender: zhucan.k8s@gmail.com
+In-Reply-To: <20191209182054.1287374-1-krisman@collabora.com>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-MC-Unique: FgbbO8t8MTS8frQodtyUAA-1
+X-Mimecast-Spam-Score: 0
+Content-Type: text/plain; charset="UTF-8"
+X-Original-Sender: mchristi@redhat.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b=d8q9Rfe5;       spf=pass
- (google.com: domain of zhucan.k8s@gmail.com designates 2607:f8b0:4864:20::b29
- as permitted sender) smtp.mailfrom=zhucan.k8s@gmail.com;       dmarc=pass
- (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+ header.i=@redhat.com header.s=mimecast20190719 header.b=Hir70AQj;
+       spf=pass (google.com: domain of mchristi@redhat.com designates
+ 207.211.31.120 as permitted sender) smtp.mailfrom=mchristi@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -141,175 +150,165 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---00000000000095480305995a9b33
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 12/09/2019 12:20 PM, Gabriel Krisman Bertazi wrote:
+> From: Bharath Ravi <rbharath@google.com>
+> 
+> Connection failure processing depends on a daemon being present to (at
+> least) stop the connection and start recovery.  This is a problem on a
+> multipath scenario, where if the daemon failed for whatever reason, the
+> SCSI path is never marked as down, multipath won't perform the
+> failover and IO to the device will be forever waiting for that
+> connection to come back.
+> 
+> This patch implements an optional feature in the iscsi module, to
+> perform the connection failure inside the kernel.  This way, the
+> failover can happen and pending IO can continue even if the daemon is
+> dead. Once the daemon comes alive again, it can perform recovery
+> procedures if applicable.
+> 
+> Co-developed-by: Dave Clausen <dclausen@google.com>
+> Signed-off-by: Dave Clausen <dclausen@google.com>
+> Co-developed-by: Nick Black <nlb@google.com>
+> Signed-off-by: Nick Black <nlb@google.com>
+> Co-developed-by: Vaibhav Nagarnaik <vnagarnaik@google.com>
+> Signed-off-by: Vaibhav Nagarnaik <vnagarnaik@google.com>
+> Co-developed-by: Anatol Pomazau <anatol@google.com>
+> Signed-off-by: Anatol Pomazau <anatol@google.com>
+> Co-developed-by: Tahsin Erdogan <tahsin@google.com>
+> Signed-off-by: Tahsin Erdogan <tahsin@google.com>
+> Co-developed-by: Frank Mayhar <fmayhar@google.com>
+> Signed-off-by: Frank Mayhar <fmayhar@google.com>
+> Co-developed-by: Junho Ryu <jayr@google.com>
+> Signed-off-by: Junho Ryu <jayr@google.com>
+> Co-developed-by: Khazhismel Kumykov <khazhy@google.com>
+> Signed-off-by: Khazhismel Kumykov <khazhy@google.com>
+> Signed-off-by: Bharath Ravi <rbharath@google.com>
+> Co-developed-by: Gabriel Krisman Bertazi <krisman@collabora.com>
+> Signed-off-by: Gabriel Krisman Bertazi <krisman@collabora.com>
+> ---
+>  drivers/scsi/scsi_transport_iscsi.c | 46 +++++++++++++++++++++++++++++
+>  include/scsi/scsi_transport_iscsi.h |  1 +
+>  2 files changed, 47 insertions(+)
+> 
+> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+> index 417b868d8735..7251b2b5b272 100644
+> --- a/drivers/scsi/scsi_transport_iscsi.c
+> +++ b/drivers/scsi/scsi_transport_iscsi.c
+> @@ -36,6 +36,12 @@ EXPORT_TRACEPOINT_SYMBOL_GPL(iscsi_dbg_session);
+>  EXPORT_TRACEPOINT_SYMBOL_GPL(iscsi_dbg_tcp);
+>  EXPORT_TRACEPOINT_SYMBOL_GPL(iscsi_dbg_sw_tcp);
+>  
+> +static bool kern_conn_failure;
+> +module_param(kern_conn_failure, bool, S_IRUGO|S_IWUSR);
+> +MODULE_PARM_DESC(kern_conn_failure,
+> +		 "Allow the kernel to detect and disable broken connections "
+> +		 "without requiring userspace intervention");
+> +
+>  static int dbg_session;
+>  module_param_named(debug_session, dbg_session, int,
+>  		   S_IRUGO | S_IWUSR);
+> @@ -84,6 +90,12 @@ struct iscsi_internal {
+>  	struct transport_container session_cont;
+>  };
+>  
+> +/* Worker to perform connection failure on unresponsive connections
+> + * completely in kernel space.
+> + */
+> +static void stop_conn_work_fn(struct work_struct *work);
+> +static DECLARE_WORK(stop_conn_work, stop_conn_work_fn);
+> +
+>  static atomic_t iscsi_session_nr; /* sysfs session id for next new session */
+>  static struct workqueue_struct *iscsi_eh_timer_workq;
+>  
+> @@ -1609,6 +1621,7 @@ static DEFINE_MUTEX(rx_queue_mutex);
+>  static LIST_HEAD(sesslist);
+>  static DEFINE_SPINLOCK(sesslock);
+>  static LIST_HEAD(connlist);
+> +static LIST_HEAD(connlist_err);
+>  static DEFINE_SPINLOCK(connlock);
+>  
+>  static uint32_t iscsi_conn_get_sid(struct iscsi_cls_conn *conn)
+> @@ -2245,6 +2258,7 @@ iscsi_create_conn(struct iscsi_cls_session *session, int dd_size, uint32_t cid)
+>  
+>  	mutex_init(&conn->ep_mutex);
+>  	INIT_LIST_HEAD(&conn->conn_list);
+> +	INIT_LIST_HEAD(&conn->conn_list_err);
+>  	conn->transport = transport;
+>  	conn->cid = cid;
+>  
+> @@ -2291,6 +2305,7 @@ int iscsi_destroy_conn(struct iscsi_cls_conn *conn)
+>  
+>  	spin_lock_irqsave(&connlock, flags);
+>  	list_del(&conn->conn_list);
+> +	list_del(&conn->conn_list_err);
+>  	spin_unlock_irqrestore(&connlock, flags);
+>  
+>  	transport_unregister_device(&conn->dev);
+> @@ -2405,6 +2420,28 @@ int iscsi_offload_mesg(struct Scsi_Host *shost,
+>  }
+>  EXPORT_SYMBOL_GPL(iscsi_offload_mesg);
+>  
+> +static void stop_conn_work_fn(struct work_struct *work)
+> +{
+> +	struct iscsi_cls_conn *conn, *tmp;
+> +	unsigned long flags;
+> +	LIST_HEAD(recovery_list);
+> +
+> +	spin_lock_irqsave(&connlock, flags);
+> +	if (list_empty(&connlist_err)) {
+> +		spin_unlock_irqrestore(&connlock, flags);
+> +		return;
+> +	}
+> +	list_splice_init(&connlist_err, &recovery_list);
+> +	spin_unlock_irqrestore(&connlock, flags);
+> +
+> +	mutex_lock(&rx_queue_mutex);
+> +	list_for_each_entry_safe(conn, tmp, &recovery_list, conn_list_err) {
+> +		conn->transport->stop_conn(conn, STOP_CONN_RECOVER);
+> +		list_del_init(&conn->conn_list_err);
+> +	}
+> +	mutex_unlock(&rx_queue_mutex);
+> +}
+> +
+>  void iscsi_conn_error_event(struct iscsi_cls_conn *conn, enum iscsi_err error)
+>  {
+>  	struct nlmsghdr	*nlh;
+> @@ -2412,6 +2449,15 @@ void iscsi_conn_error_event(struct iscsi_cls_conn *conn, enum iscsi_err error)
+>  	struct iscsi_uevent *ev;
+>  	struct iscsi_internal *priv;
+>  	int len = nlmsg_total_size(sizeof(*ev));
+> +	unsigned long flags;
+> +
+> +	if (kern_conn_failure) {
+> +		spin_lock_irqsave(&connlock, flags);
+> +		list_add(&conn->conn_list_err, &connlist_err);
+> +		spin_unlock_irqrestore(&connlock, flags);
+> +
+> +		queue_work(system_unbound_wq, &stop_conn_work);
+> +	}
+>  
 
-Have you encountered such a problem? Could you give me some suggestions?
+Do you need the modparam? I think you could handle this issue and the
+similar one during shutdown at the same time, and you would always want
+to do the kernel based error handler when userspace is not answering for
+both cases.
 
+You could do the following:
 
-Ulrich Windl <Ulrich.Windl@rz.uni-regensburg.de> =E4=BA=8E2019=E5=B9=B412=
-=E6=9C=8810=E6=97=A5=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=8810:31=E5=86=99=E9=
-=81=93=EF=BC=9A
+- Modify __iscsi_block_session so it does the stop_conn callout instead
+of reverse, and change the iscsi_stop_conn/ISCSI_UEVENT_STOP_CONN:
+related code accordingly.
 
-> Hi!
->
-> I think the problem is more related to systemd, rather than iscsi.
-> Personally I hate systemd, but you don't wnat to know that...
->
-> Regards,
-> Ulrich
->
-> >>> can zhu <zhucan.k8s@gmail.com> schrieb am 10.12.2019 um 15:25 in
-> Nachricht
-> <372db1a3-424d-4063-bcdb-ccb0b821df0b@googlegroups.com>:
-> > os version:
-> >
-> > CentOS Linux release 7.4.1708 (Core)
-> >
-> > kernel version:
-> >
-> > 3.10.0-693.el7.x86_64
-> >
-> >
-> > systemd version:
-> >
-> > *systemd*-219-42.el7.x86_64
-> >
-> >
-> > Mount iscsi devices on the node(iscsi client node) and reboot os, hangs=
-:
-> >
-> > [image: WechatIMG2178.png]
-> >
-> >
-> >
-> >
-> > --
-> > You received this message because you are subscribed to the Google
-> Groups
-> > "open-iscsi" group.
-> > To unsubscribe from this group and stop receiving emails from it, send
-> an
-> > email to open-iscsi+unsubscribe@googlegroups.com.
-> > To view this discussion on the web visit
-> >
-> https://groups.google.com/d/msgid/open-iscsi/372db1a3-424d-4063-bcdb-ccb0=
-b821
-> > df0b%40googlegroups.com.
->
->
->
->
-> --
-> You received this message because you are subscribed to the Google Groups
-> "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an
-> email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit
-> https://groups.google.com/d/msgid/open-iscsi/5DEFAC49020000A10003598D%40g=
-wsmtp.uni-regensburg.de
-> .
->
+- In iscsi_conn_error_event you would then do:
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/CAGJK1Kk1LhxJHx0r9wVcfM4gjH8ypKnjHgu3Ne8cY_CcMkVhqw%40mail.gmail=
-.com.
+iscsi_multicast_skb();
+iscsi_block_session();
 
---00000000000095480305995a9b33
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+- You can then drop the system_state check in iscsi_eh_cmd_timed_out
+because those running commands are always handled by the stop_conn call
+in __iscsi_block_session now.
 
-<div dir=3D"ltr">Have you encountered such a problem? Could=C2=A0you give m=
-e some suggestions?<br class=3D"gmail-Apple-interchange-newline"><br></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Ulrich=
- Windl &lt;<a href=3D"mailto:Ulrich.Windl@rz.uni-regensburg.de">Ulrich.Wind=
-l@rz.uni-regensburg.de</a>&gt; =E4=BA=8E2019=E5=B9=B412=E6=9C=8810=E6=97=A5=
-=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=8810:31=E5=86=99=E9=81=93=EF=BC=9A<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex">Hi!<br>
-<br>
-I think the problem is more related to systemd, rather than iscsi.<br>
-Personally I hate systemd, but you don&#39;t wnat to know that...<br>
-<br>
-Regards,<br>
-Ulrich<br>
-<br>
-&gt;&gt;&gt; can zhu &lt;<a href=3D"mailto:zhucan.k8s@gmail.com" target=3D"=
-_blank">zhucan.k8s@gmail.com</a>&gt; schrieb am 10.12.2019 um 15:25 in Nach=
-richt<br>
-&lt;<a href=3D"mailto:372db1a3-424d-4063-bcdb-ccb0b821df0b@googlegroups.com=
-" target=3D"_blank">372db1a3-424d-4063-bcdb-ccb0b821df0b@googlegroups.com</=
-a>&gt;:<br>
-&gt; os version:<br>
-&gt; <br>
-&gt; CentOS Linux release 7.4.1708 (Core)<br>
-&gt; <br>
-&gt; kernel version:=C2=A0 <br>
-&gt; <br>
-&gt; 3.10.0-693.el7.x86_64<br>
-&gt; <br>
-&gt; <br>
-&gt; systemd version:<br>
-&gt; <br>
-&gt; *systemd*-219-42.el7.x86_64<br>
-&gt; <br>
-&gt; <br>
-&gt; Mount iscsi devices on the node(iscsi client node) and reboot os, hang=
-s:<br>
-&gt; <br>
-&gt; [image: WechatIMG2178.png]<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; -- <br>
-&gt; You received this message because you are subscribed to the Google Gro=
-ups <br>
-&gt; &quot;open-iscsi&quot; group.<br>
-&gt; To unsubscribe from this group and stop receiving emails from it, send=
- an <br>
-&gt; email to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.com" =
-target=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-&gt; To view this discussion on the web visit <br>
-&gt; <a href=3D"https://groups.google.com/d/msgid/open-iscsi/372db1a3-424d-=
-4063-bcdb-ccb0b821" rel=3D"noreferrer" target=3D"_blank">https://groups.goo=
-gle.com/d/msgid/open-iscsi/372db1a3-424d-4063-bcdb-ccb0b821</a> <br>
-&gt; df0b%<a href=3D"http://40googlegroups.com" rel=3D"noreferrer" target=
-=3D"_blank">40googlegroups.com</a>.<br>
-<br>
-<br>
-<br>
-<br>
--- <br>
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br>
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.com" target=
-=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/5DEFAC49020000A10003598D%40gwsmtp.uni-regensburg.de" =
-rel=3D"noreferrer" target=3D"_blank">https://groups.google.com/d/msgid/open=
--iscsi/5DEFAC49020000A10003598D%40gwsmtp.uni-regensburg.de</a>.<br>
-</blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAGJK1Kk1LhxJHx0r9wVcfM4gjH8ypKnjHgu3Ne8cY_CcMkVhqw%4=
-0mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.goog=
-le.com/d/msgid/open-iscsi/CAGJK1Kk1LhxJHx0r9wVcfM4gjH8ypKnjHgu3Ne8cY_CcMkVh=
-qw%40mail.gmail.com</a>.<br />
-
---00000000000095480305995a9b33--
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/5DF032BD.3070509%40redhat.com.
