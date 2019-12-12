@@ -1,134 +1,79 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBBBU3YTXQKGQEAP3WK3A@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBB7FYY3XQKGQEWIERXFY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ot1-x33c.google.com (mail-ot1-x33c.google.com [IPv6:2607:f8b0:4864:20::33c])
-	by mail.lfdr.de (Postfix) with ESMTPS id C356C11B29E
-	for <lists+open-iscsi@lfdr.de>; Wed, 11 Dec 2019 16:38:47 +0100 (CET)
-Received: by mail-ot1-x33c.google.com with SMTP id d16sf104593otq.19
-        for <lists+open-iscsi@lfdr.de>; Wed, 11 Dec 2019 07:38:47 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1576078726; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=JwUvHFyc/6F/3nEY+xbAgvOkmU+6ebDlrGMBBjaks2vt8AE5laB03BPsOlCU0MbcKZ
-         SE6ObhBc4mI7n0kc+Tode42atrayUxfVM4k9/nOke4GJhj+wengzZA4rICX2LjnciY6t
-         SkQT9Tf+8dzQpLwM62G7+XtiePJ9+IQAquwY82+WhE0dvcRyeFzvU0HqoPL0CYBtYzOM
-         /mArufI4LZ2ed7uCy3WfKueT+o3Qt0GtKeWNiywatWVwJDXeZQUoPu2kPTbEaCpsL+9M
-         F0K8X9GkSdSOsmpUl628nsPFOcOReQam9N0AxgUmcMCuZF35368EAAGcj7KISlLaT+rM
-         YdGw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:sender
-         :dkim-signature;
-        bh=JmzFsk/WeEih67B1FuCRxsTBdGjB7m7iNw/LK1Cz1+M=;
-        b=jKtqP10Htc9lexzC8Xr+36Etg9kj8rT+aTZ1jeaUwLqWRFpNY/y4ngWAgkk9LkXmKh
-         DfRqndnKrkec5OEGmlV7yJChBSrRM2R1tr1c6NeNCuwyHgE22eNaR99tqvHf4ebeOUU0
-         LhXJKAXEcyRI415Q9/MwTW9q1MTbCzR6KaL/92cvwC2e8KFPjwEx2RFC5llU4ioGyKjN
-         ewlblVa8WYlG80axxPwk226GxV6oIS5k6GbyVf1rIqhaXxMdVwpMT5OHpA6BydaCBYqU
-         XM2BJKf2LNHz0KBU9e8QYWTtPsoOv3aJrMP40wHy471IMbk/qCo1DT0NIa5RsXcQkQfx
-         NHfg==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=default header.b=HAjCLQeT;
-       spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: from mail-qk1-x73d.google.com (mail-qk1-x73d.google.com [IPv6:2607:f8b0:4864:20::73d])
+	by mail.lfdr.de (Postfix) with ESMTPS id C57B011C2AE
+	for <lists+open-iscsi@lfdr.de>; Thu, 12 Dec 2019 02:48:45 +0100 (CET)
+Received: by mail-qk1-x73d.google.com with SMTP id s9sf398985qkg.21
+        for <lists+open-iscsi@lfdr.de>; Wed, 11 Dec 2019 17:48:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=JmzFsk/WeEih67B1FuCRxsTBdGjB7m7iNw/LK1Cz1+M=;
-        b=UNM8+PdKmJw6hb+Qo2Migewg8Q3lRXvnlyApasiLze0CWOsVnzpw4avFwZMrvYgMyl
-         yS3qzP4G8P8rl2QQ6aEvMNp/eN66FfnpbsGJeqKcXOsD5VHuS10jq62c3wZKYNWHO3Lz
-         1yxugCmhsJu+XrxmJVWvgLIyyOvZNZcp0kZjJhYqCyiyF7v69q+nN+z714X0sjWH5DXJ
-         IlfY3Ts4BqK8eq4mErI3+eVLP2DcLD1lYUP0yzk9tLECBkSu/y027sV/JIE8Og9PTehx
-         5/J+jqK8EptCWNN2uqjcSjTAJYeGZKMoqIwRtLLJlXEc3NyP4fBPVU+4wcuYngUNMlrY
-         epqg==
+        h=sender:date:from:to:message-id:in-reply-to:references:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=hPtLob8R2Wm97mIlcLhJ6mr2eKy9tdaykwf3s3W2DH4=;
+        b=mpnKW0MUSYvyJfAaa+nPoIVXFdDgpGhmLrSB4qEqTnBe+Lutql2c8JQsPG1yZ0OxY2
+         QQEmmGezDbOyP+1wus2Dlne2Lt4G8Uaj9/9SLyWt3wH34DeX1+Wxy372FBcLwHQcgAkx
+         fSU4QaCxC9eCmH7YnusdXJIybgxv2bnam5im7ssbZ8cPOAxrpVdBbr+NaTYZo+3yl9pZ
+         oRBUZM+3sjdDyxiN2RsPMCQTt5tEEcKDVlknOoc7gcMYpOzFuGmZtKgeeuE3eCScgwJn
+         ocgKHxMYfLy9TCTksbQtwspCapuYdDJ8NISUSGe7fWy6IjdWYUZ4/cDDee1GguXWI+0t
+         4M+A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=hPtLob8R2Wm97mIlcLhJ6mr2eKy9tdaykwf3s3W2DH4=;
+        b=Bst5Ao0WFsShE6mFlIrbFBmzpSTxkleue5II176/NtmReuusLVubQuXQWLvbOVUA1r
+         M7aVuCHg0UtluFKZeJLkdJZmhsM3fup46S/RVQV1q5lbrk3qQXsFLfXErqaYjHyX720F
+         0rP+brvhgq0B6zZw6Nu2Y7GOV8wSfmgl3GSwVyilrgBQnaEeHBkXKZlil5eXVDCWk1t5
+         VNMQva8RNQhPEUHEm2GYExea9Mvqx6uAKd5OGnPwjMI7NyOGDQGpvaGt+N0Uu06uMCnA
+         XorS0uBAu3OHtjqR6AYRyLc7V7mLh/JP4t1RiJ1XbBzHI2cMPd8TQ49I1lYuSwRWqa5u
+         vbqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=JmzFsk/WeEih67B1FuCRxsTBdGjB7m7iNw/LK1Cz1+M=;
-        b=VZSYnQKQdPX87j9K+mpqmjIaHDkhfWLSs+pcYDzkqh3iWMqw96eZI3ZCEK1YgiZKKC
-         rfbN8hYXwCInDYbc1INeLbxb5R6C9W3XzMt6p6jaibn6lr5U93vK2H1uvfU6iZIvzj6y
-         rgKs7QCUtsjujxvu/cYouR95z9VmuwacgeE6AmewY9n4yQUoBqoelLhSspt64+OY5kvI
-         D6LkOxyRW9oNrrvsNF3fXYlAvqNgJlas8ZYszS/jilB9bcPioyCMAWd4IOO/3+WQwfrJ
-         cbx/9SXUO4Db/jL6mcdMbcECANpA4LlpdDyKZJKzMdsGybyKN+gYYWl3mNu/aCnyiq8R
-         EwEQ==
+        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
+         :references:subject:mime-version:x-original-sender:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=hPtLob8R2Wm97mIlcLhJ6mr2eKy9tdaykwf3s3W2DH4=;
+        b=hUcM5wUec/9f9D2hFZbcAO8QPxF+4WRZ1oCSlkhiVLY0noZRkiauEfPkHd4sRUzFpM
+         TRz6ez0J88stOZrhO2AhBrNxjtsIVs7sutvamGczu4wm0zBu5FBnLBN57OU1rOuzCL+7
+         f5QDatfGXqYAICZUc/43yIG19lVloRkg8Jc2iGvwdcSdPanyeZUrKuRLAja/O9j/hQzo
+         cFZm+OldFXf7iBVF5Yet6/FtJd6hlaeC9W5OmeQgjoH88VU4tuPN9hTwkpKL9ugXAnwH
+         5V78OZzUAHl6e6I40HnqYU26A/vEIJPKS2sfQpDkiutUxK4LAbfEuP8U3PKC5HfG0nh8
+         NKjA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAUNfeKtyLpIvZnd5WtjNuFjwlibwzmvR3G+iLH8zXeZg8XnxGFr
-	siE5nZLhaIiq/lkLl8jRBp4=
-X-Google-Smtp-Source: APXvYqy7/9ek9Jw0y2t1v2FlIWk04M4j3tnAM/Yjnh4oX+Ng7amngGNm9h9xYBbmsYoECKxFDEmqPg==
-X-Received: by 2002:aca:f305:: with SMTP id r5mr3359714oih.174.1576078726157;
-        Wed, 11 Dec 2019 07:38:46 -0800 (PST)
+X-Gm-Message-State: APjAAAUieNZ9cLXWo3AW7A+IEBSF/A7hxTtWkG+P5jzAp2Hhx+Tzw+iv
+	vzeh2ES7TRGlDowlmt1j0MM=
+X-Google-Smtp-Source: APXvYqyJc9VHfbSgJ/nqI9/wYec/EnRVVoor0HXJQJAfgr4z0RArq+JZkny0h8J+tp3OUnt5eOBn4w==
+X-Received: by 2002:a0c:9476:: with SMTP id i51mr5971164qvi.75.1576115324248;
+        Wed, 11 Dec 2019 17:48:44 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a9d:7241:: with SMTP id a1ls397316otk.13.gmail; Wed, 11 Dec
- 2019 07:38:45 -0800 (PST)
-X-Received: by 2002:a05:6830:1b6d:: with SMTP id d13mr2786002ote.258.1576078725823;
-        Wed, 11 Dec 2019 07:38:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1576078725; cv=none;
-        d=google.com; s=arc-20160816;
-        b=fFCU1asaRC9i/9RKGY0Tg84hEx7IlzoleM0iGi+eRx4LD4UO0DmaKkbflgdbFJIlJo
-         KvvKYg+w+izzuCGZ+IiOQb5SEvJCRNV4hJFZXT2OoWFI+1WfFTikWamVtUahKNvdB1yq
-         e9snFzg3hs02VBaXKWpAahsjMpGJAfsJma6RyuMthSCDOimgddYKWEKlawmkdR7SiSsG
-         +39pEa7Gull48sPkyQXYUQRuEtbXtpo7626bCSKtMeSXUm8AGzzZtEQaAqCxXQvTAqYC
-         wQDtOcfYiPuHAQjEsTLA1OydcW0WaPCVPQnmVfPsihkWZ43oHboFCpE5K5EkRlmsW93i
-         UY4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=UCF0eCUuQkO9nw0nfeHAvSTRVutc5aV5h7JdeD9Ypv8=;
-        b=Zswo2re0AWAvq3rJ30J5B6+l3HBVi7T0FR9yUkhhQNiJjQ2XvNPTHU3bCcf1RIM+TS
-         CNWLnQv7kvEDaY8dcyUcFHyTXJmBJxktRf5wVay9diL19kQziVYzAfoXUIuMrpyJ8qoG
-         R2rXp1zpQeuf5xUWimhQ3qDVHz7D/hKc3qEvqsuJrC7NWrw/cEeJ5+f83z2A8rpwx8VK
-         pjp5NvWkyf2/p+d54SPS2OaEKEDLNEKZ0DM/jcK1791ZAsWr+xQInvbCltiI/uhIQuSh
-         kOLqACxBiLSjoVDNwjgYZ4fRQoAX8xQUBWM/2gebTr+4iCs9POgqcBuc/soZ8Kk/JPcN
-         ExQg==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=default header.b=HAjCLQeT;
-       spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from mail.kernel.org (mail.kernel.org. [198.145.29.99])
-        by gmr-mx.google.com with ESMTPS id q80si113862oic.5.2019.12.11.07.38.45
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Dec 2019 07:38:45 -0800 (PST)
-Received-SPF: pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) client-ip=198.145.29.99;
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 2222C24671;
-	Wed, 11 Dec 2019 15:38:44 +0000 (UTC)
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Bart Van Assche <bvanassche@acm.org>,
-	Mike Christie <mchristi@redhat.com>,
-	Roman Bolshakov <r.bolshakov@yadro.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Sasha Levin <sashal@kernel.org>,
-	linux-scsi@vger.kernel.org,
-	target-devel@vger.kernel.org,
-	open-iscsi@googlegroups.com
-Subject: [PATCH AUTOSEL 4.4 29/37] scsi: target: iscsi: Wait for all commands to finish before freeing a session
-Date: Wed, 11 Dec 2019 10:38:05 -0500
-Message-Id: <20191211153813.24126-29-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191211153813.24126-1-sashal@kernel.org>
-References: <20191211153813.24126-1-sashal@kernel.org>
+Received: by 2002:a0c:e288:: with SMTP id r8ls685547qvl.2.gmail; Wed, 11 Dec
+ 2019 17:48:43 -0800 (PST)
+X-Received: by 2002:a05:6214:4f2:: with SMTP id cl18mr6091567qvb.89.1576115323707;
+        Wed, 11 Dec 2019 17:48:43 -0800 (PST)
+Date: Wed, 11 Dec 2019 17:48:42 -0800 (PST)
+From: The Lee-Man <leeman.duncan@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <e3a64e35-ac06-4e2d-a397-1e6f53ab25e7@googlegroups.com>
+In-Reply-To: <66d69bcc-1650-4df8-86dc-ad631d4da5c4@googlegroups.com>
+References: <8a89dcdb-8fae-4c97-9a76-db621b01bcaf@googlegroups.com>
+ <3db42c4c-1a52-4716-ae8f-fe289da32cc0@googlegroups.com>
+ <0c2592cf-ad61-4fe4-8006-63edabe4af7f@googlegroups.com>
+ <5DC3F334020000A100034E56@gwsmtp.uni-regensburg.de>
+ <1972273e-83e5-4e7f-9c76-00d0deb31185@googlegroups.com>
+ <ac95713b-ca5e-47f5-ad64-96ff6c43196a@googlegroups.com>
+ <bae3a7e2-306b-4959-9f8a-62bb6ae6fb00@googlegroups.com>
+ <66d69bcc-1650-4df8-86dc-ad631d4da5c4@googlegroups.com>
+Subject: Re: Re: iSCSI packet generator
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-Original-Sender: sashal@kernel.org
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=default header.b=HAjCLQeT;       spf=pass
- (google.com: domain of sashal@kernel.org designates 198.145.29.99 as
- permitted sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE
- sp=NONE dis=NONE) header.from=kernel.org
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_5063_759206213.1576115323105"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -141,145 +86,221 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-From: Bart Van Assche <bvanassche@acm.org>
+------=_Part_5063_759206213.1576115323105
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5064_363147239.1576115323105"
 
-[ Upstream commit e9d3009cb936bd0faf0719f68d98ad8afb1e613b ]
+------=_Part_5064_363147239.1576115323105
+Content-Type: text/plain; charset="UTF-8"
 
-The iSCSI target driver is the only target driver that does not wait for
-ongoing commands to finish before freeing a session. Make the iSCSI target
-driver wait for ongoing commands to finish before freeing a session. This
-patch fixes the following KASAN complaint:
+On Tuesday, December 10, 2019 at 4:20:28 AM UTC-8, Bobby wrote:
+>
+>
+> Like above, can you please give me more hints/clues in which other code(s) 
+> I need to see. Which part of this gigantic MQ-Block layer code base to see 
+> to understand the complete data flow? I am particularly interested in Hash 
+> , Map data structures. 
+>
 
-BUG: KASAN: use-after-free in __lock_acquire+0xb1a/0x2710
-Read of size 8 at addr ffff8881154eca70 by task kworker/0:2/247
+No, not really.
 
-CPU: 0 PID: 247 Comm: kworker/0:2 Not tainted 5.4.0-rc1-dbg+ #6
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.12.0-1 04/01/2014
-Workqueue: target_completion target_complete_ok_work [target_core_mod]
-Call Trace:
- dump_stack+0x8a/0xd6
- print_address_description.constprop.0+0x40/0x60
- __kasan_report.cold+0x1b/0x33
- kasan_report+0x16/0x20
- __asan_load8+0x58/0x90
- __lock_acquire+0xb1a/0x2710
- lock_acquire+0xd3/0x200
- _raw_spin_lock_irqsave+0x43/0x60
- target_release_cmd_kref+0x162/0x7f0 [target_core_mod]
- target_put_sess_cmd+0x2e/0x40 [target_core_mod]
- lio_check_stop_free+0x12/0x20 [iscsi_target_mod]
- transport_cmd_check_stop_to_fabric+0xd8/0xe0 [target_core_mod]
- target_complete_ok_work+0x1b0/0x790 [target_core_mod]
- process_one_work+0x549/0xa40
- worker_thread+0x7a/0x5d0
- kthread+0x1bc/0x210
- ret_from_fork+0x24/0x30
+There are many great resources for learning about the kernel and its 
+drivers, and the block layer. For example, join lwn.net and checkout 
+https://lwn.net/Articles/736534/
 
-Allocated by task 889:
- save_stack+0x23/0x90
- __kasan_kmalloc.constprop.0+0xcf/0xe0
- kasan_slab_alloc+0x12/0x20
- kmem_cache_alloc+0xf6/0x360
- transport_alloc_session+0x29/0x80 [target_core_mod]
- iscsi_target_login_thread+0xcd6/0x18f0 [iscsi_target_mod]
- kthread+0x1bc/0x210
- ret_from_fork+0x24/0x30
+And there are many great books, such as Linux Kernel Development.
 
-Freed by task 1025:
- save_stack+0x23/0x90
- __kasan_slab_free+0x13a/0x190
- kasan_slab_free+0x12/0x20
- kmem_cache_free+0x146/0x400
- transport_free_session+0x179/0x2f0 [target_core_mod]
- transport_deregister_session+0x130/0x180 [target_core_mod]
- iscsit_close_session+0x12c/0x350 [iscsi_target_mod]
- iscsit_logout_post_handler+0x136/0x380 [iscsi_target_mod]
- iscsit_response_queue+0x8de/0xbe0 [iscsi_target_mod]
- iscsi_target_tx_thread+0x27f/0x370 [iscsi_target_mod]
- kthread+0x1bc/0x210
- ret_from_fork+0x24/0x30
-
-The buggy address belongs to the object at ffff8881154ec9c0
- which belongs to the cache se_sess_cache of size 352
-The buggy address is located 176 bytes inside of
- 352-byte region [ffff8881154ec9c0, ffff8881154ecb20)
-The buggy address belongs to the page:
-page:ffffea0004553b00 refcount:1 mapcount:0 mapping:ffff888101755400 index:0x0 compound_mapcount: 0
-flags: 0x2fff000000010200(slab|head)
-raw: 2fff000000010200 dead000000000100 dead000000000122 ffff888101755400
-raw: 0000000000000000 0000000080130013 00000001ffffffff 0000000000000000
-page dumped because: kasan: bad access detected
-
-Memory state around the buggy address:
- ffff8881154ec900: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
- ffff8881154ec980: fc fc fc fc fc fc fc fc fb fb fb fb fb fb fb fb
->ffff8881154eca00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-                                                             ^
- ffff8881154eca80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
- ffff8881154ecb00: fb fb fb fb fc fc fc fc fc fc fc fc fc fc fc fc
-
-Cc: Mike Christie <mchristi@redhat.com>
-Link: https://lore.kernel.org/r/20191113220508.198257-3-bvanassche@acm.org
-Reviewed-by: Roman Bolshakov <r.bolshakov@yadro.com>
-Signed-off-by: Bart Van Assche <bvanassche@acm.org>
-Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/target/iscsi/iscsi_target.c | 10 ++++++++--
- include/scsi/iscsi_proto.h          |  1 +
- 2 files changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/target/iscsi/iscsi_target.c b/drivers/target/iscsi/iscsi_target.c
-index cbb4414edd71b..564828554ca02 100644
---- a/drivers/target/iscsi/iscsi_target.c
-+++ b/drivers/target/iscsi/iscsi_target.c
-@@ -993,7 +993,9 @@ int iscsit_setup_scsi_cmd(struct iscsi_conn *conn, struct iscsi_cmd *cmd,
- 		hdr->cmdsn, be32_to_cpu(hdr->data_length), payload_length,
- 		conn->cid);
- 
--	target_get_sess_cmd(&cmd->se_cmd, true);
-+	if (target_get_sess_cmd(&cmd->se_cmd, true) < 0)
-+		return iscsit_add_reject_cmd(cmd,
-+				ISCSI_REASON_WAITING_FOR_LOGOUT, buf);
- 
- 	cmd->sense_reason = transport_lookup_cmd_lun(&cmd->se_cmd,
- 						     scsilun_to_int(&hdr->lun));
-@@ -1804,7 +1806,9 @@ iscsit_handle_task_mgt_cmd(struct iscsi_conn *conn, struct iscsi_cmd *cmd,
- 			      conn->sess->se_sess, 0, DMA_NONE,
- 			      TCM_SIMPLE_TAG, cmd->sense_buffer + 2);
- 
--	target_get_sess_cmd(&cmd->se_cmd, true);
-+	if (target_get_sess_cmd(&cmd->se_cmd, true) < 0)
-+		return iscsit_add_reject_cmd(cmd,
-+				ISCSI_REASON_WAITING_FOR_LOGOUT, buf);
- 
- 	/*
- 	 * TASK_REASSIGN for ERL=2 / connection stays inside of
-@@ -4390,6 +4394,8 @@ int iscsit_close_connection(
- 	 * must wait until they have completed.
- 	 */
- 	iscsit_check_conn_usage_count(conn);
-+	target_sess_cmd_list_set_waiting(sess->se_sess);
-+	target_wait_for_sess_cmds(sess->se_sess);
- 
- 	if (conn->conn_rx_hash.tfm)
- 		crypto_free_hash(conn->conn_rx_hash.tfm);
-diff --git a/include/scsi/iscsi_proto.h b/include/scsi/iscsi_proto.h
-index c1260d80ef30d..1a2ae0862e23a 100644
---- a/include/scsi/iscsi_proto.h
-+++ b/include/scsi/iscsi_proto.h
-@@ -638,6 +638,7 @@ struct iscsi_reject {
- #define ISCSI_REASON_BOOKMARK_INVALID	9
- #define ISCSI_REASON_BOOKMARK_NO_RESOURCES	10
- #define ISCSI_REASON_NEGOTIATION_RESET	11
-+#define ISCSI_REASON_WAITING_FOR_LOGOUT	12
- 
- /* Max. number of Key=Value pairs in a text message */
- #define MAX_KEY_VALUE_PAIRS	8192
--- 
-2.20.1
+>
+>
+> On Tuesday, December 10, 2019 at 11:34:49 AM UTC+1, Bobby wrote:
+>>
+>>
+>> Perfect ! After this reply, I had to dig deeper and now it makes 
+>> sense....thanks a lot The Lee-Man for explaining it so effectively...
+>>
+>>
+>> On Saturday, November 9, 2019 at 7:52:52 PM UTC+1, The Lee-Man wrote:
+>>>
+>>> On Friday, November 8, 2019 at 10:40:08 AM UTC-8, Bobby wrote:
+>>>>
+>>>>
+>>>> Hi Ulrich,
+>>>>
+>>>> Thanks for the hint. Can you please help me regarding following two 
+>>>> questions. 
+>>>>
+>>>> - Linux block layer perform IO scheduling IO submissions to storage 
+>>>> device driver. If there is a physical device, the block layer interacts 
+>>>> with it through SCSI mid layer and SCSI low level drivers. So, how 
+>>>> *actually* a software initiator (*Open-iSCSI*) interacts with "*block 
+>>>> layer*"? 
+>>>>
+>>>> - What confuses me, where does the "*disk driver*" comes into play?
+>>>>
+>>>> Thanks :-)
+>>>>
+>>>>
+>>> In an iSCSI connection (session), there is the initiator and the target. 
+>>> I assume you are talking about the initiator.
+>>>
+>>> On the initiator, the "magic" is done by the kernel, in particular the 
+>>> iSCSI initiator code in the kernel, specifically by the 
+>>> scsi_transport_iscsi.c in drivers/scsi. When an iSCSI connection is made, 
+>>> the code creates a new "host" object, and then tests the device at the 
+>>> other end of the connection. If it's a disc drive, then an instance of sd 
+>>> is created (the disc driver). If the device is tape, a tape driver is 
+>>> instantiated (st). Unrecognized devices still get a generic SCSI device 
+>>> node, I believe.
+>>>
+>>> So, in this way, iSCSI is acting like an adapter driver, which plugs 
+>>> into the SCSI mid-layer.
+>>>
+>>> You can run "sudo journalctl -xe --follow" in one window, then log into 
+>>> an existing target in another (I used "sudo iscsiadm -m node -l"), and you 
+>>> should see this kind of output from journalctl:
+>>>
+>>> ...
+>>>
+>>>  
+>>>
+>>>> Nov 09 10:46:59 linux-dell kernel: iscsi: registered transport (tcp)
+>>>> Nov 09 10:46:59 linux-dell kernel: scsi host3: iSCSI Initiator over 
+>>>> TCP/IP
+>>>> Nov 09 10:46:59 linux-dell iscsid[13175]: iscsid: Connection1:0 to 
+>>>> [target: iqn.2003-01.org.linux-iscsi.linux-dell.x8664:sn.2a6e21b1b53c, 
+>>>> portal: 192.168.20.3,3260] through [iface: default] is operational now
+>>>> Nov 09 10:46:59 linux-dell kernel: scsi 3:0:0:0: Direct-Access     
+>>>> LIO-ORG  test-disc        4.0  PQ: 0 ANSI: 5
+>>>> Nov 09 10:46:59 linux-dell kernel: scsi 3:0:0:0: alua: supports 
+>>>> implicit and explicit TPGS
+>>>> Nov 09 10:46:59 linux-dell kernel: scsi 3:0:0:0: alua: device 
+>>>> naa.6001405de01c6e7933b414e901e22b0f port group 0 rel port 1
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: Attached scsi generic 
+>>>> sg1 type 0
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] 2097152 512-byte 
+>>>> logical blocks: (1.07 GB/1.00 GiB)
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] Write Protect is 
+>>>> off
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] Mode Sense: 43 00 
+>>>> 10 08
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] Write cache: 
+>>>> enabled, read cache: enabled, supports DPO and FUA
+>>>> Nov 09 10:46:59 linux-dell kernel: 
+>>>> iSCSI/iqn.1996-04.de.suse:01:54cab487975b: Unsupported SCSI Opcode 0xa3, 
+>>>> sending CHECK_CONDITION.
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] Optimal transfer 
+>>>> size 8388608 bytes
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] Attached SCSI disk
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: alua: transition timeout 
+>>>> set to 60 seconds
+>>>> Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: alua: port group 00 
+>>>> state A non-preferred supports TOlUSNA
+>>>>
+>>>    ... 
+>>>
+>>>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20191211153813.24126-29-sashal%40kernel.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/e3a64e35-ac06-4e2d-a397-1e6f53ab25e7%40googlegroups.com.
+
+------=_Part_5064_363147239.1576115323105
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">On Tuesday, December 10, 2019 at 4:20:28 AM UTC-8, Bobby w=
+rote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8e=
+x;border-left: 1px #ccc solid;padding-left: 1ex;"><div dir=3D"ltr"><br>Like=
+ above, can you please give me more hints/clues in which other code(s) I ne=
+ed to see. Which part of this gigantic MQ-Block layer code base to see to u=
+nderstand the complete data flow? I am particularly interested in Hash , Ma=
+p data structures.=C2=A0</div></blockquote><div><br></div><div>No, not real=
+ly.</div><div><br></div><div>There are many great resources for learning ab=
+out the kernel and its drivers, and the block layer. For example, join lwn.=
+net and checkout <a href=3D"https://lwn.net/Articles/736534/">https://lwn.n=
+et/Articles/736534/</a></div><div><br></div><div>And there are many great b=
+ooks, such as Linux Kernel Development.<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;p=
+adding-left: 1ex;"><div dir=3D"ltr"><div><br><br>On Tuesday, December 10, 2=
+019 at 11:34:49 AM UTC+1, Bobby wrote:<blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0;margin-left:0.8ex;border-left:1px #ccc solid;padding-left:1e=
+x"><div dir=3D"ltr"><br>Perfect ! After this reply, I had to dig deeper and=
+ now it makes sense....thanks a lot The Lee-Man for explaining it so effect=
+ively...<br><br><br>On Saturday, November 9, 2019 at 7:52:52 PM UTC+1, The =
+Lee-Man wrote:<blockquote class=3D"gmail_quote" style=3D"margin:0;margin-le=
+ft:0.8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">On F=
+riday, November 8, 2019 at 10:40:08 AM UTC-8, Bobby wrote:<blockquote class=
+=3D"gmail_quote" style=3D"margin:0;margin-left:0.8ex;border-left:1px #ccc s=
+olid;padding-left:1ex"><div dir=3D"ltr"><br>Hi Ulrich,<br><br>Thanks for th=
+e hint. Can you please help me regarding following two questions.=C2=A0<br>=
+<br><div><div>-=20
+
+Linux block layer perform IO scheduling IO submissions to storage device dr=
+iver. If there is a physical device, the block layer interacts with it thro=
+ugh SCSI mid layer and SCSI low level drivers. So, how *actually* a softwar=
+e initiator (<b>Open-iSCSI</b>) interacts with &quot;<b>block layer</b>&quo=
+t;?=C2=A0</div><div><br></div><div>- What confuses me, where does the &quot=
+;<b>disk driver</b>&quot; comes into play?<br><br>Thanks :-)</div></div><br=
+></div></blockquote><div><br></div><div>In an iSCSI connection (session), t=
+here is the initiator and the target. I assume you are talking about the in=
+itiator.</div><div><br></div><div>On the initiator, the &quot;magic&quot; i=
+s done by the kernel, in particular the iSCSI initiator code in the kernel,=
+ specifically by the scsi_transport_iscsi.c in drivers/scsi. When an iSCSI =
+connection is made, the code creates a new &quot;host&quot; object, and the=
+n tests the device at the other end of the connection. If it&#39;s a disc d=
+rive, then an instance of sd is created (the disc driver). If the device is=
+ tape, a tape driver is instantiated (st). Unrecognized devices still get a=
+ generic SCSI device node, I believe.</div><div><br></div><div>So, in this =
+way, iSCSI is acting like an adapter driver, which plugs into the SCSI mid-=
+layer.</div><div><br></div><div>You can run &quot;sudo journalctl -xe --fol=
+low&quot; in one window, then log into an existing target in another (I use=
+d &quot;sudo iscsiadm -m node -l&quot;), and you should see this kind of ou=
+tput from journalctl:<br></div><div><br></div><div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex">...</blockquote><div>=C2=A0</div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">Nov 09 10:46:59 linux-dell kernel: iscsi:=
+ registered transport (tcp)<br>Nov 09 10:46:59 linux-dell kernel: scsi host=
+3: iSCSI Initiator over TCP/IP<br>Nov 09 10:46:59 linux-dell iscsid[13175]:=
+ iscsid: Connection1:0 to [target: iqn.2003-01.org.linux-iscsi.<wbr>linux-d=
+ell.x8664:sn.<wbr>2a6e21b1b53c, portal: 192.168.20.3,3260] through [iface: =
+default] is operational now<br>Nov 09 10:46:59 linux-dell kernel: scsi 3:0:=
+0:0: Direct-Access=C2=A0=C2=A0=C2=A0=C2=A0 LIO-ORG=C2=A0 test-disc=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 4.0=C2=A0 PQ: 0 ANSI: 5<br>Nov 09 10:46:5=
+9 linux-dell kernel: scsi 3:0:0:0: alua: supports implicit and explicit TPG=
+S<br>Nov 09 10:46:59 linux-dell kernel: scsi 3:0:0:0: alua: device naa.<wbr=
+>6001405de01c6e7933b414e901e22b<wbr>0f port group 0 rel port 1<br>Nov 09 10=
+:46:59 linux-dell kernel: sd 3:0:0:0: Attached scsi generic sg1 type 0<br>N=
+ov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] 2097152 512-byte logica=
+l blocks: (1.07 GB/1.00 GiB)<br>Nov 09 10:46:59 linux-dell kernel: sd 3:0:0=
+:0: [sdb] Write Protect is off<br>Nov 09 10:46:59 linux-dell kernel: sd 3:0=
+:0:0: [sdb] Mode Sense: 43 00 10 08<br>Nov 09 10:46:59 linux-dell kernel: s=
+d 3:0:0:0: [sdb] Write cache: enabled, read cache: enabled, supports DPO an=
+d FUA<br>Nov 09 10:46:59 linux-dell kernel: iSCSI/iqn.1996-04.de.suse:01:<w=
+br>54cab487975b: Unsupported SCSI Opcode 0xa3, sending CHECK_CONDITION.<br>=
+Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] Optimal transfer size =
+8388608 bytes<br>Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: [sdb] Attac=
+hed SCSI disk<br>Nov 09 10:46:59 linux-dell kernel: sd 3:0:0:0: alua: trans=
+ition timeout set to 60 seconds<br>Nov 09 10:46:59 linux-dell kernel: sd 3:=
+0:0:0: alua: port group 00 state A non-preferred supports TOlUSNA<br></bloc=
+kquote><div>=C2=A0=C2=A0 ... <br></div><br></div></div></blockquote></div><=
+/blockquote></div></div></blockquote></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/e3a64e35-ac06-4e2d-a397-1e6f53ab25e7%40googlegroups.c=
+om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
+d/open-iscsi/e3a64e35-ac06-4e2d-a397-1e6f53ab25e7%40googlegroups.com</a>.<b=
+r />
+
+------=_Part_5064_363147239.1576115323105--
+
+------=_Part_5063_759206213.1576115323105--
