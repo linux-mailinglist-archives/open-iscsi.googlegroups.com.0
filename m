@@ -1,71 +1,72 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBE5OZ7XQKGQEHFQAG7Y@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBG56Z7XQKGQEQPNMZAA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73c.google.com (mail-qk1-x73c.google.com [IPv6:2607:f8b0:4864:20::73c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C29711EA19
-	for <lists+open-iscsi@lfdr.de>; Fri, 13 Dec 2019 19:23:17 +0100 (CET)
-Received: by mail-qk1-x73c.google.com with SMTP id n128sf216748qke.19
-        for <lists+open-iscsi@lfdr.de>; Fri, 13 Dec 2019 10:23:17 -0800 (PST)
+Received: from mail-qt1-x838.google.com (mail-qt1-x838.google.com [IPv6:2607:f8b0:4864:20::838])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C5D811EAC3
+	for <lists+open-iscsi@lfdr.de>; Fri, 13 Dec 2019 19:57:33 +0100 (CET)
+Received: by mail-qt1-x838.google.com with SMTP id c8sf2425075qte.22
+        for <lists+open-iscsi@lfdr.de>; Fri, 13 Dec 2019 10:57:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=j2FeTcye6cCDNXkj7tSGI5lYw8qafzQDrD8pXcQE95A=;
-        b=B8NmBUv9MPWtzBVpSmFwhTt9fpsP1rNCHu0/cWTx/trNBiXttVR/16C1ypXdi4Fvz4
-         XiYYdzAFC3vS8PZApuTL155K8VceZ3EPsWJ630xEBp7Q9A6xAoMpn0pW0OnMrAXhd1ZC
-         O8wb/LzVPwQfJi5cbNXV+vy6NkeddHCmldHkVdnaKbRiRhK7vrJf6zzplOGHj1drQFbx
-         +zFBWtvW/d41hXlDdl9//ur7JPM4sZtgOzeBK4YDb44sPvaS4ao5XT5RFsn2+xeKPOfo
-         +rEA/4oM2dCxGd5aoRsCUeN+3AeDnaSKHQxOxdVGLyLnv+muBb/co2Qy7FggEjGhT9TI
-         im1Q==
+        bh=S5EvS7bVj33sjGuHzqC1ae+coFr+i3fdsVI8qqQeNRw=;
+        b=EsTVf30yYIxO47vu9VhwLN1ujkkQ9UKccDV36dQEVwQaBVOlCSjd2NaFyLLYggxqD+
+         7Jl9H84Ytf8q/FKO11PzOFmRLUYY+tyUGkIUATc3V/xgXuRug3tgvPs04Ricuw2Hcq5x
+         23jVwqmdCS2f6gM4wbhaBBuNmS5DaMvMW4Kxa37dSEPcRv+IIGdIi3SFMdgF24L/bfd1
+         EbOH2KM1dkLjh1HKCPPh2UXYNALUX3ZuvSZM32tnuapHtp2jGJhTBCNoEgLY1/aBd4S5
+         idm12imwzD9PG4LQjhiN9InTo2pIw+xTYYjBeuNPzrELA21KgZdDvJL2qXu3K47xsPQt
+         0ong==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=j2FeTcye6cCDNXkj7tSGI5lYw8qafzQDrD8pXcQE95A=;
-        b=VrB4+Dg5m4p+gnMNb9Zt2qPtEWTHjKVs9ZNCp0IOAwdlTqtK54/G4OffaG+JhdXXGT
-         CrwY+55z5mbEcdFxcLqliJ4FkG1MCqKMabC1DoPxrc4EspTtmYCiyQ24gSnz0ZKtTrru
-         /HLHk9I5veiwitJRDwXjnH+lIhTjRp6pE4KdmI0dR/se9B41DBBxkpyeUJWtXExE95Rj
-         r8IwHfbM3q6zLuOSuh2d8vj0NVyQLeeSmSjL7eEanLvnD8tXdKSMXP94bNZM6CdDIa57
-         Scku3jt7c7yR8tC1RfgFUeJriZzka1gQzvZL/KWxTAz1qbE5R4rxSUn7st/tKxgrgPq2
-         8y7w==
+        bh=S5EvS7bVj33sjGuHzqC1ae+coFr+i3fdsVI8qqQeNRw=;
+        b=skQeRuncIsqocJ+Qlqww2zjxstQYvFhC3Gi26KY2BvtzPG0cNdbz4RJSsm/oHltV/N
+         TNPSepJm9u5UEpAFIffrMmUuDrOH+K7CU3tfBTsCS+0h4dsjvrY7/4dm7N6FLPGKe6JM
+         O3CEMzdhZSN1FKsPj09PCeZjyqBZReXRI9BeBYLjXBS+pBS/DYscU17NSp1lIzsRgely
+         Ycca43JeloGjUqh24wDxqxzB6BYnNIQK2YJy8J+kLgQQR2Tk85KHuS3VVOnSws9RQnbY
+         LBFQ+bP0zsReF9nOH6EKKOIIA21RCSKfMwGI53WK6oh9JfTn6I+4FtqXBXS9chnJsikl
+         H7sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=j2FeTcye6cCDNXkj7tSGI5lYw8qafzQDrD8pXcQE95A=;
-        b=c0Mlu17snq0wypk7i8sE6iuHWfv6xJme6fc18/+0nFsJqxDqWee60pt6RXMv7RVJex
-         ZzThers5aUr6AL2cCk3nYfNnVI+1AACdooy1Vt13oNC1T/KM+OFdgL9u6ogKa9NEbXlU
-         NyKjZE8kP+WnFqZlpxCw+5aZM2VGUD2pPTkykzJOmE82RLGiE3+OSJd+Q3qwyeOX0Zte
-         rqnvnwqTV7mb3ONZL1rgNqQrQvoC1z4lEECdm9ctAVdKnI8iimmDjiQM9QIIlJqyxlcs
-         6wB8vCiG0lg6fTDF5JeElM1zI3EboL5/WIy6D/6NSMvKlDFQgCjy/Y9iBAr7inBnotzD
-         baRw==
+        bh=S5EvS7bVj33sjGuHzqC1ae+coFr+i3fdsVI8qqQeNRw=;
+        b=jWymLR/mpUlxOUzftGkDCj5J7Ol7Upgv2kCXNaEaA18DxrKOkNCh0u+jimXfoe7zgt
+         TFA1jCCKKVbMpYLq0rJN60fXJYCAJOHm959BlL/3iEYUzZcWbZmb5WRXLRwqQMqCOoAs
+         QtM4Am5KihYQsyqZUMIsF3k5+LSjAft/x9uzqVd/ue91IHCY5s+nlSloOzT5CfWZccOm
+         /tUyXesxG+IxkCK076YqMzbcdXuOz+/1aC6/e1IPG5DH1V5szC7wJZvJZB3mcME7NGCy
+         4quhPW89dnFXr79cFAX31ogHgWdOx3qGvsZcmqwag94eXVt4FT/t2J7GMKWAx89EZeWz
+         XpmQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAW/jsS+/83jvNNYp7flLWE/2f41AjT5zn5v51miPF6icN0eecxj
-	1iuTbtRQKARUv90xfuZJkMo=
-X-Google-Smtp-Source: APXvYqxX3+8nqWGhohPCyse4c6VpPfPFbrS0QkoTOHu8MkD2vBi8SimNKF/pvUJ502P8zNB6/vCotQ==
-X-Received: by 2002:ac8:23cd:: with SMTP id r13mr13704595qtr.184.1576261395933;
-        Fri, 13 Dec 2019 10:23:15 -0800 (PST)
+X-Gm-Message-State: APjAAAWf2mWB8FcCmtLC2YPweKvh2xjk07BviaJpKAFyHbn0kUeWWr0Y
+	v5++Ejpy/OT3bjRHUYwCaZc=
+X-Google-Smtp-Source: APXvYqy8JtJ29fjb3BbjTt/qPKa7hvlcsjnRoJmRuwgQIQmpSwag+W5lcnWLEaS2ZRM7EarCu2Rdiw==
+X-Received: by 2002:ac8:195d:: with SMTP id g29mr13858073qtk.65.1576263452015;
+        Fri, 13 Dec 2019 10:57:32 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:620a:1246:: with SMTP id a6ls3261687qkl.5.gmail; Fri, 13
- Dec 2019 10:23:15 -0800 (PST)
-X-Received: by 2002:a05:620a:98f:: with SMTP id x15mr14661040qkx.462.1576261395431;
-        Fri, 13 Dec 2019 10:23:15 -0800 (PST)
-Date: Fri, 13 Dec 2019 10:23:14 -0800 (PST)
+Received: by 2002:aed:2ba4:: with SMTP id e33ls2568970qtd.2.gmail; Fri, 13 Dec
+ 2019 10:57:31 -0800 (PST)
+X-Received: by 2002:ac8:7417:: with SMTP id p23mr13397051qtq.313.1576263451474;
+        Fri, 13 Dec 2019 10:57:31 -0800 (PST)
+Date: Fri, 13 Dec 2019 10:57:30 -0800 (PST)
 From: The Lee-Man <leeman.duncan@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <28683699-a9e8-44e7-be9e-d0bbb4057dc8@googlegroups.com>
-In-Reply-To: <7c543bff-009b-5a96-2e66-e75d5b3c7336@huawei.com>
-References: <7c543bff-009b-5a96-2e66-e75d5b3c7336@huawei.com>
-Subject: Re: [PATCH] Check whether socket is opened successfully in
- find_vlan_dev func
+Message-Id: <fab5bd32-ae8d-4475-8faf-d0318498893c@googlegroups.com>
+In-Reply-To: <BYAPR13MB2374C51F1BA4DE9C0C113B6AE3540@BYAPR13MB2374.namprd13.prod.outlook.com>
+References: <ER6VKMQR6V@zendesk.com>
+ <ER6VKMQR6V_5df3b2cf5ea09_7a813feae9cbcf142908be_sprut@zendesk.com>,<ER6VKMQR6V_5df3b41a73f5_71983f8d8dcbcf1427328e_sprut@zendesk.com>
+ <BYAPR13MB2374C51F1BA4DE9C0C113B6AE3540@BYAPR13MB2374.namprd13.prod.outlook.com>
+Subject: Re: Openiscsi Release Schedule
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_404_1135863931.1576261394359"
+	boundary="----=_Part_497_240409832.1576263450497"
 X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -80,67 +81,169 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_404_1135863931.1576261394359
+------=_Part_497_240409832.1576263450497
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_405_2071623217.1576261394359"
+	boundary="----=_Part_498_759059844.1576263450497"
 
-------=_Part_405_2071623217.1576261394359
+------=_Part_498_759059844.1576263450497
 Content-Type: text/plain; charset="UTF-8"
 
-On Sunday, December 8, 2019 at 10:32:54 PM UTC-8, liuzhiqiang (I) wrote:
-In find_vlan_dev func, socket should be checked before used. 
+On Friday, December 13, 2019 at 9:01:40 AM UTC-8, Karla Thurs wrote:
+>
+> Hello,
+> What is your latest version of Openiscsi and what was the release date? Do 
+> you happen to have a release schedule that you follow? I see your dates for 
+> old releases but don't see anything about following a certain schedule for 
+> new releases. If you have anything to provide that would be great.
+>
+> Thank you,
+> Karla Thurs
+>
+> Configuration Manager
+> By Light Professional IT Services LLC
+> karla.thurs@<hidden>.com
+>
+> You can always find that out by going to github "release" directory for 
+our project: https://github.com/open-iscsi/open-iscsi/releases
+<https://github.com/open-iscsi/open-iscsi/releases)>
 
-Signed-off-by: Zhiqiang Liu <liuzhiqiang26@huawei.com> 
---- 
-usr/iscsi_net_util.c | 4 ++++ 
-1 file changed, 4 insertions(+) 
+I just updated the "current" release to 2.1.0, which has been out about a 
+month (11/14).
 
-diff --git a/usr/iscsi_net_util.c b/usr/iscsi_net_util.c 
-index b5a910f..c38456f 100644 
---- a/usr/iscsi_net_util.c 
-+++ b/usr/iscsi_net_util.c 
-@@ -192,6 +192,10 @@ static char *find_vlan_dev(char *netdev, int vlan_id) 
-{ 
-int sockfd, i, rc; 
+The version available to end users is more controlled by what each 
+distribution does, since most users do not download and compile their own 
+open-iscsi package. If you wish to use the latest open-iscsi code many 
+times you also need the latest kernel, for example. So if you are using 
+RedHat, or SUSE, you want to be using the latest package that vendor 
+supports for your OS version. If that helps you.
 
-sockfd = socket(AF_INET, SOCK_DGRAM, 0); 
-+ if (sockfd < 0) { 
-+ log_error("Could not open socket for ioctl."); 
-+ return NULL; 
-+ } 
+And no, we do not have any schedule for future releases. We are a little 
+short on valuable resources (like people and time) to have such things. 
+Instead, we fix any bugs we find and hope to get time to make some 
+improvements.
 
-strlcpy(if_hwaddr.ifr_name, netdev, IFNAMSIZ); 
-ioctl(sockfd, SIOCGIFHWADDR, &if_hwaddr); 
--- 
-2.24.0.windows.2 
-
-Reviewed-by: Lee Duncan <lduncan@suse.com>
+Now my turn to ask a question: why do you wish to know?
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/28683699-a9e8-44e7-be9e-d0bbb4057dc8%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/fab5bd32-ae8d-4475-8faf-d0318498893c%40googlegroups.com.
 
-------=_Part_405_2071623217.1576261394359
+------=_Part_498_759059844.1576263450497
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On Sunday, December 8, 2019 at 10:32:54 PM UTC-8, liuzhiqi=
-ang (I) wrote:<br><div style=3D"margin-left: 40px;">In find_vlan_dev func, =
-socket should be checked before used. <br> <br>Signed-off-by: Zhiqiang Liu =
-&lt;<a href=3D"mailto:liuzhiqiang26@huawei.com">liuzhiqiang26@huawei.com</a=
->&gt; <br>--- <br> usr/iscsi_net_util.c | 4 ++++ <br> 1 file changed, 4 ins=
-ertions(+) <br> <br>diff --git a/usr/iscsi_net_util.c b/usr/iscsi_net_util.=
-c <br>index b5a910f..c38456f 100644 <br>--- a/usr/iscsi_net_util.c <br>+++ =
-b/usr/iscsi_net_util.c <br>@@ -192,6 +192,10 @@ static char *find_vlan_dev(=
-char *netdev, int vlan_id) { <br>         int sockfd, i, rc; <br> <br>     =
-    sockfd =3D socket(AF_INET, SOCK_DGRAM, 0); <br>+        if (sockfd &lt;=
- 0) { <br>+                log_error(&quot;Could not open socket for ioctl.=
-&quot;); <br>+                return NULL; <br>+        } <br> <br>        =
- strlcpy(if_hwaddr.ifr_name, netdev, IFNAMSIZ); <br>         ioctl(sockfd, =
-SIOCGIFHWADDR, &amp;if_hwaddr); <br>-- <br>2.24.0.windows.2 <br></div> <div=
-><br></div><div>Reviewed-by: Lee Duncan &lt;lduncan@suse.com&gt;<br></div><=
-/div>
+<div dir=3D"ltr">On Friday, December 13, 2019 at 9:01:40 AM UTC-8, Karla Th=
+urs wrote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left:=
+ 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;">
+
+
+
+
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-ser=
+if;font-size:12pt">
+<span style=3D"display:inline!important;background-color:rgb(255,255,255);c=
+olor:rgb(43,46,47);font-family:&quot;Lucida Sans Unicode&quot;,&quot;Lucida=
+ Grande&quot;,&quot;Tahoma&quot;,Verdana,sans-serif;font-size:14px;line-hei=
+ght:22px">Hello,</span><br>
+<span style=3D"display:inline!important;background-color:rgb(255,255,255);c=
+olor:rgb(43,46,47);font-family:&quot;Lucida Sans Unicode&quot;,&quot;Lucida=
+ Grande&quot;,&quot;Tahoma&quot;,Verdana,sans-serif;font-size:14px;line-hei=
+ght:22px">What is your latest version of Openiscsi and what
+ was the release date? Do you happen to have a release schedule that you fo=
+llow? I see your dates for old releases but don&#39;t see anything about fo=
+llowing a certain schedule for new releases. If you have anything to provid=
+e that would be great.</span></div>
+<div style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-ser=
+if;font-size:12pt">
+<br>
+</div>
+<div style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-ser=
+if;font-size:12pt">
+<div style=3D"border-bottom-color:currentColor;border-left-color:currentCol=
+or;border-right-color:currentColor;border-top-color:currentColor;font-size-=
+adjust:none;margin-bottom:0px;margin-top:0px">
+<font size=3D"3" face=3D"Times New Roman"><span style=3D"border-bottom-colo=
+r:currentColor;border-left-color:currentColor;border-right-color:currentCol=
+or;border-top-color:currentColor;font-family:Arial,Helvetica,sans-serif;fon=
+t-size:11pt;font-size-adjust:none;margin-bottom:0px;margin-top:0px">Thank
+ you,</span></font></div>
+<span style=3D"display:inline!important;background-color:rgb(255,255,255);f=
+ont-size-adjust:none"></span>
+<div style=3D"border-bottom-color:currentColor;border-left-color:currentCol=
+or;border-right-color:currentColor;border-top-color:currentColor;font-size-=
+adjust:none;margin-bottom:0px;margin-top:0px">
+<font size=3D"3" face=3D"Times New Roman"><span style=3D"border-bottom-colo=
+r:currentColor;border-left-color:currentColor;border-right-color:currentCol=
+or;border-top-color:currentColor;font-family:Arial,Helvetica,sans-serif;fon=
+t-size:11pt;font-size-adjust:none;margin-bottom:0px;margin-top:0px">Karla
+ Thurs</span></font></div>
+<span style=3D"display:inline!important;background-color:rgb(255,255,255);f=
+ont-size-adjust:none"></span>
+<div style=3D"border-bottom-color:currentColor;border-left-color:currentCol=
+or;border-right-color:currentColor;border-top-color:currentColor;font-size-=
+adjust:none;margin-bottom:0px;margin-top:0px">
+<font><span style=3D"border-bottom-color:currentColor;border-left-color:cur=
+rentColor;border-right-color:currentColor;border-top-color:currentColor;fon=
+t-size-adjust:none;margin-bottom:0px;margin-top:0px"></span>
+<p>
+<span style=3D"border-bottom-color:currentColor;border-left-color:currentCo=
+lor;border-right-color:currentColor;border-top-color:currentColor;color:rgb=
+(0,0,0);font-family:Arial,Helvetica,sans-serif;font-size:11pt;font-size-adj=
+ust:none;margin-bottom:0px;margin-top:0px">Configuration
+ Manager</span><br>
+</p>
+<span style=3D"border-bottom-color:currentColor;border-left-color:currentCo=
+lor;border-right-color:currentColor;border-top-color:currentColor;font-size=
+-adjust:none;margin-bottom:0px;margin-top:0px"></span>
+<div style=3D"background-color:rgb(255,255,255);border-bottom-color:current=
+Color;border-left-color:currentColor;border-right-color:currentColor;border=
+-top-color:currentColor;font-size-adjust:none;margin-bottom:0px;margin-top:=
+0px">
+<span style=3D"border-bottom-color:currentColor;border-left-color:currentCo=
+lor;border-right-color:currentColor;border-top-color:currentColor;font-fami=
+ly:Arial,Helvetica,sans-serif;font-size:11pt;font-size-adjust:none;margin-b=
+ottom:0px;margin-top:0px">By
+ Light Professional IT Services LLC</span></div>
+</font>
+<div style=3D"background-color:rgb(255,255,255);border-bottom-color:current=
+Color;border-left-color:currentColor;border-right-color:currentColor;border=
+-top-color:currentColor;font-size-adjust:none;margin-bottom:0px;margin-top:=
+0px">
+<font><span style=3D"border-bottom-color:currentColor;border-left-color:cur=
+rentColor;border-right-color:currentColor;border-top-color:currentColor;fon=
+t-family:Arial,Helvetica,sans-serif;font-size:11pt;font-size-adjust:none;ma=
+rgin-bottom:0px;margin-top:0px">karla.thurs@&lt;hidden&gt;.com</span></font=
+><br>
+</div>
+</div>
+</div>
+<div style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-ser=
+if;font-size:12pt">
+</div>
+<div style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-ser=
+if;font-size:12pt">
+<br>
+</div>
+<div></div></div></div></blockquote><div>You can always find that out by go=
+ing to github &quot;release&quot; directory for our project: <a href=3D"htt=
+ps://github.com/open-iscsi/open-iscsi/releases)">https://github.com/open-is=
+csi/open-iscsi/releases<br></a></div><div><br></div><div>I just updated the=
+ &quot;current&quot; release to 2.1.0, which has been out about a month (11=
+/14).</div><div><br></div><div>The version available to end users is more c=
+ontrolled by what each distribution does, since most users do not download =
+and compile their own open-iscsi package. If you wish to use the latest ope=
+n-iscsi code many times you also need the latest kernel, for example. So if=
+ you are using RedHat, or SUSE, you want to be using the latest package tha=
+t vendor supports for your OS version. If that helps you.</div><div><br></d=
+iv><div>And no, we do not have any schedule for future releases. We are a l=
+ittle short on valuable resources (like people and time) to have such thing=
+s. Instead, we fix any bugs we find and hope to get time to make some impro=
+vements.</div><div><br></div><div>Now my turn to ask a question: why do you=
+ wish to know?<br></div></div>
 
 <p></p>
 
@@ -151,11 +254,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/28683699-a9e8-44e7-be9e-d0bbb4057dc8%40googlegroups.c=
+om/d/msgid/open-iscsi/fab5bd32-ae8d-4475-8faf-d0318498893c%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/28683699-a9e8-44e7-be9e-d0bbb4057dc8%40googlegroups.com</a>.<b=
+d/open-iscsi/fab5bd32-ae8d-4475-8faf-d0318498893c%40googlegroups.com</a>.<b=
 r />
 
-------=_Part_405_2071623217.1576261394359--
+------=_Part_498_759059844.1576263450497--
 
-------=_Part_404_1135863931.1576261394359--
+------=_Part_497_240409832.1576263450497--
