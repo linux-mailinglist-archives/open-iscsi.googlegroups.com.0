@@ -1,131 +1,117 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBBEVW6PXQKGQE37WBARY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDA4VMEL3QNRBONRSTYAKGQER4TUF6I@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yw1-xc37.google.com (mail-yw1-xc37.google.com [IPv6:2607:f8b0:4864:20::c37])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AE86127CA7
-	for <lists+open-iscsi@lfdr.de>; Fri, 20 Dec 2019 15:30:44 +0100 (CET)
-Received: by mail-yw1-xc37.google.com with SMTP id q187sf6748771ywg.12
-        for <lists+open-iscsi@lfdr.de>; Fri, 20 Dec 2019 06:30:43 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1576852243; cv=pass;
+Received: from mail-wr1-x440.google.com (mail-wr1-x440.google.com [IPv6:2a00:1450:4864:20::440])
+	by mail.lfdr.de (Postfix) with ESMTPS id E63CC12AE7C
+	for <lists+open-iscsi@lfdr.de>; Thu, 26 Dec 2019 21:31:53 +0100 (CET)
+Received: by mail-wr1-x440.google.com with SMTP id k18sf11819325wrw.9
+        for <lists+open-iscsi@lfdr.de>; Thu, 26 Dec 2019 12:31:53 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1577392313; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Y3m5HWoryVPV5nzrBS0uzfpjN1TZajoEmMlcKcmiolU9By5s9wAcjTDCHjq6u4tvbo
-         U+3RWkFmNaX5qMQDGLGz61aqS0onElMQYE2mFFTwPw2xt54KlriU6/1XbQlsyGwfCJDt
-         6AesMIfzgC15n1HrJBiWjBYJe5ZuRdt09z7B+IU3nD0PicBvv4Nak4mRorXirMhEHOUJ
-         +C7ZZDXyDFlRshZfmW2u+J2Gd3WVNEjbwTIPKRx5NFeNas8vHGetmKfZSdNLqTCGD2eu
-         yyUjlbZBnZXbnddOzSEC8/i+RCCLxxOoX0jeFa23X8S3GMo3EPbu58k+6mf6+Mv1RFB/
-         EBfQ==
+        b=SZSOo2NIOh9vj9Ckulef1DIgakkaizOTO68Y2o4XagMjawqau6SbCBAhODDwt1fWDG
+         2vn5+YRgZOuhfu6dbccIDmwD/1Aq6aJqH1ZbZYO6Efnwr3k646LnHsjsOmHyBj8AyWx+
+         2bRsL/AXkojQI70rcvPDlMmOUFOo+nh8S6fkYfzwP1EpL5wDvqMZLzeBAr8zeG9/LTQn
+         3/NhT6+KUGv4wBuYsQtjCkWy0dVAxlYXNqIIcJKcxM5J2pxfboakZ3+EnhzZcDLeryg5
+         UPeF6Rhm9G5qPhER53CoBNYmLZBvI9wdCpT8CJL7pisIJvPRWdv/nL+RbgpBHfDi+WIC
+         WCUA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:sender
-         :dkim-signature;
-        bh=/3p49Aga2x8vQu4xC6r7KudvnBC/6gV3hNM0cSR902g=;
-        b=zNg8n/dYsAvwvPw5LMhyGh7vaRdDq+8uChZqfM/nwM2fmsuV20/RwCrJdHktW+OnMc
-         EKGUCaqC1HsxmPO6PftgQqMnGLgolPUmsG4jHDq2s/CpP7C6hrbod9wnHW0spXHUqF2r
-         izoPqkA+Ww/jcWQLZcDBmMbRZD+QkeJiS/FaCNI4y01BL+9ZXN0hjCEDqv2O6VbaHtVU
-         BMk3cXLbfo+uUrUeWfRr6XNdaJMQjkOIu/zVnOCH/zaP6wsfEDGsp7sJ14H+e+p4T6IN
-         mTussYKx2rnxYGQnYiWN2mHJxGX78JC9D53IZlhNYAPxBbX/2FLqjYRagZjpb9PsL16N
-         WIHw==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=0QmBYH3RkeQkjuntllyn3oqixfD/J8vmeMyOoWgTINA=;
+        b=DmNkqU8rESrNjQbo3NgjWb0OEQn9KmxoaTMmgETZgJ6iL3pxJpzZ0zFMlqMKCPZwnQ
+         ECEGYdBoi+t7Kl6OBlDjJihQt0haWdptE0RkQifKKOhbxmF0XnD6G9FVMJAHO+GR2FT9
+         ePrWsPBErOXVhunBLOUhpMoIWwZ+T18Gpar/RZqNM3pEHDXP1KJWyWZtH5GDqI8zXhdI
+         nTTdpP+2Y7jnZ/xsGXWSRtpL6LKdncjduJLLJhGXP+15Ax2spII71mBzxL/OXDpLRbak
+         T8qTj5Xr1oQjd5wzjdNF1O2FwdV6zvdcacnv1UsxHKk5Ov8ys3qv+CVJgJKELVanKRIH
+         wYlw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=default header.b=LCpCmCeg;
-       spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+       spf=pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) smtp.mailfrom=krisman@collabora.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=/3p49Aga2x8vQu4xC6r7KudvnBC/6gV3hNM0cSR902g=;
-        b=sakXQk7VM99Vw2nyrHFnoV2LdGkLXdvyzhcZYpoKMp5BNfsnYvojxRfn5WHs3o36s9
-         UkDXUEE/la0jGZeSoEj/A202FVRee4C0Q0dRIP7QTByqi3hOy5izW/CnE0TTuP2u2XLW
-         M/tXEzqw9m8+QpjBE7e8G8d1mglIg8Tnd3aU5sm+hw2eg3HfT1XwZsWoHY6SJb9kgfZw
-         G8e9s+/WYHtVc5EFQORLZk1gkUEpMPJrvNpyCu4K9hWLOrn18F4xomaYJRtUM0G+x4td
-         qgpY0Fkrzl+kZ65zvfbFAI09KrfLW5+s0A7D8W1tFieleNK1WGVHz0emhxvij/5CyMjo
-         DEyA==
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=0QmBYH3RkeQkjuntllyn3oqixfD/J8vmeMyOoWgTINA=;
+        b=pdOgjNn7ZWOGhvM4PCgRc34v1cOp9BleboYdI2KteVQBk6a6ewsRZoZtbeI0+aACEi
+         kMlx1AC9JSYkGgtfSWniInGJaPZQTgZczccJq7MQEjib45j1k3a22d/hUkFDTj3AqYga
+         dv599VR01iJABoYdf/wA16wXGA814NsIhoL4Z2iLzqUnxL9OFvZTRTz+8MNAztIsAeRI
+         z15GImZdLbymmTD75hoB+3I+0HAmj5F9qFjH+mVpa/Bgs67ZfWPUEaMqhrOJJ/0pxafA
+         orQOxH+ESuqbbSg7IfN0Vob8P1IaO9yldgktOcIAZbQkbx8n4SEShxjbmmov2skHFXpH
+         S50A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=/3p49Aga2x8vQu4xC6r7KudvnBC/6gV3hNM0cSR902g=;
-        b=R0IajTVJPqLRbpSjDUByjtlKbgXI1rplJAgwrIXjn3HKYkoqXcIJpXRHuwS2hgDp+I
-         Zik5dK5quVj+1/OlNYNffuXyjqbd1mMHzK4wRWOOh1vtpfwJAAblAV48T2KtsSoLt4MA
-         HPFJRhijWR9C1lbk+Ux1ULASp3HptSzdFnF4c7DW7MhGpbgGwgco1waA989n1+zng74s
-         j66IWWHclL3G2O9xxgHsNabfW32DGv8WeSTSMqMjrQBRwz23MzLnkVWRAjVTVb7wtOAV
-         a0foXlPXcxt4WNjI86GPXtBxu3DPSzMyNQZfeX1MkeJStp0UymiFgGyfedjeugHSwCMo
-         PXYQ==
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=0QmBYH3RkeQkjuntllyn3oqixfD/J8vmeMyOoWgTINA=;
+        b=SGW66qfDrQj1cIwlZKb01FPL2tsyvRbtA9l2Wxxr0Ep8YLDH5UUYNOHbKucpdIZm6I
+         njoKbjrGRx0yf+Zogo89JD2T/rkGLfWLGpeNokV2W5CceFbupHDoP6DvBoKChvzM8gaD
+         2M8t0ojK74/klYZKNyQJRMVblHPahzIsoiUVsCm6DPLDZrXa60F1EaE4VrT4idxkJNdl
+         8VOxPusH4NjyruOA22uoqnaA0eZmaWL53Yu4DCQR22H/PfcQzJMYn2l3+h04ynssh7u3
+         IUe5u0gHkZuIWBBesWLsAKhirUk4YvBxPRo6TP9bYzgTeGeJ1nMokWsV7MANRGiTPILA
+         yfqQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAUOA8QzkBXojlXxq0ZO4I8j/QeeIPQN3xs7BvDjdPiwMx/AmMD4
-	TR+48vAemZlo9mRCSifgmd8=
-X-Google-Smtp-Source: APXvYqy5Q2jkfDgHJd6mn3H2UqnC0LnyBE5DNYRE+e7KZIuBv9KzstvvQw0Hs9XgV3ufhRmJSR7zgQ==
-X-Received: by 2002:a81:4685:: with SMTP id t127mr10293809ywa.280.1576852242845;
-        Fri, 20 Dec 2019 06:30:42 -0800 (PST)
+X-Gm-Message-State: APjAAAVMcQHkGOH5Bnr9ntq0qsQUduNPaeahfJ33OaJWyg7yCOtOHL7X
+	yWoFaylTImhN7AQqeVy+sew=
+X-Google-Smtp-Source: APXvYqwaIDzAvls4NJjT33dTcW9o04G4ospvQ5+/x6NxpfAfhXz/Khqm45g5H4zVeYYi3RVtuA6ZnQ==
+X-Received: by 2002:a5d:4687:: with SMTP id u7mr46730209wrq.176.1577392313549;
+        Thu, 26 Dec 2019 12:31:53 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a81:2e94:: with SMTP id u142ls1367679ywu.11.gmail; Fri, 20
- Dec 2019 06:30:42 -0800 (PST)
-X-Received: by 2002:a81:f50:: with SMTP id 77mr11353825ywp.340.1576852242390;
-        Fri, 20 Dec 2019 06:30:42 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1576852242; cv=none;
+Received: by 2002:a7b:c452:: with SMTP id l18ls2366285wmi.1.canary-gmail; Thu,
+ 26 Dec 2019 12:31:53 -0800 (PST)
+X-Received: by 2002:a1c:18e:: with SMTP id 136mr16047229wmb.53.1577392313024;
+        Thu, 26 Dec 2019 12:31:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1577392313; cv=none;
         d=google.com; s=arc-20160816;
-        b=yBOvwkQtPr8ziLGxcqQiJnk9/qUSlm7gntB+cUR+Bjpg8pqZjqLPfso8Bv9vdrRH1x
-         eCn1UlsKcoBYCQ0cQEw3gtCpRSFcYDwwFChiJQUzb60jum7O2qxbQPwhI1e6DPTyyQR0
-         omX2VkxtPzk5OgoNOzr/XMCwrNzXxsE6YmLgk2qXdNvefucR55miFIVyZScbLLk7JmYI
-         /pT3e/FHcF2Rb0eTimOwUChZiW59ffQhLr8hteRt0LCKueF5kzwp2YOLUampzR9vk6/K
-         udCuXq9pcpUCpGK3uzW/bHkKXWeBRlbHlADmumUpZtfPV3BiZ11qvWCGj59g8GwyOTMM
-         NAHA==
+        b=D8G/yuzlYRdOKANBSxfWB4COy+1u9LHHVAzhOnJDIX5/XWrAV9Pepn81BvqCmgjYHY
+         m9cgyGWzZiOXJDOhnFpt3DCjyiAfPX/9S2+Xm9wrzxvxKIHU5ugO4v+0o2jn+rUoLkS6
+         f0SR8JuQtymDEyNj4u/inn2U6oOkMOqrMghwu/eb6klS//t9yIDBVyWTn1NMKLLFjkss
+         oTz33qqD+g5OhuYjchd6lt/OtcLDQ4pL/5val/1r0dbZ8Du93jxW9mT8mIxca1CgZh60
+         8XPotXazanA5Rr0EXfCRlh3CtJ3E0ggHWPQZ3DEvgQ233BNnNjKBKZtk+x/M/hqIRLeM
+         ryPg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=ay5jKTebsjSLpm5sqFqwZUBwCXSeP0GZf8F33oSkyww=;
-        b=cum3HSvfRYs7pAp6YquKIYoK9eglAtKtJ/suEYr8E9aNEDgXZJ72YF6j2faBJ11y3Y
-         Dww/evZfJeoBN5KaPTO/Ujj85dbHUMtFlEGVQo7F22cYsaO09nsbnLEpE807hHMuoRT+
-         mzEwzTyKpkIWgOh8g8eTo+4iE1lAqIsgCmIJ1SMPVcEGqKSErtJIR16teLiJI+6xgxl3
-         ro+sqgylVjmaPg1aN+gUFAvl642RX0seSu+7L2jRMYb9dtWZUDKoX60YstAtjoJi0aqc
-         BVYUZC+XEczCukiL8W7F3Lldra+BQjwCi9aw3kX92ajFwN9Xjyt5VvH3wjRL7Pmp95qT
-         Jy0w==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from;
+        bh=v4+/b25O6UtnpTpm63i0nH/FYcYlxQj2rLou4bpq19o=;
+        b=W8gO5izjqz84T3TO50mNrJ0jtu82G0jK4ueUI4bqz2h1Kf1Vim0Q0mHXSylS7SLSq8
+         he84fkaqG/iyWhgi39EgjkhDEca1rsGMhKru5gr/8uGcdZ0G8KJCs8MEj26brwWcLHbQ
+         Gtae0oWPyl7xIxqnyNikmF5RVXmeabd2w+QIYAWwT8ipGam0xSvtb3bIwFA3m4nZ+IN9
+         1CSU+SB9TIbhBYhDZJQuwDgwJEne2801CzgRP6JifQYnNr5bVANxN8NG/SrlnAAcUSDT
+         kI1sB6l6bIRNidm43B7FLV2OMawjD2JpkTo7AHDI4MdrQx/33bxmKF1bBVu8c9943f4U
+         CszQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=default header.b=LCpCmCeg;
-       spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from mail.kernel.org (mail.kernel.org. [198.145.29.99])
-        by gmr-mx.google.com with ESMTPS id r9si581812ybk.0.2019.12.20.06.30.42
+       spf=pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) smtp.mailfrom=krisman@collabora.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk. [46.235.227.227])
+        by gmr-mx.google.com with ESMTPS id x5si572745wmk.1.2019.12.26.12.31.52
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 20 Dec 2019 06:30:42 -0800 (PST)
-Received-SPF: pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) client-ip=198.145.29.99;
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 737C624684;
-	Fri, 20 Dec 2019 14:30:40 +0000 (UTC)
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Bo Wu <wubo40@huawei.com>,
-	Zhiqiang Liu <liuzhiqiang26@huawei.com>,
-	Lee Duncan <lduncan@suse.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Sasha Levin <sashal@kernel.org>,
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 26 Dec 2019 12:31:52 -0800 (PST)
+Received-SPF: pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) client-ip=46.235.227.227;
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: krisman)
+	with ESMTPSA id 6BF1A27FDC0
+From: Gabriel Krisman Bertazi <krisman@collabora.com>
+To: lduncan@suse.com
+Cc: cleech@redhat.com,
+	martin.petersen@oracle.com,
 	open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 34/52] scsi: iscsi: Avoid potential deadlock in iscsi_if_rx func
-Date: Fri, 20 Dec 2019 09:29:36 -0500
-Message-Id: <20191220142954.9500-34-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191220142954.9500-1-sashal@kernel.org>
-References: <20191220142954.9500-1-sashal@kernel.org>
+	linux-scsi@vger.kernel.org,
+	kernel@collabora.com
+Subject: [PATCH RESEND] iscsi: Don't destroy session if there are outstanding connections
+Date: Thu, 26 Dec 2019 15:31:48 -0500
+Message-Id: <20191226203148.2172200-1-krisman@collabora.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-Original-Sender: sashal@kernel.org
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=default header.b=LCpCmCeg;       spf=pass
- (google.com: domain of sashal@kernel.org designates 198.145.29.99 as
- permitted sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE
- sp=NONE dis=NONE) header.from=kernel.org
+X-Original-Sender: krisman@collabora.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of krisman@collabora.com designates 46.235.227.227 as
+ permitted sender) smtp.mailfrom=krisman@collabora.com;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=collabora.com
 Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: list
@@ -140,115 +126,141 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-From: Bo Wu <wubo40@huawei.com>
+From: Nick Black <nlb@google.com>
 
-[ Upstream commit bba340c79bfe3644829db5c852fdfa9e33837d6d ]
+Hi,
 
-In iscsi_if_rx func, after receiving one request through
-iscsi_if_recv_msg func, iscsi_if_send_reply will be called to try to
-reply to the request in a do-while loop.  If the iscsi_if_send_reply
-function keeps returning -EAGAIN, a deadlock will occur.
+I thought this was already committed for some reason, until it bit me
+again today.  Any opposition to this one?
 
-For example, a client only send msg without calling recvmsg func, then
-it will result in the watchdog soft lockup.  The details are given as
-follows:
+>8
 
-	sock_fd = socket(AF_NETLINK, SOCK_RAW, NETLINK_ISCSI);
-	retval = bind(sock_fd, (struct sock addr*) & src_addr, sizeof(src_addr);
-	while (1) {
-		state_msg = sendmsg(sock_fd, &msg, 0);
-		//Note: recvmsg(sock_fd, &msg, 0) is not processed here.
-	}
-	close(sock_fd);
+A faulty userspace that calls destroy_session() before destroying the
+connections can trigger the failure.  This patch prevents the
+issue by refusing to destroy the session if there are outstanding
+connections.
 
-watchdog: BUG: soft lockup - CPU#7 stuck for 22s! [netlink_test:253305] Sample time: 4000897528 ns(HZ: 250) Sample stat:
-curr: user: 675503481560, nice: 321724050, sys: 448689506750, idle: 4654054240530, iowait: 40885550700, irq: 14161174020, softirq: 8104324140, st: 0
-deta: user: 0, nice: 0, sys: 3998210100, idle: 0, iowait: 0, irq: 1547170, softirq: 242870, st: 0 Sample softirq:
-         TIMER:        992
-         SCHED:          8
-Sample irqstat:
-         irq    2: delta       1003, curr:    3103802, arch_timer
-CPU: 7 PID: 253305 Comm: netlink_test Kdump: loaded Tainted: G           OE
-Hardware name: QEMU KVM Virtual Machine, BIOS 0.0.0 02/06/2015
-pstate: 40400005 (nZcv daif +PAN -UAO)
-pc : __alloc_skb+0x104/0x1b0
-lr : __alloc_skb+0x9c/0x1b0
-sp : ffff000033603a30
-x29: ffff000033603a30 x28: 00000000000002dd
-x27: ffff800b34ced810 x26: ffff800ba7569f00
-x25: 00000000ffffffff x24: 0000000000000000
-x23: ffff800f7c43f600 x22: 0000000000480020
-x21: ffff0000091d9000 x20: ffff800b34eff200
-x19: ffff800ba7569f00 x18: 0000000000000000
-x17: 0000000000000000 x16: 0000000000000000
-x15: 0000000000000000 x14: 0001000101000100
-x13: 0000000101010000 x12: 0101000001010100
-x11: 0001010101010001 x10: 00000000000002dd
-x9 : ffff000033603d58 x8 : ffff800b34eff400
-x7 : ffff800ba7569200 x6 : ffff800b34eff400
-x5 : 0000000000000000 x4 : 00000000ffffffff
-x3 : 0000000000000000 x2 : 0000000000000001
-x1 : ffff800b34eff2c0 x0 : 0000000000000300 Call trace:
-__alloc_skb+0x104/0x1b0
-iscsi_if_rx+0x144/0x12bc [scsi_transport_iscsi]
-netlink_unicast+0x1e0/0x258
-netlink_sendmsg+0x310/0x378
-sock_sendmsg+0x4c/0x70
-sock_write_iter+0x90/0xf0
-__vfs_write+0x11c/0x190
-vfs_write+0xac/0x1c0
-ksys_write+0x6c/0xd8
-__arm64_sys_write+0x24/0x30
-el0_svc_common+0x78/0x130
-el0_svc_handler+0x38/0x78
-el0_svc+0x8/0xc
+------------[ cut here ]------------
+kernel BUG at mm/slub.c:306!
+invalid opcode: 0000 [#1] SMP PTI
+CPU: 1 PID: 1224 Comm: iscsid Not tainted 5.4.0-rc2.iscsi+ #7
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.12.0-1 04/01/2014
+RIP: 0010:__slab_free+0x181/0x350
+[...]
+[ 1209.686056] RSP: 0018:ffffa93d4074fae0 EFLAGS: 00010246
+[ 1209.686694] RAX: ffff934efa5ad800 RBX: 000000008010000a RCX: ffff934efa5ad800
+[ 1209.687651] RDX: ffff934efa5ad800 RSI: ffffeb4041e96b00 RDI: ffff934efd402c40
+[ 1209.688582] RBP: ffffa93d4074fb80 R08: 0000000000000001 R09: ffffffffbb5dfa26
+[ 1209.689425] R10: ffff934efa5ad800 R11: 0000000000000001 R12: ffffeb4041e96b00
+[ 1209.690285] R13: ffff934efa5ad800 R14: ffff934efd402c40 R15: 0000000000000000
+[ 1209.691213] FS:  00007f7945dfb540(0000) GS:ffff934efda80000(0000) knlGS:0000000000000000
+[ 1209.692316] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1209.693013] CR2: 000055877fd3da80 CR3: 0000000077384000 CR4: 00000000000006e0
+[ 1209.693897] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[ 1209.694773] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[ 1209.695631] Call Trace:
+[ 1209.695957]  ? __wake_up_common_lock+0x8a/0xc0
+[ 1209.696712]  iscsi_pool_free+0x26/0x40
+[ 1209.697263]  iscsi_session_teardown+0x2f/0xf0
+[ 1209.698117]  iscsi_sw_tcp_session_destroy+0x45/0x60
+[ 1209.698831]  iscsi_if_rx+0xd88/0x14e0
+[ 1209.699370]  netlink_unicast+0x16f/0x200
+[ 1209.699932]  netlink_sendmsg+0x21a/0x3e0
+[ 1209.700446]  sock_sendmsg+0x4f/0x60
+[ 1209.700902]  ___sys_sendmsg+0x2ae/0x320
+[ 1209.701451]  ? cp_new_stat+0x150/0x180
+[ 1209.701922]  __sys_sendmsg+0x59/0xa0
+[ 1209.702357]  do_syscall_64+0x52/0x160
+[ 1209.702812]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[ 1209.703419] RIP: 0033:0x7f7946433914
+[...]
+[ 1209.706084] RSP: 002b:00007fffb99f2378 EFLAGS: 00000246 ORIG_RAX: 000000000000002e
+[ 1209.706994] RAX: ffffffffffffffda RBX: 000055bc869eac20 RCX: 00007f7946433914
+[ 1209.708082] RDX: 0000000000000000 RSI: 00007fffb99f2390 RDI: 0000000000000005
+[ 1209.709120] RBP: 00007fffb99f2390 R08: 000055bc84fe9320 R09: 00007fffb99f1f07
+[ 1209.710110] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000038
+[ 1209.711085] R13: 000055bc8502306e R14: 0000000000000000 R15: 0000000000000000
+ Modules linked in:
+ ---[ end trace a2d933ede7f730d8 ]---
 
-Link: https://lore.kernel.org/r/EDBAAA0BBBA2AC4E9C8B6B81DEEE1D6915E3D4D2@dggeml505-mbx.china.huawei.com
-Signed-off-by: Bo Wu <wubo40@huawei.com>
-Reviewed-by: Zhiqiang Liu <liuzhiqiang26@huawei.com>
-Reviewed-by: Lee Duncan <lduncan@suse.com>
-Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Co-developed-by: Salman Qazi <sqazi@google.com>
+Signed-off-by: Salman Qazi <sqazi@google.com>
+Co-developed-by: Junho Ryu <jayr@google.com>
+Signed-off-by: Junho Ryu <jayr@google.com>
+Co-developed-by: Khazhismel Kumykov <khazhy@google.com>
+Signed-off-by: Khazhismel Kumykov <khazhy@google.com>
+Signed-off-by: Nick Black <nlb@google.com>
+Co-developed-by: Gabriel Krisman Bertazi <krisman@collabora.com>
+Signed-off-by: Gabriel Krisman Bertazi <krisman@collabora.com>
 ---
- drivers/scsi/scsi_transport_iscsi.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/scsi/iscsi_tcp.c            |  4 ++++
+ drivers/scsi/scsi_transport_iscsi.c | 26 +++++++++++++++++++++++---
+ 2 files changed, 27 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
+index 0bc63a7ab41c..b5dd1caae5e9 100644
+--- a/drivers/scsi/iscsi_tcp.c
++++ b/drivers/scsi/iscsi_tcp.c
+@@ -887,6 +887,10 @@ iscsi_sw_tcp_session_create(struct iscsi_endpoint *ep, uint16_t cmds_max,
+ static void iscsi_sw_tcp_session_destroy(struct iscsi_cls_session *cls_session)
+ {
+ 	struct Scsi_Host *shost = iscsi_session_to_shost(cls_session);
++	struct iscsi_session *session = cls_session->dd_data;
++
++	if (WARN_ON_ONCE(session->leadconn))
++		return;
+ 
+ 	iscsi_tcp_r2tpool_free(cls_session->dd_data);
+ 	iscsi_session_teardown(cls_session);
 diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index 417b868d8735e..ed8d9709b9b96 100644
+index ed8d9709b9b9..271afea654e2 100644
 --- a/drivers/scsi/scsi_transport_iscsi.c
 +++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -24,6 +24,8 @@
+@@ -2947,6 +2947,24 @@ iscsi_set_path(struct iscsi_transport *transport, struct iscsi_uevent *ev)
+ 	return err;
+ }
  
- #define ISCSI_TRANSPORT_VERSION "2.0-870"
- 
-+#define ISCSI_SEND_MAX_ALLOWED  10
++static int iscsi_session_has_conns(int sid)
++{
++	struct iscsi_cls_conn *conn;
++	unsigned long flags;
++	int found = 0;
 +
- #define CREATE_TRACE_POINTS
- #include <trace/events/iscsi.h>
- 
-@@ -3682,6 +3684,7 @@ iscsi_if_rx(struct sk_buff *skb)
- 		struct nlmsghdr	*nlh;
- 		struct iscsi_uevent *ev;
- 		uint32_t group;
-+		int retries = ISCSI_SEND_MAX_ALLOWED;
- 
- 		nlh = nlmsg_hdr(skb);
- 		if (nlh->nlmsg_len < sizeof(*nlh) + sizeof(*ev) ||
-@@ -3712,6 +3715,10 @@ iscsi_if_rx(struct sk_buff *skb)
- 				break;
- 			err = iscsi_if_send_reply(portid, nlh->nlmsg_type,
- 						  ev, sizeof(*ev));
-+			if (err == -EAGAIN && --retries < 0) {
-+				printk(KERN_WARNING "Send reply failed, error %d\n", err);
-+				break;
-+			}
- 		} while (err < 0 && err != -ECONNREFUSED && err != -ESRCH);
- 		skb_pull(skb, rlen);
- 	}
++	spin_lock_irqsave(&connlock, flags);
++	list_for_each_entry(conn, &connlist, conn_list) {
++		if (iscsi_conn_get_sid(conn) == sid) {
++			found = 1;
++			break;
++		}
++	}
++	spin_unlock_irqrestore(&connlock, flags);
++
++	return found;
++}
++
+ static int
+ iscsi_set_iface_params(struct iscsi_transport *transport,
+ 		       struct iscsi_uevent *ev, uint32_t len)
+@@ -3524,10 +3542,12 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
+ 		break;
+ 	case ISCSI_UEVENT_DESTROY_SESSION:
+ 		session = iscsi_session_lookup(ev->u.d_session.sid);
+-		if (session)
+-			transport->destroy_session(session);
+-		else
++		if (!session)
+ 			err = -EINVAL;
++		else if (iscsi_session_has_conns(ev->u.d_session.sid))
++			err = -EBUSY;
++		else
++			transport->destroy_session(session);
+ 		break;
+ 	case ISCSI_UEVENT_UNBIND_SESSION:
+ 		session = iscsi_session_lookup(ev->u.d_session.sid);
 -- 
-2.20.1
+2.24.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20191220142954.9500-34-sashal%40kernel.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20191226203148.2172200-1-krisman%40collabora.com.
