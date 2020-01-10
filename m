@@ -1,70 +1,72 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBWXC4PYAKGQEL2QIKNY@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBV7F4PYAKGQEAAKAMHQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x83b.google.com (mail-qt1-x83b.google.com [IPv6:2607:f8b0:4864:20::83b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79AF21378B1
-	for <lists+open-iscsi@lfdr.de>; Fri, 10 Jan 2020 22:49:15 +0100 (CET)
-Received: by mail-qt1-x83b.google.com with SMTP id o24sf2185893qtr.17
-        for <lists+open-iscsi@lfdr.de>; Fri, 10 Jan 2020 13:49:15 -0800 (PST)
+Received: from mail-qv1-xf3a.google.com (mail-qv1-xf3a.google.com [IPv6:2607:f8b0:4864:20::f3a])
+	by mail.lfdr.de (Postfix) with ESMTPS id 421DF1378BA
+	for <lists+open-iscsi@lfdr.de>; Fri, 10 Jan 2020 22:55:36 +0100 (CET)
+Received: by mail-qv1-xf3a.google.com with SMTP id f16sf2054277qvr.7
+        for <lists+open-iscsi@lfdr.de>; Fri, 10 Jan 2020 13:55:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=p3xxCqGTSMF7tTWkaxX6/JYCmPmrnn6/SVA2SEUEbaQ=;
-        b=ehE0bp2j6oFS8EBDAjkLZnnaqTMhaRlLr5XMtHYPPCKd8mDjrbiL0T6dU2XtT7KopN
-         srVQC2xoByZv32uzNNyrDbB2g/w5pngt0ps8eSMFJDsb8I9RwZcerEexNsoauQqGLnBG
-         Q1fxBsjSGKqPMbRsB0q+e3GI6Fk+4TzQdCuy+Sh/5K4AXK3cVxEbWrjsVG+m7NRQg+GU
-         jxPLOFoACgWXZYhQIy/8pptP7p6eCBNFflh+UJI1jb1QNDJkW6UUBMdaNJCQ1NmprpYa
-         WCkS1DJ+g3zjrU7Pi0//IQadxHi5fbz+UC4836+UlTGzI9G5lR7/WEbKZY2TTnNG8Evb
-         4uDQ==
+        bh=1aNH0hKm/3OmXP+z3bCWZma3vv22K72fuKW5+TSPuKc=;
+        b=F4LBq2O7FmdAM28ZN+MaeSz9GiQroiV0zDKx7P5Rxsw7PopWsSkCnYqcAh0hJFwkiM
+         +w1S42wx+xlOKpapxxAJ2308YsZZC8V7vLdJFpCYHKfFj4W5Q0cXDAjhBC3x67ieuY4y
+         K8R30vFsQ64K1kpTSOB+7GXWe/zRDqcCs/aTT+/cfU3WeqD1+ywGhkdYJsQ/2CGADp/1
+         j6lryWUFpcNXxJ5w36I10agVcv6G4LCl3No7kGoUczYSxTJZcULvdFf/7WivX2pMvJsS
+         D2f2wjddKMPZw4fTVFsCTZiBcX8xRiINxIHgh4gpRfwK/ZQNfsB99JlwM1OTMg3u48jY
+         ciMg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=p3xxCqGTSMF7tTWkaxX6/JYCmPmrnn6/SVA2SEUEbaQ=;
-        b=tmPuaXjV6xJlhAWXZVSMAZzVyOFBJjdy/99+xFJkT734y8APpD6jySSbcae9nytVSX
-         nQZkW2voJjndIjVkAmJVvdxNhqP2pqc5hXGEoU55mwDc7ggKXlTR6JhPkjo2u9JC1y8G
-         bFcBuXOj1qvK/6lHQja36+hBLpXXQmLgM5xLO3zJBQ9bWF0QQZHMz8hYG2ItfKMyGn3v
-         oNhBh1iYe4KUHPPc5WPAq2xRer9AlHhb+EfNja6lo0YJvU3DveNyfoj95WN8Xw1SB+pC
-         ot68Bxl6CWkLOLUEPgbSA4zzthfVlTUydaEAXNuqRYBOGk6o4PJzWq4cPCoJDIDpCRm/
-         csDg==
+        bh=1aNH0hKm/3OmXP+z3bCWZma3vv22K72fuKW5+TSPuKc=;
+        b=h+eMGxm20OAmzGrLf972bc1vxbLkrImBVHCtynTlyqbEu61XpCUXnL/YbqmljbUjKZ
+         Lat4z9Uv6oWiTT0+4ykjfNl9BWzmm0XkOlrVDip0ck7M7VwQAH0MA5TnXj6w6OMuJ/q0
+         1vLPLIne/EfYojSboZpCbAkNRhSqrcdo2PznxOMtMZo+MTUM0617l0rJhWYbkKtc0U/F
+         r4pEX+ax3o0PmnQ/naAmRHw+eP7ThQM6xhHmecupNSiz/nhijgQYDJTkIkvVtQKzNigJ
+         RVbhbg1amCo/Z+gMQxo4gC01v1t0Qo6OCWWBN7vEpUN/jObaJuiJlVth92+zJ9EnBJ5R
+         Nadg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=p3xxCqGTSMF7tTWkaxX6/JYCmPmrnn6/SVA2SEUEbaQ=;
-        b=qms6j6+MYE9UrHvB0/Z8DoF190uc+qrhRMFwoHbSQ+vy51/epijh0N81EG0S6bHC0L
-         /QxYivbwh0XwwbqhZ6m3DqGwZvvU9/8ZOwSqu692QHKBz4jlDj4ICrKxtk4BcBth5po7
-         WwkA+BB0RqJflI8JQBqW9D4PBHxnxmtCLUM6JuW4/fBUTZQbGTjg5+S7F/Ly2+f1Fzmc
-         Z3B9mAcBPBZmloCDKc3i56k/2jGLIM0baU/nG1nsjrb2zou6i04zW1/0G7dUwaroOVd6
-         sNCD+JBxd++dtWDgjg8R3S67nPWllPINCj108JzuKFHim4/0PN8CMiNbVUborwgrUFvz
-         nbLw==
+        bh=1aNH0hKm/3OmXP+z3bCWZma3vv22K72fuKW5+TSPuKc=;
+        b=WuZk2yr0+YNQKSInD1xiT6dbjOpTZ/zehmRNE20qoqrqS/xo7dlmsMnRLmZyImhNtw
+         q/cMhjrL9OFQUzb5qm7tDKoThm2d80XqumbPJ+2oXdijlup5snxJwVqHwCScrqzOCprd
+         +tIGDL8vIrWa3OPe/VEZ+rsddC4TqLFDK373n/p5mceB5S7zRTJir/SZkk407Va7DVIn
+         329TCeTLH5eWQn643g/YkzJQUkFGtUI5IIShuCWTKcDmwf4mkgme/C1dC1a/Cdr8wP0A
+         j3Ev08U3iRPL8SW1HOhDR+qO5FYmY9oVf0cavaioKC7u4+VmcfAHwmlGt41quW9fWnV+
+         I2Lg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAWov2RkCUNmgMba9d/vb6Y12qZgxYH912JIjtr6xy40KcXgj6++
-	Td8KWe0XJfOgJw6JHbxMfeY=
-X-Google-Smtp-Source: APXvYqzbYdLSi6WxfY8GJJwz3DfuBvk5l7A61HfDSr2fB3RwK6CyoNLB030rb6E5uzM3UMbVaaKHLw==
-X-Received: by 2002:a05:620a:12ae:: with SMTP id x14mr5548190qki.5.1578692954439;
-        Fri, 10 Jan 2020 13:49:14 -0800 (PST)
+X-Gm-Message-State: APjAAAUMB+1FHBTlLZXx+W7CYhjKg4tyepK1cykFWbrHKAeNvhcWwIxe
+	pGMTbSvHKX0L9guHGrmh1PI=
+X-Google-Smtp-Source: APXvYqzQSoC/Wc8P8zGEAzruX9ywCGbGorkagN6hqmx2T1I2bWOndzOnwPjAK4E/S6C+vjQqRhJbqw==
+X-Received: by 2002:ac8:425a:: with SMTP id r26mr4353313qtm.138.1578693335304;
+        Fri, 10 Jan 2020 13:55:35 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6214:18e9:: with SMTP id ep9ls1204411qvb.2.gmail; Fri,
- 10 Jan 2020 13:49:14 -0800 (PST)
-X-Received: by 2002:a0c:ea45:: with SMTP id u5mr747457qvp.171.1578692953979;
-        Fri, 10 Jan 2020 13:49:13 -0800 (PST)
-Date: Fri, 10 Jan 2020 13:49:13 -0800 (PST)
+Received: by 2002:aed:3262:: with SMTP id y89ls1881135qtd.8.gmail; Fri, 10 Jan
+ 2020 13:55:34 -0800 (PST)
+X-Received: by 2002:ac8:3703:: with SMTP id o3mr597004qtb.208.1578693334860;
+        Fri, 10 Jan 2020 13:55:34 -0800 (PST)
+Date: Fri, 10 Jan 2020 13:55:34 -0800 (PST)
 From: The Lee-Man <leeman.duncan@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <b7141d18-99d9-4d93-9252-a5e27393dfc6@googlegroups.com>
-In-Reply-To: <f0bab99e-accd-46cc-9d37-7700773ffc47@googlegroups.com>
-References: <f0bab99e-accd-46cc-9d37-7700773ffc47@googlegroups.com>
-Subject: Re: Who know more about this issue for iscsid?
+Message-Id: <9745153a-66eb-4abb-8628-23e2ba1b28fd@googlegroups.com>
+In-Reply-To: <1306f306-ef08-4e79-b98a-6d1e6ee42f25@googlegroups.com>
+References: <000c01c55fd9$36d18590$03031eac@ivivity.com>
+ <1116889886.16262.47.camel@beastie>
+ <1306f306-ef08-4e79-b98a-6d1e6ee42f25@googlegroups.com>
+Subject: Re: how it works
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_925_1426480350.1578692953247"
+	boundary="----=_Part_908_560971668.1578693334178"
 X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -79,153 +81,57 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_925_1426480350.1578692953247
+------=_Part_908_560971668.1578693334178
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_926_1436601068.1578692953247"
+	boundary="----=_Part_909_855664009.1578693334178"
 
-------=_Part_926_1436601068.1578692953247
+------=_Part_909_855664009.1578693334178
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tuesday, January 7, 2020 at 12:20:15 AM UTC-8, can zhu wrote:
->
-> kernel: connection2:0: detected conn error (1020)
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
->
-> iscsid: Kernel reported iSCSI connection 2:0 error (1020 -=20
-> ISCSI_ERR_TCP_CONN_CLOSE: TCP connection closed) state (1)
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
->
-> systemd: Started Session 3742 of user root.
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
->
-> iscsid: conn 0 login rejected: initiator failed authorization with target
+On Friday, January 10, 2020 at 8:44:05 AM UTC-8, Bobby wrote:
 >
 >
-> *env*
->
-> kernel:3.10.0-693.el7.x86_64
->
-> os:CentOS Linux release 7.4.1708 (Core)=20
->
-> *iscsi*-initiator-utils: *iscsi*-initiator-utils-6.2.0.874-11.el7.x86_64
+> Hi,
 >
 >
-> I can't configure acl and username=E3=80=81password.
+> -  Question 1: The kernel still contains 2 files?
+> -  Question  2:  Do we still have those diagrams available online?
 >
 >
->
->
-You have "auth" enabled but not set up correctly.
+> The kernel has many files, but those two files are still present for 
+open-iscsi. If you look in drivers/scsi/*iscsi*.[ch], each of those files 
+are either initiator or target files.
 
-There are two types of auth: discovery, and session. It looks like your=20
-session auth is not set up correctly. You need to know the auth username=20
-and password. It has to be set up on the target (targetcli) and the=20
-initiator (open-iscsi).
+I don't know what diagrams were around in the past, but we no longer have 
+any on the web page, which is hosted by github now. A simple google of 
+"open-iscsi architecture diagrams" yields quite a few pictures, though, 
+such as this one: 
+https://www.researchgate.net/figure/General-iSCSI-architecture_fig1_221396996
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/b7141d18-99d9-4d93-9252-a5e27393dfc6%40googlegroups.com.
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/9745153a-66eb-4abb-8628-23e2ba1b28fd%40googlegroups.com.
 
-------=_Part_926_1436601068.1578692953247
+------=_Part_909_855664009.1578693334178
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On Tuesday, January 7, 2020 at 12:20:15 AM UTC-8, can zhu =
-wrote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8=
-ex;border-left: 1px #ccc solid;padding-left: 1ex;"><div dir=3D"ltr">
-
-
-
-
-
-
-
-<p><span>kernel: connection2:0: detected conn error (1020)</span></p><p><sp=
-an>iscsid: conn 0 login rejected: initiator failed authorization with targe=
-t</span></p><p><span>iscsid: Kernel reported iSCSI connection 2:0 error (10=
-20 - ISCSI_ERR_TCP_CONN_CLOSE: TCP connection closed) state (1)</span></p><=
-p><span>iscsid: conn 0 login rejected: initiator failed authorization with =
-target</span></p><p><span>iscsid: conn 0 login rejected: initiator failed a=
-uthorization with target</span></p><p><span>iscsid: conn 0 login rejected: =
-initiator failed authorization with target</span></p><p><span>
-
-
-
-
-
-
-
-
-
-
-
-
-
-</span></p><p><span>systemd: Started Session 3742 of user root.</span></p><=
-p><span>iscsid: conn 0 login rejected: initiator failed authorization with =
-target</span></p>
-<p><span>iscsid: conn 0 login rejected: initiator failed authorization with=
- target</span></p>
-<p><span>iscsid: conn 0 login rejected: initiator failed authorization with=
- target</span></p>
-<p><span>iscsid: conn 0 login rejected: initiator failed authorization with=
- target</span></p>
-<p><span>iscsid: conn 0 login rejected: initiator failed authorization with=
- target</span></p><p><span><br></span></p><p><span><b>env</b></span></p><p>=
-<span>kernel:</span><span>3.10.0-693.el7.x86_64</span></p><p><span>os:</spa=
-n><span>CentOS Linux release 7.4.1708 (Core)</span><span>=C2=A0</span></p><=
-p><span>
-
-
-
-
-
-
-
-</span></p><p><span><span><b>iscsi</b></span><span style=3D"color:rgb(0,0,0=
-)">-initiator-utils:=C2=A0</span><b>iscsi</b></span><span>-<wbr>initiator-u=
-tils-6.2.0.874-11.<wbr>el7.x86_64</span></p><p><span><br></span></p><p><spa=
-n>I can&#39;t configure acl and username=E3=80=81password.</span></p><p><br=
-></p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p><span><br></span></p></div></blockquote><div><br></div><div>You have &qu=
-ot;auth&quot; enabled but not set up correctly.</div><div><br></div><div>Th=
-ere are two types of auth: discovery, and session. It looks like your sessi=
-on auth is not set up correctly. You need to know the auth username and pas=
-sword. It has to be set up on the target (targetcli) and the initiator (ope=
-n-iscsi).<br></div></div>
+<div dir=3D"ltr">On Friday, January 10, 2020 at 8:44:05 AM UTC-8, Bobby wro=
+te:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;=
+border-left: 1px #ccc solid;padding-left: 1ex;"><div dir=3D"ltr"><br>Hi,<di=
+v><br><br>-=C2=A0 Question 1: The kernel still contains 2 files?<br>-=C2=A0=
+ Question=C2=A0 2:=C2=A0 Do we still have those diagrams available online?<=
+br><br><br></div></div></blockquote><div>The kernel has many files, but tho=
+se two files are still present for open-iscsi. If you look in drivers/scsi/=
+*iscsi*.[ch], each of those files are either initiator or target files.</di=
+v><div><br></div><div>I don&#39;t know what diagrams were around in the pas=
+t, but we no longer have any on the web page, which is hosted by github now=
+. A simple google of &quot;open-iscsi architecture diagrams&quot; yields qu=
+ite a few pictures, though, such as this one: <a href=3D"https://www.resear=
+chgate.net/figure/General-iSCSI-architecture_fig1_221396996">https://www.re=
+searchgate.net/figure/General-iSCSI-architecture_fig1_221396996</a><br></di=
+v></div>
 
 <p></p>
 
@@ -236,11 +142,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/b7141d18-99d9-4d93-9252-a5e27393dfc6%40googlegroups.c=
+om/d/msgid/open-iscsi/9745153a-66eb-4abb-8628-23e2ba1b28fd%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/b7141d18-99d9-4d93-9252-a5e27393dfc6%40googlegroups.com</a>.<b=
+d/open-iscsi/9745153a-66eb-4abb-8628-23e2ba1b28fd%40googlegroups.com</a>.<b=
 r />
 
-------=_Part_926_1436601068.1578692953247--
+------=_Part_909_855664009.1578693334178--
 
-------=_Part_925_1426480350.1578692953247--
+------=_Part_908_560971668.1578693334178--
