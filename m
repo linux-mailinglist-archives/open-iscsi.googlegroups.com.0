@@ -1,129 +1,65 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBHNH5LYAKGQEVR7LOGY@googlegroups.com>
+Return-Path: <open-iscsi+bncBCEJDZGXJAINZKXK6ACRUBCM36YOK@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pf1-x439.google.com (mail-pf1-x439.google.com [IPv6:2607:f8b0:4864:20::439])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A971384AB
-	for <lists+open-iscsi@lfdr.de>; Sun, 12 Jan 2020 04:33:51 +0100 (CET)
-Received: by mail-pf1-x439.google.com with SMTP id 8sf4281171pfb.22
-        for <lists+open-iscsi@lfdr.de>; Sat, 11 Jan 2020 19:33:51 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1578800029; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=PFRxCp7yUTk0NJKRzceIMDMulhkc4bcntN3EVMmPEQRKzykvjT9kJ/ojaP+K15bZDm
-         jwswPW5Yve1d1m/Sk23dHco7XqaDvFvHJ1cXQnUxRJsVAZlHUa4WAoBXYj5OuE6cNwEq
-         ddW6NkfoDvYvfPvPUamK4IBK/1KvFCbOZIUP9PL2UuIwWJFC1sV1//iejMJa8TTqRS13
-         /DrZIMUNyqXUNMGmkOKt/OauE8Bd1ll1IOVCkF+SYK2/OHswweNJkNO/BtNbhznXvKjr
-         Yr7JvPUZCpbuf0resrL0xeIEpV2YBvXCLkQigTFlttFn5TG/6HS8OK/hZ/zAkfPBr3Md
-         N7pw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:message-id:in-reply-to:to
-         :references:date:subject:mime-version:from:sender:dkim-signature
-         :dkim-signature;
-        bh=SVmMfYdTVk6ieabM5yDv+suPczlf9J1/DdlVvH/OfXA=;
-        b=ytP6bQjvNo8mKNB7CB3BLExnuCBowcB906X0a+GuWYcRttEE7F9GFIrnLM09uWcYLo
-         J5wjEnL1WRxgyWZOgfxYSBnSBgxcExQtXq3K5eRsAMW1ce0dZ6vuGYV5MXoYx2APKlCF
-         OzVQRt61I0t4wkfFuZSQjkQPoGehJFfS1pLtWOOD6Q1wTaT3FzHfQYhs9NC73vc7mj+x
-         9/Jz8Bl7RRDmlTX6s4QZc6KNRuGYC8eMjO09ynCtjhOhGnCrCMNk8sB9FnXbukRs6lr1
-         iWq6Oi2OYCPQg5DjRhbh7H8HMOmpVzLEDtCq2bu0HPLteZEIXoWYOQLJJk7c7Qz90ERA
-         2WdQ==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=o+MWv8TZ;
-       spf=pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::529 as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from mail-qv1-xf40.google.com (mail-qv1-xf40.google.com [IPv6:2607:f8b0:4864:20::f40])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98E1C1384AD
+	for <lists+open-iscsi@lfdr.de>; Sun, 12 Jan 2020 04:41:17 +0100 (CET)
+Received: by mail-qv1-xf40.google.com with SMTP id u11sf4069190qvo.8
+        for <lists+open-iscsi@lfdr.de>; Sat, 11 Jan 2020 19:41:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:mime-version:subject:date:references:to:in-reply-to
-         :message-id:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=SVmMfYdTVk6ieabM5yDv+suPczlf9J1/DdlVvH/OfXA=;
-        b=O2d1dBB+KLthaSJelSQnx+Cb2VpsXx/E7gbh4WypXzIyYU7DQ6oPTcAdHZ45sReT/1
-         TXoOgyatNVX9VBHjFG3kV/Xrb9FcF1Gre48OD+SyHy3lNu5MhPZdzOjkI9zWQGQjFiHs
-         KN2S+tcxqob7ftTIUAgHmJ8pg+5pwcvSYWmXEaNs4kQID4XoyhMr+sBaMZPh4dqglLPt
-         pmREEZLjuQeHKHAs8FSiLTKB1SJds3//aLZd/4xlc6IteH2+L8Lb4zUaJl6Pm4jviE2X
-         esQo71Sqo4f8m0pIv7YXgIZync41h1y77kHG06Ztbh+SQAhG0MpbcDguQC0LmhES8+mn
-         +eLA==
+        h=sender:date:from:to:message-id:in-reply-to:references:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=Hwky+shyAMV9f6AHqRHtPYBsSAImlq9rkdu3unCo3pM=;
+        b=XYLcwZ3QIUX9/33//PG6V332BS2ZhtLGI/oVaSz9kLDiDzRwm+yKBMZYy3UhkcK0Ut
+         dzQy9mxslkvLmcfc4nFv4saE3ldG56BGIwaZHcDCAdJKVjgti0T1uJTFS/EPSc+I8rsa
+         y7n6B9hGw5fN1FTd6Y7vv4qfxgizESEOd2JHeQ0pfFguUTCjQZRdtccbXY8YbF+cbd0F
+         9TKRj5PsmReWigFoex/57/VfYaoO2x4+CuRC8BnwTBiVG6njw9slwh1Hv9rRY57K/iBI
+         m9u/6WIHTJhOFUwqA5PLLNuECDRA5TNmcAxBq/lhkAp3Ed+k/DDX36qGbCbo848qqlA5
+         q3LA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:mime-version:subject:date:references:to:in-reply-to:message-id
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=SVmMfYdTVk6ieabM5yDv+suPczlf9J1/DdlVvH/OfXA=;
-        b=Y+HqvryAXskbbJ74tShK5BesNs2Q5qRGjRjooEmSxly6FMFAgVn4bVWmejJUbebuvO
-         61qWWL9aZ13lDIyTvmXVeMXhTtFW5dKkJeIOWSliK4u5datKZLLalZhufJryZ6itcccL
-         LSVUwL+Xg4f4d/B7hVLIlFWYKrJe5I1j1YI0g3edMx2nlbsusMsJ6SbsxSHrLksBXg6o
-         +CEn3EkK2LKGeUyiDyeKR6oZCZc1cUAH8SiHA/EQvIjuyFhFsKy+SHT72A5vXwDVVmfN
-         uZxgOnRZ7bhS3NAf3yHpYNJpZB+rrQBr5SbkZF4x4pg43Ume8h05BIs4b0hIyhm/Mryh
-         yvIA==
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=Hwky+shyAMV9f6AHqRHtPYBsSAImlq9rkdu3unCo3pM=;
+        b=uXCO0GlaC+04S0IIAQikmEdtFu0hNL2zfFn1uSVbjU22rZcv6HG1cvXelz9VhDXZBR
+         BAUO4ore65yMU6pbDxNu76rieTQfq+a50mKqQALgPuoWOzs74+RJLMkToHga43iQISy/
+         TnjjghFb0BczPxgKXNFs846IfqdpMwNIkKtjVyOT/z9JLaeZgW/nLn29AhQaFA7voG0t
+         SA//YPF3X/PF6xw6MK9kaeFwZrHrC+El3Z52KnkF5L8Uw6akYKTFW7vDBT4PScR6Mdjj
+         Kz0o+zBid//md2hnk7lGoIHy2yxLOBq5bA+YBY+CB55BGIunaR303QwkBts/c0QsMXmf
+         NHoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:mime-version:subject:date:references
-         :to:in-reply-to:message-id:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=SVmMfYdTVk6ieabM5yDv+suPczlf9J1/DdlVvH/OfXA=;
-        b=rGbt+6e+69G4HVJzeFie9c+zTz3We2aHY1lmZb9qtcsHcI0pY4WQ6bD01VgC9yMlmJ
-         V2q1J5VJwhPZBnUEFEXYtLlOaui29lyZRrETxnGYmI2ZgzSggwDc8ZYdQPEkIbzPf4VN
-         yhpjjV2J/V7iiMFA3wPwbRIySRCnYVnJmScVslwZW5vEKPfi38Ewpg1qd/Pls+2V1evx
-         KeDsv69Muta4sxsVJRaZklE7CfcaZXTTIKL4WLHY2UihdbxxYN08eNbd9202b0HqSOhW
-         sk+dAT5uT7hOMrw9mPnROv6uy5BDR641KxO5ymwN9EH7RvJab/JdDnQtuMIwKeraT7z6
-         76LA==
+        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
+         :references:subject:mime-version:x-original-sender:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=Hwky+shyAMV9f6AHqRHtPYBsSAImlq9rkdu3unCo3pM=;
+        b=NQoZbbdUCGPmrQeMCQ7VvZksydLvRBx97MbNtb6IxW9lCZlG14GCkdiv1iOhuNVPx2
+         bawi/o9r0OXJsMy0OHwnNP0fwYpmpNuG+oEne2Z5BHraH45Lb64Vxic5lWEDlxPjDyAM
+         PL/BdYiSU2+dqXqUNM9bTngrPKLQoHcSO6ZU3RwiNyajf1mZNbPLEqFD6KH6VqIr2wQA
+         XBLd6zIRiHm2f2xoruIx7lOTxLnRuhB6wr4FaPVGcFUDsf5iuIqb3I7x2D/ymUb+ApSf
+         NNl725WMya/8UjIoXM2nk9yaj/w0UDIWiX4L2Owa2SSQSJUKLGa0QQQKUBJLjl56lp5p
+         yHBg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAX9wRw80W5vvE/YkFkMP5AfPwevn8D5JU6TnBJtUot/5lZzsIXp
-	43BXsdzr06ZyFLsVD7XgqPk=
-X-Google-Smtp-Source: APXvYqyAtijdhb60NoWY4PeMC5th5zNiktjSUa0YjGQmF5cRVy0Wp/rohOcYCVE8pmmbpd3I4m9zyA==
-X-Received: by 2002:aa7:9306:: with SMTP id 6mr13388515pfj.36.1578800029783;
-        Sat, 11 Jan 2020 19:33:49 -0800 (PST)
+X-Gm-Message-State: APjAAAV6kCPKYwqPEhVXqdlvD6bifhxqRF9XzmmwaBaTNHerKPvJY0cm
+	RH6efrkLQzqReVDdhL/bIOM=
+X-Google-Smtp-Source: APXvYqzwGD1lC7eT1LP2e42X4F67kbjTKNKuawIh4LeyuZ1Au1+IYx48mEc1z88W2JRRHqKfniZ5Iw==
+X-Received: by 2002:a0c:e58a:: with SMTP id t10mr6028749qvm.161.1578800476499;
+        Sat, 11 Jan 2020 19:41:16 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a62:ab0b:: with SMTP id p11ls3061187pff.0.gmail; Sat, 11 Jan
- 2020 19:33:49 -0800 (PST)
-X-Received: by 2002:a62:5547:: with SMTP id j68mr13837885pfb.6.1578800029383;
-        Sat, 11 Jan 2020 19:33:49 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1578800029; cv=none;
-        d=google.com; s=arc-20160816;
-        b=xjkpMwksWP9fVPZQV3jFi8M91NXSh+7cHtXWA0b9QGF58UcdVyMyJ24J+NG8ZQO6zh
-         3OAGof9dX3NPMAshz0IovGZZ+2/axkXKu/6I0YRZkjFK5JUzZG1sS0YcyBinKQ3bm5Ax
-         eUY2hb24jXDdf3aR5fwv8z3AbQOf/3V+IPC3WEHukj8ObOA7Pay1NqfgISlWXtjXIG1O
-         Y3tseDRV6vDWnLuzKbNdcf3yvzIOY0r3XX8L4aR40M5mHLqGNjWDXlximengWJNXrToB
-         zegsp0ECOwv+PGif+5kq3ggMyIXsbhhar5E+wxDLZvUWWVrjZorFhAof3UY9967wyB5d
-         FkRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=message-id:in-reply-to:to:references:date:subject:mime-version:from
-         :dkim-signature;
-        bh=yoSdUnPXhD3/fUbDBQAkUHgn68+9oIIC0nc/uoLiW0I=;
-        b=fvIdBd0Hni8e1E7ecebIxWYZgjnFOOHFt/umYXFk3efDYomTJFYGmAx9VszKWfi4BK
-         9s5Ko0pQb7ws+5bA2Rr1OT0M2LE56CGNNQaqeJaekjQrQcEGHJ+LSSVO+AYi4nKWgJ+A
-         CIXx4jorruIkkRp8K4Agbm1PR0FPJ4aI3Vha6DY3vPdYAndTEbrFEGa/CEtUSWN7p1Hd
-         4r/GyYg3ScoslqzTYc5XAgi/vurjTnLPApVMTOzfHK2QZizCGtSda91ruOhurn/t48d7
-         wnRnShFUaLnnT3m2GPNowT2NC1C3qcGbdLHQYWsPxuRLItsRKdawriPAXVFrcXR9upm6
-         T1oA==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=o+MWv8TZ;
-       spf=pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::529 as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com. [2607:f8b0:4864:20::529])
-        by gmr-mx.google.com with ESMTPS id c24si233258pjr.2.2020.01.11.19.33.49
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Jan 2020 19:33:49 -0800 (PST)
-Received-SPF: pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::529 as permitted sender) client-ip=2607:f8b0:4864:20::529;
-Received: by mail-pg1-x529.google.com with SMTP id b137so2987617pga.6
-        for <open-iscsi@googlegroups.com>; Sat, 11 Jan 2020 19:33:49 -0800 (PST)
-X-Received: by 2002:a63:5924:: with SMTP id n36mr14325207pgb.43.1578800029027;
-        Sat, 11 Jan 2020 19:33:49 -0800 (PST)
-Received: from ?IPv6:2601:1c0:5400:d::3? ([2601:1c0:5400:d::3])
-        by smtp.gmail.com with ESMTPSA id i66sm8697190pfg.85.2020.01.11.19.33.48
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 11 Jan 2020 19:33:48 -0800 (PST)
-From: Lee Duncan <leeman.duncan@gmail.com>
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_A0E2A57D-1A44-421F-864A-6CDA6226CF79"
-Mime-Version: 1.0 (Mac OS X Mail 13.0 \(3608.40.2.2.4\))
-Subject: Re: Who know more about this issue for iscsid?
-Date: Sat, 11 Jan 2020 19:33:48 -0800
+Received: by 2002:ac8:108:: with SMTP id e8ls689902qtg.4.gmail; Sat, 11 Jan
+ 2020 19:41:16 -0800 (PST)
+X-Received: by 2002:aed:29e1:: with SMTP id o88mr9379926qtd.182.1578800476075;
+        Sat, 11 Jan 2020 19:41:16 -0800 (PST)
+Date: Sat, 11 Jan 2020 19:41:15 -0800 (PST)
+From: can zhu <zhucan.k8s@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <8d2b9751-309c-41b2-8261-4dcb0b03905a@googlegroups.com>
+In-Reply-To: <6BF4CC94-0C36-4E65-B8FB-98BFBB51FC92@gmail.com>
 References: <f0bab99e-accd-46cc-9d37-7700773ffc47@googlegroups.com>
  <b7141d18-99d9-4d93-9252-a5e27393dfc6@googlegroups.com>
  <4d5aa484-fa9a-4d62-9206-5d5737684109@googlegroups.com>
@@ -131,16 +67,12 @@ References: <f0bab99e-accd-46cc-9d37-7700773ffc47@googlegroups.com>
  <6769914f-f770-495b-886e-7dcc5569274d@googlegroups.com>
  <1EB02856-CF99-4B41-A6B0-7A89350162E3@gmail.com>
  <CAGJK1K=VYnVrTy+Gync5o2dP+_afwMSdP3-SRgTskz8Q-MPOUA@mail.gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-In-Reply-To: <CAGJK1K=VYnVrTy+Gync5o2dP+_afwMSdP3-SRgTskz8Q-MPOUA@mail.gmail.com>
-Message-Id: <6BF4CC94-0C36-4E65-B8FB-98BFBB51FC92@gmail.com>
-X-Mailer: Apple Mail (2.3608.40.2.2.4)
-X-Original-Sender: leeman.duncan@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b=o+MWv8TZ;       spf=pass
- (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::529
- as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;       dmarc=pass
- (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+ <6BF4CC94-0C36-4E65-B8FB-98BFBB51FC92@gmail.com>
+Subject: Re: Who know more about this issue for iscsid?
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_1268_844023518.1578800475576"
+X-Original-Sender: zhucan.k8s@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -154,31 +86,47 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
+------=_Part_1268_844023518.1578800475576
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1269_423838013.1578800475576"
 
---Apple-Mail=_A0E2A57D-1A44-421F-864A-6CDA6226CF79
-Content-Transfer-Encoding: quoted-printable
+------=_Part_1269_423838013.1578800475576
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Jan 11, 2020, at 7:28 PM, can zhu <zhucan.k8s@gmail.com> wrote:
->=20
+Our storage SDK API, I will take a look at the target config and paste it.
+
+=E5=9C=A8 2020=E5=B9=B41=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E6=97=A5 UTC=
++8=E4=B8=8A=E5=8D=8811:33:51=EF=BC=8CThe Lee-Man=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On Jan 11, 2020, at 7:28 PM, can zhu <zhuc...@gmail.com <javascript:>>=20
+> wrote:
+>
+>
 > For the initiator.
-
-Then who set up your targets, and how are they set up?
-
->=20
-> Lee Duncan <leeman.duncan@gmail.com <mailto:leeman.duncan@gmail.com>> =E4=
-=BA=8E2020=E5=B9=B41=E6=9C=8812=E6=97=A5=E5=91=A8=E6=97=A5 =E4=B8=8A=E5=8D=
-=8811:16=E5=86=99=E9=81=93=EF=BC=9A
->=20
->=20
->> On Jan 11, 2020, at 7:15 PM, can zhu <zhucan.k8s@gmail.com <mailto:zhuca=
-n.k8s@gmail.com>> wrote:
->>=20
+>
+>
+> Then who set up your targets, and how are they set up?
+>
+>
+> Lee Duncan <leeman...@gmail.com <javascript:>> =E4=BA=8E2020=E5=B9=B41=E6=
+=9C=8812=E6=97=A5=E5=91=A8=E6=97=A5 =E4=B8=8A=E5=8D=8811:16=E5=86=99=E9=81=
+=93=EF=BC=9A
+>
+>>
+>>
+>> On Jan 11, 2020, at 7:15 PM, can zhu <zhuc...@gmail.com <javascript:>>=
+=20
+>> wrote:
+>>
 >> Hmmm, I use the default config, I hadn't do other sets for it.
->=20
-> For? For the initiator, or the target?
->=20
->>=20
+>>
+>>
+>> For? For the initiator, or the target?
+>>
+>>
+>>
+>
 
 --=20
 You received this message because you are subscribed to the Google Groups "=
@@ -186,38 +134,42 @@ open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to open-iscsi+unsubscribe@googlegroups.com.
 To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/6BF4CC94-0C36-4E65-B8FB-98BFBB51FC92%40gmail.com.
+open-iscsi/8d2b9751-309c-41b2-8261-4dcb0b03905a%40googlegroups.com.
 
---Apple-Mail=_A0E2A57D-1A44-421F-864A-6CDA6226CF79
-Content-Transfer-Encoding: quoted-printable
+------=_Part_1269_423838013.1578800475576
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3Dutf-8"></head><body style=3D"word-wrap: break-word; -webkit-nbsp-mode: s=
-pace; line-break: after-white-space;" class=3D"">On Jan 11, 2020, at 7:28 P=
-M, can zhu &lt;<a href=3D"mailto:zhucan.k8s@gmail.com" class=3D"">zhucan.k8=
-s@gmail.com</a>&gt; wrote:<br class=3D""><div><blockquote type=3D"cite" cla=
-ss=3D""><br class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D=
-"ltr" class=3D"">For the initiator.</div></div></blockquote><div><br class=
-=3D""></div>Then who set up your targets, and how are they set up?</div><di=
-v><br class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><br c=
-lass=3D""><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-Lee Duncan &lt;<a href=3D"mailto:leeman.duncan@gmail.com" class=3D"">leeman=
-.duncan@gmail.com</a>&gt; =E4=BA=8E2020=E5=B9=B41=E6=9C=8812=E6=97=A5=E5=91=
-=A8=E6=97=A5 =E4=B8=8A=E5=8D=8811:16=E5=86=99=E9=81=93=EF=BC=9A<br class=3D=
-""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div style=3D"ov=
-erflow-wrap: break-word;" class=3D""><br class=3D""><div class=3D""><br cla=
-ss=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On Jan 11, 202=
-0, at 7:15 PM, can zhu &lt;<a href=3D"mailto:zhucan.k8s@gmail.com" target=
-=3D"_blank" class=3D"">zhucan.k8s@gmail.com</a>&gt; wrote:</div><br class=
-=3D""><div class=3D""><div dir=3D"ltr" class=3D"">Hmmm, I use the default c=
-onfig, I hadn't do other sets for it.<br class=3D""></div></div></blockquot=
-e><div class=3D""><br class=3D""></div>For? For the initiator, or the targe=
-t?</div><div class=3D""><br class=3D""><blockquote type=3D"cite" class=3D""=
-><div class=3D""><div dir=3D"ltr" class=3D""><br class=3D""></div></div></b=
-lockquote></div></div></blockquote></div></div></blockquote></div><br class=
-=3D""></body></html>
+<div dir=3D"ltr">Our storage SDK API, I will take a look at the target conf=
+ig and paste it.<br><br>=E5=9C=A8 2020=E5=B9=B41=E6=9C=8812=E6=97=A5=E6=98=
+=9F=E6=9C=9F=E6=97=A5 UTC+8=E4=B8=8A=E5=8D=8811:33:51=EF=BC=8CThe Lee-Man=
+=E5=86=99=E9=81=93=EF=BC=9A<blockquote class=3D"gmail_quote" style=3D"margi=
+n: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;"><di=
+v style=3D"word-wrap:break-word;line-break:after-white-space">On Jan 11, 20=
+20, at 7:28 PM, can zhu &lt;<a href=3D"javascript:" target=3D"_blank" gdf-o=
+bfuscated-mailto=3D"OrO7k1L3DwAJ" rel=3D"nofollow" onmousedown=3D"this.href=
+=3D&#39;javascript:&#39;;return true;" onclick=3D"this.href=3D&#39;javascri=
+pt:&#39;;return true;">zhuc...@gmail.com</a>&gt; wrote:<br><div><blockquote=
+ type=3D"cite"><br><div><div dir=3D"ltr">For the initiator.</div></div></bl=
+ockquote><div><br></div>Then who set up your targets, and how are they set =
+up?</div><div><br><blockquote type=3D"cite"><div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr">Lee Duncan &lt;<a href=3D"javascript:" target=3D"_bla=
+nk" gdf-obfuscated-mailto=3D"OrO7k1L3DwAJ" rel=3D"nofollow" onmousedown=3D"=
+this.href=3D&#39;javascript:&#39;;return true;" onclick=3D"this.href=3D&#39=
+;javascript:&#39;;return true;">leeman...@gmail.com</a>&gt; =E4=BA=8E2020=
+=E5=B9=B41=E6=9C=8812=E6=97=A5=E5=91=A8=E6=97=A5 =E4=B8=8A=E5=8D=8811:16=E5=
+=86=99=E9=81=93=EF=BC=9A<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div><br><div><br><blockquote type=3D"cite"><div>On Jan 11, 2020=
+, at 7:15 PM, can zhu &lt;<a href=3D"javascript:" target=3D"_blank" gdf-obf=
+uscated-mailto=3D"OrO7k1L3DwAJ" rel=3D"nofollow" onmousedown=3D"this.href=
+=3D&#39;javascript:&#39;;return true;" onclick=3D"this.href=3D&#39;javascri=
+pt:&#39;;return true;">zhuc...@gmail.com</a>&gt; wrote:</div><br><div><div =
+dir=3D"ltr">Hmmm, I use the default config, I hadn&#39;t do other sets for =
+it.<br></div></div></blockquote><div><br></div>For? For the initiator, or t=
+he target?</div><div><br><blockquote type=3D"cite"><div><div dir=3D"ltr"><b=
+r></div></div></blockquote></div></div></blockquote></div></div></blockquot=
+e></div><br></div></blockquote></div>
 
 <p></p>
 
@@ -228,8 +180,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/6BF4CC94-0C36-4E65-B8FB-98BFBB51FC92%40gmail.com?utm_=
-medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgid/open-=
-iscsi/6BF4CC94-0C36-4E65-B8FB-98BFBB51FC92%40gmail.com</a>.<br />
+om/d/msgid/open-iscsi/8d2b9751-309c-41b2-8261-4dcb0b03905a%40googlegroups.c=
+om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
+d/open-iscsi/8d2b9751-309c-41b2-8261-4dcb0b03905a%40googlegroups.com</a>.<b=
+r />
 
---Apple-Mail=_A0E2A57D-1A44-421F-864A-6CDA6226CF79--
+------=_Part_1269_423838013.1578800475576--
+
+------=_Part_1268_844023518.1578800475576--
