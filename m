@@ -1,78 +1,73 @@
-Return-Path: <open-iscsi+bncBCEJDZGXJAINZKXK6ACRUBCM36YOK@googlegroups.com>
+Return-Path: <open-iscsi+bncBC24JGEJRMKRB6746HYAKGQENYRSDCA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf40.google.com (mail-qv1-xf40.google.com [IPv6:2607:f8b0:4864:20::f40])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E1C1384AD
-	for <lists+open-iscsi@lfdr.de>; Sun, 12 Jan 2020 04:41:17 +0100 (CET)
-Received: by mail-qv1-xf40.google.com with SMTP id u11sf4069190qvo.8
-        for <lists+open-iscsi@lfdr.de>; Sat, 11 Jan 2020 19:41:17 -0800 (PST)
+Received: from mail-qk1-x737.google.com (mail-qk1-x737.google.com [IPv6:2607:f8b0:4864:20::737])
+	by mail.lfdr.de (Postfix) with ESMTPS id 579461393AC
+	for <lists+open-iscsi@lfdr.de>; Mon, 13 Jan 2020 15:28:12 +0100 (CET)
+Received: by mail-qk1-x737.google.com with SMTP id 12sf5968751qkf.20
+        for <lists+open-iscsi@lfdr.de>; Mon, 13 Jan 2020 06:28:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=Hwky+shyAMV9f6AHqRHtPYBsSAImlq9rkdu3unCo3pM=;
-        b=XYLcwZ3QIUX9/33//PG6V332BS2ZhtLGI/oVaSz9kLDiDzRwm+yKBMZYy3UhkcK0Ut
-         dzQy9mxslkvLmcfc4nFv4saE3ldG56BGIwaZHcDCAdJKVjgti0T1uJTFS/EPSc+I8rsa
-         y7n6B9hGw5fN1FTd6Y7vv4qfxgizESEOd2JHeQ0pfFguUTCjQZRdtccbXY8YbF+cbd0F
-         9TKRj5PsmReWigFoex/57/VfYaoO2x4+CuRC8BnwTBiVG6njw9slwh1Hv9rRY57K/iBI
-         m9u/6WIHTJhOFUwqA5PLLNuECDRA5TNmcAxBq/lhkAp3Ed+k/DDX36qGbCbo848qqlA5
-         q3LA==
+        bh=gq6oxwdpDdDIsYFquR4hgt0/81wxkXgnCzp3bTyJ0BU=;
+        b=KjGs4mhCKAWfdtQt15YmQ8nFmpzWJnSAwaxgM7ZM20tYVviYycowstzk0FN8vEK+gg
+         Df9Hv/99MjZnXpZnVG3z1ZuPpFHJwC6sAHgSQmoR3bB4imJOS1orH+KhUOC+seTr8OwN
+         jxKPhqEq9dLJZhe3clv9HgGbV89g0YcQhAnqM8P/lEdZH5/YOznp4xp0/kMMuYggmWGk
+         eGL4etbi0OB6gMr9RXZHLUklkCEAj4vNcn+Z+DUy9sq1GfWVbEQ7Mc12c+yqCd4R8MZ/
+         N7aZ8GGAGarL0TV7EUO83ArjWf0/kgLaJYTqz3nLL7f75ip0bF2w/5ZYtZpNDnH8725i
+         xUrQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=Hwky+shyAMV9f6AHqRHtPYBsSAImlq9rkdu3unCo3pM=;
-        b=uXCO0GlaC+04S0IIAQikmEdtFu0hNL2zfFn1uSVbjU22rZcv6HG1cvXelz9VhDXZBR
-         BAUO4ore65yMU6pbDxNu76rieTQfq+a50mKqQALgPuoWOzs74+RJLMkToHga43iQISy/
-         TnjjghFb0BczPxgKXNFs846IfqdpMwNIkKtjVyOT/z9JLaeZgW/nLn29AhQaFA7voG0t
-         SA//YPF3X/PF6xw6MK9kaeFwZrHrC+El3Z52KnkF5L8Uw6akYKTFW7vDBT4PScR6Mdjj
-         Kz0o+zBid//md2hnk7lGoIHy2yxLOBq5bA+YBY+CB55BGIunaR303QwkBts/c0QsMXmf
-         NHoA==
+        bh=gq6oxwdpDdDIsYFquR4hgt0/81wxkXgnCzp3bTyJ0BU=;
+        b=i9E7hgQSRU6feHjmB6zdYAJ3lBRZ27QXE3/fVQaDJhTY+s+aM2yVWQDXNSwQd+zwkN
+         JbbUiwNrkrxT36aHoE/jtrzjgVuzDpIkFRo1JkAcrbwe8U5Nh7SEAB781SqE8IsFbisU
+         +pEojTackS/v54MOZfRhjmS2hGSXuMvGGJSVz/SrmgCBVAi2tcOPoPqGw9+Gxbv7qEKV
+         93MCtFkoq84V9zX5c8vg3omIuG6KOGLqR9CecDKcGZvLYRQTZn0YTZIWOmlwPMnOO9Rq
+         RscX0vjrhJs3eNhiyDfBhO3w13esgvTdYOh+Uw2RIPG4SMcx/V7+aErlnLhX4Tgk94xB
+         BChg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=Hwky+shyAMV9f6AHqRHtPYBsSAImlq9rkdu3unCo3pM=;
-        b=NQoZbbdUCGPmrQeMCQ7VvZksydLvRBx97MbNtb6IxW9lCZlG14GCkdiv1iOhuNVPx2
-         bawi/o9r0OXJsMy0OHwnNP0fwYpmpNuG+oEne2Z5BHraH45Lb64Vxic5lWEDlxPjDyAM
-         PL/BdYiSU2+dqXqUNM9bTngrPKLQoHcSO6ZU3RwiNyajf1mZNbPLEqFD6KH6VqIr2wQA
-         XBLd6zIRiHm2f2xoruIx7lOTxLnRuhB6wr4FaPVGcFUDsf5iuIqb3I7x2D/ymUb+ApSf
-         NNl725WMya/8UjIoXM2nk9yaj/w0UDIWiX4L2Owa2SSQSJUKLGa0QQQKUBJLjl56lp5p
-         yHBg==
+        bh=gq6oxwdpDdDIsYFquR4hgt0/81wxkXgnCzp3bTyJ0BU=;
+        b=AqSF5F+vKtTy/RJdrDM/lpY4KhC9j51K8N1We8uCPpfd9NFyLTCZleMwlqgMXBRXER
+         DPGSWfg+AIZjOtR6Dh2Yl25Z2eut6JDVba5Joue/6dMfhEt/khzYzqdAdlfNH0zvDfqx
+         Q9oDWRaTP11JKtRrZXXz+20qyprCY9hYWRRH/jHUDzxoAYAtrtgh2G9jy8h/mccg14kd
+         JX+NWtNOXavcSwxgkqliVX+n8wUqoszi3VFr502arZKCXsndVCDR5FVcEncb/ze5AyYI
+         EvdSWDmONfI9A2RbxOO/I9MBUP8HOmbv8swNPZRp3xMgZashN1nROafI2kx3WMrR8q9P
+         ZbRQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAV6kCPKYwqPEhVXqdlvD6bifhxqRF9XzmmwaBaTNHerKPvJY0cm
-	RH6efrkLQzqReVDdhL/bIOM=
-X-Google-Smtp-Source: APXvYqzwGD1lC7eT1LP2e42X4F67kbjTKNKuawIh4LeyuZ1Au1+IYx48mEc1z88W2JRRHqKfniZ5Iw==
-X-Received: by 2002:a0c:e58a:: with SMTP id t10mr6028749qvm.161.1578800476499;
-        Sat, 11 Jan 2020 19:41:16 -0800 (PST)
+X-Gm-Message-State: APjAAAVAK+/CJeswGNgJIEGUcjzyc08L2LxYopyxCILvEqsK6kAvkIc2
+	SCOE5N8l1jduCzCoriLA5Ps=
+X-Google-Smtp-Source: APXvYqxW++HC/0m5GBUr5T4Zo815p8ZNHqWnSd138H/pbwf1gWRHIjsHM5T1AzrSZWNrhw8VwWASUA==
+X-Received: by 2002:ac8:6c5:: with SMTP id j5mr10727152qth.284.1578925691290;
+        Mon, 13 Jan 2020 06:28:11 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac8:108:: with SMTP id e8ls689902qtg.4.gmail; Sat, 11 Jan
- 2020 19:41:16 -0800 (PST)
-X-Received: by 2002:aed:29e1:: with SMTP id o88mr9379926qtd.182.1578800476075;
-        Sat, 11 Jan 2020 19:41:16 -0800 (PST)
-Date: Sat, 11 Jan 2020 19:41:15 -0800 (PST)
-From: can zhu <zhucan.k8s@gmail.com>
+Received: by 2002:a0c:c3d0:: with SMTP id p16ls2294364qvi.0.gmail; Mon, 13 Jan
+ 2020 06:28:11 -0800 (PST)
+X-Received: by 2002:a0c:eb42:: with SMTP id c2mr11816705qvq.241.1578925690838;
+        Mon, 13 Jan 2020 06:28:10 -0800 (PST)
+Date: Mon, 13 Jan 2020 06:28:10 -0800 (PST)
+From: Bobby <italienisch1987@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <8d2b9751-309c-41b2-8261-4dcb0b03905a@googlegroups.com>
-In-Reply-To: <6BF4CC94-0C36-4E65-B8FB-98BFBB51FC92@gmail.com>
-References: <f0bab99e-accd-46cc-9d37-7700773ffc47@googlegroups.com>
- <b7141d18-99d9-4d93-9252-a5e27393dfc6@googlegroups.com>
- <4d5aa484-fa9a-4d62-9206-5d5737684109@googlegroups.com>
- <57585076-3602-47C4-92CD-5510CA87E4EF@gmail.com>
- <6769914f-f770-495b-886e-7dcc5569274d@googlegroups.com>
- <1EB02856-CF99-4B41-A6B0-7A89350162E3@gmail.com>
- <CAGJK1K=VYnVrTy+Gync5o2dP+_afwMSdP3-SRgTskz8Q-MPOUA@mail.gmail.com>
- <6BF4CC94-0C36-4E65-B8FB-98BFBB51FC92@gmail.com>
-Subject: Re: Who know more about this issue for iscsid?
+Message-Id: <df9596a8-aa02-4679-bdfa-8027d497815e@googlegroups.com>
+In-Reply-To: <CAK3e-EZqkCqnoZi5fbeXGZeZ8k57eLA6NGgw_BxQGiz32M1_5g@mail.gmail.com>
+References: <587116d0-ebce-45b9-b5cf-e6fbc3437b41@googlegroups.com>
+ <CAK3e-EagWT_YBz=akXUsM=qMJX_T4=SowxOWCVjWQ2W_17LyAw@mail.gmail.com> <566e8911-552e-4dbf-afd5-89c156929bf1@googlegroups.com>
+ <CAK3e-EZqkCqnoZi5fbeXGZeZ8k57eLA6NGgw_BxQGiz32M1_5g@mail.gmail.com>
+Subject: Re: Two types of initiator stacks
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_1268_844023518.1578800475576"
-X-Original-Sender: zhucan.k8s@gmail.com
+	boundary="----=_Part_1522_2114377030.1578925690195"
+X-Original-Sender: Italienisch1987@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -86,90 +81,220 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1268_844023518.1578800475576
+------=_Part_1522_2114377030.1578925690195
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_1269_423838013.1578800475576"
+	boundary="----=_Part_1523_90150819.1578925690196"
 
-------=_Part_1269_423838013.1578800475576
+------=_Part_1523_90150819.1578925690196
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Our storage SDK API, I will take a look at the target config and paste it.
+Hi Donald,
 
-=E5=9C=A8 2020=E5=B9=B41=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E6=97=A5 UTC=
-+8=E4=B8=8A=E5=8D=8811:33:51=EF=BC=8CThe Lee-Man=E5=86=99=E9=81=93=EF=BC=9A
+Thanks a lot ! That was a very nice explanation...Now the concept is clear 
+to me :) !
+
+On Friday, January 10, 2020 at 7:40:34 PM UTC+1, Donald Williams wrote:
 >
-> On Jan 11, 2020, at 7:28 PM, can zhu <zhuc...@gmail.com <javascript:>>=20
+> Hello, 
+>  You are very welcome.  
+>
+> Also, iSCSI offload cards like the Broadcom (Now owned by Qlogic) are 
+> typically called "dependent hardware initiators'.  Since it depends on 
+> connection to the OS network stack to make it fully functional.  Otherwise, 
+> it behaves just like a standard NIC. 
+>
+> Cards that completely offload the network and iSCSI functions are known as 
+> "Independent hardware initiators'.   Since they don't require that OS 
+> network connection.  They appear solely as a SCSI adapter to the OS.  All 
+> the network configuration is done on the card.  Qlogic used to make the 
+> best examples of this.  The Qlogic 4xxx series iSCSI HBAs.   Now you see 
+> this in cards that support DCB, they are called "Converged Network 
+> Adapters"  CNAs.   Since very few Software Initiators support DCB naively 
+> the card has to handle everything.  
+>
+> Regards, 
+> Don 
+>
+>
+>
+> On Fri, Jan 10, 2020 at 11:18 AM Bobby <italien...@gmail.com <javascript:>> 
 > wrote:
 >
->
-> For the initiator.
->
->
-> Then who set up your targets, and how are they set up?
->
->
-> Lee Duncan <leeman...@gmail.com <javascript:>> =E4=BA=8E2020=E5=B9=B41=E6=
-=9C=8812=E6=97=A5=E5=91=A8=E6=97=A5 =E4=B8=8A=E5=8D=8811:16=E5=86=99=E9=81=
-=93=EF=BC=9A
->
+>> ah OK thanks !
 >>
 >>
->> On Jan 11, 2020, at 7:15 PM, can zhu <zhuc...@gmail.com <javascript:>>=
-=20
->> wrote:
->>
->> Hmmm, I use the default config, I hadn't do other sets for it.
->>
->>
->> For? For the initiator, or the target?
->>
->>
+>> On Thursday, January 9, 2020 at 7:35:07 PM UTC+1, Donald Williams wrote:
+>>>
+>>> Hello, 
+>>>  
+>>>  It is referring to iSCSI HBA cards like Broadcom BCM58xx/57xxx or just 
+>>> using a standard NIC and the Software iSCSI adapter open-iSCSI provides. 
+>>>
+>>> Regards, 
+>>> Don 
+>>>
+>>>
+>>>
+>>> On Thu, Jan 9, 2020 at 11:57 AM Bobby <italien...@gmail.com> wrote:
+>>>
+>>>> Under section "How to setup iSCSI interfaces (iface) for binding" of 
+>>>> README, there is this paragraph:
+>>>>
+>>>> " To manage both types of initiator stacks, iscsiadm uses the interface (iface)
+>>>> structure. For each HBA port or for software iscsi for each network
+>>>> device (ethX) or NIC, that you wish to bind sessions to you must create
+>>>> a iface config /etc/iscsi/ifaces. "
+>>>>
+>>>>
+>>>>
+>>>>  Here I am confused. Which both types of initiator stacks we mean here?
+>>>>
+>>>>
+>>>>
+>>>> Thanks !
+>>>>
+>>>> -- 
+>>>> You received this message because you are subscribed to the Google 
+>>>> Groups "open-iscsi" group.
+>>>> To unsubscribe from this group and stop receiving emails from it, send 
+>>>> an email to open-...@googlegroups.com.
+>>>> To view this discussion on the web visit 
+>>>> https://groups.google.com/d/msgid/open-iscsi/587116d0-ebce-45b9-b5cf-e6fbc3437b41%40googlegroups.com 
+>>>> <https://groups.google.com/d/msgid/open-iscsi/587116d0-ebce-45b9-b5cf-e6fbc3437b41%40googlegroups.com?utm_medium=email&utm_source=footer>
+>>>> .
+>>>>
+>>> -- 
+>> You received this message because you are subscribed to the Google Groups 
+>> "open-iscsi" group.
+>> To unsubscribe from this group and stop receiving emails from it, send an 
+>> email to open-...@googlegroups.com <javascript:>.
+>> To view this discussion on the web visit 
+>> https://groups.google.com/d/msgid/open-iscsi/566e8911-552e-4dbf-afd5-89c156929bf1%40googlegroups.com 
+>> <https://groups.google.com/d/msgid/open-iscsi/566e8911-552e-4dbf-afd5-89c156929bf1%40googlegroups.com?utm_medium=email&utm_source=footer>
+>> .
 >>
 >
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/8d2b9751-309c-41b2-8261-4dcb0b03905a%40googlegroups.com.
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/df9596a8-aa02-4679-bdfa-8027d497815e%40googlegroups.com.
 
-------=_Part_1269_423838013.1578800475576
+------=_Part_1523_90150819.1578925690196
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Our storage SDK API, I will take a look at the target conf=
-ig and paste it.<br><br>=E5=9C=A8 2020=E5=B9=B41=E6=9C=8812=E6=97=A5=E6=98=
-=9F=E6=9C=9F=E6=97=A5 UTC+8=E4=B8=8A=E5=8D=8811:33:51=EF=BC=8CThe Lee-Man=
-=E5=86=99=E9=81=93=EF=BC=9A<blockquote class=3D"gmail_quote" style=3D"margi=
-n: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;"><di=
-v style=3D"word-wrap:break-word;line-break:after-white-space">On Jan 11, 20=
-20, at 7:28 PM, can zhu &lt;<a href=3D"javascript:" target=3D"_blank" gdf-o=
-bfuscated-mailto=3D"OrO7k1L3DwAJ" rel=3D"nofollow" onmousedown=3D"this.href=
-=3D&#39;javascript:&#39;;return true;" onclick=3D"this.href=3D&#39;javascri=
-pt:&#39;;return true;">zhuc...@gmail.com</a>&gt; wrote:<br><div><blockquote=
- type=3D"cite"><br><div><div dir=3D"ltr">For the initiator.</div></div></bl=
-ockquote><div><br></div>Then who set up your targets, and how are they set =
-up?</div><div><br><blockquote type=3D"cite"><div><br><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr">Lee Duncan &lt;<a href=3D"javascript:" target=3D"_bla=
-nk" gdf-obfuscated-mailto=3D"OrO7k1L3DwAJ" rel=3D"nofollow" onmousedown=3D"=
-this.href=3D&#39;javascript:&#39;;return true;" onclick=3D"this.href=3D&#39=
-;javascript:&#39;;return true;">leeman...@gmail.com</a>&gt; =E4=BA=8E2020=
-=E5=B9=B41=E6=9C=8812=E6=97=A5=E5=91=A8=E6=97=A5 =E4=B8=8A=E5=8D=8811:16=E5=
-=86=99=E9=81=93=EF=BC=9A<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div><br><div><br><blockquote type=3D"cite"><div>On Jan 11, 2020=
-, at 7:15 PM, can zhu &lt;<a href=3D"javascript:" target=3D"_blank" gdf-obf=
-uscated-mailto=3D"OrO7k1L3DwAJ" rel=3D"nofollow" onmousedown=3D"this.href=
-=3D&#39;javascript:&#39;;return true;" onclick=3D"this.href=3D&#39;javascri=
-pt:&#39;;return true;">zhuc...@gmail.com</a>&gt; wrote:</div><br><div><div =
-dir=3D"ltr">Hmmm, I use the default config, I hadn&#39;t do other sets for =
-it.<br></div></div></blockquote><div><br></div>For? For the initiator, or t=
-he target?</div><div><br><blockquote type=3D"cite"><div><div dir=3D"ltr"><b=
-r></div></div></blockquote></div></div></blockquote></div></div></blockquot=
-e></div><br></div></blockquote></div>
+<div dir=3D"ltr">Hi Donald,<div><br></div><div>Thanks a lot ! That was a ve=
+ry nice explanation...Now the concept is clear to me :) !<br><br>On Friday,=
+ January 10, 2020 at 7:40:34 PM UTC+1, Donald Williams wrote:<blockquote cl=
+ass=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px =
+#ccc solid;padding-left: 1ex;"><div dir=3D"ltr">Hello,=C2=A0<div>=C2=A0You =
+are very welcome.=C2=A0=C2=A0</div><div><br></div><div>Also, iSCSI offload =
+cards like the Broadcom (Now owned by Qlogic) are typically called &quot;de=
+pendent hardware initiators&#39;.=C2=A0 Since it depends on connection to t=
+he OS network stack to make it fully functional.=C2=A0 Otherwise, it behave=
+s just like a standard NIC.=C2=A0</div><div><br></div><div>Cards that compl=
+etely offload the network and iSCSI functions are known as &quot;Independen=
+t hardware initiators&#39;.=C2=A0 =C2=A0Since they don&#39;t require that O=
+S network connection.=C2=A0 They appear solely as a SCSI adapter to the OS.=
+=C2=A0 All the network configuration is done on the card.=C2=A0 Qlogic used=
+ to make the best examples of this.=C2=A0 The Qlogic 4xxx series iSCSI HBAs=
+.=C2=A0 =C2=A0Now you see this in cards that support DCB, they are called &=
+quot;Converged Network Adapters&quot;=C2=A0 CNAs.=C2=A0 =C2=A0Since very fe=
+w Software Initiators support=C2=A0DCB naively the card has to handle every=
+thing.=C2=A0=C2=A0</div><div><br></div><div>Regards,=C2=A0</div><div>Don=C2=
+=A0</div><div><br></div><div><br></div></div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr">On Fri, Jan 10, 2020 at 11:18 AM Bobby &lt;<a href=3D"jav=
+ascript:" target=3D"_blank" gdf-obfuscated-mailto=3D"PhOrDaSLDwAJ" rel=3D"n=
+ofollow" onmousedown=3D"this.href=3D&#39;javascript:&#39;;return true;" onc=
+lick=3D"this.href=3D&#39;javascript:&#39;;return true;">italien...@gmail.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr">ah OK thanks !<div><br></div><div><br>On Thursday, Januar=
+y 9, 2020 at 7:35:07 PM UTC+1, Donald Williams wrote:<blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr">Hello,=C2=A0<div>=C2=A0</div><=
+div>=C2=A0It is referring to iSCSI HBA cards like Broadcom BCM58xx/57xxx or=
+ just using a standard NIC and the Software iSCSI adapter open-iSCSI provid=
+es.=C2=A0</div><div><br></div><div>Regards,=C2=A0</div><div>Don=C2=A0</div>=
+<div><br></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr">On Thu, Jan 9, 2020 at 11:57 AM Bobby &lt;<a rel=3D"nofollow">ital=
+ien...@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"ltr"><div>Under section &quot;<span style=3D"co=
+lor:rgb(36,41,46);font-family:SFMono-Regular,Consolas,&quot;Liberation Mono=
+&quot;,Menlo,monospace;font-size:12px;white-space:pre-wrap">How to setup iS=
+CSI interfaces (iface) for binding&quot; of README, there is this paragraph=
+:</span></div><div><br></div><div><pre style=3D"font-family:SFMono-Regular,=
+Consolas,&quot;Liberation Mono&quot;,Menlo,monospace;font-size:12px;color:r=
+gb(36,41,46);white-space:pre-wrap">&quot; To manage both types of initiator=
+ stacks, iscsiadm uses the interface (iface)
+structure. For each HBA port or for software iscsi for each network
+device (ethX) or NIC, that you wish to bind sessions to you must create
+a iface config /etc/iscsi/ifaces. &quot;</pre><pre style=3D"font-family:SFM=
+ono-Regular,Consolas,&quot;Liberation Mono&quot;,Menlo,monospace;font-size:=
+12px;color:rgb(36,41,46);white-space:pre-wrap"><br></pre><pre style=3D"font=
+-family:SFMono-Regular,Consolas,&quot;Liberation Mono&quot;,Menlo,monospace=
+;font-size:12px;color:rgb(36,41,46);white-space:pre-wrap"><br></pre><pre st=
+yle=3D"font-family:SFMono-Regular,Consolas,&quot;Liberation Mono&quot;,Menl=
+o,monospace;font-size:12px;color:rgb(36,41,46);white-space:pre-wrap"><span =
+style=3D"color:rgb(34,34,34);font-family:Arial,Helvetica,sans-serif;font-si=
+ze:13px;white-space:normal">=C2=A0Here I am confused. Which both types of i=
+nitiator stacks we mean here?</span><br></pre><pre style=3D"font-family:SFM=
+ono-Regular,Consolas,&quot;Liberation Mono&quot;,Menlo,monospace;font-size:=
+12px;color:rgb(36,41,46);white-space:pre-wrap"><span style=3D"color:rgb(34,=
+34,34);font-family:Arial,Helvetica,sans-serif;font-size:13px;white-space:no=
+rmal"><br></span></pre><pre style=3D"font-family:SFMono-Regular,Consolas,&q=
+uot;Liberation Mono&quot;,Menlo,monospace;font-size:12px;color:rgb(36,41,46=
+);white-space:pre-wrap"><span style=3D"color:rgb(34,34,34);font-family:Aria=
+l,Helvetica,sans-serif;font-size:13px;white-space:normal"><br></span></pre>=
+<pre style=3D"font-family:SFMono-Regular,Consolas,&quot;Liberation Mono&quo=
+t;,Menlo,monospace;font-size:12px;color:rgb(36,41,46);white-space:pre-wrap"=
+><span style=3D"color:rgb(34,34,34);font-family:Arial,Helvetica,sans-serif;=
+font-size:13px;white-space:normal">Thanks !</span></pre></div></div>
+
+<p></p>
+
+-- <br>
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br>
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a rel=3D"nofollow">open-...@googlegroups.com</a>.<br>
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/587116d0-ebce-45b9-b5cf-e6fbc3437b41%40googlegroups.c=
+om?utm_medium=3Demail&amp;utm_source=3Dfooter" rel=3D"nofollow" target=3D"_=
+blank" onmousedown=3D"this.href=3D&#39;https://groups.google.com/d/msgid/op=
+en-iscsi/587116d0-ebce-45b9-b5cf-e6fbc3437b41%40googlegroups.com?utm_medium=
+\x3demail\x26utm_source\x3dfooter&#39;;return true;" onclick=3D"this.href=
+=3D&#39;https://groups.google.com/d/msgid/open-iscsi/587116d0-ebce-45b9-b5c=
+f-e6fbc3437b41%40googlegroups.com?utm_medium\x3demail\x26utm_source\x3dfoot=
+er&#39;;return true;">https://groups.google.com/d/<wbr>msgid/open-iscsi/587=
+116d0-<wbr>ebce-45b9-b5cf-e6fbc3437b41%<wbr>40googlegroups.com</a>.<br>
+</blockquote></div>
+</blockquote></div></div>
+
+<p></p>
+
+-- <br>
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br>
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"javascript:" target=3D"_blank" gdf-obfuscated-mailto=3D"=
+PhOrDaSLDwAJ" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;javascript:&=
+#39;;return true;" onclick=3D"this.href=3D&#39;javascript:&#39;;return true=
+;">open-...@<wbr>googlegroups.com</a>.<br>
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/566e8911-552e-4dbf-afd5-89c156929bf1%40googlegroups.c=
+om?utm_medium=3Demail&amp;utm_source=3Dfooter" target=3D"_blank" rel=3D"nof=
+ollow" onmousedown=3D"this.href=3D&#39;https://groups.google.com/d/msgid/op=
+en-iscsi/566e8911-552e-4dbf-afd5-89c156929bf1%40googlegroups.com?utm_medium=
+\x3demail\x26utm_source\x3dfooter&#39;;return true;" onclick=3D"this.href=
+=3D&#39;https://groups.google.com/d/msgid/open-iscsi/566e8911-552e-4dbf-afd=
+5-89c156929bf1%40googlegroups.com?utm_medium\x3demail\x26utm_source\x3dfoot=
+er&#39;;return true;">https://groups.google.com/d/<wbr>msgid/open-iscsi/566=
+e8911-<wbr>552e-4dbf-afd5-89c156929bf1%<wbr>40googlegroups.com</a>.<br>
+</blockquote></div>
+</blockquote></div></div>
 
 <p></p>
 
@@ -180,11 +305,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/8d2b9751-309c-41b2-8261-4dcb0b03905a%40googlegroups.c=
+om/d/msgid/open-iscsi/df9596a8-aa02-4679-bdfa-8027d497815e%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/8d2b9751-309c-41b2-8261-4dcb0b03905a%40googlegroups.com</a>.<b=
+d/open-iscsi/df9596a8-aa02-4679-bdfa-8027d497815e%40googlegroups.com</a>.<b=
 r />
 
-------=_Part_1269_423838013.1578800475576--
+------=_Part_1523_90150819.1578925690196--
 
-------=_Part_1268_844023518.1578800475576--
+------=_Part_1522_2114377030.1578925690195--
