@@ -1,71 +1,73 @@
-Return-Path: <open-iscsi+bncBC24JGEJRMKRBMUCTPYQKGQEE5IAM4I@googlegroups.com>
+Return-Path: <open-iscsi+bncBC24JGEJRMKRBFXLTTYQKGQEROLB6FA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7D9F143938
-	for <lists+open-iscsi@lfdr.de>; Tue, 21 Jan 2020 10:15:31 +0100 (CET)
-Received: by mail-qk1-x73a.google.com with SMTP id x127sf1366048qkb.0
-        for <lists+open-iscsi@lfdr.de>; Tue, 21 Jan 2020 01:15:31 -0800 (PST)
+Received: from mail-qk1-x737.google.com (mail-qk1-x737.google.com [IPv6:2607:f8b0:4864:20::737])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0291D144348
+	for <lists+open-iscsi@lfdr.de>; Tue, 21 Jan 2020 18:32:08 +0100 (CET)
+Received: by mail-qk1-x737.google.com with SMTP id a6sf2222967qkl.7
+        for <lists+open-iscsi@lfdr.de>; Tue, 21 Jan 2020 09:32:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=n0t01CPrioxrf/XlAZ4ZWnAuGZG5K6Z2EqMENsyCVHc=;
-        b=lqYtxlf6AtZFXXHoYgMIVQr9FNjdhC0KLDq5kMaexFsZKIcypD/TTJxeksQvYby/y0
-         tRHk6AIJzeykbww+7mrP6f1EdxFGHuxsUpCua+2URqwxakfaftDJXAAXanPwMAB+w53B
-         EDYaPGkMDRNSsKh57Ai7hIUEwrSfds6dmiiO/jIgKsNY7XhVmjaAqn0s9gbh3D3UcvkV
-         ehesG+8EtvXBkHFZGUAibq9YvoGSRo34TojjzvzbvjweZS5yvOO9ax6W/J2oQxTMpDWV
-         xdKPlnZ1+6CXYInpGgJ2qKm0diyKxhX+8Xyy71DurzDAefZ5nN3SO8NXdfSKQ8sgGHmQ
-         wa0A==
+        bh=qKUTSLydteqZSGTkaynbeSxu7FfVnb2DyV+MFNA21eI=;
+        b=Ixvt8svkhXg8Senuq0TMvH4SkJwj7r6njCqm2WXcGs0dm2mnJTnddPanHlysLHS0vn
+         q8mNeIL65Yo1Nx099AR0bNyBCfWH9mcda7rT//FP4j0C+LKPBLxAP+DjtuUtUgS+eLyl
+         sND/OIRW2gVM8AVJT3maipVaAAOyB3j5LK8xb11Ae62mQtbcZsyLEfkgM6SYEdz8P9Vg
+         ApuEOXuh1nPgnPpFCtODLfgDUgCaJbaZj3tdC92zdmaOqejIEqsqi7O55tv2KIbnIjZb
+         UJQNuvbTisMfpurFA7EJ/Ey6Y48gjKYOctPl8jkTxbGgYn5vglVWAL6cZ3h6r9wtVm+m
+         eHQg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=n0t01CPrioxrf/XlAZ4ZWnAuGZG5K6Z2EqMENsyCVHc=;
-        b=bwxRJubrnAsCaXiaHp0ZzesrPyfPcTdzm8W1bVbQS8LinB2D75npSZtu35n+VvBkva
-         3d53J09PmEAF8okJhMsWqijEywloXhqzWcKD3BWO+5r8L68cYot5OIB4/NvfXseOMCnY
-         tB1RtrhY/oJs0wXTVs84KjRdXANcKnm9qPm/n0o+E01RbIIeKSSTpGtod4xlKPTn1NbM
-         k9PxYYqOqAnMYIvcE+dDp9CsvRBiL1Fpxca1GmxzexOTcxqVBdLLatlc+GSVn0I8AA8P
-         uKBMQs3ZkDvpC7fBvoWN10/aveu6+XPyK6FABh8JwbQ3F73wmUeFnLE/9EjIfES6gelr
-         J2LQ==
+        bh=qKUTSLydteqZSGTkaynbeSxu7FfVnb2DyV+MFNA21eI=;
+        b=GR1rs0pHvj10e2HS98oWYOiiq8ATrsEFOQgC+OpQzWX0MQVHSvhiOproRo8XEjIV9m
+         gi+9rAXj9iSnvVLI80gznZ30LgqQ92/jvVSMjvpURa7KCeGLuYBMVbHWLxcXopA4Ggwa
+         ae8lKWdkJPbxQ6VsDejvuqyi61InrtUyYdvyl7NIUGLd86cOf7mfqYUCltGAjn89tC9G
+         yPYY7b00q5/NhauMZkq/k5vLRrUJU4TAr154HZv6hIGw3Hm3nlc5HJ2A4kEjaMwrP/lJ
+         V2ujdA0ImYgs2cDOzsxejjV60bU6khRaFp/vPpMLn81sgr27aF2dqxcIVdjpg8dUYBBz
+         MAbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=n0t01CPrioxrf/XlAZ4ZWnAuGZG5K6Z2EqMENsyCVHc=;
-        b=Ya6zsY3zVcmta1Cp1FRRlUOZj/JWv1eadQ8Xz61bcV/k6ayy+Oyt+ySkQcoHyQ2Tih
-         yfhDpYlH/6oRewN5xQB4NNd87zGZHdTsiOKZKFes9ejCv+cTsMIrhXRrAQk3+SPL2R/R
-         pO/+pADPmh+1C+AWh4sRlhhVWo6KUkdt2YnBYhW+TWGsY5BmRyYYnduHTgC8/l7RnMF/
-         Q65Pn/9ALCdw6hzR2HQN9Xyq5y4OUKeNAgLZcJoJSF8B+aZfa2t1te3jbw8BR3Dx5kyW
-         z2l3mC6kEg0c+u/bxATsbDFoY5Cnj+IRYP4fHU++gHQb6KkHT6GyOREinIYPUOrCP4sK
-         I5rg==
+        bh=qKUTSLydteqZSGTkaynbeSxu7FfVnb2DyV+MFNA21eI=;
+        b=hSfx8JfvbcSGDXc1I7iMSJw6a6k8CXgLr+P++kv+F0YJ2eDIDD5+U3oxrmyhsjwS4f
+         6M7Vr5FBOnboWTy26yLBG7HYu49nsZrxd47YiBTVCAeUXsd3moVJlAPeIvgImhW8ZysQ
+         tsO7CLjxZd4bUyZ87vuXvR2Two8Jo7w1fOVwv19pVavKF5bPJAi7/USHZ+BGUojE0uYV
+         vfAzCT/xWJ8isdPbXN6xk4oJqWs3JSK10oFt363G4yBknvo4MXTXM7dfj1dv9cGDP+Pv
+         faI1HSYaY+VPkaQAliC8QFDlqiThhsIgHTD3ED9k5mssDbVbSEW4I5y6AaKiYKWxeZ5a
+         EopA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAWNKDc5GlQ6qdhOiVrEHOt9ysv3bPhCj+yO9ZTlYs7vZkN/UVi2
-	n9//1lMPGpmpR79bPrKZyvY=
-X-Google-Smtp-Source: APXvYqzZW3LzK77cHUONxniCepVGHDoUevTEtNBexY0Etey/M2NuWaLZctroOCpRsNPiEdoDDX+r8A==
-X-Received: by 2002:a37:65c8:: with SMTP id z191mr3504135qkb.176.1579598130533;
-        Tue, 21 Jan 2020 01:15:30 -0800 (PST)
+X-Gm-Message-State: APjAAAXcumpQWiUpiU4DDjMWaze2o+PKmiAktctYkWmLPqaDsr33G6d/
+	7wXgbboeplgwrg5BwRsyjaE=
+X-Google-Smtp-Source: APXvYqwjq0VjRlMkPT4Gfl6n3IL9TeUpJEp3eXhSgJsYObkbazMRIGVt++TtfDRXKG28bpc18jACmw==
+X-Received: by 2002:ad4:4389:: with SMTP id s9mr5716312qvr.99.1579627926978;
+        Tue, 21 Jan 2020 09:32:06 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:ac11:: with SMTP id e17ls413622qkm.7.gmail; Tue, 21 Jan
- 2020 01:15:30 -0800 (PST)
-X-Received: by 2002:a05:620a:98f:: with SMTP id x15mr3469498qkx.462.1579598130004;
-        Tue, 21 Jan 2020 01:15:30 -0800 (PST)
-Date: Tue, 21 Jan 2020 01:15:29 -0800 (PST)
+Received: by 2002:ae9:e017:: with SMTP id m23ls905735qkk.16.gmail; Tue, 21 Jan
+ 2020 09:32:06 -0800 (PST)
+X-Received: by 2002:a05:620a:20c7:: with SMTP id f7mr5660551qka.440.1579627926429;
+        Tue, 21 Jan 2020 09:32:06 -0800 (PST)
+Date: Tue, 21 Jan 2020 09:32:05 -0800 (PST)
 From: Bobby <italienisch1987@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <a4d39a0a-2662-4bff-9674-d644daf608ed@googlegroups.com>
-In-Reply-To: <54AD6563.4040603@suse.de>
-References: <54AD5DDD.2090808@dev.mellanox.co.il>
- <54AD6563.4040603@suse.de>
-Subject: Re: [LSF/MM TOPIC] iSCSI MQ adoption via MCS discussion
+Message-Id: <a3b2b411-3138-43e4-aeaa-be026c70a95d@googlegroups.com>
+In-Reply-To: <20160601222727.wgg6z6htzuyona5r@straylight.hirudinean.org>
+References: <e7d9aa83-977e-474c-9ca1-9448a962fe0d@googlegroups.com>
+ <20160520231855.xxtk57nudcyy4xpb@straylight.hirudinean.org>
+ <CAM89p6_AV2TFS7Aiak6bQFLZ+4qGL+qmt4udBjN2JpDs4eQORg@mail.gmail.com>
+ <20160601222727.wgg6z6htzuyona5r@straylight.hirudinean.org>
+Subject: Re: Question: Where are scsi commands encapsulated?
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_1579_1307742090.1579598129312"
+	boundary="----=_Part_1889_1521287826.1579627925806"
 X-Original-Sender: Italienisch1987@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -80,194 +82,175 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1579_1307742090.1579598129312
+------=_Part_1889_1521287826.1579627925806
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_1580_1339419087.1579598129313"
+	boundary="----=_Part_1890_2112131601.1579627925807"
 
-------=_Part_1580_1339419087.1579598129313
+------=_Part_1890_2112131601.1579627925807
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+Hi Chris,
 
-I have a question please. Are these todo's finally part of Open-iSCSi=20
-initiator?
+very good explanation. Can you also please tell where does scsi-mq 
+(multi-queue) comes into play in this flow? Where exactly one can see 
+multi-queue in the code?
 
-Thanks
+Thanks !
 
-On Wednesday, January 7, 2015 at 5:57:14 PM UTC+1, hare wrote:
+On Thursday, June 2, 2016 at 12:27:32 AM UTC+2, Chris Leech wrote:
 >
-> On 01/07/2015 05:25 PM, Sagi Grimberg wrote:=20
-> > Hi everyone,=20
-> >=20
-> > Now that scsi-mq is fully included, we need an iSCSI initiator that=20
-> > would use it to achieve scalable performance. The need is even greater=
-=20
-> > for iSCSI offload devices and transports that support multiple HW=20
-> > queues. As iSER maintainer I'd like to discuss the way we would choose=
-=20
-> > to implement that in iSCSI.=20
-> >=20
-> > My measurements show that iSER initiator can scale up to ~2.1M IOPs=20
-> > with multiple sessions but only ~630K IOPs with a single session where=
-=20
-> > the most significant bottleneck the (single) core processing=20
-> > completions.=20
-> >=20
-> > In the existing single connection per session model, given that command=
-=20
-> > ordering must be preserved session-wide, we end up in a serial command=
-=20
-> > execution over a single connection which is basically a single queue=20
-> > model. The best fit seems to be plugging iSCSI MCS as a multi-queued=20
-> > scsi LLDD. In this model, a hardware context will have a 1x1 mapping=20
-> > with an iSCSI connection (TCP socket or a HW queue).=20
-> >=20
-> > iSCSI MCS and it's role in the presence of dm-multipath layer was=20
-> > discussed several times in the past decade(s). The basic need for MCS i=
-s=20
-> > implementing a multi-queue data path, so perhaps we may want to avoid=
-=20
-> > doing any type link aggregation or load balancing to not overlap=20
-> > dm-multipath. For example we can implement ERL=3D0 (which is basically =
-the=20
-> > scsi-mq ERL) and/or restrict a session to a single portal.=20
-> >=20
-> > As I see it, the todo's are:=20
-> > 1. Getting MCS to work (kernel + user-space) with ERL=3D0 and a=20
-> >    round-robin connection selection (per scsi command execution).=20
-> > 2. Plug into scsi-mq - exposing num_connections as nr_hw_queues and=20
-> >    using blk-mq based queue (conn) selection.=20
-> > 3. Rework iSCSI core locking scheme to avoid session-wide locking=20
-> >    as much as possible.=20
-> > 4. Use blk-mq pre-allocation and tagging facilities.=20
-> >=20
-> > I've recently started looking into this. I would like the community to=
-=20
-> > agree (or debate) on this scheme and also talk about implementation=20
-> > with anyone who is also interested in this.=20
-> >=20
-> Yes, that's a really good topic.=20
+> On Fri, May 20, 2016 at 06:33:25PM -0500, hao wen wrote: 
+> > Hi Chris, 
+> > 
+> > Thank you for you reply. 
+> > Just to be specific, can I get the scsi commands and try to do some 
+> process 
+> > on it in function like iscsi_data_xmit*(struct* iscsi_conn ***conn*) 
+> *before 
+> > the scsi commands are finally transmitted to the iscsi target? 
 >
-> I've pondered implementing MC/S for iscsi/TCP but then I've figured my=20
-> network implementation knowledge doesn't spread that far.=20
-> So yeah, a discussion here would be good.=20
+> Look at the .queuecommand field in the scsi_host_template used by your 
+> driver, it will point to the top level function that takes commands from 
+> the SCSI midlayer to send to the target. 
 >
-> Mike? Any comments?=20
+> For iscsi_tcp, that's iscsi_queuecommand.  You can follow the calls down 
+> from there, but that's the interface where SCSI transports take 
+> commands. 
 >
-> Cheers,=20
+> - Chris 
 >
-> Hannes=20
-> --=20
-> Dr. Hannes Reinecke                      zSeries & Storage=20
-> ha...@suse.de <javascript:>                              +49 911 74053=20
-> 688=20
-> SUSE LINUX Products GmbH, Maxfeldstr. 5, 90409 N=C3=BCrnberg=20
-> GF: J. Hawn, J. Guild, F. Imend=C3=B6rffer, HRB 16746 (AG N=C3=BCrnberg)=
-=20
+> > 2016-05-20 18:18 GMT-05:00 Chris Leech <cle...@redhat.com <javascript:>>: 
+>
+> > 
+> > > On Mon, May 09, 2016 at 08:32:54AM -0700, whls...@gmail.com 
+> <javascript:> wrote: 
+> > > > Hi, 
+> > > > 
+> > > > I am recently looking into the process of iSCSI initiator. I wonder 
+> where 
+> > > > the source codes are that receive the scsi commands and encapsulate 
+> them 
+> > > > into iscsi format. I have walked through the interaction between 
+> iscsiadm 
+> > > > and iscsid, but I did find that. I thought it may be written in 
+> qtask 
+> > > > structure, but it seems the payload_len is never set within the 
+> code. 
+> > > > 
+> > > > Could anyone help answer this question? 
+> > > 
+> > > The userspace tools only handle iSCSI session management tasks.  The 
+> > > SCSI command handling is done in the Linux kernel drivers, which 
+> > > interact with the kernel SCSI subsystem. 
+> > > 
+> > > - Chris 
+> > > 
+> > 
+> > -- 
+> > You received this message because you are subscribed to the Google 
+> Groups "open-iscsi" group. 
+> > To unsubscribe from this group and stop receiving emails from it, send 
+> an email to open-...@googlegroups.com <javascript:>. 
+> > To post to this group, send email to open-...@googlegroups.com 
+> <javascript:>. 
+> > Visit this group at https://groups.google.com/group/open-iscsi. 
+> > For more options, visit https://groups.google.com/d/optout. 
 >
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/a4d39a0a-2662-4bff-9674-d644daf608ed%40googlegroups.com.
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/a3b2b411-3138-43e4-aeaa-be026c70a95d%40googlegroups.com.
 
-------=_Part_1580_1339419087.1579598129313
+------=_Part_1890_2112131601.1579627925807
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi all,<br><br>I have a question please. Are these todo&#3=
-9;s finally part of Open-iSCSi initiator?<br><br>Thanks<br><br>On Wednesday=
-, January 7, 2015 at 5:57:14 PM UTC+1, hare wrote:<blockquote class=3D"gmai=
-l_quote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;=
-padding-left: 1ex;">On 01/07/2015 05:25 PM, Sagi Grimberg wrote:
-<br>&gt; Hi everyone,
+<div dir=3D"ltr">Hi Chris,<br><br>very good explanation. Can you also pleas=
+e tell where does scsi-mq (multi-queue) comes into play in this flow? Where=
+ exactly one can see multi-queue in the code?<div><br></div><div>Thanks !<b=
+r><br>On Thursday, June 2, 2016 at 12:27:32 AM UTC+2, Chris Leech wrote:<bl=
+ockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;border=
+-left: 1px #ccc solid;padding-left: 1ex;">On Fri, May 20, 2016 at 06:33:25P=
+M -0500, hao wen wrote:
+<br>&gt; Hi Chris,
 <br>&gt;=20
-<br>&gt; Now that scsi-mq is fully included, we need an iSCSI initiator tha=
-t
-<br>&gt; would use it to achieve scalable performance. The need is even gre=
-ater
-<br>&gt; for iSCSI offload devices and transports that support multiple HW
-<br>&gt; queues. As iSER maintainer I&#39;d like to discuss the way we woul=
-d choose
-<br>&gt; to implement that in iSCSI.
-<br>&gt;=20
-<br>&gt; My measurements show that iSER initiator can scale up to ~2.1M IOP=
-s
-<br>&gt; with multiple sessions but only ~630K IOPs with a single session w=
-here
-<br>&gt; the most significant bottleneck the (single) core processing
-<br>&gt; completions.
-<br>&gt;=20
-<br>&gt; In the existing single connection per session model, given that co=
-mmand
-<br>&gt; ordering must be preserved session-wide, we end up in a serial com=
-mand
-<br>&gt; execution over a single connection which is basically a single que=
-ue
-<br>&gt; model. The best fit seems to be plugging iSCSI MCS as a multi-queu=
-ed
-<br>&gt; scsi LLDD. In this model, a hardware context will have a 1x1 mappi=
-ng
-<br>&gt; with an iSCSI connection (TCP socket or a HW queue).
-<br>&gt;=20
-<br>&gt; iSCSI MCS and it&#39;s role in the presence of dm-multipath layer =
-was
-<br>&gt; discussed several times in the past decade(s). The basic need for =
-MCS is
-<br>&gt; implementing a multi-queue data path, so perhaps we may want to av=
-oid
-<br>&gt; doing any type link aggregation or load balancing to not overlap
-<br>&gt; dm-multipath. For example we can implement ERL=3D0 (which is basic=
-ally the
-<br>&gt; scsi-mq ERL) and/or restrict a session to a single portal.
-<br>&gt;=20
-<br>&gt; As I see it, the todo&#39;s are:
-<br>&gt; 1. Getting MCS to work (kernel + user-space) with ERL=3D0 and a
-<br>&gt; =C2=A0 =C2=A0round-robin connection selection (per scsi command ex=
-ecution).
-<br>&gt; 2. Plug into scsi-mq - exposing num_connections as nr_hw_queues an=
-d
-<br>&gt; =C2=A0 =C2=A0using blk-mq based queue (conn) selection.
-<br>&gt; 3. Rework iSCSI core locking scheme to avoid session-wide locking
-<br>&gt; =C2=A0 =C2=A0as much as possible.
-<br>&gt; 4. Use blk-mq pre-allocation and tagging facilities.
-<br>&gt;=20
-<br>&gt; I&#39;ve recently started looking into this. I would like the comm=
-unity to
-<br>&gt; agree (or debate) on this scheme and also talk about implementatio=
-n
-<br>&gt; with anyone who is also interested in this.
-<br>&gt;=20
-<br>Yes, that&#39;s a really good topic.
+<br>&gt; Thank you for you reply.
+<br>&gt; Just to be specific, can I get the scsi commands and try to do som=
+e process
+<br>&gt; on it in function like iscsi_data_xmit*(struct* iscsi_conn ***conn=
+*) *before
+<br>&gt; the scsi commands are finally transmitted to the iscsi target?
 <br>
-<br>I&#39;ve pondered implementing MC/S for iscsi/TCP but then I&#39;ve fig=
-ured my
-<br>network implementation knowledge doesn&#39;t spread that far.
-<br>So yeah, a discussion here would be good.
+<br>Look at the .queuecommand field in the scsi_host_template used by your
+<br>driver, it will point to the top level function that takes commands fro=
+m
+<br>the SCSI midlayer to send to the target.
 <br>
-<br>Mike? Any comments?
+<br>For iscsi_tcp, that&#39;s iscsi_queuecommand. =C2=A0You can follow the =
+calls down
+<br>from there, but that&#39;s the interface where SCSI transports take
+<br>commands.
 <br>
-<br>Cheers,
+<br>- Chris
 <br>
-<br>Hannes
-<br>--=20
-<br>Dr. Hannes Reinecke=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0zSeries &=
-amp; Storage
-<br><a href=3D"javascript:" target=3D"_blank" gdf-obfuscated-mailto=3D"MPEF=
-19csVAgJ" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;javascript:&#39;=
-;return true;" onclick=3D"this.href=3D&#39;javascript:&#39;;return true;">h=
-a...@suse.de</a>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0+49 911 74053 688
-<br>SUSE LINUX Products GmbH, Maxfeldstr. 5, 90409 N=C3=BCrnberg
-<br>GF: J. Hawn, J. Guild, F. Imend=C3=B6rffer, HRB 16746 (AG N=C3=BCrnberg=
-)
-<br></blockquote></div>
+<br>&gt; 2016-05-20 18:18 GMT-05:00 Chris Leech &lt;<a href=3D"javascript:"=
+ target=3D"_blank" gdf-obfuscated-mailto=3D"w4qIpL-EAwAJ" rel=3D"nofollow" =
+onmousedown=3D"this.href=3D&#39;javascript:&#39;;return true;" onclick=3D"t=
+his.href=3D&#39;javascript:&#39;;return true;">cle...@redhat.com</a>&gt;:
+<br>&gt;=20
+<br>&gt; &gt; On Mon, May 09, 2016 at 08:32:54AM -0700, <a href=3D"javascri=
+pt:" target=3D"_blank" gdf-obfuscated-mailto=3D"w4qIpL-EAwAJ" rel=3D"nofoll=
+ow" onmousedown=3D"this.href=3D&#39;javascript:&#39;;return true;" onclick=
+=3D"this.href=3D&#39;javascript:&#39;;return true;">whls...@gmail.com</a> w=
+rote:
+<br>&gt; &gt; &gt; Hi,
+<br>&gt; &gt; &gt;
+<br>&gt; &gt; &gt; I am recently looking into the process of iSCSI initiato=
+r. I wonder where
+<br>&gt; &gt; &gt; the source codes are that receive the scsi commands and =
+encapsulate them
+<br>&gt; &gt; &gt; into iscsi format. I have walked through the interaction=
+ between iscsiadm
+<br>&gt; &gt; &gt; and iscsid, but I did find that. I thought it may be wri=
+tten in qtask
+<br>&gt; &gt; &gt; structure, but it seems the payload_len is never set wit=
+hin the code.
+<br>&gt; &gt; &gt;
+<br>&gt; &gt; &gt; Could anyone help answer this question?
+<br>&gt; &gt;
+<br>&gt; &gt; The userspace tools only handle iSCSI session management task=
+s. =C2=A0The
+<br>&gt; &gt; SCSI command handling is done in the Linux kernel drivers, wh=
+ich
+<br>&gt; &gt; interact with the kernel SCSI subsystem.
+<br>&gt; &gt;
+<br>&gt; &gt; - Chris
+<br>&gt; &gt;
+<br>&gt;=20
+<br>&gt; --=20
+<br>&gt; You received this message because you are subscribed to the Google=
+ Groups &quot;open-iscsi&quot; group.
+<br>&gt; To unsubscribe from this group and stop receiving emails from it, =
+send an email to <a href=3D"javascript:" target=3D"_blank" gdf-obfuscated-m=
+ailto=3D"w4qIpL-EAwAJ" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;jav=
+ascript:&#39;;return true;" onclick=3D"this.href=3D&#39;javascript:&#39;;re=
+turn true;">open-...@<wbr>googlegroups.com</a>.
+<br>&gt; To post to this group, send email to <a href=3D"javascript:" targe=
+t=3D"_blank" gdf-obfuscated-mailto=3D"w4qIpL-EAwAJ" rel=3D"nofollow" onmous=
+edown=3D"this.href=3D&#39;javascript:&#39;;return true;" onclick=3D"this.hr=
+ef=3D&#39;javascript:&#39;;return true;">open-...@googlegroups.com</a>.
+<br>&gt; Visit this group at <a href=3D"https://groups.google.com/group/ope=
+n-iscsi" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39=
+;https://groups.google.com/group/open-iscsi&#39;;return true;" onclick=3D"t=
+his.href=3D&#39;https://groups.google.com/group/open-iscsi&#39;;return true=
+;">https://groups.google.com/<wbr>group/open-iscsi</a>.
+<br>&gt; For more options, visit <a href=3D"https://groups.google.com/d/opt=
+out" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;htt=
+ps://groups.google.com/d/optout&#39;;return true;" onclick=3D"this.href=3D&=
+#39;https://groups.google.com/d/optout&#39;;return true;">https://groups.go=
+ogle.com/d/<wbr>optout</a>.
+<br></blockquote></div></div>
 
 <p></p>
 
@@ -278,11 +261,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/a4d39a0a-2662-4bff-9674-d644daf608ed%40googlegroups.c=
+om/d/msgid/open-iscsi/a3b2b411-3138-43e4-aeaa-be026c70a95d%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/a4d39a0a-2662-4bff-9674-d644daf608ed%40googlegroups.com</a>.<b=
+d/open-iscsi/a3b2b411-3138-43e4-aeaa-be026c70a95d%40googlegroups.com</a>.<b=
 r />
 
-------=_Part_1580_1339419087.1579598129313--
+------=_Part_1890_2112131601.1579627925807--
 
-------=_Part_1579_1307742090.1579598129312--
+------=_Part_1889_1521287826.1579627925806--
