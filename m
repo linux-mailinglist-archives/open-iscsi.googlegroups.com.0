@@ -1,126 +1,73 @@
-Return-Path: <open-iscsi+bncBDA4VMEL3QNRBTUIRHYQKGQEYSGHADQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBC24JGEJRMKRBMUCTPYQKGQEE5IAM4I@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ed1-x540.google.com (mail-ed1-x540.google.com [IPv6:2a00:1450:4864:20::540])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6928D1414D9
-	for <lists+open-iscsi@lfdr.de>; Sat, 18 Jan 2020 00:33:34 +0100 (CET)
-Received: by mail-ed1-x540.google.com with SMTP id f11sf17538261edy.22
-        for <lists+open-iscsi@lfdr.de>; Fri, 17 Jan 2020 15:33:34 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1579304014; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=eSDd3O6BGa+0vF8rAhWp1ch5PWi8YyHAqmyYlhnZpVOg6GIiZyyYiLckbzFDedD/7x
-         bnqT2FVYT0k5sShdfOgoDZVwX4UZBU3LK+Fp02x0knTnHYEnv2k7xK3Ves+NNoCiqtdt
-         D33ac8UnhC0b2F5I6ShCNsB7jVYBsIFLM/8qJZ4JeqJBIgoHa5BZpbbwJYvJlxXgeZGE
-         unUaDbOfdUSJu3OjWXmvtdoLisRoIX2gbZiRRszQ8VDMMTvH9EJdQSix+tytCTCGB6+O
-         s0OtwK0cTdlsNE8t+qlAKknpxb64pVeod9X0gpB66kRpayxWpa9xGKqcrYi6nFam3ZUP
-         8+gw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:sender:dkim-signature;
-        bh=kPbQJAF3sEpSTtYd1O/OeG3F9OqJ9PqOahs4nMJILt4=;
-        b=oLQKNSLBpq7vk/l2CTiMtLJYlDE1nUenYwGk18yxzWwfZc91p/yqcWf79Qw3aZLFUZ
-         +g88KdD56oULjDtLLlwmByoN9NqEh8zFa8IZ43j4GSvOq74d4o4XmDYLFl0WvEBXAbir
-         sML0bdvT8zXLsu0R4/i9QWb1yNxKflXHXi4S+zbtXgQQL1PYsnbX2Jd8dlGrvcaQxtjA
-         NqvTiQ5oqQi9dBAEjFpYA235AQbFoh7JrJhknltSK/HJgBJbtkaH3pP88unnA//cj8bx
-         0SU8azigWHAYbB6cURlmMBk7UxKqL+RdUctePrelAWJLrpylZjipmmjfWRwlDgesnxhL
-         knQA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) smtp.mailfrom=krisman@collabora.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
+Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D9F143938
+	for <lists+open-iscsi@lfdr.de>; Tue, 21 Jan 2020 10:15:31 +0100 (CET)
+Received: by mail-qk1-x73a.google.com with SMTP id x127sf1366048qkb.0
+        for <lists+open-iscsi@lfdr.de>; Tue, 21 Jan 2020 01:15:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=kPbQJAF3sEpSTtYd1O/OeG3F9OqJ9PqOahs4nMJILt4=;
-        b=bvZQ3F4v9UC6wTWCeu7lfKa0tAf1V3eVJlHvO4Y0kmFd54mixogJwD1wTZzMLyaznE
-         gqmf6HKTaQ4QLWfVJ/K48TWjDEu582jz/IZfTkimLdLT4UAnAhsO94SUQwdhIQ1cXW+h
-         QewjEF2kVwxxsGNK3U5nZhHCZQkxjIROKviL9CJR6fId9jBwfbVyR+/K8c5mFyBAPeeJ
-         01Hoe1SCO42hs1DNNmEGb+wwVYmE2tEUeVnMc6kd7vX7HSqinwgq4qJFtLGcGMwHjO9Z
-         gFdsLmz8xq67KnTkJkwjYtMNy6lPxk9cmLYYxxbq6Ct/mso5EyPZkd46fe8K4WWK6cuT
-         nuBA==
+        h=sender:date:from:to:message-id:in-reply-to:references:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=n0t01CPrioxrf/XlAZ4ZWnAuGZG5K6Z2EqMENsyCVHc=;
+        b=lqYtxlf6AtZFXXHoYgMIVQr9FNjdhC0KLDq5kMaexFsZKIcypD/TTJxeksQvYby/y0
+         tRHk6AIJzeykbww+7mrP6f1EdxFGHuxsUpCua+2URqwxakfaftDJXAAXanPwMAB+w53B
+         EDYaPGkMDRNSsKh57Ai7hIUEwrSfds6dmiiO/jIgKsNY7XhVmjaAqn0s9gbh3D3UcvkV
+         ehesG+8EtvXBkHFZGUAibq9YvoGSRo34TojjzvzbvjweZS5yvOO9ax6W/J2oQxTMpDWV
+         xdKPlnZ1+6CXYInpGgJ2qKm0diyKxhX+8Xyy71DurzDAefZ5nN3SO8NXdfSKQ8sgGHmQ
+         wa0A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=n0t01CPrioxrf/XlAZ4ZWnAuGZG5K6Z2EqMENsyCVHc=;
+        b=bwxRJubrnAsCaXiaHp0ZzesrPyfPcTdzm8W1bVbQS8LinB2D75npSZtu35n+VvBkva
+         3d53J09PmEAF8okJhMsWqijEywloXhqzWcKD3BWO+5r8L68cYot5OIB4/NvfXseOMCnY
+         tB1RtrhY/oJs0wXTVs84KjRdXANcKnm9qPm/n0o+E01RbIIeKSSTpGtod4xlKPTn1NbM
+         k9PxYYqOqAnMYIvcE+dDp9CsvRBiL1Fpxca1GmxzexOTcxqVBdLLatlc+GSVn0I8AA8P
+         uKBMQs3ZkDvpC7fBvoWN10/aveu6+XPyK6FABh8JwbQ3F73wmUeFnLE/9EjIfES6gelr
+         J2LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=kPbQJAF3sEpSTtYd1O/OeG3F9OqJ9PqOahs4nMJILt4=;
-        b=k9tB/UMOT/Vj6YRQw5atOTYcO2fajVbImIkovnBVnuVdmSuAwOs3qeGcFbpl3fHqCh
-         bo9iJFtpnh3C6IuoDNyshLc7SZi2RE7WA0fSzmH1w15tJAIOxg7ueVgi84K/rB82TUD4
-         9IGPpL8tSZjHxP8RvcZZQA/SGJ9WOyNlW3X7X/Ft7WNmuYee5ODM0LPFRQVQ9QhdEflM
-         9aSj4CmE1FVVHzjpUFGzjGpjNUsN50NMDKGtdonTdBow3ug8I98QXZjBf2jMXQJSlDqe
-         eQSDVCnnY//oW8oQbvxg3K6EI4JkL69bIrvHRdwaQiFdto8Fveg08Wc87ERXFN7sqtmu
-         p+kg==
+        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
+         :references:subject:mime-version:x-original-sender:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=n0t01CPrioxrf/XlAZ4ZWnAuGZG5K6Z2EqMENsyCVHc=;
+        b=Ya6zsY3zVcmta1Cp1FRRlUOZj/JWv1eadQ8Xz61bcV/k6ayy+Oyt+ySkQcoHyQ2Tih
+         yfhDpYlH/6oRewN5xQB4NNd87zGZHdTsiOKZKFes9ejCv+cTsMIrhXRrAQk3+SPL2R/R
+         pO/+pADPmh+1C+AWh4sRlhhVWo6KUkdt2YnBYhW+TWGsY5BmRyYYnduHTgC8/l7RnMF/
+         Q65Pn/9ALCdw6hzR2HQN9Xyq5y4OUKeNAgLZcJoJSF8B+aZfa2t1te3jbw8BR3Dx5kyW
+         z2l3mC6kEg0c+u/bxATsbDFoY5Cnj+IRYP4fHU++gHQb6KkHT6GyOREinIYPUOrCP4sK
+         I5rg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAUG7eFt4Hyen6BLVOt+lvpcwhhltET/9PBkclgH/DXK3xTaK31H
-	cieZOH6NvSVAY5XC+ASJ3S0=
-X-Google-Smtp-Source: APXvYqybJz4i8v+2cYbRSzjAEvTlK6zUGW/A8fS++9bSK6dvLmc0UuYORXp8Hms0FoHyxtsrWTfzfA==
-X-Received: by 2002:a17:906:8510:: with SMTP id i16mr6851506ejx.360.1579304014093;
-        Fri, 17 Jan 2020 15:33:34 -0800 (PST)
+X-Gm-Message-State: APjAAAWNKDc5GlQ6qdhOiVrEHOt9ysv3bPhCj+yO9ZTlYs7vZkN/UVi2
+	n9//1lMPGpmpR79bPrKZyvY=
+X-Google-Smtp-Source: APXvYqzZW3LzK77cHUONxniCepVGHDoUevTEtNBexY0Etey/M2NuWaLZctroOCpRsNPiEdoDDX+r8A==
+X-Received: by 2002:a37:65c8:: with SMTP id z191mr3504135qkb.176.1579598130533;
+        Tue, 21 Jan 2020 01:15:30 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:906:c82b:: with SMTP id dd11ls7443030ejb.8.gmail; Fri,
- 17 Jan 2020 15:33:33 -0800 (PST)
-X-Received: by 2002:a17:906:3596:: with SMTP id o22mr10218113ejb.235.1579304013574;
-        Fri, 17 Jan 2020 15:33:33 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1579304013; cv=none;
-        d=google.com; s=arc-20160816;
-        b=fdHHWHZ5y0dvBS4IVkaS7TpnNw0/n4r4qlNN8cLpkdKxpqJpCWTyEWdK4BFXcvHEbE
-         b2RE6hqvPw8UBoUZcvk66WMEKE7ZdPR+/qp9No8justp4XpKmRqht6VFJX4BhTZgotp/
-         KLy/YZMXIf/zeZN0495yhnsCBtPYsAa7kztPAQOV88Wsah6l05F4UF4QMjfSnYnj5I8f
-         DAhd2/5BGZbNt+7cvLRzQ3cvDVXq0JNQmG/UHle3SHd+t63tbW0RIC932z2bAFj/y+sX
-         VhN6xS3TqDrWGYQFTpAQiaoML8rmU15HOGBmOsFbXoS6HbXv+z5exJI8P9v3Cy1n7+aD
-         Wfzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from;
-        bh=Xpa9KPinqXIWIK9sRVraan/0uN5PHRoQwy3dCmPOinI=;
-        b=ocD1DuZAM/WaNqK6Ok+KHtESMAT9QpJhDdtfW7MAIfUXMb8bRXgcpHMuaWfMnJj4K1
-         EWzlzGhqKcPCWSyUgNMlKEIAezcLDSkQQp09XBT16eJ8rM5ZsO/mEOPu2MWuPcD5B3dL
-         IHeakWeyTnr+wy0IXHx6ZqCWjqaVX2FvcsmpF7cfDQ3hKHCctnVTcsuH80uquneBWMuE
-         d0DEB3e+r0v1u73cZtXyLTLZdC1yEpUeaiHL3feynnZpCIISa2kvHo6r9F5tdDYXQtVe
-         GvGfBuBPZVG+XSPsI0V8vvEwboo0jpRHI/6qeR92DNkbUcYAD4nNFCqsgRvQWwVgW/4Y
-         l9qw==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) smtp.mailfrom=krisman@collabora.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk. [46.235.227.227])
-        by gmr-mx.google.com with ESMTPS id ba12si1095157edb.3.2020.01.17.15.33.33
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 17 Jan 2020 15:33:33 -0800 (PST)
-Received-SPF: pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) client-ip=46.235.227.227;
-Received: from localhost (unknown [IPv6:2610:98:8005::787])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: krisman)
-	by bhuna.collabora.co.uk (Postfix) with ESMTPSA id D8BC0293EDA;
-	Fri, 17 Jan 2020 23:33:32 +0000 (GMT)
-From: Gabriel Krisman Bertazi <krisman@collabora.com>
-To: lduncan@suse.com
-Cc: cleech@redhat.com,
-	jejb@linux.ibm.com,
-	martin.petersen@oracle.com,
-	open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org,
-	Frank Mayhar <fmayhar@google.com>,
-	kernel@collabora.com,
-	Khazhismel Kumykov <khazhy@google.com>,
-	Gabriel Krisman Bertazi <krisman@collabora.com>
-Subject: [PATCH] iscsi: Add support for asynchronous iSCSI session destruction
-Date: Fri, 17 Jan 2020 18:33:28 -0500
-Message-Id: <20200117233328.1052604-1-krisman@collabora.com>
-X-Mailer: git-send-email 2.25.0.rc2
+Received: by 2002:a37:ac11:: with SMTP id e17ls413622qkm.7.gmail; Tue, 21 Jan
+ 2020 01:15:30 -0800 (PST)
+X-Received: by 2002:a05:620a:98f:: with SMTP id x15mr3469498qkx.462.1579598130004;
+        Tue, 21 Jan 2020 01:15:30 -0800 (PST)
+Date: Tue, 21 Jan 2020 01:15:29 -0800 (PST)
+From: Bobby <italienisch1987@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <a4d39a0a-2662-4bff-9674-d644daf608ed@googlegroups.com>
+In-Reply-To: <54AD6563.4040603@suse.de>
+References: <54AD5DDD.2090808@dev.mellanox.co.il>
+ <54AD6563.4040603@suse.de>
+Subject: Re: [LSF/MM TOPIC] iSCSI MQ adoption via MCS discussion
 MIME-Version: 1.0
-X-Original-Sender: krisman@collabora.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of krisman@collabora.com designates 46.235.227.227 as
- permitted sender) smtp.mailfrom=krisman@collabora.com;       dmarc=pass
- (p=NONE sp=NONE dis=NONE) header.from=collabora.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_1579_1307742090.1579598129312"
+X-Original-Sender: Italienisch1987@gmail.com
 Reply-To: open-iscsi@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -133,157 +80,209 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-From: Frank Mayhar <fmayhar@google.com>
+------=_Part_1579_1307742090.1579598129312
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1580_1339419087.1579598129313"
 
-iSCSI session destruction can be arbitrarily slow, since it might
-require network operations and serialization inside the scsi layer.
-This patch adds a new user event to trigger the destruction work
-asynchronously, releasing the rx_queue_mutex as soon as the operation is
-queued and before it is performed.  This change allow other operations
-to run in other sessions in the meantime, removing one of the major
-iSCSI bottlenecks for us.
+------=_Part_1580_1339419087.1579598129313
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-To prevent the session from being used after the destruction request, we
-remove it immediately from the sesslist. This simplifies the locking
-required during the asynchronous removal.
+Hi all,
 
-Co-developed-by: Khazhismel Kumykov <khazhy@google.com>
-Signed-off-by: Khazhismel Kumykov <khazhy@google.com>
-Signed-off-by: Frank Mayhar <fmayhar@google.com>
-Co-developed-by: Gabriel Krisman Bertazi <krisman@collabora.com>
-Signed-off-by: Gabriel Krisman Bertazi <krisman@collabora.com>
----
+I have a question please. Are these todo's finally part of Open-iSCSi=20
+initiator?
 
-This patch requires a patch that just went upstream to apply cleanly.
-it is ("iscsi: Don't destroy session if there are outstanding
-connections"), which was just merged by Martin into 5.6/scsi-queue.
-Please make sure you have it in your tree, otherwise this one won't
-apply.
+Thanks
 
- drivers/scsi/scsi_transport_iscsi.c | 36 +++++++++++++++++++++++++++++
- include/scsi/iscsi_if.h             |  1 +
- include/scsi/scsi_transport_iscsi.h |  1 +
- 3 files changed, 38 insertions(+)
+On Wednesday, January 7, 2015 at 5:57:14 PM UTC+1, hare wrote:
+>
+> On 01/07/2015 05:25 PM, Sagi Grimberg wrote:=20
+> > Hi everyone,=20
+> >=20
+> > Now that scsi-mq is fully included, we need an iSCSI initiator that=20
+> > would use it to achieve scalable performance. The need is even greater=
+=20
+> > for iSCSI offload devices and transports that support multiple HW=20
+> > queues. As iSER maintainer I'd like to discuss the way we would choose=
+=20
+> > to implement that in iSCSI.=20
+> >=20
+> > My measurements show that iSER initiator can scale up to ~2.1M IOPs=20
+> > with multiple sessions but only ~630K IOPs with a single session where=
+=20
+> > the most significant bottleneck the (single) core processing=20
+> > completions.=20
+> >=20
+> > In the existing single connection per session model, given that command=
+=20
+> > ordering must be preserved session-wide, we end up in a serial command=
+=20
+> > execution over a single connection which is basically a single queue=20
+> > model. The best fit seems to be plugging iSCSI MCS as a multi-queued=20
+> > scsi LLDD. In this model, a hardware context will have a 1x1 mapping=20
+> > with an iSCSI connection (TCP socket or a HW queue).=20
+> >=20
+> > iSCSI MCS and it's role in the presence of dm-multipath layer was=20
+> > discussed several times in the past decade(s). The basic need for MCS i=
+s=20
+> > implementing a multi-queue data path, so perhaps we may want to avoid=
+=20
+> > doing any type link aggregation or load balancing to not overlap=20
+> > dm-multipath. For example we can implement ERL=3D0 (which is basically =
+the=20
+> > scsi-mq ERL) and/or restrict a session to a single portal.=20
+> >=20
+> > As I see it, the todo's are:=20
+> > 1. Getting MCS to work (kernel + user-space) with ERL=3D0 and a=20
+> >    round-robin connection selection (per scsi command execution).=20
+> > 2. Plug into scsi-mq - exposing num_connections as nr_hw_queues and=20
+> >    using blk-mq based queue (conn) selection.=20
+> > 3. Rework iSCSI core locking scheme to avoid session-wide locking=20
+> >    as much as possible.=20
+> > 4. Use blk-mq pre-allocation and tagging facilities.=20
+> >=20
+> > I've recently started looking into this. I would like the community to=
+=20
+> > agree (or debate) on this scheme and also talk about implementation=20
+> > with anyone who is also interested in this.=20
+> >=20
+> Yes, that's a really good topic.=20
+>
+> I've pondered implementing MC/S for iscsi/TCP but then I've figured my=20
+> network implementation knowledge doesn't spread that far.=20
+> So yeah, a discussion here would be good.=20
+>
+> Mike? Any comments?=20
+>
+> Cheers,=20
+>
+> Hannes=20
+> --=20
+> Dr. Hannes Reinecke                      zSeries & Storage=20
+> ha...@suse.de <javascript:>                              +49 911 74053=20
+> 688=20
+> SUSE LINUX Products GmbH, Maxfeldstr. 5, 90409 N=C3=BCrnberg=20
+> GF: J. Hawn, J. Guild, F. Imend=C3=B6rffer, HRB 16746 (AG N=C3=BCrnberg)=
+=20
+>
 
-diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index ba6cfaf71aef..e9a8e0317b0d 100644
---- a/drivers/scsi/scsi_transport_iscsi.c
-+++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -95,6 +95,8 @@ static DECLARE_WORK(stop_conn_work, stop_conn_work_fn);
- static atomic_t iscsi_session_nr; /* sysfs session id for next new session */
- static struct workqueue_struct *iscsi_eh_timer_workq;
- 
-+static struct workqueue_struct *iscsi_destroy_workq;
-+
- static DEFINE_IDA(iscsi_sess_ida);
- /*
-  * list of registered transports and lock that must
-@@ -1615,6 +1617,7 @@ static struct sock *nls;
- static DEFINE_MUTEX(rx_queue_mutex);
- 
- static LIST_HEAD(sesslist);
-+static LIST_HEAD(sessdestroylist);
- static DEFINE_SPINLOCK(sesslock);
- static LIST_HEAD(connlist);
- static LIST_HEAD(connlist_err);
-@@ -2035,6 +2038,14 @@ static void __iscsi_unbind_session(struct work_struct *work)
- 	ISCSI_DBG_TRANS_SESSION(session, "Completed target removal\n");
- }
- 
-+static void __iscsi_destroy_session(struct work_struct *work)
-+{
-+	struct iscsi_cls_session *session =
-+		container_of(work, struct iscsi_cls_session, destroy_work);
-+
-+	session->transport->destroy_session(session);
-+}
-+
- struct iscsi_cls_session *
- iscsi_alloc_session(struct Scsi_Host *shost, struct iscsi_transport *transport,
- 		    int dd_size)
-@@ -2057,6 +2068,7 @@ iscsi_alloc_session(struct Scsi_Host *shost, struct iscsi_transport *transport,
- 	INIT_WORK(&session->block_work, __iscsi_block_session);
- 	INIT_WORK(&session->unbind_work, __iscsi_unbind_session);
- 	INIT_WORK(&session->scan_work, iscsi_scan_session);
-+	INIT_WORK(&session->destroy_work, __iscsi_destroy_session);
- 	spin_lock_init(&session->lock);
- 
- 	/* this is released in the dev's release function */
-@@ -3617,6 +3629,23 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
- 		else
- 			transport->destroy_session(session);
- 		break;
-+	case ISCSI_UEVENT_DESTROY_SESSION_ASYNC:
-+		session = iscsi_session_lookup(ev->u.d_session.sid);
-+		if (!session)
-+			err = -EINVAL;
-+		else if (iscsi_session_has_conns(ev->u.d_session.sid))
-+			err = -EBUSY;
-+		else {
-+			unsigned long flags;
-+
-+			/* Prevent this session from being found again */
-+			spin_lock_irqsave(&sesslock, flags);
-+			list_move(&session->sess_list, &sessdestroylist);
-+			spin_unlock_irqrestore(&sesslock, flags);
-+
-+			queue_work(iscsi_destroy_workq, &session->destroy_work);
-+		}
-+		break;
- 	case ISCSI_UEVENT_UNBIND_SESSION:
- 		session = iscsi_session_lookup(ev->u.d_session.sid);
- 		if (session)
-@@ -4662,8 +4691,14 @@ static __init int iscsi_transport_init(void)
- 		goto release_nls;
- 	}
- 
-+	iscsi_destroy_workq = create_singlethread_workqueue("iscsi_destroy");
-+	if (!iscsi_destroy_workq)
-+		goto destroy_wq;
-+
- 	return 0;
- 
-+destroy_wq:
-+	destroy_workqueue(iscsi_eh_timer_workq);
- release_nls:
- 	netlink_kernel_release(nls);
- unregister_flashnode_bus:
-@@ -4685,6 +4720,7 @@ static __init int iscsi_transport_init(void)
- 
- static void __exit iscsi_transport_exit(void)
- {
-+	destroy_workqueue(iscsi_destroy_workq);
- 	destroy_workqueue(iscsi_eh_timer_workq);
- 	netlink_kernel_release(nls);
- 	bus_unregister(&iscsi_flashnode_bus);
-diff --git a/include/scsi/iscsi_if.h b/include/scsi/iscsi_if.h
-index 92b11c7e0b4f..deacaee53e61 100644
---- a/include/scsi/iscsi_if.h
-+++ b/include/scsi/iscsi_if.h
-@@ -60,6 +60,7 @@ enum iscsi_uevent_e {
- 	ISCSI_UEVENT_LOGOUT_FLASHNODE_SID	= UEVENT_BASE + 30,
- 	ISCSI_UEVENT_SET_CHAP		= UEVENT_BASE + 31,
- 	ISCSI_UEVENT_GET_HOST_STATS	= UEVENT_BASE + 32,
-+	ISCSI_UEVENT_DESTROY_SESSION_ASYNC	= UEVENT_BASE + 33,
- 
- 	/* up events */
- 	ISCSI_KEVENT_RECV_PDU		= KEVENT_BASE + 1,
-diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
-index 2129dc9e2dec..fa8814245796 100644
---- a/include/scsi/scsi_transport_iscsi.h
-+++ b/include/scsi/scsi_transport_iscsi.h
-@@ -226,6 +226,7 @@ struct iscsi_cls_session {
- 	struct work_struct unblock_work;
- 	struct work_struct scan_work;
- 	struct work_struct unbind_work;
-+	struct work_struct destroy_work;
- 
- 	/* recovery fields */
- 	int recovery_tmo;
--- 
-2.25.0.rc2
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/a4d39a0a-2662-4bff-9674-d644daf608ed%40googlegroups.com.
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200117233328.1052604-1-krisman%40collabora.com.
+------=_Part_1580_1339419087.1579598129313
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<br><br>I have a question please. Are these todo&#3=
+9;s finally part of Open-iSCSi initiator?<br><br>Thanks<br><br>On Wednesday=
+, January 7, 2015 at 5:57:14 PM UTC+1, hare wrote:<blockquote class=3D"gmai=
+l_quote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;=
+padding-left: 1ex;">On 01/07/2015 05:25 PM, Sagi Grimberg wrote:
+<br>&gt; Hi everyone,
+<br>&gt;=20
+<br>&gt; Now that scsi-mq is fully included, we need an iSCSI initiator tha=
+t
+<br>&gt; would use it to achieve scalable performance. The need is even gre=
+ater
+<br>&gt; for iSCSI offload devices and transports that support multiple HW
+<br>&gt; queues. As iSER maintainer I&#39;d like to discuss the way we woul=
+d choose
+<br>&gt; to implement that in iSCSI.
+<br>&gt;=20
+<br>&gt; My measurements show that iSER initiator can scale up to ~2.1M IOP=
+s
+<br>&gt; with multiple sessions but only ~630K IOPs with a single session w=
+here
+<br>&gt; the most significant bottleneck the (single) core processing
+<br>&gt; completions.
+<br>&gt;=20
+<br>&gt; In the existing single connection per session model, given that co=
+mmand
+<br>&gt; ordering must be preserved session-wide, we end up in a serial com=
+mand
+<br>&gt; execution over a single connection which is basically a single que=
+ue
+<br>&gt; model. The best fit seems to be plugging iSCSI MCS as a multi-queu=
+ed
+<br>&gt; scsi LLDD. In this model, a hardware context will have a 1x1 mappi=
+ng
+<br>&gt; with an iSCSI connection (TCP socket or a HW queue).
+<br>&gt;=20
+<br>&gt; iSCSI MCS and it&#39;s role in the presence of dm-multipath layer =
+was
+<br>&gt; discussed several times in the past decade(s). The basic need for =
+MCS is
+<br>&gt; implementing a multi-queue data path, so perhaps we may want to av=
+oid
+<br>&gt; doing any type link aggregation or load balancing to not overlap
+<br>&gt; dm-multipath. For example we can implement ERL=3D0 (which is basic=
+ally the
+<br>&gt; scsi-mq ERL) and/or restrict a session to a single portal.
+<br>&gt;=20
+<br>&gt; As I see it, the todo&#39;s are:
+<br>&gt; 1. Getting MCS to work (kernel + user-space) with ERL=3D0 and a
+<br>&gt; =C2=A0 =C2=A0round-robin connection selection (per scsi command ex=
+ecution).
+<br>&gt; 2. Plug into scsi-mq - exposing num_connections as nr_hw_queues an=
+d
+<br>&gt; =C2=A0 =C2=A0using blk-mq based queue (conn) selection.
+<br>&gt; 3. Rework iSCSI core locking scheme to avoid session-wide locking
+<br>&gt; =C2=A0 =C2=A0as much as possible.
+<br>&gt; 4. Use blk-mq pre-allocation and tagging facilities.
+<br>&gt;=20
+<br>&gt; I&#39;ve recently started looking into this. I would like the comm=
+unity to
+<br>&gt; agree (or debate) on this scheme and also talk about implementatio=
+n
+<br>&gt; with anyone who is also interested in this.
+<br>&gt;=20
+<br>Yes, that&#39;s a really good topic.
+<br>
+<br>I&#39;ve pondered implementing MC/S for iscsi/TCP but then I&#39;ve fig=
+ured my
+<br>network implementation knowledge doesn&#39;t spread that far.
+<br>So yeah, a discussion here would be good.
+<br>
+<br>Mike? Any comments?
+<br>
+<br>Cheers,
+<br>
+<br>Hannes
+<br>--=20
+<br>Dr. Hannes Reinecke=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0zSeries &=
+amp; Storage
+<br><a href=3D"javascript:" target=3D"_blank" gdf-obfuscated-mailto=3D"MPEF=
+19csVAgJ" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;javascript:&#39;=
+;return true;" onclick=3D"this.href=3D&#39;javascript:&#39;;return true;">h=
+a...@suse.de</a>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0+49 911 74053 688
+<br>SUSE LINUX Products GmbH, Maxfeldstr. 5, 90409 N=C3=BCrnberg
+<br>GF: J. Hawn, J. Guild, F. Imend=C3=B6rffer, HRB 16746 (AG N=C3=BCrnberg=
+)
+<br></blockquote></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/a4d39a0a-2662-4bff-9674-d644daf608ed%40googlegroups.c=
+om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
+d/open-iscsi/a4d39a0a-2662-4bff-9674-d644daf608ed%40googlegroups.com</a>.<b=
+r />
+
+------=_Part_1580_1339419087.1579598129313--
+
+------=_Part_1579_1307742090.1579598129312--
