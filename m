@@ -1,141 +1,130 @@
-Return-Path: <open-iscsi+bncBDHNJVU4QYDRBAO7VLYQKGQEAYXOXUQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBDUOZNUSUMARBQ76VPYQKGQELOC6T4I@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wm1-x338.google.com (mail-wm1-x338.google.com [IPv6:2a00:1450:4864:20::338])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AC21479A3
-	for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 09:49:06 +0100 (CET)
-Received: by mail-wm1-x338.google.com with SMTP id n17sf362196wmk.1
-        for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 00:49:06 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1579855746; cv=pass;
+Received: from mail-qk1-x73b.google.com (mail-qk1-x73b.google.com [IPv6:2607:f8b0:4864:20::73b])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D674148868
+	for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 15:29:24 +0100 (CET)
+Received: by mail-qk1-x73b.google.com with SMTP id f22sf1173886qka.10
+        for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 06:29:24 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1579876163; cv=pass;
         d=google.com; s=arc-20160816;
-        b=GhuOQMPnf2w7p4IfWJav+DQ8fkqGHxI1w/xrRch4eUdt4AzAiAy1VwtKxQ6RpF7CK4
-         QaA/8QrswDLR+zi71/AgmiCFKKjiqw6nisstjSolE+vpYiucuEWSyv08HUl+vgYzAw1v
-         wRnY/3J6AbhcDX9kpk9pDsGxZTxQpXA9nPL6sNJvnWGktzMajhb9Wh7AdVrndlIw5wWV
-         iE+e9PyuGfBDsQ5mQq8rFaiwItrOeFBYADSYRn9M45Lz3fSNqHcUUtFU/6vm0cJV70JT
-         8MZIVmVcQ7cgTcM0nRqMToJKGUela+8lnqmV/1oOmw9kP9jk64ld2g7cpgfab6gi0L1Q
-         v94g==
+        b=dBXX23htWn557HJLFm9dADRZT9gfyKq7OeZHq18un4oh3UVKEwomf1aNXYH73wFUCE
+         cqkFNoUyw8UJpaSE2xlw9mr9bMYBGIXNbDcBGqs3PICIvsS/wyGCRDm7ShH9hRVHew8m
+         lAakTWkUDKP9o0RJimviuCBjgiAhJ5CsGqHzaoFM+xotOsOOopia3viLetlLYAHFH/tJ
+         /7SYbg2IlXBIdFmgQ0IKqCyXNP+XW27e7tghUW+1FYJbwpUc0CuJ6mGp2jjjLndsjj4/
+         Sgyqdwfhw1t/MnjWxefn292VBAjkcuWe1Stme/GLyIbpNPr7KD/txAwkwJp5h3h92+Vj
+         2MmQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:content-transfer-encoding
-         :content-language:in-reply-to:mime-version:user-agent:date
-         :message-id:references:reply-to:to:from:subject:sender
-         :dkim-signature;
-        bh=eEYHq9O8cM5uHL1qbcYN0D9CF7zDZcgeIISgmYvungE=;
-        b=RyMA616kcTK0b7lpv6miG1JyQx4cUQBmcXE1ni4tT0l2oZt/tWVqj0kTH0dCoQhjR1
-         fPPFx9V50I3LDc/GNhPP65eH370DK5243tFbAX03ecGfekivKzAKHrXDTrDNQ9zc6BOf
-         7sffp90/SLh06C6+c4VSlGAyT8q9a9X2Ogr4aBBA1gNP1gYZZboWiTbG3/x9VilYMatg
-         +pM+kle7PTv8Endm6Nu/zbDkHh8Afp56rJnwyhi5cL+gHYxZfyWEk0G7zUs7p9/yhbao
-         UoJIlwQ0fwKi7vkkDXrG8y9Y8T+qooSHXDSxdlfBWwkANIJOHZ1b6t+WTzL2W+v6krIp
-         Y4EA==
+         :list-id:mailing-list:precedence:reply-to:message-id:in-reply-to:to
+         :references:date:subject:mime-version:content-transfer-encoding:from
+         :sender:dkim-signature;
+        bh=GRDMy83B47jH54g7n27A/TTVd1T9GRm14rwXwMzW8hY=;
+        b=JxE+NYnS4src8e3ap1IsW6EsDjevTrcn+xmSEaEJmxAim01YtgLJXhQoMqoSc+MDqN
+         ie/VB9uQS5Q9HupU96krnrG055/geKQGywqiznP0/SiOKi+ZyifAVLFDCmy2qa6I67J8
+         N2ImYrtGOEuAP5e+DTWB9sx8I2YHEjFSlLc6PcG5bmoFp0wowzfBGtIh0C+nzZrQbLFG
+         3R5A7QA+nwHl/AiqUPdQaW9ZvwLoQrqXFK6Rp4c74OYZzIp2K5v5s8qtsatkrFRocN3Z
+         893EaFpX8M85IYC3qWBxFoFPMkTnVKLcnJyKsiLJrIiBfx/gsCKc2IM0z/ZK1w+SU3ag
+         M4Sw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of vst@vlnb.net designates 217.72.192.75 as permitted sender) smtp.mailfrom=vst@vlnb.net
+       dkim=pass header.i=@comcast.net header.s=20190202a header.b=VeFKc5qE;
+       spf=pass (google.com: domain of paulkoning@comcast.net designates 2001:558:fe16:19:96:114:154:163 as permitted sender) smtp.mailfrom=paulkoning@comcast.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=comcast.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:subject:from:to:reply-to:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding:x-original-sender
-         :x-original-authentication-results:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=eEYHq9O8cM5uHL1qbcYN0D9CF7zDZcgeIISgmYvungE=;
-        b=VNFLYzLLlDIPkZN/lVordAoDv8CvYxNbESCYqu6gqyjkA/+JiU760y0JQ56YlNaQ/i
-         gNuWH3pZ/kG7QV24gCGf84tbwLLkH/u2hpkqjbsruvDho/fd9xtFPaFrRcvqz/BUMAyQ
-         y9RJ6y99RBrAN0OwWD+7kMJLhU6rqn50uiFfckmf2e5QSH+q3cXYxY8+zlXIEck6SKx3
-         1ZhLbg15yZcPGqd1yMq4jiq0/Waj1bPuJtgQo0gQIH2+llEKNSD/LeYT11fZjiCfu6Ue
-         zPhQQgLt6OF+fqmrN1mpe//++LNB3zW9kXmeTzUKdx2op1AunmpNqr7YW6GXlCu4dd82
-         O6IQ==
+        h=sender:from:content-transfer-encoding:mime-version:subject:date
+         :references:to:in-reply-to:message-id:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=GRDMy83B47jH54g7n27A/TTVd1T9GRm14rwXwMzW8hY=;
+        b=X4NKbDcCCaRR56VsnRX873zetHQMbS5CyL8srwv2FNEPFDxxlVE0LjX910LaRn0r+G
+         1+KigTgVeutNypmIHwJiZbZIPLjUSEJYMSHSmVme2ZK3IMkJJ0AJLCvcnUu3JweSnsFy
+         HH305PhohO+TULdjWtumhIqtE+VjS36yfM2iG8rn6XV7Tf+1iT5lJZ8JzzsG/lCLCfzP
+         U5RDFZ94Kv0Eki9vad856ZffJx9AIZFXsD1Tz54ML0Mmj7fsb4N+06GAXrFKdIJLMrSc
+         kE0gPGOxqlviLaniQ0eIT8FeQypHkddnNgsFmlyUUGVGPfXPsJ74BTc+am0gE1DEROfU
+         /gtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:subject:from:to:reply-to:references
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding:x-original-sender
-         :x-original-authentication-results:precedence:mailing-list:list-id
-         :x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=eEYHq9O8cM5uHL1qbcYN0D9CF7zDZcgeIISgmYvungE=;
-        b=sSKG1j5Xep3xBewgeUoYB0yfyhfAJSNYRqeOav4zpGdyYYCEywULtGOf5t57JtgPsH
-         oeShb9aPIy+i0dXSAV02UU4STAeHwpuMa1wmd55W8NRAUjVZ4Lx/miBNOB37pxl/HbWl
-         o/5WYEBJ5pYX3PCqg2mIqZU5PkTPYOiS9hcmwMPerRqBPuUIaBOVDuamDz7/nHeivUq9
-         WcSTWk+J5cmsVT4+IS2IciH6l4f0QJfT8hYQ0phPd2dPEkiJ3sPcxm/VW6PLbcelog20
-         vTcEcoOZZhvtz3XaqsPWSANgcUwKxuk73AOH4FG18JJox4a8UtelH/+fV9HtImNinGV+
-         OUeg==
+        h=sender:x-gm-message-state:from:content-transfer-encoding
+         :mime-version:subject:date:references:to:in-reply-to:message-id
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=GRDMy83B47jH54g7n27A/TTVd1T9GRm14rwXwMzW8hY=;
+        b=lFTCfyaIIZ6gH8h/IZYGm2VegxWT5hCgnmRy0zh1pYkApGb1XMyc0kXTwbQFfOc/ME
+         r8/VZhRamWG03BrqauJJtj8mplpb2So7tUxlrn2oEzfqemuxeEl3HLLLoaScC4bal57i
+         256NjC4oFPqdagiiCiWSIosmkjxX3gYnVF5xgVZzVC2EgF4LqzokySiRxiEHJJj08pMm
+         cOzBlMeVS1Lvk3zzBGEtT6f6z1KlW+vQ8A3MdtBl5vVrVjaLW/Nk9d7V8qHe2QRBc3Ry
+         rJhMgfBPygpFyYf/lNG2K4P+ohz6ujzmSX7MNmuGmqyj08wvfUpc2mPROSW6SSaDNh1b
+         2sWA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAXOVlOx3toNWnUoq9ZAjhl1p32HBXf7UCA6n+9IPt3oSXRHc6Mt
-	9vH+3jFxJdGhferX6jj43lY=
-X-Google-Smtp-Source: APXvYqx9hIQAlW/nTHTH/ViWip3xt/u4rdmFjTLf+kfB0+AjRX1FQnciTlukHvUVAn/LZ2dFkap3/w==
-X-Received: by 2002:a1c:6408:: with SMTP id y8mr2268242wmb.130.1579855745832;
-        Fri, 24 Jan 2020 00:49:05 -0800 (PST)
+X-Gm-Message-State: APjAAAWM1VxNKJMQDVtRdRW6WGTwgDoGpnYNsassP4nXY3Jw5r85KNjB
+	wZrEUemm1RstGKTGkFFGlbE=
+X-Google-Smtp-Source: APXvYqy44D4bkLWEIK0PoV41zIzCUMSm3rZXAT1ydzolUIl5vIbshtccOyJ6vv0vOlbLov4Xr9PGlg==
+X-Received: by 2002:ae9:f30e:: with SMTP id p14mr2820777qkg.186.1579876163199;
+        Fri, 24 Jan 2020 06:29:23 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a5d:6650:: with SMTP id f16ls1021750wrw.4.gmail; Fri, 24 Jan
- 2020 00:49:05 -0800 (PST)
-X-Received: by 2002:adf:fe43:: with SMTP id m3mr3141307wrs.213.1579855745380;
-        Fri, 24 Jan 2020 00:49:05 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1579855745; cv=none;
+Received: by 2002:ac8:480c:: with SMTP id g12ls793443qtq.11.gmail; Fri, 24 Jan
+ 2020 06:29:22 -0800 (PST)
+X-Received: by 2002:ac8:5243:: with SMTP id y3mr2358960qtn.79.1579876162863;
+        Fri, 24 Jan 2020 06:29:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579876162; cv=none;
         d=google.com; s=arc-20160816;
-        b=YI/GKWZ38s8S3YAP5k5gdXpeEgm1rywqzCg0xQ2LpiyUjkYQWTt0wvB5v1HX71pha/
-         SxQK8HWc9l8P6XUB6UDOknLIG7CBaiHBe3JI7aa6rXW1dHumRARtEJXcCityzs3wk5cp
-         4MCOFmQ7HSR4XJrk8lw/fXT5fYG6tT912IOHQNtXBD2lxr3peJQnXtHnSO72YcSI5bP7
-         OOIYYqGAAsT20nTguWO+UPzVqoe3dVwRpgteC+vr4/aPzq4VJMMJg9ui7psyTGdFa1pz
-         0vIQouwO9BIoGKjl/miBs39TcXL56Aio6BPsGJQJDr3SH8uJ6Ggx6tJxMAaseMx8C4JW
-         lQGA==
+        b=lIxDHAonIkfZx/gW4XlnqlMzm/0GCuxzDGxcX7K5u0XJPLkbjKu6ccto1ECZCrNUjJ
+         7gx1i/Sg9xUNL+UMPkur68cbqQgRj6XBPP3TC2ZSXQKvj7I5UOOoWrkmBZ5XtoDhJviU
+         zNC9W1RjK6fkrSwFYG0T1l485eJ8TSvQwCR14NK/7xH2vse5FRKtfhqn8NayeE/Olwct
+         NVzEJHS7vuchOFw9nOScsYjHF1sc/CMd6Z0fCxWnCPtr4MnWp235ryDhnCYDP8Z//uRO
+         xJdIACjYV2IxdhPE0XSiHcMW84NEO9V7Md/6TDGOz9jABfXwpvH4/CrwuO/PBmBttUvP
+         cuQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:references:reply-to:to:from:subject;
-        bh=okb4TaDFwfJum01pZBmmp7ZYDigrQPsrldf37eUaKpM=;
-        b=ueD/wPeyT7NCqCSRswqLQEJLyGJML2TKIbFQRrtJUf64+DqM0tEB1TYlesHM/DmIZK
-         zmVLDlG01K5fGgXxiXA0zs3Xx8OFbNO5FYD7/TWGPZ6ena3DMZkpYWXiRtxohC60yCB3
-         HQyvTYmUYZ3adwSIZ2xGGTsaXmf7BnVU/LhuBxcdOrE4bu+5g8ZWParqSQZHNnii/SQN
-         vtjpkxNsvd19tT7gntbCZYv9TM32Zg3dSTw8JD0B+CmjRQ62GbsoxxdKewXY7UpcnFvz
-         u1aUrKwaX+7ZiKmWbmoVaX2Fi444P1dtWLcVP/GWRCXTOWpVdjgEGJAWvK7V/vZvO/vZ
-         SpeA==
+        h=message-id:in-reply-to:to:references:date:subject:mime-version
+         :content-transfer-encoding:from:dkim-signature;
+        bh=3GuTKx4qmTSX4vXQ3n+l33Fp6vluibKl5pEYZJrl1SQ=;
+        b=O4HaWrOIkhdv8XwWVm11utqFdQz//J7nZAKFVi/aA7bd0UEyLxeifEsnMzCiBCK28E
+         bvzIc/DeeC2nNY7kFP4aAd+JUm/uzvHT4wFur+IxlAcfgUd1R20DB9uK5pYZnGSp0amc
+         UZC9LVOkQ/piy5u/7BQe3VCR9ZRcGPFM+3nPVYQESyvztkL/oIia3Pj+bPEx5Sp2FzTB
+         5vtweXzrMjtiKxpYjMAQ0AQZE+/Yj01bW5/d7CirE5eX0mheWHXDqUl99wruiWtcCLXf
+         q68I3SUefWF4JEsAvd8SNWecomBarXObDq29Dp1EhWOgvhTqBTjy09BfOp7UHZUaL+3z
+         cTtw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of vst@vlnb.net designates 217.72.192.75 as permitted sender) smtp.mailfrom=vst@vlnb.net
-Received: from mout.kundenserver.de (mout.kundenserver.de. [217.72.192.75])
-        by gmr-mx.google.com with ESMTPS id 202si194140wme.0.2020.01.24.00.49.05
+       dkim=pass header.i=@comcast.net header.s=20190202a header.b=VeFKc5qE;
+       spf=pass (google.com: domain of paulkoning@comcast.net designates 2001:558:fe16:19:96:114:154:163 as permitted sender) smtp.mailfrom=paulkoning@comcast.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=comcast.net
+Received: from resqmta-po-04v.sys.comcast.net (resqmta-po-04v.sys.comcast.net. [2001:558:fe16:19:96:114:154:163])
+        by gmr-mx.google.com with ESMTPS id g2si303043qtv.3.2020.01.24.06.29.22
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 24 Jan 2020 00:49:05 -0800 (PST)
-Received-SPF: pass (google.com: domain of vst@vlnb.net designates 217.72.192.75 as permitted sender) client-ip=217.72.192.75;
-Received: from [192.168.1.83] ([108.201.190.22]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.179]) with ESMTPSA (Nemesis) id
- 1MC2sF-1ilEva3y5V-00CV8i; Fri, 24 Jan 2020 09:49:04 +0100
+        Fri, 24 Jan 2020 06:29:22 -0800 (PST)
+Received-SPF: pass (google.com: domain of paulkoning@comcast.net designates 2001:558:fe16:19:96:114:154:163 as permitted sender) client-ip=2001:558:fe16:19:96:114:154:163;
+Received: from resomta-po-04v.sys.comcast.net ([96.114.154.228])
+	by resqmta-po-04v.sys.comcast.net with ESMTP
+	id uzaPivPip9m4ouzxaisTuQ; Fri, 24 Jan 2020 14:29:22 +0000
+Received: from pkoning.akdesign.com ([73.60.223.101])
+	by resomta-po-04v.sys.comcast.net with ESMTPA
+	id uzxWi1GgNksdauzxZivtYs; Fri, 24 Jan 2020 14:29:22 +0000
+X-Xfinity-VAAS: gggruggvucftvghtrhhoucdtuddrgedugedrvdeggdeigecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucevohhmtggrshhtqdftvghsihdpqfgfvfdppffquffrtefokffrnecuuegrihhlohhuthemuceftddtnecunecujfgurhephfgtgfgguffffhfvjgfkofesthhqmhdthhdtvdenucfhrhhomheprfgruhhlucfmohhnihhnghcuoehprghulhhkohhnihhnghestghomhgtrghsthdrnhgvtheqnecukfhppeejfedriedtrddvvdefrddutddunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehhvghlohepphhkohhnihhnghdrrghkuggvshhighhnrdgtohhmpdhinhgvthepjeefrdeitddrvddvfedruddtuddpmhgrihhlfhhrohhmpehprghulhhkohhnihhnghestghomhgtrghsthdrnhgvthdprhgtphhtthhopehophgvnhdqihhstghsihesghhoohhglhgvghhrohhuphhsrdgtohhm
+X-Xfinity-VMeta: sc=0.00;st=legit
+From: Paul Koning <paulkoning@comcast.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
 Subject: Re: iSCSI Multiqueue
-From: Vladislav Bolkhovitin <vst@vlnb.net>
-To: open-iscsi@googlegroups.com, The Lee-Man <leeman.duncan@gmail.com>
-Reply-To: open-iscsi@googlegroups.com
+Date: Fri, 24 Jan 2020 09:29:16 -0500
 References: <fa6d0ccd-0fdc-4fa2-bdee-7a8cf22f18b1@googlegroups.com>
  <8f236c4a-a207-4a0e-8dff-ad14a74e57dc@googlegroups.com>
  <1a730951-21eb-ae5f-a835-ad92c512978c@vlnb.net>
-Message-ID: <846665ef-d238-8abd-8d1b-72e494af9dd1@vlnb.net>
-Date: Fri, 24 Jan 2020 00:49:00 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
-MIME-Version: 1.0
+To: open-iscsi@googlegroups.com
 In-Reply-To: <1a730951-21eb-ae5f-a835-ad92c512978c@vlnb.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:wH6qX/HHxUnprpzYjuZlvVhvePkd3AUwtdyskGCRhSY99a2pmkx
- eUei3xQuzFj0w55XjNTf6jgZphUwpFsSxQMHo13NL/zhcx6XewRfeyDJaP9EZaIs4Dfj0n0
- Oh6UKLwmrvvOK/VUHNQSpAPqVK9ZN63iSlrcFcho0VuGzdHAnqoe3wyB7y4R69NkIC5tgTA
- BMSx2x3UExYL/9qR2y32w==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:+nxCv8Ax9io=:7qFkBroTblB/MeTDNAlj6h
- B3eJBgjZjegSA0cPWbleTwKk9PDYZmwKo4azkd1eLOwr1H0WJeAnbnHrA61zHuBA3PphqLI3P
- B566OBrlG6oNIXtn6Grh+BPSiqjGqvQWH0BlvCYJ5LbR/uDWLE/D6RqyZLiTxnKuiipdjsPVV
- vCZ2ZBDNpA+m4Pm3ov9JAy66KXqsEWAk+G93edja3oDIQmsTXnDAVZmK4ASCAhRJVIohzTtBa
- tnuRAnUufb6Cca7lybug7Fm8ZFtkASQVSW0LLfEsUqFy+Kx+cyUd5f+HK7ikRiuWrNcZ/RAml
- l01TSC/L6Ys4myEHUbde78q0SaJbhsLjIHMEuZvnPUCMQKPL6sLppSm46t7BXLxqDMirkCvNy
- OUpIxYYkXOQFwwlniKewel7QOythEtnMic3I5hHP1Pyyhhj0W3hRmSBCNhW7pf+TprmJeEhsq
- mXoKkx4lCPzb2729BvpYL7aA/9Y7KobWgoRGmmRGf1qnpsEToxuKPz5E14c3LMaZ4mFZ+Gjwv
- oK0dK+iJQmKAS1Hy0QWuyAi0B+qaB8QcEExItSJzssYM7GpGvQrGyOxSWGMcA2tSEC7Kn3XjH
- Xslhyrr8J6hNr10LuiSTERNA5LqdvomEjvXrWSmd96W7Ljg25qlgnPzNoLVkjyXy3iSzNrm9G
- CGl5gv8CVuxz4OpWVwCr9ZS1qFSGQma1PBuTFn75ALTDLPt5Lfz/oImvxVmrlBlmmb9YTykn5
- L+KXC6A7ZOOv/cXS12JftythG1wfBiZ7Mkt1RgYJ+jRIN73pTCkEUUgRzrsLrHLc+Ah7Rr3py
- +vq9gOjVBRls9MvQWYMoLmRVSmVayPmMu2pbHx20mVuJy/7poA=
-X-Original-Sender: vst@vlnb.net
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of vst@vlnb.net designates 217.72.192.75 as permitted
- sender) smtp.mailfrom=vst@vlnb.net
+Message-Id: <B7F71EA1-6E05-43A5-BADA-4F29550424D6@comcast.net>
+X-Mailer: Apple Mail (2.3445.104.11)
+X-Original-Sender: paulkoning@comcast.net
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@comcast.net header.s=20190202a header.b=VeFKc5qE;       spf=pass
+ (google.com: domain of paulkoning@comcast.net designates 2001:558:fe16:19:96:114:154:163
+ as permitted sender) smtp.mailfrom=paulkoning@comcast.net;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=comcast.net
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -150,45 +139,10 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
 
 
 
-On 1/24/20 12:43 AM, Vladislav Bolkhovitin wrote:
+> On Jan 24, 2020, at 3:43 AM, Vladislav Bolkhovitin <vst@vlnb.net> wrote:
 >=20
-> On 1/23/20 1:51 PM, The Lee-Man wrote:
->> On Wednesday, January 15, 2020 at 7:16:48 AM UTC-8, Bobby wrote:
->>
->>
->>     Hi all,
->>
->>     I have a question regarding multi-queue in iSCSI. AFAIK, *scsi-mq*
->>     has been functional in kernel since kernel 3.17. Because earlier,
->>     the block layer was updated to multi-queue *blk-mq*=C2=A0from
->>     single-queue. So the current kernel has full-fledged *multi-queues*.
->>
->>     The question is:
->>
->>     How an iSCSI initiator uses multi-queue? Does it mean having
->>     multiple connections? I would like=C2=A0
->>     to see where exactly that is achieved in the code, if someone can
->>     please me give me a hint. Thanks in advance :)
->>
->>     Regards
->>
->>
->> open-iscsi does not use multi-queue specifically, though all of the
->> block layer is now converted to using multi-queue. If I understand
->> correctly, there is no more single-queue, but there is glue that allows
->> existing single-queue drivers to continue on, mapping their use to
->> multi-queue. (Someone please correct me if I'm wrong.)
->>
->> The only time multi-queue might be useful for open-iscsi to use would be
->> for MCS -- multiple connections per session. But the implementation of
->> multi-queue makes using it for MCS problematic. Because each queue is on
->> a different CPU, open-iscsi would have to coordinate the multiple
->> connections across multiple CPUs, making things like ensuring correct
->> sequence numbers difficult.
->>
->> Hope that helps. I _believe_ there is still an effort to map open-iscsi
->> MCS to multi-queue, but nobody has tried to actually do it yet that I
->> know of. The goal, of course, is better throughput using MCS.
+>=20
+>> ...
 >=20
 > From my old iSCSI target development days, MS is fundamentally not
 > friendly to multi-queue, because it requires by the iSCSI spec to
@@ -215,11 +169,21 @@ On 1/24/20 12:43 AM, Vladislav Bolkhovitin wrote:
 > 2. Where requirement to preserve commands order would similarly kill all
 > the MQ performance benefits.
 
-Oops, 'MCS' must be everywhere instead of 'MS'. Something "corrected"
-this "for me" behind my back.
+My reaction, from a similar background, matches yours.  iSCSI makes things =
+quite hard by requiring ordering across the connections that make up a sess=
+ion.  That discourages implementation of multi-connection support in target=
+s (it's optional).  In some cases, it entirely rules it out; for example, i=
+n the EqualLogic storage arrays it would be pretty useless to support multi=
+-connection since the connections could not be spread over multiple arrays,=
+ and for that reason we ruled out that feature.
 
-Sorry,
-Vlad
+By contrast, MPIO (several independent sessions used by the storage stack a=
+s a wider and/or more fault tolerant pipe to the storage) requires essentia=
+lly no work at the target and gives at least as much benefit as MCS for a l=
+ot less work.
+
+	paul
+
 
 --=20
 You received this message because you are subscribed to the Google Groups "=
@@ -227,4 +191,4 @@ open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to open-iscsi+unsubscribe@googlegroups.com.
 To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/846665ef-d238-8abd-8d1b-72e494af9dd1%40vlnb.net.
+open-iscsi/B7F71EA1-6E05-43A5-BADA-4F29550424D6%40comcast.net.
