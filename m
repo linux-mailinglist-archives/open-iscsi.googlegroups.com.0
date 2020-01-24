@@ -1,133 +1,138 @@
-Return-Path: <open-iscsi+bncBD7Z7UVWSMJBBEH7VDYQKGQEYZAKXGY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDHNJVU4QYDRBSG4VLYQKGQECSPMYDY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-il1-x13e.google.com (mail-il1-x13e.google.com [IPv6:2607:f8b0:4864:20::13e])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7441475BC
-	for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 01:51:30 +0100 (CET)
-Received: by mail-il1-x13e.google.com with SMTP id t4sf262705ili.21
-        for <lists+open-iscsi@lfdr.de>; Thu, 23 Jan 2020 16:51:30 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1579827089; cv=pass;
+Received: from mail-lj1-x23f.google.com (mail-lj1-x23f.google.com [IPv6:2a00:1450:4864:20::23f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 274D914798D
+	for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 09:43:53 +0100 (CET)
+Received: by mail-lj1-x23f.google.com with SMTP id v1sf424600lja.21
+        for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 00:43:53 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1579855432; cv=pass;
         d=google.com; s=arc-20160816;
-        b=aVaAArb13wmeRtbvBxu9OVktFLNpP1ZrHQqICZjTuK9kLhQoy2AfB0BypnwV1LwKD2
-         0GFX4hSzaDwOmw1WyAjzf2PTUKoVR1WDWvXtGpcP6jU/RVW20FzMKweKaco31Ox+5+5d
-         xRy2lCcGS91ldOSw2q/Ms3HmcIsvPC2IZqCubWHicS7xINk/wcrdJLgwlSHvSFBxB0n8
-         w1mIPbdnKlxOhrfaKmCvMIXJeheU0RzRyZx/6/1tCUclWbIyZa1MtUePk1mauO7ZUM7b
-         ZgKo1+pdaGwgOymv8gOsfRsd1UtMuIzcCSsjXrGalq9khUz4ShJJimZMeo3h5CjQIkc+
-         9Q8g==
+        b=rMkJmxhTvmlAVeb9UH7d6bTyHh1ZqECGof2q0SjYZ5E4ugrSJRhNW+zeQehrlwbLqr
+         uH2TEQo7RchACq90Cd2TThvNrBulHlHScmOaaap9VvCa60/EPeXjZx9H7vRcVWthxQ2S
+         Gf3lhikFxvQKGF1nMtnLaLp7YwyrB4xvk7fPOGEVvBg2tJbBTiqKfKc+j1o5auJlD1NT
+         YbIzOxlY70/8oLG32sYRlXedMefg+hnPgn5v0ihbVLbLa2V8lk/RJHY6sejverjINvEI
+         DFAtNDRiW6m0k7QJKudlWzmMEpnaCuqPxcuuN9wEqYD0SrxTeZoJ7rKv8S4z2Q/JX7Wp
+         jkEA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
-         :from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=AH7UuLdOVY+pPHAPiji2qhrFwzbrHM8Zc8f70cnROjc=;
-        b=HroEOr+o/5CYFFhNezkr9L6JMl9lTRuFHVArlmBviLqr6xbMW7JlW+2yIKR/t0BrYy
-         JPVR0AQUHqjfw+3yngUqsn4fXhIWSE8tj/WajOlO7AC6DBwFIn3SeVhyFnsvWdm8tCVg
-         7VNORsXvAaoFUZ3TcapDpJPP466cq3qUIJzAU8xlxx+kJIcW3boJlFaJK4pgyNo0jxnG
-         W2PoIq+64jHQqgeGNU57fZHSP8S3iWcgPNb/unN07uyQrQWSKwoicli/ICMp3zWZ7zsW
-         rc3YgZFo2E/qkdQ1X5TlAeAEsdykWfPZ5/nS1Flw2e1Of9M/VbXnJ6V128SWRVew+NeT
-         pODw==
+         :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:to:subject:sender:dkim-signature;
+        bh=50n6iZjeg1rcqXgZLppOaw+DpCpsLYuaih1y8MYUSj4=;
+        b=IvhbDZhciU9e7c+5Ukg4nco30Js46r1N1eLX7tYtDcKfF8x7/Zr9KJD6SIcbabp8t7
+         8rWUV1+86ejFiQ/DWJX+ou/FYhv75O3MuTijrvKMNE+5jgt+W6G9Ws2FZjlaxUabCm4q
+         BwrQZaD5EgKOxEdcxdzAbhD561zYIxyiCZW8NbzOEwf3i4n99ZBUqqUTBL0pxtBGL6wL
+         tmK9AwkGxVnaPDD6akL076XjrwKT2ISWSkom3PBTqLvJLQZmnnf2XiJfCY0Jfwp7RDX6
+         q1CH1kBpKHiUNRMpSfjxVBB2SQDG7VX0y/oX5ZJJbHXlncXsi30k/DKg6W9qqKS0h7vL
+         oPGw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b="F6g/EJJH";
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d31 as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       spf=pass (google.com: domain of vst@vlnb.net designates 217.72.192.74 as permitted sender) smtp.mailfrom=vst@vlnb.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=AH7UuLdOVY+pPHAPiji2qhrFwzbrHM8Zc8f70cnROjc=;
-        b=f9C6Xk87MRTsgXgyjAw5Svk/xZj4MS6Eu2J2gkvN0tgufZF6UsXWbY55GHS5Bdjx1K
-         V7Su13SUpSu3XOQBqmmI3il2j8qvDp4DSJY0Qc/YKVOEB0w/WF/pyjNd3mpgmRH9K/tu
-         /TvMtZc99SVIyYRzOwSRafurqVhK7J5OXoHn6EJjGCB3ar6GV+G2IwhSg0IQpuqWq+CP
-         cVktcvAySYgEnTzKn0KV3K4HxPxMW4vUrGkg0yVKO/B1fdQfOtgrQeWRFie1aidnYDeM
-         9GWRjdjlWHHuzIcZ/hPqX7kqsL/6a2nEwAI3H4UV0FrgRb0XsflzzSqFWevWvQdWNv53
-         XuRg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+        h=sender:subject:to:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=AH7UuLdOVY+pPHAPiji2qhrFwzbrHM8Zc8f70cnROjc=;
-        b=Bjr8AaklIszV/Oni9wYpQq5hzO+XtudInJLUw8Yzl33f5W3ANQZWsXCqOyw21YsM+P
-         2uaIN11CPR9ABt5ORPoKu6Paetr7b/HM9yKZc7BSlsHse8il+H2wem+UNAhBo0+8Jseo
-         fWt53dcv2E+MBvJSp9PGI/XpxQoJiNtUajDduQM6W59dgUhBjuu/flRimnsPdHcl0vQg
-         8ofRRllqy9yjEh1CRYrCxFTa/OW0c2RnOkm4MwFjIjIsTgh0pdkAgUfDv4pYpBn+QOeJ
-         AlrehamjVcq4c2pSMuliph9ljumshJc1fxrYBGcYrdP2+uU0OskCBGuYo4MEr9Gkon+Z
-         8htQ==
+        bh=50n6iZjeg1rcqXgZLppOaw+DpCpsLYuaih1y8MYUSj4=;
+        b=UJYdYz8z0m3UQOnw0mC5zB1PBOxpF8Us57jVxidLshYXXusMq7btoTK+uLsDfMwtVs
+         o4zXqYVu3CP+/Zy+v8ugMmMsO+BzcDoDTKJHnHyixzSqTTk91rlW2DOJuvX+RnqgW47B
+         Haj0+Fwvpy8CsfvdldYiXYF0gGn9xdsyM70j22b0L7adkSQDencQ7XPTBWMJUrsKk7bp
+         64ZVNuRyfpoC0EdhYyFEqUnOWjknjNr5rjwXyUwIln+eqJskMJmSyPhMABHrb29WQXPd
+         XRDzhYREL3kyw7IUawB+VD+yLyA4knJyHxXpoPyR7EHL1qG5GZVu01Rd+tt2gl/Msptp
+         UJag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:x-original-sender
+        h=sender:x-gm-message-state:subject:to:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=AH7UuLdOVY+pPHAPiji2qhrFwzbrHM8Zc8f70cnROjc=;
-        b=iT7bs94J95ZXE8jPm7r+jeRexrI5ArZ9ya7XcjY8IZl8U+BCryS9ldsLKkyJxSufgn
-         nYKmS/q/ca/d63goNC06andvqVN1B+yM0AdHJm+jMQIVZkeukf20ZvufxPfnQ+Yiwny/
-         /D0QC07aLvL8S89vT4M5p9CH3M0Iw1bD+7YXXu5yP+dFHTndYSXbKbjVYMwDNZ1IjaP6
-         Wk8SKYAs3TB4k/Hk/h7mK+y7eYRkzekkFhikM/TkXVR/x3JXYha0fnyIIJe6sqHRa1kb
-         ASyDsQpjJFrz3xlz+ir6DamOKDJzx98IygZ5Hn4cZcH4RnhhDi1JkIsya6Jzqw+exuhj
-         o3Dg==
+        bh=50n6iZjeg1rcqXgZLppOaw+DpCpsLYuaih1y8MYUSj4=;
+        b=C2OHoV5E/lZ9Jlnk4/gYEu7jA5drb8oDrCNPdEGb22gQrxnB4qfDm09ozPCOsSyDyZ
+         uAs6UppJEP9iLUGxM8p9oqvoRe8k+Z7FrFfGK/adJCtnOKhnJl9GflaXnypzGcJbp2H7
+         iayD/GpcQfXcsSrQCePVjHUJmaPJsTiGB0z1gMjg+AuwmW1j3ya+Fxc5Ovm9uSUVzgBu
+         nngp2EKtRZAmFubO7c2NgqerOhnxnviFDnWEiTUOUWP28wUvN4ukUV3Ad1DmYwOMYirb
+         8GCM/Q/FnAPISLryrBYAw1n7XnDuzcDAf8I0ieoqukwytGnWqW/Ll4Ltgw13gyrBjaq/
+         K7mA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAWL9x+s4qDhoytBuoDTB+QqF2thm/3NzOX27sba7bpkQi07WBsE
-	4PS8zeS6GqSmSg4lp0zGWik=
-X-Google-Smtp-Source: APXvYqyZzmwRF0iTnHcEaaZ8+zjIDH44ybqfd72GiQysFK7aBfmANJun83LUh/neJfHxbfW0XA6+fA==
-X-Received: by 2002:a6b:f214:: with SMTP id q20mr355290ioh.137.1579827089017;
-        Thu, 23 Jan 2020 16:51:29 -0800 (PST)
+X-Gm-Message-State: APjAAAVoJdXu9mP1hCFe0dNBmBVPyBFdno5GkiVBNar3xedPL+r2/AhB
+	1kwBEe2pyqawnVFImpdPXzo=
+X-Google-Smtp-Source: APXvYqykq63QkqWdR2NcW5ge3BGABe+M4VKPd4L72i2eiEmxyrN5qejQw/zPCxnMo2oLhwy3jSG1TA==
+X-Received: by 2002:a2e:8651:: with SMTP id i17mr1642394ljj.121.1579855432468;
+        Fri, 24 Jan 2020 00:43:52 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a5e:dd4a:: with SMTP id u10ls39543iop.5.gmail; Thu, 23 Jan
- 2020 16:51:28 -0800 (PST)
-X-Received: by 2002:a6b:7703:: with SMTP id n3mr340551iom.229.1579827088574;
-        Thu, 23 Jan 2020 16:51:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1579827088; cv=none;
+Received: by 2002:a2e:9c85:: with SMTP id x5ls299433lji.0.gmail; Fri, 24 Jan
+ 2020 00:43:51 -0800 (PST)
+X-Received: by 2002:a2e:7816:: with SMTP id t22mr1591035ljc.161.1579855431625;
+        Fri, 24 Jan 2020 00:43:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579855431; cv=none;
         d=google.com; s=arc-20160816;
-        b=tzJcSXNukmD92GLtuWe9AkiQ3aP9S0SdoRHHz6MZlpQYa/xhS9c+0eegy1/zb3pjc4
-         S/3yS9rI0SH/2JAyMfwcgDTvz1/hK37SvgB7oL2voR9MCRdjb01T8ccrHjaS3ih516up
-         lpKzWZ+THoWD4hQFEFX9LYnSfSEScaAtVivWiXv1DJ+iT22gcRqox191c4yuSt1qzA2L
-         HfKy7TyhnlyvyqWhzWbcHc3JGU7j5wf8kog0/0ICuv9QiyLC0nq88qEqVaNIS2fS6iHH
-         33AwXRFYs7z4ZBZYxKt1PMffnrwCBHu36h8OEIWOL7SNpzHoPda7aPcMDabwGG/nrJKn
-         C9Lw==
+        b=uMLDhVR5MSBZKgSftVtzccotj0ADnxx4Alop635//uIQridRqP+wtjKPwwKhkrnk5b
+         RIIpXNzXiHLLt5GxcDlrawaxMaBf0AO24ADWOZvcTcmEutLJ6R4S6Zhbqk12Sb2Gn1OI
+         AkWtyK6OJKcTIKjvjgGYZ1lhBT1ODtFq89ltJUd/zEVzozJC8sgScNen99nGtquBCyax
+         4aq3OnPm4REsyhstFIwwgCDoi6V6S5E2Q8SoVp0HIw1tuDthWOHklCX8qZW0NZxACFy5
+         ovFtC8l9DNyEQFgZrAxKY60iOXrTjPBfTvlHZpQCmt29gqCMwB8DQnWuiBUHwVhD2+yQ
+         quwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=xDKuMu1D3YqmZR9gMEZblGWkhz24DZIh3u1URuS2lbo=;
-        b=t9xxdqIEmEugbiqOe0iHO3TQ2BO8bJ83VAPjVLOgaKTy+6mhRFW5zF1qS8DBYmUEjc
-         H0i/0LeOOV2WXpJcDYxtH5vqbn73CMA+B4YUk7+vYB1/m8sXwPEr6I4SA75Z4xZNmAbG
-         BJ/llsId2qG+BTNIyL8JpmX+te7E4HjtayFlFE3pUGZzfiVgrhAidNonrwyQVjyKTGss
-         cMz8VzHuXsefOcCkqdxs6apkMHtQLZlqkZfZxLWmF7CoQ9DgFzjAko7OLFnSqDZTGhGG
-         2oemiEKfSyue+NFZX4VMbpnR66VUkC2QWz3CxAo/G+pbCYE5Gw1I9okVu2IZwLAq53Sq
-         zVew==
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:to:subject;
+        bh=YCEEEAmmBqS/CuKnJ1HJDZU7/59SOCLNSkOgc47G1mc=;
+        b=IYVQojOLWgl7h+7tGQr/GZBejeTeRASm/fd5bCCjhVA6+NsgleJWgKi44/3YhP48I3
+         rxNIlDb7TxyynkluOKDXXZ/tJa0b/6jUjnd5IzVZZjHx1nQQ597xY8C15+8GK/tMb6cH
+         2OSieZ7tY02wIWqPl4hw+AgBJrtUGy+h+HwelS8gWuX5RPPKwS2iG38pMSzolGSulnFC
+         +3HRdW9Ri5D0kT82coiDNZy9WnPf4Nt4musPcckfGa2WhXpqHCzcC5jFmxl3JMzOITRu
+         aMOLMaxQjwx6Ub0EmNjceqRodod701J6ofQ4RvmExbtUtszwUHNvJHwnik2QDEVUSy6F
+         NkUg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b="F6g/EJJH";
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d31 as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com. [2607:f8b0:4864:20::d31])
-        by gmr-mx.google.com with ESMTPS id b16si159745ion.0.2020.01.23.16.51.28
+       spf=pass (google.com: domain of vst@vlnb.net designates 217.72.192.74 as permitted sender) smtp.mailfrom=vst@vlnb.net
+Received: from mout.kundenserver.de (mout.kundenserver.de. [217.72.192.74])
+        by gmr-mx.google.com with ESMTPS id 68si179826lfi.3.2020.01.24.00.43.51
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jan 2020 16:51:28 -0800 (PST)
-Received-SPF: pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d31 as permitted sender) client-ip=2607:f8b0:4864:20::d31;
-Received: by mail-io1-xd31.google.com with SMTP id i11so249929ioi.12
-        for <open-iscsi@googlegroups.com>; Thu, 23 Jan 2020 16:51:28 -0800 (PST)
-X-Received: by 2002:a05:6638:2b7:: with SMTP id d23mr506838jaq.108.1579827088128;
- Thu, 23 Jan 2020 16:51:28 -0800 (PST)
-MIME-Version: 1.0
-References: <fa6d0ccd-0fdc-4fa2-bdee-7a8cf22f18b1@googlegroups.com> <8f236c4a-a207-4a0e-8dff-ad14a74e57dc@googlegroups.com>
-In-Reply-To: <8f236c4a-a207-4a0e-8dff-ad14a74e57dc@googlegroups.com>
-From: Donald Williams <don.e.williams@gmail.com>
-Date: Thu, 23 Jan 2020 19:51:16 -0500
-Message-ID: <CAK3e-EbuwXpvxzTnaGtq3URrfhC4aUvX0+4zKat3A2STrON5=g@mail.gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 Jan 2020 00:43:51 -0800 (PST)
+Received-SPF: pass (google.com: domain of vst@vlnb.net designates 217.72.192.74 as permitted sender) client-ip=217.72.192.74;
+Received: from [192.168.1.83] ([108.201.190.22]) by mrelayeu.kundenserver.de
+ (mreue109 [212.227.15.179]) with ESMTPSA (Nemesis) id
+ 1MfpGR-1jWSNg3MUL-00gHYs; Fri, 24 Jan 2020 09:43:50 +0100
 Subject: Re: iSCSI Multiqueue
-To: open-iscsi@googlegroups.com
-Content-Type: multipart/alternative; boundary="00000000000064fdda059cd828d3"
-X-Original-Sender: Don.E.Williams@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b="F6g/EJJH";       spf=pass
- (google.com: domain of don.e.williams@gmail.com designates
- 2607:f8b0:4864:20::d31 as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+To: open-iscsi@googlegroups.com, The Lee-Man <leeman.duncan@gmail.com>
+References: <fa6d0ccd-0fdc-4fa2-bdee-7a8cf22f18b1@googlegroups.com>
+ <8f236c4a-a207-4a0e-8dff-ad14a74e57dc@googlegroups.com>
+From: Vladislav Bolkhovitin <vst@vlnb.net>
+Message-ID: <1a730951-21eb-ae5f-a835-ad92c512978c@vlnb.net>
+Date: Fri, 24 Jan 2020 00:43:46 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
+MIME-Version: 1.0
+In-Reply-To: <8f236c4a-a207-4a0e-8dff-ad14a74e57dc@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:cQJo6I/85dhlj7I6LeXtLHoz+QF41LW6ej1FgTPLdsyAiZ/YWwH
+ S0V+QoD1MWSUf3LOErd71QmEnnoXWFBb7aswH79Dlm1Vvg95HJ5vouFjZkcBuHaMhV3JDSz
+ ctuMCgHbWmBUQJz/kUsPezMpaRtQAso58ZJUygnCuhH/6DDL3yPt1fGeIY2EA+CG1OGxCOe
+ FnU5SSGQ3IODTtDN977nA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:W0iDW+7rezY=:pfwN4ND1M/RdCaAVdZfvu1
+ 3xRrofT5zKtefLkmtHFrWfEvsXxuXE2rTobYa0c1ZGcRw3mD1rFuwxloXtua2NyHw14vqYL/b
+ NqgUqzsg7SMI3lceU96fNdcsLfTWsTYqqdF7FXZPQADfwQzNC+6xhV4ywbrdBPdIjRquFqZEC
+ 1/sMlBJjjVN04hgHwaF+kaorovYVKR9o8WrzSjgv7inK8RFq5ti71TQG9sdqEIgKZaoeGf8V2
+ 9qQdQoSxknfuc7rIWs7SRlJ1XPGM1aU7cd0kFRHv667IHsJaVJPHRSUutVjABro+2vA0UzLDC
+ ZmVhDf7CoSLNY7WfKBodGxCCNzx8nF44/liivJKUqRFODY6QUOplC+jEvz36o+L/ZuBqC2J/U
+ 3XGMoVqASloXlR98hF8fCY3fntc3saBouGAW9mjA35I32yo3VoTSgc/caWP1d3+ftnn9TKSvW
+ HkLa8wbMhkSAWafFvG46oUI9v50Ep6MyWEo27kiIdNjIT6BMzyqXqN6x006T74ZQNxyvdoMHf
+ 5vG+yyXe32bH5ps5ela/2WFSgo7IF34uYXZ1NRrSLoV/2ZNUkDA/Ot9MMtb0W/IU3OUZ9jG/k
+ rdUgEJxlXtsvRSWxdtjFKp7su9rxTReP82Lk/0YBW4Mb994eo31RzV4l1SOnNXSuYb2CqwiV3
+ FDCIySdyVoOeBiv55D2Bc27QQSRTmvjo+w8YeaSKd+WOEifUDK5tJ3kz2HocGrZvJ39t5aX+9
+ T48edjtfg3Qv/v4Usexd4jIeABAeU3FG2z6Tg4iu+6gwaKIzY3hrtPID+e3sh6M3dW7VM6W2N
+ W9J9brWQxP6IW+rAueDoulgggeBdrCX5ViiiykWVpopUbudll4=
+X-Original-Sender: vst@vlnb.net
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of vst@vlnb.net designates 217.72.192.74 as permitted
+ sender) smtp.mailfrom=vst@vlnb.net
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -141,155 +146,74 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---00000000000064fdda059cd828d3
-Content-Type: text/plain; charset="UTF-8"
 
-Hello
-
- Thanks for sending this.  I too believe this is how it works and given the
-current performance of OiS it's certainly not single threaded per iSCSI
-session, and with multiple iSCSI sessions over different NICs, connecting
-into multipathd,  performance and redundancy needs are met for the vast
-majority of SAN applications.
-
- Often the bottleneck is the backend storage given the interface speeds
-available today for iSCSI.    Especially as you add more hosts. since the
-IO load as seen by storage is typically very random.
-
- Regards,
-Don
-
-
-
-
-On Thu, Jan 23, 2020 at 4:51 PM The Lee-Man <leeman.duncan@gmail.com> wrote:
-
+On 1/23/20 1:51 PM, The Lee-Man wrote:
 > On Wednesday, January 15, 2020 at 7:16:48 AM UTC-8, Bobby wrote:
->>
->>
->> Hi all,
->>
->> I have a question regarding multi-queue in iSCSI. AFAIK, *scsi-mq* has
->> been functional in kernel since kernel 3.17. Because earlier,
->> the block layer was updated to multi-queue *blk-mq* from single-queue.
->> So the current kernel has full-fledged *multi-queues*.
->>
->> The question is:
->>
->> How an iSCSI initiator uses multi-queue? Does it mean having multiple
->> connections? I would like
->> to see where exactly that is achieved in the code, if someone can please
->> me give me a hint. Thanks in advance :)
->>
->> Regards
->>
->
-> open-iscsi does not use multi-queue specifically, though all of the block
-> layer is now converted to using multi-queue. If I understand correctly,
-> there is no more single-queue, but there is glue that allows existing
-> single-queue drivers to continue on, mapping their use to multi-queue.
-> (Someone please correct me if I'm wrong.)
->
+>=20
+>=20
+>     Hi all,
+>=20
+>     I have a question regarding multi-queue in iSCSI. AFAIK, *scsi-mq*
+>     has been functional in kernel since kernel 3.17. Because earlier,
+>     the block layer was updated to multi-queue *blk-mq*=C2=A0from
+>     single-queue. So the current kernel has full-fledged *multi-queues*.
+>=20
+>     The question is:
+>=20
+>     How an iSCSI initiator uses multi-queue? Does it mean having
+>     multiple connections? I would like=C2=A0
+>     to see where exactly that is achieved in the code, if someone can
+>     please me give me a hint. Thanks in advance :)
+>=20
+>     Regards
+>=20
+>=20
+> open-iscsi does not use multi-queue specifically, though all of the
+> block layer is now converted to using multi-queue. If I understand
+> correctly, there is no more single-queue, but there is glue that allows
+> existing single-queue drivers to continue on, mapping their use to
+> multi-queue. (Someone please correct me if I'm wrong.)
+>=20
 > The only time multi-queue might be useful for open-iscsi to use would be
 > for MCS -- multiple connections per session. But the implementation of
-> multi-queue makes using it for MCS problematic. Because each queue is on a
-> different CPU, open-iscsi would have to coordinate the multiple connections
-> across multiple CPUs, making things like ensuring correct sequence numbers
-> difficult.
->
+> multi-queue makes using it for MCS problematic. Because each queue is on
+> a different CPU, open-iscsi would have to coordinate the multiple
+> connections across multiple CPUs, making things like ensuring correct
+> sequence numbers difficult.
+>=20
 > Hope that helps. I _believe_ there is still an effort to map open-iscsi
-> MCS to multi-queue, but nobody has tried to actually do it yet that I know
-> of. The goal, of course, is better throughput using MCS.
->
-> --
-> You received this message because you are subscribed to the Google Groups
-> "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an
-> email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit
-> https://groups.google.com/d/msgid/open-iscsi/8f236c4a-a207-4a0e-8dff-ad14a74e57dc%40googlegroups.com
-> <https://groups.google.com/d/msgid/open-iscsi/8f236c4a-a207-4a0e-8dff-ad14a74e57dc%40googlegroups.com?utm_medium=email&utm_source=footer>
-> .
->
+> MCS to multi-queue, but nobody has tried to actually do it yet that I
+> know of. The goal, of course, is better throughput using MCS.
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAK3e-EbuwXpvxzTnaGtq3URrfhC4aUvX0%2B4zKat3A2STrON5%3Dg%40mail.gmail.com.
+From my old iSCSI target development days, MS is fundamentally not
+friendly to multi-queue, because it requires by the iSCSI spec to
+preserve order of commands inside the session across multiple
+connections. Commands serialization =3D> shared lock or atomic =3D> no
+multi-queue benefits.
 
---00000000000064fdda059cd828d3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hence, usage of MS for multi-queue would be beneficial only if to drop
+(aka violate) this iSCSI spec requirement.
 
-<div dir=3D"ltr">Hello=C2=A0=C2=A0<div><br></div><div>=C2=A0Thanks for send=
-ing this.=C2=A0 I too believe this is how it works and given the current pe=
-rformance of OiS it&#39;s certainly not single threaded per iSCSI session, =
-and with multiple iSCSI sessions over different NICs, connecting into multi=
-pathd,=C2=A0 performance and redundancy needs are met for the vast majority=
- of SAN applications.=C2=A0=C2=A0</div><div>=C2=A0</div><div>=C2=A0Often th=
-e bottleneck is the backend storage given the interface speeds available to=
-day for iSCSI.=C2=A0 =C2=A0 Especially as you add more hosts. since the IO =
-load as seen by storage is typically very random.</div><div><br></div><div>=
-=C2=A0Regards,=C2=A0</div><div>Don=C2=A0</div><div><br></div><div><br></div=
-><div>=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Thu, Jan 23, 2020 at 4:51 PM The Lee-Man &lt;<a href=
-=3D"mailto:leeman.duncan@gmail.com">leeman.duncan@gmail.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
->On Wednesday, January 15, 2020 at 7:16:48 AM UTC-8, Bobby wrote:<blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><br><div><div>Hi a=
-ll,</div><div><br></div><div>I have a question regarding multi-queue in iSC=
-SI. AFAIK, <b>scsi-mq</b> has been functional in kernel since kernel 3.17. =
-Because earlier,</div><div>the block layer was updated to multi-queue <b>bl=
-k-mq</b>=C2=A0from single-queue. So the current kernel has full-fledged <b>=
-multi-queues</b>.</div><div><br></div><div>The question is:</div><div><br><=
-/div><div>How an iSCSI initiator uses multi-queue? Does it mean having mult=
-iple connections? I would like=C2=A0</div></div><div>to see where exactly t=
-hat is achieved in the code, if someone can please me give me a hint. Thank=
-s in advance :)</div><div><br></div><div>Regards<br></div></div></blockquot=
-e><div><br></div><div>open-iscsi does not use multi-queue specifically, tho=
-ugh all of the block layer is now converted to using multi-queue. If I unde=
-rstand correctly, there is no more single-queue, but there is glue that all=
-ows existing single-queue drivers to continue on, mapping their use to mult=
-i-queue. (Someone please correct me if I&#39;m wrong.)</div><div><br></div>=
-<div>The only time multi-queue might be useful for open-iscsi to use would =
-be for MCS -- multiple connections per session. But the implementation of m=
-ulti-queue makes using it for MCS problematic. Because each queue is on a d=
-ifferent CPU, open-iscsi would have to coordinate the multiple connections =
-across multiple CPUs, making things like ensuring correct sequence numbers =
-difficult.</div><div><br></div><div>Hope that helps. I _believe_ there is s=
-till an effort to map open-iscsi MCS to multi-queue, but nobody has tried t=
-o actually do it yet that I know of. The goal, of course, is better through=
-put using MCS.<br></div></div>
+Just a small reminder. I have not looked in the updated iSCSI spec for a
+while, but don't remember this requirement was anyhow eased there.
 
-<p></p>
+In any case, multiple iSCSI sessions per block level "session" would
+always be another alternative that would require virtually zero changes
+in open-iscsi and in-kernel iSCSI driver[1] as opposed to complex
+changes required to start supporting MS in it as well as in many iSCSI
+targets around that currently do not[2]. If I would be working on iSCSI
+MQ, I would consider this as the first and MUCH more preferable option.
 
--- <br>
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br>
+Vlad
+
+1. Most likely, completely zero.
+2. Where requirement to preserve commands order would similarly kill all
+the MQ performance benefits.
+
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com" target=
-=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/8f236c4a-a207-4a0e-8dff-ad14a74e57dc%40googlegroups.c=
-om?utm_medium=3Demail&amp;utm_source=3Dfooter" target=3D"_blank">https://gr=
-oups.google.com/d/msgid/open-iscsi/8f236c4a-a207-4a0e-8dff-ad14a74e57dc%40g=
-ooglegroups.com</a>.<br>
-</blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAK3e-EbuwXpvxzTnaGtq3URrfhC4aUvX0%2B4zKat3A2STrON5%3=
-Dg%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.=
-google.com/d/msgid/open-iscsi/CAK3e-EbuwXpvxzTnaGtq3URrfhC4aUvX0%2B4zKat3A2=
-STrON5%3Dg%40mail.gmail.com</a>.<br />
-
---00000000000064fdda059cd828d3--
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/1a730951-21eb-ae5f-a835-ad92c512978c%40vlnb.net.
