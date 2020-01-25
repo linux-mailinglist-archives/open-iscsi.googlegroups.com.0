@@ -1,134 +1,131 @@
-Return-Path: <open-iscsi+bncBD7Z7UVWSMJBBIFNV3YQKGQE3R2AGQY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDA4VMEL3QNRB553V7YQKGQE3JGVXOY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x83f.google.com (mail-qt1-x83f.google.com [IPv6:2607:f8b0:4864:20::83f])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7727114927D
-	for <lists+open-iscsi@lfdr.de>; Sat, 25 Jan 2020 02:15:13 +0100 (CET)
-Received: by mail-qt1-x83f.google.com with SMTP id e1sf2562184qto.5
-        for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 17:15:13 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1579914912; cv=pass;
+Received: from mail-wm1-x33d.google.com (mail-wm1-x33d.google.com [IPv6:2a00:1450:4864:20::33d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ACEC1493C8
+	for <lists+open-iscsi@lfdr.de>; Sat, 25 Jan 2020 07:19:36 +0100 (CET)
+Received: by mail-wm1-x33d.google.com with SMTP id 18sf400571wmp.0
+        for <lists+open-iscsi@lfdr.de>; Fri, 24 Jan 2020 22:19:36 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1579933176; cv=pass;
         d=google.com; s=arc-20160816;
-        b=DbmWgf5BHY/CIG2UxtNTeapmLOJ/yNjvoD+UAVYq0o8VVNyvfcnt/2sTsC3DR6ZZ+W
-         2BIw8cpgVETwhWBY+Ng/J9N6nEZNc4XZ5CO7sMrmBc3ueeziDG8OtO8JTsxxEw5445hV
-         HFS8eVvQ66qxQ3Q5hNnxaBmlc3T0ldoiZctqFwS8gsbiv31ngpAQsGuy3SPdQveOKx/2
-         /0xnza5vfM6WPCLbECeIXgpgL4nu9LCseSnkthRx4eBPJOpes3w43X/iyuLKvuV+aHp6
-         3jv7GTPFZmoRf8sQJe+NInYIzoZxwAEyJPiddOObUC/Mhjy0QsPr6xHPbYKbuApGXxZ5
-         HUzw==
+        b=XAav3v70XWleI7adfo5R9Sh5C5ho5mAn4ubqFIY8F0LxaPNnCHedDpude3fNyahzVJ
+         9MerQMHpLe4mbKC+KbUSS1GGOqhq2rBeXg8ncu+ZTKx0IrdYo9FyuI8MEruGkhvSZzDt
+         gi6eg3YV3kjk16jeMy9lRiHeDVlzhU83cGdDZrpETOk2hAzxGOlr1CtiCb6h+5n9gERW
+         EDqi1QjoCX9UOEahfyZ+lDaoQjX763CclQXP5aRJzG4MSeF3wrfFDH7NG0wwfo7K5gC5
+         MNA10p/SdViwLK8a0QmF735xpaE+4fp3V4uMSXJ3CerOtWEQ3XSr4dhKqtC4/e0R660H
+         xq2A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
-         :from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=sBnSrVQ273Ggf/T0RsYgPmKTWKH9k5NLLN04f5bYMTw=;
-        b=dtcGNyFx3xxW6R+YofIfyWbd5xhQWLTI0B/RFqHftvHOagq330TaDtjlMd+Ji1SSQs
-         SzrVH9dP8z8qq8VhCVddjRyXagBCkHNXnLmvybzkH2aGhYKGKBu9sma44XBoX3gyyQVD
-         Cj1c2EdozyBDi/rIR7KqKMOl79BfP0EZrNcHOGdKk8FQiqYFsA/D1B957bvqPUsqBzV9
-         GKN21CAiL8F5WfrRxZ/Ns7jiPAZlplFCw3JWu59CGCRZSAWpoJilVmVmaq1srBgzckHY
-         io5kk4wUK7Ehexosx48+9PZ5CNf9wwUiERdOyyj3cDN+CaMNTessJlAqb2krNHrwRUrP
-         SUHg==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=ZbWbHX8yoW+RivU3tKF1GCD6raJVQFi+8MxX7VxrzjI=;
+        b=I/GCW02j6ER22DFS9wSrn4uy3Q+DxnrbvYouf4r8hbc/OYrpl3KRB0ZT76qKeTOeGo
+         TMInwXjf2zQUhE5/+67bvQvej/qkRRrehJnLJ90csal2Tod7N+qZ5sVbV9cPcX96cFyW
+         nncU3JJVmla7zZcs9RF/UJSb6SO1EKdkAGXdzzLPJTWQ8NKstO34SYTub9rC46ue8D0B
+         Uylw4j4Wden58sQYyRCTFw8kXnOj5Dk56L0yAvve7ytvaNJaUBX6XkPQi0tPDFFq8R1t
+         6bejzTVb1O1Mdc2yz3Jqzn9ERTWtgKn0JkcQwT6GPAKei0cZtY9rMu0JVDpEKwON4bXd
+         uuRQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=rEC+Hm5r;
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d36 as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       spf=pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) smtp.mailfrom=krisman@collabora.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=sBnSrVQ273Ggf/T0RsYgPmKTWKH9k5NLLN04f5bYMTw=;
-        b=cj9wQGTzMmA4+gS7nTmGp8CAo6AJDhJQyJrwZe291BwR+u9zDC5VraskZMjSqaHgTJ
-         XSqrLzz47/G69d4iYUO7mNVGZsXvvdogfu/k3YvuaD9CwDkTWdQpw8I/TD8AGDsXjoPJ
-         bPrVaIY0txJ66t/3KUiqaz2H/l5Xxe1n2zA4iBxD3j0WcawsOehw7/ECLk+7fCTXkBeO
-         eJnnjDlElEHGr9CApD8WHcEvqVjIiXfRsDYknRIQEhRuuYb0hsxaQoHTuVvZsmb78XAK
-         Chxm8Cb/sdnG4RBOgxx9KYpYY6e0ZKA8C2ewAb+zLBOBloEdKNNb/ck6Y3nDDVfpCe7Y
-         Gbyg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+        h=sender:from:to:cc:subject:date:message-id:mime-version
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=sBnSrVQ273Ggf/T0RsYgPmKTWKH9k5NLLN04f5bYMTw=;
-        b=oTLhoThwWElOenQA1o3ZBJAaETxjSoSBITVGvs6bf3X/gpLXTr+pr3DBqvOLeJtuos
-         PUNBzAkHg40hA5dw1SvKJ5RJl1VGlCIRUpv9vwZJZk1GWsI6QV8mhTw+uyiI037wr1mX
-         9td+Yk3Dxf4TeWHucH9IXLBpeEw5EWiHHz8MUWmJTw0nVkY0xjLfAJxk9tDZYNsoiSzs
-         y/NVjrgYYDN7S+NR6SyYMg5xVP39NMwhH2//6dYXy6bQo7JB7NW4jINxfXiBafFxSq4w
-         06X6evI7iq/mgFpAATKVgQPaCSKh6GdRvCJUe8XXZ6zLS3Q6OxvPw16BCX8G3+mvfhTV
-         lY/Q==
+        bh=ZbWbHX8yoW+RivU3tKF1GCD6raJVQFi+8MxX7VxrzjI=;
+        b=RyqgjzzczfNbObN0MUzvqBI19VoZkpmwzPIAkflA7+Xsdxqd+duo/ROdah5D1yg17d
+         PbZ4XkWR8cA+k/uw7O9M72Btdrslh2MJqEevBcUxHOyHjqh7m4HZacnA08uJ8s1u96Mh
+         27dWHbwpQBmjZMyCRRIVNsIl89DVZrOgPlihD7r+x0oOPDsiPuMIyZEFjRDezwE8UgTh
+         DEorTT6idpjyoeIIpmLexMzuDVe/OJvM16LrrWSApybADUHiHafOIMdXKIgy/2U9mswv
+         VMsme3BsXZdj/m2cXvQs14CpHvL0kBYXSUAd/1AoDlJVDWR+oDT1rLtKUtFK0p53vvcY
+         rPZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=sBnSrVQ273Ggf/T0RsYgPmKTWKH9k5NLLN04f5bYMTw=;
-        b=ZYL9x6++H5B2tzAUEus7X8w0RG8ecMOOm47sqeM7mxXYGdaypo1OYot3dlhMLlnHJ0
-         8FhC+LxW9QJZ+w0ykudnDozsFFugHziq4ifSQrJ8sepFQpXsZiJedWY3wfJ4b63bwMih
-         dG/q4sAFDk32bASCuHgcIyEfInP8ZrnQSirMDCJWQeJqFoJs1q4BXkwMC9u2NVGcac0c
-         xN4Y/GlfMXVKtfKq/h+YxURP249r9BL278PYjeqB/bE1yvefJMk6C9MEryIhcU/fQcdr
-         1xz3bpdsOoUMcyseaOmlOQ0Nh0HxjrX6ASRufpmwEms4m8t8L94kliQqmxCYx9XrLL6l
-         AV8Q==
+        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=ZbWbHX8yoW+RivU3tKF1GCD6raJVQFi+8MxX7VxrzjI=;
+        b=F7/YwJkpwOJFdM7dGpj5Xz0xRaKVBuVq8HV1hW26KjYcywlkzvmYITKzTzzyv5dcRf
+         hq1BZr196kPFhORgGX7sEZ5hhUfBs/cgTynzIApy+vDoabnpoN2PEKXujKoJXHUtlfCl
+         dMJvTpbSp40zNoivhiBb5ZXRz7LB1mIqeyaKaBVpn5iNMilSrv0kb68u2y8MDv2R6bLz
+         Pb8Yjwj8tNAPAhC9IMfKXM833PZb4DF2SjMknZQDO+7wtr8+rJ+LNpYbRrKJu4htn696
+         j85iBgsSG4Cxm+wUjLOd3Hzvs9pxyDEz9lTjkj+fPiiR7yrZJ4O9pD2xNq3y0BoionOQ
+         IGoQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAXrqRzhBM9wSrgfb3X/FBaODd21ydHq9H2KPrPhvnIuPYMcbsel
-	dOvA+VyHbVIIzeuV8erVNlQ=
-X-Google-Smtp-Source: APXvYqywXJY5LVVeNRLU9meOoejGEB36pbZ6halAaa8rw15tnOIIie53zOjO/aNOe2eQ9AeLw6kNLA==
-X-Received: by 2002:a05:6214:bc6:: with SMTP id ff6mr5856981qvb.133.1579914912393;
-        Fri, 24 Jan 2020 17:15:12 -0800 (PST)
+X-Gm-Message-State: APjAAAVwP9BNJBdDB+axAeDRp5TY35q/vHXcsTi/N3GeKIfQVlgbyNNi
+	5afx4nprnVggJYGRaZwtIHg=
+X-Google-Smtp-Source: APXvYqzuVCXFfJNpe/n+OhAPECnvefRHNRXUm+jy+vQM+xuHLS/v9daVdAznaIsQJ2GD1VBPSF2a5g==
+X-Received: by 2002:a7b:ce8b:: with SMTP id q11mr2891627wmj.100.1579933176141;
+        Fri, 24 Jan 2020 22:19:36 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:47ca:: with SMTP id u193ls1833216qka.10.gmail; Fri, 24
- Jan 2020 17:15:11 -0800 (PST)
-X-Received: by 2002:a05:620a:6b6:: with SMTP id i22mr5586504qkh.301.1579914911862;
-        Fri, 24 Jan 2020 17:15:11 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1579914911; cv=none;
+Received: by 2002:a1c:9d13:: with SMTP id g19ls534357wme.1.gmail; Fri, 24 Jan
+ 2020 22:19:35 -0800 (PST)
+X-Received: by 2002:a05:600c:2c2:: with SMTP id 2mr2923369wmn.155.1579933175425;
+        Fri, 24 Jan 2020 22:19:35 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579933175; cv=none;
         d=google.com; s=arc-20160816;
-        b=pyKNgj7vjn8ezGunjwEg3ouzJ/X4H7rG/ZfaxykM//sJnwty7oaISBZclVNBis98qB
-         uG/LjvJcEH/0RhDabDPX1pEn3FXJtbx3YdOamcMK/EyRDDxSTfHnulRqCIYRdhGnmrN7
-         C/hhEAt3VmRqxYq3odANCstr0rsgIStMWjDsAZ4TGRkEDMJL2A83R3xVSjFji20d+nHh
-         EU88dGlvYUlI9CTCRMeDaWpUWg+lGJ1UXwLB9LMlcjPww+a/BoFk8movTYmJwlwJSC+7
-         H5MidDNCi8GH/wyuESMslHfndoF+f1oKxeOFLBYLSQ3RJKNlTxQ5rMnoHuhi6cm4suot
-         z4Ew==
+        b=uRWWNvUQYUptTn+QE1r8GPSTvaRLavSLn6fIKN9ynbN3YHvYkGyGScF36KIAAUQqAW
+         0HNtAbmdzsvPucRCTE3gSiE+Mmenz+ZyRHbesyWhSYqud51hKCkaHRggiEIhCrzfOiIc
+         ASw7gFgzKhrK3dlgFL2Qggh+6+Byb2JRaWUV6+9ZPpTEyEdJKS3hUTEkTh6+cJOqJ10H
+         XT0V0dOo1zk3+FM6pm8bCCG4lYVv48+68zWpcWQnuJQY1H36pHtqYBwAX0JElrpK1jE1
+         9Inrdd7r/Hm1Zz0pp/MRBxvqNRZly9ZGNeQS1dfj1/g0+0vduJEU+/c0UQgAQTB/wKVW
+         fGkw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=R4nHfvQFmlwe6zmg6/MEiXISlT1LSweqGhe48yRk4Wc=;
-        b=k3HBc7jRR/kiIXdZa3czP84iIcwX+gP5Kjxpku5PB5s9fSo3ED0H4xqGTpzbL9IaL3
-         Hvl7MO2b1u9s6Dhxxoxbkc8gxQLjed7o378lBOg6GCSI806ozfS4Aj0cBIePm8iTqNwb
-         NCbf7D58jb4YAzGoSPOE1yCv25fS9HVkI9U+g5KFS//LsU2Rc671pCBCEStszOZefZG+
-         lRx60ryscG9LIgE4sMBRDvJGYJqMPhKkivp82zbv/NUytOtidMUklck300tD8h74AvvK
-         AcA6XLNggYxs63u62MOnHN2GZnuW+DmJrIsG8nMjf2gt94gYZgRdiiFqdKIVpKCUCwix
-         hiZQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from;
+        bh=J5IxaulHRZsZohJre717/XOfKy/kbQQ3TtTeE4Mjdno=;
+        b=VZJlp1NquD8D2sMm2nKEgatZxuMVw1AEidsUJRrP4b1rGJJb4q1FB+dtVDQEvLf+1c
+         PJ3ovh/J//qZQHKfZ+zMA3n3EUJWr4saFlblzBvB7d+o4yNbpfKRUKqFX/i7XdH58Q5F
+         S4itcuDZR0ttEjpU/SCdEctl5XU9GrHJwK+kZKIA3e0hzTGFdOmrIgojQWcuUNvvLg3N
+         A7crzTIEThxOR0jM5h1UuCF/k/LT2cNFOgFNjD8esuA+0JHD9izjvnfgj9j19r0fZnTW
+         CAyqSDXo+kGqkMKF6pvtwzRjKFnWyItIUhINJksqzd8UsOiT5c7bhzOOzBaWbY3eCgpf
+         ibhQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=rEC+Hm5r;
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d36 as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com. [2607:f8b0:4864:20::d36])
-        by gmr-mx.google.com with ESMTPS id r62si239721qkc.6.2020.01.24.17.15.11
+       spf=pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) smtp.mailfrom=krisman@collabora.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk. [2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by gmr-mx.google.com with ESMTPS id p23si71308wma.1.2020.01.24.22.19.35
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jan 2020 17:15:11 -0800 (PST)
-Received-SPF: pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d36 as permitted sender) client-ip=2607:f8b0:4864:20::d36;
-Received: by mail-io1-xd36.google.com with SMTP id k24so3879791ioc.4
-        for <open-iscsi@googlegroups.com>; Fri, 24 Jan 2020 17:15:11 -0800 (PST)
-X-Received: by 2002:a02:a898:: with SMTP id l24mr4707253jam.107.1579914911125;
- Fri, 24 Jan 2020 17:15:11 -0800 (PST)
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 24 Jan 2020 22:19:35 -0800 (PST)
+Received-SPF: pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) client-ip=2a00:1098:0:82:1000:25:2eeb:e3e3;
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: krisman)
+	with ESMTPSA id A453629193A
+From: Gabriel Krisman Bertazi <krisman@collabora.com>
+To: lduncan@suse.com
+Cc: martin.petersen@oracle.com,
+	linux-scsi@vger.kernel.org,
+	open-iscsi@googlegroups.com,
+	Bharath Ravi <rbharath@google.com>,
+	kernel@collabora.com,
+	Mike Christie <mchristi@redhat.com>,
+	Lee Duncan <LDuncan@suse.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Dave Clausen <dclausen@google.com>,
+	Nick Black <nlb@google.com>,
+	Vaibhav Nagarnaik <vnagarnaik@google.com>,
+	Anatol Pomazau <anatol@google.com>,
+	Tahsin Erdogan <tahsin@google.com>,
+	Frank Mayhar <fmayhar@google.com>,
+	Junho Ryu <jayr@google.com>,
+	Khazhismel Kumykov <khazhy@google.com>,
+	Gabriel Krisman Bertazi <krisman@collabora.com>
+Subject: [PATCH RESEND v4] iscsi: Perform connection failure entirely in kernel space
+Date: Sat, 25 Jan 2020 01:19:25 -0500
+Message-Id: <20200125061925.191601-1-krisman@collabora.com>
+X-Mailer: git-send-email 2.25.0.rc2
 MIME-Version: 1.0
-References: <dc5e17db-5e78-49ff-be38-a17706428655@googlegroups.com>
-In-Reply-To: <dc5e17db-5e78-49ff-be38-a17706428655@googlegroups.com>
-From: Donald Williams <don.e.williams@gmail.com>
-Date: Fri, 24 Jan 2020 20:14:59 -0500
-Message-ID: <CAK3e-EYmEN1ETc_Ru0xcuaKUisDSV0B2=ed2Kx9Wk2rksAXnQg@mail.gmail.com>
-Subject: Re: iSCSI and Ceph RBD
-To: open-iscsi@googlegroups.com
-Content-Type: multipart/alternative; boundary="0000000000000d952a059cec9bdd"
-X-Original-Sender: Don.E.Williams@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b=rEC+Hm5r;       spf=pass
- (google.com: domain of don.e.williams@gmail.com designates
- 2607:f8b0:4864:20::d36 as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+X-Original-Sender: krisman@collabora.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3
+ as permitted sender) smtp.mailfrom=krisman@collabora.com;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=collabora.com
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -141,173 +138,216 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---0000000000000d952a059cec9bdd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Bharath Ravi <rbharath@google.com>
 
-Hello,
+Hi Lee,
 
- I am not an expert in CEPH.
+Martin asked for you to re-review this patch before he applies it, since
+there was a small change from v3 after you acked it.  The change is that
+we started to protect the list_empty() verification with the spin lock
+on session destruction.
 
-However,  iSCSI is the transport protocols to connect an initiator to a
-target.  On the client side, iSCSI traffic coming from target is broken
-down and the SCSI commands are handed to the client.   When writing data,
-the iSCSI initiator encoded the command and data and transports it to the
-iSCSI target where the target breaks down the iSCSI portion to get the
-client SCSI command,  I.e. a WRITE10, and processes that request.
+For that reason, I dropped your reviewed-by.  Can you please take
+another look so we can have this merged?
 
- So things like CEPH are above the iSCSI layer.  This is why CEPH can work
-with Fibre Channel, SAS, SCSI, iSCSI, etc...
+Thanks,
 
-https://docs.ceph.com/docs/mimic/glossary/#term-ceph-osd-daemon
-OSD
+-- >8 -- 
 
-A physical or logical storage unit (*e.g.*, LUN). Sometimes, Ceph users use
-the term =E2=80=9COSD=E2=80=9D to refer to Ceph OSD Daemon
-<https://docs.ceph.com/docs/mimic/glossary/#term-ceph-osd-daemon>, though
-the proper term is =E2=80=9CCeph OSD=E2=80=9D.
-So iSCSI will provide the physical LUN that CEPH will use. This is good
-otherwise for every protocol of storage you want to use, you would have to
-have a specific driver for CEPH.
+Connection failure processing depends on a daemon being present to (at
+least) stop the connection and start recovery.  This is a problem on a
+multipath scenario, where if the daemon failed for whatever reason, the
+SCSI path is never marked as down, multipath won't perform the
+failover and IO to the device will be forever waiting for that
+connection to come back.
 
-This is a pretty good intro to iSCSI
+This patch performs the connection failure entirely inside the kernel.
+This way, the failover can happen and pending IO can continue even if
+the daemon is dead. Once the daemon comes alive again, it can execute
+recovery procedures if applicable.
 
-https://blog.calsoftinc.com/2017/03/iscsi-introduction-steps-configure-iscs=
-i-initiator-target.html
+Changes since v3:
+  - Protect list_empty with connlock on session destroy
 
+Changes since v2:
+  - Don't hold rx_mutex for too long at once
 
-Regards,
+Changes since v1:
+  - Remove module parameter.
+  - Always do kernel-side stop work.
+  - Block recovery timeout handler if system is dying.
+  - send a CONN_TERM stop if the system is dying.
 
-Don
+Cc: Mike Christie <mchristi@redhat.com>
+Cc: Lee Duncan <LDuncan@suse.com>
+Cc: Bart Van Assche <bvanassche@acm.org>
+Co-developed-by: Dave Clausen <dclausen@google.com>
+Signed-off-by: Dave Clausen <dclausen@google.com>
+Co-developed-by: Nick Black <nlb@google.com>
+Signed-off-by: Nick Black <nlb@google.com>
+Co-developed-by: Vaibhav Nagarnaik <vnagarnaik@google.com>
+Signed-off-by: Vaibhav Nagarnaik <vnagarnaik@google.com>
+Co-developed-by: Anatol Pomazau <anatol@google.com>
+Signed-off-by: Anatol Pomazau <anatol@google.com>
+Co-developed-by: Tahsin Erdogan <tahsin@google.com>
+Signed-off-by: Tahsin Erdogan <tahsin@google.com>
+Co-developed-by: Frank Mayhar <fmayhar@google.com>
+Signed-off-by: Frank Mayhar <fmayhar@google.com>
+Co-developed-by: Junho Ryu <jayr@google.com>
+Signed-off-by: Junho Ryu <jayr@google.com>
+Co-developed-by: Khazhismel Kumykov <khazhy@google.com>
+Signed-off-by: Khazhismel Kumykov <khazhy@google.com>
+Reviewed-by: Reviewed-by: Khazhismel Kumykov <khazhy@google.com>
+Signed-off-by: Bharath Ravi <rbharath@google.com>
+Co-developed-by: Gabriel Krisman Bertazi <krisman@collabora.com>
+Signed-off-by: Gabriel Krisman Bertazi <krisman@collabora.com>
+---
+ drivers/scsi/scsi_transport_iscsi.c | 68 +++++++++++++++++++++++++++++
+ include/scsi/scsi_transport_iscsi.h |  1 +
+ 2 files changed, 69 insertions(+)
 
+diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+index 271afea654e2..ba6cfaf71aef 100644
+--- a/drivers/scsi/scsi_transport_iscsi.c
++++ b/drivers/scsi/scsi_transport_iscsi.c
+@@ -86,6 +86,12 @@ struct iscsi_internal {
+ 	struct transport_container session_cont;
+ };
+ 
++/* Worker to perform connection failure on unresponsive connections
++ * completely in kernel space.
++ */
++static void stop_conn_work_fn(struct work_struct *work);
++static DECLARE_WORK(stop_conn_work, stop_conn_work_fn);
++
+ static atomic_t iscsi_session_nr; /* sysfs session id for next new session */
+ static struct workqueue_struct *iscsi_eh_timer_workq;
+ 
+@@ -1611,6 +1617,7 @@ static DEFINE_MUTEX(rx_queue_mutex);
+ static LIST_HEAD(sesslist);
+ static DEFINE_SPINLOCK(sesslock);
+ static LIST_HEAD(connlist);
++static LIST_HEAD(connlist_err);
+ static DEFINE_SPINLOCK(connlock);
+ 
+ static uint32_t iscsi_conn_get_sid(struct iscsi_cls_conn *conn)
+@@ -2247,6 +2254,7 @@ iscsi_create_conn(struct iscsi_cls_session *session, int dd_size, uint32_t cid)
+ 
+ 	mutex_init(&conn->ep_mutex);
+ 	INIT_LIST_HEAD(&conn->conn_list);
++	INIT_LIST_HEAD(&conn->conn_list_err);
+ 	conn->transport = transport;
+ 	conn->cid = cid;
+ 
+@@ -2293,6 +2301,7 @@ int iscsi_destroy_conn(struct iscsi_cls_conn *conn)
+ 
+ 	spin_lock_irqsave(&connlock, flags);
+ 	list_del(&conn->conn_list);
++	list_del(&conn->conn_list_err);
+ 	spin_unlock_irqrestore(&connlock, flags);
+ 
+ 	transport_unregister_device(&conn->dev);
+@@ -2407,6 +2416,51 @@ int iscsi_offload_mesg(struct Scsi_Host *shost,
+ }
+ EXPORT_SYMBOL_GPL(iscsi_offload_mesg);
+ 
++static void stop_conn_work_fn(struct work_struct *work)
++{
++	struct iscsi_cls_conn *conn, *tmp;
++	unsigned long flags;
++	LIST_HEAD(recovery_list);
++
++	spin_lock_irqsave(&connlock, flags);
++	if (list_empty(&connlist_err)) {
++		spin_unlock_irqrestore(&connlock, flags);
++		return;
++	}
++	list_splice_init(&connlist_err, &recovery_list);
++	spin_unlock_irqrestore(&connlock, flags);
++
++	list_for_each_entry_safe(conn, tmp, &recovery_list, conn_list_err) {
++		uint32_t sid = iscsi_conn_get_sid(conn);
++		struct iscsi_cls_session *session;
++
++		mutex_lock(&rx_queue_mutex);
++
++		session = iscsi_session_lookup(sid);
++		if (session) {
++			if (system_state != SYSTEM_RUNNING) {
++				session->recovery_tmo = 0;
++				conn->transport->stop_conn(conn,
++							   STOP_CONN_TERM);
++			} else {
++				conn->transport->stop_conn(conn,
++							   STOP_CONN_RECOVER);
++			}
++		}
++
++		list_del_init(&conn->conn_list_err);
++
++		mutex_unlock(&rx_queue_mutex);
++
++		/* we don't want to hold rx_queue_mutex for too long,
++		 * for instance if many conns failed at the same time,
++		 * since this stall other iscsi maintenance operations.
++		 * Give other users a chance to proceed.
++		 */
++		cond_resched();
++	}
++}
++
+ void iscsi_conn_error_event(struct iscsi_cls_conn *conn, enum iscsi_err error)
+ {
+ 	struct nlmsghdr	*nlh;
+@@ -2414,6 +2468,12 @@ void iscsi_conn_error_event(struct iscsi_cls_conn *conn, enum iscsi_err error)
+ 	struct iscsi_uevent *ev;
+ 	struct iscsi_internal *priv;
+ 	int len = nlmsg_total_size(sizeof(*ev));
++	unsigned long flags;
++
++	spin_lock_irqsave(&connlock, flags);
++	list_add(&conn->conn_list_err, &connlist_err);
++	spin_unlock_irqrestore(&connlock, flags);
++	queue_work(system_unbound_wq, &stop_conn_work);
+ 
+ 	priv = iscsi_if_transport_lookup(conn->transport);
+ 	if (!priv)
+@@ -2743,11 +2803,19 @@ static int
+ iscsi_if_destroy_conn(struct iscsi_transport *transport, struct iscsi_uevent *ev)
+ {
+ 	struct iscsi_cls_conn *conn;
++	unsigned long flags;
+ 
+ 	conn = iscsi_conn_lookup(ev->u.d_conn.sid, ev->u.d_conn.cid);
+ 	if (!conn)
+ 		return -EINVAL;
+ 
++	spin_lock_irqsave(&connlock, flags);
++	if (!list_empty(&conn->conn_list_err)) {
++		spin_unlock_irqrestore(&connlock, flags);
++		return -EAGAIN;
++	}
++	spin_unlock_irqrestore(&connlock, flags);
++
+ 	ISCSI_DBG_TRANS_CONN(conn, "Destroying transport conn\n");
+ 	if (transport->destroy_conn)
+ 		transport->destroy_conn(conn);
+diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
+index 325ae731d9ad..2129dc9e2dec 100644
+--- a/include/scsi/scsi_transport_iscsi.h
++++ b/include/scsi/scsi_transport_iscsi.h
+@@ -190,6 +190,7 @@ extern void iscsi_ping_comp_event(uint32_t host_no,
+ 
+ struct iscsi_cls_conn {
+ 	struct list_head conn_list;	/* item in connlist */
++	struct list_head conn_list_err;	/* item in connlist_err */
+ 	void *dd_data;			/* LLD private data */
+ 	struct iscsi_transport *transport;
+ 	uint32_t cid;			/* connection id */
+-- 
+2.25.0.rc2
 
-
-
-
-
-
-On Fri, Jan 24, 2020 at 4:50 PM Bobby <italienisch1987@gmail.com> wrote:
-
-> Hi,
->
-> I have some questions regarding iSCSI and Ceph RBD. If I have understood
-> correctly, the RBD backstore module
-> on target side can translate SCSI IO into Ceph OSD requests. The iSCSI
-> target driver with rbd.ko can expose Ceph cluster
-> on iSCSI protocol. If correct, then that all is happening on target side.
->
-> My confusion is what is  happening on client side?
->
-> Meaning, does linux mainline kernel code called "rbd" has any role with
-> Open-iSCSI initiator on client side? To put it more simple,
-> is there any common ground for both protocols (iSCSI and rbd) in the linu=
-x
-> kernel  of the client side?
->
-> Thanks :-)
->
-> --
-> You received this message because you are subscribed to the Google Groups
-> "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an
-> email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit
-> https://groups.google.com/d/msgid/open-iscsi/dc5e17db-5e78-49ff-be38-a177=
-06428655%40googlegroups.com
-> <https://groups.google.com/d/msgid/open-iscsi/dc5e17db-5e78-49ff-be38-a17=
-706428655%40googlegroups.com?utm_medium=3Demail&utm_source=3Dfooter>
-> .
->
-
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/CAK3e-EYmEN1ETc_Ru0xcuaKUisDSV0B2%3Ded2Kx9Wk2rksAXnQg%40mail.gma=
-il.com.
-
---0000000000000d952a059cec9bdd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello,=C2=A0<div><br></div><div>=C2=A0I am not an expert i=
-n CEPH.=C2=A0<br><div><div>=C2=A0</div><div>However,=C2=A0 iSCSI is the tra=
-nsport protocols to connect an initiator to a target.=C2=A0 On the client s=
-ide, iSCSI traffic coming from target is broken down and the SCSI commands =
-are handed to the client.=C2=A0 =C2=A0When writing data, the iSCSI initiato=
-r encoded the command and data and transports it to the iSCSI target where =
-the target breaks down the iSCSI portion to get the client SCSI command,=C2=
-=A0 I.e. a WRITE10, and processes that request.=C2=A0</div><div><br></div><=
-div>=C2=A0So things like CEPH are above the iSCSI layer.=C2=A0 This is why =
-CEPH can work with Fibre Channel, SAS, SCSI, iSCSI, etc...=C2=A0=C2=A0</div=
-><div><br></div><div><a href=3D"https://docs.ceph.com/docs/mimic/glossary/#=
-term-ceph-osd-daemon">https://docs.ceph.com/docs/mimic/glossary/#term-ceph-=
-osd-daemon</a>=C2=A0</div><div><span style=3D"color:rgb(62,67,73);font-fami=
-ly:Helvetica,Arial,sans-serif;font-size:14px;font-weight:bold">OSD</span><b=
-r></div><div><dd style=3D"margin-top:3px;margin-bottom:10px;margin-left:30p=
-x;line-height:1.5em;color:rgb(62,67,73);font-family:Helvetica,Arial,sans-se=
-rif;font-size:14px"><p style=3D"margin-top:0px;line-height:1.5em">A physica=
-l or logical storage unit (<em>e.g.</em>, LUN). Sometimes, Ceph users use t=
-he term =E2=80=9COSD=E2=80=9D to refer to=C2=A0<a class=3D"gmail-reference =
-gmail-internal" href=3D"https://docs.ceph.com/docs/mimic/glossary/#term-cep=
-h-osd-daemon" style=3D"color:rgb(240,92,86);text-decoration-line:none"><spa=
-n class=3D"gmail-xref gmail-std gmail-std-term">Ceph OSD Daemon</span></a>,=
- though the proper term is =E2=80=9CCeph OSD=E2=80=9D.</p></dd></div><div>S=
-o iSCSI will provide the physical LUN that CEPH will use. This is good othe=
-rwise for every protocol of storage you want to use, you would have to have=
- a specific driver for CEPH.=C2=A0</div><div><br></div><div>This is a prett=
-y good intro to iSCSI=C2=A0</div><div><br></div><div><a href=3D"https://blo=
-g.calsoftinc.com/2017/03/iscsi-introduction-steps-configure-iscsi-initiator=
--target.html">https://blog.calsoftinc.com/2017/03/iscsi-introduction-steps-=
-configure-iscsi-initiator-target.html</a>=C2=A0</div><div>=C2=A0<br></div><=
-div>Regards,=C2=A0</div><div><br></div><div>Don=C2=A0</div><div><br></div><=
-div><br></div><div>=C2=A0</div><div><br></div><div><br></div><div><br></div=
-></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Fri, Jan 24, 2020 at 4:50 PM Bobby &lt;<a href=3D"mailto:it=
-alienisch1987@gmail.com">italienisch1987@gmail.com</a>&gt; wrote:<br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi,=
-</div><div><br></div><div>I have some questions regarding iSCSI and Ceph RB=
-D. If I have understood correctly, the RBD backstore module=C2=A0</div><div=
->on target side can translate SCSI IO into Ceph OSD requests. The iSCSI tar=
-get driver with rbd.ko can expose Ceph cluster</div><div>on iSCSI protocol.=
- If correct, then that all is happening on target side.=C2=A0=C2=A0</div><d=
-iv><br></div><div>My confusion is what is=C2=A0 happening on client side?</=
-div><div><br></div><div>Meaning, does linux mainline kernel code called &qu=
-ot;rbd&quot; has any role with=C2=A0 Open-iSCSI initiator on client side? T=
-o put it more simple,=C2=A0</div><div>is there any common ground for both p=
-rotocols (iSCSI and rbd) in the linux kernel=C2=A0 of the client side?=C2=
-=A0</div><div><br></div><div>Thanks :-)</div></div>
-
-<p></p>
-
--- <br>
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br>
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com" target=
-=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/dc5e17db-5e78-49ff-be38-a17706428655%40googlegroups.c=
-om?utm_medium=3Demail&amp;utm_source=3Dfooter" target=3D"_blank">https://gr=
-oups.google.com/d/msgid/open-iscsi/dc5e17db-5e78-49ff-be38-a17706428655%40g=
-ooglegroups.com</a>.<br>
-</blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAK3e-EYmEN1ETc_Ru0xcuaKUisDSV0B2%3Ded2Kx9Wk2rksAXnQg=
-%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.go=
-ogle.com/d/msgid/open-iscsi/CAK3e-EYmEN1ETc_Ru0xcuaKUisDSV0B2%3Ded2Kx9Wk2rk=
-sAXnQg%40mail.gmail.com</a>.<br />
-
---0000000000000d952a059cec9bdd--
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200125061925.191601-1-krisman%40collabora.com.
