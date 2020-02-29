@@ -1,126 +1,166 @@
-Return-Path: <open-iscsi+bncBDA4VMEL3QNRBUV74DZAKGQEL7QSFJY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDVIJONZ3YDRB2G247ZAKGQENYCY56A@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wr1-x43c.google.com (mail-wr1-x43c.google.com [IPv6:2a00:1450:4864:20::43c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A219172919
-	for <lists+open-iscsi@lfdr.de>; Thu, 27 Feb 2020 21:00:19 +0100 (CET)
-Received: by mail-wr1-x43c.google.com with SMTP id t14sf287665wrs.12
-        for <lists+open-iscsi@lfdr.de>; Thu, 27 Feb 2020 12:00:19 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1582833618; cv=pass;
+Received: from mail-vk1-xa3f.google.com (mail-vk1-xa3f.google.com [IPv6:2607:f8b0:4864:20::a3f])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA8761744E7
+	for <lists+open-iscsi@lfdr.de>; Sat, 29 Feb 2020 05:49:45 +0100 (CET)
+Received: by mail-vk1-xa3f.google.com with SMTP id e22sf2213509vke.21
+        for <lists+open-iscsi@lfdr.de>; Fri, 28 Feb 2020 20:49:45 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1582951784; cv=pass;
         d=google.com; s=arc-20160816;
-        b=HYxwWS5J7KfO6x4AQXprwNLzInxxja/mpWYeXTO3UFYnh7ut0/C79tt5EnN9U5Vr7C
-         0gUUGxX+wsWfSyjzkM3uIsoVXdn0WZtQFg2SqkY8W+ZK7YRLMdMkr8bA2wbCp8QSli3P
-         /DfqMlbgKs4ioIo73An4Kpj2R5sNo0XIKXecxdCwK7/rk9+8z/bXeeabZaGV/YEUpTOs
-         A+jHUQ3j39u6MCrzTxB/G7XLE5Z6Q2FO1CKBU/VXaHHG+ULsx/imHIR8itOga2pODL8A
-         TO+oZciaVpJaZo4FIaksC40Iz51pse2Bgrk4ulKoM3fvANIaAJcy80Q2241a4i6kDyYG
-         a/Xg==
+        b=XSUR1JHKeKN/ViTMdJbF4hIlTLgo3OkgY6PlAkEH3SwjHmlM4lLSHhqyG+Mllemmi0
+         8F+IKROlaMSlwMok0UCeB+hq3/7DSlYw7ExlJCx2/TwUqynLUtYJ5kYMH2a6UKeeUNN4
+         M2ST1xdINq8kWZqP72I/bX3tVbeKsWP/FPfXzfmB1yrQ+Iu6z/yK65cuLqc1If6CXnEl
+         P8aNwkyKnXCNqx3gcI9AzekYv6aMVeoxfjNjmSs2Veu0J7jUZzWIegC4mIhF1Xh0DsT4
+         QfT4uBjvAQhUG66NAY1T8u6rTksEqWqENXlD7N2tkZb9GTxbhdGbfg676I2b8oAzQq0r
+         iwuQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:sender:dkim-signature;
-        bh=0p/BLU7gMkwXrWtrZiUAmITJn0xTjNgEMSdu+cqq8SY=;
-        b=t4+fCuujNxExnOyf6kaZk2q3nP/KolPpG5BVh4DrN59OPvBTfq/7FYkNgW17Gi6/wd
-         nhy5Ious7d1jnk+r8fvbGg/VXIkiLus35so0XWVE2M5d3dg/eKhI1FW+kkgfAkVyP2cm
-         2z5sJ4MXK1L6soqciCyuCqgNcAJpdam4zKNOOEmlE2sKMfQ6UHqnByfAvFSicayx/ZgY
-         njdYMfyMYYOJKpJy3JS5lCKOo7khE8H2y6365G5vEnbRQZctZgCDrKr7J5ExbTrGV8sG
-         jhPJc2QVLNfSau+uBECytyoBGxXG5V2hNjjUNFPvhMVx9X9YIFFGG8dWL1g7j7DDZD4t
-         uw6g==
+         :list-id:mailing-list:precedence:reply-to:mime-version:user-agent
+         :message-id:in-reply-to:date:references:organization:from:subject:cc
+         :to:sender:dkim-signature;
+        bh=5wvqLnVKb6Aa40KPtCbZCTx4o1vg4tRlgcbyB5ULwS8=;
+        b=egaGyXRTtMGuM+nhwz+eNt4KP7MRIZx7xgVuIBcRVrAWy8WTV22j6UpSCuENTY3/ht
+         CIlCnksWiVmtZYxDJ/a0PZDLTz0snRNpMCpS+htK6LZoPT0Yc77k/aqAn+n3quhrZZq6
+         7Qqo/G6NOLHYFwMJ/nQZoz/xkYB1h+hilopdueSLq0vWBWRDfWt+H2nbsBoYrsD5GOBF
+         x4qPBy2tT3czgSREBysou3akkrKSygc39Y9S3FeNOejIkn6SLFokQFHpAttuoxJ7Unwr
+         OZkLZ//so9NQne5wrDVIWaJ4l094DuMhXdwIEH0s4Aa+Pnt1jre3zYTW0ZdaNOD5Egg2
+         BGdg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) smtp.mailfrom=krisman@collabora.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=sQsrTyp0;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=0p/BLU7gMkwXrWtrZiUAmITJn0xTjNgEMSdu+cqq8SY=;
-        b=Z1AWm/lbVljBiXJFvaXA4G5kAznEC/TPZCV9x2RTUc8D7rRUCWoj/QWVffxYRlk97n
-         na0UeTMHNWeVjIljcyq1e3ocit+6A14BzRSXLk9mD5eb3iTHpUkoxHIIcgZZ8j8SiyuG
-         QsPMkvQ+X6yezbxkDXTWHTazNoY2oGXRd3PUvC6fNrUw9TxomqvXxCXeC7Ss2ou4H1cy
-         07eExVj+nwaVitHRG/xsTNno2Aos/oZHcQmpnQ2O14V7zIhhOkgJaAx4kzf/Mw0kFGZc
-         dZNm+8gBUWDIt8LMSasO5fwhwK1sJNJYtAJ155DBm/g1Mc+TOWhKuXssxWDInVbYJj4c
-         EE8w==
+        h=sender:to:cc:subject:from:organization:references:date:in-reply-to
+         :message-id:user-agent:mime-version:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=5wvqLnVKb6Aa40KPtCbZCTx4o1vg4tRlgcbyB5ULwS8=;
+        b=dbum+XAaPhiETRX1UDDW71euDUoj7dfjYLbMVvZPXkPhLS+iSp8H5hUqhNCYIRWkgy
+         Rs7EXvbSRFngXzqWcZiGsceuwFOa9b6efX6Ng0+jiI0wZKxMyhZqDRaNgu8pYBi6dseX
+         yeoTPO6LWRr3kPl30yn3rJlGXfgvM2iMx1s7uxUq85PlaNeIewdvlSgaPgrB8M8EM5wR
+         ZKVVuvaJV4/RC1eOzrTV6C9ce4fofABY6BbjM6lP2rUT2nIKQKXYP7azikvno4jqXYw8
+         y+SIAHIPiPOo8upYbaFugILpSojsLPjqEC2tFoGrS9KGu6rO8qExKCv0OPdxrmzx39+K
+         cHGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=0p/BLU7gMkwXrWtrZiUAmITJn0xTjNgEMSdu+cqq8SY=;
-        b=TIj+u415K/zEYxb0cM69rFzMBOs3ovLepvbVnb29ICoKYWaH0uB0BhQxuCBdL+Vknn
-         Rmi9yeA5cnQ57s68JVl3jDBHqT3XK4QAYo7r9p+szD+3cBw+hwF886Uy3DUN4Y8Si+0B
-         bi8u66qsM5XD6Qv3kpA2Tk3RTyLzL3z3usPwCwLCNgAsw+F2Q9Gvkz/fT4/Ya6mlIwRD
-         IuzqEYBw6Mp5mcANJDwXEz741ccT3eelyzT4K7fvtKOhlQvmt8KHDCsEX9Zp1xJBemx5
-         RXzZ0RuEoc1xtzPtajc/guXnRfh371xDfmz8M9viTUITZo+m/KTslYRhM8Nx69jrIM8G
-         OlEA==
+        h=sender:x-gm-message-state:to:cc:subject:from:organization
+         :references:date:in-reply-to:message-id:user-agent:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=5wvqLnVKb6Aa40KPtCbZCTx4o1vg4tRlgcbyB5ULwS8=;
+        b=Epv7kErmEhrOqTfYuziOq2M2GSK2g25aGiwZw8w9AyXv5NcV3Lze+XAu99F4IazkNi
+         FNghURhc6VTXYpIh0oTZu/JOHd4I74nfg6eFZpXuqa4NTHMj0tiFngdDTWfVfIY1MxIk
+         0vLO4GYUdGKn2dcmZGxfJ/coO8fLlnjvOCyirtsnDpSZ9IazNIClcGUPEdPaMZcWCtrr
+         dX9XRUpN3RB6r8PGekz4VY9EL0xThSNpmdDWgalwMBJMFNnH/ciEErYdQQZepYyGE1dC
+         q0gtQUemr5TLmekozY8y80TJZCmPhbXqne3BRqwivpCa950bhTFdl4p7mJp4vF59vdhL
+         OvrQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: APjAAAVUDGSzcE+YzfwjpY4EIRO+kWxscWhiVb8JbWnYQ4rRfzpnRo2e
-	1rWfCKz9szoyDiDcWD94HXs=
-X-Google-Smtp-Source: APXvYqx8FMd/jGh5YHnM5wBngvLu0Yqo4A/oQ5HIprqqLcTK8yuGQC0nMiOmvJuBma0UxhfJcyVsog==
-X-Received: by 2002:a5d:5745:: with SMTP id q5mr536212wrw.374.1582833618631;
-        Thu, 27 Feb 2020 12:00:18 -0800 (PST)
+X-Gm-Message-State: ANhLgQ0BfCU8uZPIf6uypDad3qkuRwx4z/YZAzTUgP5xiKnfzaZkRB+e
+	62Gy0c/R+eSCHJv2Dtr4PTs=
+X-Google-Smtp-Source: ADFU+vsn3PkDA3X5j9+v7T5KmLcToimfVfWSUZzGx6ti7NKq2dhFjIrqcHM0mkq266MOoLNgp3+T/w==
+X-Received: by 2002:ac5:c844:: with SMTP id g4mr4245334vkm.25.1582951784503;
+        Fri, 28 Feb 2020 20:49:44 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6000:100e:: with SMTP id a14ls237586wrx.2.gmail; Thu, 27
- Feb 2020 12:00:18 -0800 (PST)
-X-Received: by 2002:a5d:4c52:: with SMTP id n18mr522778wrt.403.1582833618025;
-        Thu, 27 Feb 2020 12:00:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1582833618; cv=none;
+Received: by 2002:ab0:1d14:: with SMTP id j20ls371892uak.4.gmail; Fri, 28 Feb
+ 2020 20:49:43 -0800 (PST)
+X-Received: by 2002:ab0:6e6:: with SMTP id g93mr4089304uag.105.1582951783824;
+        Fri, 28 Feb 2020 20:49:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1582951783; cv=none;
         d=google.com; s=arc-20160816;
-        b=S7ZaaXEfAK2eRfLurj118cks6N6QznMehqfznzVUNssgZHpXTADba53hmfyofcS1AK
-         rAn/nxKHQ8d5rs+YyBns5b6ifAv/8y3rxGlHmQlyf4k5mrSyBmXbiiBiujlPaHpHeU9m
-         s8EJ0Nod14wQcZCVn1o4+QzKb92nVHv580TTze89DZNnalWSFOhf7S8IvT0oIV515aD+
-         /fkOjonb8KVfDZnS6/oPfJaW8bI+tVwASUoIF/vKuJTL9OR+N+dPHAeBN63GwFM0uPHI
-         EEAoh7//56SMReAGKFiU9aESYPtX/t/SK/3zH1Ytdvo3mJqeKvKQAS+lLWFViBJjjJWn
-         RN5Q==
+        b=H6N/jAUWvN8voyksusV40C+OoCCG4xm+2a9ZGcSJVPSu22mft5UNclSwXCn4IoZvc5
+         n8ysnqkrH4j6ad1DVRqJ/vUAWWombeyd/JZy1z/ozGzQJ2SOg91WLCww/9aREsveVKje
+         xai6Umk8L3o3qWkk5MyGzVZ2X/xpkZch+3HkG5DSy1wWv8d0tO15HiDPEvO9fItZMB2K
+         b+7R1n6YMGOYu6pj1f7abisRvjSM6x6PF06jw98FYAkXqhYQCubDaLmgRWzd3nqRonKS
+         1RmRNSmTmOWkADNrAYPyrdVi9DiJtoqfzVa9br8YOHhYCWIwuk7E1xO2AFeIEjK7swLd
+         XMKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from;
-        bh=ikeBiG28USAbpsAwkp4JeDnxueJKLluQte9aT3nMRqs=;
-        b=rleXsO/Avq9b+byhW4fSY/yppkiSh/AAco83nWAtiWvlYMuZoS8vmMpY5HZh5Cvl9t
-         QiP1zhJB2j4/2vwtlwLHH6HCw78tlzdxOKdLh7pB6Ev5RY6KJRm79DuqgIg3+jNH5n5a
-         f+gPV/fnbnXG0UsA9bZxzd1bQPLvqk0MwVfE8NlZ7H7FvGNX2vbmja9//hmCtE1E08Vm
-         Bt1Zn9pcToGNjgGreQelkJd8vJSmPanmkfJTJTVouKMh+YzUZB3Cxi7zxRocaSzifaNe
-         /JIbrJn1byjJBmxM/SMabvBYhQQoNsRdKlPwWc38N6U5ftQHV2tBXBOd7Bm3kriEAub8
-         Yf6w==
+        h=mime-version:user-agent:message-id:in-reply-to:date:references
+         :organization:from:subject:cc:to:dkim-signature;
+        bh=kzR9CGwA8QkKF16UH73eDglqPnsxYFUS7yPTFc3wG+Q=;
+        b=IVCuGT3Sgum9D54vz+ylKHEHyyJlh2BqtxF/3I1NZ/wPR5viETtybAyDvri/rSs+XT
+         HHQ3U/nxvPHNSedSxYF1RW+7CX1nfsT4n9fULuxJo1BrLi+0/6GQ9bf6NEkEk8vXd8wT
+         4CMOb4lY5ju71O/bwZ/DvugTWtMsnJPvOZFhOqHXNYcjHgaMtALxyB3hv30nrVy4NxMa
+         C3pBVwa0RQ8vzkCjMAcHn05cn3/ocFSFYJKHYAxVyqDRKa3+vII+RQ+g2aUmRsnmQ2Xk
+         B7bl7OVe6NfL1wUEQIys2Iu5+DJ9uGMGnG5PADYf5fFpI5/vMpKQQpfAyJ1QgZ0W6A03
+         pXhA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) smtp.mailfrom=krisman@collabora.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk. [46.235.227.227])
-        by gmr-mx.google.com with ESMTPS id y185si567416wmg.0.2020.02.27.12.00.17
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=sQsrTyp0;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from aserp2120.oracle.com (aserp2120.oracle.com. [141.146.126.78])
+        by gmr-mx.google.com with ESMTPS id u25si442830vsn.1.2020.02.28.20.49.43
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 27 Feb 2020 12:00:17 -0800 (PST)
-Received-SPF: pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) client-ip=46.235.227.227;
-Received: from localhost (unknown [IPv6:2610:98:8005::447])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: krisman)
-	by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 8B0CE28EE39;
-	Thu, 27 Feb 2020 20:00:17 +0000 (GMT)
-From: Gabriel Krisman Bertazi <krisman@collabora.com>
-To: lduncan@suse.com
-Cc: cleech@redhat.com,
-	jejb@linux.ibm.com,
-	martin.petersen@oracle.com,
-	open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org,
-	Frank Mayhar <fmayhar@google.com>,
-	kernel@collabora.com,
-	Khazhismel Kumykov <khazhy@google.com>,
-	Gabriel Krisman Bertazi <krisman@collabora.com>
-Subject: [PATCH RESEND v2] iscsi: Add support for asynchronous iSCSI session destruction
-Date: Thu, 27 Feb 2020 14:59:45 -0500
-Message-Id: <20200227195945.761719-1-krisman@collabora.com>
-X-Mailer: git-send-email 2.25.0
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 28 Feb 2020 20:49:43 -0800 (PST)
+Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 141.146.126.78 as permitted sender) client-ip=141.146.126.78;
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+	by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 01T4nSa0034340;
+	Sat, 29 Feb 2020 04:49:28 GMT
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+	by aserp2120.oracle.com with ESMTP id 2yffwq8404-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 29 Feb 2020 04:49:28 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+	by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 01T4lhd2010921;
+	Sat, 29 Feb 2020 04:49:27 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+	by aserp3030.oracle.com with ESMTP id 2yfe0d9c8n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 29 Feb 2020 04:49:27 +0000
+Received: from abhmp0016.oracle.com (abhmp0016.oracle.com [141.146.116.22])
+	by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 01T4nPYo013441;
+	Sat, 29 Feb 2020 04:49:25 GMT
+Received: from ca-mkp.ca.oracle.com (/10.159.214.123)
+	by default (Oracle Beehive Gateway v4.0)
+	with ESMTP ; Fri, 28 Feb 2020 20:49:24 -0800
+To: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Cc: Satish Kharat <satishkh@cisco.com>, Sesidhar Baddela <sebaddel@cisco.com>,
+        Karan Tilak Kumar <kartilak@cisco.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Brian King <brking@us.ibm.com>,
+        Intel SCU Linux support <intel-linux-scu@intel.com>,
+        Artur Paszkiewicz <artur.paszkiewicz@intel.com>,
+        Sathya Prakash <sathya.prakash@broadcom.com>,
+        Chaitra P B <chaitra.basappa@broadcom.com>,
+        Suganath Prabu Subramani <suganath-prabu.subramani@broadcom.com>,
+        Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
+        Bart Van Assche <bvanassche@acm.org>, linux-scsi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, MPT-FusionLinux.pdl@broadcom.com,
+        open-iscsi@googlegroups.com, linux-rdma@vger.kernel.org
+Subject: Re: [PATCH] scsi: Replace zero-length array with flexible-array member
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+Organization: Oracle Corporation
+References: <20200224161406.GA21454@embeddedor>
+Date: Fri, 28 Feb 2020 23:49:21 -0500
+In-Reply-To: <20200224161406.GA21454@embeddedor> (Gustavo A. R. Silva's
+	message of "Mon, 24 Feb 2020 10:14:06 -0600")
+Message-ID: <yq1eeue5772.fsf@oracle.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1.92 (gnu/linux)
 MIME-Version: 1.0
-X-Original-Sender: krisman@collabora.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of krisman@collabora.com designates 46.235.227.227 as
- permitted sender) smtp.mailfrom=krisman@collabora.com;       dmarc=pass
- (p=NONE sp=NONE dis=NONE) header.from=collabora.com
-Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9545 signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 spamscore=0 mlxlogscore=619 adultscore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2001150001 definitions=main-2002290033
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9545 signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 lowpriorityscore=0 spamscore=0
+ impostorscore=0 malwarescore=0 mlxlogscore=685 mlxscore=0 suspectscore=0
+ phishscore=0 clxscore=1011 bulkscore=0 adultscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
+ definitions=main-2002290033
+X-Original-Sender: martin.petersen@oracle.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@oracle.com header.s=corp-2020-01-29 header.b=sQsrTyp0;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates
+ 141.146.126.78 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -133,156 +173,20 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-From: Frank Mayhar <fmayhar@google.com>
 
-iSCSI session destruction can be arbitrarily slow, since it might
-require network operations and serialization inside the scsi layer.
-This patch adds a new user event to trigger the destruction work
-asynchronously, releasing the rx_queue_mutex as soon as the operation is
-queued and before it is performed.  This change allow other operations
-to run in other sessions in the meantime, removing one of the major
-iSCSI bottlenecks for us.
+Gustavo,
 
-To prevent the session from being used after the destruction request, we
-remove it immediately from the sesslist. This simplifies the locking
-required during the asynchronous removal.
+> The current codebase makes use of the zero-length array language
+> extension to the C90 standard, but the preferred mechanism to declare
+> variable-length types such as these ones is a flexible array
+> member[1][2], introduced in C99:
 
-Reviewed-by: Lee Duncan <lduncan@suse.com>
-Co-developed-by: Khazhismel Kumykov <khazhy@google.com>
-Signed-off-by: Khazhismel Kumykov <khazhy@google.com>
-Signed-off-by: Frank Mayhar <fmayhar@google.com>
-Co-developed-by: Gabriel Krisman Bertazi <krisman@collabora.com>
-Signed-off-by: Gabriel Krisman Bertazi <krisman@collabora.com>
----
-changes since v1:
-  - Add -ENOMEM error return code
+Applied to 5.7/scsi-queue, thanks.
 
- drivers/scsi/scsi_transport_iscsi.c | 38 +++++++++++++++++++++++++++++
- include/scsi/iscsi_if.h             |  1 +
- include/scsi/scsi_transport_iscsi.h |  1 +
- 3 files changed, 40 insertions(+)
-
-diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index f3f0ecdb09a2..17a45716a0fe 100644
---- a/drivers/scsi/scsi_transport_iscsi.c
-+++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -95,6 +95,8 @@ static DECLARE_WORK(stop_conn_work, stop_conn_work_fn);
- static atomic_t iscsi_session_nr; /* sysfs session id for next new session */
- static struct workqueue_struct *iscsi_eh_timer_workq;
- 
-+static struct workqueue_struct *iscsi_destroy_workq;
-+
- static DEFINE_IDA(iscsi_sess_ida);
- /*
-  * list of registered transports and lock that must
-@@ -1615,6 +1617,7 @@ static struct sock *nls;
- static DEFINE_MUTEX(rx_queue_mutex);
- 
- static LIST_HEAD(sesslist);
-+static LIST_HEAD(sessdestroylist);
- static DEFINE_SPINLOCK(sesslock);
- static LIST_HEAD(connlist);
- static LIST_HEAD(connlist_err);
-@@ -2035,6 +2038,14 @@ static void __iscsi_unbind_session(struct work_struct *work)
- 	ISCSI_DBG_TRANS_SESSION(session, "Completed target removal\n");
- }
- 
-+static void __iscsi_destroy_session(struct work_struct *work)
-+{
-+	struct iscsi_cls_session *session =
-+		container_of(work, struct iscsi_cls_session, destroy_work);
-+
-+	session->transport->destroy_session(session);
-+}
-+
- struct iscsi_cls_session *
- iscsi_alloc_session(struct Scsi_Host *shost, struct iscsi_transport *transport,
- 		    int dd_size)
-@@ -2057,6 +2068,7 @@ iscsi_alloc_session(struct Scsi_Host *shost, struct iscsi_transport *transport,
- 	INIT_WORK(&session->block_work, __iscsi_block_session);
- 	INIT_WORK(&session->unbind_work, __iscsi_unbind_session);
- 	INIT_WORK(&session->scan_work, iscsi_scan_session);
-+	INIT_WORK(&session->destroy_work, __iscsi_destroy_session);
- 	spin_lock_init(&session->lock);
- 
- 	/* this is released in the dev's release function */
-@@ -3631,6 +3643,23 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
- 		else
- 			transport->destroy_session(session);
- 		break;
-+	case ISCSI_UEVENT_DESTROY_SESSION_ASYNC:
-+		session = iscsi_session_lookup(ev->u.d_session.sid);
-+		if (!session)
-+			err = -EINVAL;
-+		else if (iscsi_session_has_conns(ev->u.d_session.sid))
-+			err = -EBUSY;
-+		else {
-+			unsigned long flags;
-+
-+			/* Prevent this session from being found again */
-+			spin_lock_irqsave(&sesslock, flags);
-+			list_move(&session->sess_list, &sessdestroylist);
-+			spin_unlock_irqrestore(&sesslock, flags);
-+
-+			queue_work(iscsi_destroy_workq, &session->destroy_work);
-+		}
-+		break;
- 	case ISCSI_UEVENT_UNBIND_SESSION:
- 		session = iscsi_session_lookup(ev->u.d_session.sid);
- 		if (session)
-@@ -4676,8 +4705,16 @@ static __init int iscsi_transport_init(void)
- 		goto release_nls;
- 	}
- 
-+	iscsi_destroy_workq = create_singlethread_workqueue("iscsi_destroy");
-+	if (!iscsi_destroy_workq) {
-+		err = -ENOMEM;
-+		goto destroy_wq;
-+	}
-+
- 	return 0;
- 
-+destroy_wq:
-+	destroy_workqueue(iscsi_eh_timer_workq);
- release_nls:
- 	netlink_kernel_release(nls);
- unregister_flashnode_bus:
-@@ -4699,6 +4736,7 @@ static __init int iscsi_transport_init(void)
- 
- static void __exit iscsi_transport_exit(void)
- {
-+	destroy_workqueue(iscsi_destroy_workq);
- 	destroy_workqueue(iscsi_eh_timer_workq);
- 	netlink_kernel_release(nls);
- 	bus_unregister(&iscsi_flashnode_bus);
-diff --git a/include/scsi/iscsi_if.h b/include/scsi/iscsi_if.h
-index 92b11c7e0b4f..deacaee53e61 100644
---- a/include/scsi/iscsi_if.h
-+++ b/include/scsi/iscsi_if.h
-@@ -60,6 +60,7 @@ enum iscsi_uevent_e {
- 	ISCSI_UEVENT_LOGOUT_FLASHNODE_SID	= UEVENT_BASE + 30,
- 	ISCSI_UEVENT_SET_CHAP		= UEVENT_BASE + 31,
- 	ISCSI_UEVENT_GET_HOST_STATS	= UEVENT_BASE + 32,
-+	ISCSI_UEVENT_DESTROY_SESSION_ASYNC	= UEVENT_BASE + 33,
- 
- 	/* up events */
- 	ISCSI_KEVENT_RECV_PDU		= KEVENT_BASE + 1,
-diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
-index 2129dc9e2dec..fa8814245796 100644
---- a/include/scsi/scsi_transport_iscsi.h
-+++ b/include/scsi/scsi_transport_iscsi.h
-@@ -226,6 +226,7 @@ struct iscsi_cls_session {
- 	struct work_struct unblock_work;
- 	struct work_struct scan_work;
- 	struct work_struct unbind_work;
-+	struct work_struct destroy_work;
- 
- 	/* recovery fields */
- 	int recovery_tmo;
 -- 
-2.25.0
+Martin K. Petersen	Oracle Linux Engineering
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200227195945.761719-1-krisman%40collabora.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/yq1eeue5772.fsf%40oracle.com.
