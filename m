@@ -1,126 +1,122 @@
-Return-Path: <open-iscsi+bncBD3JNNMDTMEBBP66QTZQKGQEDGSMI3Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBDA4VMEL3QNRBF5CQXZQKGQE2PVPZFQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pf1-x43b.google.com (mail-pf1-x43b.google.com [IPv6:2607:f8b0:4864:20::43b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E3DF17AB02
-	for <lists+open-iscsi@lfdr.de>; Thu,  5 Mar 2020 17:56:33 +0100 (CET)
-Received: by mail-pf1-x43b.google.com with SMTP id x21sf4041765pfp.12
-        for <lists+open-iscsi@lfdr.de>; Thu, 05 Mar 2020 08:56:33 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1583427391; cv=pass;
+Received: from mail-ed1-x53b.google.com (mail-ed1-x53b.google.com [IPv6:2a00:1450:4864:20::53b])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97FE117AEDE
+	for <lists+open-iscsi@lfdr.de>; Thu,  5 Mar 2020 20:20:55 +0100 (CET)
+Received: by mail-ed1-x53b.google.com with SMTP id a1sf1679191edv.8
+        for <lists+open-iscsi@lfdr.de>; Thu, 05 Mar 2020 11:20:55 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1583436055; cv=pass;
         d=google.com; s=arc-20160816;
-        b=fo9miybNf/eZMQXv21n+18HwN6iZlBXxphtsYaMJ7fuJqcUON03wizHvjDWLILBTjN
-         ahsrWsKf35c5ILczYtKrKlWajNE9I/OTcscQF2xPWI67dJNgDogcpPqpR6VSVjInRreQ
-         aHsABIlTH/ENliG783k5V+2ZaNkZ0Bqtms7ZjMI6oCA2OaLNFVYSuQtDURO8zXPS1Mfv
-         Fl+fjTDoFMnI/cKkdAtFty0DZJu3n/lBkiHy8Icm+c7Ce6wf0d1Sk1B8d6PrZfk6A/JU
-         9k1XSFeDcgEJiWzQXNM0qvhcDYCvSxBHC24H7Y1uSseaW1//4BEL+rYFhL0aT2a1s0Gd
-         CHrQ==
+        b=02gbD1SOodhRwRwKo1YRxpTu+v5HsLfs2TMDsFzPZ8m/+dKZDpSvNR61Ken8F89T9T
+         gbrOqbykdUkYb6KoigLlLZ0I1Dw0RTy/NbFw0bMaDLWeuCLsM71kcm/LVPt4dnz+nKv6
+         0Xq/sVDnoaC95dEamEdFGrqz6KG8LN8Hdq1G8Q6HrShHZZXIT2GHDsKnU9Y9mj+R55OT
+         +yBrg2B7fmiWVqC5b4Fg5SnKNnTdSTKuvODFG/ophW9tRScrOl6UB4RMDrnd1DiVqhqY
+         GcyieL6gFIpFYKrYjqFL3syji4AOZa264oJhrKCJfPvHMOhW3gOZGIuq85rLSoEmFgYp
+         KWNg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-language
-         :in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:sender:dkim-signature;
-        bh=ZB9YUT6E6vsbQ+xUKlDLDCmHVbwpg6/lqqpf1gwJ/JQ=;
-        b=0cF8Trn2Hi6D3IO2MxJZAFdAlVChgzyWYoxKvgzDnZnrBk/95dzlfr+UZwD8Jic+Me
-         VbSyy81Se80m/tCzN0AMu86yA+V6Nw+WiUsQqMsqxG94H6JuguqW3zE1+BqSY4yjMUfn
-         Z6qlRufI4wTFGwnKHJ4dVJ6dGVhUQnY60bTPrDVbv18zpJ6SuCC1lnrHlkVouTjRDMly
-         GzdxuefQIVifkWQJULqk9kReZea61Oarh3SjyPWc/qJqH891yW8X2K+dBIqsqGWtCnEy
-         eIRNn4ohSl3COuub7q/rb3WL3cK0en7qudCAJIytDigILsMHMViCI7OhUnKhC0GUvSRN
-         OuqA==
+         :list-id:mailing-list:precedence:reply-to:mime-version:user-agent
+         :message-id:in-reply-to:date:references:organization:subject:cc:to
+         :from:sender:dkim-signature;
+        bh=rcwq9ECKDHzMMhxqikMVhTvvckCxCk9R80Zcjg6J5MI=;
+        b=WMMg2k/9bZKz6qfxhINhVL+x+bJOjIrVXIDj3PDNF0VzfXgK/r0GmcqRrmeVUwwE9g
+         UMCbq3NeaxsvdtwZvF0XdMKn49tApa7DSjYvyr/ACcxcVXAoAY3fSwGz1kiNeNiTiIAf
+         ATeROL2WKUIJJKdhhb48bGzZ9U5xkNdUnjYullrOhTQf0ha013w5CRi0XBi3/l/MiBXd
+         +6B1aVkVwRwjYrBT5fEVRSJ1TIT3GK5oFGpcF4hMnYFClEYeh2Rr6Gr9fx3J9Yl+uGrz
+         8m/9OtQQbOcbmIazGY6ZdT4+9hKYHkk/IF7F72vT/Wec71Tl6iIKZE3U8BobgraphB4x
+         GxXg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of bart.vanassche@gmail.com designates 209.85.210.195 as permitted sender) smtp.mailfrom=bart.vanassche@gmail.com
+       spf=pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) smtp.mailfrom=krisman@collabora.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:x-original-sender
+        h=sender:from:to:cc:subject:organization:references:date:in-reply-to
+         :message-id:user-agent:mime-version:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=ZB9YUT6E6vsbQ+xUKlDLDCmHVbwpg6/lqqpf1gwJ/JQ=;
-        b=QxzMLLSPKoASH7tKqCRiceyEWfGw69dPGRlR4V+GKLfbO2NdpRD5XMjCI9L7CQq/Wr
-         Um/oIcaYOFFYnlNF4s2LkQssW+IvYtAsAzyh+eSwCvphvAADUGCwDHVccobPOnB36cN/
-         V7eO1y9+5xAm7a8kfUplY/CSX5prIeU700TPYzfHd/VCXxjpoA2R0O2nDQohnMgDzIoQ
-         5ZOn+nBvXFtWGX72WmOVPUmQbxqr/jwtyZ9GxZe0g7L0rPbmfoxjKDgiKuzljTfWGzd3
-         zJrvlMcnL7zDglgxx613hxdVkwavVkJ8lGGAwLZwEPkl0J3bm3Q2Lixe0/eA/WdfH0go
-         W/hg==
+        bh=rcwq9ECKDHzMMhxqikMVhTvvckCxCk9R80Zcjg6J5MI=;
+        b=gDybBlBRQepPHJskpU9t+hZLaUIQah1mP9fUih0+ELKjHvWfUH8nVax9SLddT3vrSE
+         j4yaeZUZng1skwjJHqqfV9SVelbkeO9/3QIG9MlzPGKhus9gJ8mjvDVCdSQd2oR7niBY
+         AAC0lK8h0PnV6myACE5EMNoJ7+xXy84N7V9OmsHGDj0a7PEJISNcHgnjk4vnIbVfXAkK
+         TEj56+87DqexQzZMmf+D17mblMU74/F4Uscvs+GhaI2BM9SHtlAp7s441CP9RtxF2WlT
+         znhXkxTdjGiwvUUIBK4frn9WmMUPMDjmJsJfrFk/MbxJdi4h9r5JpFbIKaRX+NhmAAZY
+         SePA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=sender:x-gm-message-state:from:to:cc:subject:organization
+         :references:date:in-reply-to:message-id:user-agent:mime-version
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=ZB9YUT6E6vsbQ+xUKlDLDCmHVbwpg6/lqqpf1gwJ/JQ=;
-        b=WpIDm2GS3CXJluFyXvSms1T8m2WucF+ELSFtDCp2hFav6AePdKp9E1ubo/rSi6Y+aZ
-         OJGUodD8JR6ZS7IdxOI576aHiLJKFtCDvUtfyOUUjuPAeioSFqRcbbeDeGDTKVEXOOg/
-         LPjKIR+GJBSkEstzir+btjX9XVWa5N14BgM3z79bSR1R0v7My58wJK/ZoB9Fa8vBDETV
-         Z3k/SdByLw+cb0JDE+jztyaPDY4KB8RufjfUJF0+s3GN53bgNLdQQFntSE2n2V6sM09w
-         bEPNKLofAlqNnYRJAOMEYBwvkLs7Qfn12SMsXGh5oKXCayWdlEdpo9S/thj7wpxM4jYR
-         FuuQ==
+        bh=rcwq9ECKDHzMMhxqikMVhTvvckCxCk9R80Zcjg6J5MI=;
+        b=WToxCja55KgYbXLQZmFDxoebWAX9CdPqSXEu3EoJQHzDNqtpLCqh5ThQglGeL4QFio
+         fMO+xHtfQjd4f1g6QVWcCqmGXPhpEqZZHvIaPFL3QKBCch8SqZXV4pWfFE/whNlRwhGr
+         l54cLzbNPfEkN1oF/e82U6cPtYBzija4rJxYLsTkrmnLEg8d2glAqL/LwnRpuzwDYnGR
+         Xb3WxoMrOIA6v8K0UP/u2UYfFe753hlfMH1mf+mpwcYepoyGaDnUCqJ4RDl9Hs2QLLDv
+         XAP0SHWhwIMGPITA0SvgJGYjXRSn8QOOpVa/IMPTgsV/IJVlZxC+GPUwLUcms6jXzut7
+         1H7g==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANhLgQ1BYM3VaMRNSxNbrHn9JJODbVOiYj5+iv6+RmVcajnEhNaMkAsq
-	+DDJnera1R0lhGp/nv9Lx9w=
-X-Google-Smtp-Source: ADFU+vtr8BgFHybbNMZYkLW84fcYPkIdcWiYtXtlBQAAW8dTmn3JNGIG39RwZmoAVRw2NlZDHmuUgA==
-X-Received: by 2002:a17:90a:230d:: with SMTP id f13mr9577688pje.128.1583427391565;
-        Thu, 05 Mar 2020 08:56:31 -0800 (PST)
+X-Gm-Message-State: ANhLgQ2Bc7xa+z6IZXwHUxWWZQRhO4eyds4jkFHEwU/0jBqrR5j/L8u0
+	grdOEdwpU4Szj2AQuJTdXWw=
+X-Google-Smtp-Source: ADFU+vuj+L6q23H76Q9P9MA84MvwCb1O2SERsIxZTeWOZVwOFOSNp4W9i5desf7gaDjFE57bDVJ5ZQ==
+X-Received: by 2002:a17:906:779d:: with SMTP id s29mr8882599ejm.251.1583436055327;
+        Thu, 05 Mar 2020 11:20:55 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:902:9887:: with SMTP id s7ls1230586plp.9.gmail; Thu, 05
- Mar 2020 08:56:30 -0800 (PST)
-X-Received: by 2002:a17:90a:da01:: with SMTP id e1mr10069269pjv.100.1583427390798;
-        Thu, 05 Mar 2020 08:56:30 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1583427390; cv=none;
+Received: by 2002:a17:906:33d6:: with SMTP id w22ls363993eja.11.gmail; Thu, 05
+ Mar 2020 11:20:54 -0800 (PST)
+X-Received: by 2002:a17:906:5604:: with SMTP id f4mr8976513ejq.255.1583436054777;
+        Thu, 05 Mar 2020 11:20:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1583436054; cv=none;
         d=google.com; s=arc-20160816;
-        b=mElEhS0dafoFtPYEWVpeFMfZvPwnrWjpFHMy1uc4zPNLBeO3nyx4ava7QKuzPoaQk6
-         vzzm0yAhAbmpDnwfuUfYKktEaUPh8xD7dk9ylDFb3ODoOPXwBTWI/Z81EfOzxM2PYClJ
-         Htb7uwrmqI2BnKruaEjxIXDWk/To5W4x+GaE7nirisdKaKec9KKO/oMEiKsI4Fd//hGg
-         xFhz8wULVWcQxvgcJ15+bblSbltXBBlBrcBTQwScs5YlRq5g8R8z7Rpdz45GijunaC3v
-         woP4fU43aht9Eb6QQrR65B34KbBB0afrH6znmEuUDMO260zxVZjhmh6rKuFZJ2Zec7iP
-         vRXg==
+        b=q/q78D8WetLXxaJgQRLSf6JMNL71iqfwvbdSUK475ZtQ2GAT0f+CRdn61akuz2NPy5
+         v1xLCOyGcZvK7OCakAaKTsJMlsuxyB6x6QbthinW2I2j7dsuBFE/pAMDpWm7ySz8OSdu
+         zU6JBmEpNMIFIlerCFUp5BjoMA6+dC4xev+g2rCjkaZ68vKs5yWu5d320BpXF1fZyoU1
+         ddNoiYuSL6PWAOW4ax38NQVxFHGlJodo7OdCCURZHRIlBtcfV2JoNsn0TDguPZ1LC3fE
+         +V0JKbrnwSnSwyJsS2TWA8fl5LSoUSG8MhWE2UqEaG4R5fRpuabA6JMzDEiTl+eOMSg8
+         yNqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject;
-        bh=1wUY0RDF3MMASgLEnkNdnYSFzMpxRmDzZ17GQ6stlW4=;
-        b=Y4uOMnLDNCPPxZYb1hGqZ+jd7IXjqayP2Bpb1PDuy+X5oo38gdzb5ABCO7P9rNM+Gr
-         ko/Y+6Dhp5zsHnLNvMhnsMVU+4E0Q4ZzHAkGqmQ5/Q2HRIHZh2vg2V2ysRu3iKaaOJ3V
-         Nf9ZcHQXdEaAr3d2VLdEdhSwCff2U3Uf/Npd0a2zeFA1NjoK6ALrp4tc+G5LvmQsvZ9I
-         JN2i+ZobSW66L3LZ0lp+l9++0yTmJl/Z5blFA0KkFFh/iB4KSUf7C+ils5jpUs10MMs+
-         nKcvyMutr9L6O+1zQVsfci7xOB0532I5S3o1+x9b9nt+R6FhiWN+F1H0T8YxUgiJDpCL
-         PDgA==
+        h=mime-version:user-agent:message-id:in-reply-to:date:references
+         :organization:subject:cc:to:from;
+        bh=BGirfuQlC8utSpPvn8gpWxR8IqwysH/36R+zv0OEQ0k=;
+        b=lUxN0lBxIFsdjYDyrQy/RhYYUrS3gOIT27avbH+vjDruNGqgOfh96AgyrcWbuXH13k
+         9alf+CLotcEGKwvvMRxTbPacgSF/0U3EcPZuyut7Ca/Gq43MZyXj9GV7IWqlQNDgMObO
+         owBJY7+7HL2jp02OxUp5d0Qty5wkLwYc00z2CahhiZbr2XHrRfkiZCNEqSE/HUbDqYTo
+         NbSscq4lXVAC19LSmjKE2FLXC6LK87NOe8ter/MKLQxtK+ifDaB0wIeuV8QrV0wVxOxS
+         2wl3SYHFD+SzPYRMph1+yZn25R+zqgU0DjkTqUvM0fH/wsRUr13AEVZ+1FO7MhAQnXiC
+         tKVw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of bart.vanassche@gmail.com designates 209.85.210.195 as permitted sender) smtp.mailfrom=bart.vanassche@gmail.com
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com. [209.85.210.195])
-        by gmr-mx.google.com with ESMTPS id x12si339345plv.3.2020.03.05.08.56.30
+       spf=pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) smtp.mailfrom=krisman@collabora.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk. [46.235.227.227])
+        by gmr-mx.google.com with ESMTPS id h10si410886edn.1.2020.03.05.11.20.54
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Mar 2020 08:56:30 -0800 (PST)
-Received-SPF: pass (google.com: domain of bart.vanassche@gmail.com designates 209.85.210.195 as permitted sender) client-ip=209.85.210.195;
-Received: by mail-pf1-f195.google.com with SMTP id 2so3023046pfg.12
-        for <open-iscsi@googlegroups.com>; Thu, 05 Mar 2020 08:56:30 -0800 (PST)
-X-Received: by 2002:a63:ed16:: with SMTP id d22mr8896214pgi.314.1583427390398;
-        Thu, 05 Mar 2020 08:56:30 -0800 (PST)
-Received: from desktop-bart.svl.corp.google.com ([2620:15c:2cd:202:4308:52a3:24b6:2c60])
-        by smtp.gmail.com with ESMTPSA id b9sm3660345pgi.75.2020.03.05.08.56.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Mar 2020 08:56:29 -0800 (PST)
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 05 Mar 2020 11:20:54 -0800 (PST)
+Received-SPF: pass (google.com: domain of krisman@collabora.com designates 46.235.227.227 as permitted sender) client-ip=46.235.227.227;
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: krisman)
+	with ESMTPSA id 7CDEA29376E
+From: Gabriel Krisman Bertazi <krisman@collabora.com>
+To: Bart Van Assche <bvanassche@acm.org>
+Cc: open-iscsi@googlegroups.com,  lduncan@suse.com,  cleech@redhat.com,  martin.petersen@oracle.com,  linux-scsi@vger.kernel.org,  kernel@collabora.com,  Khazhismel Kumykov <khazhy@google.com>,  Junho Ryu <jayr@google.com>
 Subject: Re: [PATCH v2] iscsi: Report connection state on sysfs
-To: open-iscsi@googlegroups.com,
- Gabriel Krisman Bertazi <krisman@collabora.com>, lduncan@suse.com
-Cc: cleech@redhat.com, martin.petersen@oracle.com,
- linux-scsi@vger.kernel.org, kernel@collabora.com,
- Khazhismel Kumykov <khazhy@google.com>, Junho Ryu <jayr@google.com>
+Organization: Collabora
 References: <20200305153521.1374259-1-krisman@collabora.com>
-From: Bart Van Assche <bvanassche@acm.org>
-Message-ID: <bc70bd6d-6d13-4d1c-8559-140411e361d9@acm.org>
-Date: Thu, 5 Mar 2020 08:56:26 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+	<bc70bd6d-6d13-4d1c-8559-140411e361d9@acm.org>
+Date: Thu, 05 Mar 2020 14:20:50 -0500
+In-Reply-To: <bc70bd6d-6d13-4d1c-8559-140411e361d9@acm.org> (Bart Van Assche's
+	message of "Thu, 5 Mar 2020 08:56:26 -0800")
+Message-ID: <854kv2bobx.fsf@collabora.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
 MIME-Version: 1.0
-In-Reply-To: <20200305153521.1374259-1-krisman@collabora.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Language: en-US
-X-Original-Sender: bvanassche@acm.org
+Content-Type: text/plain; charset="UTF-8"
+X-Original-Sender: krisman@collabora.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of bart.vanassche@gmail.com designates 209.85.210.195 as
- permitted sender) smtp.mailfrom=bart.vanassche@gmail.com
+ (google.com: domain of krisman@collabora.com designates 46.235.227.227 as
+ permitted sender) smtp.mailfrom=krisman@collabora.com;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=collabora.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -134,48 +130,55 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 3/5/20 7:35 AM, Gabriel Krisman Bertazi wrote:
-> +static const struct {
-> +	int value;
-> +	char *name;
-> +} connection_state_names[] = {
-> +	{ISCSI_CONN_UP, "up"},
-> +	{ISCSI_CONN_DOWN, "down"},
-> +	{ISCSI_CONN_FAILED, "failed"}
-> +};
-> +
-> +static const char *connection_state_name(int state)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(connection_state_names); i++) {
-> +		if (connection_state_names[i].value == state)
-> +			return connection_state_names[i].name;
-> +	}
-> +	return NULL;
-> +}
-> +
-> +static ssize_t show_conn_state(struct device *dev,
-> +			       struct device_attribute *attr, char *buf)
-> +{
-> +	struct iscsi_cls_conn *conn = iscsi_dev_to_conn(dev->parent);
-> +
-> +	return sprintf(buf, "%s\n", connection_state_name(conn->state));
-> +}
-> +static ISCSI_CLASS_ATTR(conn, state, S_IRUGO, show_conn_state,
-> +			NULL);
+Bart Van Assche <bvanassche@acm.org> writes:
 
-What has been changed in v2 compared to v1? Please always include a 
-changelog when posting a new version.
+> On 3/5/20 7:35 AM, Gabriel Krisman Bertazi wrote:
+>> +static const struct {
+>> +	int value;
+>> +	char *name;
+>> +} connection_state_names[] = {
+>> +	{ISCSI_CONN_UP, "up"},
+>> +	{ISCSI_CONN_DOWN, "down"},
+>> +	{ISCSI_CONN_FAILED, "failed"}
+>> +};
+>> +
+>> +static const char *connection_state_name(int state)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(connection_state_names); i++) {
+>> +		if (connection_state_names[i].value == state)
+>> +			return connection_state_names[i].name;
+>> +	}
+>> +	return NULL;
+>> +}
+>> +
+>> +static ssize_t show_conn_state(struct device *dev,
+>> +			       struct device_attribute *attr, char *buf)
+>> +{
+>> +	struct iscsi_cls_conn *conn = iscsi_dev_to_conn(dev->parent);
+>> +
+>> +	return sprintf(buf, "%s\n", connection_state_name(conn->state));
+>> +}
+>> +static ISCSI_CLASS_ATTR(conn, state, S_IRUGO, show_conn_state,
+>> +			NULL);
+>
+> What has been changed in v2 compared to v1? Please always include a
+> changelog when posting a new version.
+>
+> Additionally, it seems like the comment I posted on v1 has not been
+> addressed?
 
-Additionally, it seems like the comment I posted on v1 has not been 
-addressed?
+Hi Bart,
 
-Thanks,
+v2 no longer has the dependency for specific values for the state, as
+you requested.  It follows the pattern in similar places in the iscsi
+code.  Why would designated initializers be better than my solution?
 
-Bart.
+-- 
+Gabriel Krisman Bertazi
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/bc70bd6d-6d13-4d1c-8559-140411e361d9%40acm.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/854kv2bobx.fsf%40collabora.com.
