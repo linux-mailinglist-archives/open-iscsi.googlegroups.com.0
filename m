@@ -1,129 +1,123 @@
-Return-Path: <open-iscsi+bncBD3JNNMDTMEBB7O6RPZQKGQESPLZVEQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBDA4VMEL3QNRBOP7THZQKGQEKGAM5VA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73e.google.com (mail-qk1-x73e.google.com [IPv6:2607:f8b0:4864:20::73e])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52B4717C9E0
-	for <lists+open-iscsi@lfdr.de>; Sat,  7 Mar 2020 01:49:02 +0100 (CET)
-Received: by mail-qk1-x73e.google.com with SMTP id l27sf2824804qkl.0
-        for <lists+open-iscsi@lfdr.de>; Fri, 06 Mar 2020 16:49:02 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1583542141; cv=pass;
+Received: from mail-lf1-x139.google.com (mail-lf1-x139.google.com [IPv6:2a00:1450:4864:20::139])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63BB017E5E5
+	for <lists+open-iscsi@lfdr.de>; Mon,  9 Mar 2020 18:41:15 +0100 (CET)
+Received: by mail-lf1-x139.google.com with SMTP id a1sf3124648lfr.16
+        for <lists+open-iscsi@lfdr.de>; Mon, 09 Mar 2020 10:41:15 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1583775674; cv=pass;
         d=google.com; s=arc-20160816;
-        b=zZC1vTxFEYo87hpePlzI5KahpxPNuMGRozoH83hELbe7SkSU783WDOUDvwupwj4USy
-         gR35z+xXtHVfDHqa4nq6RpvZqf5erPfpxJGheTofBVwCCsjoEh3yid855I1zovsoDASV
-         KBu3z4lOXdgwvlwLsBbENee22ORE582EwNKWp32sGrctjDWC0J+q9IBlaBYS3w2u80Ps
-         Ev6GKnOMZQlGxzWKRfeSAgmZdj7IsUxxyWFzuNDm4dvmms62VKGRVJ4xppdpaaREXdyT
-         3wcOMfPbnB0C9QRw8nviZ/oGdCmXRZx6gfwYtN+Wjk2wCYo8+HEfSzfAiauWfhYUWs7q
-         bxgg==
+        b=UQ8HsJENlcNLII85RHKK7QaouvPCY7Cc6HugpwUjummW2q0ob2U48cjnNEbc2JhDjp
+         VBoeJA01x8xnhuNBlye2Fk4fTQz2pAjzZ5vFXaZ8ilQfG619OxO80+M1Zl0s70Vj5fKh
+         Y07hWGAUMYVaN9AHh95uqN/mkVQYKmkAjfx6Xw87rgjwSVyALBO2SQ/dc/29TLBFXmJ9
+         7Of+uuW3MJ8tMxcM/iN5scx0zpL8H2a1YI6ikPXSlhDCStGXMsid6nrdySGy+UuN47q3
+         1pFC0C4BqMOyRyNIhZ5Y0LWu3vhywU+/iUI8BzXs8cDS1U4fTwDR5We6Qb6GGBpvf4D3
+         mqbw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-language
-         :in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:sender:dkim-signature;
-        bh=VfKfsfHzmaL+1VJbZbSW20wTTmqhRKcg1s8b53KGKq8=;
-        b=EI91TBZnATLnRhmSRoyYD/czAijBXA/aKBUlCfLI8YvHJn3y/2qq+rFqJixLMycyWb
-         cHRkR+AmxbojGfqGVPA+rFuW8Ii+TNJ5yW2+RrQOpPJuxxbcGDyjLLZbl0POQ2Ym8bb1
-         sWgHg/rLGMqg8uasG32bUCRe5GX7DddhTxe8+IPty5D1HQx/DTKqRITahLsCHG5VQqMF
-         WxvrGJqXN06EPDt+XGsjP/9EPm7Ql/0/DvN5c4YOJTkZWMhjdEflQFWYxMoLTVDfx/eQ
-         Hnw3dB0lPre1pEez1LoY5jGbnIxJ67Ku8mOlBUOaFLXVXO4qnQGqv3Gdj102y+xZnFTa
-         iz5Q==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=rAjix4fXvWNr9mJXfmmW8D2zEKyhcPqj4NEHEpjv1SY=;
+        b=IWYMBnLS2LKbSS8wd01EHYbxgbbynv+8wGdC1141gVyxV6ZyqksJUYCc/HbD+2YX1I
+         mbbRaCIs8KNjgZ9kTZtl+bhwglA0EhZ8QIIs0IHTAxVjoLFwBx9kml5XeafvgJd+U6Y6
+         4vbu8mt1N+zTMMuspUSbUnFoLkZvdacHonTwWBcdGGS4IKLISzEnYbhKx1QUXpIYoWTO
+         cm8+s728xBVAA2R2RiQIxQTOdoWVbhofxtfoCF9NUPTe2sy+0SVQYaeVXxhIwMnsRnBC
+         B6RnWEkygQW0NaW03/yEe1rSKXMk5bC0vF94bhqCVcP2KgWPfUaytbuVFUJf4zLAKj4T
+         A48A==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of bart.vanassche@gmail.com designates 209.85.210.194 as permitted sender) smtp.mailfrom=bart.vanassche@gmail.com
+       spf=pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) smtp.mailfrom=krisman@collabora.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=VfKfsfHzmaL+1VJbZbSW20wTTmqhRKcg1s8b53KGKq8=;
-        b=EtpjwJb7+6nZCb9Cowo0tz7gHbbBrjq7IRmNYWwjQpxvn15dScMrUIyB7jw1TA9yQk
-         oMLtTic/dg8YXO5DApX3I5g6WGFAaBE6rib0nbVhh9KGMDiZComeSlW4u9GTKyiVeL5y
-         1NNdwVMElyMePU0oXOVNZbSFJ3aBX3OesTrpxHKwrf0ybClrxTTy7Tia2vugwd+OrL5n
-         yqHb8QZaSAQ7if/aUzYhDmap6gJQHHzhEjiJP/Q8C/nu05+Jp5Q1YmMh+7vFd8siI5un
-         +a3fNXPQSly29mkliMc7fYR3m4sBHSRy9YhgG577YyjayYtM1PbmIuHI2hWW02GWGHNA
-         nhlw==
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=rAjix4fXvWNr9mJXfmmW8D2zEKyhcPqj4NEHEpjv1SY=;
+        b=GdSUOEzgXSu0rLVGAqJ1rUdFOlgGGxle+EbGu7mP7w80tW7V8u8quL4c/3XVLvM2pz
+         3CcRBxrE5t8tPK5IHgmwIsu5HWKVYzMNvr9jOcTSfDSoeYDdjqwxAfbhfF/0AoGF8Nql
+         H6sqgHR50pyhVnpgnyFuz5c+WWp/M2TRCkRjepMXlS6RUDHg3labvarW3X7jOcpvd5fu
+         2Yc+tqknzVoGJ1hfUBoD76yTndnngJ2ovmwuPf9wb33JlkqRWzc6QZzf+9T2vIsY4Vx9
+         lnreP4LmvALK8/N3pQwJr234+4/7s1nVhxg0KGMLVYPjz2ZWpxOTEzw+3E4jIby3Nt9b
+         XhUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=VfKfsfHzmaL+1VJbZbSW20wTTmqhRKcg1s8b53KGKq8=;
-        b=UFV9MF8e7ez0HOYu26tDq6hAlkwqKbiC52s9d1Up8HjeD+xrQ0ZzQyT0cplrKX9T6L
-         vqkDQ1Fee5i6I5qHDZlRJsZ7RAofATW8G4htJiXgryKEwbL6BFnm+1n5PFwgk45cAXDj
-         lZl8o16SjfZ9WcjtH2JaqvY15VzpTYFi1C5Lk8Z1YYG7XdA4TM6v20K+/Ldp7IHfyRIm
-         FpVAQN8EpqkVGfJv4zNed3RS8F1rvf2OIXOeR71wO/T4h8eqPOfxIfJY6RbTSLYSmtLP
-         ELPlqLDQAr8NnSbSmnF1DMcBd5pUG5DxnRLGEA05TCAmUu/TfhMWeKBIRmMI019IdUDF
-         4OVQ==
+        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=rAjix4fXvWNr9mJXfmmW8D2zEKyhcPqj4NEHEpjv1SY=;
+        b=pnvC/hLtTOdIdrznhaKYPvd2nya7AgXQCkPQC3IY6YFFlHHse00cIq3HS8babe4gTz
+         GPby8kqJuulJYuD1Kh5rIDP+3EgLRpCujZb//5lwWHVc+JbxBOWdVi3hQDlk/NxYWKF3
+         8CjO9kJCR7ri9ZQcNDN32pcDD3aoRWXLi2dD/cJqVgxV5ymBlpt9Y2PMdOQ7G1g9F1gX
+         LP1SrBFaPYwE7aAwsCQBFzWY/oHvlavgrHF0Dwr9O0Ri82bbMt4rLxelSd2tD31UXT5V
+         nbl1PSDWPNPtnKQeLOlSoBs6/mpOcn6Q2wQXP1AH7z7+L/3lhJliK6jyLDQFcAsFb5AE
+         Ho8Q==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANhLgQ3bTFk1MvsbWZLY0IgBRjAwlnQCTaa3Swd9yzHDbFVzAcRONHB+
-	MyTEEuEmL3CJ5r6J/RdGIMk=
-X-Google-Smtp-Source: ADFU+vteadN3Vwc05oYLSt8XU1jWBLpfmOgLGSjXXEPaOAfwa21sXvmwtAxKoFzHOuGiOLWE62bzUA==
-X-Received: by 2002:ac8:43c1:: with SMTP id w1mr5556153qtn.381.1583542141167;
-        Fri, 06 Mar 2020 16:49:01 -0800 (PST)
+X-Gm-Message-State: ANhLgQ3J1M240JnXbsaBZwIrX0vURtkj/z9+615vjZcCBjfs0kHs0/mP
+	+s/gauYx+utsBysrDX4ccbw=
+X-Google-Smtp-Source: ADFU+vutEICsU+q1XkMV7m9mI6Mxq6EkQkvCpytFi92osSdoUhlIZhjSla059PeP8/Yu+jOWAXKJXQ==
+X-Received: by 2002:a05:6512:15e:: with SMTP id m30mr6058667lfo.120.1583775673864;
+        Mon, 09 Mar 2020 10:41:13 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ad4:514c:: with SMTP id g12ls954966qvq.7.gmail; Fri, 06 Mar
- 2020 16:49:00 -0800 (PST)
-X-Received: by 2002:ad4:5288:: with SMTP id v8mr5675175qvr.120.1583542140759;
-        Fri, 06 Mar 2020 16:49:00 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1583542140; cv=none;
+Received: by 2002:a05:6512:686:: with SMTP id t6ls1427276lfe.3.gmail; Mon, 09
+ Mar 2020 10:41:13 -0700 (PDT)
+X-Received: by 2002:ac2:4316:: with SMTP id l22mr10255759lfh.150.1583775672927;
+        Mon, 09 Mar 2020 10:41:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1583775672; cv=none;
         d=google.com; s=arc-20160816;
-        b=LM+ZE9CwfBtHzWJLhJhJnUtDTW7yHX9AX5T0Yn/mISMiCf+XacucDr1QVaPjAvzRVG
-         M8l4sD1zo7k4LikOie8BifhdLibN3ITvfPf6f69sOFjiXavNX0g7OYJmuxVvKas8rLu+
-         UTSGDHHUJf6lt4gilIzwInzZ/+598Bb5BYXZ46C3KTVK4UZd6R4lHPlOP0dkMhj4fKRl
-         v5wVuUMwLEfzEKn8AvqMb0Uff3SeV0CXUvqpWeL2jcJjNrrD1N5t/82oolacYTI0MTwA
-         MqsgSW9NgEgDBcjbdtE4gaXCNLLpz2Gihr4iT6NDdPiR/zaalmqK3QWBVByxEDMXxh9J
-         BiuQ==
+        b=M7ifgZ1GEIYBRqDCd3Nm3xIGt1od1kIMykVZSRQNGjSExHJOuLxgaYt7zEkvwCs3+n
+         n5WC7smtHsHQPX2hkIqKI6dNd8jsz2j2juC4aUsDnbMvgtU2NgdyYQxn6v/56LMuX28O
+         mCbFDrbeWozC4CjJ4VrPnd/gl8Jsg1hVtof/CxG/AS7r6CNWYy/vAl10Q8qyxOjqoUGf
+         MB6xkoujKl4yQ+qP20guLmRDo50u9/JjY0/97P4jG/06bqO0J0eQWm/b5+Eq0cuVyWDg
+         g560XexzLVBiOapoc+S4zlga3Ai9hmjeSFmnBWHMjw6p1weq43nUI6Q+i1JY0tfid8h6
+         d0Mw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject;
-        bh=O2IFTGV2/8sXNAcc4XgejeiSdt2yZwnhs0Imj+KkeJQ=;
-        b=FgW7HUMkWl9YgP5+E+LbDjk+lwKGXDK71X6i49jb0I/CEHUQjsn3KOzyPJax3+bNcf
-         TbniIrZyDn3T53n7cffJqOL0E1ECNc3eIgeb0D3a6cfDGXmNFpobBkScZOzXyGPmannw
-         FIjPfKVVoEqUBvQ6afFp1hRQsUQrsHrBZJ3dPqixEJJVASS28BnY/ZK6BC26fHgmzgPv
-         JTTiVmdAJc/dhDVvDtOLfDhfPceF+JWaZE4Z/sH29HqwQsEXnlu24wsMb301jSawl3FJ
-         J+AiQAW8fUHSwFE4y5ucy8FkZPFd2U0P1+UUJSVRS2/z/RkSL+fuGonlVMlfAq8S9D+v
-         4N+Q==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from;
+        bh=be+hwAopMysb4J9PH1L0oCqcZOaATaxP8ST/40Oaiw8=;
+        b=f5inQVeXH7IFzPrV0UTLwP2WEJBzfYGK5OLQXMdTvcLQnSHLGwtI4S+73wag0W6bTH
+         rAlEQIbNzStvhuNDmeUHnhevMd53EUC1lnaRqhCCj/mnT6VJbF08EGDwCS4Hmtb6zl9K
+         EyfJM/k5SLxGTcEGB8yA8oGANWjDhDcE+axZweL1V2emRvqW1iKyYIQdSJaXuPHaxdcq
+         fu0fYpcqOqt/KgjxuHmBdWaLq8D++mmz/PoYZ4Wldc4ONTd/NEyMGAMoijKQIiUq2ZsB
+         5tiWas65Fu4h6InIkZBzqtCfT512/AmzXx3TwGVGq3SnotIbUBhPbw/RYCNYg3l7v0Lj
+         IIQw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of bart.vanassche@gmail.com designates 209.85.210.194 as permitted sender) smtp.mailfrom=bart.vanassche@gmail.com
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com. [209.85.210.194])
-        by gmr-mx.google.com with ESMTPS id i26si172810qki.1.2020.03.06.16.49.00
+       spf=pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) smtp.mailfrom=krisman@collabora.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk. [2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by gmr-mx.google.com with ESMTPS id s6si591696ljm.3.2020.03.09.10.41.12
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Mar 2020 16:49:00 -0800 (PST)
-Received-SPF: pass (google.com: domain of bart.vanassche@gmail.com designates 209.85.210.194 as permitted sender) client-ip=209.85.210.194;
-Received: by mail-pf1-f194.google.com with SMTP id z65so1908677pfz.8
-        for <open-iscsi@googlegroups.com>; Fri, 06 Mar 2020 16:49:00 -0800 (PST)
-X-Received: by 2002:a63:334c:: with SMTP id z73mr3115032pgz.421.1583542139700;
-        Fri, 06 Mar 2020 16:48:59 -0800 (PST)
-Received: from desktop-bart.svl.corp.google.com ([2620:15c:2cd:202:4308:52a3:24b6:2c60])
-        by smtp.gmail.com with ESMTPSA id k9sm10565374pjo.19.2020.03.06.16.48.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Mar 2020 16:48:58 -0800 (PST)
-Subject: Re: [PATCH v2] iscsi: Report connection state on sysfs
-To: open-iscsi@googlegroups.com,
- Gabriel Krisman Bertazi <krisman@collabora.com>
-Cc: lduncan@suse.com, cleech@redhat.com, martin.petersen@oracle.com,
- linux-scsi@vger.kernel.org, kernel@collabora.com,
- Khazhismel Kumykov <khazhy@google.com>, Junho Ryu <jayr@google.com>
-References: <20200305153521.1374259-1-krisman@collabora.com>
- <bc70bd6d-6d13-4d1c-8559-140411e361d9@acm.org> <854kv2bobx.fsf@collabora.com>
- <b2b62579-b2b6-b797-501b-186ac24df399@acm.org> <85h7z12r20.fsf@collabora.com>
-From: Bart Van Assche <bvanassche@acm.org>
-Message-ID: <be183875-967a-402a-7fb4-3d1db3bca0f8@acm.org>
-Date: Fri, 6 Mar 2020 16:48:57 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 09 Mar 2020 10:41:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) client-ip=2a00:1098:0:82:1000:25:2eeb:e3e3;
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: krisman)
+	with ESMTPSA id A9F2D29497E
+From: Gabriel Krisman Bertazi <krisman@collabora.com>
+To: lduncan@suse.com
+Cc: open-iscsi@googlegroups.com,
+	cleech@redhat.com,
+	martin.petersen@oracle.com,
+	linux-scsi@vger.kernel.org,
+	bvanassche@acm.org,
+	Gabriel Krisman Bertazi <krisman@collabora.com>,
+	kernel@collabora.com,
+	Khazhismel Kumykov <khazhy@google.com>,
+	Junho Ryu <jayr@google.com>
+Subject: [PATCH v4] iscsi: Report connection state on sysfs
+Date: Mon,  9 Mar 2020 13:41:05 -0400
+Message-Id: <20200309174105.3371944-1-krisman@collabora.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-In-Reply-To: <85h7z12r20.fsf@collabora.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Language: en-US
-X-Original-Sender: bvanassche@acm.org
+X-Original-Sender: krisman@collabora.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of bart.vanassche@gmail.com designates 209.85.210.194 as
- permitted sender) smtp.mailfrom=bart.vanassche@gmail.com
+ (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3
+ as permitted sender) smtp.mailfrom=krisman@collabora.com;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=collabora.com
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -136,55 +130,158 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 3/6/20 11:59 AM, Gabriel Krisman Bertazi wrote:
-> +static const char *const connection_state_names[] = {
-> +	[ISCSI_CONN_UP] = "up",
-> +	[ISCSI_CONN_DOWN] = "down",
-> +	[ISCSI_CONN_FAILED] = "failed"
-> +};
-> +
-> +static ssize_t show_conn_state(struct device *dev,
-> +			       struct device_attribute *attr, char *buf)
-> +{
-> +	struct iscsi_cls_conn *conn = iscsi_dev_to_conn(dev->parent);
-> +	const char *state = "unknown";
-> +
-> +	if (conn->state < ARRAY_SIZE(connection_state_names))
-> +		state = connection_state_names[conn->state];
-> +
-> +	return sprintf(buf, "%s\n", state);
-> +}
-> +static ISCSI_CLASS_ATTR(conn, state, S_IRUGO, show_conn_state,
-> +			NULL);
+If an iSCSI connection happens to fail while the daemon isn't
+running (due to a crash or for another reason), the kernel failure
+report is not received.  When the daemon restarts, there is insufficient
+kernel state in sysfs for it to know that this happened.  open-iscsi
+tries to reopen every connection, but on different initiators, we'd like
+to know which connections have failed.
 
-Thank you for having made this change.
+There is session->state, but that has a different lifetime than an iSCSI
+connection, so it doesn't directly relflect the connection state.
 
-> +/* iscsi class connection state */
-> +enum {
-> +	ISCSI_CONN_UP = 0,
-> +	ISCSI_CONN_DOWN,
-> +	ISCSI_CONN_FAILED,
-> +};
-> +
->   struct iscsi_cls_conn {
->   	struct list_head conn_list;	/* item in connlist */
->   	struct list_head conn_list_err;	/* item in connlist_err */
-> @@ -198,6 +205,7 @@ struct iscsi_cls_conn {
->   	struct iscsi_endpoint *ep;
->   
->   	struct device dev;		/* sysfs transport/container device */
-> +	unsigned int state;
->   };
+Cc: Khazhismel Kumykov <khazhy@google.com>
+Suggested-by: Junho Ryu <jayr@google.com>
+Signed-off-by: Gabriel Krisman Bertazi <krisman@collabora.com>
+---
+Changes since v3:
+  - Change state type to enum (Bart)
 
-Can 'state' have another value than those declared in the enumeration 
-type? If not, how about changing the type of 'state' from 'unsigned int' 
-into 'enum ...'? If that change is made, a check will have to be added 
-in show_conn_state() whether conn->state >= 0 since the C standard does 
-not guarantee whether enumeration types are signed or unsigned.
+Changes since v2:
+  - Use designated initializers (Bart)
 
-Bart.
+Changes since v1:
+  - Remove dependency of state values (Bart)
+
+
+ drivers/scsi/libiscsi.c             |  7 ++++++-
+ drivers/scsi/scsi_transport_iscsi.c | 29 ++++++++++++++++++++++++++++-
+ include/scsi/scsi_transport_iscsi.h |  8 ++++++++
+ 3 files changed, 42 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+index 70b99c0e2e67..ca488c57ead4 100644
+--- a/drivers/scsi/libiscsi.c
++++ b/drivers/scsi/libiscsi.c
+@@ -3153,13 +3153,18 @@ void iscsi_conn_stop(struct iscsi_cls_conn *cls_conn, int flag)
+ 
+ 	switch (flag) {
+ 	case STOP_CONN_RECOVER:
++		cls_conn->state = ISCSI_CONN_FAILED;
++		break;
+ 	case STOP_CONN_TERM:
+-		iscsi_start_session_recovery(session, conn, flag);
++		cls_conn->state = ISCSI_CONN_DOWN;
+ 		break;
+ 	default:
+ 		iscsi_conn_printk(KERN_ERR, conn,
+ 				  "invalid stop flag %d\n", flag);
++		return;
+ 	}
++
++	iscsi_start_session_recovery(session, conn, flag);
+ }
+ EXPORT_SYMBOL_GPL(iscsi_conn_stop);
+ 
+diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+index 17a45716a0fe..0ec1b31c75a9 100644
+--- a/drivers/scsi/scsi_transport_iscsi.c
++++ b/drivers/scsi/scsi_transport_iscsi.c
+@@ -2276,6 +2276,7 @@ iscsi_create_conn(struct iscsi_cls_session *session, int dd_size, uint32_t cid)
+ 	INIT_LIST_HEAD(&conn->conn_list_err);
+ 	conn->transport = transport;
+ 	conn->cid = cid;
++	conn->state = ISCSI_CONN_DOWN;
+ 
+ 	/* this is released in the dev's release function */
+ 	if (!get_device(&session->dev))
+@@ -3709,8 +3710,11 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
+ 		break;
+ 	case ISCSI_UEVENT_START_CONN:
+ 		conn = iscsi_conn_lookup(ev->u.start_conn.sid, ev->u.start_conn.cid);
+-		if (conn)
++		if (conn) {
+ 			ev->r.retcode = transport->start_conn(conn);
++			if (!ev->r.retcode)
++				conn->state = ISCSI_CONN_UP;
++		}
+ 		else
+ 			err = -EINVAL;
+ 		break;
+@@ -3907,6 +3911,26 @@ iscsi_conn_attr(tcp_xmit_wsf, ISCSI_PARAM_TCP_XMIT_WSF);
+ iscsi_conn_attr(tcp_recv_wsf, ISCSI_PARAM_TCP_RECV_WSF);
+ iscsi_conn_attr(local_ipaddr, ISCSI_PARAM_LOCAL_IPADDR);
+ 
++static const char *const connection_state_names[] = {
++	[ISCSI_CONN_UP] = "up",
++	[ISCSI_CONN_DOWN] = "down",
++	[ISCSI_CONN_FAILED] = "failed"
++};
++
++static ssize_t show_conn_state(struct device *dev,
++			       struct device_attribute *attr, char *buf)
++{
++	struct iscsi_cls_conn *conn = iscsi_dev_to_conn(dev->parent);
++	const char *state = "unknown";
++
++	if (conn->state >= 0 &&
++	    conn->state < ARRAY_SIZE(connection_state_names))
++		state = connection_state_names[conn->state];
++
++	return sprintf(buf, "%s\n", state);
++}
++static ISCSI_CLASS_ATTR(conn, state, S_IRUGO, show_conn_state,
++			NULL);
+ 
+ #define iscsi_conn_ep_attr_show(param)					\
+ static ssize_t show_conn_ep_param_##param(struct device *dev,		\
+@@ -3976,6 +4000,7 @@ static struct attribute *iscsi_conn_attrs[] = {
+ 	&dev_attr_conn_tcp_xmit_wsf.attr,
+ 	&dev_attr_conn_tcp_recv_wsf.attr,
+ 	&dev_attr_conn_local_ipaddr.attr,
++	&dev_attr_conn_state.attr,
+ 	NULL,
+ };
+ 
+@@ -4047,6 +4072,8 @@ static umode_t iscsi_conn_attr_is_visible(struct kobject *kobj,
+ 		param = ISCSI_PARAM_TCP_RECV_WSF;
+ 	else if (attr == &dev_attr_conn_local_ipaddr.attr)
+ 		param = ISCSI_PARAM_LOCAL_IPADDR;
++	else if (attr == &dev_attr_conn_state.attr)
++		return S_IRUGO;
+ 	else {
+ 		WARN_ONCE(1, "Invalid conn attr");
+ 		return 0;
+diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
+index fa8814245796..bdcb6d69d154 100644
+--- a/include/scsi/scsi_transport_iscsi.h
++++ b/include/scsi/scsi_transport_iscsi.h
+@@ -188,6 +188,13 @@ extern void iscsi_ping_comp_event(uint32_t host_no,
+ 				  uint32_t status, uint32_t pid,
+ 				  uint32_t data_size, uint8_t *data);
+ 
++/* iscsi class connection state */
++enum iscsi_connection_state {
++	ISCSI_CONN_UP = 0,
++	ISCSI_CONN_DOWN,
++	ISCSI_CONN_FAILED,
++};
++
+ struct iscsi_cls_conn {
+ 	struct list_head conn_list;	/* item in connlist */
+ 	struct list_head conn_list_err;	/* item in connlist_err */
+@@ -198,6 +205,7 @@ struct iscsi_cls_conn {
+ 	struct iscsi_endpoint *ep;
+ 
+ 	struct device dev;		/* sysfs transport/container device */
++	enum iscsi_connection_state state;
+ };
+ 
+ #define iscsi_dev_to_conn(_dev) \
+-- 
+2.25.0
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/be183875-967a-402a-7fb4-3d1db3bca0f8%40acm.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200309174105.3371944-1-krisman%40collabora.com.
