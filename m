@@ -1,128 +1,121 @@
-Return-Path: <open-iscsi+bncBCPLZU4PQYHBBC6UWPZQKGQEUJU5WAA@googlegroups.com>
+Return-Path: <open-iscsi+bncBC6MFJWO34DBBWGWXTZQKGQEYS5DO6A@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pg1-x53d.google.com (mail-pg1-x53d.google.com [IPv6:2607:f8b0:4864:20::53d])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70291855DA
-	for <lists+open-iscsi@lfdr.de>; Sat, 14 Mar 2020 15:28:28 +0100 (CET)
-Received: by mail-pg1-x53d.google.com with SMTP id n6sf2757459pgn.21
-        for <lists+open-iscsi@lfdr.de>; Sat, 14 Mar 2020 07:28:28 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1584196107; cv=pass;
+Received: from mail-wr1-x43d.google.com (mail-wr1-x43d.google.com [IPv6:2a00:1450:4864:20::43d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A9521865BA
+	for <lists+open-iscsi@lfdr.de>; Mon, 16 Mar 2020 08:31:36 +0100 (CET)
+Received: by mail-wr1-x43d.google.com with SMTP id c6sf784655wro.7
+        for <lists+open-iscsi@lfdr.de>; Mon, 16 Mar 2020 00:31:36 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1584343896; cv=pass;
         d=google.com; s=arc-20160816;
-        b=I1R5bDp/3wpAjnMdl3PI+VPCSVK3oSSEb4G1vGcBt9a1w7nWDnF4hWkgpUhVJgptEU
-         mVrM4SDVRh9rFrmZ7PTIDzBEZIqDYQ3cUsd68O25f+kMroe6RO+5Du7XgSYQ8xIEdMqs
-         iz6jlxKBaQGzyLf3yg5diz6GRWqz4/LpM6yyb7/3MamqGwB+KBJG2bGSozueYqnNNG8h
-         kK2kJKQ0F1nhjYK+zdY8xzYxZbhPMfkl5362IwNzqjdnpBx7jGtAY4Yr5i9DcPKY9E0q
-         jCczOTDgR0D9KFezdHJXZAB9gtGkVskA/JqsDoq9pYyZXfJTluQ1rSaynZ6YiJ/FnaQ2
-         6IqA==
+        b=YX6vrMCfY2vLpU17MGbY9oGjDDKpk+fC8XdDa4koJgO/RENtKBU469Q4wblJ4DO89W
+         vnff4hBMEt+ElEydzde9Uo7T5W/4+VzHvBKhTCPh/c0ZnTRCAg/puXXuC/84Qe/nR3Ma
+         eL0VRKmVybknpYN+zNfcV1fEKZ2v5Rpkx1mhzMz278GAvs/M9myPUOoW7V7UlYIJ4CwL
+         UoZLbTVIwo+09m2u8aetRGoLm2vysroUa2paUC4SpGVvUH4THyXyMjdwUuUphWfTIV0S
+         xqaGv1+Kzvpw3FdX37uWF4k4f7UKgKQ9HTGWJOnclhVpyaUTpaeGJJG0Zqr8/2pOCXpp
+         hSOA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
-         :from:mime-version:sender:dkim-signature:dkim-signature;
-        bh=06rvTIgkmSIZs5bo2KjTtTzEjvVKdQvru5LiEB3XnEI=;
-        b=czA87hkpKjNtBcvZAfXmn/4lNIA+rbKSKNKy2hXKiW7evhWDmH0BKbUrdC3uRrIPSg
-         qrydo8O/iaBUEa2DKL1gDwtihf8fdJvoUqleBZasXjLkCrGsIlqAt2H3vps8d8Sg+Rbg
-         DzdSYq8e3KR4d1QkU5WU7LpmYh7X4YJJETdPV0Y6o2of97xbIVpyCodE+KlA7X5ZIliv
-         U/csK39W+RwpMH7L2fl9nXh6/eUOl4/EYSRrPNFmELKIJBUkzrUEr1kIbfk5bG6n4KMp
-         TE2v7I4oeya/QbBhZNiv0KNP2tMiYhH9vFHRROvCwZDimx3MZjPMFlvlI8/cXwj87nJz
-         5yIg==
+         :list-id:mailing-list:precedence:reply-to:content-disposition
+         :mime-version:in-reply-to:references:subject:to:from:date:message-id
+         :sender:dkim-signature;
+        bh=afjTTVrBt4k6Pyu7b/IKDDjLLLWM77jN5NQETOOhovU=;
+        b=lHEGsRszW/gcbZvTCTTdsq3Xw+jv1wC/zelLswbWrfyyAOAiDDlF1aEwpmaUh/5wyj
+         PA8oAAZt67eJjJV9pkY8ho6fD2K62JC78ZJqLNQHnChguRc9tFxUaxHsjOV/kp4P32h2
+         E5qQOTbFVt1NhWdyXlRqhDI1dtez9H+ARum7BR7TRPj/8ephvfst+F2O1mRoR90+VY2P
+         uOGV4JOMWdowXlWzpfzvonK8ujOjk0xGy0VsE2a0LzIphJZRizxtaHgp+MMhXmr7VqFK
+         0qSLlGkrZc+Oy55hJBiKbN8GPPVfiORAvoG0kf0kqebYUOm6vPzMBNsUhCtFMTjyHZD3
+         lYrw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=fOA+3dw4;
-       spf=pass (google.com: domain of msmith626@gmail.com designates 2607:f8b0:4864:20::e34 as permitted sender) smtp.mailfrom=msmith626@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:from:date:message-id:subject:to
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=06rvTIgkmSIZs5bo2KjTtTzEjvVKdQvru5LiEB3XnEI=;
-        b=T8pqZ17OjygPatNG77GHYka9oYLgTh82dDE7qwWlDaQEG6U/pZhz9o8GDwjlLuIqgc
-         mmvo9Q0fPpxypHqeH2gVGR/32PEVnV01Q/cgHMIeRFQvI/c83PBeNGPGzq2q0PKNFbBL
-         jH/Xc/PfZr9HZGpWKrQSw1b2pWLL60OTr4zyzqEL2leVYUU7tMEhpKgyA3VTdmr+zsMn
-         r12ASzMLTdO7tp24yhUQeMNZzw+ZMzl0Itk2KOBa+OUfJmgerYHwmroCrqyPq/bm8eQR
-         NX8iGrJH22GDwjoAwbvjrWRHqrED0/lM4jn269O3XkxUve9ONPoiwHMmRSlDRdt6eua8
-         y24A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:x-original-sender
+        h=sender:message-id:date:from:to:subject:references:in-reply-to
+         :mime-version:content-disposition:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=06rvTIgkmSIZs5bo2KjTtTzEjvVKdQvru5LiEB3XnEI=;
-        b=mzLkYLwURcnGVkHGI3ZeGmXbuAPoJo/vxB4OYHi+l9KcYbB/ftVcr09FzGvI6NT4zl
-         Cg+7KvyRgprQBPj/xjDqZZ754kPSVdIGKsZVN9NnI8jxf/JQI0weOLgSSODkGozNSz0B
-         iSwIgrQiWPSfnFIh9RwmlIwEYWEqVpTcx1pUvdxjiJ1iTif7pw57aM2oD4Nnodz0HCxf
-         bhGdjYkEgQ0LSUKz8fDge7GrXD0lZMVyg3HCy18FpWvFTHHvztiTiT7+tiwKzA+B1n+L
-         2nNzXkHfb0wFNlX2AhqRnmT+GX8Orq3TZNAWEx7zTW5jQgW+czbKz6KKfzCqqZtXqgxg
-         Tgqw==
+        bh=afjTTVrBt4k6Pyu7b/IKDDjLLLWM77jN5NQETOOhovU=;
+        b=JSJ2xwi5/3VubCdShRW6XDsyoBj7XdrpiByEOgX0RzRobh3ZixI5S0u6VaPZpgTyns
+         i3uPJ835OuhY1h/qY1mV5CciQM9dXwJPqUNrjmU1CVq79d+lTsWKQ3TD+SRYChwEPkUY
+         PcmVYQMNMIjNmYaYOXtyxJVjHF2epB/MM+TQOHeeFbJ86XLkfcuIdmGjZrlUs8y/k/TF
+         0zYeEmxSmtPhrXza+VAMsNPfIfbuOXZ3bO317Hv1tnr5gdSiHe0wXPAfq4H7oPZJxKCo
+         TbJ8i7c9RIRNs2/rJv0VxBgL05W9Cz9soJ9OK+EXmwlw9u75ubkOpAjb+FU+ZSsp4TEt
+         ToRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:from:date:message-id:subject
-         :to:x-original-sender:x-original-authentication-results:reply-to
+        h=sender:x-gm-message-state:message-id:date:from:to:subject
+         :references:in-reply-to:mime-version:content-disposition
+         :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=06rvTIgkmSIZs5bo2KjTtTzEjvVKdQvru5LiEB3XnEI=;
-        b=I21JxPUTEpJzWvznZoxyCZeKNd1xgVIjbI4KBTFtIEINoS1flHTsg8+uLFGMaw1r7S
-         9Ui5wXthB6K1qbajFtWs8Ord6HcjucAj/44a0nEjMYLHn/vzBl2LKszpu3DXRj3tgUjT
-         6Aalqq+ycvRxKJ0Scjf8V8rUDNIXHk6QCRG8mVJI9xK9ZeduU3CbbLGGWtK72V4z/ZMD
-         RLtGyRoBN8YEiZdTslqyAUkiGYDl0/awVLobNM6Y9iYknHI0wUPOujwsm3q3x62CsPe8
-         8O2BqbkfqqczkUxxb2hr2v+3kSznB3bOmAxxhEJtnF6Du9qj9njxb6ZlbSDol6Tdv3bB
-         gjLQ==
+        bh=afjTTVrBt4k6Pyu7b/IKDDjLLLWM77jN5NQETOOhovU=;
+        b=dlciqte/6K44Xx9VpTCefBR7Qya8seXKnHMCy7TIUylWDVMRmMNI1HQVR6sxbAILrd
+         clshqCdftK4M+j9W01j4WaY6+IyemFo7l884Vwxhcsk3A1TGV9xQEpEFZF0IVhTUhmFa
+         ZftpsQBovRbjW0y5o2K9ThuwRY/n+qxLaV/Jst1zLKufSxXeaqNNMDlEwyd8BrCc8KJ4
+         DZlfH1391LXLglWAhiOYpxx0qKZI9c8fBGADbr2FMbNNRNTNga4unZBcpOir0NiCtX6W
+         AShQ7bruE6Ml6s+DyM6WKYNBl3O+ur3jbAtUi4vh7WmHygTbti9/G5OsSXSTWtORVNaU
+         aTlA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANhLgQ3kNDP4wHfjZV5jIb2/ytwBg/7dBbtU4xLpMCmm8XissZPO5ftl
-	J1ZvA7FiUhs/DQO/gPt1h80=
-X-Google-Smtp-Source: ADFU+vuJfWimC18v6AqCgWay3HHVJV7aSJ3SDhzn14HlbZhJ7HvTgowQnDQTeMoaZoWnFsZ14RSg9w==
-X-Received: by 2002:a63:348b:: with SMTP id b133mr18506746pga.372.1584196107226;
-        Sat, 14 Mar 2020 07:28:27 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ2fIYwj6dyt8SkwpOdW1v8yh3yNA5k7ODq3Tghn4PjvZ3+PPQxi
+	YwyNTW4Zm0RQ2LrFSYJdJVM=
+X-Google-Smtp-Source: ADFU+vuTu6pCVhU9N9WUuN/1vq9YE/wsng2u5uBD58GESi7vPshsAWR5pUhHrCh9Ac1zxocOnhtaYw==
+X-Received: by 2002:a5d:55c7:: with SMTP id i7mr35206082wrw.252.1584343896303;
+        Mon, 16 Mar 2020 00:31:36 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:902:bb93:: with SMTP id m19ls5939541pls.6.gmail; Sat, 14
- Mar 2020 07:28:26 -0700 (PDT)
-X-Received: by 2002:a17:902:864a:: with SMTP id y10mr18787180plt.2.1584196106795;
-        Sat, 14 Mar 2020 07:28:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1584196106; cv=none;
+Received: by 2002:adf:afd4:: with SMTP id y20ls8895989wrd.5.gmail; Mon, 16 Mar
+ 2020 00:31:35 -0700 (PDT)
+X-Received: by 2002:adf:c648:: with SMTP id u8mr34862871wrg.185.1584343895752;
+        Mon, 16 Mar 2020 00:31:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1584343895; cv=none;
         d=google.com; s=arc-20160816;
-        b=TE4yZSy8+z0i6Rhu3euxqf6Z0UeMG7rqK87xyvDTH+ZP/MwOakQAA1R6WCbc680V9d
-         /EfNsIj4mFLDbqlYEBC6QWEN7mRfCM0q/SmjzBERucm9zzQ+iI8+9KykPqeGxaN04rrx
-         5pe8z1JfxP6nr8odA/Q5RWInKrRPfJBmrp1iw5x+BcO736LORrC50SumgrKIqBBg0RVC
-         5eONq//RhHP+PCXxvXYyc0wjnefarSVi8mh//Pcl/EF77o+EdXfb//OePjDzUaJcXfci
-         5hirdRrtMVj2RtQimUthMYpJpywWtuTdqwKkWEbxyicHzVG7fesQc/fIC3Z3EeosShNa
-         WyXg==
+        b=ColhZDw9NnNkKMO1xCcyWP3rk9IAAnT8X70Pk+8mWqqC+fQpWnic1pyLM3rok5CTnm
+         cXNZJ+b/SdX+AD6JO3DanxoNNSl8O39pfs0iX213dOQ5WENbVbCKCokvISOSseKZG1fh
+         PlSpOYbE/DeZAA39oFlKBTEUZfBwEJsJTMJS2m1ZFod8H5FEioxQMTIdQiY9OIlFaIVB
+         mD1jU6k5lk9oLLGqxmwhas0jJ9mAL4WkSvAK+VXZItySsNG8r88bcOHMhQEF51r/unWp
+         RJfLmh5fFbwmrxXsKyKqMD1HXE0vWVgIKkIF2K/mnAI5+6BQpiXZhU1oZYu2IbPC5r+W
+         /DCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=xHXkuOFww8fBrnoQwb0NQxrcC3ZUzP0EEcSjH6cTvOc=;
-        b=SVDa+/sBKd4x8rcXl8DYcpAY38YZA8QSFELySGz3n/VcLczazenhFQieHHvchiJOAX
-         j7ocgdud/cXdIzsaW5KVx7bHqZy4imvRTIcbWmJRa1iDSSvl1sQFpxeM0Ywn3/8BChJA
-         eKfhml2q/dPbPSa5KdgcI9adP5Zmx+PnT15H8ZIZvR1ryCBcMKv/maEFcioZO5cnQ7Fb
-         1qBQ7xzCIPZaqcPq0KdBT0vwF33lzMNwaqMgYgaF0aXmV3fYFWuqompqbOyFVi5SbZb4
-         Ua9mLG3ZFz3fHkyIa+7cO30MHf2afKbFMq3W2WzIj6HZ7/PnoakOVYlpXwP3Lg5gSNPH
-         FkTA==
+        h=content-disposition:content-transfer-encoding:mime-version
+         :in-reply-to:references:subject:to:from:date:message-id;
+        bh=p6H34qo90G8XePRlhF8cquG5A/CBJ2emFoyA1OS3rFQ=;
+        b=j/MG6/SEHbglNckpjI32tFq5pSpt2/1emDyos4K/brPamGWG8hdHXIJatKPWeiOGcU
+         aGetJ6VUF0GalXYEg5YvSwHYPE/InHXBcmYjmD3KnIPhaLokaoj4sdbfF8PCPIqPHLgU
+         GQseOS3uQ16dlgFUwBG5acbDR2ff1q88FTjpJIr2yaMRhvQKZ9U9K57tlkzNdUUff1QL
+         uwW1cFw6PZWoNiQqKtiMq2RLlFByNRYVZ6YWkuyL/nrMS9vPyyhKZpZsabqdqWb+AhwV
+         OVxd8ELX4RON2oYrl5Yaveft9kHhyE7nvqS2ozvhPfFAmTAsELjzyOT1eaIUSczEOST7
+         N+Hg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=fOA+3dw4;
-       spf=pass (google.com: domain of msmith626@gmail.com designates 2607:f8b0:4864:20::e34 as permitted sender) smtp.mailfrom=msmith626@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com. [2607:f8b0:4864:20::e34])
-        by gmr-mx.google.com with ESMTPS id l6si494423pgb.3.2020.03.14.07.28.26
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+Received: from mx4.uni-regensburg.de (mx4.uni-regensburg.de. [2001:638:a05:137:165:0:4:4e7a])
+        by gmr-mx.google.com with ESMTPS id o194si947320wme.2.2020.03.16.00.31.35
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Mar 2020 07:28:26 -0700 (PDT)
-Received-SPF: pass (google.com: domain of msmith626@gmail.com designates 2607:f8b0:4864:20::e34 as permitted sender) client-ip=2607:f8b0:4864:20::e34;
-Received: by mail-vs1-xe34.google.com with SMTP id c18so8272020vsq.7
-        for <open-iscsi@googlegroups.com>; Sat, 14 Mar 2020 07:28:26 -0700 (PDT)
-X-Received: by 2002:a05:6102:30b3:: with SMTP id y19mr11565325vsd.132.1584196106218;
- Sat, 14 Mar 2020 07:28:26 -0700 (PDT)
-MIME-Version: 1.0
-From: Marc Smith <msmith626@gmail.com>
-Date: Sat, 14 Mar 2020 10:28:15 -0400
-Message-ID: <CAH6h+hdZ7QvF_WuLU5PJVpe4RpjM4EeEW7aBQVZrfOrZV1PLCA@mail.gmail.com>
-Subject: replacement_timeout Override
-To: open-iscsi@googlegroups.com
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 16 Mar 2020 00:31:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) client-ip=2001:638:a05:137:165:0:4:4e7a;
+Received: from mx4.uni-regensburg.de (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id 0BFAE6000058
+	for <open-iscsi@googlegroups.com>; Mon, 16 Mar 2020 08:31:35 +0100 (CET)
+Received: from gwsmtp.uni-regensburg.de (gwsmtp1.uni-regensburg.de [132.199.5.51])
+	by mx4.uni-regensburg.de (Postfix) with ESMTP id E4229600004F
+	for <open-iscsi@googlegroups.com>; Mon, 16 Mar 2020 08:31:34 +0100 (CET)
+Received: from uni-regensburg-smtp1-MTA by gwsmtp.uni-regensburg.de
+	with Novell_GroupWise; Mon, 16 Mar 2020 08:31:34 +0100
+Message-Id: <5E6F2B54020000A100037C8B@gwsmtp.uni-regensburg.de>
+X-Mailer: Novell GroupWise Internet Agent 18.2.0
+Date: Mon, 16 Mar 2020 08:31:32 +0100
+From: "Ulrich Windl" <Ulrich.Windl@rz.uni-regensburg.de>
+To: "open-iscsi" <open-iscsi@googlegroups.com>
+Subject: Antw: [EXT] replacement_timeout Override
+References: <29983_1584196109_5E6CEA0D_29983_1691_1_CAH6h+hdZ7QvF_WuLU5PJVpe4RpjM4EeEW7aBQVZrfOrZV1PLCA@mail.gmail.com>
+In-Reply-To: <29983_1584196109_5E6CEA0D_29983_1691_1_CAH6h+hdZ7QvF_WuLU5PJVpe4RpjM4EeEW7aBQVZrfOrZV1PLCA@mail.gmail.com>
+Mime-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-X-Original-Sender: msmith626@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b=fOA+3dw4;       spf=pass
- (google.com: domain of msmith626@gmail.com designates 2607:f8b0:4864:20::e34
- as permitted sender) smtp.mailfrom=msmith626@gmail.com;       dmarc=pass
- (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Content-Disposition: inline
+X-Original-Sender: Ulrich.Windl@rz.uni-regensburg.de
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates
+ 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -136,36 +129,54 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Hi,
+>>> Marc Smith <msmith626@gmail.com> schrieb am 14.03.2020 um 15:28 in Nachricht
+<29983_1584196109_5E6CEA0D_29983_1691_1_CAH6h+hdZ7QvF_WuLU5PJVpe4RpjM4EeEW7aBQVZ
+fOrZV1PLCA@mail.gmail.com>:
+> Hi,
+> 
+> I'm using open-iscsi version 2.1.1. I noticed that my
+> "replacement_timeout" value set in the node record is not being
+> applied, or rather is not overriding the default value set in
+> iscsid.conf:
+> 
+> # iscsiadm -m node -T internal_redirect | grep replacement_timeout
+> node.session.timeo.replacement_timeout = 5
+> 
+> # cat /etc/iscsi/iscsid.conf | grep replacement_timeout
+> node.session.timeo.replacement_timeout = 120
+> 
+> # cat /sys/class/iscsi_session/session1/recovery_tmo
+> 120
+> 
+> # iscsiadm -m session -P 2 | grep Recovery
+> Recovery Timeout: 120
+> 
+> I can certainly change this value in iscsid.conf, but I was thinking
+> my value in the node record would override this (for this specific
+> target). Is it expected that this value should override what's in
+> iscsid.conf? If so, then I assume I've hit a bug, or perhaps I have
+> something configured incorrectly?
+> 
+> Thanks for your time.
 
-I'm using open-iscsi version 2.1.1. I noticed that my
-"replacement_timeout" value set in the node record is not being
-applied, or rather is not overriding the default value set in
-iscsid.conf:
+I think whatever it was designed to do, there should be a "notice" at least that some specified setting is ignored if it is.
 
-# iscsiadm -m node -T internal_redirect | grep replacement_timeout
-node.session.timeo.replacement_timeout = 5
+> 
+> --Marc
+> 
+> -- 
+> You received this message because you are subscribed to the Google Groups 
+> "open-iscsi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an 
+> email to open-iscsi+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit 
+> https://groups.google.com/d/msgid/open-iscsi/CAH6h%2BhdZ7QvF_WuLU5PJVpe4RpjM4 
+> EeEW7aBQVZrfOrZV1PLCA%40mail.gmail.com.
 
-# cat /etc/iscsi/iscsid.conf | grep replacement_timeout
-node.session.timeo.replacement_timeout = 120
 
-# cat /sys/class/iscsi_session/session1/recovery_tmo
-120
 
-# iscsiadm -m session -P 2 | grep Recovery
-Recovery Timeout: 120
-
-I can certainly change this value in iscsid.conf, but I was thinking
-my value in the node record would override this (for this specific
-target). Is it expected that this value should override what's in
-iscsid.conf? If so, then I assume I've hit a bug, or perhaps I have
-something configured incorrectly?
-
-Thanks for your time.
-
---Marc
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAH6h%2BhdZ7QvF_WuLU5PJVpe4RpjM4EeEW7aBQVZrfOrZV1PLCA%40mail.gmail.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/5E6F2B54020000A100037C8B%40gwsmtp.uni-regensburg.de.
