@@ -1,72 +1,136 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBB7H26LZQKGQE5FI4OLY@googlegroups.com>
+Return-Path: <open-iscsi+bncBD54HHNYIIIIRUXT6MCRUBDD3AG44@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x737.google.com (mail-qk1-x737.google.com [IPv6:2607:f8b0:4864:20::737])
-	by mail.lfdr.de (Postfix) with ESMTPS id A53CA19419C
-	for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 15:34:37 +0100 (CET)
-Received: by mail-qk1-x737.google.com with SMTP id y1sf4947207qke.3
-        for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 07:34:37 -0700 (PDT)
+Received: from mail-wm1-x33f.google.com (mail-wm1-x33f.google.com [IPv6:2a00:1450:4864:20::33f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67E9D1945A9
+	for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 18:40:24 +0100 (CET)
+Received: by mail-wm1-x33f.google.com with SMTP id t22sf2487836wmt.4
+        for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 10:40:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :in-reply-to:content-language:mime-version:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=rNz8QE/7IfDBv2nMWLCSTWQYJ7f6TPQCBEXlpCwH47c=;
-        b=pzqEZNYJusVgs8nZ24AqX9wK9NyRsqh0aCiJ8ORrRX5Ec4kWmZmNqtK/Sn7Vu468HG
-         uFEN+YHAtPYE63yecYledFgyRymcegp8iJrfRUvDvaUER4vJ/ukTgOroMoDuKc/yqn4o
-         jjAif4CtLv4EjUTCQyDqcJX9u8jGbNOUVRNNo/PaYJf9aTKMjSq0IWJxMYVM+7Rz8fVM
-         FOjtuR/8GErmRIeVo3N4skJJFiD3mk8sg3tf7ft11MAW2SapIZox0A0lD505GHVJSulP
-         QVnlpHCOlwmpMurA7i5SZ1ZnYkXvCoGzNjs7yesbYIgY2jMI27qBxhUVSykagOIVUhm1
-         G9Aw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=rNz8QE/7IfDBv2nMWLCSTWQYJ7f6TPQCBEXlpCwH47c=;
-        b=DQ7toQm8A0Kv6ynNKGPuJ4Iq7cXh+ZGWf7FpFrc0n2LPrcUEXuBMVKrIQa86Au4c7y
-         ohtqvco1MzFolV1UuiOkTcjdELqpZnksBdXXLkHjykHLY9AKmOTLRK1e7CsBJTzpKgNJ
-         XiWGm7GYHC0KBNnlwNxh8upSWfd33G3P/IqlclFVoQNR21hoJH6/fXm6vS/9/GSrlt6M
-         nB8BEL8BBDIpQWyvlKvw6VMY7x+/fdEMr1UH1wwhq926hbX3pVPHuROZu/xU4cDkaeTh
-         37+phGMnMR/IWVmGjCsol7qWaTy8WhGmh0XOTE+lFG1rYoMw66fOYzf2sIQj8DlAltKq
-         KVeQ==
+        bh=oqyYQzsorFhLwadgBA1hST0J+nIWhjiHnxZ55AhgnDM=;
+        b=BU1QH78i7OqClQ6PZSZlddFgfF4jFTyC09u7XIY3px/U+8OeCp2dxFrGq8nYkIcLjv
+         xyj3c8WWBf3dvQqmQ10xsqOTkz7RS8CFDxk3tuoPxvagZ1PeND1oVKdVzBDTePPMk0aO
+         o7iA9FJx+41s1iStGA4xmp/XQLh6wdweijJ7uKuw7XCNWdJdLOfewql0j1Inw4roKgwl
+         MJvOQVwEf2KBbppST3mWIWmlIiRHWF0/OQKPmm8A9FMqRvQfY8a1IyH5fbIxHMAQEoHi
+         hwIGTP7N+86yfJxrmirljgtPk/BVdIRJXoAj7M47mn9nAaGF+xCzAqJ9LcjyJQ4GFAl/
+         h6kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
+        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
+         :date:user-agent:in-reply-to:content-language:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=rNz8QE/7IfDBv2nMWLCSTWQYJ7f6TPQCBEXlpCwH47c=;
-        b=F504eLbyrz8pV4VAz6l8Xjr90ZAssmi7dsxkGkItB/5Bqagakr2mcF03RyyF3gwflT
-         mlGJAVuHJmnemShcofHEt1WY92QHfpoMLrUr95e2LViP0s3AhZOCKmZeHdW07o/C/87R
-         WtZ1NmhKSylfgvDrIRyAVKAwDM4rx7Q0FYIFFryJNtNz1pZa1LWSZd+AZIDDuUp/mnY4
-         hdOWO7EhQoFEUD3RmVmwtzPJUK5/947tW12CCxHNysFSWEZRYDz/cUEL5X7zXP5gBqo4
-         nLDA5sCvSY+8hpm7StIRI+2OytpK7FNFqwA8nxkJkXYb9WliA4e3xJv0cYmGG2js3UGm
-         ryvQ==
+        bh=oqyYQzsorFhLwadgBA1hST0J+nIWhjiHnxZ55AhgnDM=;
+        b=lV3cNKlztBJ5RzkubXAqPNJckfXwoVdogqjnJ72XO6vWunEFFX03e1eYepfDrEDVOi
+         9f2HQLmag0Ob3zqjHqBWs6Tx1W2ALuHh3kNIJjPCaF9zUmHeOJstMfY9CLrZ7ySrHvVe
+         m/F+7vuzmCNBST3Y1cZWKepOsbTj3ilbzSvuJuJr3+vqEWf1NdmbmZ2oXZjfLtkyu7lf
+         qndVyt1kp1824HG1OVBWHAew1n/nV2OM56JRXCs5drNckC+TYAnkvvlFVZ+yDQ+EU65N
+         ZlCGL4Z2uVQuElanQvkcwNB7sLsHyZoYvcJeMYwVJeuYkAqFwL2KDjFCeuMdUkR1RTjo
+         JIJQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANhLgQ0lGOGS1bl91YuBtWYB9E4sDImrkeD0uwzSsCo2OUUhpb6kU08g
-	tC0KoMd06sBYNHuvzg1swjw=
-X-Google-Smtp-Source: ADFU+vtElbXg4jRqgDhxFsi3eF21HYOmWOsY5tfMsmnBMLD4oC6Zu0jks0h0LAtDv8Q92KEJ4feLXQ==
-X-Received: by 2002:ad4:4d4e:: with SMTP id m14mr8400211qvm.51.1585233276509;
-        Thu, 26 Mar 2020 07:34:36 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ3FY66S3CxNsWa9nXxc5grJPBp2XvtHkz2hECXHwTJH50vU+HbW
+	MzcNDICuOAp2JkQijXmRlTk=
+X-Google-Smtp-Source: ADFU+vsUaXr4IJEL90pXfEFGLAclUhAIrxRzV4oCMxBakSFpV/z3X2ApiKpElK1AjgXHct6cMew2Mw==
+X-Received: by 2002:a1c:62c5:: with SMTP id w188mr1088463wmb.112.1585244424112;
+        Thu, 26 Mar 2020 10:40:24 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:aed:2521:: with SMTP id v30ls2227468qtc.6.gmail; Thu, 26 Mar
- 2020 07:34:36 -0700 (PDT)
-X-Received: by 2002:aed:3ed0:: with SMTP id o16mr8445788qtf.3.1585233275906;
-        Thu, 26 Mar 2020 07:34:35 -0700 (PDT)
-Date: Thu, 26 Mar 2020 07:34:34 -0700 (PDT)
-From: The Lee-Man <leeman.duncan@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <62df8000-a715-4658-b36d-cf5552a9c766@googlegroups.com>
-In-Reply-To: <CAH6h+hdDRL7gOh854wf3aeh2GjKnpa8t9f-5sh21k+b7hnVbkw@mail.gmail.com>
-References: <CAH6h+hdZ7QvF_WuLU5PJVpe4RpjM4EeEW7aBQVZrfOrZV1PLCA@mail.gmail.com>
- <CAH6h+hdDRL7gOh854wf3aeh2GjKnpa8t9f-5sh21k+b7hnVbkw@mail.gmail.com>
-Subject: Re: replacement_timeout Override
+Received: by 2002:a05:600c:104d:: with SMTP id 13ls526600wmx.1.gmail; Thu, 26
+ Mar 2020 10:40:23 -0700 (PDT)
+X-Received: by 2002:a1c:9d0b:: with SMTP id g11mr1054076wme.77.1585244423566;
+        Thu, 26 Mar 2020 10:40:23 -0700 (PDT)
+Received: from m9a0014g.houston.softwaregrp.com (m9a0014g.houston.softwaregrp.com. [15.124.64.90])
+        by gmr-mx.google.com with ESMTPS id l2si679840wmg.3.2020.03.26.10.40.14
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 26 Mar 2020 10:40:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lduncan@suse.com designates 15.124.64.90 as permitted sender) client-ip=15.124.64.90;
+Received: FROM m9a0014g.houston.softwaregrp.com (15.121.0.190) BY m9a0014g.houston.softwaregrp.com WITH ESMTP;
+ Thu, 26 Mar 2020 17:38:59 +0000
+Received: from M4W0334.microfocus.com (2002:f78:1192::f78:1192) by
+ M9W0067.microfocus.com (2002:f79:be::f79:be) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1591.10; Thu, 26 Mar 2020 17:35:25 +0000
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (15.124.8.11) by
+ M4W0334.microfocus.com (15.120.17.146) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1591.10 via Frontend Transport; Thu, 26 Mar 2020 17:35:25 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f1kmBDcHu3OmJe7raI2nQ8aTxvsOOuQ1/zXosqDpmUrXAHbeX6W/Hpp4IFjnsPrypDvm38RyNHQxYnnzdD6VtMuyhWlk2IZq8fWGlIDJdKqec2jE77v5AMuvsJeTRf2LMdrWYINNZWsc/BTO2xwB6x+YgIWS454m91wAmJbKrzcWKlm9NPXpoHqmkoNusyDHCw2kZhg9WsUAXBFQ/I6YD7gjGurTe2mRwQuJzvjx4DjFN/p7kQJjVxTQWcZdGwFs8LubmkkxhncHQIuRSbD8l3m+OGkTE7tO2oEE89WoA90QGh3LRDcvemUySOOi3imnoLe0DehvK+GoiBs2MKmqGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KnqIo0rWw/nad9DwT7/GilIxbt/xJbsNb5dSib4DDFg=;
+ b=dtFsKP8eOanzz0bRrcRCF5T/2nGMU6H45Z+N2HNi7rylSqcR1oVizSveJxrD9dmNogmNS6wxy3oyZVNW3OA6NZLFqe+EHOVhDqCzYtbP/hCVZYkQzzjrwQ7wwy9JMuvbnNVOti4KSSiKr7858qSPm54HNTcQYSersyHSodkhTYh3LJgRocIQ1rRH6JG4kfpxO8wut5XSXlMPytDcViu3GSg12ctWiafbxSzxNin5feCJI1RimJcumN1RvFhHBDJ9ssO4jVfGlU9UGBjmixfXSO23w7190C1lGXiqqN70ayu4pHQ7kqTFcgddHR7f1IYd2jkMxcH+ro+2f3IX13mTPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+Received: from MN2PR18MB3278.namprd18.prod.outlook.com (2603:10b6:208:168::12)
+ by MN2PR18MB2832.namprd18.prod.outlook.com (2603:10b6:208:a1::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.22; Thu, 26 Mar
+ 2020 17:35:24 +0000
+Received: from MN2PR18MB3278.namprd18.prod.outlook.com
+ ([fe80::257e:4933:95ff:e316]) by MN2PR18MB3278.namprd18.prod.outlook.com
+ ([fe80::257e:4933:95ff:e316%5]) with mapi id 15.20.2856.019; Thu, 26 Mar 2020
+ 17:35:24 +0000
+Subject: Re: [PATCH] scsi:libiscsi:Fix an error count for active session
+To: "wubo (T)" <wubo40@huawei.com>, Chris Leech <cleech@redhat.com>, "James
+ E.J. Bottomley" <jejb@linux.ibm.com>, "Martin K. Petersen"
+	<martin.petersen@oracle.com>, "linux-scsi@vger.kernel.org"
+	<linux-scsi@vger.kernel.org>, "open-iscsi@googlegroups.com"
+	<open-iscsi@googlegroups.com>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+CC: linfeilong <linfeilong@huawei.com>, "liuzhiqiang (I)"
+	<liuzhiqiang26@huawei.com>
+References: <EDBAAA0BBBA2AC4E9C8B6B81DEEE1D6916A28542@DGGEML525-MBS.china.huawei.com>
+From: Lee Duncan <lduncan@suse.com>
+Message-ID: <d4f7d5e1-1695-488e-2fee-ab562173d079@suse.com>
+Date: Thu, 26 Mar 2020 10:35:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+In-Reply-To: <EDBAAA0BBBA2AC4E9C8B6B81DEEE1D6916A28542@DGGEML525-MBS.china.huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+X-ClientProxiedBy: LO2P265CA0344.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:d::20) To MN2PR18MB3278.namprd18.prod.outlook.com
+ (2603:10b6:208:168::12)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_3744_1718718962.1585233275057"
-X-Original-Sender: leeman.duncan@gmail.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.20.3] (73.25.22.216) by LO2P265CA0344.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:d::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.19 via Frontend Transport; Thu, 26 Mar 2020 17:35:21 +0000
+X-Originating-IP: [73.25.22.216]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2c24c07d-2b1b-45cf-15e3-08d7d1ac108d
+X-MS-TrafficTypeDiagnostic: MN2PR18MB2832:
+X-Microsoft-Antispam-PRVS: <MN2PR18MB283211C8EB5000542FD82D5BDACF0@MN2PR18MB2832.namprd18.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Forefront-PRVS: 0354B4BED2
+X-Forefront-Antispam-Report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(136003)(39860400002)(366004)(376002)(396003)(66946007)(66476007)(54906003)(81166006)(110136005)(81156014)(8936002)(478600001)(8676002)(316002)(4744005)(52116002)(16576012)(5660300002)(66556008)(86362001)(2616005)(53546011)(26005)(6486002)(2906002)(956004)(31686004)(6666004)(186003)(31696002)(36756003)(4326008)(16526019);DIR:OUT;SFP:1102;SCL:1;SRVR:MN2PR18MB2832;H:MN2PR18MB3278.namprd18.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;
+Received-SPF: None (protection.outlook.com: suse.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OsC5z7JC2D5SUjOUQ9B81ly2Qi13yw1VtuxjuKGtKILoqiQA3wr0ZN/qpFzM4HEynjIoQWmMKXOmDoA++9CJ/IDWnOM7cDfDiNEhOtj0+eRk5XET31hrifrQYy4aZHAa0sXAdCJRoF7GWHkNonVori84tkLj3tMdOdWIlhqDtBU9z6vr2ElLf/FE7DLhJI9DjrYREiMXRzQo7VHh0THqJoSgX/mwdzJ2f5c1jffJFg9h9fc5POAFlAKFH0F2gnfxWEctCNsXIJ3Xa4X+UKCdf6G8BahGeymgAslnG4Z/KTMSjMH9I74h6gJuM57kjNBRDJXu3RMvSONBk1ONsutjI/aCL16kmY3fEe5L/F9o+futpi0h+sYJBhqnT0Miwtl9YvjdQOePoJKbWFUa9vZdQhFcSCkwxPurvbq47AmdB3PCGhv2OmBpUYBnYTcSP+tE
+X-MS-Exchange-AntiSpam-MessageData: 18rljXGFLzYfsse4D4ibEdKFjMQVFzf527KTxrn5rTevyusXHTtxkp/TWAX/7kdLs1BShalizHvcEiDVQSkVwYVSh7K2BsXR3YnJVqThFSCQS6OGCEEb+Zp9ys7UmUkRoLOE08aKXjJaOUJx1TnzPA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c24c07d-2b1b-45cf-15e3-08d7d1ac108d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2020 17:35:24.1414
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 856b813c-16e5-49a5-85ec-6f081e13b527
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QDA8oTcSZG2Xl0DGKj+NCwTTKQEuddpz2e8tK/788MOwE7Vzdt9gWKHSJgNGpw8AnsTKtT6bjCwhLF4jvt5V5w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR18MB2832
+X-OriginatorOrg: suse.com
+X-Original-Sender: lduncan@suse.com
+X-Original-Authentication-Results: gmr-mx.google.com;       arc=fail
+ (signature failed);       spf=pass (google.com: domain of lduncan@suse.com
+ designates 15.124.64.90 as permitted sender) smtp.mailfrom=LDuncan@suse.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -80,147 +144,38 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_3744_1718718962.1585233275057
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_3745_342370281.1585233275057"
+On 3/24/20 11:53 PM, wubo (T) wrote:
+> From: Wu Bo <wubo40@huawei.com>
+> 
+> Fix an error count for active session if the total_cmds is invalid 
+> on the function iscsi_session_setup().
+> decrement the number of active sessions before the func return.
+> 
+> Signed-off-by: Wu Bo <wubo40@huawei.com>
+> ---
+>  drivers/scsi/libiscsi.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+> index 70b99c0..b7158eb 100644
+> --- a/drivers/scsi/libiscsi.c
+> +++ b/drivers/scsi/libiscsi.c
+> @@ -2771,7 +2771,7 @@ struct iscsi_cls_session *
+>                        "must be a power of 2.\n", total_cmds);
+>                 total_cmds = rounddown_pow_of_two(total_cmds);
+>                 if (total_cmds < ISCSI_TOTAL_CMDS_MIN)
+> -                       return NULL;
+> +                       goto dec_session_count;
+>                 printk(KERN_INFO "iscsi: Rounding can_queue to %d.\n",
+>                        total_cmds);
+>         }
+> --
+> 1.8.3.1
+> 
 
-------=_Part_3745_342370281.1585233275057
-Content-Type: text/plain; charset="UTF-8"
-
-I'm glad you figured it out. Sorry I didn't reply sooner.
-
-On Monday, March 16, 2020 at 9:40:53 PM UTC-7, Marc Smith wrote:
->
-> On Sat, Mar 14, 2020 at 10:28 AM Marc Smith <msmith626@gmail.com> wrote: 
-> > 
-> > Hi, 
-> > 
-> > I'm using open-iscsi version 2.1.1. I noticed that my 
-> > "replacement_timeout" value set in the node record is not being 
-> > applied, or rather is not overriding the default value set in 
-> > iscsid.conf: 
-> > 
-> > # iscsiadm -m node -T internal_redirect | grep replacement_timeout 
-> > node.session.timeo.replacement_timeout = 5 
-> > 
-> > # cat /etc/iscsi/iscsid.conf | grep replacement_timeout 
-> > node.session.timeo.replacement_timeout = 120 
-> > 
-> > # cat /sys/class/iscsi_session/session1/recovery_tmo 
-> > 120 
-> > 
-> > # iscsiadm -m session -P 2 | grep Recovery 
-> > Recovery Timeout: 120 
-> > 
-> > I can certainly change this value in iscsid.conf, but I was thinking 
-> > my value in the node record would override this (for this specific 
-> > target). Is it expected that this value should override what's in 
-> > iscsid.conf? If so, then I assume I've hit a bug, or perhaps I have 
-> > something configured incorrectly? 
->
-> Okay, so after digging a bit, the default values from iscsid.conf are 
-> in fact being superseded by the specific session values. That is 
-> demonstrated when I run "iscsiadm -m node -T internal_redirect". The 
-> only problem is the values aren't applied to the running session (the 
-> sysfs attribute files for the session are not updated when the record 
-> is updated). 
->
-> I was changing the values for a session that was already established. 
-> The solution is to set the node record values, then simply logout and 
-> login. 
->
-> --Marc 
->
->
-> > 
-> > Thanks for your time. 
-> > 
-> > --Marc 
->
+Reviewed-by: Lee Duncan <lduncan@suuse.com>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/62df8000-a715-4658-b36d-cf5552a9c766%40googlegroups.com.
-
-------=_Part_3745_342370281.1585233275057
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I&#39;m glad you figured it out. Sorry I didn&#39;t reply =
-sooner.<br><br>On Monday, March 16, 2020 at 9:40:53 PM UTC-7, Marc Smith wr=
-ote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex=
-;border-left: 1px #ccc solid;padding-left: 1ex;">On Sat, Mar 14, 2020 at 10=
-:28 AM Marc Smith &lt;<a href=3D"mailto:msmith626@gmail.com" target=3D"_bla=
-nk" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:msmith626@gmail=
-.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:msmith626@gmail.=
-com&#39;;return true;">msmith626@gmail.com</a>&gt; wrote:
-<br>&gt;
-<br>&gt; Hi,
-<br>&gt;
-<br>&gt; I&#39;m using open-iscsi version 2.1.1. I noticed that my
-<br>&gt; &quot;replacement_timeout&quot; value set in the node record is no=
-t being
-<br>&gt; applied, or rather is not overriding the default value set in
-<br>&gt; iscsid.conf:
-<br>&gt;
-<br>&gt; # iscsiadm -m node -T internal_redirect | grep replacement_timeout
-<br>&gt; node.session.timeo.<wbr>replacement_timeout =3D 5
-<br>&gt;
-<br>&gt; # cat /etc/iscsi/iscsid.conf | grep replacement_timeout
-<br>&gt; node.session.timeo.<wbr>replacement_timeout =3D 120
-<br>&gt;
-<br>&gt; # cat /sys/class/iscsi_session/<wbr>session1/recovery_tmo
-<br>&gt; 120
-<br>&gt;
-<br>&gt; # iscsiadm -m session -P 2 | grep Recovery
-<br>&gt; Recovery Timeout: 120
-<br>&gt;
-<br>&gt; I can certainly change this value in iscsid.conf, but I was thinki=
-ng
-<br>&gt; my value in the node record would override this (for this specific
-<br>&gt; target). Is it expected that this value should override what&#39;s=
- in
-<br>&gt; iscsid.conf? If so, then I assume I&#39;ve hit a bug, or perhaps I=
- have
-<br>&gt; something configured incorrectly?
-<br>
-<br>Okay, so after digging a bit, the default values from iscsid.conf are
-<br>in fact being superseded by the specific session values. That is
-<br>demonstrated when I run &quot;iscsiadm -m node -T internal_redirect&quo=
-t;. The
-<br>only problem is the values aren&#39;t applied to the running session (t=
-he
-<br>sysfs attribute files for the session are not updated when the record
-<br>is updated).
-<br>
-<br>I was changing the values for a session that was already established.
-<br>The solution is to set the node record values, then simply logout and
-<br>login.
-<br>
-<br>--Marc
-<br>
-<br>
-<br>&gt;
-<br>&gt; Thanks for your time.
-<br>&gt;
-<br>&gt; --Marc
-<br></blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/62df8000-a715-4658-b36d-cf5552a9c766%40googlegroups.c=
-om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/62df8000-a715-4658-b36d-cf5552a9c766%40googlegroups.com</a>.<b=
-r />
-
-------=_Part_3745_342370281.1585233275057--
-
-------=_Part_3744_1718718962.1585233275057--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/d4f7d5e1-1695-488e-2fee-ab562173d079%40suse.com.
