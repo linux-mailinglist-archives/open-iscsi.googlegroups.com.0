@@ -1,71 +1,71 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBRMC6DZQKGQE447DI5Y@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBK7X6LZQKGQEHQFLZFQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3d.google.com (mail-qv1-xf3d.google.com [IPv6:2607:f8b0:4864:20::f3d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED8E19352C
-	for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 02:11:34 +0100 (CET)
-Received: by mail-qv1-xf3d.google.com with SMTP id f12sf3504614qvw.1
-        for <lists+open-iscsi@lfdr.de>; Wed, 25 Mar 2020 18:11:34 -0700 (PDT)
+Received: from mail-qv1-xf38.google.com (mail-qv1-xf38.google.com [IPv6:2607:f8b0:4864:20::f38])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEF54194140
+	for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 15:26:52 +0100 (CET)
+Received: by mail-qv1-xf38.google.com with SMTP id v88sf4896400qvv.6
+        for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 07:26:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=x8bXRNJ1UjO100GM1mZ1estqMGsMdntKfb/7I2AFnxY=;
-        b=nPL1Io57hKzN2GanGUwsBW6C+2JoS8Ft1Rwmo1nA1N9xuEleG6nwHazyRBUKC/WPk0
-         Qa6StvwgrUsqj1acy0LqwCnAiTR8ZlVtguv4kw/0gu8u2UFxljRdjmLWRRDTO3Nn8FrA
-         tZaTbG5VCH5tfTKFwA6NGEGA4xjW1274hPa/5tVHuSkZDwrBggm4kEJ7PfFN7S1LRWhd
-         fX1FYIsMHGPMrbsV5REnUEu9rxOKQilDBtm21HK0T9cVoSyN8MuynoNlW9i1wR5O9q5D
-         1Tsf7dZRtXaEgKWG+EPO5AFljuZ64qKqIlyiem046GRClNqt8NSdwIUhgXekh5iKNn/O
-         0xCQ==
+        bh=/bEJHyuBZNfUikXiLoPlN5bQyeEtXvgWVac4QA8kVJA=;
+        b=Yy8N9N49pgfvJae0hqkrSfzKY8jLlKMMmADTYp3sO7Hh0RququpvsLZcAOtq9S053I
+         bq5MRHtpGQ2SecoiFhWgxo/qhrxhUii/BHp/vzEmVXXhy6O96XazU4XvcLQwgMBg9U1o
+         hpHeWOWI0Ju7P0hvQYoO2jxM/eQpiTLI43ys0X8ccAkX07z8M9iSMCOcHQtxwUDFwt9E
+         LvWyoO7OQyrphetFLmrRvrBPkZoPa15kkZ1gmKLLXgGQdPh0ckOghZ0F+Vp9sSAWIBqI
+         DqwxKsv7BJo721tuIX6yE5Lf1jVow8WQwccGzaxIThGQbHUfZE3EcZH9M2iWJLfZ5oqm
+         e7Ig==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=x8bXRNJ1UjO100GM1mZ1estqMGsMdntKfb/7I2AFnxY=;
-        b=HoChyiedMpOkRs2o/fU259Xbwub2kvjAekthQDtXYr4tRKoZbDVRs0TRdVLUhcTsAe
-         qfqefdBlQp9uENMS27gMSgpv+rUUQRZSToYR/0+NhlfcS5d2vNW68ecv0JzSt45vn1zT
-         Z8rkcOuKy4O5bTEDDCI9QfHapQUZZP3YyL/gJom7Tl48/iMlXAru/HVbr9VR7oFZvozm
-         263SjiDWfN2v6/LNj2Cvqwrx7LgtR+W6Kd8wOA09q9jtTBDTU62syFv0xsbEnhNlW94r
-         uoePsGD2OzXsQgeOurq+T1b0sgyBUDWUOdW38JmsJbz5wpNMnLtq1ZZ0q/nY8xT9vn5v
-         W0dA==
+        bh=/bEJHyuBZNfUikXiLoPlN5bQyeEtXvgWVac4QA8kVJA=;
+        b=DcfVAQ9gFxWt4mL/BIqDM6SUnWRz4VAlo/IAS50zTFOTTxM8QTFAv/66G095qdW9TD
+         t+g9XZRXzdeTWphNGrSj8HwsfvoTx8LG52JgVik1vMHBSoZTXkhKyGVPG3VZ+fCFMOQm
+         aceC7QNpiwRh5vd5wePWEI4DRAQK8p2Kb0bLkiH21hG5eKWbJj0cOFUmJButXvIrBe8K
+         M1vLlCv1QHo4oCHHj36z2hdTlxFHjOPCEGs1SVPJgrvn3DmqVmmmERCF1kj0wIN6H7zr
+         M01p6WjmzKR3FnfDRDxJqhzWMgJ11xa5pNHkQd13Qrr8DmZL3FWa3Ookm42bXXUkFeUo
+         dS7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=x8bXRNJ1UjO100GM1mZ1estqMGsMdntKfb/7I2AFnxY=;
-        b=NR6srJlRMEsoY6DsQ1kwEpAMbwLJVFlZKOYX9dbb/W2+ZsacPDEZzSilg0lQF+o6pR
-         WUCIkMrosAHYt4LXGZuGDUgTZ3srFknHeUNmgsMjggDXUM5Yw82yGGCNV3658OjdI3of
-         uZ7Ud8N55TtJd7pFOfJgmLSErLS+CqsBlt4bW2a7hHo3mT+gx5UZS9owmV2GkH20GsQ1
-         Z3L+wYCgsdV/CCs4T2VvLy29kZRoMPRpuquRGaOnC4laLkdGn9wGGQtG09F4JXTPtHM7
-         wyjgJbj3HAmZtGQXCaEVER5ISHrxbY30lOE0LK+MI6ARBC/VcqJMSTuzy14nnVven/er
-         kxJw==
+        bh=/bEJHyuBZNfUikXiLoPlN5bQyeEtXvgWVac4QA8kVJA=;
+        b=XZNEay3WEx1z80hqvx3x5aZzC/Jjr56gLvcSMznAR3FyoMsMV880l/hHkBEm+Lg6mK
+         Z/ikbqLHdmsr3q5n79axyoxg970SNGzHAdDHSuTduoH/1CRXWO0LirxxzkFLYX/FtBpD
+         j9TWP/+6ej7YyWLxmbdccIlNDE1WzYEXtfgsuyn3UKJv5+60zpBlBwIczUIQ05dEVa/S
+         H70OZtRvGSbBZY9M0bhQy0Uhr62to04BV3k3vhuWs/RoG3u5O77LT7cfYN9ueK/jjwyv
+         bFPUc63LhyyXP8zAVCfxGUF0cNV/jyYy9jN+p+pvV+l/lyXMFdqLTXl/5Vdv9hDuzgob
+         mHMg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANhLgQ2YCYckZOtlSMVK+WsbqEh78/FK7QQCXyz4pFnImftuCRz3+k9R
-	N0j3T4/wmy4dbCMTTLgWips=
-X-Google-Smtp-Source: ADFU+vuKKvn7KVJ5rwNsLOHjBKuFAsQst2vq/iEoOIP6WaVk8b+vNLnkmnFvu0/HpiuNMpHzEZSBHA==
-X-Received: by 2002:a05:6214:68f:: with SMTP id r15mr5736914qvz.96.1585185093248;
-        Wed, 25 Mar 2020 18:11:33 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ3BEOFyqjHlAq4rlK8PauTZn/++7u+ha2c7/ccTdtCc5dn4UC1H
+	m0PWJWinOkPXkUNxqQB6gtU=
+X-Google-Smtp-Source: ADFU+vs/3Mqv7R8ql4JcJMkSGTW0IS/IvLj5ey96uOJShWfbuO/vs+uwAXkToDU+C7Z4hippss6FXg==
+X-Received: by 2002:a0c:bd99:: with SMTP id n25mr8429672qvg.149.1585232811731;
+        Thu, 26 Mar 2020 07:26:51 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:a603:: with SMTP id p3ls1782796qke.6.gmail; Wed, 25 Mar
- 2020 18:11:32 -0700 (PDT)
-X-Received: by 2002:a37:9f42:: with SMTP id i63mr5890617qke.192.1585185092752;
-        Wed, 25 Mar 2020 18:11:32 -0700 (PDT)
-Date: Wed, 25 Mar 2020 18:11:31 -0700 (PDT)
+Received: by 2002:ae9:dc83:: with SMTP id q125ls2600280qkf.9.gmail; Thu, 26
+ Mar 2020 07:26:51 -0700 (PDT)
+X-Received: by 2002:ae9:ed56:: with SMTP id c83mr7809222qkg.200.1585232811036;
+        Thu, 26 Mar 2020 07:26:51 -0700 (PDT)
+Date: Thu, 26 Mar 2020 07:26:50 -0700 (PDT)
 From: The Lee-Man <leeman.duncan@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <c6cb350a-f8d2-486b-888c-dfc6e5b69a79@googlegroups.com>
-In-Reply-To: <6ba31be9-caa5-2d7f-53f1-180986658ec1@huawei.com>
-References: <6ba31be9-caa5-2d7f-53f1-180986658ec1@huawei.com>
-Subject: Re: [PATCH] iscsi-iname: fix iscsi-iname -p access NULL pointer
- without given IQN prefix
+Message-Id: <503795d3-3b41-48ef-9945-4de6ff83e605@googlegroups.com>
+In-Reply-To: <a0d41d75-c6d2-4f7e-90d2-755cde7d08ea@googlegroups.com>
+References: <a0d41d75-c6d2-4f7e-90d2-755cde7d08ea@googlegroups.com>
+Subject: Re: There are two same sessions on the on client node? what's
+ happen with it?
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_2104_2072377925.1585185091959"
+	boundary="----=_Part_3818_214941420.1585232810121"
 X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -80,111 +80,44 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_2104_2072377925.1585185091959
+------=_Part_3818_214941420.1585232810121
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_2105_240131535.1585185091959"
+	boundary="----=_Part_3819_1815205808.1585232810121"
 
-------=_Part_2105_240131535.1585185091959
+------=_Part_3819_1815205808.1585232810121
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thank you very much for this bug report and suggested patch, but I cleaned 
-up the code and fixed it a little differently.
+Those are two different sessions, as distinguished by their session numbers=
+.
 
-On Wednesday, March 18, 2020 at 6:46:06 PM UTC-7, wubo40 wrote:
+On Thursday, March 5, 2020 at 7:42:46 PM UTC-8, can zhu wrote:
 >
-> From: Wu Bo <wubo40@huawei.com> 
->
-> iscsi-iname -p access NULL pointer without give IQN prefix. 
->
-> # iscsi-iname -p 
-> Segmentation fault 
->
-> Signed-off-by: Wu Bo <wubo40@huawei.com> 
-> --- 
->   utils/iscsi-iname.c | 2 +- 
->   1 file changed, 1 insertion(+), 1 deletion(-) 
->
-> diff --git a/utils/iscsi-iname.c b/utils/iscsi-iname.c 
-> index da850dc..7df7bb0 100644 
-> --- a/utils/iscsi-iname.c 
-> +++ b/utils/iscsi-iname.c 
-> @@ -69,7 +69,7 @@ main(int argc, char *argv[]) 
->               exit(0); 
->           } else if ( strcmp(prefix, "-p") == 0 ) { 
->               prefix = argv[2]; 
-> -            if (strnlen(prefix, PREFIX_MAX_LEN + 1) > PREFIX_MAX_LEN) { 
-> +            if (prefix && (strnlen(prefix, PREFIX_MAX_LEN + 1) > 
-> PREFIX_MAX_LEN)) { 
->                   printf("Error: Prefix cannot exceed %d " 
->                          "characters.\n", PREFIX_MAX_LEN); 
->                   exit(1); 
-> -- 
-> 2.21.0 
->
->
+> [image: =E5=BE=AE=E4=BF=A1=E5=9B=BE=E7=89=87_20200306114227.png]
 >
 >
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/c6cb350a-f8d2-486b-888c-dfc6e5b69a79%40googlegroups.com.
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/503795d3-3b41-48ef-9945-4de6ff83e605%40googlegroups.com.
 
-------=_Part_2105_240131535.1585185091959
+------=_Part_3819_1815205808.1585232810121
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thank you very much for this bug report and suggested patc=
-h, but I cleaned up the code and fixed it a little differently.<br><br>On W=
-ednesday, March 18, 2020 at 6:46:06 PM UTC-7, wubo40 wrote:<blockquote clas=
-s=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #c=
-cc solid;padding-left: 1ex;">From: Wu Bo &lt;<a href=3D"mailto:wubo40@huawe=
-i.com" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;m=
-ailto:wubo40@huawei.com&#39;;return true;" onclick=3D"this.href=3D&#39;mail=
-to:wubo40@huawei.com&#39;;return true;">wubo40@huawei.com</a>&gt;
-<br>
-<br>iscsi-iname -p access NULL pointer without give IQN prefix.
-<br>
-<br># iscsi-iname -p
-<br>Segmentation fault
-<br>
-<br>Signed-off-by: Wu Bo &lt;<a href=3D"mailto:wubo40@huawei.com" target=3D=
-"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:wubo40@hua=
-wei.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:wubo40@huawei=
-.com&#39;;return true;">wubo40@huawei.com</a>&gt;
-<br>---
-<br>=C2=A0=C2=A0utils/iscsi-iname.c | 2 +-
-<br>=C2=A0=C2=A01 file changed, 1 insertion(+), 1 deletion(-)
-<br>
-<br>diff --git a/utils/iscsi-iname.c b/utils/iscsi-iname.c
-<br>index da850dc..7df7bb0 100644
-<br>--- a/utils/iscsi-iname.c
-<br>+++ b/utils/iscsi-iname.c
-<br>@@ -69,7 +69,7 @@ main(int argc, char *argv[])
-<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ex=
-it(0);
-<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 } else if ( strcmp(pr=
-efix, &quot;-p&quot;) =3D=3D 0 ) {
-<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 pr=
-efix =3D argv[2];
-<br>-=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 if (strnlen(p=
-refix, PREFIX_MAX_LEN + 1) &gt; PREFIX_MAX_LEN) {
-<br>+=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 if (prefix &a=
-mp;&amp; (strnlen(prefix, PREFIX_MAX_LEN + 1) &gt;=20
-<br>PREFIX_MAX_LEN)) {
-<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =
-=C2=A0=C2=A0=C2=A0 printf(&quot;Error: Prefix cannot exceed %d &quot;
-<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =
-=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &quot;characters.\n=
-&quot;, PREFIX_MAX_LEN);
-<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =
-=C2=A0=C2=A0=C2=A0 exit(1);
-<br>--=20
-<br>2.21.0
-<br>
-<br>
-<br>
-<br></blockquote></div>
+<div dir=3D"ltr">Those are two different sessions, as distinguished by thei=
+r session numbers.<br><br>On Thursday, March 5, 2020 at 7:42:46 PM UTC-8, c=
+an zhu wrote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-le=
+ft: 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;"><p style=3D"text-=
+align:center;clear:both"><img src=3D"https://groups.google.com/group/open-i=
+scsi/attach/1428b7dda8342/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_202003061142=
+27.png?part=3D0.1&amp;view=3D1&amp;authuser=3D0" alt=3D"=E5=BE=AE=E4=BF=A1=
+=E5=9B=BE=E7=89=87_20200306114227.png" style=3D"margin-left:1em;margin-righ=
+t:1em" width=3D"320" height=3D"75"></p><br></blockquote></div>
 
 <p></p>
 
@@ -195,11 +128,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/c6cb350a-f8d2-486b-888c-dfc6e5b69a79%40googlegroups.c=
+om/d/msgid/open-iscsi/503795d3-3b41-48ef-9945-4de6ff83e605%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/c6cb350a-f8d2-486b-888c-dfc6e5b69a79%40googlegroups.com</a>.<b=
+d/open-iscsi/503795d3-3b41-48ef-9945-4de6ff83e605%40googlegroups.com</a>.<b=
 r />
 
-------=_Part_2105_240131535.1585185091959--
+------=_Part_3819_1815205808.1585232810121--
 
-------=_Part_2104_2072377925.1585185091959--
+------=_Part_3818_214941420.1585232810121--
