@@ -1,34 +1,34 @@
-Return-Path: <open-iscsi+bncBDVIJONZ3YDRBSN46XZQKGQEG2A3E3A@googlegroups.com>
+Return-Path: <open-iscsi+bncBDVIJONZ3YDRBZWT6XZQKGQE7NGQL2Y@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oi1-x23e.google.com (mail-oi1-x23e.google.com [IPv6:2607:f8b0:4864:20::23e])
-	by mail.lfdr.de (Postfix) with ESMTPS id EECEB194EAD
-	for <lists+open-iscsi@lfdr.de>; Fri, 27 Mar 2020 03:00:42 +0100 (CET)
-Received: by mail-oi1-x23e.google.com with SMTP id v198sf6690398oia.15
-        for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 19:00:42 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1585274441; cv=pass;
+Received: from mail-qt1-x839.google.com (mail-qt1-x839.google.com [IPv6:2607:f8b0:4864:20::839])
+	by mail.lfdr.de (Postfix) with ESMTPS id A477B194F39
+	for <lists+open-iscsi@lfdr.de>; Fri, 27 Mar 2020 03:50:15 +0100 (CET)
+Received: by mail-qt1-x839.google.com with SMTP id n89sf7015047qte.15
+        for <lists+open-iscsi@lfdr.de>; Thu, 26 Mar 2020 19:50:15 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1585277414; cv=pass;
         d=google.com; s=arc-20160816;
-        b=DPkjDbV/KU+dJ5iRVnOre77xOaPPAVGB3r0W65xhS7aRdOEME11JZA/s7ZEcxSv4Xt
-         fp0iUcPNyyy2SCATAV+LSMJP6PiDulVt/j04bj3uqIegXLvugPmMgaIaEklCEJNqveo8
-         +X7aZMXjwIcNxa3dzD3M/iUkeQp+STc5AXSP9eqOKaBUx/RXX2ecrTENXR5B0vl6JNNK
-         OvIsfUVMH9suNCeoXwKEyYWnOYbhaYWxcS1EHOrAwCxPzXtR98HS8yx+5p4SrLDXzE+D
-         BswRHfFQE0XBa/zI+ETyfcooaNaH0apZACafF2KbNz6xRWcw4Ri9qG/SlvIRDWdmrluH
-         /tvg==
+        b=HdRjNFLCwCpHel4v2DqJ1bRhuc6iBhKtOoF8El8CGSv6YWQ7WbDb24JaSgyRu5BmSI
+         fP+nVqF4pTLLpbl07nx/XA+bkh2hkirLvHysQn/G2Q2n+hmzcUK/t4G/fyQtL1QxuZFQ
+         14Uzg1ZfUDYflRvYF+Ph6o19DjLn7oge3/rWzihMsyxpZcQjpWIHPAMxO4nwwggMDNVH
+         IZAVSOJySO3l9KwChSvQMbJJQwjXAcNoINqbB6kChr3uxjgk3GB3nnAlS/Q6WP1J5uml
+         E+xO7F1PMwh6qCfIBL0xyY/9FPivMlL/PHNsRtSXYpTG8L/NjxUQLRKSP+DGEkjZVcw1
+         YGHQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:user-agent
          :message-id:in-reply-to:date:references:organization:from:subject:cc
          :to:sender:dkim-signature;
-        bh=4qmFAvV29M66X4PuIcMK0lKEbvEGTj9BbfgUBTkqIto=;
-        b=yNfj6UEBTQYEaZy+C7ykTWQdFYpW5L7gpt7T1xMp4APWPSXOJbK4OPZ+UpkIxQZV6M
-         EYsivAU1++h6CR1Rt4Bw0vZ7yKru7HBmzxBOlvJd1/OcSPD+xazVnJk9DCNpHBi9LeLs
-         qNNTny2V8KvShvAzAlduS1tC6hf1qPf6LtQt0TU8gTTHpoghCl7q0rSourdwAQMjZK8y
-         zxuO89ToMLLw0OPEEIRuU2Y+OEwijUTfsr0kmaHj2eK3fiRv/33frO4nMF9KxPZBQwp1
-         wOYBco7kYnZZXeqYLSEEskYsGvkixtY+a2WJR6/HiYhzTczdKLPAZCDYdn0JolxnFZIB
-         YC6w==
+        bh=PHTqv6AmQ+mRO1+fbTemg0C89FEbeOId0NOFSVy15XE=;
+        b=ctgS+y+oJR3xgFUl/kMqHygn2FasV+ju9QDhg/YLEJBEZMxm/KSbuVlLbOFfE8bdlM
+         35ydm8A+YH2LXVvQyZPdXP1/yTOAoAJzaZnMYFZI35Sos7m5wqndq4Ss7rBpsp2Ciwov
+         /DKuHTBI94UYlFLs70+RUdYAOjKtH8pRN+/TKTAAnYm6Svhk+kNy/sPrAaA0XqKgh6TN
+         QAYVq2nRFbPjewrBvMHEoMLXpgbo/VdQOpEAH7H2Q0KpHbpvwGBAkXIUtdTPDxzdXdXf
+         wLZ3PlxvQwQXkIrGjS7Eesk+fMzLnR6NTsjzJPRTePoN2Dr5adBxvoC1M0yxzPOk/1LQ
+         uvKw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b="BTcXxZa/";
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=z3LeB4Ob;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
@@ -37,13 +37,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=4qmFAvV29M66X4PuIcMK0lKEbvEGTj9BbfgUBTkqIto=;
-        b=KvRL6zRsNIO+8ylYDcpDzhnzw48xmKcHyFbPI9WfMGMMxTADzdCmqKqaggXEGqrt4A
-         cVbQxPEWJu+8c4gfX5JtQsq/ecgdNWzvtIw7JRo/De8NQp0Yvzx20+cU8RGzQFATSUDA
-         ge0QoyOCTusqKjy4JoHZ0CDQi7zPPiBib1LRbIX8DawO5pnzwv9vd7RQwScHFBGuByHS
-         xYqLko1Z3Truf56b+8MJ+VMmKbqNktLDRqYws07+2wZQmIFvNWBcla7WA3ozaRzU0LbY
-         lNFIBg3BcG0yskyaLvJXoJbfrn4NDqOtsSWpl6nPds9ec8HmEBZQhLhW7eq5Ijf8j4yY
-         RQjw==
+        bh=PHTqv6AmQ+mRO1+fbTemg0C89FEbeOId0NOFSVy15XE=;
+        b=EfwwMVz0ODhSkEBYb3nXdPUKjPL4d987bMk6GrFeiTdJ/Jy6pZkjaG4C+Rgb/JJxj0
+         E9JAnU72FTcYLOA3uTt9Hhn7Cczquft+ZxLTK6sJ0VScgaNMKlO6v35lpkvJ0qHvWpsp
+         1iYuDG8L8yNuXYBxk3ldGsdT6FpaogndBvBGxNn8YAmKcWfCQPz2qMaDlfvMgy1eXRms
+         KCKBI2XsABUIPamgb6rIUijfQuX+TXqnhBr5RqCXoswMiSQAVnw9o3hoD3RJpb1QFpwa
+         skdSBNlfwRgLoY0/foQqXfuSmFBt0JhEHRRCqcrk0OEu6a939szmeyIHuK6zbfXz2hvt
+         n5Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:to:cc:subject:from:organization
@@ -51,85 +51,89 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=4qmFAvV29M66X4PuIcMK0lKEbvEGTj9BbfgUBTkqIto=;
-        b=WGqq4tfV7R4hgUfBu16bQRZNAThSrttPQ2721JBAMxQa/z66FuvPKmLcFGTrfkklp9
-         l277+tf6LwpdCK/ituBWjTDDdCMAIdw85G1KIHKZpcrQndO6IbQlv4WG4Vt3dpVYf3E2
-         WuWEtdfglXSD6m+sCW6gsY7sNiVA9EzSdliaKHk3lIQoY+bvmRAIgHAHWnco/c1H3ipY
-         RBMgs+U0BiYPJuUceJ9/g/h6BnhZL/BUW7hO2Ukd+he/NuWCdXDQEtq+v9UN27xd1uer
-         qe60vt8/gMrE3bbn2xCp1CrndqLO7NRbKO0zIv+tcJWSdhmzyiYNvvY6zhs6vPFozpvm
-         TlKA==
+        bh=PHTqv6AmQ+mRO1+fbTemg0C89FEbeOId0NOFSVy15XE=;
+        b=r9zdw3mluSPWJVF8tfBJ9rM+SWKIOVvzbBDT2TtA0Iyb/6kHPM9M25lIF88+Pm2KWE
+         +CC5/3GRK7WWz0ZmVjvG3bqSD6oddZaQIa/LNtI2xw4yxD3bfTdGq3XYT1yR4gdgqsYz
+         wLGUUjvyKyQSatfrd5J0Uj9QJJWuztjQ0K9b1c8IvJ5+DZENx6tmrHfpppPN5lT9P/AT
+         +k/ngfyOkkijlVRyLIecGO2CBYvwFsnPIZPkFwsMnSX+Sm+Y5jwbuRyk2psi2GFO2hUp
+         drRa22P93/arQ9bjIkMXJImjTStWsQxl2G7jgEnDHkpoxfX4vWqU39ifpf/NvjDGlez8
+         7hcg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANhLgQ38p7fRweBLAddWcMbEYBiGl8gkIWN59AoGtTTDUrdCP/sIDsWR
-	IUG+lC9BUo2swpAsHW7DBl0=
-X-Google-Smtp-Source: ADFU+vtfS6dT1RyRM6WfrwHIlHNjzm2hnJ44kPaDOe0u4RoyhZ6O3Ksz646rXMv1XW3oSAwifOuWUQ==
-X-Received: by 2002:aca:849:: with SMTP id 70mr2536142oii.30.1585274441529;
-        Thu, 26 Mar 2020 19:00:41 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ0auj1hrbTzKqx/RUK66tpmv1ylDCnEUUcyjgLnfaeJ9hM33OGg
+	qtQW48YIxAv64Gqyh7s9p40=
+X-Google-Smtp-Source: ADFU+vuarHm54gPuG55eRUN1mbX98fP4eFSmdUF+0EyM4MeATO8ezSneXUJlm2s6PLphcESoLOkEQw==
+X-Received: by 2002:a0c:e848:: with SMTP id l8mr12004371qvo.82.1585277414318;
+        Thu, 26 Mar 2020 19:50:14 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a9d:6750:: with SMTP id w16ls2707042otm.4.gmail; Thu, 26 Mar
- 2020 19:00:41 -0700 (PDT)
-X-Received: by 2002:a9d:1a3:: with SMTP id e32mr1934479ote.206.1585274441119;
-        Thu, 26 Mar 2020 19:00:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1585274441; cv=none;
+Received: by 2002:a37:6714:: with SMTP id b20ls3747475qkc.5.gmail; Thu, 26 Mar
+ 2020 19:50:13 -0700 (PDT)
+X-Received: by 2002:a37:7a84:: with SMTP id v126mr11909088qkc.423.1585277413910;
+        Thu, 26 Mar 2020 19:50:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585277413; cv=none;
         d=google.com; s=arc-20160816;
-        b=FExcX2c0/LKr5hvexdcP+r3KUFOYbuogzP0QPE2tQHdFIueUUd7zVlRrOhQYsRqxkV
-         LC7mnLR56G3swvFgpEKE/xmAptVQvbg6gYwCIVEb6aoFHPkIZM6XhmCQkKzL9TgKQS1p
-         fCaIkHCoPQpE4sO3wksZV3egSBh6i0hGLgsOPRZ1Bot1pH9d3bbE9JvDSno8J4uYyzg7
-         OQ842rPgDXDaEQIjKL9ie8j2dDHKo8GmuwHUjer4HN7UoAqiVrDLKaUJ2m2dWANNm4yz
-         Jbm3yvbPs4t+bXUaYSzdP2bzBmHndB42iZXXunsne00zTXIHBzBK+tdl5ibI3uTDyZHa
-         loVg==
+        b=v19gxjOQ8sao6HIlXuCvMukA+5Ap5nyf3C4vq0ULuyY0vuUzgxIAXor4vn8qmS/OjH
+         OjRJatRmJNWGKZPmrMGJ5f2a8Xc2537NjS9XClV0asc/1HoxP2tyBNPySYEW30w156zr
+         1ZAwFq8C98otPYRmQndhqY6sTnwhc6csH/XCuS3fK9VkQlfzXjBoEWiGvrOOCtdmyo5k
+         H5aofd8IZ1HSjRjjQTiPKpIw2BNQjyt0GeHZkn7/0x6jel3hb1J+ESk7KGlsRjm2PjzH
+         1khrgVocd4owEhmENdiduYAZztLQgwZZ3MP4KbANbbIDLckgo00Age4NDpb/n6HkDwbo
+         M3aQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=mime-version:user-agent:message-id:in-reply-to:date:references
          :organization:from:subject:cc:to:dkim-signature;
-        bh=6+loAL8FXEKnUok7C8nHVuCjib/Jl9TWyDWgWbbn35g=;
-        b=L1wE/bg5oIMDSRPUNmbv0k3d4Q8kccrVM+zfQflePLn/qbzRGoLStB6MFRFH4OaMg4
-         ShpMAZiKn376Hb+wCktg7CE1juItSmF4K8yrFBEtbhtBp66kmR1P+p7ktq2VPdvObv0P
-         cNrsRkxagIJ2tP45NH2IB/+vezVYQjBKNGoqjj/tGgqm/XLcGkRpPspKLiTsz50tLHaW
-         7T4LwvSMiAAQZuWjCuC8PCzP5CdEYXvOFJmURubmwylxEHMU3V5RKl+4rcJRltvGRVZb
-         OT+fmiWeit48Mxf9OPpzMOt37mTQHH4yTbY1F5I4DuIZi631Fz8d7Z5N8ea5l/8YYYTF
-         TuBQ==
+        bh=KXjmN+364jiyCzv1gWGc+e6yHZaiF4mXo9ppkls1CVs=;
+        b=fnc0pj4xQ8lIc4KSMLD5YhTAQpXfRH5w9/T00f2QEtlsKz4ZLhiLY7ZC1/1PaDYI1f
+         UB7kgmrWXBKz/QvFrSZcIbQYjU2xTq6MshF8TKQ/WwCd+QrM7l93ExEgS7fxkgHzdsqA
+         NoVc+cZpDQMn6RsFndxPDyc/fjjtEwyxprAl1ICrvZQA+SvOE9p2Mlwe9uwPzEUzlnJw
+         xB5NyBYB/btJzK8XsF7N9XFz1D3ynOTbVq3dJMh7n9rp3pnv6QxixTiajB+YigI+xZ13
+         ZLiNm4H3xE3SybEFH95D0eT2CAvJ8GuBb+A5sQCUiqzc50bJx7XL5sqqugPjCaPxOBnx
+         knkA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b="BTcXxZa/";
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=z3LeB4Ob;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from aserp2120.oracle.com (aserp2120.oracle.com. [141.146.126.78])
-        by gmr-mx.google.com with ESMTPS id d188si350135oig.0.2020.03.26.19.00.40
+Received: from userp2130.oracle.com (userp2130.oracle.com. [156.151.31.86])
+        by gmr-mx.google.com with ESMTPS id c194si243754qkb.0.2020.03.26.19.50.13
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 26 Mar 2020 19:00:41 -0700 (PDT)
-Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 141.146.126.78 as permitted sender) client-ip=141.146.126.78;
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-	by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02R1xR6E185099;
-	Fri, 27 Mar 2020 02:00:35 GMT
+        Thu, 26 Mar 2020 19:50:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) client-ip=156.151.31.86;
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+	by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02R2nuQ2110950;
+	Fri, 27 Mar 2020 02:50:12 GMT
 Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-	by aserp2120.oracle.com with ESMTP id 2ywavmjwmc-1
+	by userp2130.oracle.com with ESMTP id 3014598qx4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 27 Mar 2020 02:00:35 +0000
+	Fri, 27 Mar 2020 02:50:12 +0000
 Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-	by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02R1vsJ2088300;
-	Fri, 27 Mar 2020 02:00:34 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
-	by userp3020.oracle.com with ESMTP id 3003gmyrg0-1
+	by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02R2nncF122492;
+	Fri, 27 Mar 2020 02:50:12 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+	by userp3020.oracle.com with ESMTP id 3003gn1ghw-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 27 Mar 2020 02:00:34 +0000
-Received: from abhmp0011.oracle.com (abhmp0011.oracle.com [141.146.116.17])
-	by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 02R20VP7011696;
-	Fri, 27 Mar 2020 02:00:31 GMT
+	Fri, 27 Mar 2020 02:50:12 +0000
+Received: from abhmp0003.oracle.com (abhmp0003.oracle.com [141.146.116.9])
+	by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 02R2oAAL023461;
+	Fri, 27 Mar 2020 02:50:11 GMT
 Received: from ca-mkp.ca.oracle.com (/10.159.214.123)
 	by default (Oracle Beehive Gateway v4.0)
-	with ESMTP ; Thu, 26 Mar 2020 19:00:30 -0700
-To: Gabriel Krisman Bertazi <krisman@collabora.com>
-Cc: lduncan@suse.com, bvanassche@acm.org, open-iscsi@googlegroups.com,
-        cleech@redhat.com, martin.petersen@oracle.com,
-        linux-scsi@vger.kernel.org, kernel@collabora.com,
-        Khazhismel Kumykov <khazhy@google.com>, Junho Ryu <jayr@google.com>
-Subject: Re: [PATCH RESEND v4] iscsi: Report connection state on sysfs
+	with ESMTP ; Thu, 26 Mar 2020 19:50:10 -0700
+To: "wubo \(T\)" <wubo40@huawei.com>
+Cc: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "linux-scsi\@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+        "open-iscsi\@googlegroups.com" <open-iscsi@googlegroups.com>,
+        "linux-kernel\@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linfeilong <linfeilong@huawei.com>,
+        "liuzhiqiang \(I\)" <liuzhiqiang26@huawei.com>
+Subject: Re: [PATCH] scsi:libiscsi:Fix an error count for active session
 From: "Martin K. Petersen" <martin.petersen@oracle.com>
 Organization: Oracle Corporation
-References: <20200317233422.532961-1-krisman@collabora.com>
-Date: Thu, 26 Mar 2020 22:00:27 -0400
-In-Reply-To: <20200317233422.532961-1-krisman@collabora.com> (Gabriel Krisman
-	Bertazi's message of "Tue, 17 Mar 2020 19:34:22 -0400")
-Message-ID: <yq1369uftfo.fsf@oracle.com>
+References: <EDBAAA0BBBA2AC4E9C8B6B81DEEE1D6916A28542@DGGEML525-MBS.china.huawei.com>
+Date: Thu, 26 Mar 2020 22:50:07 -0400
+In-Reply-To: <EDBAAA0BBBA2AC4E9C8B6B81DEEE1D6916A28542@DGGEML525-MBS.china.huawei.com>
+	(wubo's message of "Wed, 25 Mar 2020 06:53:25 +0000")
+Message-ID: <yq1tv2acy00.fsf@oracle.com>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1.92 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -137,18 +141,18 @@ X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9572 signatures=6
 X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 mlxlogscore=999 bulkscore=0
  phishscore=0 adultscore=0 spamscore=0 malwarescore=0 suspectscore=0
  classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
- definitions=main-2003270014
+ definitions=main-2003270022
 X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9572 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 malwarescore=0
- priorityscore=1501 mlxscore=0 bulkscore=0 clxscore=1011 impostorscore=0
- phishscore=0 suspectscore=0 mlxlogscore=999 spamscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
- definitions=main-2003270014
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 phishscore=0
+ priorityscore=1501 bulkscore=0 lowpriorityscore=0 mlxlogscore=999
+ adultscore=0 suspectscore=0 impostorscore=0 mlxscore=0 spamscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2003270022
 X-Original-Sender: martin.petersen@oracle.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2020-01-29 header.b="BTcXxZa/";
+ header.i=@oracle.com header.s=corp-2020-01-29 header.b=z3LeB4Ob;
        spf=pass (google.com: domain of martin.petersen@oracle.com designates
- 141.146.126.78 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+ 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -164,14 +168,11 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
  <https://groups.google.com/group/open-iscsi/subscribe>
 
 
-Gabriel,
+wubo,
 
-> If an iSCSI connection happens to fail while the daemon isn't running
-> (due to a crash or for another reason), the kernel failure report is
-> not received.  When the daemon restarts, there is insufficient kernel
-> state in sysfs for it to know that this happened.  open-iscsi tries to
-> reopen every connection, but on different initiators, we'd like to
-> know which connections have failed.
+> Fix an error count for active session if the total_cmds is invalid on
+> the function iscsi_session_setup().  decrement the number of active
+> sessions before the func return.
 
 Applied to 5.7/scsi-queue, thanks!
 
@@ -181,4 +182,4 @@ Martin K. Petersen	Oracle Linux Engineering
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/yq1369uftfo.fsf%40oracle.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/yq1tv2acy00.fsf%40oracle.com.
