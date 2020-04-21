@@ -1,64 +1,73 @@
-Return-Path: <open-iscsi+bncBDLINFGG5UCBBSM67T2AKGQEO7F35BI@googlegroups.com>
+Return-Path: <open-iscsi+bncBDLINFGG5UCBBTOC7L2AKGQEAYD2THY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73d.google.com (mail-qk1-x73d.google.com [IPv6:2607:f8b0:4864:20::73d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD911B2B03
-	for <lists+open-iscsi@lfdr.de>; Tue, 21 Apr 2020 17:20:43 +0200 (CEST)
-Received: by mail-qk1-x73d.google.com with SMTP id g63sf14406510qkd.7
-        for <lists+open-iscsi@lfdr.de>; Tue, 21 Apr 2020 08:20:43 -0700 (PDT)
+Received: from mail-qk1-x737.google.com (mail-qk1-x737.google.com [IPv6:2607:f8b0:4864:20::737])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E3081B1FE1
+	for <lists+open-iscsi@lfdr.de>; Tue, 21 Apr 2020 09:31:26 +0200 (CEST)
+Received: by mail-qk1-x737.google.com with SMTP id g63sf13171664qkd.7
+        for <lists+open-iscsi@lfdr.de>; Tue, 21 Apr 2020 00:31:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=NAfjm0IgylE8/rPexk9CVxCytt1MH7mLEipXnVqRHVs=;
-        b=NEKyWYUDsZZyWvMGF8BirUTJP/EouCscd2yKRxrgqBFGAADy9WRFJKKPWvSBJySiUi
-         /kNePoxTGsmFkb4SHjBGT5XOxQBAj/AfD588paq+oTNmt90Zc542F824lGp1ldycme0R
-         k+A5dv+ZlAQf7di8UrqH1cmWTvqSmhqDDgNdOSed5oGv8iC/FpVjrWIRAXC6zqtcZ5eH
-         fht/G0qFBy61afmUsEyVUrotHtSeL3PglpVY/jgCpS7OEvgKlzprtpyD2k2mR5+Is+uv
-         Gr0Ft0yvdWHeeNftR3SkrjIzLDFErZqMw6mR9pBnD2g+KCtyJYWLy3T0upeRHSe7whGB
-         QDog==
+        bh=RcNcuzSqIJDKm2gNMpOjFoXvH4Ut82ruSCLa1prbqYM=;
+        b=fFYm0hp+DlrLc4dHqPUHMxeZdDfdkv+97587rMlno8D4zRaNHenyenHqV4WRnbAd0w
+         l3zo7jyDyaKshmEWKCdeme0ztEsQL6+0ljSQo/J3DanJQhj2gk/SG+QG2zRRGopSE6HZ
+         DhbwdRp3MS3m3NNUKIR3NQ/3OTMVvWG1CZmB5yYiZoUGHajt3SxEA4QEsCm018EQgK99
+         Xctep2WKMn/HEEkH+4O//AmwBQBI21C6TBr5mmVxfp8e3FKlQhP+++pUSO86gIrLkIei
+         s4kq8yOhj6HNpthEP2OBBEjgSirOv8dk9iJMpKhlWxKxRzWnsXck9XF6wRPv+vLZKiNy
+         jBjg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:subject:mime-version:x-original-sender
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=RcNcuzSqIJDKm2gNMpOjFoXvH4Ut82ruSCLa1prbqYM=;
+        b=LzcyvFXQyQpW+6w2zQxLmbqssRJVTuoW34eLcwSYeOaFS9w7Fwq9QoWYkhRCqmfev2
+         j43BrVtyKaLYrRHV9GJathsGH/tb8+Dw0s9wxCy5rBcu+fjmgdnvPbCntPY6lkuNsxhK
+         3bOzkv1UQk54Ex/c59GANiSZzp9tFKS46ZDEYf+/kknO6cuTzO5B7EJ5eBnLNuGwjC1l
+         jMSS9r85nXYo/oJi0zEyiVQFIUku96sS69qp4OE8uRDRWj2N6vQ2S1RVeVG1m+YQyfNL
+         KeR8LbSAVYO8t/Ts5ki0QFHPyvcyAhMN7Z+GcgWiC6DbpX9CDJbK7fHdac4IDDsheD1g
+         4v+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=NAfjm0IgylE8/rPexk9CVxCytt1MH7mLEipXnVqRHVs=;
-        b=QwUQA/veawz4puYC1BIsOCMjgtIDCILta+fbYeDAyBifpm54pdfNYtQSQKtBUJOu7+
-         k1Pq/90Mmsu0KywdzJiyHtQdThE/SXQQxVLsKWvT6B/X6Wg+I9kkUX+eql01lM5Ckz4N
-         hiOaAAoDA96EGJd86SoB56zMjebAE2fFsB7KdBwy4nfmyu2yEokUfsc2zXO050x5wC5L
-         ev8z45bOR0IdUEMCzAjvY7BoXHca3cXtOIDOF55C29xXh8ViFZmDKHJo+kvO7cTRBj9R
-         etN07pdrSsaF9PiZOvMwQV+8mBtqqDtCbhBB9QLzx1+XRkbWbb0UHenf06AmZmjqztXv
-         F45g==
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=RcNcuzSqIJDKm2gNMpOjFoXvH4Ut82ruSCLa1prbqYM=;
+        b=ZpHCN9885bJiOFyIwpxOA9q2U1eU7pBa5anmy1WRPea8YOGQoFZkVRQpKZ3JFfWCQf
+         AbZxNOtwIextlAOvHMRb4GfXSsO7yTrr29b8iaHwCqGWKdkWwUT44A6nQONhszg9mn52
+         7rqy3uCF5/JDg5burh0k7Tpkov1RrC1ChJXq5oyI8HTnMlFXWe/qCZMCocvVZB38Z43m
+         J9yKwxyOpbRry55jzgXyrRehxmNVakyhV+zUEi10/yzA6TOl/ccY6HagPICzBuirJ23X
+         xrT+vNXZuK4B93RdErUi0OPyteguDBGs3ccLMT5XQh3oRQt71+JNv6b2z6YTFNvR8EkZ
+         m3kQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AGi0PuaHpV0xif8ee5Ne0GJdgWxTGhVhDjKmIzy/0ZcyDACwU7zgQnAl
-	HznJZXmJdeWcqj0x4nBKld8=
-X-Google-Smtp-Source: APiQypLReKY2dqg2Cuf9sWYv2A9LttgIfIzeEmaB6TjlwZtp4bbbGDQ/dReO1hw2fg5ACBG3hoT6gQ==
-X-Received: by 2002:a37:451:: with SMTP id 78mr22084966qke.376.1587482441800;
-        Tue, 21 Apr 2020 08:20:41 -0700 (PDT)
+X-Gm-Message-State: AGi0PuYfE40bPQsk4eXV5UuY4rs1bqM7XTAx9PuS9mRxfE2VnOF2sLZD
+	I3JwRLkhOICT3GLSB9RHm8A=
+X-Google-Smtp-Source: APiQypKqAp5cqwdC2lbj1/NtzT+7hSJdMt0AYIDx7TwcO2qNsbknVRosMEfDmhkxNLqXM3d61xX8wg==
+X-Received: by 2002:ad4:45f0:: with SMTP id q16mr19282090qvu.89.1587454285461;
+        Tue, 21 Apr 2020 00:31:25 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6214:504:: with SMTP id v4ls4186545qvw.2.gmail; Tue, 21
- Apr 2020 08:20:41 -0700 (PDT)
-X-Received: by 2002:ad4:4e65:: with SMTP id ec5mr11471990qvb.32.1587482441133;
-        Tue, 21 Apr 2020 08:20:41 -0700 (PDT)
-Received: by 2002:ae9:e8c3:0:0:0:0:0 with SMTP id a186msqkg;
-        Mon, 20 Apr 2020 12:57:45 -0700 (PDT)
-X-Received: by 2002:a05:620a:22a4:: with SMTP id p4mr4244691qkh.459.1587412664943;
-        Mon, 20 Apr 2020 12:57:44 -0700 (PDT)
-Date: Mon, 20 Apr 2020 12:57:44 -0700 (PDT)
-From: gionatan.danti@gmail.com
+Received: by 2002:a0c:b3d4:: with SMTP id b20ls4330179qvf.11.gmail; Tue, 21
+ Apr 2020 00:31:25 -0700 (PDT)
+X-Received: by 2002:a0c:f34b:: with SMTP id e11mr15675487qvm.76.1587454284898;
+        Tue, 21 Apr 2020 00:31:24 -0700 (PDT)
+Date: Tue, 21 Apr 2020 00:31:24 -0700 (PDT)
+From: Gionatan Danti <gionatan.danti@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <efc571ca-92db-4f58-a8a5-cff9a33dee98@googlegroups.com>
+Message-Id: <13d4c963-b633-4672-97d9-dd41eec5fb5b@googlegroups.com>
 Subject: udev events for iscsi
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_1785_770781077.1587412664760"
+	boundary="----=_Part_994_2566253.1587454284398"
 X-Original-Sender: gionatan.danti@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -67,12 +76,14 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1785_770781077.1587412664760
+------=_Part_994_2566253.1587454284398
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_1786_1446075799.1587412664760"
+	boundary="----=_Part_995_1128437079.1587454284398"
 
-------=_Part_1786_1446075799.1587412664760
+------=_Part_995_1128437079.1587454284398
 Content-Type: text/plain; charset="UTF-8"
+
+[reposting, as the previous one seems to be lost]
 
 Hi all,
 I have a question regarding udev events when using iscsi disks.
@@ -87,55 +98,35 @@ don't see anything about a removed disk (and the links under /dev/ remains
 unaltered, indeed). At the same time, when the remote machine and disk 
 become available again, no reconnection events happen.
 
-I read a quite old thread here 
-<https://groups.google.com/d/msg/open-iscsi/uN0jFsT1TI8/KD7rEHhrO5sJ> were 
-it was stated that a patch to better integrate iscsi with udev events was 
-in progress. Did something changed/happened during these years? Is the 
-behavior I observed (and described above) to be expected?
+I can read here that, years ago, a patch was in progress to give better 
+integration with udev when a device disconnects/reconnects. Did the patch 
+got merged? Or does the one I described above remain the expected behavior? 
+Can be changed?
 
 Thanks.
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/efc571ca-92db-4f58-a8a5-cff9a33dee98%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/13d4c963-b633-4672-97d9-dd41eec5fb5b%40googlegroups.com.
 
-------=_Part_1786_1446075799.1587412664760
+------=_Part_995_1128437079.1587454284398
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span style=3D"box-sizing: border-box; color: rgb(44, 54, =
-58); font-family: monospace; font-size: 14px; white-space: nowrap;">Hi=C2=
-=A0all,</span><br style=3D"box-sizing: border-box; color: rgb(44, 54, 58); =
-font-family: monospace; font-size: 14px;"><span style=3D"box-sizing: border=
--box; color: rgb(44, 54, 58); font-family: monospace; font-size: 14px; whit=
-e-space: nowrap;">I=C2=A0have=C2=A0a=C2=A0question=C2=A0regarding=C2=A0udev=
-=C2=A0events=C2=A0when=C2=A0using=C2=A0iscsi=C2=A0disks.</span><br style=3D=
-"box-sizing: border-box; color: rgb(44, 54, 58); font-family: monospace; fo=
-nt-size: 14px;"><br style=3D"box-sizing: border-box; color: rgb(44, 54, 58)=
-; font-family: monospace; font-size: 14px;"><span style=3D"color: rgb(44, 5=
-4, 58); font-family: monospace; font-size: 14px;">By using &quot;udevadm mo=
-nitor&quot; I can see that events are generated when I login and logout fro=
-m an iscsi portal/resource, creating/destroying the relative links under /d=
-ev/</span><br style=3D"box-sizing: border-box; color: rgb(44, 54, 58); font=
--family: monospace; font-size: 14px;"><br style=3D"box-sizing: border-box; =
-color: rgb(44, 54, 58); font-family: monospace; font-size: 14px;"><span sty=
-le=3D"color: rgb(44, 54, 58); font-family: monospace; font-size: 14px;">How=
-ever, I can not see anything when the remote machine simple dies/reboots/di=
-sconnects: while &quot;dmesg&quot; shows the iscsi timeout expiring, I don&=
-#39;t see anything about a removed disk (and the links under /dev/ remains =
-unaltered, indeed). At the same time, when the remote machine and disk beco=
-me available again, no reconnection events happen.</span><br><div><span sty=
-le=3D"color: rgb(44, 54, 58); font-family: monospace; font-size: 14px;"><br=
-></span></div><div><span style=3D"color: rgb(44, 54, 58); font-family: mono=
-space; font-size: 14px;">I read a quite old thread <a href=3D"https://group=
-s.google.com/d/msg/open-iscsi/uN0jFsT1TI8/KD7rEHhrO5sJ">here</a>=C2=A0were =
-it was stated that a patch to better integrate iscsi with udev events was i=
-n progress. Did something changed/happened during these years? Is the behav=
-ior I observed (and described above) to be expected?</span></div><div><span=
- style=3D"color: rgb(44, 54, 58); font-family: monospace; font-size: 14px;"=
-><br></span></div><div><span style=3D"color: rgb(44, 54, 58); font-family: =
-monospace; font-size: 14px;">Thanks.</span></div></div>
+<div dir=3D"ltr">[reposting, as the previous one seems to be lost]<br><br>H=
+i all,<br>I have a question regarding udev events when using iscsi disks.<b=
+r><br>By using &quot;udevadm monitor&quot; I can see that events are genera=
+ted when I login and logout from an iscsi portal/resource, creating/destroy=
+ing the relative links under /dev/<br><br>However, I can not see anything w=
+hen the remote machine simple dies/reboots/disconnects: while &quot;dmesg&q=
+uot; shows the iscsi timeout expiring, I don&#39;t see anything about a rem=
+oved disk (and the links under /dev/ remains unaltered, indeed). At the sam=
+e time, when the remote machine and disk become available again, no reconne=
+ction events happen.<br><br>I can read here that, years ago, a patch was in=
+ progress to give better integration with udev when a device disconnects/re=
+connects. Did the patch got merged? Or does the one I described above remai=
+n the expected behavior? Can be changed?<br><br>Thanks.<br></div>
 
 <p></p>
 
@@ -146,11 +137,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/efc571ca-92db-4f58-a8a5-cff9a33dee98%40googlegroups.c=
+om/d/msgid/open-iscsi/13d4c963-b633-4672-97d9-dd41eec5fb5b%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/efc571ca-92db-4f58-a8a5-cff9a33dee98%40googlegroups.com</a>.<b=
+d/open-iscsi/13d4c963-b633-4672-97d9-dd41eec5fb5b%40googlegroups.com</a>.<b=
 r />
 
-------=_Part_1786_1446075799.1587412664760--
+------=_Part_995_1128437079.1587454284398--
 
-------=_Part_1785_770781077.1587412664760--
+------=_Part_994_2566253.1587454284398--
