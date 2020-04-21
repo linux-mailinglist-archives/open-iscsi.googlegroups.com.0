@@ -1,72 +1,70 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBJXW7T2AKGQE24RDOHI@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBB767T2AKGQEQ7P2UII@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
 Received: from mail-qk1-x740.google.com (mail-qk1-x740.google.com [IPv6:2607:f8b0:4864:20::740])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21511B2F14
-	for <lists+open-iscsi@lfdr.de>; Tue, 21 Apr 2020 20:27:51 +0200 (CEST)
-Received: by mail-qk1-x740.google.com with SMTP id d15sf15010337qkl.10
-        for <lists+open-iscsi@lfdr.de>; Tue, 21 Apr 2020 11:27:51 -0700 (PDT)
+	by mail.lfdr.de (Postfix) with ESMTPS id F278E1B2F6C
+	for <lists+open-iscsi@lfdr.de>; Tue, 21 Apr 2020 20:44:24 +0200 (CEST)
+Received: by mail-qk1-x740.google.com with SMTP id g63sf15074746qkd.7
+        for <lists+open-iscsi@lfdr.de>; Tue, 21 Apr 2020 11:44:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=dHY9JracU6jyueBYwzWD5prOwEfmDDD7dZ0I6WjetJ4=;
-        b=oJXlEyCCKI9ycul86j+vcymRsP7LrUG5yNUjNVNSVz/TREZXCatxcaRWV8htyzk6oI
-         UcSUIOUcOs9/FEPRxbvLIULtVqx1yBqsINqwYAJMVlBgFH2qwbISG+e37+mkKUk5QU5u
-         uwTQhZNuQG0UP0vCphaGHUujJeQQEKg/iANVNiKjMkbfUkJhKX/fSTSEsjwaCwnFuPAK
-         fqor2mEDaDiIwfBspyo1RTAw2C1CBnGy8kILGRwE3ijlxzDeTScC0wdPp58upqkDtt0n
-         IOLxfFiM/AiBf1CvGrrCmddXU3m51i7jSgV1YsPLkXvR36XC/W4Ly180jbrESR2i4YHP
-         0gKg==
+        bh=TJpglFjOUnZuZ20t2t2mdz0dwKcCp9Ob0Xfv5SOVZRM=;
+        b=ncMyD0iT+Z31LzDRg8BDgWB/TqgqPtpex5A7hJxfxEr3r8N8pmBUuXuBpeCjPlff7K
+         0HpbCTV1PkF5IEBnanUIDk0R9qDKsSdBWIlDwoa6GXPCamUnVAWYVtmfgZ/Z1AO3LLih
+         /+7BJn8ov6EOEnY8Kdx6ifONHRWJ4Auqo7u9T6f7WsciuYzAcgzN0/QPVl6pdlOrR5qv
+         Be2bmj2bEEArK/LamOr+EaERfibGlRiSIWF+/8J5krI2yW+ljs4jaAYI9r5MGPgi8gYv
+         Bk9EDsvLXG0yRErdirgFO0JJRJ5vF/xqguJKCtnTGMwgLTnpGgWRJw2TNXi8ZgXN6yhl
+         usFw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=dHY9JracU6jyueBYwzWD5prOwEfmDDD7dZ0I6WjetJ4=;
-        b=GM52u4gvvVf3PzSvsi9x0RbSCN7NRj4a5s5c5u4vbeeAq8u13DpPrq5xVjaiMVFRT5
-         UCPMd88v6VGtQPjPehlk/tNMSx0gVuE3YgOgQm3D5HbdQTPhWoRv9XGujiEWW8PLpioW
-         0pBO/ucCwUQrGp6RX8SHqP0FsPDOPQNOuk2By/LfzSbk2Q7EHtdWPBQ/NYBXyXqAf7g7
-         dav3Q8wspZOcGELXegDWkTrpj4xhZndUn4lF/vmCusVfEYr789sc8Li7ZSKLPc0ORhWF
-         tzS5OlhukQioHJS95d3WO3427Tf5mrfGDq1va/j9Msal5Upv5tp31Plctg5cd5bs3UHB
-         rtlw==
+        bh=TJpglFjOUnZuZ20t2t2mdz0dwKcCp9Ob0Xfv5SOVZRM=;
+        b=HEY55KzLrRDkHL3obpddGjz/yOYkvgZh46f2ub2AmHX7KW50ixPxUB77NcTFxZkRD9
+         OhXj3eYCw+eXSax3y2m8goeMsrENoRNvl/oaJmFATj2v1u8UYMKRUMKTxCQbwFLsC2GG
+         JhA5ApFWF69Al1iK3Xr7LaL/jx4bdWPIT0rFiCjbMnKBEaQ7eStxzHr50nWva7K0L08I
+         S2f5miDs2LfrJ39gqUvULDEzVEmByXBzRyvJCKyxawJX4Jkm8bVJdlyCczCASjwDGegG
+         0OUkdu1jw9HXHPOygTdn3GiVvQQtkw22jmcmCqg4LDdADgMtrd57MT/Q7oiz/4L96YrY
+         eJxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=dHY9JracU6jyueBYwzWD5prOwEfmDDD7dZ0I6WjetJ4=;
-        b=ayozP6fjoBR0KOQuR997uKpvRrHTsDxYtJjlC7mHe3mU6X/Ya/CUbObVEiDcZxGsFG
-         0rnZuJfnpxGp5TeFQ/vVdatbp5G1/b/Vvstg+4TDKG0Be64lfAWVV4kFaRq3HBG7Lql3
-         syiZZ1rqRELfXClUyZCjmC1DYfWOL/sCFs5a/KsWWarGGXUpfnZdIpUrHL5KvD1vzDjt
-         fnIo0HlK5JhcZhmR/w+KyQSlhpzM/5dv2I2UH7r28sUw7H3C1rFOAoI/6uFV3c4Otyo2
-         +GsepXsKd4+0R8oaYGdabGBChtKNIEVvjNYi182IORH6lufYcA1FqOb7cqj6FvRy3aZV
-         y3gw==
+        bh=TJpglFjOUnZuZ20t2t2mdz0dwKcCp9Ob0Xfv5SOVZRM=;
+        b=ulzQPV5uLxNo97GJrhX7gH47CjKH40eWFR04yk7thzJMU/krmKEUdDJyJuoRWfy3FN
+         9PT+O3MwPNsa9+vbkD+9XZR6IuUUvX1tyUsQnzpsl2EE0v99IaVk96ERb+NZVKkLE5yk
+         Ux66MnNIO5DRcnq7Eu1n0RBlSV6cPBLdmyDJ9Q00p/clTKO51zh6ZRBCiWvyeEN43QcZ
+         GUAmlJHdUDvzo79MOSv5z26G9usxVq3hShNd9Atu+UAKurMYfex617ArawXZJU85cEdb
+         sz36Ip4DpBsCl5SGqsYAH/4KqeiGX5it5bqpuCyxcPxOfFzIZExIxS+OBsSNHaaLUBiD
+         FuNQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AGi0PuYHk+Lmx4DUGLMMWQsn+3ArtFSbHkHCbySC4wxy9gkyIcgvCDCO
-	soT2RSwquDBLEVwh05IYDxA=
-X-Google-Smtp-Source: APiQypJmmqj3egMMz8/XeZ9QWRXGb+sOPAIFneEuUlRPW1hKxHlk9rAYhk5xp183ETasaDElXKtuGA==
-X-Received: by 2002:a0c:a9c2:: with SMTP id c2mr8569928qvb.23.1587493670894;
-        Tue, 21 Apr 2020 11:27:50 -0700 (PDT)
+X-Gm-Message-State: AGi0PuZiAlfzfraZeq7ZsUEFZtDNc1rpuObDHMLJUQYrs7r+27CbpmWQ
+	FT1tol0TKJ8D3rpT/Xghn3o=
+X-Google-Smtp-Source: APiQypINzCz6P8nSwRhjzzVOCe6IJfOeCFd/1vtw01Fb616r67wdOhRZ5GG7hVWfNklm8tjIqpz0XA==
+X-Received: by 2002:ac8:1a2b:: with SMTP id v40mr22748468qtj.170.1587494663779;
+        Tue, 21 Apr 2020 11:44:23 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:6491:: with SMTP id y139ls9865730qkb.0.gmail; Tue, 21
- Apr 2020 11:27:50 -0700 (PDT)
-X-Received: by 2002:a37:58c3:: with SMTP id m186mr23649781qkb.30.1587493670401;
-        Tue, 21 Apr 2020 11:27:50 -0700 (PDT)
-Date: Tue, 21 Apr 2020 11:27:49 -0700 (PDT)
+Received: by 2002:ad4:528b:: with SMTP id v11ls4907214qvr.9.gmail; Tue, 21 Apr
+ 2020 11:44:23 -0700 (PDT)
+X-Received: by 2002:a0c:9e68:: with SMTP id z40mr20995091qve.242.1587494663234;
+        Tue, 21 Apr 2020 11:44:23 -0700 (PDT)
+Date: Tue, 21 Apr 2020 11:44:22 -0700 (PDT)
 From: The Lee-Man <leeman.duncan@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <ef8b7483-b1fc-46b5-abee-10d0bd6f9d0c@googlegroups.com>
-In-Reply-To: <5E9D90BD020000A100038651@gwsmtp.uni-regensburg.de>
-References: <6355_1587114536_5E997228_6355_294_1_d6a22a2f-3730-45ee-5256-8a8fe4b017bf@huawei.com>
- <5E9D90BD020000A100038651@gwsmtp.uni-regensburg.de>
-Subject: Re: [EXT] [PATCH] open-iscsi:Modify iSCSI shared memory permissions
- for logs
+Message-Id: <7f583720-8a84-4872-8d1a-5cd284295c22@googlegroups.com>
+In-Reply-To: <13d4c963-b633-4672-97d9-dd41eec5fb5b@googlegroups.com>
+References: <13d4c963-b633-4672-97d9-dd41eec5fb5b@googlegroups.com>
+Subject: Re: udev events for iscsi
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_2547_357964202.1587493669733"
+	boundary="----=_Part_2350_1321772124.1587494662380"
 X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -81,255 +79,132 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_2547_357964202.1587493669733
+------=_Part_2350_1321772124.1587494662380
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_2548_1714290517.1587493669733"
+	boundary="----=_Part_2351_979993503.1587494662381"
 
-------=_Part_2548_1714290517.1587493669733
+------=_Part_2351_979993503.1587494662381
 Content-Type: text/plain; charset="UTF-8"
 
-On Monday, April 20, 2020 at 5:08:36 AM UTC-7, Uli wrote:
+On Tuesday, April 21, 2020 at 12:31:24 AM UTC-7, Gionatan Danti wrote:
 >
-> Hi! 
+> [reposting, as the previous one seems to be lost]
 >
-> Maybe this could be made a symbolic constant, or even be made 
-> configurable. 
-> The other interesting thing is that there are three seemingly very similar 
-> code fragements to create the shared memory, but each with a different size 
-> parameter (sizeof(struct logarea) vs. size vs. MAX_MSG_SIZE + sizeof(struct 
->  logmsg)) ;-) 
+> Hi all,
+> I have a question regarding udev events when using iscsi disks.
+>
+> By using "udevadm monitor" I can see that events are generated when I 
+> login and logout from an iscsi portal/resource, creating/destroying the 
+> relative links under /dev/
+>
+> However, I can not see anything when the remote machine simple 
+> dies/reboots/disconnects: while "dmesg" shows the iscsi timeout expiring, I 
+> don't see anything about a removed disk (and the links under /dev/ remains 
+> unaltered, indeed). At the same time, when the remote machine and disk 
+> become available again, no reconnection events happen.
 >
 
-If you'd like to submit a pull request, I'll consider it. I don't think the 
-symbolic constant and machinery around making the permission configurable 
-are worth the trouble, since they shouldn't be changed. But I could saying 
-making this permission a define in an include file, perhaps with an 
-"ifndef" around it. :)
+Because of the design of iSCSI, there is no way for the initiator to know 
+the server has gone away. The only time an initiator might figure this out 
+is when it tries to communicate with the target.
 
-As far as automating the shared memory creation for just 3 cases is not 
-worth it, particularly since we're filling in info about the 2nd and 3rd 
-segment into our control structure, as we go.
+This assumes we are not using some sort of directory service, like iSNS, 
+which can send asynchronous notifications. But even then, the iSNS server 
+would have to somehow know that the target went down. If the target 
+crashed, that might be difficult to ascertain.
 
-I merge this pull request.
+So in the absence of some asynchronous notification, the initiator only 
+knows the target is not responding if it tries to talk to that target.
+
+Normally iscsid defaults to sending periodic NO-OPs to the target every 5 
+seconds. So if the target goes away, the initiator usually notices, even if 
+no regular I/O is occurring.
+
+But this is where the error recovery gets tricky, because iscsi tries to 
+handle "lossy" connections. What if the server will be right back? Maybe 
+it's rebooting? Maybe the cable will be plugged back in? So iscsi keeps 
+trying to reconnect. As a matter of fact, if you stop iscsid and restart 
+it, it sees the failed connection and retries it -- forever, by default. I 
+actually added a configuration parameter called reopen_max, that can limit 
+the number of retries. But there was pushback on changing the default value 
+from 0, which is "retry forever".
+
+So what exactly do you think the system should do when a connection "goes 
+away"? How long does it have to be gone to be considered gone for good? If 
+the target comes back "later" should it get the same disc name? Should we 
+retry, and if so how much before we give up? I'm interested in your views, 
+since it seems like a non-trivial problem to me.
 
 >
-> Regards, 
-> Ulrich 
+> I can read here that, years ago, a patch was in progress to give better 
+> integration with udev when a device disconnects/reconnects. Did the patch 
+> got merged? Or does the one I described above remain the expected behavior? 
+> Can be changed?
 >
-> >>> Wu Bo <wubo40@huawei.com> schrieb am 17.04.2020 um 11:08 in Nachricht 
-> <6355_1587114536_5E997228_6355_294_1_d6a22a2f-3730-45ee-5256-8a8fe4b017bf@huawei 
+
+So you're saying as soon as a bad connection is detected (perhaps by a 
+NOOP), the device should go away? 
+
 >
-> com>: 
-> > Hi, 
-> > 
-> > Iscsid log damon is responsible for reading data from shared memory 
-> > and writing syslog. Iscsid is the root user group. 
-> > Currently, it is not seen that non-root users need to read logs. 
-> > The principle of minimizing the use of permissions, all the permissions 
-> > are changed from 644 to 600. 
-> > 
-> > Signed-off-by: Wu Bo <wubo40@huawei.com> 
-> > --- 
-> >   usr/log.c | 6 +++--- 
-> >   1 file changed, 3 insertions(+), 3 deletions(-) 
-> > 
-> > diff --git a/usr/log.c b/usr/log.c 
-> > index 6e16e7c..2fc1850 100644 
-> > --- a/usr/log.c 
-> > +++ b/usr/log.c 
-> > @@ -73,7 +73,7 @@ static int logarea_init (int size) 
-> >          logdbg(stderr,"enter logarea_init\n"); 
-> > 
-> >          if ((shmid = shmget(IPC_PRIVATE, sizeof(struct logarea), 
-> > -                           0644 | IPC_CREAT | IPC_EXCL)) == -1) { 
-> > +                           0600 | IPC_CREAT | IPC_EXCL)) == -1) { 
-> >                  syslog(LOG_ERR, "shmget logarea failed %d", errno); 
-> >                  return 1; 
-> >          } 
-> > @@ -93,7 +93,7 @@ static int logarea_init (int size) 
-> >                  size = DEFAULT_AREA_SIZE; 
-> > 
-> >          if ((shmid = shmget(IPC_PRIVATE, size, 
-> > -                           0644 | IPC_CREAT | IPC_EXCL)) == -1) { 
-> > +                           0600 | IPC_CREAT | IPC_EXCL)) == -1) { 
-> >                  syslog(LOG_ERR, "shmget msg failed %d", errno); 
-> >                  free_logarea(); 
-> >                  return 1; 
-> > @@ -114,7 +114,7 @@ static int logarea_init (int size) 
-> >          la->tail = la->start; 
-> > 
-> >          if ((shmid = shmget(IPC_PRIVATE, MAX_MSG_SIZE + sizeof(struct 
-> > logmsg), 
-> > -                           0644 | IPC_CREAT | IPC_EXCL)) == -1) { 
-> > +                           0600 | IPC_CREAT | IPC_EXCL)) == -1) { 
-> >                  syslog(LOG_ERR, "shmget logmsg failed %d", errno); 
-> >                  free_logarea(); 
-> >                  return 1; 
-> > -- 
-> > 1.8.3.1 
-> > 
-> > 
-> > -- 
-> > You received this message because you are subscribed to the Google 
-> Groups 
-> > "open-iscsi" group. 
-> > To unsubscribe from this group and stop receiving emails from it, send 
-> an 
-> > email to open-iscsi+unsubscribe@googlegroups.com. 
-> > To view this discussion on the web visit 
-> > 
-> https://groups.google.com/d/msgid/open-iscsi/d6a22a2f-3730-45ee-5256-8a8fe4b0 
-> > 17bf%40huawei.com. 
->
->
->
->
+> Thanks.
 >
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/ef8b7483-b1fc-46b5-abee-10d0bd6f9d0c%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/7f583720-8a84-4872-8d1a-5cd284295c22%40googlegroups.com.
 
-------=_Part_2548_1714290517.1587493669733
+------=_Part_2351_979993503.1587494662381
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On Monday, April 20, 2020 at 5:08:36 AM UTC-7, Uli wrote:<=
-blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;bord=
-er-left: 1px #ccc solid;padding-left: 1ex;">Hi!
-<br>
-<br>Maybe this could be made a symbolic constant, or even be made configura=
-ble.
-<br>The other interesting thing is that there are three seemingly very simi=
-lar code fragements to create the shared memory, but each with a different =
-size parameter (sizeof(struct logarea) vs. size vs. MAX_MSG_SIZE + sizeof(s=
-truct =C2=A0logmsg)) ;-)
-<br></blockquote><div><br></div><div>If you&#39;d like to submit a pull req=
-uest, I&#39;ll consider it. I don&#39;t think the symbolic constant and mac=
-hinery around making the permission configurable are worth the trouble, sin=
-ce they shouldn&#39;t be changed. But I could saying making this permission=
- a define in an include file, perhaps with an &quot;ifndef&quot; around it.=
- :)</div><div><br></div><div>As far as automating the shared memory creatio=
-n for just 3 cases is not worth it, particularly since we&#39;re filling in=
- info about the 2nd and 3rd segment into our control structure, as we go.</=
-div><div><br></div><div>I merge this pull request.<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #=
-ccc solid;padding-left: 1ex;">
-<br>Regards,
-<br>Ulrich
-<br>
-<br>&gt;&gt;&gt; Wu Bo &lt;<a href=3D"mailto:wubo40@huawei.com" target=3D"_=
-blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:wubo40@huawe=
-i.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:wubo40@huawei.c=
-om&#39;;return true;">wubo40@huawei.com</a>&gt; schrieb am 17.04.2020 um 11=
-:08 in Nachricht
-<br>&lt;6355_1587114536_5E997228_<wbr>6355_294_1_d6a22a2f-3730-45ee-<wbr>52=
-56-8a8fe4b017bf@huawei
-<br>com&gt;:
-<br>&gt; Hi,
-<br>&gt;=20
-<br>&gt; Iscsid log damon is responsible for reading data from shared memor=
-y
-<br>&gt; and writing syslog. Iscsid is the root user group.
-<br>&gt; Currently, it is not seen that non-root users need to read logs.
-<br>&gt; The principle of minimizing the use of permissions, all the permis=
-sions=20
-<br>&gt; are changed from 644 to 600.
-<br>&gt;=20
-<br>&gt; Signed-off-by: Wu Bo &lt;<a href=3D"mailto:wubo40@huawei.com" targ=
-et=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:wubo4=
-0@huawei.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:wubo40@h=
-uawei.com&#39;;return true;">wubo40@huawei.com</a>&gt;
-<br>&gt; ---
-<br>&gt; =C2=A0 usr/log.c | 6 +++---
-<br>&gt; =C2=A0 1 file changed, 3 insertions(+), 3 deletions(-)
-<br>&gt;=20
-<br>&gt; diff --git a/usr/log.c b/usr/log.c
-<br>&gt; index 6e16e7c..2fc1850 100644
-<br>&gt; --- a/usr/log.c
-<br>&gt; +++ b/usr/log.c
-<br>&gt; @@ -73,7 +73,7 @@ static int logarea_init (int size)
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0logdbg(stderr,&quot;enter logare=
-a_init\n&quot;);
-<br>&gt;=20
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if ((shmid =3D shmget(IPC_PRIVAT=
-E, sizeof(struct logarea),
-<br>&gt; - =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 0644 | IPC_CREAT | IPC_EXCL)) =3D=3D -1) {
-<br>&gt; + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 0600 | IPC_CREAT | IPC_EXCL)) =3D=3D -1) {
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sysl=
-og(LOG_ERR, &quot;shmget logarea failed %d&quot;, errno);
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0retu=
-rn 1;
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}
-<br>&gt; @@ -93,7 +93,7 @@ static int logarea_init (int size)
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0size=
- =3D DEFAULT_AREA_SIZE;
-<br>&gt;=20
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if ((shmid =3D shmget(IPC_PRIVAT=
-E, size,
-<br>&gt; - =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 0644 | IPC_CREAT | IPC_EXCL)) =3D=3D -1) {
-<br>&gt; + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 0600 | IPC_CREAT | IPC_EXCL)) =3D=3D -1) {
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sysl=
-og(LOG_ERR, &quot;shmget msg failed %d&quot;, errno);
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0free=
-_logarea();
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0retu=
-rn 1;
-<br>&gt; @@ -114,7 +114,7 @@ static int logarea_init (int size)
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0la-&gt;tail =3D la-&gt;start;
-<br>&gt;=20
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if ((shmid =3D shmget(IPC_PRIVAT=
-E, MAX_MSG_SIZE + sizeof(struct=20
-<br>&gt; logmsg),
-<br>&gt; - =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 0644 | IPC_CREAT | IPC_EXCL)) =3D=3D -1) {
-<br>&gt; + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 0600 | IPC_CREAT | IPC_EXCL)) =3D=3D -1) {
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sysl=
-og(LOG_ERR, &quot;shmget logmsg failed %d&quot;, errno);
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0free=
-_logarea();
-<br>&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0retu=
-rn 1;
-<br>&gt; --
-<br>&gt; 1.8.3.1
-<br>&gt;=20
-<br>&gt;=20
-<br>&gt; --=20
-<br>&gt; You received this message because you are subscribed to the Google=
- Groups=20
-<br>&gt; &quot;open-iscsi&quot; group.
-<br>&gt; To unsubscribe from this group and stop receiving emails from it, =
-send an=20
-<br>&gt; email to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.c=
-om" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mail=
-to:open-iscsi%2Bunsubscribe@googlegroups.com&#39;;return true;" onclick=3D"=
-this.href=3D&#39;mailto:open-iscsi%2Bunsubscribe@googlegroups.com&#39;;retu=
-rn true;">open-iscsi+unsubscribe@<wbr>googlegroups.com</a>.
-<br>&gt; To view this discussion on the web visit=20
-<br>&gt; <a href=3D"https://groups.google.com/d/msgid/open-iscsi/d6a22a2f-3=
-730-45ee-5256-8a8fe4b0" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"t=
-his.href=3D&#39;https://groups.google.com/d/msgid/open-iscsi/d6a22a2f-3730-=
-45ee-5256-8a8fe4b0&#39;;return true;" onclick=3D"this.href=3D&#39;https://g=
-roups.google.com/d/msgid/open-iscsi/d6a22a2f-3730-45ee-5256-8a8fe4b0&#39;;r=
-eturn true;">https://groups.google.com/d/<wbr>msgid/open-iscsi/d6a22a2f-<wb=
-r>3730-45ee-5256-8a8fe4b0</a>=20
-<br>&gt; 17bf%<a href=3D"http://40huawei.com" target=3D"_blank" rel=3D"nofo=
-llow" onmousedown=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3=
-A%2F%2F40huawei.com\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNHoFvUpSf80aEQnP=
-_H5sdMX2P3IwA&#39;;return true;" onclick=3D"this.href=3D&#39;http://www.goo=
-gle.com/url?q\x3dhttp%3A%2F%2F40huawei.com\x26sa\x3dD\x26sntz\x3d1\x26usg\x=
-3dAFQjCNHoFvUpSf80aEQnP_H5sdMX2P3IwA&#39;;return true;">40huawei.com</a>.
-<br>
-<br>
-<br>
-<br>
-<br></blockquote></div>
+<div dir=3D"ltr">On Tuesday, April 21, 2020 at 12:31:24 AM UTC-7, Gionatan =
+Danti wrote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-lef=
+t: 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;"><div dir=3D"ltr">[=
+reposting, as the previous one seems to be lost]<br><br>Hi all,<br>I have a=
+ question regarding udev events when using iscsi disks.<br><br>By using &qu=
+ot;udevadm monitor&quot; I can see that events are generated when I login a=
+nd logout from an iscsi portal/resource, creating/destroying the relative l=
+inks under /dev/<br><br>However, I can not see anything when the remote mac=
+hine simple dies/reboots/disconnects: while &quot;dmesg&quot; shows the isc=
+si timeout expiring, I don&#39;t see anything about a removed disk (and the=
+ links under /dev/ remains unaltered, indeed). At the same time, when the r=
+emote machine and disk become available again, no reconnection events happe=
+n.<br></div></blockquote><div><br></div><div>Because of the design of iSCSI=
+, there is no way for the initiator to know the server has gone away. The o=
+nly time an initiator might figure this out is when it tries to communicate=
+ with the target.</div><div><br></div><div>This assumes we are not using so=
+me sort of directory service, like iSNS, which can send asynchronous notifi=
+cations. But even then, the iSNS server would have to somehow know that the=
+ target went down. If the target crashed, that might be difficult to ascert=
+ain.</div><div><br></div><div>So in the absence of some asynchronous notifi=
+cation, the initiator only knows the target is not responding if it tries t=
+o talk to that target.</div><div><br></div><div>Normally iscsid defaults to=
+ sending periodic NO-OPs to the target every 5 seconds. So if the target go=
+es away, the initiator usually notices, even if no regular I/O is occurring=
+.</div><div><br></div><div>But this is where the error recovery gets tricky=
+, because iscsi tries to handle &quot;lossy&quot; connections. What if the =
+server will be right back? Maybe it&#39;s rebooting? Maybe the cable will b=
+e plugged back in? So iscsi keeps trying to reconnect. As a matter of fact,=
+ if you stop iscsid and restart it, it sees the failed connection and retri=
+es it -- forever, by default. I actually added a configuration parameter ca=
+lled reopen_max, that can limit the number of retries. But there was pushba=
+ck on changing the default value from 0, which is &quot;retry forever&quot;=
+.</div><div><br></div><div>So what exactly do you think the system should d=
+o when a connection &quot;goes away&quot;? How long does it have to be gone=
+ to be considered gone for good? If the target comes back &quot;later&quot;=
+ should it get the same disc name? Should we retry, and if so how much befo=
+re we give up? I&#39;m interested in your views, since it seems like a non-=
+trivial problem to me.<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;=
+"><div dir=3D"ltr"><br>I can read here that, years ago, a patch was in prog=
+ress to give better integration with udev when a device disconnects/reconne=
+cts. Did the patch got merged? Or does the one I described above remain the=
+ expected behavior? Can be changed?<br></div></blockquote><div><br></div><d=
+iv>So you&#39;re saying as soon as a bad connection is detected (perhaps by=
+ a NOOP), the device should go away? <br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;pad=
+ding-left: 1ex;"><div dir=3D"ltr"><br>Thanks.<br></div></blockquote></div>
 
 <p></p>
 
@@ -340,11 +215,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/ef8b7483-b1fc-46b5-abee-10d0bd6f9d0c%40googlegroups.c=
+om/d/msgid/open-iscsi/7f583720-8a84-4872-8d1a-5cd284295c22%40googlegroups.c=
 om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/ef8b7483-b1fc-46b5-abee-10d0bd6f9d0c%40googlegroups.com</a>.<b=
+d/open-iscsi/7f583720-8a84-4872-8d1a-5cd284295c22%40googlegroups.com</a>.<b=
 r />
 
-------=_Part_2548_1714290517.1587493669733--
+------=_Part_2351_979993503.1587494662381--
 
-------=_Part_2547_357964202.1587493669733--
+------=_Part_2350_1321772124.1587494662380--
