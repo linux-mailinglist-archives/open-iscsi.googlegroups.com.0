@@ -1,135 +1,73 @@
-Return-Path: <open-iscsi+bncBD7Z7UVWSMJBBZEUQD2QKGQEQMR7TSI@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBFXCQH2QKGQECY5WD4I@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-il1-x13a.google.com (mail-il1-x13a.google.com [IPv6:2607:f8b0:4864:20::13a])
-	by mail.lfdr.de (Postfix) with ESMTPS id 597791B3AE2
-	for <lists+open-iscsi@lfdr.de>; Wed, 22 Apr 2020 11:12:06 +0200 (CEST)
-Received: by mail-il1-x13a.google.com with SMTP id m2sf1208723ilb.21
-        for <lists+open-iscsi@lfdr.de>; Wed, 22 Apr 2020 02:12:06 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1587546725; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=RSSNDhLbmy5jdfh6oOn9++rxD7Te24gh1EES9vjBv/4212Uuslyjofa9Or4JPW2UqL
-         98beF34FxTgekWq6L/Oxbzd2xh/ubMw5FR4u7mOxH8fp4jR+LhxUjM5fpeZtekJqEuNK
-         AtyGy8YLYKNl8HORCgmva1EOnLqFXrrgnfYm+palKEETYl0VPFo5kj4fp7WprVWQ1eRd
-         fdtugvzmcLRmO4W14/Zv1eEhgbZYxSOPLS6Y6FM3kPDA8T2vSJCFTDe8H48I8Cj7NTbJ
-         W+cHln1nN9352B6jkLMH78t6kYzq3NOlrWcwkd5nbee5OGaErQHpZ3v59d5SIkdIu3+V
-         aDpQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
-         :from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=/8AAkv4aX+jCBklAAHaIDfeTFvktUyLNEUybC7bYM3A=;
-        b=g4/DjD7RKiklEK9YEu8/+YA67nC24/6+gOAeehsldwKymcA9VP3FBFzhDVEJYHyHe7
-         3hy8EKlqjxz28x7XBlXWkY6ESxx7/OBwcuRdVRHDDZ4UvTGPTEF5FulYZYtB1g/CDUNA
-         eDL+dOVTq4rMcktA+I/2pBKJ5WLLrpPDYOZKY0Z8BSISnY9lMqP3d2zSpseK8DpQ+sUh
-         3e+Jyzfo8Lt5mUG7FYMVIiRRaD0i4lG7qyPDPjW42KSRpMvZJGs6JflzYsOZuObi7Kyx
-         beRCus9O+7t6b3k5dR6ZNKnAUx1WcDpFuIAV4IOmnwaPJPBgPwVbEAUUHasOBiOCmvYU
-         ofdA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=EJkcwtjy;
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d2b as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from mail-qv1-xf40.google.com (mail-qv1-xf40.google.com [IPv6:2607:f8b0:4864:20::f40])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B771B4A7F
+	for <lists+open-iscsi@lfdr.de>; Wed, 22 Apr 2020 18:30:15 +0200 (CEST)
+Received: by mail-qv1-xf40.google.com with SMTP id f9sf2733656qvt.14
+        for <lists+open-iscsi@lfdr.de>; Wed, 22 Apr 2020 09:30:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=/8AAkv4aX+jCBklAAHaIDfeTFvktUyLNEUybC7bYM3A=;
-        b=FqPMQmmiYoukvgLjfs7xZx4/8j5lwEQhT/3yP4tW6dp6PlM+8Tk/9fQH4nMEpduBzZ
-         NG+fGQHijBiPvqHr0cQfCCeU5guS33nLCDr9JSPH+RgzziJT3l6nKISko1qdrOcaFD2B
-         k5+oar39CHQgw04Q0TKuxKf4Kdlh1uE9ASfsQocIpOS5Z/V6O00y6gYbdRxynp2W4TWM
-         TolEkEfWfx/M389hIlNS9be4KyEg5N2DzbLeqBycMJkTe6LKtL+XI0V3RtWBW5Ka2N7g
-         y69g+67wYaGevMan3QuC+Kgppd0o6HVQQfYG0lg1Toob++JxSILTk2BvlYgDUQ8/ii0N
-         qMng==
+        h=sender:date:from:to:message-id:in-reply-to:references:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=YfSCN3NSoJzfGb0ysfFB/MCnfKe42g+0v/u3aSEFcrg=;
+        b=Dx7VXoTmebn9QZ+niagcpiQROl7Ie8Iknt81cQ7Q6xDYvBykSacbQQSamAkM7nS2y9
+         DUGCumsCASEoPnttV8UvTimv2M6Xu9THO3XxL9b+sAk04dV7k4EcpEijlqg+wM8Qo8QN
+         ZX9ZKv5Ndeqp5/PO6Sr0769aKvtHy9ojh2YX5IOZh3CJe4MaU3xe7qjrNMgchBhIP7Vp
+         1eQY74+mRxQ03cC8xx5PYga4RPfGwn6m4Szpe8PESy+qmo+5kTAwcWNK5W5zR61nFP7p
+         fdiOLuImjdEsaFw+Ol4IWRPQvUboBJoyCzKKm165gkpOXIRLO+bBaDDe21ObNf92TutM
+         u/Yg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=/8AAkv4aX+jCBklAAHaIDfeTFvktUyLNEUybC7bYM3A=;
-        b=RxhYZyd6Oqwl9S1/UtxIRZWlvbZvTLqCWWrL2RVcpUHYBAVCGvtbJInDJplMjJAUQc
-         l4+rYYnqlfWZQf6RRnCt1dk2LPRj988L1bUJqHgqNuVC92X1uWumEXIxXrZQrkN/zK5H
-         JoGEQ5YOOQTszlqkCrr29cjBUO/zUrAHTv8HitfaQCTIgrnALR0efygw67vDIvrRp0T4
-         DEoxFqFMikzxIIPtV5J6aQmc/CbxaRPB4LiAlZXHaW1ytgRzVuo1xL0d/yxiq3DCmxU2
-         K9EsnsXh9l/jWhbgQHTo2QCurQO36DXBJQCFbKbYBlK7YCzpQYpGd+B02P+EuD8odcWD
-         yw7g==
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=YfSCN3NSoJzfGb0ysfFB/MCnfKe42g+0v/u3aSEFcrg=;
+        b=UkJ52ml53Qb0QlfR3CJy/Jhk1rhkj8WVrlIvguxtRZ52ZNNAh0Sns4xVQBdZXFnNj0
+         Ra9R2+FSg41pcrxp22g+uf052flp6cL+KYjRvItRyiUbr0LtLgSFlftytz6wPSk8yVY3
+         7XejEGuWsOnVleTXvkRymyhTDPLza3Zx3EqZUVV9jzhGy2mnvFlDrPULs4L+fAihUNQ2
+         T/biS3pziWryCOQ004QxPOTh4LRypzEq4qW+5duMgG2p6R0hNRLUeoVmEiqgqn4uTaQX
+         gGLbCP8PAVB49OfMc4H1AO7VfSEsNxXvu4RyRzoP/OcGuRvWmB/YDZc4FxLtjdSJH6G1
+         lTAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=/8AAkv4aX+jCBklAAHaIDfeTFvktUyLNEUybC7bYM3A=;
-        b=pQKHfUhHQe9+5Aqkar2CMs1zOLTX3ikXccfYK6gj9cAV3R+pxDY5dc7feny7nJKHGQ
-         X7EOVjCc9MAkNdg7sRg/eSgcNqqTLkkX6GwLDtdyv4IKCSPHaUkfHC32ZK9PbXuKHFD5
-         gy0OYgxPqS9NvBZ1Mn9r7Ssocf21k/vNEfLvmBQ5fnzkbsnCzfVs/vWqZ7S7YDAk3HO5
-         YVHEDah07ZRjNrPSgGvAGQSny9gjYKhQQ9Q2sn1ZaJTaXrNArEdVoS0xZ502TbEHTWgq
-         Sp2RoufsBzaOsY3L6hC9xAzKGd31SESkn9oX+SnAIe1VXO4CI+wPQDIkYK9qihx0v7CX
-         3L6w==
+        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
+         :references:subject:mime-version:x-original-sender:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=YfSCN3NSoJzfGb0ysfFB/MCnfKe42g+0v/u3aSEFcrg=;
+        b=FBncz9ifFjEssEiIvhQ++kSGbP/WC5Nzwc+IIPg9D+myD/YY92Mfj2UhkKa+ZyxO2y
+         5KgQCFNwoDZdb0ypQPPxp5UhRfrA6Z3Ql0rCfxfNG9CtCxQB6fRaGGymyd8NikF76Y6D
+         NedW9DTc4jSjFMH3XdstQ728nzmGoLQ0h5djnh2Cx7dxGhQm+NG2BcnZkKhKoqrFAWU9
+         suKzc26m+suLiky+RJP20uvm+yYbK7Bc5JgTVrcbKWTuMOePpwmDtiFm896mApCMHtut
+         tCdHmBfn21pT/3iAUR2WqNp0LqBMl974SGzmcD+/t63KPvD6xTEoi5VSL02LOX5/aiEX
+         7K3A==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AGi0Pubg07M9lKfieuLMhU7ns1tLaVg5aMk1XIqeV5s5yg8jVluYXma8
-	wFuWKR/c/quMo+yVjUF7f/0=
-X-Google-Smtp-Source: APiQypKYRV4WrEiyje8hLx0Q+htbg/xUwwtlgt9OG1WZ+zzWM2WMTc9CURPmmBxkpQ3Rl5P6f8s0Dw==
-X-Received: by 2002:a02:5184:: with SMTP id s126mr23478350jaa.81.1587546725056;
-        Wed, 22 Apr 2020 02:12:05 -0700 (PDT)
+X-Gm-Message-State: AGi0PuYZP+xe7zBG5cwlunEFY9S/iVBIKLSt1fEiEd/PGqlFkpG4naXc
+	tL9lNBhyDFYOtoU/FVuI8gI=
+X-Google-Smtp-Source: APiQypLJouxYbqv9cHGtH2fQSuR/9ysM408DcBbSFNolE0XctSw8Xyf5Gk/tKUui9RVWet4f2hcNvw==
+X-Received: by 2002:a0c:e787:: with SMTP id x7mr2819843qvn.229.1587573014550;
+        Wed, 22 Apr 2020 09:30:14 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a92:3a05:: with SMTP id h5ls784120ila.1.gmail; Wed, 22 Apr
- 2020 02:12:04 -0700 (PDT)
-X-Received: by 2002:a92:4152:: with SMTP id o79mr4160391ila.198.1587546724616;
-        Wed, 22 Apr 2020 02:12:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1587546724; cv=none;
-        d=google.com; s=arc-20160816;
-        b=pDyuSqJcUAFfgtt7ywa2wH5GbhX98E7/X+sVkiILlFs21STdVl+yxso6KWNyqu8oDS
-         2Bt2SQNUjCSVETjieYdWHcLaI4RkF2iljd+hFrVe5m3OCOhqgRWnO0HDZ26/D8lOMMcV
-         HaLwg+qjokzQJWX+n4lR97vlxeC7UhZ/ZIj0ABA/VpUCIE5v6YVlmueu+IYMdi287j6F
-         mF/ksATISVV/tAcJHJ3TCBvDZ065870YRfuUDSjsUHlag2lRxN8YYNKO1FDgj1uyHJIy
-         mqVCq62n8Sq0OxS5X3DYyA8oigYIuYf0+DzgCP+hPY33HtuuMhk7BlB9wFnT0EndN9DL
-         9dHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=tY//pQQA1SqYC1SOXBcB62oIuDDcYKtKH4ubvWi3mOM=;
-        b=ULMMU8zJM98a+p6CoCvz6ccn2recqgKihogFsGShfW6RdWALKYtF0B/scjqHL57Spw
-         3RnRo1FCr0VxQGsMMBUugz1K4dFFJbjob+tDQWH8neJraNIFI6HQfXsaE7PQBygZqxSH
-         IrsAlZHc3/MnNqrMwZO+A4jMlMbsHmM0JX/gd7ztN+VeReFxrILnjDXvMNw0U9Zd4H1M
-         shTMN22DlnxIxiuVFcXuw5amrt9D+p8pE/aOSjYQwPynM5Rz7ovmnk2wODYvoYZz8evk
-         G0Vm4xdksv0vveWHO6Hw9d87oH0jKBlI3Ewo6yPdr/QcBmDteLeynsXVWTYUVGWV2UpH
-         NiLw==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=EJkcwtjy;
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d2b as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com. [2607:f8b0:4864:20::d2b])
-        by gmr-mx.google.com with ESMTPS id g17si503782ioe.0.2020.04.22.02.12.04
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Apr 2020 02:12:04 -0700 (PDT)
-Received-SPF: pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d2b as permitted sender) client-ip=2607:f8b0:4864:20::d2b;
-Received: by mail-io1-xd2b.google.com with SMTP id w20so1577748iob.2
-        for <open-iscsi@googlegroups.com>; Wed, 22 Apr 2020 02:12:04 -0700 (PDT)
-X-Received: by 2002:a6b:c9c9:: with SMTP id z192mr24288478iof.134.1587546724044;
- Wed, 22 Apr 2020 02:12:04 -0700 (PDT)
-MIME-Version: 1.0
+Received: by 2002:ad4:528b:: with SMTP id v11ls721048qvr.9.gmail; Wed, 22 Apr
+ 2020 09:30:14 -0700 (PDT)
+X-Received: by 2002:ad4:43c1:: with SMTP id o1mr25842341qvs.56.1587573013747;
+        Wed, 22 Apr 2020 09:30:13 -0700 (PDT)
+Date: Wed, 22 Apr 2020 09:30:12 -0700 (PDT)
+From: The Lee-Man <leeman.duncan@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <03d325e8-a7b7-44bc-a31c-419ba09b1890@googlegroups.com>
+In-Reply-To: <5E9FEA90020000A1000387D3@gwsmtp.uni-regensburg.de>
 References: <13d4c963-b633-4672-97d9-dd41eec5fb5b@googlegroups.com>
- <7f583720-8a84-4872-8d1a-5cd284295c22@googlegroups.com> <30147_1587494977_5E9F4041_30147_801_1_CAK3e-EawwxYGb3Gw74+P-yBmrnE0ktOL=Fj1OT_LEQ+CZyZUkg@mail.gmail.com>
- <5E9FEC8E020000A1000387D7@gwsmtp.uni-regensburg.de>
-In-Reply-To: <5E9FEC8E020000A1000387D7@gwsmtp.uni-regensburg.de>
-From: Donald Williams <don.e.williams@gmail.com>
-Date: Wed, 22 Apr 2020 05:11:53 -0400
-Message-ID: <CAK3e-EbBaqnn89HTJ4D8beY9KGCJ_jYwFXOFgR4qW59QPn0DFQ@mail.gmail.com>
+ <618_1587494664_5E9F3F08_618_445_1_7f583720-8a84-4872-8d1a-5cd284295c22@googlegroups.com>
+ <5E9FEA90020000A1000387D3@gwsmtp.uni-regensburg.de>
 Subject: Re: [EXT] Re: udev events for iscsi
-To: open-iscsi@googlegroups.com
-Content-Type: multipart/alternative; boundary="0000000000008d156d05a3dd862b"
-X-Original-Sender: Don.E.Williams@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b=EJkcwtjy;       spf=pass
- (google.com: domain of don.e.williams@gmail.com designates
- 2607:f8b0:4864:20::d2b as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_2808_47247045.1587573013113"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -143,397 +81,339 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---0000000000008d156d05a3dd862b
+------=_Part_2808_47247045.1587573013113
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2809_75883196.1587573013114"
+
+------=_Part_2809_75883196.1587573013114
 Content-Type: text/plain; charset="UTF-8"
 
-Hello
+On Tuesday, April 21, 2020 at 11:56:23 PM UTC-7, Uli wrote:
+>
+> >>> The Lee-Man <leeman.duncan@gmail.com> schrieb am 21.04.2020 um 20:44 
+> in 
+> Nachricht 
+> <618_1587494664_5E9F3F08_618_445_1_7f583720-8a84-4872-8d1a-5cd284295c22@googlegr 
+>
+> ups.com>: 
+> > On Tuesday, April 21, 2020 at 12:31:24 AM UTC-7, Gionatan Danti wrote: 
+> >> 
+> >> [reposting, as the previous one seems to be lost] 
+> >> 
+> >> Hi all, 
+> >> I have a question regarding udev events when using iscsi disks. 
+> >> 
+> >> By using "udevadm monitor" I can see that events are generated when I 
+> >> login and logout from an iscsi portal/resource, creating/destroying the 
+> >> relative links under /dev/ 
+> >> 
+> >> However, I can not see anything when the remote machine simple 
+> >> dies/reboots/disconnects: while "dmesg" shows the iscsi timeout 
+> expiring, I 
+> >> don't see anything about a removed disk (and the links under /dev/ 
+> remains 
+> >> unaltered, indeed). At the same time, when the remote machine and disk 
+> >> become available again, no reconnection events happen. 
+> >> 
+> > 
+> > Because of the design of iSCSI, there is no way for the initiator to 
+> know 
+> > the server has gone away. The only time an initiator might figure this 
+> out 
+> > is when it tries to communicate with the target. 
+>
+> My knowlege of the SCSI stack is quite poor, but I think the last 
+> revisions of parallel SCSI (like Ultra 320 (or was it 160?)) had a concept 
+> of "domain validation". AFAIK the leatter meant measuring the quality of 
+> the wires, adjusting the transfer speed. 
+> While basically SCSI assumes "the bus" won't go away magically, a future 
+> iSCSI standard might contain  regular "bus checks" to trigger recovery 
+> actions if the "bus" (network transport connection) seems to be gone. 
+>
+> > 
+> > This assumes we are not using some sort of directory service, like iSNS, 
+> > which can send asynchronous notifications. But even then, the iSNS 
+> server 
+> > would have to somehow know that the target went down. If the target 
+> > crashed, that might be difficult to ascertain. 
+>
+> To be picky: If the traget went down (like a classical failing SCSI disk), 
+> it could issue some attention message, but when the transport went down, no 
+> such message can be received. So I think there's a difference between 
+> "target down" (device not present, device fails to respond) and "bus down" 
+> (no communication possible any more). In the second case no assumptions can 
+> be made about the health of the traget device. 
+>
+> > 
+> > So in the absence of some asynchronous notification, the initiator only 
+> > knows the target is not responding if it tries to talk to that target. 
+> > 
+> > Normally iscsid defaults to sending periodic NO-OPs to the target every 
+> 5 
+> > seconds. So if the target goes away, the initiator usually notices, even 
+> if 
+> > no regular I/O is occurring. 
+>
+> So the target went away, or the bus went down? 
+>
 
- Re: Errors  That's likely from a bad / copy paste.  I referenced the
-source document I took that from.  That was done against an older RHEL
-kernel.
+The initiator does not know the difference. As you know, there are dozens 
+of things (conservatively) that can go wrong, which is why I say the disk 
+"goes away". It could be sleeping. It could be dead. The cable could be 
+unplugged. The system could be rebooting. The switch could be down. The 
+ACLs could have changed (which is how I simulate a target going away). 
 
- Don
+>
+> > 
+> > But this is where the error recovery gets tricky, because iscsi tries to 
+> > handle "lossy" connections. What if the server will be right back? Maybe 
+> > it's rebooting? Maybe the cable will be plugged back in? So iscsi keeps 
+> > trying to reconnect. As a matter of fact, if you stop iscsid and restart 
+> > it, it sees the failed connection and retries it -- forever, by default. 
+> I 
+> > actually added a configuration parameter called reopen_max, that can 
+> limit 
+> > the number of retries. But there was pushback on changing the default 
+> value 
+> > from 0, which is "retry forever". 
+> > 
+> > So what exactly do you think the system should do when a connection 
+> "goes 
+> > away"? How long does it have to be gone to be considered gone for good? 
+> If 
+> > the target comes back "later" should it get the same disc name? Should 
+> we 
+> > retry, and if so how much before we give up? I'm interested in your 
+> views, 
+> > since it seems like a non-trivial problem to me. 
+>
+> IMHO a "bus down" is a critical event affecting _all_ devices on that bus, 
+> not just a single target. Well, it might be some extra noise if those other 
+> targets have no I/O outstanding, but it's better to know that the bus is 
+> down before initiating a transfer rather than concluding seconds later that 
+> the target seems unreachable for some reasons unknown. 
+>
 
+There are 3 error handling levels built into the iSCSI protocol. I think 
+you'll need to change/augment the protocol to change this. They are 
+ERL=[0|1|2]. Error level 0 is the default, and the only one supported by 
+open-iscsi. That just means we end the connection reconnect. ERL=1 adds 
+handling digest error handling, and ERL=2 adds session recovery on top of 
+that, i.e. try to recover the session before disconnecting and reconnecting.
 
-On Wed, Apr 22, 2020 at 3:04 AM Ulrich Windl <
-Ulrich.Windl@rz.uni-regensburg.de> wrote:
+It is up to the transport (usually TCP/IP) to tell us of transport errors. 
+At the open-iscsi level, the transport should either "just work", or it 
+should fail and tell us it failed.
 
-> >>> Donald Williams <don.e.williams@gmail.com> schrieb am 21.04.2020 um
-> 20:49 in
-> Nachricht
+But perhaps I'm being redundant and you know all this.
+
 >
-> <30147_1587494977_5E9F4041_30147_801_1_CAK3e-EawwxYGb3Gw74+P-yBmrnE0ktOL=Fj1OT_L
-> Q+CZyZUkg@mail.gmail.com>:
-> > Hello,
-> >
-> >  If the loss exceeds the timeout value yes.  If the 'drive' doesn't come
-> > back in 30 to 60 seconds it's not likely a transitory event like a cable
-> > pull.
-> >
-> > NOOP-IN and NOOP-OUT are also know as KeepAlive.  That's when the
+> > 
+> >> 
+> >> I can read here that, years ago, a patch was in progress to give better 
+> >> integration with udev when a device disconnects/reconnects. Did the 
+> patch 
+> >> got merged? Or does the one I described above remain the expected 
+> behavior? 
+> >> Can be changed? 
+> >> 
+> > 
+> > So you're saying as soon as a bad connection is detected (perhaps by a 
+> > NOOP), the device should go away? 
 >
-> Actually I think that's two different mechanisms: Keepalive just prevents
-> the connection from being discarded (some firewall like to do that), while
-> the No_op actually is an end-to-end (almost at least) connection test.
+> Maybe the state should be similar to a device being in power-save mode: 
+> It's not accessible right now, but should be woke up ASAP. See my earlier 
+> comparison to NFS hard-mounts... 
 >
-> > connection is up but the target or initiator isn't responding.   If those
-> > timeout the connection will be dropped and a new connection attempt made.
+
+I think the current code works well enough when the target goes away for a 
+"short" period of time, but again it depends on how it goes away. Not all 
+disappearances are equal, though we really can't tell them apart very well. 
+
 >
-> I think the original intention for SCSI timeouts was to conclude a device
-> has failed if it does not respond within time (actually there are different
-> timeouts depending on the operation (like the famous rewinding of a long
-> tape)). Next step for the OS would be to block I/O to a seemingly failed
-> device. Recent operating systems like Linux have the choice to remove the
-> device logically, requiring it to re-appear before it can be used. In some
-> cases it seems preferrable to keep the device, because otherwise there
-> could be a cascading effect like killing processes that have the device
-> open (UNIX processes do not like it when opened devices suddenly disappear).
->
-> Regards,
-> Ulrich
->
-> >
-> >  Don
-> >
-> >
-> > On Tue, Apr 21, 2020 at 2:44 PM The Lee-Man <leeman.duncan@gmail.com>
-> wrote:
-> >
-> >> On Tuesday, April 21, 2020 at 12:31:24 AM UTC-7, Gionatan Danti wrote:
-> >>>
-> >>> [reposting, as the previous one seems to be lost]
-> >>>
-> >>> Hi all,
-> >>> I have a question regarding udev events when using iscsi disks.
-> >>>
-> >>> By using "udevadm monitor" I can see that events are generated when I
-> >>> login and logout from an iscsi portal/resource, creating/destroying the
-> >>> relative links under /dev/
-> >>>
-> >>> However, I can not see anything when the remote machine simple
-> >>> dies/reboots/disconnects: while "dmesg" shows the iscsi timeout
-> expiring, I
-> >>> don't see anything about a removed disk (and the links under /dev/
-> remains
-> >>> unaltered, indeed). At the same time, when the remote machine and disk
-> >>> become available again, no reconnection events happen.
-> >>>
-> >>
-> >> Because of the design of iSCSI, there is no way for the initiator to
-> know
-> >> the server has gone away. The only time an initiator might figure this
-> out
-> >> is when it tries to communicate with the target.
-> >>
-> >> This assumes we are not using some sort of directory service, like iSNS,
-> >> which can send asynchronous notifications. But even then, the iSNS
-> server
-> >> would have to somehow know that the target went down. If the target
-> >> crashed, that might be difficult to ascertain.
-> >>
-> >> So in the absence of some asynchronous notification, the initiator only
-> >> knows the target is not responding if it tries to talk to that target.
-> >>
-> >> Normally iscsid defaults to sending periodic NO-OPs to the target every
-> 5
-> >> seconds. So if the target goes away, the initiator usually notices,
-> even if
-> >> no regular I/O is occurring.
-> >>
-> >> But this is where the error recovery gets tricky, because iscsi tries to
-> >> handle "lossy" connections. What if the server will be right back? Maybe
-> >> it's rebooting? Maybe the cable will be plugged back in? So iscsi keeps
-> >> trying to reconnect. As a matter of fact, if you stop iscsid and restart
-> >> it, it sees the failed connection and retries it -- forever, by
-> default. I
-> >> actually added a configuration parameter called reopen_max, that can
-> limit
-> >> the number of retries. But there was pushback on changing the default
-> value
-> >> from 0, which is "retry forever".
-> >>
-> >> So what exactly do you think the system should do when a connection
-> "goes
-> >> away"? How long does it have to be gone to be considered gone for good?
-> If
-> >> the target comes back "later" should it get the same disc name? Should
-> we
-> >> retry, and if so how much before we give up? I'm interested in your
-> views,
-> >> since it seems like a non-trivial problem to me.
-> >>
-> >>>
-> >>> I can read here that, years ago, a patch was in progress to give better
-> >>> integration with udev when a device disconnects/reconnects. Did the
-> patch
-> >>> got merged? Or does the one I described above remain the expected
-> behavior?
-> >>> Can be changed?
-> >>>
-> >>
-> >> So you're saying as soon as a bad connection is detected (perhaps by a
-> >> NOOP), the device should go away?
-> >>
-> >>>
-> >>> Thanks.
-> >>>
-> >> --
-> >> You received this message because you are subscribed to the Google
-> Groups
-> >> "open-iscsi" group.
-> >> To unsubscribe from this group and stop receiving emails from it, send
-> an
-> >> email to open-iscsi+unsubscribe@googlegroups.com.
-> >> To view this discussion on the web visit
-> >>
-> >
-> https://groups.google.com/d/msgid/open-iscsi/7f583720-8a84-4872-8d1a-5cd28429
-> > 5c22%40googlegroups.com
-> >>
-> > <
-> https://groups.google.com/d/msgid/open-iscsi/7f583720-8a84-4872-8d1a-5cd28429
-> > 5c22%40googlegroups.com?utm_medium=email&utm_source=footer>
-> >> .
-> >>
-> >
-> > --
-> > You received this message because you are subscribed to the Google
-> Groups
-> > "open-iscsi" group.
-> > To unsubscribe from this group and stop receiving emails from it, send
-> an
-> > email to open-iscsi+unsubscribe@googlegroups.com.
-> > To view this discussion on the web visit
-> >
-> https://groups.google.com/d/msgid/open-iscsi/CAK3e-EawwxYGb3Gw74%2BP-yBmrnE0k
-> > tOL%3DFj1OT_LEQ%2BCZyZUkg%40mail.gmail.com.
+> Regards, 
+> Ulrich 
 >
 >
->
-> --
-> You received this message because you are subscribed to the Google Groups
-> "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an
-> email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit
-> https://groups.google.com/d/msgid/open-iscsi/5E9FEC8E020000A1000387D7%40gwsmtp.uni-regensburg.de
-> .
 >
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAK3e-EbBaqnn89HTJ4D8beY9KGCJ_jYwFXOFgR4qW59QPn0DFQ%40mail.gmail.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/03d325e8-a7b7-44bc-a31c-419ba09b1890%40googlegroups.com.
 
---0000000000008d156d05a3dd862b
+------=_Part_2809_75883196.1587573013114
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello=C2=A0<div><br></div><div>=C2=A0Re: Errors=C2=A0 That=
-&#39;s likely from a bad / copy paste.=C2=A0 I referenced the source docume=
-nt I took that from.=C2=A0 That was done against an older RHEL kernel.=C2=
-=A0</div><div><br></div><div>=C2=A0Don=C2=A0</div><div><br></div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Ap=
-r 22, 2020 at 3:04 AM Ulrich Windl &lt;<a href=3D"mailto:Ulrich.Windl@rz.un=
-i-regensburg.de">Ulrich.Windl@rz.uni-regensburg.de</a>&gt; wrote:<br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">&gt;&gt;&gt; Donald Willi=
-ams &lt;<a href=3D"mailto:don.e.williams@gmail.com" target=3D"_blank">don.e=
-.williams@gmail.com</a>&gt; schrieb am 21.04.2020 um 20:49 in<br>
-Nachricht<br>
-&lt;30147_1587494977_5E9F4041_30147_801_1_CAK3e-EawwxYGb3Gw74+P-yBmrnE0ktOL=
-=3DFj1OT_L<br>
-<a href=3D"mailto:Q%2BCZyZUkg@mail.gmail.com" target=3D"_blank">Q+CZyZUkg@m=
-ail.gmail.com</a>&gt;:<br>
-&gt; Hello,<br>
-&gt; <br>
-&gt;=C2=A0 If the loss exceeds the timeout value yes.=C2=A0 If the &#39;dri=
-ve&#39; doesn&#39;t come<br>
-&gt; back in 30 to 60 seconds it&#39;s not likely a transitory event like a=
- cable<br>
-&gt; pull.<br>
-&gt; <br>
-&gt; NOOP-IN and NOOP-OUT are also know as KeepAlive.=C2=A0 That&#39;s when=
- the<br>
+<div dir=3D"ltr">On Tuesday, April 21, 2020 at 11:56:23 PM UTC-7, Uli wrote=
+:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;bo=
+rder-left: 1px #ccc solid;padding-left: 1ex;">&gt;&gt;&gt; The Lee-Man &lt;=
+<a href=3D"mailto:leeman.duncan@gmail.com" target=3D"_blank" rel=3D"nofollo=
+w" onmousedown=3D"this.href=3D&#39;mailto:leeman.duncan@gmail.com&#39;;retu=
+rn true;" onclick=3D"this.href=3D&#39;mailto:leeman.duncan@gmail.com&#39;;r=
+eturn true;">leeman.duncan@gmail.com</a>&gt; schrieb am 21.04.2020 um 20:44=
+ in
+<br>Nachricht
+<br>&lt;618_1587494664_5E9F3F08_618_<wbr>445_1_7f583720-8a84-4872-8d1a-<wbr=
+>5cd284295c22@googlegr
+<br><a href=3D"http://ups.com" target=3D"_blank" rel=3D"nofollow" onmousedo=
+wn=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2Fups.com\=
+x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNFzT1JFRoIszdmfpQyeg7uDDTc3rQ&#39;;r=
+eturn true;" onclick=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhtt=
+p%3A%2F%2Fups.com\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNFzT1JFRoIszdmfpQy=
+eg7uDDTc3rQ&#39;;return true;">ups.com</a>&gt;:
+<br>&gt; On Tuesday, April 21, 2020 at 12:31:24 AM UTC-7, Gionatan Danti wr=
+ote:
+<br>&gt;&gt;
+<br>&gt;&gt; [reposting, as the previous one seems to be lost]
+<br>&gt;&gt;
+<br>&gt;&gt; Hi all,
+<br>&gt;&gt; I have a question regarding udev events when using iscsi disks=
+.
+<br>&gt;&gt;
+<br>&gt;&gt; By using &quot;udevadm monitor&quot; I can see that events are=
+ generated when I=20
+<br>&gt;&gt; login and logout from an iscsi portal/resource, creating/destr=
+oying the=20
+<br>&gt;&gt; relative links under /dev/
+<br>&gt;&gt;
+<br>&gt;&gt; However, I can not see anything when the remote machine simple=
+=20
+<br>&gt;&gt; dies/reboots/disconnects: while &quot;dmesg&quot; shows the is=
+csi timeout expiring, I=20
+<br>&gt;&gt; don&#39;t see anything about a removed disk (and the links und=
+er /dev/ remains=20
+<br>&gt;&gt; unaltered, indeed). At the same time, when the remote machine =
+and disk=20
+<br>&gt;&gt; become available again, no reconnection events happen.
+<br>&gt;&gt;
+<br>&gt;=20
+<br>&gt; Because of the design of iSCSI, there is no way for the initiator =
+to know=20
+<br>&gt; the server has gone away. The only time an initiator might figure =
+this out=20
+<br>&gt; is when it tries to communicate with the target.
 <br>
-Actually I think that&#39;s two different mechanisms: Keepalive just preven=
-ts the connection from being discarded (some firewall like to do that), whi=
-le the No_op actually is an end-to-end (almost at least) connection test.<b=
-r>
+<br>My knowlege of the SCSI stack is quite poor, but I think the last revis=
+ions of parallel SCSI (like Ultra 320 (or was it 160?)) had a concept of &q=
+uot;domain validation&quot;. AFAIK the leatter meant measuring the quality =
+of the wires, adjusting the transfer speed.
+<br>While basically SCSI assumes &quot;the bus&quot; won&#39;t go away magi=
+cally, a future iSCSI standard might contain =C2=A0regular &quot;bus checks=
+&quot; to trigger recovery actions if the &quot;bus&quot; (network transpor=
+t connection) seems to be gone.
 <br>
-&gt; connection is up but the target or initiator isn&#39;t responding.=C2=
-=A0 =C2=A0If those<br>
-&gt; timeout the connection will be dropped and a new connection attempt ma=
-de.<br>
+<br>&gt;=20
+<br>&gt; This assumes we are not using some sort of directory service, like=
+ iSNS,=20
+<br>&gt; which can send asynchronous notifications. But even then, the iSNS=
+ server=20
+<br>&gt; would have to somehow know that the target went down. If the targe=
+t=20
+<br>&gt; crashed, that might be difficult to ascertain.
 <br>
-I think the original intention for SCSI timeouts was to conclude a device h=
-as failed if it does not respond within time (actually there are different =
-timeouts depending on the operation (like the famous rewinding of a long ta=
-pe)). Next step for the OS would be to block I/O to a seemingly failed devi=
-ce. Recent operating systems like Linux have the choice to remove the devic=
-e logically, requiring it to re-appear before it can be used. In some cases=
- it seems preferrable to keep the device, because otherwise there could be =
-a cascading effect like killing processes that have the device open (UNIX p=
-rocesses do not like it when opened devices suddenly disappear).<br>
+<br>To be picky: If the traget went down (like a classical failing SCSI dis=
+k), it could issue some attention message, but when the transport went down=
+, no such message can be received. So I think there&#39;s a difference betw=
+een &quot;target down&quot; (device not present, device fails to respond) a=
+nd &quot;bus down&quot; (no communication possible any more). In the second=
+ case no assumptions can be made about the health of the traget device.
 <br>
-Regards,<br>
-Ulrich<br>
+<br>&gt;=20
+<br>&gt; So in the absence of some asynchronous notification, the initiator=
+ only=20
+<br>&gt; knows the target is not responding if it tries to talk to that tar=
+get.
+<br>&gt;=20
+<br>&gt; Normally iscsid defaults to sending periodic NO-OPs to the target =
+every 5=20
+<br>&gt; seconds. So if the target goes away, the initiator usually notices=
+, even if=20
+<br>&gt; no regular I/O is occurring.
 <br>
-&gt; <br>
-&gt;=C2=A0 Don<br>
-&gt; <br>
-&gt; <br>
-&gt; On Tue, Apr 21, 2020 at 2:44 PM The Lee-Man &lt;<a href=3D"mailto:leem=
-an.duncan@gmail.com" target=3D"_blank">leeman.duncan@gmail.com</a>&gt; wrot=
-e:<br>
-&gt; <br>
-&gt;&gt; On Tuesday, April 21, 2020 at 12:31:24 AM UTC-7, Gionatan Danti wr=
-ote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; [reposting, as the previous one seems to be lost]<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Hi all,<br>
-&gt;&gt;&gt; I have a question regarding udev events when using iscsi disks=
-.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; By using &quot;udevadm monitor&quot; I can see that events are=
- generated when I<br>
-&gt;&gt;&gt; login and logout from an iscsi portal/resource, creating/destr=
-oying the<br>
-&gt;&gt;&gt; relative links under /dev/<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; However, I can not see anything when the remote machine simple=
+<br>So the target went away, or the bus went down?
+<br></blockquote><div><br></div><div>The initiator does not know the differ=
+ence. As you know, there are dozens of things (conservatively) that can go =
+wrong, which is why I say the disk &quot;goes away&quot;. It could be sleep=
+ing. It could be dead. The cable could be unplugged. The system could be re=
+booting. The switch could be down. The ACLs could have changed (which is ho=
+w I simulate a target going away). <br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;paddi=
+ng-left: 1ex;">
+<br>&gt;=20
+<br>&gt; But this is where the error recovery gets tricky, because iscsi tr=
+ies to=20
+<br>&gt; handle &quot;lossy&quot; connections. What if the server will be r=
+ight back? Maybe=20
+<br>&gt; it&#39;s rebooting? Maybe the cable will be plugged back in? So is=
+csi keeps=20
+<br>&gt; trying to reconnect. As a matter of fact, if you stop iscsid and r=
+estart=20
+<br>&gt; it, it sees the failed connection and retries it -- forever, by de=
+fault. I=20
+<br>&gt; actually added a configuration parameter called reopen_max, that c=
+an limit=20
+<br>&gt; the number of retries. But there was pushback on changing the defa=
+ult value=20
+<br>&gt; from 0, which is &quot;retry forever&quot;.
+<br>&gt;=20
+<br>&gt; So what exactly do you think the system should do when a connectio=
+n &quot;goes=20
+<br>&gt; away&quot;? How long does it have to be gone to be considered gone=
+ for good? If=20
+<br>&gt; the target comes back &quot;later&quot; should it get the same dis=
+c name? Should we=20
+<br>&gt; retry, and if so how much before we give up? I&#39;m interested in=
+ your views,=20
+<br>&gt; since it seems like a non-trivial problem to me.
 <br>
-&gt;&gt;&gt; dies/reboots/disconnects: while &quot;dmesg&quot; shows the is=
-csi timeout expiring, I<br>
-&gt;&gt;&gt; don&#39;t see anything about a removed disk (and the links und=
-er /dev/ remains<br>
-&gt;&gt;&gt; unaltered, indeed). At the same time, when the remote machine =
-and disk<br>
-&gt;&gt;&gt; become available again, no reconnection events happen.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Because of the design of iSCSI, there is no way for the initiator =
-to know<br>
-&gt;&gt; the server has gone away. The only time an initiator might figure =
-this out<br>
-&gt;&gt; is when it tries to communicate with the target.<br>
-&gt;&gt;<br>
-&gt;&gt; This assumes we are not using some sort of directory service, like=
- iSNS,<br>
-&gt;&gt; which can send asynchronous notifications. But even then, the iSNS=
- server<br>
-&gt;&gt; would have to somehow know that the target went down. If the targe=
-t<br>
-&gt;&gt; crashed, that might be difficult to ascertain.<br>
-&gt;&gt;<br>
-&gt;&gt; So in the absence of some asynchronous notification, the initiator=
- only<br>
-&gt;&gt; knows the target is not responding if it tries to talk to that tar=
-get.<br>
-&gt;&gt;<br>
-&gt;&gt; Normally iscsid defaults to sending periodic NO-OPs to the target =
-every 5<br>
-&gt;&gt; seconds. So if the target goes away, the initiator usually notices=
-, even if<br>
-&gt;&gt; no regular I/O is occurring.<br>
-&gt;&gt;<br>
-&gt;&gt; But this is where the error recovery gets tricky, because iscsi tr=
-ies to<br>
-&gt;&gt; handle &quot;lossy&quot; connections. What if the server will be r=
-ight back? Maybe<br>
-&gt;&gt; it&#39;s rebooting? Maybe the cable will be plugged back in? So is=
-csi keeps<br>
-&gt;&gt; trying to reconnect. As a matter of fact, if you stop iscsid and r=
-estart<br>
-&gt;&gt; it, it sees the failed connection and retries it -- forever, by de=
-fault. I<br>
-&gt;&gt; actually added a configuration parameter called reopen_max, that c=
-an limit<br>
-&gt;&gt; the number of retries. But there was pushback on changing the defa=
-ult value<br>
-&gt;&gt; from 0, which is &quot;retry forever&quot;.<br>
-&gt;&gt;<br>
-&gt;&gt; So what exactly do you think the system should do when a connectio=
-n &quot;goes<br>
-&gt;&gt; away&quot;? How long does it have to be gone to be considered gone=
- for good? If<br>
-&gt;&gt; the target comes back &quot;later&quot; should it get the same dis=
-c name? Should we<br>
-&gt;&gt; retry, and if so how much before we give up? I&#39;m interested in=
- your views,<br>
-&gt;&gt; since it seems like a non-trivial problem to me.<br>
-&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; I can read here that, years ago, a patch was in progress to gi=
-ve better<br>
-&gt;&gt;&gt; integration with udev when a device disconnects/reconnects. Di=
-d the patch<br>
-&gt;&gt;&gt; got merged? Or does the one I described above remain the expec=
-ted behavior?<br>
-&gt;&gt;&gt; Can be changed?<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; So you&#39;re saying as soon as a bad connection is detected (perh=
-aps by a<br>
-&gt;&gt; NOOP), the device should go away?<br>
-&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Thanks.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; You received this message because you are subscribed to the Google=
- Groups<br>
-&gt;&gt; &quot;open-iscsi&quot; group.<br>
-&gt;&gt; To unsubscribe from this group and stop receiving emails from it, =
-send an<br>
-&gt;&gt; email to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.c=
-om" target=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-&gt;&gt; To view this discussion on the web visit<br>
-&gt;&gt; <br>
-&gt; <a href=3D"https://groups.google.com/d/msgid/open-iscsi/7f583720-8a84-=
-4872-8d1a-5cd28429" rel=3D"noreferrer" target=3D"_blank">https://groups.goo=
-gle.com/d/msgid/open-iscsi/7f583720-8a84-4872-8d1a-5cd28429</a> <br>
-&gt; 5c22%<a href=3D"http://40googlegroups.com" rel=3D"noreferrer" target=
-=3D"_blank">40googlegroups.com</a><br>
-&gt;&gt; <br>
-&gt; &lt;<a href=3D"https://groups.google.com/d/msgid/open-iscsi/7f583720-8=
-a84-4872-8d1a-5cd28429" rel=3D"noreferrer" target=3D"_blank">https://groups=
-.google.com/d/msgid/open-iscsi/7f583720-8a84-4872-8d1a-5cd28429</a> <br>
-&gt; 5c22%<a href=3D"http://40googlegroups.com?utm_medium=3Demail&amp;utm_s=
-ource=3Dfooter" rel=3D"noreferrer" target=3D"_blank">40googlegroups.com?utm=
-_medium=3Demail&amp;utm_source=3Dfooter</a>&gt;<br>
-&gt;&gt; .<br>
-&gt;&gt;<br>
-&gt; <br>
-&gt; -- <br>
-&gt; You received this message because you are subscribed to the Google Gro=
-ups <br>
-&gt; &quot;open-iscsi&quot; group.<br>
-&gt; To unsubscribe from this group and stop receiving emails from it, send=
- an <br>
-&gt; email to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.com" =
-target=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-&gt; To view this discussion on the web visit <br>
-&gt; <a href=3D"https://groups.google.com/d/msgid/open-iscsi/CAK3e-EawwxYGb=
-3Gw74%2BP-yBmrnE0k" rel=3D"noreferrer" target=3D"_blank">https://groups.goo=
-gle.com/d/msgid/open-iscsi/CAK3e-EawwxYGb3Gw74%2BP-yBmrnE0k</a> <br>
-&gt; tOL%3DFj1OT_LEQ%2BCZyZUkg%<a href=3D"http://40mail.gmail.com" rel=3D"n=
-oreferrer" target=3D"_blank">40mail.gmail.com</a>.<br>
+<br>IMHO a &quot;bus down&quot; is a critical event affecting _all_ devices=
+ on that bus, not just a single target. Well, it might be some extra noise =
+if those other targets have no I/O outstanding, but it&#39;s better to know=
+ that the bus is down before initiating a transfer rather than concluding s=
+econds later that the target seems unreachable for some reasons unknown.
+<br></blockquote><div><br></div><div>There are 3 error handling levels buil=
+t into the iSCSI protocol. I think you&#39;ll need to change/augment the pr=
+otocol to change this. They are ERL=3D[0|1|2]. Error level 0 is the default=
+, and the only one supported by open-iscsi. That just means we end the conn=
+ection reconnect. ERL=3D1 adds handling digest error handling, and ERL=3D2 =
+adds session recovery on top of that, i.e. try to recover the session befor=
+e disconnecting and reconnecting.</div><div><br></div><div>It is up to the =
+transport (usually TCP/IP) to tell us of transport errors. At the open-iscs=
+i level, the transport should either &quot;just work&quot;, or it should fa=
+il and tell us it failed.</div><div><br></div><div>But perhaps I&#39;m bein=
+g redundant and you know all this.<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px #ccc solid;paddin=
+g-left: 1ex;">
+<br>&gt;=20
+<br>&gt;&gt;
+<br>&gt;&gt; I can read here that, years ago, a patch was in progress to gi=
+ve better=20
+<br>&gt;&gt; integration with udev when a device disconnects/reconnects. Di=
+d the patch=20
+<br>&gt;&gt; got merged? Or does the one I described above remain the expec=
+ted behavior?=20
+<br>&gt;&gt; Can be changed?
+<br>&gt;&gt;
+<br>&gt;=20
+<br>&gt; So you&#39;re saying as soon as a bad connection is detected (perh=
+aps by a=20
+<br>&gt; NOOP), the device should go away?=20
 <br>
+<br>Maybe the state should be similar to a device being in power-save mode:=
+ It&#39;s not accessible right now, but should be woke up ASAP. See my earl=
+ier comparison to NFS hard-mounts...
+<br></blockquote><div><br></div><div>I think the current code works well en=
+ough when the target goes away for a &quot;short&quot; period of time, but =
+again it depends on how it goes away. Not all disappearances are equal, tho=
+ugh we really can&#39;t tell them apart very well. <br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;border-left: 1px =
+#ccc solid;padding-left: 1ex;">
+<br>Regards,
+<br>Ulrich
 <br>
-<br>
--- <br>
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br>
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.com" target=
-=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/5E9FEC8E020000A1000387D7%40gwsmtp.uni-regensburg.de" =
-rel=3D"noreferrer" target=3D"_blank">https://groups.google.com/d/msgid/open=
--iscsi/5E9FEC8E020000A1000387D7%40gwsmtp.uni-regensburg.de</a>.<br>
-</blockquote></div>
+<br><br></blockquote></div>
 
 <p></p>
 
@@ -544,9 +424,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAK3e-EbBaqnn89HTJ4D8beY9KGCJ_jYwFXOFgR4qW59QPn0DFQ%4=
-0mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.goog=
-le.com/d/msgid/open-iscsi/CAK3e-EbBaqnn89HTJ4D8beY9KGCJ_jYwFXOFgR4qW59QPn0D=
-FQ%40mail.gmail.com</a>.<br />
+om/d/msgid/open-iscsi/03d325e8-a7b7-44bc-a31c-419ba09b1890%40googlegroups.c=
+om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
+d/open-iscsi/03d325e8-a7b7-44bc-a31c-419ba09b1890%40googlegroups.com</a>.<b=
+r />
 
---0000000000008d156d05a3dd862b--
+------=_Part_2809_75883196.1587573013114--
+
+------=_Part_2808_47247045.1587573013113--
