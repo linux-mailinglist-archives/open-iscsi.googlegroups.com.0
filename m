@@ -1,156 +1,214 @@
-Return-Path: <open-iscsi+bncBDVIJONZ3YDRBMN4672QKGQEYABSBNA@googlegroups.com>
+Return-Path: <open-iscsi+bncBD54HHNYIIIJR2UF6YCRUBAIW23BA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ot1-x33d.google.com (mail-ot1-x33d.google.com [IPv6:2607:f8b0:4864:20::33d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB4E1D41FE
-	for <lists+open-iscsi@lfdr.de>; Fri, 15 May 2020 02:11:30 +0200 (CEST)
-Received: by mail-ot1-x33d.google.com with SMTP id y10sf385385otk.14
-        for <lists+open-iscsi@lfdr.de>; Thu, 14 May 2020 17:11:30 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1589501489; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=m843bsaL3m5qO46yBWuI7AM4eauWQSNi04sqgmasqXtY7RTjhHv4yR3geCsRTpTRyV
-         CXPrg7PvQXSezz2A5EheHBfThQsWU/stMUsfaYdfCFqpLiNd6THO3lhwAsXHe8qpUUgs
-         JzCFJGeGuxeM7xWpABlo+toYe0lZhkWj3yAiitYwrbo1bE8/YIWcbdNdD/eJgpoJ6257
-         12LmTgdv65oEdMYNvjiwvwkton+Xp9KXivNSwRtf0A5FXakdd5AKOPS7BZZHi8iik8qU
-         7m5HboAPweEMT6TujPY9a0liJnDndNybGPmHMw6tf73N5f5/1GXXuhb74IKbtXV+NYaT
-         Z8OQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:user-agent
-         :message-id:in-reply-to:date:references:organization:from:subject:cc
-         :to:sender:dkim-signature;
-        bh=uMNEGBpXT+2uniwxzVPBlaukn28jV4/FRzxLpsEDq2c=;
-        b=i95/w1MoKhKmH5pDbwUBOxUJzLatf//l4ZeIFfC2mgphUMOe9tVZMqYt7kbhuYFlvR
-         gmEuBgVXsH0dy4gpkX+PPI2J3911nqfxQfyhEDzM4R+AxQAxhM+LhuMlaxbxXNwnIKTv
-         vxtFfzw3ebXAGhwvjfQ2coEC51oW3Bz//OQ9pnmSDI6zjLD/evx5GqsMB5lih2d55vMB
-         t3DbZ0o5SYXO9kT4A7CmOyshWK9iRE82L5dW1XiEtkxa3bzQz9wOkXBEa3FaZ4HSnktw
-         RPzetOZpOit21jjjsm/ydiAwN4+0Hfo+ow/beMTZ0bG2rhP+xSOPq8QQAb0ZQVDludME
-         OcfA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=GZDDtwyx;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from mail-wm1-x339.google.com (mail-wm1-x339.google.com [IPv6:2a00:1450:4864:20::339])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAB491D6B78
+	for <lists+open-iscsi@lfdr.de>; Sun, 17 May 2020 19:32:08 +0200 (CEST)
+Received: by mail-wm1-x339.google.com with SMTP id t82sf2156677wmf.4
+        for <lists+open-iscsi@lfdr.de>; Sun, 17 May 2020 10:32:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:to:cc:subject:from:organization:references:date:in-reply-to
-         :message-id:user-agent:mime-version:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=uMNEGBpXT+2uniwxzVPBlaukn28jV4/FRzxLpsEDq2c=;
-        b=H5K62FOscXJn532R5BO0miFzpna+QgXf1/j6X3OXdKubYKYT//z68LyzpGVmDPiMhz
-         XtgfFNVWOl+U7xRw7+Mn1LAFyXorNVr4WG+9Cp752er6x6DCy7oUXTJi/661eWxtQBYi
-         z1Cjt30WPAGS3yJOBuL6AFZT6ZakDtBRVQ5FSPVRFg+gRm6J75F4Nb40ArHatuUjsnss
-         ky0jlh7VeRixTvPpyi/h7RCv69A0rPd4emzQuwkJF3bo/MsD2LkSUL/q1ozXCmxwO7kC
-         3/ahlQ2+BnATa2WaeYlzhY8eIvNmk8mJLccDU/pFUIIZhYE0fwoJbRJnKY6yRy6UCq7Z
-         N8jg==
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:in-reply-to:content-language:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=TWAm8zuQGJ+SIwNAexbE0Y/X4+Ed/FMmdYD+gPlUGmk=;
+        b=tm1noKXWyTDKFvfvs0E+REV0tEmattH6be+zFuqd3HX8ZBsxPUb8PovvpcWz97Ey7+
+         PHdDTr4qy53QRngATRKYArgyO4cDMemlhurYllM74zQXNULUKp6D/4CRVth3EZAJWAYv
+         cTHr4IsMVQN5YDc7fzb/jPqEsTetPmpStvUqUxCJor5GBbtJSHhRF4i41why6TUcwVE3
+         gUIjDs7FtoAynQiLd+W/JN8PkqdGv++sd0rA3EyqMzqxSykucXOXFWYVdh8yxt6wePeQ
+         LavC26kgYszEy48kBBQEhfu+iSPhZIrmarpDEbiF+JEdBt3I1A1XSgFD2/XexkOEqhwu
+         9Fzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:to:cc:subject:from:organization
-         :references:date:in-reply-to:message-id:user-agent:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=uMNEGBpXT+2uniwxzVPBlaukn28jV4/FRzxLpsEDq2c=;
-        b=NofV5oZ7X1+4LqBQwbezXfHUq4PDX3ObyqH5WJJ9CY0Q9Um6pq28f/qbYPTalBX7Ry
-         +nLW9HFhiCjoSOuJlvPpLDTLtZc6gbjnHaMFDW/G+/yl+lJ7gFjpPW4JPYfVC9JfraU0
-         OfiDl1ocGERgeanA8WGSiZHVAulLSFiIr4+5j95kyTp0BEmWgJI90snwQLX/ZhMfMJDy
-         bYMfgQiJpRB9G355dWgB2aEhrCBP2uWuaC4eMk+82L74iYkASp3GojmX8lCh0Nha74yC
-         4IXCc68mTAz6gO2mN8uAnTSre657JUhFZ2P8JNdPJJR8eeBA9Dp8YXEifrmhseoFViur
-         cLjQ==
+        h=sender:x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:in-reply-to:content-language
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=TWAm8zuQGJ+SIwNAexbE0Y/X4+Ed/FMmdYD+gPlUGmk=;
+        b=kwO4Yc0eTIxPtC0tarrLP8Il11cyfgE5z+qxReiqYcK1/wUHNxfYgJstQoEBWaCtAP
+         U9semJfWfprkYfwtzxFyqQdDJFXOwBWzpluvp74bCM84YjQZRgnpm0vQjvguMlagVtTf
+         tN1L0fpA+8w+FFzqPmVwySu1OmpaQEz9UuBQYi8/6knL/an6CLqDbd2XTthYnrSDAw9w
+         JREBB7eY4kWwyrp8XlJ6tqn9IVyFNPI/vX9UzHSSdYcyFO9DedM0a2S+0vaiRT0HSugY
+         8vcP/yUd/xVtBtqqX5qhsmx6cHPHsSWTv02Hiy/mQSD+QYUtzhQEo/cNLKSul2yWiCS+
+         zAlg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM531vxtoEvCuVJPMl6ebbFQwL69sDx3EH6MI11p0PWx8JfYFfWb0F
-	pmsIp9hUP0y5RQzghupPM90=
-X-Google-Smtp-Source: ABdhPJyqO4aQ/ZCYHKubsXi5alFGWdik0/6u9ABj5dMcJqm83LCU67f/Rgn3xd8tkMUMRs1oZoxVZA==
-X-Received: by 2002:a9d:7418:: with SMTP id n24mr431886otk.54.1589501489167;
-        Thu, 14 May 2020 17:11:29 -0700 (PDT)
+X-Gm-Message-State: AOAM5306gCvpqTuABFrrsn792GpqfhBIqiOY8Z0NBAaBWJdqjDoTGj+o
+	C6AbGDva+u9RpOY4ChsDBsY=
+X-Google-Smtp-Source: ABdhPJyGRDcD+3QyUGj6qUZYnrIFL39r+ZmmQ7u1EBs5X2Y/z6NIvs5mRScf6X2Ke6wDxkU2kMjiMw==
+X-Received: by 2002:a05:6000:11ca:: with SMTP id i10mr611377wrx.10.1589736728348;
+        Sun, 17 May 2020 10:32:08 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:aca:7516:: with SMTP id q22ls140643oic.1.gmail; Thu, 14 May
- 2020 17:11:28 -0700 (PDT)
-X-Received: by 2002:aca:7503:: with SMTP id q3mr377461oic.47.1589501488794;
-        Thu, 14 May 2020 17:11:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1589501488; cv=none;
-        d=google.com; s=arc-20160816;
-        b=uqDpH+NfBQJzFSwYBSOFGb12Us4CeW1jQtGSVI3hQuL/2ilWL6r0nHf3Ptnmi4qjGX
-         uuoPhTmIjhrAmizktjAMwI/p2lFGgo3yEWFqtqSW8x5a9g4dbt9u5aIGngjERAUSzBh9
-         bbwtSZn9ZnAVbnSor7qCtmoAYrbtWv9r97ywPveHi1WETxIdKg+egMyz3RGFXeRKWG48
-         mL+O48ZHLmGMinyJnnpJJqRoNZ75GryedJSjqvf53OWWgETeKbCSOqmr5jSKMrwMTfcG
-         Xg8HWNMQArVH2U3hwcVYIaWbO2f1DIsfAF7yehXj+BPXFjOfyTTKoo7OGv002LEE79mn
-         PauA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:user-agent:message-id:in-reply-to:date:references
-         :organization:from:subject:cc:to:dkim-signature;
-        bh=NI8fQGli4+Y4Pbhzmo1KCpUPjmCu39SpKskFOmRd1uQ=;
-        b=vGi/5K6uUT2fw6ExPRwlxPwjwmOEc3kdQh/QeMUF0lI60xeKOLA2akjCCylZMoN3ho
-         KaYtv/nQkL5GULtwNfXsc6yFA+g+6UoVkKmfcgIfE/2Wiz2hCMdeb1av1WKxRnXgPmnJ
-         rYvzR8pAlMd+AZLM6E71l4H6ccoVJQYLFntcNk9EY0ZjBCs0S+umsEQUPvgfId5LfMNw
-         2n5dOttB8GzhLRfjKiJvFdmzYDhkjxesyCR+Grs5tHGXa46G7FTbYvUKnJLHUdW/x3Ur
-         0JqnReHvCcweskepMOxkatBJQ3k5+e+tFUX8rF7JXNJIHVeP46yCFa1m/QMa/D8xu/dK
-         CbnQ==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=GZDDtwyx;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from userp2130.oracle.com (userp2130.oracle.com. [156.151.31.86])
-        by gmr-mx.google.com with ESMTPS id h17si69022otk.1.2020.05.14.17.11.28
+Received: by 2002:adf:dc85:: with SMTP id r5ls3038450wrj.5.gmail; Sun, 17 May
+ 2020 10:32:07 -0700 (PDT)
+X-Received: by 2002:adf:f08a:: with SMTP id n10mr6055292wro.217.1589736727748;
+        Sun, 17 May 2020 10:32:07 -0700 (PDT)
+Received: from m9a0014g.houston.softwaregrp.com (m9a0014g.houston.softwaregrp.com. [15.124.64.90])
+        by gmr-mx.google.com with ESMTPS id u83si541121wmb.2.2020.05.17.10.31.34
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 14 May 2020 17:11:28 -0700 (PDT)
-Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) client-ip=156.151.31.86;
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-	by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04ENuhMD051955;
-	Fri, 15 May 2020 00:11:23 GMT
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-	by userp2130.oracle.com with ESMTP id 3100yg5t4y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 15 May 2020 00:11:22 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-	by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04ENwirE021632;
-	Fri, 15 May 2020 00:11:22 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-	by aserp3020.oracle.com with ESMTP id 310vjuahpp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 15 May 2020 00:11:21 +0000
-Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
-	by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 04F0BJW0026235;
-	Fri, 15 May 2020 00:11:20 GMT
-Received: from ca-mkp.ca.oracle.com (/10.159.214.123)
-	by default (Oracle Beehive Gateway v4.0)
-	with ESMTP ; Thu, 14 May 2020 17:11:19 -0700
-To: lduncan@suse.com, cleech@redhat.com
-Cc: Gabriel Krisman Bertazi <krisman@collabora.com>,
-        martin.petersen@oracle.com, open-iscsi@googlegroups.com,
-        linux-scsi@vger.kernel.org, kernel@collabora.com,
-        Khazhismel Kumykov
- <khazhy@google.com>
-Subject: Re: [PATCH] iscsi: Fix deadlock on recovery path during GFP_IO reclaim
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-Organization: Oracle Corporation
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 17 May 2020 10:32:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lduncan@suse.com designates 15.124.64.90 as permitted sender) client-ip=15.124.64.90;
+Received: FROM m9a0014g.houston.softwaregrp.com (15.121.0.190) BY m9a0014g.houston.softwaregrp.com WITH ESMTP;
+ Sun, 17 May 2020 17:31:06 +0000
+Received: from M4W0334.microfocus.com (2002:f78:1192::f78:1192) by
+ M9W0067.microfocus.com (2002:f79:be::f79:be) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1591.10; Sun, 17 May 2020 17:30:52 +0000
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (15.124.8.14) by
+ M4W0334.microfocus.com (15.120.17.146) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1591.10 via Frontend Transport; Sun, 17 May 2020 17:30:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jc9mGr/19U0hMXQVuWc9T4ZRWuczp5qu14NwVCJUfCppVDa1/BQ6b19+cMcQTUvFT5hq2rqPTuBOkBJo8jOxYNGREcq8qWl9Gl8DqpNePYsaCngs5LVPBPuPe52rN2lW6dH2sUTDCkoTrpI5r0CtsKHHqXuKA03iThLu6j86GCPuWCfk6b0DkmSdn1Y98ZqDITz0LEWkpPPxYwgMlPvX5mHs7KB9vN8GzMRzOcVd1lnOhHS0k3xYcaq47LwZc3fJKfkV+YzJue4X+/G3fKPeXcWzbFb5OqEZWiQnQci8M4AM8fpE63aJ6PmwHYQwVJckPJbIc72TYCC8HdBKB53+qA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wnffCo5PZ0jr2OkhNUVUTBAao5CK0X8jgrDGBO249a0=;
+ b=FxSN9I2iCe2I9LYcGscvaj+SPhnV4czramemoH/hUbknVwX8lzL9akBjFz6vMBba8iAj+lTHzAMJGD0mA2tCRLfR3hdxHaccU3LtAeBVMt5ezjJJ5Ma8EC/cbb28OtEsCZuP4qzoxEM6AISDoesXo3WhYrpDpZbQuk8Jui/R7FuaPSEFZ4g6JSeubUgiknMe5l8v2axA9G+ZTuP+Aiil001TeAWN0N2QB80rnTjIPx0q4j1A5bfeiNSJxxyASjcOTo8CKlDG/l/IlCKtYK51Cngqtms52DyI69U6ka8No6n7wpx6LD0LitCbf4D0EroNBHDxEvE8oiJuuU7tBGfNfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+Received: from BL0PR18MB2290.namprd18.prod.outlook.com (2603:10b6:207:48::11)
+ by BL0PR18MB2260.namprd18.prod.outlook.com (2603:10b6:207:3f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20; Sun, 17 May
+ 2020 17:30:50 +0000
+Received: from BL0PR18MB2290.namprd18.prod.outlook.com
+ ([fe80::9ddc:db5b:9a5a:6b3d]) by BL0PR18MB2290.namprd18.prod.outlook.com
+ ([fe80::9ddc:db5b:9a5a:6b3d%7]) with mapi id 15.20.3000.022; Sun, 17 May 2020
+ 17:30:50 +0000
+Subject: Re: [PATCH] iscsi: Fix deadlock on recovery path during GFP_IO
+ reclaim
+To: Gabriel Krisman Bertazi <krisman@collabora.com>
+CC: <cleech@redhat.com>, <martin.petersen@oracle.com>,
+	<open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>,
+	<kernel@collabora.com>, Khazhismel Kumykov <khazhy@google.com>
 References: <20200508055954.843165-1-krisman@collabora.com>
-Date: Thu, 14 May 2020 20:11:16 -0400
-In-Reply-To: <20200508055954.843165-1-krisman@collabora.com> (Gabriel Krisman
-	Bertazi's message of "Fri, 8 May 2020 01:59:54 -0400")
-Message-ID: <yq13682t5uj.fsf@oracle.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.0.91 (gnu/linux)
-MIME-Version: 1.0
+From: Lee Duncan <lduncan@suse.com>
+Autocrypt: addr=lduncan@suse.com; keydata=
+ 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
+ Xd8p+B+giaT8a1b5hWuz85V0
+Message-ID: <eb7a3a10-bb04-f601-a01b-c50f482474fa@suse.com>
+Date: Sun, 17 May 2020 10:30:40 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+In-Reply-To: <20200508055954.843165-1-krisman@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9621 signatures=668687
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 phishscore=0
- spamscore=0 mlxlogscore=999 malwarescore=0 suspectscore=2 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
- definitions=main-2005140204
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9621 signatures=668687
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 lowpriorityscore=0 adultscore=0
- cotscore=-2147483648 mlxscore=0 suspectscore=2 spamscore=0 impostorscore=0
- mlxlogscore=999 malwarescore=0 clxscore=1011 phishscore=0 bulkscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2004280000 definitions=main-2005140204
-X-Original-Sender: martin.petersen@oracle.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2020-01-29 header.b=GZDDtwyx;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates
- 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Content-Language: en-US
+X-ClientProxiedBy: LO2P265CA0086.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:8::26) To BL0PR18MB2290.namprd18.prod.outlook.com
+ (2603:10b6:207:48::11)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.20.3] (73.25.22.216) by LO2P265CA0086.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:8::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26 via Frontend Transport; Sun, 17 May 2020 17:30:47 +0000
+X-Originating-IP: [73.25.22.216]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 67e2baf1-5453-403b-dfd8-08d7fa880a52
+X-MS-TrafficTypeDiagnostic: BL0PR18MB2260:
+X-Microsoft-Antispam-PRVS: <BL0PR18MB2260A3B0C4644AD1A2562CF0DABB0@BL0PR18MB2260.namprd18.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Forefront-PRVS: 040655413E
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZoniWJSnX/YG298uNnBiU/r2d+VzjtU0NZx51Q4ecGNhxPpgN8BitqWg0lvHNARAjyqnvE7HVAu+UZApIvVXmdakO9T29q197BrtGPvBmYNWnDfmITn1NJD9dJ5Fvmoxn3x1xnyGCx5kbjSU5bQEhgtcZo0UTJSysZj9uUKeJm3Wy9sTUgUzlbP7D1P/Q85Vj3oZIM2TnQplnF7UJq5Njtod7kLGyOc9KcvfttOLZzFpYJW6DSIo0vp15ZpZuA0I4LFznPU9Y2QaUYAIPwBh3QNZdsI3luUrCVo1Ss8nVc7D15FgZGe8EdMzzU8F2dPsgTI16aMj7eg3SU1+r6Gw/+q8sVtmUvw82vDUtZO04TbgIGon11z4gJe284n2Q+6j20TXmghYP/x392SnmD5/FaIYre4UenfHNLazQmRpvuiHVYv94iOOB27V6aNTnZYftm1b9+UNOUoe/vzv0EH8LHjzeukJUax26auZdKoVc3APyFTs7+wyLyFsTr5/TArQ
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR18MB2290.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(136003)(366004)(346002)(396003)(39850400004)(376002)(66946007)(66476007)(4326008)(53546011)(8936002)(16526019)(31686004)(316002)(52116002)(2906002)(956004)(186003)(16576012)(36756003)(66556008)(5660300002)(6916009)(478600001)(6486002)(86362001)(26005)(31696002)(6666004)(2616005)(8676002)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: yW/vNAm9YBlNsQYv1TjpUiYwJKJWEdC0AwF16WAC8Mjk1nYWV0lFjYUW122bzj3XlaVaZMF5RBUvIfDpWDTJoP/85ioas2/0UjCJ84mJnphAC/SGRkg5rbeC0IIIa050OcZimjfT2286BdvDzfM/L2h0+WPFNAX/Wj+C5F0YUkii7od3BkRll7oO6Hv4FtVMLWMgfe1YDL+oxtuf71ka/9tceZ04lsPMCubAHFVl5Lbm5ICSZzepOLhfZCLxCyg+XV08+VtYZoJofSRxl27Cxi5abAcS7EHyaHimAtidTmWbK9FnICQakDOcFgYqnWtxaw08d7JASjeLTuvtMSdivsafJb9FLkkVIrgfZTK0LRfswaGXGt7aojEKZqueA9L9kD7tVnQlWlRi7MHyZDVXRAu4eGSbeol3ctVtSp9+p9eAxCxf6Zk0kHB9FoV4noKbz00TOpHbzcRkjMokKe8EVVjqzHHBUd6uMihL3+Slti8=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67e2baf1-5453-403b-dfd8-08d7fa880a52
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2020 17:30:49.9379
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 856b813c-16e5-49a5-85ec-6f081e13b527
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +Ts8CTO1Sou6Mt496n+wKGIMs96mNANGeStLfqfGVV7KXL7M/w9q+da+TcBgbRX7eVwQOeltRfQ91D9vFmlt/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR18MB2260
+X-OriginatorOrg: suse.com
+X-Original-Sender: lduncan@suse.com
+X-Original-Authentication-Results: gmr-mx.google.com;       arc=fail
+ (signature failed);       spf=pass (google.com: domain of lduncan@suse.com
+ designates 15.124.64.90 as permitted sender) smtp.mailfrom=LDuncan@suse.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -164,9 +222,7 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-
-Lee/Chris: Please review!
-
+On 5/7/20 10:59 PM, Gabriel Krisman Bertazi wrote:
 > iscsi suffers from a deadlock in case a management command submitted via
 > the netlink socket sleeps on an allocation while holding the
 > rx_queue_mutex, if that allocation causes a memory reclaim that
@@ -174,7 +230,7 @@ Lee/Chris: Please review!
 > never make progress to recover the failed disk or abort outstanding IO
 > operations to complete the reclaim (since rx_queue_mutex is locked),
 > thus locking the system.
->
+> 
 > Nevertheless, just marking all allocations under rx_queue_mutex as
 > GFP_NOIO (or locking the userspace process with something like
 > PF_MEMALLOC_NOIO) is not enough, since the iscsi command code relies on
@@ -182,12 +238,12 @@ Lee/Chris: Please review!
 > GFP_IO, leading to the same deadlock. One instance where this situation
 > can be observed is in the backtraces below, stitched from multiple bugs
 > reports, involving the kobj uevent sent when a session is created.
->
+> 
 > The root of the problem is not the fact that iscsi does GFP_IO
 > allocations, that is acceptable. The actual problem is that
 > rx_queue_mutex has a very large granularity, covering every unrelated
 > netlink command execution at the same time as the error recovery path.
->
+> 
 > The proposed fix leverages the recently added mechanism to stop failed
 > connections from the kernel, by enabling it to execute even though a
 > management command from the netlink socket is being run (rx_queue_mutex
@@ -196,25 +252,25 @@ Lee/Chris: Please review!
 > execution from the netlink socket, and one protecting stop_conn from
 > racing with other connection management operations that might conflict
 > with it.
->
+> 
 > It is not very pretty, but it is the simplest way to resolve the
 > deadlock.  I considered making it a lock per connection, but some
 > external mutex would still be needed to deal with iscsi_if_destroy_conn.
->
+> 
 > The patch was tested by forcing a memory shrinker (unrelated, but used
 > bufio/dm-verity) to reclaim ISCSI pages every time
 > ISCSI_UEVENT_CREATE_SESSION happens, which is reasonable to simulate
 > reclaims that might happen with GFP_KERNEL on that path.  Then, a faulty
 > hung target causes a connection to fail during intensive IO, at the same
 > time a new session is added by iscsid.
->
+> 
 > The following stacktraces are stiches from several bug reports, showing
 > a case where the deadlock can happen.
->
+> 
 >  iSCSI-write
 >          holding: rx_queue_mutex
 >          waiting: uevent_sock_mutex
->
+> 
 >          kobject_uevent_env+0x1bd/0x419
 >          kobject_uevent+0xb/0xd
 >          device_add+0x48a/0x678
@@ -224,20 +280,20 @@ Lee/Chris: Please review!
 >          iscsi_if_rx+0x100/0x1247
 >          netlink_unicast+0x213/0x4f0
 >          netlink_sendmsg+0x230/0x3c0
->
+> 
 >  iscsi_fail iscsi_conn_failure
 >          waiting: rx_queue_mutex
->
+> 
 >          schedule_preempt_disabled+0x325/0x734
 >          __mutex_lock_slowpath+0x18b/0x230
 >          mutex_lock+0x22/0x40
 >          iscsi_conn_failure+0x42/0x149
 >          worker_thread+0x24a/0xbc0
->
+> 
 >  EventManager_
 >          holding: uevent_sock_mutex
 >          waiting: dm_bufio_client->lock
->
+> 
 >          dm_bufio_lock+0xe/0x10
 >          shrink+0x34/0xf7
 >          shrink_slab+0x177/0x5d0
@@ -255,11 +311,11 @@ Lee/Chris: Please review!
 >          dm_ctl_ioctl+0x13/0x17
 >          do_vfs_ioctl+0xb3/0x460
 >          SyS_ioctl+0x5e/0x90
->
+> 
 >  MemcgReclaimerD"
 >          holding: dm_bufio_client->lock
 >          waiting: stuck io to finish (needs iscsi_fail thread to progress)
->
+> 
 >          schedule at ffffffffbd603618
 >          io_schedule at ffffffffbd603ba4
 >          do_io_schedule at ffffffffbdaf0d94
@@ -278,13 +334,13 @@ Lee/Chris: Please review!
 >          cgroup_file_write at ffffffffbd6d9c6e
 >          sys_write at ffffffffbd6662ea
 >          system_call_fastpath at ffffffffbdbc34a2
->
+> 
 > Reported-by: Khazhismel Kumykov <khazhy@google.com>
 > Signed-off-by: Gabriel Krisman Bertazi <krisman@collabora.com>
 > ---
 >  drivers/scsi/scsi_transport_iscsi.c | 67 +++++++++++++++++++++--------
 >  1 file changed, 49 insertions(+), 18 deletions(-)
->
+> 
 > diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
 > index 17a45716a0fe..d99c17306dff 100644
 > --- a/drivers/scsi/scsi_transport_iscsi.c
@@ -367,6 +423,10 @@ Lee/Chris: Please review!
 > -		cond_resched();
 >  	}
 >  }
+
+I'm curious about why you removed the cond_resched() here. Is it because
+it is no longer needed, with shorter (mutex) waiting time?
+
 >  
 > @@ -2843,8 +2862,11 @@ iscsi_if_destroy_conn(struct iscsi_transport *transport, struct iscsi_uevent *ev
 >  	spin_unlock_irqrestore(&connlock, flags);
@@ -428,11 +488,13 @@ Lee/Chris: Please review!
 >  		else
 >  			err = -EINVAL;
 >  		break;
+> 
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+My question above is for my own information, so I'll still say:
+
+Reviewed-by: Lee Duncan <lduncan@suse.com>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/yq13682t5uj.fsf%40oracle.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/eb7a3a10-bb04-f601-a01b-c50f482474fa%40suse.com.
