@@ -1,121 +1,157 @@
-Return-Path: <open-iscsi+bncBDA4VMEL3QNRBMFMSL3AKGQEJGUES7Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBCVPTQVVPQIIRGVO6YCRUBDEQN32M@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lj1-x239.google.com (mail-lj1-x239.google.com [IPv6:2a00:1450:4864:20::239])
-	by mail.lfdr.de (Postfix) with ESMTPS id 490F01DA7FD
-	for <lists+open-iscsi@lfdr.de>; Wed, 20 May 2020 04:30:09 +0200 (CEST)
-Received: by mail-lj1-x239.google.com with SMTP id b26sf197616ljo.9
-        for <lists+open-iscsi@lfdr.de>; Tue, 19 May 2020 19:30:09 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1589941808; cv=pass;
+Received: from mail-pg1-x53a.google.com (mail-pg1-x53a.google.com [IPv6:2607:f8b0:4864:20::53a])
+	by mail.lfdr.de (Postfix) with ESMTPS id D51D51E09E8
+	for <lists+open-iscsi@lfdr.de>; Mon, 25 May 2020 11:16:58 +0200 (CEST)
+Received: by mail-pg1-x53a.google.com with SMTP id k15sf13715437pgt.21
+        for <lists+open-iscsi@lfdr.de>; Mon, 25 May 2020 02:16:58 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1590398217; cv=pass;
         d=google.com; s=arc-20160816;
-        b=mGBcY9IZYyYG7qiFT4K1LFobqWspu2wHe08xKzvQ+cokw5SSLoZAiKWY2XSrP0NMyV
-         wgJcSojXEvIl1a7vZuISvgRP6vi1w8EEqPu3XrsPH+J6EmMxgsJizyYKYMVdFnhJhc5d
-         tcwtNyjx7kJCXuOm3Uqg3nK4QUrYFsZttk6MSv/F8ejtwz6bai7UyDE4BUFZIiF0PxDx
-         8kSSQ4Z3SiStGa2zZJjoCs2KJVjsCPgzy1UsM6xOQqVsVAYVIRqpZmHF75ZBGKFIQ52W
-         iBvRUbHnduIRYW0zu82vkVSZDFVhV58TUh5TLowdHgTZL2Jbr+h9XeIxeUfY1W45X9gc
-         IdRg==
+        b=LImKFtyQUBuJ2syAIow/OB/5FAMcPK7/HnxTMhrvicrLaEulSLEq4ibqUoYc/qqyoy
+         H3EQLCrbgz8bUn1zEfZsv0w0UFxYacc+9GIxdwFkMEkeLJaJVV8y+YGV4HrIQVc3wzxE
+         k1R5D2Fmdo/yHXgabhL62LxrcX92/Lbkfqd7ZhX6odoy73bl4InvJwRav7bNEcgUswPt
+         WToeiFRXS4nRbqkkk/lyY1AEz3rPT0t1QM/eCLkzHG9pNb5UWcYUgVHtgBVIDQjOAFI7
+         5bUYERHgHU5eYD81xjU+KuJiiXXARZIBNetoUwqF6ko19cOzBvOqY9avo+TWuZ3A53KO
+         iCMA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:sender:dkim-signature;
-        bh=plqUn/98fGZszQ24+zqo9eJIj98nFlRI7CyXgsjsZI0=;
-        b=g2ba1//sNsEK0V1c8FgqIjRXjEHrFwPaBNZfLuNVnEvJueYVJz1/K59Lgo4YC1TAJS
-         i6GFFmpEr28r2QGntoU+q1o0VEyHcDTI/4ddvl/ydY8/I8vX3pdWxO9iUAU6sGSC2QCn
-         eI391so+HDDY1KG6s49ynuCkVUJoc6fR3LznrsH7i53VcNyb1Cw0CPU2jaw2wyo7LON0
-         /yiM3ENsZGEV4PUxHB+H3QxuvGFZsCn2jhWG3hlMfDzVnslGQzV74Bpdg60sj5NA83oS
-         DI87DdQdKOORT1PvejpERtqrhlYyiIcuUxix6V5t6kWvXqoWb2AdgsQlloA8nsE8A4Ny
-         r6Qg==
+         :list-id:mailing-list:precedence:reply-to:content-language
+         :in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:sender:dkim-signature;
+        bh=0QeJV7xjKrsbTgcNN90v2sqyXDSuSJXHQjgPPqHd9fw=;
+        b=Hy8OFwwMsBCpxsP+m7J4ZfGwB/2EaQYdLnwh3VwYQTsBnuSPhM7u9shG0WaJEC3tNN
+         lLYs9H7ajyUJisVQwdWPivOwt3kMpJtNkXfjrv6xckeSRn85noQ/xA2wC2lkL2zpnyNa
+         MqbyFKbMlZsbJjVKYisBc1ZlcHcM76Iy4VP61FjULVmOs0dR/obt+MaddRlQRnvypfST
+         ErFWztM1wWIdt4bmKHqz95Y0b1zf5HxBR0TFGpS1anNgY/WearsS9vcfBYHvkaxsHPei
+         +pWN7QnbpskXDKM+GIVESyzdCpPBVDMQE17w+maJU9FhAB5rxWQxisNTVC10QbI5x5KU
+         rcDw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) smtp.mailfrom=krisman@collabora.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=AQr6GXQ+;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=plqUn/98fGZszQ24+zqo9eJIj98nFlRI7CyXgsjsZI0=;
-        b=T47eb8BahD1Cx4tkLQ+jgDsu27hMGQbh7iU0KbXpikZyxcH3gF53h5crBSnLWrTkEk
-         luTcQfWHp3vaBc1Y353+GukZ2dS3PXEAvjg6Eg2IoK8NbiatWKYULY6lh4pM649sIigr
-         teYBZvfXZGJrwA7zf+xtS5mvT0pa9aqb40BKXRrChMcFcXeP5vRLq94q3zoxi3uQNnDe
-         Lu6RYR+oT2ojVSG7Nl9Pe18c5+mC5GxNMNSaNf5qfrOSOowaHKWVNFSnP0xPhm3BI6AW
-         r9pRUNhqJ/04UExiSmihXwbLN+KKRcmAePcZd9Spctddew/IxLClh440RvtA8OERKT+D
-         EtOg==
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=0QeJV7xjKrsbTgcNN90v2sqyXDSuSJXHQjgPPqHd9fw=;
+        b=rQI9JzMxSmS/0uGToD9o5F5qwJ1DDDiEI0Un6VWp3IE3PVq4Txb5yWUuwhG5DTyvxO
+         AgoLedH9tJlefiaZ3I4qVJx2ZR9iu7U0ApkE20xZPTWWgla4lbfolq8dJsiKKOSPF0Kp
+         gRMiTWmjDrF7SYOy2PqQwyXFXnwPkcY/3CCOO5heby3VUYL7HMBAjjU+Ch9HChys5ZxM
+         rqH4/Cj4UPEorD9cP+JiPUXBrN45NeXaWGLiPIoONeypWqaMKdZrgiw0GI5RL36KrpWd
+         S/7+o0luAqcilwkX62gqdI31HZwnScg2eZPVaPX30vaEam9TGmt5a0bOri2SDKb5O8VI
+         +UCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=plqUn/98fGZszQ24+zqo9eJIj98nFlRI7CyXgsjsZI0=;
-        b=Yes5n8m9XZVxm9gqBA2ItGuiuRM/ybMl9IlHKFUcxZrEyI0a6GnJFhRD7dM3SA8RQ8
-         TJA2TK2CfYRDeQWW523ZJInSWHtz6X2hUp+ns/Yu8vwTRjM7wbqYGePPUc/TDbob/BXf
-         vjdVwCoachcEQ8+yfZfKBhqUWthe+6eqUZme6uWhxxF1o4olYqqYthXMXDQ3VNsVuYyb
-         FROWzVuu81j09nmUKRYrU4tdTm9cpfUf+w6ZE1x0x0IHW/1dv2OYbqYYaoJeBQF7vcEf
-         ZK5obQUBH8OTYfNbOpJguLoldgdXEvcljcVBeXdnNslOIKBbB7Ofw6f1qYge6oPahbBC
-         Ne3w==
+        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=0QeJV7xjKrsbTgcNN90v2sqyXDSuSJXHQjgPPqHd9fw=;
+        b=j5SKHQZeIMWf4f9adpWJB1/56GoaBl7/OStT3AwVp7lAkVrskqa9/ew+bJhteY9sDR
+         FTMrn3jYFE4eikSzVRu7/Gm69dJzX/VGi0YsYRep0F7sEx18v9hvuWy0i3o6uq+qvqPy
+         nyqzX7X+6Igdzu/wX8HKbmiMDGcqs2PE0KvvOCyfLrsTWMZVmJLthDlRElVYVU4AmdcE
+         uH3GyGNqc7qJHcOsA0yE2gXWFpV9rHrNGiPy2SakYZLOXJNJHkEEft/QUFA3RQAjc/m0
+         AsPB2EooYWz3k528KXA6skhLWcyc4pYml0onKtErNtycKUKlRFqJbDexLaof9PGEHyra
+         I6kQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533P3mQmLsf/TBxg4AMugsQvjI925LTfyl87pP3/OEBY0QbbQHnR
-	zyYHdgxTXVu0FeFaTr1xiv8=
-X-Google-Smtp-Source: ABdhPJwlhote2oJlu9A/OoxNpHCiQO4CmNxSobbcJO81B/fCeqmGbRX+bPTRJk8LeaYKWEQpcNpWag==
-X-Received: by 2002:a2e:890e:: with SMTP id d14mr1364455lji.216.1589941808750;
-        Tue, 19 May 2020 19:30:08 -0700 (PDT)
+X-Gm-Message-State: AOAM530irL3QGICfLDS+QGKmPUfHCY1vP28/WPnUKWJyLKGhbyFxaMnA
+	FYovSviWLqOVcpzR6NTTSu4=
+X-Google-Smtp-Source: ABdhPJyDBaZgS9RRZNhryCxfIA52M/sgV9VZpuPSYCn9ZocRGi07F6se8laALnG8eam2MbtXZTHt3A==
+X-Received: by 2002:a17:902:b718:: with SMTP id d24mr12585343pls.185.1590398217024;
+        Mon, 25 May 2020 02:16:57 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a2e:9042:: with SMTP id n2ls284700ljg.4.gmail; Tue, 19 May
- 2020 19:30:08 -0700 (PDT)
-X-Received: by 2002:a2e:b891:: with SMTP id r17mr1458436ljp.58.1589941808046;
-        Tue, 19 May 2020 19:30:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1589941808; cv=none;
+Received: by 2002:a17:90a:4f04:: with SMTP id p4ls4414078pjh.3.canary-gmail;
+ Mon, 25 May 2020 02:16:56 -0700 (PDT)
+X-Received: by 2002:a17:90b:257:: with SMTP id fz23mr20420259pjb.138.1590398216623;
+        Mon, 25 May 2020 02:16:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590398216; cv=none;
         d=google.com; s=arc-20160816;
-        b=kS0HgqHQWp5N64FFv/cnUwKJh0wSeu62UuORIzZI4gFuF6FgT9y7uLcJy4idr0EjuN
-         iDKMverhabMG4SA6J1hhWzrG3PPUtxhQWBEvrFVwtezqOSPI8A7lK0GsgIFZ7zYWCEdp
-         orxta0R0iMCh/RX1zBBlbbakpPV7otrV0Sf41t8qFc38wRqq86bKpW7DUvwHjWSD4AdV
-         w81X6C8PummyXY+d25RHqIox5kkbMBuWHFGjv9ibClRyZ8v51tGKX7BhM3QzD71ONtJk
-         y4snCwPAcT0N5Jkil+GfAgDiIE0BDt878ErMwNIdCC7UZYzFLixUNey2K1GIG8eQqIyH
-         GcFA==
+        b=M5y5LRy4IsVfLUqdvSRmrrrPMGrP6vcKH6sU2KZuZx6heAith2hG4QbnptW7hhqve6
+         ZIjeF2qFOVbq8F+bRGjAns3ksAkVEvlwSTW5xhk8e+UqwBJ0XkYPnCkhHVQol9OgcDlw
+         ApPIIPmChGu6pHxSQo4kuAppGxox57D67TdWnHdcDHeAhvAofc2L5yiSrwItpsBAI85A
+         3FPUJvmYGl+cDX9P4spd0v4k9ESlt/k3TN6w1EATENRtP8vdpRR6p/3z1xg21l4eQGrI
+         Kx/tiCymK+XTXpcLU7WJ+3v5NWNLCF9/KSjJzE27myLHW6QEGjQGZd+vLKq/T9YOTyYW
+         h3Cw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from;
-        bh=OSPX275PmKJLNX6cAlF/h/J/y7006bIXA3+pc54jXvI=;
-        b=ipv7/M0xeMbyTW7E77Cybhh8T+SdKcxBE3u22y0eLmh33nrF2ovsa17NYxJ/Mewt0T
-         dPl7UKBVXv/CMcRZ1+6t34hZqZ0MZSMy1SgDl+YcCf+9YCBtMUqs65XNpjDGeKez7rKq
-         iQcJk4MpBUAv9IB2tnB8tfMxtwSH/HifZvySXYtGJP83ynSM6DVxBXjjTymKTbHGm2hd
-         W4D0JhZZnn6uiQ7QWczU9xZaPmHayYt2ykkYLEM7ZZNnwqh17YL9vtA6D4v/wRYD2q7f
-         rVf2AzKnxbMra9a+DTkBNMnQroenNN6thyXRYU1/gBfqQY7wkpEraXMgreFPvdql2ZXl
-         6gNw==
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject
+         :dkim-signature;
+        bh=LrFFU8xWTW6Jl27HLwBujrKz4CDFXZpLWD6Ja/5wY6s=;
+        b=OH152sXhptxaBA7zFKrvfyuCCJsL5Jm6G1Xhd4P6ABUxWyrvJHi/8QQ3N73IWacY3Q
+         T1jesp/V1DcgBclwdkggP0as7tltCimn9EmsxPX4nNCt5JLYTnoJSGTMyjme3TOl2IhV
+         NncMK5brW5/dEdz/cEV8ktXzuOGJE5uZiIv2HG9yqhhdvpnKuHkq9cTJFM7rnLKjYP7E
+         mTrmrC1rqjKDlT4wL7wUuPxdwC8iFWSgduhjzoxr3uTb1YLIi1DUrKBP453KpG4ce6Pl
+         H9I+NOGf9k+5F/kZ8+UgQnKIoZA1M3xNI3XOGIveMyYOzs5Gb+uZGPSIZSwEEPpNQ9C8
+         T8JA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) smtp.mailfrom=krisman@collabora.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=collabora.com
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk. [2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by gmr-mx.google.com with ESMTPS id 130si77969lfi.3.2020.05.19.19.30.07
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=AQr6GXQ+;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from aserp2120.oracle.com (aserp2120.oracle.com. [141.146.126.78])
+        by gmr-mx.google.com with ESMTPS id b8si1767057pjk.2.2020.05.25.02.16.56
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 19 May 2020 19:30:07 -0700 (PDT)
-Received-SPF: pass (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3 as permitted sender) client-ip=2a00:1098:0:82:1000:25:2eeb:e3e3;
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: krisman)
-	with ESMTPSA id 5658C2A10E9
-From: Gabriel Krisman Bertazi <krisman@collabora.com>
-To: martin.petersen@oracle.com
-Cc: linux-scsi@vger.kernel.org,
-	open-iscsi@googlegroups.com,
-	lduncan@suse.com,
-	cleech@redhat.com,
-	Gabriel Krisman Bertazi <krisman@collabora.com>,
-	kernel@collabora.com,
-	Khazhismel Kumykov <khazhy@google.com>
-Subject: [PATCH v2] iscsi: Fix deadlock on recovery path during GFP_IO reclaim
-Date: Tue, 19 May 2020 22:29:59 -0400
-Message-Id: <20200520022959.1912856-1-krisman@collabora.com>
-X-Mailer: git-send-email 2.26.2
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 25 May 2020 02:16:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bob.liu@oracle.com designates 141.146.126.78 as permitted sender) client-ip=141.146.126.78;
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+	by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04P9C2rr179658;
+	Mon, 25 May 2020 09:16:55 GMT
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+	by aserp2120.oracle.com with ESMTP id 316uskmv02-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 25 May 2020 09:16:55 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+	by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04P98uF5015243;
+	Mon, 25 May 2020 09:16:55 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+	by aserp3030.oracle.com with ESMTP id 317ddky9by-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 25 May 2020 09:16:55 +0000
+Received: from abhmp0010.oracle.com (abhmp0010.oracle.com [141.146.116.16])
+	by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 04P9GrjH018847;
+	Mon, 25 May 2020 09:16:54 GMT
+Received: from [192.168.0.110] (/183.246.146.125)
+	by default (Oracle Beehive Gateway v4.0)
+	with ESMTP ; Mon, 25 May 2020 02:16:52 -0700
+Subject: Re: [RFC RESEND PATCH v2] scsi: iscsi: register sysfs for iscsi
+ workqueue
+To: open-iscsi@googlegroups.com
+Cc: lduncan@suse.com, cleech@redhat.com, jejb@linux.ibm.com,
+        martin.petersen@oracle.com, linux-scsi@vger.kernel.org
+References: <20200505011908.15538-1-bob.liu@oracle.com>
+From: Bob Liu <bob.liu@oracle.com>
+Message-ID: <8d830a89-c554-7de9-a33a-987d117e99fb@oracle.com>
+Date: Mon, 25 May 2020 17:16:44 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-X-Original-Sender: krisman@collabora.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of krisman@collabora.com designates 2a00:1098:0:82:1000:25:2eeb:e3e3
- as permitted sender) smtp.mailfrom=krisman@collabora.com;       dmarc=pass
- (p=NONE sp=NONE dis=NONE) header.from=collabora.com
-Reply-To: open-iscsi@googlegroups.com
+In-Reply-To: <20200505011908.15538-1-bob.liu@oracle.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9631 signatures=668686
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 bulkscore=0 mlxscore=0
+ phishscore=0 adultscore=0 suspectscore=3 spamscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
+ definitions=main-2005250073
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9631 signatures=668686
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 lowpriorityscore=0
+ suspectscore=3 spamscore=0 priorityscore=1501 clxscore=1015
+ impostorscore=0 bulkscore=0 mlxlogscore=999 phishscore=0
+ cotscore=-2147483648 adultscore=0 mlxscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2004280000
+ definitions=main-2005250073
+X-Original-Sender: bob.liu@oracle.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@oracle.com header.s=corp-2020-01-29 header.b=AQr6GXQ+;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates
+ 141.146.126.78 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -128,275 +164,62 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-iscsi suffers from a deadlock in case a management command submitted via
-the netlink socket sleeps on an allocation while holding the
-rx_queue_mutex, if that allocation causes a memory reclaim that
-writebacks to a failed iscsi device.  Then, the recovery procedure can
-never make progress to recover the failed disk or abort outstanding IO
-operations to complete the reclaim (since rx_queue_mutex is locked),
-thus locking the system.
+friendly ping.
 
-Nevertheless, just marking all allocations under rx_queue_mutex as
-GFP_NOIO (or locking the userspace process with something like
-PF_MEMALLOC_NOIO) is not enough, since the iscsi command code relies on
-other subsystems that try to grab locked mutexes, whose threads are
-GFP_IO, leading to the same deadlock. One instance where this situation
-can be observed is in the backtraces below, stitched from multiple bugs
-reports, involving the kobj uevent sent when a session is created.
-
-The root of the problem is not the fact that iscsi does GFP_IO
-allocations, that is acceptable. The actual problem is that
-rx_queue_mutex has a very large granularity, covering every unrelated
-netlink command execution at the same time as the error recovery path.
-
-The proposed fix leverages the recently added mechanism to stop failed
-connections from the kernel, by enabling it to execute even though a
-management command from the netlink socket is being run (rx_queue_mutex
-is held), provided that the command is known to be safe.  It splits the
-rx_queue_mutex in two mutexes, one protecting from concurrent command
-execution from the netlink socket, and one protecting stop_conn from
-racing with other connection management operations that might conflict
-with it.
-
-It is not very pretty, but it is the simplest way to resolve the
-deadlock.  I considered making it a lock per connection, but some
-external mutex would still be needed to deal with iscsi_if_destroy_conn.
-
-The patch was tested by forcing a memory shrinker (unrelated, but used
-bufio/dm-verity) to reclaim ISCSI pages every time
-ISCSI_UEVENT_CREATE_SESSION happens, which is reasonable to simulate
-reclaims that might happen with GFP_KERNEL on that path.  Then, a faulty
-hung target causes a connection to fail during intensive IO, at the same
-time a new session is added by iscsid.
-
-The following stacktraces are stiches from several bug reports, showing
-a case where the deadlock can happen.
-
- iSCSI-write
-         holding: rx_queue_mutex
-         waiting: uevent_sock_mutex
-
-         kobject_uevent_env+0x1bd/0x419
-         kobject_uevent+0xb/0xd
-         device_add+0x48a/0x678
-         scsi_add_host_with_dma+0xc5/0x22d
-         iscsi_host_add+0x53/0x55
-         iscsi_sw_tcp_session_create+0xa6/0x129
-         iscsi_if_rx+0x100/0x1247
-         netlink_unicast+0x213/0x4f0
-         netlink_sendmsg+0x230/0x3c0
-
- iscsi_fail iscsi_conn_failure
-         waiting: rx_queue_mutex
-
-         schedule_preempt_disabled+0x325/0x734
-         __mutex_lock_slowpath+0x18b/0x230
-         mutex_lock+0x22/0x40
-         iscsi_conn_failure+0x42/0x149
-         worker_thread+0x24a/0xbc0
-
- EventManager_
-         holding: uevent_sock_mutex
-         waiting: dm_bufio_client->lock
-
-         dm_bufio_lock+0xe/0x10
-         shrink+0x34/0xf7
-         shrink_slab+0x177/0x5d0
-         do_try_to_free_pages+0x129/0x470
-         try_to_free_mem_cgroup_pages+0x14f/0x210
-         memcg_kmem_newpage_charge+0xa6d/0x13b0
-         __alloc_pages_nodemask+0x4a3/0x1a70
-         fallback_alloc+0x1b2/0x36c
-         __kmalloc_node_track_caller+0xb9/0x10d0
-         __alloc_skb+0x83/0x2f0
-         kobject_uevent_env+0x26b/0x419
-         dm_kobject_uevent+0x70/0x79
-         dev_suspend+0x1a9/0x1e7
-         ctl_ioctl+0x3e9/0x411
-         dm_ctl_ioctl+0x13/0x17
-         do_vfs_ioctl+0xb3/0x460
-         SyS_ioctl+0x5e/0x90
-
- MemcgReclaimerD"
-         holding: dm_bufio_client->lock
-         waiting: stuck io to finish (needs iscsi_fail thread to progress)
-
-         schedule at ffffffffbd603618
-         io_schedule at ffffffffbd603ba4
-         do_io_schedule at ffffffffbdaf0d94
-         __wait_on_bit at ffffffffbd6008a6
-         out_of_line_wait_on_bit at ffffffffbd600960
-         wait_on_bit.constprop.10 at ffffffffbdaf0f17
-         __make_buffer_clean at ffffffffbdaf18ba
-         __cleanup_old_buffer at ffffffffbdaf192f
-         shrink at ffffffffbdaf19fd
-         do_shrink_slab at ffffffffbd6ec000
-         shrink_slab at ffffffffbd6ec24a
-         do_try_to_free_pages at ffffffffbd6eda09
-         try_to_free_mem_cgroup_pages at ffffffffbd6ede7e
-         mem_cgroup_resize_limit at ffffffffbd7024c0
-         mem_cgroup_write at ffffffffbd703149
-         cgroup_file_write at ffffffffbd6d9c6e
-         sys_write at ffffffffbd6662ea
-         system_call_fastpath at ffffffffbdbc34a2
-
-Reported-by: Khazhismel Kumykov <khazhy@google.com>
-Reviewed-by: Lee Duncan <lduncan@suse.com>
-Signed-off-by: Gabriel Krisman Bertazi <krisman@collabora.com>
-
-Changes since v1:
-  - Rebase to v5.8/scsi-queue
----
- drivers/scsi/scsi_transport_iscsi.c | 64 +++++++++++++++++++++--------
- 1 file changed, 47 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index b2a803c51288..ea6d498fa923 100644
---- a/drivers/scsi/scsi_transport_iscsi.c
-+++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -1616,6 +1616,12 @@ static DECLARE_TRANSPORT_CLASS(iscsi_connection_class,
- static struct sock *nls;
- static DEFINE_MUTEX(rx_queue_mutex);
- 
-+/*
-+ * conn_mutex protects the {start,bind,stop,destroy}_conn from racing
-+ * against the kernel stop_connection recovery mechanism
-+ */
-+static DEFINE_MUTEX(conn_mutex);
-+
- static LIST_HEAD(sesslist);
- static LIST_HEAD(sessdestroylist);
- static DEFINE_SPINLOCK(sesslock);
-@@ -2445,6 +2451,32 @@ int iscsi_offload_mesg(struct Scsi_Host *shost,
- }
- EXPORT_SYMBOL_GPL(iscsi_offload_mesg);
- 
-+/*
-+ * This can be called without the rx_queue_mutex, if invoked by the kernel
-+ * stop work. But, in that case, it is guaranteed not to race with
-+ * iscsi_destroy by conn_mutex.
-+ */
-+static void iscsi_if_stop_conn(struct iscsi_cls_conn *conn, int flag)
-+{
-+	/*
-+	 * It is important that this path doesn't rely on
-+	 * rx_queue_mutex, otherwise, a thread doing allocation on a
-+	 * start_session/start_connection could sleep waiting on a
-+	 * writeback to a failed iscsi device, that cannot be recovered
-+	 * because the lock is held.  If we don't hold it here, the
-+	 * kernel stop_conn_work_fn has a chance to stop the broken
-+	 * session and resolve the allocation.
-+	 *
-+	 * Still, the user invoked .stop_conn() needs to be serialized
-+	 * with stop_conn_work_fn by a private mutex.  Not pretty, but
-+	 * it works.
-+	 */
-+	mutex_lock(&conn_mutex);
-+	conn->transport->stop_conn(conn, flag);
-+	mutex_unlock(&conn_mutex);
-+
-+}
-+
- static void stop_conn_work_fn(struct work_struct *work)
- {
- 	struct iscsi_cls_conn *conn, *tmp;
-@@ -2463,30 +2495,17 @@ static void stop_conn_work_fn(struct work_struct *work)
- 		uint32_t sid = iscsi_conn_get_sid(conn);
- 		struct iscsi_cls_session *session;
- 
--		mutex_lock(&rx_queue_mutex);
--
- 		session = iscsi_session_lookup(sid);
- 		if (session) {
- 			if (system_state != SYSTEM_RUNNING) {
- 				session->recovery_tmo = 0;
--				conn->transport->stop_conn(conn,
--							   STOP_CONN_TERM);
-+				iscsi_if_stop_conn(conn, STOP_CONN_TERM);
- 			} else {
--				conn->transport->stop_conn(conn,
--							   STOP_CONN_RECOVER);
-+				iscsi_if_stop_conn(conn, STOP_CONN_RECOVER);
- 			}
- 		}
- 
- 		list_del_init(&conn->conn_list_err);
--
--		mutex_unlock(&rx_queue_mutex);
--
--		/* we don't want to hold rx_queue_mutex for too long,
--		 * for instance if many conns failed at the same time,
--		 * since this stall other iscsi maintenance operations.
--		 * Give other users a chance to proceed.
--		 */
--		cond_resched();
- 	}
- }
- 
-@@ -2846,8 +2865,11 @@ iscsi_if_destroy_conn(struct iscsi_transport *transport, struct iscsi_uevent *ev
- 	spin_unlock_irqrestore(&connlock, flags);
- 
- 	ISCSI_DBG_TRANS_CONN(conn, "Destroying transport conn\n");
-+
-+	mutex_lock(&conn_mutex);
- 	if (transport->destroy_conn)
- 		transport->destroy_conn(conn);
-+	mutex_unlock(&conn_mutex);
- 
- 	return 0;
- }
-@@ -3689,9 +3711,12 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
- 			break;
- 		}
- 
-+		mutex_lock(&conn_mutex);
- 		ev->r.retcode =	transport->bind_conn(session, conn,
- 						ev->u.b_conn.transport_eph,
- 						ev->u.b_conn.is_leading);
-+		mutex_unlock(&conn_mutex);
-+
- 		if (ev->r.retcode || !transport->ep_connect)
- 			break;
- 
-@@ -3713,9 +3738,11 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
- 	case ISCSI_UEVENT_START_CONN:
- 		conn = iscsi_conn_lookup(ev->u.start_conn.sid, ev->u.start_conn.cid);
- 		if (conn) {
-+			mutex_lock(&conn_mutex);
- 			ev->r.retcode = transport->start_conn(conn);
- 			if (!ev->r.retcode)
- 				conn->state = ISCSI_CONN_UP;
-+			mutex_unlock(&conn_mutex);
- 		}
- 		else
- 			err = -EINVAL;
-@@ -3723,17 +3750,20 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
- 	case ISCSI_UEVENT_STOP_CONN:
- 		conn = iscsi_conn_lookup(ev->u.stop_conn.sid, ev->u.stop_conn.cid);
- 		if (conn)
--			transport->stop_conn(conn, ev->u.stop_conn.flag);
-+			iscsi_if_stop_conn(conn, ev->u.stop_conn.flag);
- 		else
- 			err = -EINVAL;
- 		break;
- 	case ISCSI_UEVENT_SEND_PDU:
- 		conn = iscsi_conn_lookup(ev->u.send_pdu.sid, ev->u.send_pdu.cid);
--		if (conn)
-+		if (conn) {
-+			mutex_lock(&conn_mutex);
- 			ev->r.retcode =	transport->send_pdu(conn,
- 				(struct iscsi_hdr*)((char*)ev + sizeof(*ev)),
- 				(char*)ev + sizeof(*ev) + ev->u.send_pdu.hdr_size,
- 				ev->u.send_pdu.data_size);
-+			mutex_unlock(&conn_mutex);
-+		}
- 		else
- 			err = -EINVAL;
- 		break;
--- 
-2.26.2
+On 5/5/20 9:19 AM, Bob Liu wrote:
+> Motivation:
+> This patch enable setting cpu affinity through "cpumask" for iscsi workqueues
+> (iscsi_q_xx and iscsi_eh), so as to get performance isolation.
+> 
+> The max number of active worker was changed form 1 to 2, because "cpumask" of
+> ordered workqueue isn't allowed to change.
+> 
+> Notes:
+> - Having 2 workers break the current ordering guarantees, please let me know
+>   if anyone depends on this.
+> 
+> - __WQ_LEGACY have to be left because of
+> 23d11a5(workqueue: skip flush dependency checks for legacy workqueues)
+> 
+> Signed-off-by: Bob Liu <bob.liu@oracle.com>
+> ---
+>  drivers/scsi/libiscsi.c             | 4 +++-
+>  drivers/scsi/scsi_transport_iscsi.c | 4 +++-
+>  2 files changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+> index 70b99c0..adf9bb4 100644
+> --- a/drivers/scsi/libiscsi.c
+> +++ b/drivers/scsi/libiscsi.c
+> @@ -2627,7 +2627,9 @@ struct Scsi_Host *iscsi_host_alloc(struct scsi_host_template *sht,
+>  	if (xmit_can_sleep) {
+>  		snprintf(ihost->workq_name, sizeof(ihost->workq_name),
+>  			"iscsi_q_%d", shost->host_no);
+> -		ihost->workq = create_singlethread_workqueue(ihost->workq_name);
+> +		ihost->workq = alloc_workqueue("%s",
+> +			WQ_SYSFS | __WQ_LEGACY | WQ_MEM_RECLAIM | WQ_UNBOUND,
+> +			2, ihost->workq_name);
+>  		if (!ihost->workq)
+>  			goto free_host;
+>  	}
+> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+> index dfc726f..bdbc4a2 100644
+> --- a/drivers/scsi/scsi_transport_iscsi.c
+> +++ b/drivers/scsi/scsi_transport_iscsi.c
+> @@ -4602,7 +4602,9 @@ static __init int iscsi_transport_init(void)
+>  		goto unregister_flashnode_bus;
+>  	}
+>  
+> -	iscsi_eh_timer_workq = create_singlethread_workqueue("iscsi_eh");
+> +	iscsi_eh_timer_workq = alloc_workqueue("%s",
+> +			WQ_SYSFS | __WQ_LEGACY | WQ_MEM_RECLAIM | WQ_UNBOUND,
+> +			2, "iscsi_eh");
+>  	if (!iscsi_eh_timer_workq) {
+>  		err = -ENOMEM;
+>  		goto release_nls;
+> 
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200520022959.1912856-1-krisman%40collabora.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/8d830a89-c554-7de9-a33a-987d117e99fb%40oracle.com.
