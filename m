@@ -1,79 +1,155 @@
-Return-Path: <open-iscsi+bncBDLINFGG5UCBB5OAZD3AKGQEPDGY4DA@googlegroups.com>
+Return-Path: <open-iscsi+bncBCEOFWXG44MRBJUR2T3AKGQE554SCDY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2FA21E8FE7
-	for <lists+open-iscsi@lfdr.de>; Sat, 30 May 2020 10:59:34 +0200 (CEST)
-Received: by mail-qk1-x73a.google.com with SMTP id 25sf3848566qkc.3
-        for <lists+open-iscsi@lfdr.de>; Sat, 30 May 2020 01:59:34 -0700 (PDT)
+Received: from mail-oi1-x237.google.com (mail-oi1-x237.google.com [IPv6:2607:f8b0:4864:20::237])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5691EA55C
+	for <lists+open-iscsi@lfdr.de>; Mon,  1 Jun 2020 15:54:47 +0200 (CEST)
+Received: by mail-oi1-x237.google.com with SMTP id l4sf1430461oif.5
+        for <lists+open-iscsi@lfdr.de>; Mon, 01 Jun 2020 06:54:47 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1591019686; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=uDNJ6SRtp5ZbDtE2J8X6eBiyC8+HZKfdcg87Qdx8g4EX3mOnwCV0byXsXYZa+NQngj
+         tWBYeYPTepWgcUfqdSBy4a2QdKWC6/sbhqLxmmgm3+0F1C45m35uX4VdbkDTRXWIpDDg
+         sXov2uqm75/k+g+rJM+sHACYnM/nMARXFqfFQv77pHY0yjwtB6v68EjhLBA11SsvIUCF
+         hQpTFSRfoMPenGcXhhiOAMQdvV6LhSCov1eqhfADO6im6D0k0ViFFsifH2CULLc9QNXJ
+         dur8gepp5WzgCFu7GX3fI0hxM1Qp0PT6DnWWpzaxRkfThP/Du/pMi0aplUTDbIbt3/BA
+         u2vQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:message-id:date:subject:cc
+         :to:from:dkim-filter:dmarc-filter:mime-version:dkim-signature;
+        bh=jNZ3mrwdGuW/rP4zejc9lQV5rtybr3Mk0xqnw0qQWj0=;
+        b=VKv+oC1o73sfUpu1HG3aTZWzEnUcQ/15laNkzP5en+6mVbGOxylZ0bo5D/cvpSHMOR
+         Tc4pM05368uBy88UnRChWvu+F6LzZWQWwRe1HqMAfW5SzXL1KbwHBfPgElAtlDx2ddGm
+         nvh97IyIf/V7OzdIlKUkFCwMmwsz7Ev0Y/sOSpDx4p0YoYLY+VYJz+x49QslbfV4mllr
+         9DGEzeafyb3knQgYr62LknrIcPokeHt4vsVHYF3SwP/8ATnpH/FVb0+YsC4z8meKYjRp
+         I/pmk8AauH9PVEjc3HhmDbAUt2nWhWcKRQGH9Yi0mDNFZUpZcVwTKHoaJ9o8wrrTGwlB
+         A/Eg==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@umn.edu header.s=google header.b=EW9a3uYA;
+       spf=pass (google.com: domain of wu000273@umn.edu designates 134.84.196.205 as permitted sender) smtp.mailfrom=wu000273@umn.edu;
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=umn.edu
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=sb52cYKZJir4pjcS8F+A/25Knms+sVjjBhTU/Pzan3s=;
-        b=W72aGV+la9WjjN23jb4jwerv4fOdJQfSpkccej5E0d4Zzam15VYQzcBCqkDPT/wcZt
-         wVDRhU1GCj0VTuGxv93xvm43754FaEI+12wZu0u9CjmfjNFUqgt4h4aUHNLMVf0FZcZI
-         nhGDOSneE+pl/UbPenXtBUgABDlNwJlwU+B/cgBMLja2jIrUlEuhWiWjOT1krxLMaRpY
-         0zzA/TIuueV0cyWLJKmEs20+QGDmnhpB04TSVy/TSLhk+7/lugfRUL1BLEsLTgGQUgN2
-         P+F4rwHjXw6vOQB8qL/qH+bIArV0DG8nlIak6oGuFqutLVCTrvdDK+PQCZw3WJ5GdNyT
-         ZTgg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=sb52cYKZJir4pjcS8F+A/25Knms+sVjjBhTU/Pzan3s=;
-        b=DaPTL6svCVUDHknjsWduTiXYk2fFYbAoOOjNhxtsHME1BzYGb0YYU5XVYEFxsrxUbx
-         VwKB2ASpoWMzBR2JoaCRnE6BUMg/bpkCNP6RNqbglE3T5W/fOMm7B0vn5c25lyRg+qtD
-         Xu5lVxgcKEJOwjtGfXF/krsiSOpQ4G3W9A2HvgMr4o3OWL9B6RCD2GakS2j3twxdpyAQ
-         fEMOFZwf3ol6qLLo8vI4IwD9wlzfOmX4HTYrtJ6mBakOozzqlAOH4HLVE1gmUPwjomqG
-         na762NH+7m7Fi4UR4JJnMZuuq57gzvf0UODUBH+071BAtO9Uha4b3ojxSDGSqf57Ghbv
-         JRMA==
+        h=mime-version:dmarc-filter:dkim-filter:from:to:cc:subject:date
+         :message-id:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=jNZ3mrwdGuW/rP4zejc9lQV5rtybr3Mk0xqnw0qQWj0=;
+        b=NVRB9Xy3lRlJ0M4kVDQVlNxtBQRZ+EoBPurrozXuqb0CkWnnFE0oGdv15egYHQNflg
+         nwbyrasN/QR2Px9/oxI66qjTILAfzPZnbTH/lucFCIplDVxosSGChQugY0dmopUzNRwR
+         NA7ePBmdVlNfrDylsRj94cme2OF+O1D9CPrpl3Ict15vVpE+gf7Fj29LPp2Kx1ykHG3f
+         qY0s5azzUTeMhy7/omw41a+3mvx4KyQ2xd8nH2JwDMBiYPUqQSxEMf+WvQlkR/veQo8n
+         WaNGCBtNJcKpO24XpB+Z68vOZwZpXMaYxmrCoU91fh84utJY2JogtVLb42N291wnOMFZ
+         d/Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=sb52cYKZJir4pjcS8F+A/25Knms+sVjjBhTU/Pzan3s=;
-        b=i0ih7TN1Owd4+BVJ7hf41b42v85OMBms9y5GkEUO3CUqtws/UO1IriOom2PJzWOgsw
-         RDujw5o0jVnCgYl0L5r+ehwSmM1LtU3D/E/vqQZPAgqEJuGn427viBWJa4e21ZjmyfNv
-         PFFslHXu9DzJl+zrgaYH9hI3uulp0ZnQyNFgMWgDZANnuF2DXzmvNkvwT0gIgabmJbW8
-         wALY+K48Gif4u75Gl0jrcTCktkKB37t0QQZxT3bssI7giYhlUp7HvKpd5TzTaMy2sAc6
-         xseMtxVwzzMQ4IPLp0W/+umpYaFS1qV8ESQR5Hk4GD8z6xJtF3qqrb3Tv+XQAX+oYOgk
-         3P4A==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532iWPWH0b6e7umzuAUFw+cuPGFjdlQvLNKRdkzh6DoAWS2r6Xot
-	zuunfVvDa8qt+1bbvn6/3vM=
-X-Google-Smtp-Source: ABdhPJx417e3lPB7wXJapn9FHrv1/XnP4frn+1Br1QdHe6mJDMT4brpLqhJww8mACSLvdgL+F3WQOQ==
-X-Received: by 2002:a0c:eb50:: with SMTP id c16mr11978983qvq.202.1590829173796;
-        Sat, 30 May 2020 01:59:33 -0700 (PDT)
-X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac8:40ca:: with SMTP id f10ls3588585qtm.10.gmail; Sat, 30
- May 2020 01:59:33 -0700 (PDT)
-X-Received: by 2002:aed:2861:: with SMTP id r88mr12711688qtd.207.1590829173107;
-        Sat, 30 May 2020 01:59:33 -0700 (PDT)
-Date: Sat, 30 May 2020 01:59:32 -0700 (PDT)
-From: Gionatan Danti <gionatan.danti@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <8ff6f813-44d1-4388-ba0a-85d5e54933e7@googlegroups.com>
-In-Reply-To: <a0f1cad1-e867-4725-b0a9-32e530e019c5@googlegroups.com>
-References: <13d4c963-b633-4672-97d9-dd41eec5fb5b@googlegroups.com>
- <7f583720-8a84-4872-8d1a-5cd284295c22@googlegroups.com>
- <67349dca-9647-4dbd-affc-ded6e8f01ee9@googlegroups.com>
- <a0f1cad1-e867-4725-b0a9-32e530e019c5@googlegroups.com>
-Subject: Re: udev events for iscsi
+        h=x-gm-message-state:mime-version:dmarc-filter:dkim-filter:from:to:cc
+         :subject:date:message-id:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=jNZ3mrwdGuW/rP4zejc9lQV5rtybr3Mk0xqnw0qQWj0=;
+        b=I9GE7jvO8WhLd5wgcj43DCa8SSm2Ab5UEN/3l1WcZWeQho04w8oAGY22VjbPMU7oK6
+         o+zSlafRmKZuf0XCayGA7gOjAcVhHNQ++XINX7ZE46CWfP1qkANuhRUPomASpA4qOIMi
+         hZuDkmxcJp/wYiVJLq5endJ8g3T5Bz4OKKZt3X3vxgkYsN2oaglKKP2uBFTXIwBs82Zh
+         bmZ6P5Qfkl9pVCjD/TaefZKK4lNx1K5zAUEwCUfcbBJ0qeFVoYAqknjaGpxNoH39bDKf
+         zEAFeyj72huaciaISwd+h3n4f1Pk9WAXQlndQ7vjIMX1A0eKRy4ytKWJFNJdUp98pZ9b
+         EHgg==
+X-Gm-Message-State: AOAM531DV+5pqAb+DvEjX31+KYTK1bsDcDp3NYWMsawRKMhoIQ6zbUoC
+	TcCubyRsx/13JYWBQZ+WgsQ=
+X-Google-Smtp-Source: ABdhPJxWV7Oi5xkgILQUl68HRe3KEys3VttDhXtYg8Ac5eGRSdAa+pwHIZ7PsRTDuB5HHMat8E2zIg==
+X-Received: by 2002:aca:3c07:: with SMTP id j7mr12569086oia.140.1591019686369;
+        Mon, 01 Jun 2020 06:54:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_3621_1245493640.1590829172507"
-X-Original-Sender: gionatan.danti@gmail.com
+X-BeenThere: open-iscsi@googlegroups.com
+Received: by 2002:a54:460f:: with SMTP id p15ls2539419oip.7.gmail; Mon, 01 Jun
+ 2020 06:54:46 -0700 (PDT)
+X-Received: by 2002:aca:4a50:: with SMTP id x77mr14416139oia.138.1591019686188;
+        Mon, 01 Jun 2020 06:54:46 -0700 (PDT)
+Received: by 2002:aca:edd5:0:b029:ae:524b:3039 with SMTP id l204-20020acaedd50000b02900ae524b3039msoih;
+        Thu, 28 May 2020 13:14:02 -0700 (PDT)
+X-Received: by 2002:a17:902:a502:: with SMTP id s2mr5344005plq.267.1590696841659;
+        Thu, 28 May 2020 13:14:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590696841; cv=none;
+        d=google.com; s=arc-20160816;
+        b=EZgRkRmrQLEY0Rec318VQn4Nx+ppvcr/OymWFNkqfFa2pBAv/5fTFhsMexNE+mBdI7
+         uT+tb+jbbdE9MGUc7DQTTnSuSPUR8T97qqqFACVkJti1GfignKhsmAakE2BZMIYgAtcZ
+         z42JxcOnVRtNFSPcehEAp8YHaWWG+yA8U8dLBtUEY/sibCZ39lygw0Xy2BP+HA0VPQHX
+         /Nj8foCOQDTW/s2FOZAsujZVpg6m/FRprm1bQ6a5ADoACfI93UtTT+oz55gUHx/KedQ8
+         39DqefJmx1Q47wN/2DQSSBQVKl82FId2dg0k/ejZyxyKdbsIornudphHYhqscOmkVkuW
+         037Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:date:subject:cc:to:from:dkim-signature:dkim-filter
+         :dmarc-filter;
+        bh=U7D66rZ3bV/mdno+N6Y057Ta6Mf7fN3AGEm3ICQ61Jg=;
+        b=06Dktamas0gUUq1uzeXIwZr4XLkvsR/HstZfCECgttDJLQ7Ats1O/DOw24V4OUBhHj
+         tHndDgCMEwjn5qr7FgrduTh9XufCNzGlVT9ACdjlGn3ScCiE6VX0flKPZDKSsmbWpx5+
+         99gusEsYIw9kAlJ8df2Kg5u5n040Cu+A1ETvTW21hRTBYQ24e46Cg3XKLLeoT1NkqiVM
+         s0blD0LeBXyAaU6Q7YyWXn0gq5I3w1M0JOrL4xV/nZ0vxnrgVteqR7AslSd+xHkSSZ0t
+         db7kIMSBL7I6bA/hXSoFPBFqwVvdAURiH2HM/NywPMfiym+JxgK/geCvALU0eaf6vVbt
+         FwGg==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@umn.edu header.s=google header.b=EW9a3uYA;
+       spf=pass (google.com: domain of wu000273@umn.edu designates 134.84.196.205 as permitted sender) smtp.mailfrom=wu000273@umn.edu;
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=umn.edu
+Received: from mta-p5.oit.umn.edu (mta-p5.oit.umn.edu. [134.84.196.205])
+        by gmr-mx.google.com with ESMTPS id kb2si315919pjb.1.2020.05.28.13.14.01
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 28 May 2020 13:14:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of wu000273@umn.edu designates 134.84.196.205 as permitted sender) client-ip=134.84.196.205;
+Received: from localhost (unknown [127.0.0.1])
+	by mta-p5.oit.umn.edu (Postfix) with ESMTP id 49XzRs0VCDz9vC9P
+	for <open-iscsi@googlegroups.com>; Thu, 28 May 2020 20:14:01 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at umn.edu
+Received: from mta-p5.oit.umn.edu ([127.0.0.1])
+	by localhost (mta-p5.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id KmBNr0VQi-Uf for <open-iscsi@googlegroups.com>;
+	Thu, 28 May 2020 15:14:00 -0500 (CDT)
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com [209.85.166.69])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mta-p5.oit.umn.edu (Postfix) with ESMTPS id 49XzRr5tMhz9vBtF
+	for <open-iscsi@googlegroups.com>; Thu, 28 May 2020 15:14:00 -0500 (CDT)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p5.oit.umn.edu 49XzRr5tMhz9vBtF
+DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p5.oit.umn.edu 49XzRr5tMhz9vBtF
+Received: by mail-io1-f69.google.com with SMTP id t23so20091460iog.21
+        for <open-iscsi@googlegroups.com>; Thu, 28 May 2020 13:14:00 -0700 (PDT)
+X-Received: by 2002:a5e:9b10:: with SMTP id j16mr3809160iok.49.1590696840391;
+        Thu, 28 May 2020 13:14:00 -0700 (PDT)
+X-Received: by 2002:a5e:9b10:: with SMTP id j16mr3809135iok.49.1590696840039;
+        Thu, 28 May 2020 13:14:00 -0700 (PDT)
+Received: from qiushi.dtc.umn.edu (cs-kh5248-02-umh.cs.umn.edu. [128.101.106.4])
+        by smtp.gmail.com with ESMTPSA id h10sm3027690ioe.3.2020.05.28.13.13.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 May 2020 13:13:59 -0700 (PDT)
+From: wu000273 via open-iscsi <open-iscsi@googlegroups.com>
+To: kjlu@umn.edu
+Cc: wu000273@umn.edu,
+	Lee Duncan <lduncan@suse.com>,
+	Chris Leech <cleech@redhat.com>,
+	"James E.J. Bottomley" <jejb@linux.ibm.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] scsi: Fix reference count leak in iscsi_boot_create_kobj.
+Date: Thu, 28 May 2020 15:13:53 -0500
+Message-Id: <20200528201353.14849-1-wu000273@umn.edu>
+X-Mailer: git-send-email 2.17.1
+X-Original-Sender: wu000273@umn.edu
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@umn.edu header.s=google header.b=EW9a3uYA;       spf=pass
+ (google.com: domain of wu000273@umn.edu designates 134.84.196.205 as
+ permitted sender) smtp.mailfrom=wu000273@umn.edu;       dmarc=pass
+ (p=QUARANTINE sp=NONE dis=NONE) header.from=umn.edu
+X-Original-From: wu000273@umn.edu
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
-X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -82,115 +158,37 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_3621_1245493640.1590829172507
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_3622_2111256742.1590829172507"
+From: Qiushi Wu <wu000273@umn.edu>
 
-------=_Part_3622_2111256742.1590829172507
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+kobject_init_and_add() should be handled when it return an error,
+because kobject_init_and_add() takes reference even when it fails.
+If this function returns an error, kobject_put() must be called to
+properly clean up the memory associated with the object. Previous
+commit "b8eb718348b8" fixed a similar problem. Thus replace calling
+kfree() by calling kobject_put().
 
+Signed-off-by: Qiushi Wu <wu000273@umn.edu>
+---
+ drivers/scsi/iscsi_boot_sysfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Il giorno marted=C3=AC 28 aprile 2020 23:15:31 UTC+2, Gionatan Danti ha scr=
-itto:
+diff --git a/drivers/scsi/iscsi_boot_sysfs.c b/drivers/scsi/iscsi_boot_sysfs.c
+index e4857b728033..a64abe38db2d 100644
+--- a/drivers/scsi/iscsi_boot_sysfs.c
++++ b/drivers/scsi/iscsi_boot_sysfs.c
+@@ -352,7 +352,7 @@ iscsi_boot_create_kobj(struct iscsi_boot_kset *boot_kset,
+ 	boot_kobj->kobj.kset = boot_kset->kset;
+ 	if (kobject_init_and_add(&boot_kobj->kobj, &iscsi_boot_ktype,
+ 				 NULL, name, index)) {
+-		kfree(boot_kobj);
++		kobject_put(&boot_kobj->kobj);
+ 		return NULL;
+ 	}
+ 	boot_kobj->data = data;
+-- 
+2.17.1
 
-Well, for short disconnections the re-try approach is surely the better=20
-> one. But I naively assumed that a longer disconnection, as described by t=
-he=20
-> node.session.timeo.replacement_timeout parameter, would tear down the=20
-> device with a corresponding udev event. Udev should have no problem=20
-> assigning the device a sensible persistent name, right?
->
-=20
-
-> This open the door to another question: from iscsid.conf=20
-> <https://github.com/open-iscsi/open-iscsi/blob/master/etc/iscsid.conf#L99=
->=20
-> and README=20
-> <https://github.com/open-iscsi/open-iscsi/blob/master/README#L1476> files=
-=20
-> I (wrongly?) understand that replacement_timeout come into play only when=
-=20
-> the SCSI EH is running, while in the other cases different timeouts as=20
-> node.session.err_timeo.lu_reset_timeout and=20
-> node.session.err_timeo.tgt_reset_timeout should affect the=20
-> (dis)connection. However, in all my tests, I only saw replacement_timeout=
- being=20
-> honored, still I did not catch a single running instance of SCSI EH via t=
-he=20
-> proposed command iscsiadm -m session -P 3
-
-
-
-Hi  all and sorry for the bump, but I would really like to understand the=
-=20
-two points above (especially the one regarding the various timeout values).
-Can someone shed some light?
-Thanks.
-
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/8ff6f813-44d1-4388-ba0a-85d5e54933e7%40googlegroups.com.
-
-------=_Part_3622_2111256742.1590829172507
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br>Il giorno marted=C3=AC 28 aprile 2020 23:15:31 UTC+2, =
-Gionatan Danti ha scritto:<div><br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin: 0px 0px 0px 0.8ex; border-left: 1px solid rgb(204, 204, 20=
-4); padding-left: 1ex;">Well, for short disconnections the re-try approach =
-is surely the better one. But I naively assumed that a longer disconnection=
-, as described by the=C2=A0<span style=3D"color: rgb(36, 41, 46); font-size=
-: 12px; white-space: pre;"><font face=3D"courier new, monospace">node.sessi=
-on.timeo.<wbr>replacement_timeout</font></span><span style=3D"color: rgb(36=
-, 41, 46); font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quo=
-t;, Menlo, monospace; font-size: 12px; white-space: pre;"> </span>parameter=
-, would tear down the device with a corresponding udev event. Udev should h=
-ave no problem assigning the device a sensible persistent name, right?<br><=
-/blockquote><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin: 0px 0px 0px 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-=
-left: 1ex;">This open the door to another question: from <a href=3D"https:/=
-/github.com/open-iscsi/open-iscsi/blob/master/etc/iscsid.conf#L99" rel=3D"n=
-ofollow" target=3D"_blank">iscsid.conf</a> and <a href=3D"https://github.co=
-m/open-iscsi/open-iscsi/blob/master/README#L1476" rel=3D"nofollow" target=
-=3D"_blank">README</a>=C2=A0files I (wrongly?) understand that <font face=
-=3D"courier new, monospace">replacement_timeout </font>come into play only =
-when the SCSI EH is running, while in the other cases different timeouts as=
-=C2=A0<font face=3D"courier new, monospace">node.session.err_timeo.lu_<wbr>=
-reset_timeout</font><span style=3D"color: rgb(36, 41, 46); font-family: SFM=
-ono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace; font-=
-size: 12px; white-space: pre;">=C2=A0</span>and <font face=3D"courier new, =
-monospace">node.session.err_timeo.tgt_<wbr>reset_timeout=C2=A0</font>should=
- affect the (dis)connection. However, in all my tests, I only saw=C2=A0<spa=
-n style=3D"font-family: &quot;courier new&quot;, monospace;">replacement_ti=
-meout=C2=A0</span>being honored, still I did not catch a single running ins=
-tance of SCSI EH via the proposed command=C2=A0<span style=3D"color: rgb(36=
-, 41, 46); font-size: 12px; white-space: pre;"><font face=3D"courier new, m=
-onospace">iscsiadm -m session -P 3</font></span></blockquote><div><br></div=
-><div><br></div><div>Hi=C2=A0 all and sorry for the bump, but I would reall=
-y like to understand the two points above (especially the one regarding the=
- various timeout values).</div><div>Can someone shed some light?</div><div>=
-Thanks.</div></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/8ff6f813-44d1-4388-ba0a-85d5e54933e7%40googlegroups.c=
-om?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgi=
-d/open-iscsi/8ff6f813-44d1-4388-ba0a-85d5e54933e7%40googlegroups.com</a>.<b=
-r />
-
-------=_Part_3622_2111256742.1590829172507--
-
-------=_Part_3621_1245493640.1590829172507--
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200528201353.14849-1-wu000273%40umn.edu.
