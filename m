@@ -1,71 +1,70 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBQ5E5T3AKGQEFBPMVSI@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBJFF5T3AKGQEHL3OYWY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x840.google.com (mail-qt1-x840.google.com [IPv6:2607:f8b0:4864:20::840])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF4481F047A
-	for <lists+open-iscsi@lfdr.de>; Sat,  6 Jun 2020 05:49:24 +0200 (CEST)
-Received: by mail-qt1-x840.google.com with SMTP id u26sf10335831qtj.21
-        for <lists+open-iscsi@lfdr.de>; Fri, 05 Jun 2020 20:49:24 -0700 (PDT)
+Received: from mail-qk1-x738.google.com (mail-qk1-x738.google.com [IPv6:2607:f8b0:4864:20::738])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB4F1F047F
+	for <lists+open-iscsi@lfdr.de>; Sat,  6 Jun 2020 05:51:01 +0200 (CEST)
+Received: by mail-qk1-x738.google.com with SMTP id d190sf9349857qkc.20
+        for <lists+open-iscsi@lfdr.de>; Fri, 05 Jun 2020 20:51:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=Ky2S68uGQJuc1mx0bygfGHV4NqJT0EP4ur2cJjmz0vU=;
-        b=V+ussOpne5Xm6z1a+WW4DKINirq45EErpM/1xzEcAf9sb4aBnwpTZjFhFmtMvj3Pzc
-         3WMioE+HIIAp9KX5f2brpuBAeNe9IOu9OschFJFgcAFpMQqeuwMijO72fB+Vq2M6xNdh
-         J6rd3aBvcDRRVb+ywkwVUe2decqc9ws0Ar8jFLTVMMvqiC4/1epYOE88b6vNZV0PQeUH
-         Yii5L80o+DeHA8SB6ZFq5CPnVno27JeFhFAVJHMtyBFcZdL7Mm4YlPrGGlBxaDJ5wgrQ
-         8HLWkm+koibFyNmeI1lzKTEe0748kBx3B472FH+cef+fo9tiJ+GDtkMEkc0FFVjmjYT2
-         jKpw==
+        bh=tCsuqd36k191FWk5KyR/9fHIjvXXceudGxjHdxYeaRw=;
+        b=orjzQhlXzxA+4G58QkcPJoTO9mxPQErrU0Xj9bwuEIR1BEqD5VlJNvPFNkM2ry3vSM
+         KG//0YK+Jugg++i2d5iteTGVkia0fBkznLFTKm2QoxMOrb0t1FvMl+POgOlIYFA0WmbC
+         3O1VSamZcnm12Oy2LW6SXqe3EfRrd2GN8QWbrzgwyjPV/npr+Ck1ZRFgFXQD7ZbVCrJD
+         BE8p7KwVJ3TglzTT7IsDeTx2CDg8yi1RWFPtRY4H+n6IQ3m19u3sAOjY8Y8/s+MVf/Yx
+         qC5F9wE0adOhYFl3enQF87oFfu+1RpARgWXs5gMU7S6ftkMziq3WsPDVxxeJBTESqFNL
+         fQGQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=Ky2S68uGQJuc1mx0bygfGHV4NqJT0EP4ur2cJjmz0vU=;
-        b=PG1081abdaq/thKFO5KE8eftlG2hbq3R6M0RDvBT2jODUJxVcAApooP11vgtvEtEH4
-         eEcODqwyqRq3Zdh030KzvA5RVXH4Ht3rKZ835LcaBqJ8g/fYfR4rzi6j0W5iW4KTvHwd
-         EFtxQuBgn2fZhqgXoSDmYrf15mJKcHexrFDv1LrkPO03Zoxu6wmGqqyn24eV9y/h/wjv
-         FdowMrpwjzoc+2gl5T8Ez8C/Dxi826P2iqFyM6fFfc1XdcrJKOWu1cJSZEzl+js2kaIt
-         Ae2w3jcZ9CwlL/2AgNsk/aYxj1LCRZeQt1hWWMvuBFM7ZRrwVpLI+NqFpJfVPunndJ84
-         f7+w==
+        bh=tCsuqd36k191FWk5KyR/9fHIjvXXceudGxjHdxYeaRw=;
+        b=CTmmWAmwZCatRhgtfYk2V+W+QyLVDEOhY5Wwj+z/iLHyDJPUavAWq25ykxlxOB1tau
+         mpcVzghJOgymiYdijqfSnwris5aQihV2DYcrzyYCOMZgEr8jW0PzjiVGSfaaIA7aP9Z7
+         5dnEWkN+Yc2l1y1/20wq1n0DAk7Pmv9alKq4TeaU8zlM5ejdLZMXeGWt8aKqN4kqT0Ci
+         RQzDi3ruf9CjhAOi6q4PMEYvXdJr6hqxVY9I5szkpj/xXpRXHiGJDX9+jmkYqjYcqul9
+         JjDvh72QhCQlAODtCv2GytP0A98w7R9TbCcDtXxbyZ8f+LN+91Z9En7nhY7WBpZiKNkr
+         0QAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=Ky2S68uGQJuc1mx0bygfGHV4NqJT0EP4ur2cJjmz0vU=;
-        b=bgbaTlg7e3wqVx7npGGtX1nq9QtJjyaKsjK1gNLpTHomueqgURvYYk/CNFeDpxeSKW
-         60Q8S1lk/pnLGTtepDZxAzMsD3da6ve4MwajHwWZvUaHQmSC5HktH4jpajwFJCQvGkTt
-         ajwNf+nIeLEtsljXln7OXfPh/vqS0YrGHBnLUFrU/itWb5Bo/SUwkD5yD2xI3YogzhIH
-         XwKgY68kqNS0dI7DyTIlpu3abJLyTn3TZmQ02eHf0XIyNMs6nO7OL5Hv2C8iUH1CcD1I
-         /LIkXM8pBUfHR6TfwksCR9LFzyh0Zc0Pfq0oBKlSjeIKTxiMbNMjiok6jygm6UNWIUPS
-         C7TA==
+        bh=tCsuqd36k191FWk5KyR/9fHIjvXXceudGxjHdxYeaRw=;
+        b=ZXCufGrqNo0J7nnfpLcePGVTDxbB5Ff+gi2xMOMKDq8+j6s24cVMXz0L/XRk9Yeono
+         e9UOXlszamSzFL6eOd9ZeWvp54pkR4WjzGuyGz7YBXqAP9bRdD1eBvI1fvmbpcvwCZ4R
+         uxcdVjEOwdwZN/DD2aqAggqJrbrtwSh3KuHzIu9QQPyKz03wQCRuUUE1X/BsWOtrIRxc
+         6OqydwVCxq6XPZPgIqsyqJr1umSQ67vVndArfRrXfukgmE1nqr/Zd21YzXnKK9QTzfB5
+         QofE8QeiitVQyz8GJLfXVa2jCba8kj+F4jwDtThOKGdXsp2osFHB/feKQYN2a1RTj6mB
+         Vx6Q==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532IPiOCDGK+KZDmRvwJ487diHcNEW7e8FKL6TnFzwkokovGw2i9
-	Wnw2gX+YUqLcGNIel2X/Fr8=
-X-Google-Smtp-Source: ABdhPJx/2qI2ost8mtXW2ft4+XTX/9RiNxjXye1D7b0xNexAlA3Gld+nd17qjUWPoSU7w5OVCnYhZQ==
-X-Received: by 2002:ac8:24e8:: with SMTP id t37mr13519283qtt.319.1591415363715;
-        Fri, 05 Jun 2020 20:49:23 -0700 (PDT)
+X-Gm-Message-State: AOAM530jBOJKzpHIaagdZ4yMuKLH/cGrvnx1CFAAN04YqdZ+tP+rDOWg
+	5u0L4F7I5nYzb2I8C3uQ9DM=
+X-Google-Smtp-Source: ABdhPJyw2vor/zaZkn8X1kS/DnQy2ZnK3zCkzOUt8ncqsE/3mhKsoUaR6RONs2HUSBq04q5k7eYE8w==
+X-Received: by 2002:a0c:aec5:: with SMTP id n5mr13079229qvd.0.1591415460602;
+        Fri, 05 Jun 2020 20:51:00 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:9e92:: with SMTP id h140ls5398793qke.5.gmail; Fri, 05
- Jun 2020 20:49:23 -0700 (PDT)
-X-Received: by 2002:a37:784:: with SMTP id 126mr12509119qkh.200.1591415363154;
-        Fri, 05 Jun 2020 20:49:23 -0700 (PDT)
-Date: Fri, 5 Jun 2020 20:49:22 -0700 (PDT)
+Received: by 2002:a0c:ec0d:: with SMTP id y13ls2694642qvo.8.gmail; Fri, 05 Jun
+ 2020 20:51:00 -0700 (PDT)
+X-Received: by 2002:ad4:56b2:: with SMTP id bd18mr12447270qvb.209.1591415460171;
+        Fri, 05 Jun 2020 20:51:00 -0700 (PDT)
+Date: Fri, 5 Jun 2020 20:50:59 -0700 (PDT)
 From: The Lee-Man <leeman.duncan@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <3c3b346e-1d17-4e7a-ad38-5ef355146a45o@googlegroups.com>
-In-Reply-To: <5ED9087A020000A100039500@gwsmtp.uni-regensburg.de>
-References: <7784_1591272646_5ED8E4C6_7784_490_1_1591273415-689835-1-git-send-email-wubo40@huawei.com>
- <5ED9087A020000A100039500@gwsmtp.uni-regensburg.de>
-Subject: Re: [EXT] [PATCH] iscsi: Add break to while loop
+Message-Id: <a167b02a-53af-48ce-907a-5e43c67dd086o@googlegroups.com>
+In-Reply-To: <1591273415-689835-1-git-send-email-wubo40@huawei.com>
+References: <1591273415-689835-1-git-send-email-wubo40@huawei.com>
+Subject: Re: [PATCH] iscsi: Add break to while loop
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_709_2146017251.1591415362318"
+	boundary="----=_Part_713_82130627.1591415459709"
 X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -80,170 +79,134 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_709_2146017251.1591415362318
+------=_Part_713_82130627.1591415459709
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_710_1278406814.1591415362318"
+	boundary="----=_Part_714_864382083.1591415459709"
 
-------=_Part_710_1278406814.1591415362318
+------=_Part_714_864382083.1591415459709
 Content-Type: text/plain; charset="UTF-8"
 
-On Thursday, June 4, 2020 at 7:43:13 AM UTC-7, Uli wrote:
+On Thursday, June 4, 2020 at 5:10:49 AM UTC-7, Wu Bo wrote:
 >
-> >>> Wu Bo <wubo40@huawei.com> schrieb am 04.06.2020 um 14:23 in Nachricht 
-> <7784_1591272646_5ED8E4C6_7784_490_1_1591273415-689835-1-git-send-email-wubo40@h 
+> From: liubo <liubo254@huawei.com> 
 >
-> awei.com>: 
-> > From: liubo <liubo254@huawei.com> 
-> > 
-> > Fix the potential risk of rc value being washed out by jumping out of 
-> the 
-> > loop 
-> > 
-> > Signed-off-by: liubo <liubo254@huawei.com> 
-> > Reported-by: Zhiqiang Liu <liuzhiqiang26@huawei.com> 
-> > --- 
-> >  utils/fwparam_ibft/fwparam_sysfs.c | 5 ++++- 
-> >  1 file changed, 4 insertions(+), 1 deletion(-) 
-> > 
-> > diff --git a/utils/fwparam_ibft/fwparam_sysfs.c 
-> > b/utils/fwparam_ibft/fwparam_sysfs.c 
-> > index a0cd1c7..87fd6d4 100644 
-> > --- a/utils/fwparam_ibft/fwparam_sysfs.c 
-> > +++ b/utils/fwparam_ibft/fwparam_sysfs.c 
-> > @@ -115,8 +115,11 @@ static int get_iface_from_device(char *id, struct 
-> > boot_context *context) 
-> >                                  break; 
-> >                          } 
-> >   
-> > -                        if (sscanf(dent->d_name, "net:%s", 
+> Fix the potential risk of rc value being washed out by jumping out of the 
+> loop 
+>
+> Signed-off-by: liubo <liubo254@huawei.com> 
+> Reported-by: Zhiqiang Liu <liuzhiqiang26@huawei.com> 
+> --- 
+>  utils/fwparam_ibft/fwparam_sysfs.c | 5 ++++- 
+>  1 file changed, 4 insertions(+), 1 deletion(-) 
+>
+> diff --git a/utils/fwparam_ibft/fwparam_sysfs.c 
+> b/utils/fwparam_ibft/fwparam_sysfs.c 
+> index a0cd1c7..87fd6d4 100644 
+> --- a/utils/fwparam_ibft/fwparam_sysfs.c 
+> +++ b/utils/fwparam_ibft/fwparam_sysfs.c 
+> @@ -115,8 +115,11 @@ static int get_iface_from_device(char *id, struct 
+> boot_context *context) 
+>                                  break; 
+>                          } 
+>   
+> -                        if (sscanf(dent->d_name, "net:%s", 
 > context->iface) != 1) 
-> > +                        if (sscanf(dent->d_name, "net:%s", 
+> +                        if (sscanf(dent->d_name, "net:%s", 
 > context->iface) != 1) { 
-> >                                  rc = EINVAL; 
-> > +                                break; 
-> > +                        } 
-> > + 
-> >                          rc = 0; 
-> >                          break; 
-> >                  } else { 
-> > -- 
-> > 2.21.0.windows.1 
->
-> It seems to me the whole code could be more readable if the rc were preset 
-> either to "success" (0) or "error" (something else), and if the "other" 
-> result is needed just set the desired rc. Those multiple "break"s make the 
-> code hard to read. 
+>                                  rc = EINVAL; 
+> +                                break; 
+> +                        } 
+> + 
+>                          rc = 0; 
+>                          break; 
+>                  } else { 
+> -- 
+> 2.21.0.windows.1 
 >
 >
->
-Agreed that the code could be easier to read, but (1) it's working now, and 
-(2) the suggested fix is inline with the current code style and format.
-
-So I'm inclined to accept the patch. But I would also strongly consider a 
-rewrite that makes it more readable, if you submitted such a patch.
+This looks fine to me. Any chance you could submit a pull request on 
+GitHub? It saves me having to cut-and-paste, since I sadly do not have a 
+good workflow setup for patches from the mailing list. 
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/3c3b346e-1d17-4e7a-ad38-5ef355146a45o%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/a167b02a-53af-48ce-907a-5e43c67dd086o%40googlegroups.com.
 
-------=_Part_710_1278406814.1591415362318
+------=_Part_714_864382083.1591415459709
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On Thursday, June 4, 2020 at 7:43:13 AM UTC-7, Uli wrote:<=
-blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;bord=
-er-left: 1px #ccc solid;padding-left: 1ex;">&gt;&gt;&gt; Wu Bo &lt;<a href=
-=3D"mailto:wubo40@huawei.com" target=3D"_blank" rel=3D"nofollow" onmousedow=
-n=3D"this.href=3D&#39;mailto:wubo40@huawei.com&#39;;return true;" onclick=
-=3D"this.href=3D&#39;mailto:wubo40@huawei.com&#39;;return true;">wubo40@hua=
-wei.com</a>&gt; schrieb am 04.06.2020 um 14:23 in Nachricht
-<br>&lt;7784_1591272646_5ED8E4C6_<wbr>7784_490_1_1591273415-689835-<wbr>1-g=
-it-send-email-wubo40@h
-<br><a href=3D"http://awei.com" target=3D"_blank" rel=3D"nofollow" onmoused=
-own=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2Fawei.co=
-m\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEL5og9j69ZQZX4FH82R3jSSeNp3w&#39;=
-;return true;" onclick=3D"this.href=3D&#39;http://www.google.com/url?q\x3dh=
-ttp%3A%2F%2Fawei.com\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEL5og9j69ZQZX4=
-FH82R3jSSeNp3w&#39;;return true;">awei.com</a>&gt;:
-<br>&gt; From: liubo &lt;<a href=3D"mailto:liubo254@huawei.com" target=3D"_=
-blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:liubo254@hua=
-wei.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:liubo254@huaw=
-ei.com&#39;;return true;">liubo254@huawei.com</a>&gt;
-<br>&gt;=20
-<br>&gt; Fix the potential risk of rc value being washed out by jumping out=
- of the=20
-<br>&gt; loop
-<br>&gt;=20
-<br>&gt; Signed-off-by: liubo &lt;<a href=3D"mailto:liubo254@huawei.com" ta=
-rget=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:liu=
-bo254@huawei.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:liub=
-o254@huawei.com&#39;;return true;">liubo254@huawei.com</a>&gt;
-<br>&gt; Reported-by: Zhiqiang Liu &lt;<a href=3D"mailto:liuzhiqiang26@huaw=
-ei.com" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;=
-mailto:liuzhiqiang26@huawei.com&#39;;return true;" onclick=3D"this.href=3D&=
-#39;mailto:liuzhiqiang26@huawei.com&#39;;return true;">liuzhiqiang26@huawei=
-.com</a>&gt;
-<br>&gt; ---
-<br>&gt; =C2=A0utils/fwparam_ibft/fwparam_<wbr>sysfs.c | 5 ++++-
-<br>&gt; =C2=A01 file changed, 4 insertions(+), 1 deletion(-)
-<br>&gt;=20
-<br>&gt; diff --git a/utils/fwparam_ibft/fwparam_<wbr>sysfs.c=20
-<br>&gt; b/utils/fwparam_ibft/fwparam_<wbr>sysfs.c
-<br>&gt; index a0cd1c7..87fd6d4 100644
-<br>&gt; --- a/utils/fwparam_ibft/fwparam_<wbr>sysfs.c
-<br>&gt; +++ b/utils/fwparam_ibft/fwparam_<wbr>sysfs.c
-<br>&gt; @@ -115,8 +115,11 @@ static int get_iface_from_device(char *id, st=
-ruct=20
-<br>&gt; boot_context *context)
-<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0break;
-<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0}
-<br>&gt; =C2=A0
-<br>&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0if (sscanf(dent-&gt;d_name, &quot;net:%s&quot;, context-&gt;iface) !=
-=3D 1)
-<br>&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0if (sscanf(dent-&gt;d_name, &quot;net:%s&quot;, context-&gt;iface) !=
-=3D 1) {
-<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0rc =3D EINVAL=
-;
-<br>&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+<div dir=3D"ltr">On Thursday, June 4, 2020 at 5:10:49 AM UTC-7, Wu Bo wrote=
+:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;bo=
+rder-left: 1px #ccc solid;padding-left: 1ex;">From: liubo &lt;<a href=3D"ma=
+ilto:liubo254@huawei.com" target=3D"_blank" rel=3D"nofollow" onmousedown=3D=
+"this.href=3D&#39;mailto:liubo254@huawei.com&#39;;return true;" onclick=3D"=
+this.href=3D&#39;mailto:liubo254@huawei.com&#39;;return true;">liubo254@hua=
+wei.com</a>&gt;
+<br>
+<br>Fix the potential risk of rc value being washed out by jumping out of t=
+he loop
+<br>
+<br>Signed-off-by: liubo &lt;<a href=3D"mailto:liubo254@huawei.com" target=
+=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:liubo25=
+4@huawei.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:liubo254=
+@huawei.com&#39;;return true;">liubo254@huawei.com</a>&gt;
+<br>Reported-by: Zhiqiang Liu &lt;<a href=3D"mailto:liuzhiqiang26@huawei.co=
+m" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailt=
+o:liuzhiqiang26@huawei.com&#39;;return true;" onclick=3D"this.href=3D&#39;m=
+ailto:liuzhiqiang26@huawei.com&#39;;return true;">liuzhiqiang26@huawei.com<=
+/a>&gt;
+<br>---
+<br>=C2=A0utils/fwparam_ibft/fwparam_<wbr>sysfs.c | 5 ++++-
+<br>=C2=A01 file changed, 4 insertions(+), 1 deletion(-)
+<br>
+<br>diff --git a/utils/fwparam_ibft/fwparam_<wbr>sysfs.c b/utils/fwparam_ib=
+ft/fwparam_<wbr>sysfs.c
+<br>index a0cd1c7..87fd6d4 100644
+<br>--- a/utils/fwparam_ibft/fwparam_<wbr>sysfs.c
+<br>+++ b/utils/fwparam_ibft/fwparam_<wbr>sysfs.c
+<br>@@ -115,8 +115,11 @@ static int get_iface_from_device(char *id, struct =
+boot_context *context)
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
 =A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0break;
-<br>&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
 =A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
 =C2=A0}
-<br>&gt; +
-<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0rc =3D 0;
-<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0<wbr>break;
-<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
-<br>&gt; --=20
-<br>&gt; 2.21.0.windows.1
+<br>=C2=A0
+<br>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+if (sscanf(dent-&gt;d_name, &quot;net:%s&quot;, context-&gt;iface) !=3D 1)
+<br>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+if (sscanf(dent-&gt;d_name, &quot;net:%s&quot;, context-&gt;iface) !=3D 1) =
+{
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0rc =3D EINVAL;
+<br>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0break;
+<br>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+}
+<br>+
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0rc =3D 0;
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0<wbr>break;
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
+<br>--=20
+<br>2.21.0.windows.1
 <br>
-<br>It seems to me the whole code could be more readable if the rc were pre=
-set either to &quot;success&quot; (0) or &quot;error&quot; (something else)=
-, and if the &quot;other&quot; result is needed just set the desired rc. Th=
-ose multiple &quot;break&quot;s make the code hard to read.
-<br>
-<br>
-<br></blockquote><div><br></div><div>Agreed that the code could be easier t=
-o read, but (1) it&#39;s working now, and (2) the suggested fix is inline w=
-ith the current code style and format.</div><div><br></div><div>So I&#39;m =
-inclined to accept the patch. But I would also strongly consider a rewrite =
-that makes it more readable, if you submitted such a patch.<br></div></div>
+<br></blockquote><div><br></div><div>This looks fine to me. Any chance you =
+could submit a pull request on GitHub? It saves me having to cut-and-paste,=
+ since I sadly do not have a good workflow setup for patches from the maili=
+ng list. <br></div></div>
 
 <p></p>
 
@@ -254,11 +217,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/3c3b346e-1d17-4e7a-ad38-5ef355146a45o%40googlegroups.=
+om/d/msgid/open-iscsi/a167b02a-53af-48ce-907a-5e43c67dd086o%40googlegroups.=
 com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/3c3b346e-1d17-4e7a-ad38-5ef355146a45o%40googlegroups.com</a>.=
+id/open-iscsi/a167b02a-53af-48ce-907a-5e43c67dd086o%40googlegroups.com</a>.=
 <br />
 
-------=_Part_710_1278406814.1591415362318--
+------=_Part_714_864382083.1591415459709--
 
-------=_Part_709_2146017251.1591415362318--
+------=_Part_713_82130627.1591415459709--
