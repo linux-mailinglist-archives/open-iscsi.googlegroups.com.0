@@ -1,149 +1,77 @@
-Return-Path: <open-iscsi+bncBCEOFWXG44MRBONF5T3AKGQEX2V7NAQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBQ5E5T3AKGQEFBPMVSI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x83f.google.com (mail-qt1-x83f.google.com [IPv6:2607:f8b0:4864:20::83f])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D6311F0480
-	for <lists+open-iscsi@lfdr.de>; Sat,  6 Jun 2020 05:51:22 +0200 (CEST)
-Received: by mail-qt1-x83f.google.com with SMTP id p9sf10400602qtn.5
-        for <lists+open-iscsi@lfdr.de>; Fri, 05 Jun 2020 20:51:22 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1591415481; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=V0FzWkHUh1BRvexUvlW9S3ObnIYbrU92RWjjf2j5acvGbOzMOvgbeJ8GJjgPuyOgn3
-         DBZ0p5WtTHVB6yq4lpi7fZ4pXBA7ozEdadozA8M5hrugX67NBVhZPJ159nm3kgKP1wrl
-         lGoZ+XagjOESn3EESNQOOpPm+gF3WJAqQ1FYBENMLbbdgq8XYOJLYNuu4vuyzivoikiZ
-         d7G22OLf9hK6fGl4D9/OsdlqSw1Q0P8yJ9jA/bny9BY6dpjhU0e8qbaTYGSnfTVV77k1
-         pXCL7fdALAdQb+O+nNqNUO3RwJTyK0n2L++Rhrrlk/eEao8BXzUrte3ONSmXcg3+PIRz
-         dUUg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:dkim-filter
-         :dmarc-filter:dkim-signature;
-        bh=KphVnMk+K1RMco3TF9GuP9DGnB87Ou0q9T8klaYWTEQ=;
-        b=cxjGd+jaQjUfVlE1YtJeSWYs/yNsJfzipdwjUKRM7/mMiK3MS1sUkV2Ku7RFp0meDT
-         4PPX63RB8Xqv485G+ZvB0Enw5MGr86AIqv3aaDxrAZQJ5ZWvO+1PYU35HUMT7OF8Ub76
-         prJhHN/0ZZwutq+wn/L5G1yiKgMzKir4CXkSRMyWB7ZA3Ssz1K2rG3e3CAFUrvS9Ul/U
-         hS3E/voTdKbyXMTA4Rk3YZ3VL3CE5t/khJ7FBVmhz6rTsRUyTEmbKey0tCQvlVENqmXK
-         IHkrL07eKWUiLzLxhkLAQXYj9LODL5jV+K4ShPyJIEo5Bh81r8yJOHgsB6wBRyvGmS8Y
-         vFeA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@umn.edu header.s=google header.b=gx4Jw6yA;
-       spf=pass (google.com: domain of wu000273@umn.edu designates 134.84.196.207 as permitted sender) smtp.mailfrom=wu000273@umn.edu;
-       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=umn.edu
+Received: from mail-qt1-x840.google.com (mail-qt1-x840.google.com [IPv6:2607:f8b0:4864:20::840])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF4481F047A
+	for <lists+open-iscsi@lfdr.de>; Sat,  6 Jun 2020 05:49:24 +0200 (CEST)
+Received: by mail-qt1-x840.google.com with SMTP id u26sf10335831qtj.21
+        for <lists+open-iscsi@lfdr.de>; Fri, 05 Jun 2020 20:49:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=dmarc-filter:dkim-filter:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:cc:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
+        h=sender:date:from:to:message-id:in-reply-to:references:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=KphVnMk+K1RMco3TF9GuP9DGnB87Ou0q9T8klaYWTEQ=;
-        b=WqONQxHhc/Ff6RGApvdf8QO9mKzof3pglyMJG98N7wUsXQGDzkDVK7yvgJ1moz+uJX
-         5wwu8kbhrCyfDqjA1dnn0ZPgBbKa0hm4bvi/qkRLnyKTiHBu3IKVhWmOeDKB7tgKfuHw
-         nFDoTcWTS1wNYpPLykRGnWVeyE5fLjebckdLtFldRIBLZVlZUtMdUFuZUrG4cnMTj3+W
-         owEVegSylJpqcitMF5Dfb71fZSIvUguggcSxe5pE45q6uNvqhYjobXpzVRf5wjXUCaYk
-         XUIdhxchpvMpzw9j9ztR2KLMTSMkpNLJdHN5nXPisAJMQjXYCVx4RMr/QkrCP8rOKXlZ
-         dY2A==
+        bh=Ky2S68uGQJuc1mx0bygfGHV4NqJT0EP4ur2cJjmz0vU=;
+        b=V+ussOpne5Xm6z1a+WW4DKINirq45EErpM/1xzEcAf9sb4aBnwpTZjFhFmtMvj3Pzc
+         3WMioE+HIIAp9KX5f2brpuBAeNe9IOu9OschFJFgcAFpMQqeuwMijO72fB+Vq2M6xNdh
+         J6rd3aBvcDRRVb+ywkwVUe2decqc9ws0Ar8jFLTVMMvqiC4/1epYOE88b6vNZV0PQeUH
+         Yii5L80o+DeHA8SB6ZFq5CPnVno27JeFhFAVJHMtyBFcZdL7Mm4YlPrGGlBxaDJ5wgrQ
+         8HLWkm+koibFyNmeI1lzKTEe0748kBx3B472FH+cef+fo9tiJ+GDtkMEkc0FFVjmjYT2
+         jKpw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=Ky2S68uGQJuc1mx0bygfGHV4NqJT0EP4ur2cJjmz0vU=;
+        b=PG1081abdaq/thKFO5KE8eftlG2hbq3R6M0RDvBT2jODUJxVcAApooP11vgtvEtEH4
+         eEcODqwyqRq3Zdh030KzvA5RVXH4Ht3rKZ835LcaBqJ8g/fYfR4rzi6j0W5iW4KTvHwd
+         EFtxQuBgn2fZhqgXoSDmYrf15mJKcHexrFDv1LrkPO03Zoxu6wmGqqyn24eV9y/h/wjv
+         FdowMrpwjzoc+2gl5T8Ez8C/Dxi826P2iqFyM6fFfc1XdcrJKOWu1cJSZEzl+js2kaIt
+         Ae2w3jcZ9CwlL/2AgNsk/aYxj1LCRZeQt1hWWMvuBFM7ZRrwVpLI+NqFpJfVPunndJ84
+         f7+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:dmarc-filter:dkim-filter:mime-version:references
-         :in-reply-to:from:date:message-id:subject:to:cc:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=KphVnMk+K1RMco3TF9GuP9DGnB87Ou0q9T8klaYWTEQ=;
-        b=cUuaQldALZsWTFOwcI/4H+RDOZblpwRrUZrqqCUVb99HXkUMg+Va0PqVaMOgAOKgSt
-         fvFD0s7gJlL9X9fbYZcPSjFGQDiWvdAe5QIEkwzrTUQOGHxrAhOiHgWUfVs2ZWLHUM28
-         6rVQEPfZdD6/8lPTw60CdPtrgAAdkn/39zCJVKQYEhVOFnpELkMfu6DdEJpcVrd3n7vR
-         +N2Bq0mh+GIM5AwWOCKICf73W9DhGGHCrwWmg5rAmamjTOPJpj8oEEt2pqnpFyczEmoh
-         SJWenBm4PbsAwLjF63ndZOJ8y4Gsb3p9zYhoZTur/Gb6O+0ekep20rv5DKM8yn0s8v6O
-         38wA==
-X-Gm-Message-State: AOAM532x/IZ6TlKnTVevbl84goGb3+hLDsjHFYX5DyG2jUk0JmnuMc+2
-	pfmE/jKLD7rN9+91qHnvc+U=
-X-Google-Smtp-Source: ABdhPJxur+f6qtl3n01m1QBVhcZqOK+H7ONUQgY2YoCcGfMSPydBN+M+AyMZqUs59DWaR2u32UNawA==
-X-Received: by 2002:ad4:47aa:: with SMTP id a10mr13221822qvz.61.1591415481753;
-        Fri, 05 Jun 2020 20:51:21 -0700 (PDT)
+        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
+         :references:subject:mime-version:x-original-sender:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=Ky2S68uGQJuc1mx0bygfGHV4NqJT0EP4ur2cJjmz0vU=;
+        b=bgbaTlg7e3wqVx7npGGtX1nq9QtJjyaKsjK1gNLpTHomueqgURvYYk/CNFeDpxeSKW
+         60Q8S1lk/pnLGTtepDZxAzMsD3da6ve4MwajHwWZvUaHQmSC5HktH4jpajwFJCQvGkTt
+         ajwNf+nIeLEtsljXln7OXfPh/vqS0YrGHBnLUFrU/itWb5Bo/SUwkD5yD2xI3YogzhIH
+         XwKgY68kqNS0dI7DyTIlpu3abJLyTn3TZmQ02eHf0XIyNMs6nO7OL5Hv2C8iUH1CcD1I
+         /LIkXM8pBUfHR6TfwksCR9LFzyh0Zc0Pfq0oBKlSjeIKTxiMbNMjiok6jygm6UNWIUPS
+         C7TA==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: AOAM532IPiOCDGK+KZDmRvwJ487diHcNEW7e8FKL6TnFzwkokovGw2i9
+	Wnw2gX+YUqLcGNIel2X/Fr8=
+X-Google-Smtp-Source: ABdhPJx/2qI2ost8mtXW2ft4+XTX/9RiNxjXye1D7b0xNexAlA3Gld+nd17qjUWPoSU7w5OVCnYhZQ==
+X-Received: by 2002:ac8:24e8:: with SMTP id t37mr13519283qtt.319.1591415363715;
+        Fri, 05 Jun 2020 20:49:23 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:a3cc:: with SMTP id m195ls5377791qke.11.gmail; Fri, 05
- Jun 2020 20:51:21 -0700 (PDT)
-X-Received: by 2002:a37:49d1:: with SMTP id w200mr12382593qka.153.1591415481566;
-        Fri, 05 Jun 2020 20:51:21 -0700 (PDT)
-Received: by 2002:a05:620a:95e:b029:f1:b630:a9ab with SMTP id w30-20020a05620a095eb02900f1b630a9abmsqkw;
-        Tue, 2 Jun 2020 19:33:17 -0700 (PDT)
-X-Received: by 2002:a05:6902:52b:: with SMTP id y11mr45571938ybs.465.1591151597475;
-        Tue, 02 Jun 2020 19:33:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1591151597; cv=none;
-        d=google.com; s=arc-20160816;
-        b=fT1e3I/SQgyfMyiGnByRiKZuIzv3Vw0LF5SKw4/wpWbFFRe9TMakd+hBDfqU9xnU0M
-         rfgVIJFNuxHgYzKL6Kj02Ss51w1UbPnRM1SG68W+pc/6PwmDxhP/RDstukMv448fcmk6
-         5UFPbbydJKmFU7rCLqvT1/m2+7fyosYHlpPyBkcRCkFZUa9R4xVD+NLv040Xqz4K2UPj
-         pqgEV4s57NrWkrBjicdONsepnNe9hiBnbp/uzwwd2o6xlLIjLy51pjY+8YrlfNoleoJ5
-         iBQihoneSnKOhjP0MuIP9SjpWTc4Tm7VtbbvbcFP6v9IDfzoY4H0YpTjA03vEmJ1nfja
-         LRHQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature:dkim-filter:dmarc-filter;
-        bh=DTZ+Srlkznsqo5FSH26mVYU3ACJjFTEc1iT2qbh8qy4=;
-        b=jfzaV0LftsGv/3buEOMNhcdyC6qWz8ufacc5r1BThIhYep/XiVcR/fFsdUwY61mT/y
-         GYvXlq8sFeJCjMj26Zyq7T6Mgw5VnnHXs0ANpE7XPAFkUDvRr0yAY1S61c7Qs7JdbB7w
-         3BgDx28PG5Q7y8XSqYclCn6R96B8hy7++pzZab1Xfcxo8EA9AnPAj+8HP50prcEXOLKA
-         Y58oJUTznQry171u63OAVUzYgJNDgHBdEQgNYgYU/18dFnU3nCYDxa8p8W81odA0QOgI
-         78r4TmhezDJQWQKkUV8/FX4U+yBG81CodF2PmYiR0Qzlw4KoLsNDOS6vVHzFdD9Hn+Id
-         HBbQ==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@umn.edu header.s=google header.b=gx4Jw6yA;
-       spf=pass (google.com: domain of wu000273@umn.edu designates 134.84.196.207 as permitted sender) smtp.mailfrom=wu000273@umn.edu;
-       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=umn.edu
-Received: from mta-p7.oit.umn.edu (mta-p7.oit.umn.edu. [134.84.196.207])
-        by gmr-mx.google.com with ESMTPS id r143si18910ybc.5.2020.06.02.19.33.17
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 02 Jun 2020 19:33:17 -0700 (PDT)
-Received-SPF: pass (google.com: domain of wu000273@umn.edu designates 134.84.196.207 as permitted sender) client-ip=134.84.196.207;
-Received: from localhost (unknown [127.0.0.1])
-	by mta-p7.oit.umn.edu (Postfix) with ESMTP id 49cCd86ylwz9vC7n
-	for <open-iscsi@googlegroups.com>; Wed,  3 Jun 2020 02:33:16 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at umn.edu
-Received: from mta-p7.oit.umn.edu ([127.0.0.1])
-	by localhost (mta-p7.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id eqnxe0A7dFt9 for <open-iscsi@googlegroups.com>;
-	Tue,  2 Jun 2020 21:33:16 -0500 (CDT)
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mta-p7.oit.umn.edu (Postfix) with ESMTPS id 49cCd83rWxz9vBt3
-	for <open-iscsi@googlegroups.com>; Tue,  2 Jun 2020 21:33:16 -0500 (CDT)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p7.oit.umn.edu 49cCd83rWxz9vBt3
-DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p7.oit.umn.edu 49cCd83rWxz9vBt3
-Received: by mail-ed1-f70.google.com with SMTP id y25so344050edv.10
-        for <open-iscsi@googlegroups.com>; Tue, 02 Jun 2020 19:33:16 -0700 (PDT)
-X-Received: by 2002:a50:ac84:: with SMTP id x4mr30250229edc.124.1591151595398;
-        Tue, 02 Jun 2020 19:33:15 -0700 (PDT)
-X-Received: by 2002:a50:ac84:: with SMTP id x4mr30250214edc.124.1591151595074;
- Tue, 02 Jun 2020 19:33:15 -0700 (PDT)
+Received: by 2002:a37:9e92:: with SMTP id h140ls5398793qke.5.gmail; Fri, 05
+ Jun 2020 20:49:23 -0700 (PDT)
+X-Received: by 2002:a37:784:: with SMTP id 126mr12509119qkh.200.1591415363154;
+        Fri, 05 Jun 2020 20:49:23 -0700 (PDT)
+Date: Fri, 5 Jun 2020 20:49:22 -0700 (PDT)
+From: The Lee-Man <leeman.duncan@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <3c3b346e-1d17-4e7a-ad38-5ef355146a45o@googlegroups.com>
+In-Reply-To: <5ED9087A020000A100039500@gwsmtp.uni-regensburg.de>
+References: <7784_1591272646_5ED8E4C6_7784_490_1_1591273415-689835-1-git-send-email-wubo40@huawei.com>
+ <5ED9087A020000A100039500@gwsmtp.uni-regensburg.de>
+Subject: Re: [EXT] [PATCH] iscsi: Add break to while loop
 MIME-Version: 1.0
-References: <20200528201353.14849-1-wu000273@umn.edu> <159114947917.26776.6215710664403797046.b4-ty@oracle.com>
-In-Reply-To: <159114947917.26776.6215710664403797046.b4-ty@oracle.com>
-From: "'Qiushi Wu' via open-iscsi" <open-iscsi@googlegroups.com>
-Date: Tue, 2 Jun 2020 21:33:04 -0500
-Message-ID: <CAMV6ehHyV9PNP4+49u2uOTtTCE17vYSA_cX2+RteUFyG1OB15Q@mail.gmail.com>
-Subject: Re: [PATCH] scsi: Fix reference count leak in iscsi_boot_create_kobj.
-To: "Martin K. Petersen" <martin.petersen@oracle.com>
-Cc: Chris Leech <cleech@redhat.com>, "James E.J. Bottomley" <jejb@linux.ibm.com>, Lee Duncan <lduncan@suse.com>, 
-	kjlu@umn.edu, linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, 
-	open-iscsi@googlegroups.com
-Content-Type: multipart/alternative; boundary="0000000000009bd03f05a724d907"
-X-Original-Sender: wu000273@umn.edu
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@umn.edu header.s=google header.b=gx4Jw6yA;       spf=pass
- (google.com: domain of wu000273@umn.edu designates 134.84.196.207 as
- permitted sender) smtp.mailfrom=wu000273@umn.edu;       dmarc=pass
- (p=QUARANTINE sp=NONE dis=NONE) header.from=umn.edu
-X-Original-From: Qiushi Wu <wu000273@umn.edu>
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_709_2146017251.1591415362318"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -152,72 +80,170 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---0000000000009bd03f05a724d907
+------=_Part_709_2146017251.1591415362318
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_710_1278406814.1591415362318"
+
+------=_Part_710_1278406814.1591415362318
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thanks=EF=BC=81
+On Thursday, June 4, 2020 at 7:43:13 AM UTC-7, Uli wrote:
+>
+> >>> Wu Bo <wubo40@huawei.com> schrieb am 04.06.2020 um 14:23 in Nachricht 
+> <7784_1591272646_5ED8E4C6_7784_490_1_1591273415-689835-1-git-send-email-wubo40@h 
+>
+> awei.com>: 
+> > From: liubo <liubo254@huawei.com> 
+> > 
+> > Fix the potential risk of rc value being washed out by jumping out of 
+> the 
+> > loop 
+> > 
+> > Signed-off-by: liubo <liubo254@huawei.com> 
+> > Reported-by: Zhiqiang Liu <liuzhiqiang26@huawei.com> 
+> > --- 
+> >  utils/fwparam_ibft/fwparam_sysfs.c | 5 ++++- 
+> >  1 file changed, 4 insertions(+), 1 deletion(-) 
+> > 
+> > diff --git a/utils/fwparam_ibft/fwparam_sysfs.c 
+> > b/utils/fwparam_ibft/fwparam_sysfs.c 
+> > index a0cd1c7..87fd6d4 100644 
+> > --- a/utils/fwparam_ibft/fwparam_sysfs.c 
+> > +++ b/utils/fwparam_ibft/fwparam_sysfs.c 
+> > @@ -115,8 +115,11 @@ static int get_iface_from_device(char *id, struct 
+> > boot_context *context) 
+> >                                  break; 
+> >                          } 
+> >   
+> > -                        if (sscanf(dent->d_name, "net:%s", 
+> context->iface) != 1) 
+> > +                        if (sscanf(dent->d_name, "net:%s", 
+> context->iface) != 1) { 
+> >                                  rc = EINVAL; 
+> > +                                break; 
+> > +                        } 
+> > + 
+> >                          rc = 0; 
+> >                          break; 
+> >                  } else { 
+> > -- 
+> > 2.21.0.windows.1 
+>
+> It seems to me the whole code could be more readable if the rc were preset 
+> either to "success" (0) or "error" (something else), and if the "other" 
+> result is needed just set the desired rc. Those multiple "break"s make the 
+> code hard to read. 
+>
+>
+>
+Agreed that the code could be easier to read, but (1) it's working now, and 
+(2) the suggested fix is inline with the current code style and format.
 
-On Tue, Jun 2, 2020 at 9:32 PM Martin K. Petersen <
-martin.petersen@oracle.com> wrote:
+So I'm inclined to accept the patch. But I would also strongly consider a 
+rewrite that makes it more readable, if you submitted such a patch.
 
-> On Thu, 28 May 2020 15:13:53 -0500, wu000273@umn.edu wrote:
->
-> > kobject_init_and_add() should be handled when it return an error,
-> > because kobject_init_and_add() takes reference even when it fails.
-> > If this function returns an error, kobject_put() must be called to
-> > properly clean up the memory associated with the object. Previous
-> > commit "b8eb718348b8" fixed a similar problem. Thus replace calling
-> > kfree() by calling kobject_put().
->
-> Applied to 5.8/scsi-queue, thanks!
->
-> [1/1] scsi: iscsi: Fix reference count leak in iscsi_boot_create_kobj
->       https://git.kernel.org/mkp/scsi/c/0267ffce562c
->
-> --
-> Martin K. Petersen      Oracle Linux Engineering
->
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/3c3b346e-1d17-4e7a-ad38-5ef355146a45o%40googlegroups.com.
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/CAMV6ehHyV9PNP4%2B49u2uOTtTCE17vYSA_cX2%2BRteUFyG1OB15Q%40mail.g=
-mail.com.
-
---0000000000009bd03f05a724d907
+------=_Part_710_1278406814.1591415362318
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><div dir=3D"auto">Thanks=EF=BC=81</div></div><div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 2, 2020 at 9:3=
-2 PM Martin K. Petersen &lt;<a href=3D"mailto:martin.petersen@oracle.com">m=
-artin.petersen@oracle.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex">On Thu, 28 May 2020 15:13:53 -0500, <a href=3D"mailto:wu000273@umn.ed=
-u" target=3D"_blank">wu000273@umn.edu</a> wrote:<br>
+<div dir=3D"ltr">On Thursday, June 4, 2020 at 7:43:13 AM UTC-7, Uli wrote:<=
+blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-left: 0.8ex;bord=
+er-left: 1px #ccc solid;padding-left: 1ex;">&gt;&gt;&gt; Wu Bo &lt;<a href=
+=3D"mailto:wubo40@huawei.com" target=3D"_blank" rel=3D"nofollow" onmousedow=
+n=3D"this.href=3D&#39;mailto:wubo40@huawei.com&#39;;return true;" onclick=
+=3D"this.href=3D&#39;mailto:wubo40@huawei.com&#39;;return true;">wubo40@hua=
+wei.com</a>&gt; schrieb am 04.06.2020 um 14:23 in Nachricht
+<br>&lt;7784_1591272646_5ED8E4C6_<wbr>7784_490_1_1591273415-689835-<wbr>1-g=
+it-send-email-wubo40@h
+<br><a href=3D"http://awei.com" target=3D"_blank" rel=3D"nofollow" onmoused=
+own=3D"this.href=3D&#39;http://www.google.com/url?q\x3dhttp%3A%2F%2Fawei.co=
+m\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEL5og9j69ZQZX4FH82R3jSSeNp3w&#39;=
+;return true;" onclick=3D"this.href=3D&#39;http://www.google.com/url?q\x3dh=
+ttp%3A%2F%2Fawei.com\x26sa\x3dD\x26sntz\x3d1\x26usg\x3dAFQjCNEL5og9j69ZQZX4=
+FH82R3jSSeNp3w&#39;;return true;">awei.com</a>&gt;:
+<br>&gt; From: liubo &lt;<a href=3D"mailto:liubo254@huawei.com" target=3D"_=
+blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:liubo254@hua=
+wei.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:liubo254@huaw=
+ei.com&#39;;return true;">liubo254@huawei.com</a>&gt;
+<br>&gt;=20
+<br>&gt; Fix the potential risk of rc value being washed out by jumping out=
+ of the=20
+<br>&gt; loop
+<br>&gt;=20
+<br>&gt; Signed-off-by: liubo &lt;<a href=3D"mailto:liubo254@huawei.com" ta=
+rget=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;mailto:liu=
+bo254@huawei.com&#39;;return true;" onclick=3D"this.href=3D&#39;mailto:liub=
+o254@huawei.com&#39;;return true;">liubo254@huawei.com</a>&gt;
+<br>&gt; Reported-by: Zhiqiang Liu &lt;<a href=3D"mailto:liuzhiqiang26@huaw=
+ei.com" target=3D"_blank" rel=3D"nofollow" onmousedown=3D"this.href=3D&#39;=
+mailto:liuzhiqiang26@huawei.com&#39;;return true;" onclick=3D"this.href=3D&=
+#39;mailto:liuzhiqiang26@huawei.com&#39;;return true;">liuzhiqiang26@huawei=
+.com</a>&gt;
+<br>&gt; ---
+<br>&gt; =C2=A0utils/fwparam_ibft/fwparam_<wbr>sysfs.c | 5 ++++-
+<br>&gt; =C2=A01 file changed, 4 insertions(+), 1 deletion(-)
+<br>&gt;=20
+<br>&gt; diff --git a/utils/fwparam_ibft/fwparam_<wbr>sysfs.c=20
+<br>&gt; b/utils/fwparam_ibft/fwparam_<wbr>sysfs.c
+<br>&gt; index a0cd1c7..87fd6d4 100644
+<br>&gt; --- a/utils/fwparam_ibft/fwparam_<wbr>sysfs.c
+<br>&gt; +++ b/utils/fwparam_ibft/fwparam_<wbr>sysfs.c
+<br>&gt; @@ -115,8 +115,11 @@ static int get_iface_from_device(char *id, st=
+ruct=20
+<br>&gt; boot_context *context)
+<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0break;
+<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0}
+<br>&gt; =C2=A0
+<br>&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0if (sscanf(dent-&gt;d_name, &quot;net:%s&quot;, context-&gt;iface) !=
+=3D 1)
+<br>&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0if (sscanf(dent-&gt;d_name, &quot;net:%s&quot;, context-&gt;iface) !=
+=3D 1) {
+<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0rc =3D EINVAL=
+;
+<br>&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0break;
+<br>&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0}
+<br>&gt; +
+<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0rc =3D 0;
+<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0<wbr>break;
+<br>&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
+<br>&gt; --=20
+<br>&gt; 2.21.0.windows.1
 <br>
-&gt; kobject_init_and_add() should be handled when it return an error,<br>
-&gt; because kobject_init_and_add() takes reference even when it fails.<br>
-&gt; If this function returns an error, kobject_put() must be called to<br>
-&gt; properly clean up the memory associated with the object. Previous<br>
-&gt; commit &quot;b8eb718348b8&quot; fixed a similar problem. Thus replace =
-calling<br>
-&gt; kfree() by calling kobject_put().<br>
+<br>It seems to me the whole code could be more readable if the rc were pre=
+set either to &quot;success&quot; (0) or &quot;error&quot; (something else)=
+, and if the &quot;other&quot; result is needed just set the desired rc. Th=
+ose multiple &quot;break&quot;s make the code hard to read.
 <br>
-Applied to 5.8/scsi-queue, thanks!<br>
 <br>
-[1/1] scsi: iscsi: Fix reference count leak in iscsi_boot_create_kobj<br>
-=C2=A0 =C2=A0 =C2=A0 <a href=3D"https://git.kernel.org/mkp/scsi/c/0267ffce5=
-62c" rel=3D"noreferrer" target=3D"_blank">https://git.kernel.org/mkp/scsi/c=
-/0267ffce562c</a><br>
-<br>
--- <br>
-Martin K. Petersen=C2=A0 =C2=A0 =C2=A0 Oracle Linux Engineering<br>
-</blockquote></div></div>
+<br></blockquote><div><br></div><div>Agreed that the code could be easier t=
+o read, but (1) it&#39;s working now, and (2) the suggested fix is inline w=
+ith the current code style and format.</div><div><br></div><div>So I&#39;m =
+inclined to accept the patch. But I would also strongly consider a rewrite =
+that makes it more readable, if you submitted such a patch.<br></div></div>
 
 <p></p>
 
@@ -228,9 +254,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAMV6ehHyV9PNP4%2B49u2uOTtTCE17vYSA_cX2%2BRteUFyG1OB1=
-5Q%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.=
-google.com/d/msgid/open-iscsi/CAMV6ehHyV9PNP4%2B49u2uOTtTCE17vYSA_cX2%2BRte=
-UFyG1OB15Q%40mail.gmail.com</a>.<br />
+om/d/msgid/open-iscsi/3c3b346e-1d17-4e7a-ad38-5ef355146a45o%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/3c3b346e-1d17-4e7a-ad38-5ef355146a45o%40googlegroups.com</a>.=
+<br />
 
---0000000000009bd03f05a724d907--
+------=_Part_710_1278406814.1591415362318--
+
+------=_Part_709_2146017251.1591415362318--
