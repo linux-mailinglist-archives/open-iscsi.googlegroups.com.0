@@ -1,127 +1,160 @@
-Return-Path: <open-iscsi+bncBAABBDUGXH3QKGQECDVDHZA@googlegroups.com>
+Return-Path: <open-iscsi+bncBCVPTQVVPQIKXQWA64CRUBHN6A56C@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x83b.google.com (mail-qt1-x83b.google.com [IPv6:2607:f8b0:4864:20::83b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65260202588
-	for <lists+open-iscsi@lfdr.de>; Sat, 20 Jun 2020 19:10:39 +0200 (CEST)
-Received: by mail-qt1-x83b.google.com with SMTP id s30sf6644712qts.18
-        for <lists+open-iscsi@lfdr.de>; Sat, 20 Jun 2020 10:10:39 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1592673038; cv=pass;
+Received: from mail-vs1-xe39.google.com (mail-vs1-xe39.google.com [IPv6:2607:f8b0:4864:20::e39])
+	by mail.lfdr.de (Postfix) with ESMTPS id D600D202ED2
+	for <lists+open-iscsi@lfdr.de>; Mon, 22 Jun 2020 05:10:36 +0200 (CEST)
+Received: by mail-vs1-xe39.google.com with SMTP id d6sf2655644vso.3
+        for <lists+open-iscsi@lfdr.de>; Sun, 21 Jun 2020 20:10:36 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1592795435; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Utmi+gLfuVabMw6SlqrbaJaJckJ2H/c28TUEKngVt2BIRqUls2z2DiZ3OMCmpPfzs0
-         zuUZZnagdeTOHoi5rvniSq3xKHgVee3pBFaExYp8TJyzr5f4YlHjrognUhlJa03Y+FX7
-         DMvQIMlN8p0HoZ/ER4qiXHzJfR8IE+kgYy2/xL0hRn+LoxfnRRal7uFL1Q0EWQnGDIrQ
-         AoRLaSXHMAeHfl0ChqZ/PVHn4Nbv84YWs9k2jTGpuyg0DkXpMGn1orUTfbMxNQFIdje4
-         wu1WjC9LeishtL7oHf7P2pAqMHckmtJJFoEwKuel3mfpY0qmpTa3Vru1twjM81OrKneL
-         hx7Q==
+        b=wlfK5aalQmy8/FUKAFz0qeCOHWfVcZhfuNx8VXWqSq2czFHNQUmZTqMNsyB7dEhM0v
+         VsYsj4k6vKOxfCtxGXEuqg0YIfLSFkP4IIII2wOes9oK9cPgWoGPeSq8HWAy2lXqknhH
+         yYEcNB5g7/atyAClByZ19w2y9nkXLlJSDU6SgR9Ltr06qJ1iR8CuJH5TA41+1yCVnoHH
+         5X1liOnQA8p38rAH0Vucl6CwAHDG62EHt3H6qH9PjKVIZowEiz0Wad21fL8SZCnVowJd
+         E+gtO9X25D/i+GpunJmgwXW8IMNsL1ssckyGzZhVSl01Lxqq3Mf7jSIXy2simhcHhKwD
+         Ishg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:sender:dkim-signature;
-        bh=lHvrxxl0rtA9jMjJDyaTG8GepyJCHYqnLfQLpYOwrsQ=;
-        b=gBr9iTg1/itOBT1MRqRiOfj+3a1zCf6OwcA9GmjDUoTR3Z2G1uPIbrslhz36bgGHw5
-         Nw7ibbZlOTUVv10L8agiwgo84nnhV0kCsuaJke1kAAlJmhXBQFLgcYwXZTSTRqM8By7k
-         l/o+1GbiR1jR4JpLp6VUQzJAA4Z28+Yriq3RzzlJlUVHswQ52xCeeyvw/0W9TlPRTkMr
-         C08L7e6ABSx/IkyswUVxIQB9cE8aCOaWQKrZ3QjZKefcAmrewTr3mdtcPPhRS1jSrvW/
-         s0WWS4BVXuCIpFjPEzy8xWLWUrRgjTk/Pg2cA86S7Bm0KYzvR6mmZhKOPNJtgfOKBCfu
-         jLPw==
+         :list-id:mailing-list:precedence:reply-to:content-language
+         :in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:sender:dkim-signature;
+        bh=LRlMkQzpdwF2OdRoEnbz2/RHy/ZR2A2TqFX2G7YdHEM=;
+        b=Y+5Ga8gnHNVTKmstFZW2cJIeVjlua8qjyT83uyiuOgRLvxVeZiXqIl9/xB0rihVW0Z
+         MzgthKyELp79K7lVfXNOV9VnzxVzDFIrmN6bgInGTcScdu7Vu90nUDfTUEtLS3myfdcV
+         rZ0La3bjhX2wU4RBn7H6L0E1lq9p7By2L0lrHGp9lkh1AdotrTcOfTgU5ZtvLvRdidYg
+         S/KKQLlhdJsJMk5Ne5x1ZelBDY6pDfPy3k32uZ3GEHkNpwPrKyFnID5mLD8k87qeWKnm
+         /9Vx/At8RMGPxCVqm6NrKkeQJ5lV3M5IHjWh0glGauy1djzlpk07D7GOUyrDkqIbwpRz
+         s2dA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of jingxiangfeng@huawei.com designates 45.249.212.32 as permitted sender) smtp.mailfrom=jingxiangfeng@huawei.com
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=blZfhzi+;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=lHvrxxl0rtA9jMjJDyaTG8GepyJCHYqnLfQLpYOwrsQ=;
-        b=TLx09rMbbrKxfuWhHTgoKhrIVSS6STNwa4p9zmrlslUgrp8Ft5dRvEhYeupg/FnASK
-         47A2wi8otYL9urrJietl9JAVYhE+QMeIPsg8hDgDUGTY0cltMGVKhNMC4ff4HfK8zscw
-         gZDhsSLGJqW97w92Tql/1WnCxokPRLlfAdLp6YnEFv8NJRB1FkXupsVvEhaS0F6Mfjvb
-         CfDJyTgFfrV4LSKR1VIftfpeB5iVcIngd7lNGoKf3L3rM/WIXwovX7z6hqjevkii0wUu
-         hcRXfKL9KrmVncInd24FaT76ptWSvJRJ7N11Fu/aPBWsSl1aykpL1wFmA5VA9DluVJuT
-         NHqA==
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=LRlMkQzpdwF2OdRoEnbz2/RHy/ZR2A2TqFX2G7YdHEM=;
+        b=SiimiWYtSSbV+jpBwCyRgxjQFfHmyeg+AsVOB9/tvmlq0TT/NCUbZCBr5Q0YqWOJCX
+         CQU2kDb/ab5vttebzbZjoTw8wGNBHbTWTUOBCoUCePBbh+z/zQmCXI94puOJrsntRXrw
+         xpFtp3aAJLgZ7q0Rid/Jtr/ZaLEqGrEA1I4l0QUX3Mxfg29NFQe7vwjoL+xB2jNIptyg
+         lJmvVOs5NoSJwcKIkIS3e27g5lFWlwhTcsaC0eqU4Ylqyu8pI6sUsQMchpnfFJgbyT0X
+         T1hOs71nkXH00g2OGwiFLiGOubnvHx8tEHBSp9Ktf/vhJkDYKrsBYUGr8Adfele4nDWo
+         Gwow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=lHvrxxl0rtA9jMjJDyaTG8GepyJCHYqnLfQLpYOwrsQ=;
-        b=r6sMEMJmgQP0bytSUAPijWO/YoYG91ZeYOUM9m+T9TuNO9R6lgEQoocEVVxsSFEv5d
-         c1xBQmtFsw0140Hed2u5HN5FLlorbaeRUbnQ+2kKu6tuVNSK7XSHsix+dzl/zga3xL+l
-         Q99ojuWqI1iElhOW2lpkLgcqRUZoXdfoYuG1IO6HPdG7sdGCryDHscRT5vNBbzk1Opv0
-         M/4keKKx8/FhZGpDnsfqqxLvhggVhWNpfFUI6J9SoxOeWNqjwlqgf3gj+WBcJnX/7p2G
-         aYsxhRbcIFZozAmBwFWwePQZuyqsnDwvh6/VH+1dCNSfIjetcqqcHH0S1Fff2Pqq6+i0
-         dtAg==
+        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=LRlMkQzpdwF2OdRoEnbz2/RHy/ZR2A2TqFX2G7YdHEM=;
+        b=C5coz04Efdk1blXdZPqBq5dOuFswOAT7m7VCjgOHZBlyWMnii9uELiSGD4hRZI0ONV
+         TVUwHCXwxu4sGD8dNcapLeHncOhn1HiinO+XS55Hi1AgWvALBXHZzkeTFkH+vJo0jaI5
+         2/D7PeYkaWpht2YqK1ZPMhE7O3p/VdAvqHMHJiGlQDm2pgPnhjdlkS9zRj+h2fSEWAyS
+         850doAM4JwwcgBrkwcwlWpWEp8rsQ3LmrLesAlQlVfQepeYk0gvnsUH4Fg6+0mnhS8Jw
+         QnTYHeMbfDGzJ3IBnVC38iBV5YbWe1YEyooPuRMmmQqtCIM7l14AQO9l6RTL5vAWjcIc
+         IVWA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM531n0FZ92E1UWNp01zRl1lxBjCC2NXssMoU19/GlLu2OeLmQpszC
-	KtbwhZpt+W/z9VL0SNHCfuo=
-X-Google-Smtp-Source: ABdhPJzrITwFa7j01FwKRVP3gqJGuN5EMOrBulJ/x4+t9I8UZbDjwAdF4yuxU0BJojK7IojLtm5Lkg==
-X-Received: by 2002:a37:b485:: with SMTP id d127mr2075958qkf.316.1592673038165;
-        Sat, 20 Jun 2020 10:10:38 -0700 (PDT)
+X-Gm-Message-State: AOAM531ZtN/tp03MjzSB/S37jluMGDTfEU3HLdEEFbaNQhFFn+jIL06E
+	DX5L6Vu2N+RnWLnjTB4qAFc=
+X-Google-Smtp-Source: ABdhPJw+yCRVEacP+tryZ8jpvZ8DT7N01zr1D+JZNz1HmE48Qdyxpd4wMtd+raw5b28fyExQuVlLfQ==
+X-Received: by 2002:a67:eb95:: with SMTP id e21mr14829059vso.193.1592795435535;
+        Sun, 21 Jun 2020 20:10:35 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:aed:21d0:: with SMTP id m16ls4825776qtc.11.gmail; Sat, 20
- Jun 2020 10:10:37 -0700 (PDT)
-X-Received: by 2002:aed:3fa5:: with SMTP id s34mr9052232qth.343.1592673037898;
-        Sat, 20 Jun 2020 10:10:37 -0700 (PDT)
-Received: by 2002:a05:620a:cd3:b029:f5:d6af:a2a6 with SMTP id b19-20020a05620a0cd3b02900f5d6afa2a6msqkj;
-        Mon, 15 Jun 2020 01:09:06 -0700 (PDT)
-X-Received: by 2002:aed:2d44:: with SMTP id h62mr15098129qtd.167.1592208546348;
-        Mon, 15 Jun 2020 01:09:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1592208546; cv=none;
+Received: by 2002:a67:6e47:: with SMTP id j68ls1746862vsc.1.gmail; Sun, 21 Jun
+ 2020 20:10:35 -0700 (PDT)
+X-Received: by 2002:a67:ee1b:: with SMTP id f27mr14416980vsp.34.1592795435184;
+        Sun, 21 Jun 2020 20:10:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1592795435; cv=none;
         d=google.com; s=arc-20160816;
-        b=lPj4MHnc/ogjuJhUfmRMEcNzslpoNa0Tf+95snVHnk4dqMapMpserPksyEKB82/0u/
-         j5x9E56N/XabZNIp1Tm3FvNaBHQWGKR+i+BYjayF++WfYdXvFguIYE/hJqOeE1BwkB/n
-         RZqnXney1gu/IYbgSXIy0qa4TVadt4yZqFXXkbKyao7/nZODZb6E1dDKvzVWohrcRtLL
-         kvFDGD/rd4RqXr7JhypHClYlaQJhKiGxYnwkU0YrgTjmoxS2yPBGkdIrHVwAE1yo0Tef
-         Y/ZPEfcwyFBZjdzADRC0LV7w4FreWw8/PVfO9IgEZkUGvV6RmuLcCLYImRRCONCkiHtq
-         u+XA==
+        b=DCss5lpL0OEKhUOH3NZpaIqDJeIkRqLL6f2hhuKEX9K6CiER0TfDVvjNaP2G80pUCt
+         JG5pq1kNdV1X/WSbV+MH3ye+ClrZWko/kgGzSJBR7t8ogo4oPt3YdGPUobMi4RTB5pDU
+         FLu1y3oXIZ5djb7/q1m44rpHY/CWuFRh/6w9CsuPvIAJYGc6uRxtyWQsn/Hc4zRJa77b
+         4sXmsDcI9KQt+e5h+jB0htvhWKacDkOUp/LPanEJayITcYdeyg8saCnRnGFXFzI9qovc
+         YE1BFHTyvpV+OJY4INXYAyrw/kizTAGLasayVWldrkiuD9kN3NX0p4Wgf0d99ITKnnqT
+         yG7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from;
-        bh=ELKPhSxacmtWooUHRjTQCUPfY85bfbS647WpCbFJgWQ=;
-        b=r38msOYrF4Q148H2xEK+pNzRB1WRdGjylrMdYec7cZD2ZK0DE7ocPJr5xLAJ4vdg3W
-         MOrnHHFNfrt/53Ra4wLwc3YB9r8DM8HLVcrloPqnrt4cb6F7dipP7N/SijrohOnb3Ye1
-         0PiE9kFcaFmPSSI98YVD/wHjZkOT1Gz0QIcjcy6Qa17j0xoKlaFAuaVTsIIidPkNyN9U
-         u7nzUKYG7yVMHk9clLaYq7I649sCcGttVPmd0Q5MqgI15G8qShBjwOMeE6ypq0fn7YK2
-         ulJ1a4Tupu+I81quH8RE1vndjq4i3r87/nwW7UXqZ+shnpZLBoSS228Lkh7Oq4k8KwIG
-         mFQQ==
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject
+         :dkim-signature;
+        bh=Z5AWohSIQN/10LPAph7pzNm6ZxTToaAIJFczhN/Pa+E=;
+        b=UDqvkNxhnWbWKlzVm7dtsq+T99v1SBNYowxQcOIZW2IqnFMg5ArW+PWLtz+BQ89t6+
+         WfEAQIi9TEEgXCSeEKt/eEbkc2ggOdMtF8rwYmYhgzZGhB5FRx403P9x1mfacDI7kZvU
+         SlppYJhGvTP/+lN5nVd8G4Jk6WeU7UJCjqeiXIFnZm/QRqFc01yJ7g1cpuc8JMlou2+i
+         ufvJZABJ4YXr80q3/8zpjHpR4KHSwN37c066JLg6EyUtvfUz2SXtpt+EtlGPwEgWaYYc
+         pBLz7WB3YPBcDCeR1o75DbA8OQROLj/hu0j2n7W82CKaNeYiv6/51feIY7iU6tWP+tqe
+         rSMw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of jingxiangfeng@huawei.com designates 45.249.212.32 as permitted sender) smtp.mailfrom=jingxiangfeng@huawei.com
-Received: from huawei.com (szxga06-in.huawei.com. [45.249.212.32])
-        by gmr-mx.google.com with ESMTPS id v16si733595qtb.3.2020.06.15.01.09.06
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=blZfhzi+;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from userp2130.oracle.com (userp2130.oracle.com. [156.151.31.86])
+        by gmr-mx.google.com with ESMTPS id v13si551376vsk.1.2020.06.21.20.10.34
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 15 Jun 2020 01:09:06 -0700 (PDT)
-Received-SPF: pass (google.com: domain of jingxiangfeng@huawei.com designates 45.249.212.32 as permitted sender) client-ip=45.249.212.32;
-Received: from DGGEMS409-HUB.china.huawei.com (unknown [172.30.72.59])
-	by Forcepoint Email with ESMTP id 7E5ED7E1BDB3F9E58F43;
-	Mon, 15 Jun 2020 16:09:03 +0800 (CST)
-Received: from localhost.localdomain.localdomain (10.175.113.25) by
- DGGEMS409-HUB.china.huawei.com (10.3.19.209) with Microsoft SMTP Server id
- 14.3.487.0; Mon, 15 Jun 2020 16:08:56 +0800
-From: Jing Xiangfeng <jingxiangfeng@huawei.com>
-To: <lduncan@suse.com>, <cleech@redhat.com>, <jejb@linux.ibm.com>,
-	<martin.petersen@oracle.com>
-CC: <open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-mm@kvack.org>,
-	<jingxiangfeng@huawei.com>
-Subject: [PATCH] scsi: iscsi: Do not put host in iscsi_set_flashnode_param()
-Date: Mon, 15 Jun 2020 16:12:26 +0800
-Message-ID: <20200615081226.183068-1-jingxiangfeng@huawei.com>
-X-Mailer: git-send-email 2.20.1
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 21 Jun 2020 20:10:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bob.liu@oracle.com designates 156.151.31.86 as permitted sender) client-ip=156.151.31.86;
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+	by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 05M3AYL3156552;
+	Mon, 22 Jun 2020 03:10:34 GMT
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+	by userp2130.oracle.com with ESMTP id 31sebbc1g3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 22 Jun 2020 03:10:33 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+	by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 05M37VPh088556;
+	Mon, 22 Jun 2020 03:08:33 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+	by aserp3030.oracle.com with ESMTP id 31sv1k30hn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 22 Jun 2020 03:08:33 +0000
+Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
+	by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 05M38V6o019381;
+	Mon, 22 Jun 2020 03:08:31 GMT
+Received: from [192.168.0.110] (/183.246.145.120)
+	by default (Oracle Beehive Gateway v4.0)
+	with ESMTP ; Mon, 22 Jun 2020 03:08:31 +0000
+Subject: Re: [PATCH 1/2] workqueue: don't always set __WQ_ORDERED implicitly
+To: linux-kernel@vger.kernel.org
+Cc: tj@kernel.org, martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
+        open-iscsi@googlegroups.com, lduncan@suse.com,
+        michael.christie@oracle.com
+References: <20200611100717.27506-1-bob.liu@oracle.com>
+From: Bob Liu <bob.liu@oracle.com>
+Message-ID: <f926e5b0-b876-3dad-c1b2-33c250205452@oracle.com>
+Date: Mon, 22 Jun 2020 11:08:24 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
+In-Reply-To: <20200611100717.27506-1-bob.liu@oracle.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.175.113.25]
-X-CFilter-Loop: Reflected
-X-Original-Sender: jingxiangfeng@huawei.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of jingxiangfeng@huawei.com designates 45.249.212.32 as
- permitted sender) smtp.mailfrom=jingxiangfeng@huawei.com
+Content-Language: en-US
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9659 signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=999
+ adultscore=0 phishscore=0 bulkscore=0 suspectscore=1 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2004280000 definitions=main-2006220023
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9659 signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 lowpriorityscore=0
+ mlxlogscore=999 cotscore=-2147483648 mlxscore=0 phishscore=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=1 clxscore=1015
+ impostorscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2004280000 definitions=main-2006220023
+X-Original-Sender: bob.liu@oracle.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@oracle.com header.s=corp-2020-01-29 header.b=blZfhzi+;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates
+ 156.151.31.86 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -130,31 +163,65 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-If scsi_host_lookup() failes we will jump to put_host, which may
-cause panic. Jump to exit_set_fnode to fix it.
+ping..
 
-Signed-off-by: Jing Xiangfeng <jingxiangfeng@huawei.com>
----
- drivers/scsi/scsi_transport_iscsi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index f4cc08e..c5e99f9 100644
---- a/drivers/scsi/scsi_transport_iscsi.c
-+++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -3291,7 +3291,7 @@ static int iscsi_set_flashnode_param(struct iscsi_transport *transport,
- 		pr_err("%s could not find host no %u\n",
- 		       __func__, ev->u.set_flashnode.host_no);
- 		err = -ENODEV;
--		goto put_host;
-+		goto exit_set_fnode;
- 	}
- 
- 	idx = ev->u.set_flashnode.flashnode_idx;
--- 
-1.8.3.1
+On 6/11/20 6:07 PM, Bob Liu wrote:
+> Current code always set 'Unbound && max_active == 1' workqueues to ordered
+> implicitly, while this may be not an expected behaviour for some use cases.
+> 
+> E.g some scsi and iscsi workqueues(unbound && max_active = 1) want to be bind
+> to different cpu so as to get better isolation, but their cpumask can't be
+> changed because WQ_ORDERED is set implicitly.
+> 
+> This patch adds a flag __WQ_ORDERED_DISABLE and also
+> create_singlethread_workqueue_noorder() to offer an new option.
+> 
+> Signed-off-by: Bob Liu <bob.liu@oracle.com>
+> ---
+>  include/linux/workqueue.h | 4 ++++
+>  kernel/workqueue.c        | 4 +++-
+>  2 files changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
+> index e48554e..4c86913 100644
+> --- a/include/linux/workqueue.h
+> +++ b/include/linux/workqueue.h
+> @@ -344,6 +344,7 @@ enum {
+>  	__WQ_ORDERED		= 1 << 17, /* internal: workqueue is ordered */
+>  	__WQ_LEGACY		= 1 << 18, /* internal: create*_workqueue() */
+>  	__WQ_ORDERED_EXPLICIT	= 1 << 19, /* internal: alloc_ordered_workqueue() */
+> +	__WQ_ORDERED_DISABLE	= 1 << 20, /* internal: don't set __WQ_ORDERED implicitly */
+>  
+>  	WQ_MAX_ACTIVE		= 512,	  /* I like 512, better ideas? */
+>  	WQ_MAX_UNBOUND_PER_CPU	= 4,	  /* 4 * #cpus for unbound wq */
+> @@ -433,6 +434,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
+>  #define create_singlethread_workqueue(name)				\
+>  	alloc_ordered_workqueue("%s", __WQ_LEGACY | WQ_MEM_RECLAIM, name)
+>  
+> +#define create_singlethread_workqueue_noorder(name)			\
+> +	alloc_workqueue("%s", WQ_SYSFS | __WQ_LEGACY | WQ_MEM_RECLAIM | \
+> +			WQ_UNBOUND | __WQ_ORDERED_DISABLE, 1, (name))
+>  extern void destroy_workqueue(struct workqueue_struct *wq);
+>  
+>  struct workqueue_attrs *alloc_workqueue_attrs(void);
+> diff --git a/kernel/workqueue.c b/kernel/workqueue.c
+> index 4e01c44..2167013 100644
+> --- a/kernel/workqueue.c
+> +++ b/kernel/workqueue.c
+> @@ -4237,7 +4237,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
+>  	 * on NUMA.
+>  	 */
+>  	if ((flags & WQ_UNBOUND) && max_active == 1)
+> -		flags |= __WQ_ORDERED;
+> +		/* the caller may don't want __WQ_ORDERED to be set implicitly. */
+> +		if (!(flags & __WQ_ORDERED_DISABLE))
+> +			flags |= __WQ_ORDERED;
+>  
+>  	/* see the comment above the definition of WQ_POWER_EFFICIENT */
+>  	if ((flags & WQ_POWER_EFFICIENT) && wq_power_efficient)
+> 
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200615081226.183068-1-jingxiangfeng%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/f926e5b0-b876-3dad-c1b2-33c250205452%40oracle.com.
