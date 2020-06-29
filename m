@@ -1,145 +1,77 @@
-Return-Path: <open-iscsi+bncBCN4TVFXUAGRB4WD5D3QKGQEOVA6PUI@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBHHU5D3QKGQED3VAGVA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ot1-x338.google.com (mail-ot1-x338.google.com [IPv6:2607:f8b0:4864:20::338])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDE520D056
-	for <lists+open-iscsi@lfdr.de>; Mon, 29 Jun 2020 19:16:35 +0200 (CEST)
-Received: by mail-ot1-x338.google.com with SMTP id l32sf11987059otc.7
-        for <lists+open-iscsi@lfdr.de>; Mon, 29 Jun 2020 10:16:35 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1593450994; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=SKOtSwNfvU1Gb6PBFjwhU+Hih+gzigeqqLPkz/rXxGjYi7UPL3l8arswh8STBc/P+f
-         FgHAyWatkHGDXPxhNKG1228d5TSqKlX3eDCpbwJKnRr2lma38k1DDoSslt7cBBJ9NGFf
-         Wu7reIm2ZzAm6akyWmsXtqJnYohlBY+qV201kZGleM9NWrW3oHM07AdCkB7QP2/A5nJl
-         zZgxXSdcoLGRoVluBCIBOsxvN3QDkqEBNNTfPpCXfjGE0bgRmhQlATK8YeH+K/blZ7yO
-         7hjSJbDQLUb4XgLXT7HyYrYve2REKfncRqLjVU4T2yatb0+k8vMG1sAOuwxwuo7uJO0n
-         pOGg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=ijc1eyJzj4HyJRaotFQk1QZck/bS12YNIW/T0l4UjDM=;
-        b=fcKcYkIMBcy9FhnEkiw7wxMlPwLPXhXTrhmZGyowkvi4cODPedJPlk5AkHCc9f3/YX
-         ocAht1GjwCY5YM4zglOUSbWkuXSyyUNH6/hMJWSjvXL1YCkfKjTVE/dJqUHtQGnpNWAP
-         YE7NVyBk/Sy60FxMMABUzZBjMAhGftBoG7BUIuLP3nsnjYEKOfZLEr2+9f3c9hjxmkmB
-         zBBjAHUP7pKFwDkFggH36AlsugDnKSe9rLSTfyr4oJwl9mt1ANRc4nGCyBwBdA/TL6dP
-         e+h5z5y1vrPZus3aGMCUc+v+QGDex/BAz7FwfZkhlD+tAukyCLdkPGTjeo5/VXC/5ovO
-         DEgQ==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=DVS9jsOi;
-       spf=pass (google.com: domain of jiangshanlai@gmail.com designates 2607:f8b0:4864:20::d44 as permitted sender) smtp.mailfrom=jiangshanlai@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from mail-qt1-x839.google.com (mail-qt1-x839.google.com [IPv6:2607:f8b0:4864:20::839])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8D0A20D2BF
+	for <lists+open-iscsi@lfdr.de>; Mon, 29 Jun 2020 20:59:41 +0200 (CEST)
+Received: by mail-qt1-x839.google.com with SMTP id z26sf12801730qto.15
+        for <lists+open-iscsi@lfdr.de>; Mon, 29 Jun 2020 11:59:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:cc:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=ijc1eyJzj4HyJRaotFQk1QZck/bS12YNIW/T0l4UjDM=;
-        b=G+RY8JwyIKquBLGoiizCCOU/LlnrTDPwFXVFeQ5zKszQgNu48PSpbkblWLDEl7lEGs
-         +Ey1dXdbw5zV1SyWN+Uyo2pXVn+//l32ZvpuDD3NFld1lzB1YG6C4DVgpvv/mDdyZxf7
-         R2uIwfqXyjHYxkY6ZMHCH16F7uqAphCYindFShMvdXWoFMBparmLEk9sgpRNdOs73j8s
-         IabP4x1rYZX0BXkqVi6/GaRQmy03f6rnaJy1ZAmGhKJWZxQoPItcxh3vjwyLTL5Y1KNP
-         4ijQ48cRSOWU+iqpxUPk8cEitphHDUADlJyc1YhUaZ0fegNk/F7Dsy8iYHyKJNGKFt4y
-         gfeQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=ijc1eyJzj4HyJRaotFQk1QZck/bS12YNIW/T0l4UjDM=;
-        b=skq153BtZkZ6nlpdr0u6TUqgprkT4ap/YJifC/TxiKmLlG2N4MYpi2km/31oqE3IKr
-         t95c4HsGCGR+V9WGK7e9nFHOd5+c8SpV7xlvsORwqXjoMPkqbSORyVbVWoRPcNBwj5O1
-         rJMlwfcoWOCHRJbfO/oXo5Ji/9pjnKvV4EgERT9htZ+oBJ71ye0nLB8Re/iZWsyLLFHp
-         kmSAJf0q9dGT+QVaBtKqYhYOgqXaeiWTX3IEcOmaRxo6C+LZ1Xb5uRGVP1uKPutp6V5B
-         DZaW7lymZnIzIcCcuZOOMXy4bkr6LciR/5BFcP6gH7ga8zrlnH2FXraNkyFaBs2wV6QO
-         SgYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:cc:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
+        h=sender:date:from:to:message-id:in-reply-to:references:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=ijc1eyJzj4HyJRaotFQk1QZck/bS12YNIW/T0l4UjDM=;
-        b=U5V/auxfRoYylySidgTw3JTjKE+NPBkmg2QIWvM85r64ulpgElEhfE7wH9j4mRj/2U
-         1nNst2cjol2jmPAZKiMHCjGtHm2TekHi+Qgwe7QqTynm+cl6vYZ62IYAh/aFaSp9s7tY
-         B4k/1ukZ1WoQ65tB1/zDx+IJHlqYz4zXWqkpSRXpreXR0gqiyc/l9NnNc6smQE2gP22W
-         kxaS1y7pRh7PV8iqK3Hx6aH1Sa19VBUDHUwLpy7yGLA5jkuuiYJ2p1O1JDe+E/kNTPxL
-         cWnoTtQ4s4C0irMNDCPPW9TGncGh1uAfNAdBNfExAQisUSdCHo4JEmGuTcdlZKYF3cJO
-         pEuw==
+        bh=fgsyqGEflZX//LasCVUjjlPNp/w4c3fgGxdtl6jmcgg=;
+        b=ElTaUp+EM3OfKtnaaF9CwsEwug3W03dbboBY+HsOvmgBu6m7+OHkuHyOcq+NJhZ11i
+         i0x49IH4jHgy4DBb4jCwL9vRCHtzOFJVJgnZWi3+G0BssknGD2QddYzGd/xYG6bUckzW
+         iEU2bbpNtByDyKx35ZAoVSLbo30NSyO7VrCVo894RTuQuzlc9UklajVRoZj9Yil6yr5N
+         g5vPD0XNTTKkypp4+iDc3FliyeU6WBASFVTaXbf4yjIo9l6+IEJFKfCtqm7TGs2W0ioe
+         5RuUJ9CL36F0eH/OkJMFj/lUH2w6P/tfvbACwTuxqQGeRyOckxuKvYWchFb3ujo1uFTF
+         SALw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=fgsyqGEflZX//LasCVUjjlPNp/w4c3fgGxdtl6jmcgg=;
+        b=NvTi/R2aYrMkcPpyrguAtomSKtBQt+rPJi/a9iCDQKymSkw7VyGb2kTKJJZsQh90s1
+         3OqtEDiV89aOtFY4T3S6Uok/09lzAPZ/oUMiTW/CL72zbh760GM/psNfPj0mRn0RZxzF
+         tDu0XLJBqN2HhBhBbULzzVi5p+LX+6uqV3sG6LLjXFdjHxXn8B/KLtDR05pZixiFGHoi
+         gb+DPSqNbAOeKHbcbD4YJg1NS+z6CmDCeJjY3hgO324bX0jJ3PljaIE7vT5PkuPSWfHu
+         LShNKNVkgHWAvIsnw/KrPVtKCum1JMxUAFZK+3LMpxAkUy6e3dR4yCRcpfSZCvA4PlCK
+         1sPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
+         :references:subject:mime-version:x-original-sender:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=fgsyqGEflZX//LasCVUjjlPNp/w4c3fgGxdtl6jmcgg=;
+        b=DMpCAdT3l36FsmDpqR7dABwPw0PUc4qsOPaQKC4IzOtj6RUpxYE74u12XV6QbvoRVC
+         qjcgFrexxG1/jv4GZPshKLJgC0O2ntXWO3X9eeCyxMUJgB4ym/ej2HKH5B11mXOMRxFt
+         4ykTRtIneIEaK/ka0kr16a2tOxvnOMtKf1njfsJnns3Nq1/NfsYOt1Iw4U5wVRlJ99kw
+         VbDAlw0OwZqNmkf6SqofqXDpmDu7Z1bjFskWSIrZ0JBEFRc5INHHEvIE9ql6nutjtawp
+         YoW6lCQuG4DE56Aitlco6EAGxFOwTKMZml/y4/xZ/n7mxeqR1aE1R23VYYbwJP8RsGfq
+         M0wg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530lk/93HFbgSZ9y9/85v0gbvyr84TLnZfOGfNsTWU/s5oAe7F8o
-	+T4kLX7aTo9E2OtF/k2moOs=
-X-Google-Smtp-Source: ABdhPJyRGv/fjgS8MDRlqJrCNCHeK0lQfSUZOhjbs8JiySxUbDLTsQDtQxf//9W0LGSMDoSwbB70JQ==
-X-Received: by 2002:a05:6830:1391:: with SMTP id d17mr15252861otq.48.1593450994600;
-        Mon, 29 Jun 2020 10:16:34 -0700 (PDT)
+X-Gm-Message-State: AOAM530LPZ9bKMKjYazSMgjLb4XHGElStSx3NQPwqvJO3KO+wTSDArF9
+	UJZQIYu7zTAOWvd+5XWa+jw=
+X-Google-Smtp-Source: ABdhPJwL6pDufSTRzKDuyk2WPOCJ+Ul3g4xgWuc5yN4Zyt5DzHxxk9y2wVlZ2Ope6wnq8fU/N8M/Cw==
+X-Received: by 2002:a37:a458:: with SMTP id n85mr17170725qke.167.1593457180807;
+        Mon, 29 Jun 2020 11:59:40 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:aca:4b14:: with SMTP id y20ls486594oia.1.gmail; Mon, 29 Jun
- 2020 10:16:34 -0700 (PDT)
-X-Received: by 2002:aca:4dcb:: with SMTP id a194mr13086799oib.59.1593450994302;
-        Mon, 29 Jun 2020 10:16:34 -0700 (PDT)
-Received: by 2002:aca:7241:0:b029:c1:acaf:8c17 with SMTP id p62-20020aca72410000b02900c1acaf8c17msoic;
-        Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1043:: with SMTP id p3mr13128438ilj.245.1593391081592;
-        Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1593391081; cv=none;
-        d=google.com; s=arc-20160816;
-        b=vE+a5035BkcKviQbEMgN9QVlbiImFiJcJVXs/CO98Bsjo8JpPf7MY7Y6Kr808UahUa
-         sxkTsILyAH2rUkirQBMa4nQCSltj8mULUYtycLY245tHD0cXyIzq4IuZNkjBq9li3S3g
-         N+GIju6AVyC/hVKbtyPrV3f+i8Mgcb2ZjoHkTJRKdzmCvsX2m3V8NUNwlcNDFZBkLc/J
-         dPRFOlVGuiTqcQD/0WfyO8sCzw4iCqMPWkJmvZ2y9EFiVBMYhwrpoHSKCQKIoSDypW6j
-         6ZjP4PhGD4urskAv6mlSXZq9YOkSwlUfXxuUqOBuEjbzymLwfBkZ5N85ZVaApdPgv3rg
-         mSCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=fKC09IE4Z/YqrIvCH2GzaIGeSq5BwtgQav6ZulQOmGE=;
-        b=vDdHFEk2eoIW+ksOh3TvS8ANzp6Cy5Yo5/4yVtI9jkKsGt7VhwO++Kuxs64iSgVLoi
-         PLXWChpDXxNJewQyn7oGLOW77s7tzmT+EMv5NMVRZgMbX+fMteBrTIOyp/V2MIuhsB5V
-         A3TUOnYHmBo6WGE1Gm6kWqBgtNq5dIynbSdX4VnxM7wzmsULH2kQw/fJfkMltYNsdLEJ
-         fVGiM1RErk8BXfLZ79YmCr91pGZY7s0PiqTBY5+eoW7qDaNcOaCQQLTHQ/++FpUv77zO
-         ETchIcEugCPXiNkEkiBDmErfiOHCqwW381rY5zkNQV841O9z/uQoVANPSYpucjikyxKV
-         SFxg==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=DVS9jsOi;
-       spf=pass (google.com: domain of jiangshanlai@gmail.com designates 2607:f8b0:4864:20::d44 as permitted sender) smtp.mailfrom=jiangshanlai@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com. [2607:f8b0:4864:20::d44])
-        by gmr-mx.google.com with ESMTPS id q80si1373752iod.0.2020.06.28.17.38.01
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
-Received-SPF: pass (google.com: domain of jiangshanlai@gmail.com designates 2607:f8b0:4864:20::d44 as permitted sender) client-ip=2607:f8b0:4864:20::d44;
-Received: by mail-io1-xd44.google.com with SMTP id o5so15343899iow.8
-        for <open-iscsi@googlegroups.com>; Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
-X-Received: by 2002:a5e:980f:: with SMTP id s15mr14363091ioj.47.1593391081299;
- Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
+Received: by 2002:ac8:17b3:: with SMTP id o48ls7184756qtj.5.gmail; Mon, 29 Jun
+ 2020 11:59:40 -0700 (PDT)
+X-Received: by 2002:aed:2252:: with SMTP id o18mr17773826qtc.258.1593457180223;
+        Mon, 29 Jun 2020 11:59:40 -0700 (PDT)
+Date: Mon, 29 Jun 2020 11:59:39 -0700 (PDT)
+From: The Lee-Man <leeman.duncan@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <4c70b62c-467c-4860-a951-663fb88158c7o@googlegroups.com>
+In-Reply-To: <75d706c2-e331-45bf-b764-6aa77703a45a@googlegroups.com>
+References: <75d706c2-e331-45bf-b764-6aa77703a45a@googlegroups.com>
+Subject: Re: Large Immediate and/or Unsolicted Data causes long delays on
+ R2T responses
 MIME-Version: 1.0
-References: <20200611100717.27506-1-bob.liu@oracle.com> <CAJhGHyDQLuoCkjwnze_6ZOLwXPtbNxnjxOr=fqqqsR_yxB9xtA@mail.gmail.com>
- <52fa1d81-e585-37eb-55e5-0ed07ce7adc0@oracle.com>
-In-Reply-To: <52fa1d81-e585-37eb-55e5-0ed07ce7adc0@oracle.com>
-From: Lai Jiangshan <jiangshanlai+lkml@gmail.com>
-Date: Mon, 29 Jun 2020 08:37:50 +0800
-Message-ID: <CAJhGHyBPrCr3+iu-dMe69J3+tj99ea8crCGBuXc4yoStD+dEFA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] workqueue: don't always set __WQ_ORDERED implicitly
-To: Bob Liu <bob.liu@oracle.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, Tejun Heo <tj@kernel.org>, 
-	martin.petersen@oracle.com, linux-scsi@vger.kernel.org, 
-	open-iscsi@googlegroups.com, lduncan@suse.com, michael.christie@oracle.com
-Content-Type: text/plain; charset="UTF-8"
-X-Original-Sender: jiangshanlai@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b=DVS9jsOi;       spf=pass
- (google.com: domain of jiangshanlai@gmail.com designates 2607:f8b0:4864:20::d44
- as permitted sender) smtp.mailfrom=jiangshanlai@gmail.com;       dmarc=pass
- (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_821_1851384868.1593457179366"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -148,112 +80,157 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Mon, Jun 29, 2020 at 8:13 AM Bob Liu <bob.liu@oracle.com> wrote:
->
-> On 6/28/20 11:54 PM, Lai Jiangshan wrote:
-> > On Thu, Jun 11, 2020 at 6:29 PM Bob Liu <bob.liu@oracle.com> wrote:
-> >>
-> >> Current code always set 'Unbound && max_active == 1' workqueues to ordered
-> >> implicitly, while this may be not an expected behaviour for some use cases.
-> >>
-> >> E.g some scsi and iscsi workqueues(unbound && max_active = 1) want to be bind
-> >> to different cpu so as to get better isolation, but their cpumask can't be
-> >> changed because WQ_ORDERED is set implicitly.
-> >
-> > Hello
-> >
-> > If I read the code correctly, the reason why their cpumask can't
-> > be changed is because __WQ_ORDERED_EXPLICIT, not __WQ_ORDERED.
-> >
-> >>
-> >> This patch adds a flag __WQ_ORDERED_DISABLE and also
-> >> create_singlethread_workqueue_noorder() to offer an new option.
-> >>
-> >> Signed-off-by: Bob Liu <bob.liu@oracle.com>
-> >> ---
-> >>  include/linux/workqueue.h | 4 ++++
-> >>  kernel/workqueue.c        | 4 +++-
-> >>  2 files changed, 7 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
-> >> index e48554e..4c86913 100644
-> >> --- a/include/linux/workqueue.h
-> >> +++ b/include/linux/workqueue.h
-> >> @@ -344,6 +344,7 @@ enum {
-> >>         __WQ_ORDERED            = 1 << 17, /* internal: workqueue is ordered */
-> >>         __WQ_LEGACY             = 1 << 18, /* internal: create*_workqueue() */
-> >>         __WQ_ORDERED_EXPLICIT   = 1 << 19, /* internal: alloc_ordered_workqueue() */
-> >> +       __WQ_ORDERED_DISABLE    = 1 << 20, /* internal: don't set __WQ_ORDERED implicitly */
-> >>
-> >>         WQ_MAX_ACTIVE           = 512,    /* I like 512, better ideas? */
-> >>         WQ_MAX_UNBOUND_PER_CPU  = 4,      /* 4 * #cpus for unbound wq */
-> >> @@ -433,6 +434,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
-> >>  #define create_singlethread_workqueue(name)                            \
-> >>         alloc_ordered_workqueue("%s", __WQ_LEGACY | WQ_MEM_RECLAIM, name)
-> >>
-> >> +#define create_singlethread_workqueue_noorder(name)                    \
-> >> +       alloc_workqueue("%s", WQ_SYSFS | __WQ_LEGACY | WQ_MEM_RECLAIM | \
-> >> +                       WQ_UNBOUND | __WQ_ORDERED_DISABLE, 1, (name))
-> >
-> > I think using __WQ_ORDERED without __WQ_ORDERED_EXPLICIT is what you
-> > need, in which case cpumask is allowed to be changed.
-> >
->
-> I don't think so, see function workqueue_apply_unbound_cpumask():
->
-> wq_unbound_cpumask_store()
->  > workqueue_set_unbound_cpumask()
->    > workqueue_apply_unbound_cpumask() {
->      ...
-> 5276                 /* creating multiple pwqs breaks ordering guarantee */
-> 5277                 if (wq->flags & __WQ_ORDERED)
-> 5278                         continue;
->                           ^^^^
->                           Here will skip apply cpumask if only __WQ_ORDERED is set.
+------=_Part_821_1851384868.1593457179366
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_822_975962372.1593457179366"
 
-wq_unbound_cpumask_store() is for changing the cpumask of
-*all* workqueues. I don't think it can be used to make
-scsi and iscsi workqueues bound to different cpu.
+------=_Part_822_975962372.1593457179366
+Content-Type: text/plain; charset="UTF-8"
 
-apply_workqueue_attrs() is for changing the cpumask of the specific
-workqueue, which can change the cpumask of __WQ_ORDERED workqueue
-(but without __WQ_ORDERED_EXPLICIT).
+On Saturday, May 2, 2020 at 11:30:27 AM UTC-7, ajhutchin@gmail.com wrote:
+>
+> I am able to create a condition where the open-iscsi initiator fails to 
+> respond to an R2T request if the immediate/unsolicited data support is 
+> large ~128KB.  I've seen instances where a delay on an R2T is only a few 
+> seconds and other instances where no response is received in 180 seconds.
+>
+> If the host is doing a prefill operation with large writes that can be 
+> completed with immediate data alone and a large write that requires an R2T 
+> is sent, the open-iscsi initiator sometimes fails to respond to the 
+> target's R2T. 
+>
+> After inspecting the code, I am convinced it is caused by the lack of 
+> fairness in the *libiscsi  **iscsi_data_xmit* routine, which always 
+> favors the sending a new command over responding to R2Ts. 
+>
+> /**
+>  * iscsi_data_xmit - xmit any command into the scheduled connection
+>  * @conn: iscsi connection
+>  *
+>  * Notes:
+>  * The function can return -EAGAIN in which case the caller must
+>  * re-schedule it again later or recover. '0' return code means
+>  * successful xmit.
+>  **/
+> static int iscsi_data_xmit(struct iscsi_conn *conn)
+> {
+> ...
+> /*
+> * process mgmt pdus like nops before commands since we should
+> * only have one nop-out as a ping from us and targets should not
+> * overflow us with nop-ins
+> */
+> while (!list_empty(&conn->mgmtqueue)) {
+> ...
+> /* process pending command queue */
+> while (!list_empty(&conn->cmdqueue)) {
+> ...
+> while (!list_empty(&conn->requeue)) {
+>
+>
+> Am I looking at this code correctly?  I guess this order might be better 
+> for parallelization at the target by getting more commands onboard before 
+> responding to outstanding R2Ts. With immediate/unsolicited data enabled, 
+> the overhead of transmitting a new commands if higher and probably 
+> shouldn't come before responding to R2Ts. 
+>
+>
+> Do you have NOPs enabled? If so, do you see this issue with them disabled? 
+I seriously dislike and advise against NOPs. I've never seen them actually 
+help anything.
 
->
-> 5280                 ctx = apply_wqattrs_prepare(wq, wq->unbound_attrs);
->
->      }
->
-> Thanks for your review.
-> Bob
->
-> > Just use alloc_workqueue() with __WQ_ORDERED and max_active=1. It can
-> > be wrapped as a new function or macro, but I don't think> create_singlethread_workqueue_noorder() is a good name for it.
-> >
-> >>  extern void destroy_workqueue(struct workqueue_struct *wq);
-> >>
-> >>  struct workqueue_attrs *alloc_workqueue_attrs(void);
-> >> diff --git a/kernel/workqueue.c b/kernel/workqueue.c
-> >> index 4e01c44..2167013 100644
-> >> --- a/kernel/workqueue.c
-> >> +++ b/kernel/workqueue.c
-> >> @@ -4237,7 +4237,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
-> >>          * on NUMA.
-> >>          */
-> >>         if ((flags & WQ_UNBOUND) && max_active == 1)
-> >> -               flags |= __WQ_ORDERED;
-> >> +               /* the caller may don't want __WQ_ORDERED to be set implicitly. */
-> >> +               if (!(flags & __WQ_ORDERED_DISABLE))
-> >> +                       flags |= __WQ_ORDERED;
-> >>
-> >>         /* see the comment above the definition of WQ_POWER_EFFICIENT */
-> >>         if ((flags & WQ_POWER_EFFICIENT) && wq_power_efficient)
-> >> --
-> >> 2.9.5
-> >>
->
+Have you tried playing with this code, i.e. changing the order? Without 
+looking deeply, are the R2Ts in the command queue and not in the requeue 
+queue?
+
+What kind of load are you presenting to the server?
+
+What do you mean by "the immediate/unsolicited data support is large 
+~128KB"? What setting(s) did you change?
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAJhGHyBPrCr3%2Biu-dMe69J3%2Btj99ea8crCGBuXc4yoStD%2BdEFA%40mail.gmail.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/4c70b62c-467c-4860-a951-663fb88158c7o%40googlegroups.com.
+
+------=_Part_822_975962372.1593457179366
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">On Saturday, May 2, 2020 at 11:30:27 AM UTC-7, ajhutchin@g=
+mail.com wrote:<blockquote class=3D"gmail_quote" style=3D"margin: 0;margin-=
+left: 0.8ex;border-left: 1px #ccc solid;padding-left: 1ex;"><div dir=3D"ltr=
+"><div>I am able to create a condition where the open-iscsi initiator fails=
+ to respond to an R2T request if the immediate/unsolicited data support is =
+large ~128KB.=C2=A0 I&#39;ve seen instances where a delay on an R2T is only=
+ a few seconds and other instances where no response is received in 180 sec=
+onds.</div><div><br></div><div>If the host is doing a prefill operation wit=
+h large writes that can be completed with immediate data alone and a large =
+write that requires an R2T is sent, the open-iscsi initiator sometimes fail=
+s to respond to the target&#39;s R2T.=C2=A0</div><div><br></div><div>After =
+inspecting the code, I am convinced it is caused by the lack of fairness in=
+ the <b>libiscsi=C2=A0 </b><i>iscsi_data_xmit</i> routine, which always fav=
+ors the sending a new command over responding to R2Ts.=C2=A0</div><br><div>=
+<div style=3D"background-color:rgb(250,250,250);border-color:rgb(187,187,18=
+7);border-style:solid;border-width:1px"><code><div><div><font color=3D"#660=
+066">/**</font></div><div><font color=3D"#660066">=C2=A0* iscsi_data_xmit -=
+ xmit any command into the scheduled connection</font></div><div><font colo=
+r=3D"#660066">=C2=A0* @conn: iscsi connection</font></div><div><font color=
+=3D"#660066">=C2=A0*</font></div><div><font color=3D"#660066">=C2=A0* Notes=
+:</font></div><div><font color=3D"#660066">=C2=A0*<span style=3D"white-spac=
+e:pre">	</span>The function can return -EAGAIN in which case the caller mus=
+t</font></div><div><font color=3D"#660066">=C2=A0*<span style=3D"white-spac=
+e:pre">	</span>re-schedule it again later or recover. &#39;0&#39; return co=
+de means</font></div><div><font color=3D"#660066">=C2=A0*<span style=3D"whi=
+te-space:pre">	</span>successful xmit.</font></div><div><font color=3D"#660=
+066">=C2=A0**/</font></div><div><font color=3D"#660066">static int iscsi_da=
+ta_xmit(struct iscsi_conn *conn)</font></div><div><font color=3D"#660066">{=
+</font></div><div><font color=3D"#660066">...</font></div><div><font color=
+=3D"#660066"><span style=3D"white-space:pre">	</span>/*</font></div><div><f=
+ont color=3D"#660066"><span style=3D"white-space:pre">	</span> * process mg=
+mt pdus like nops before commands since we should</font></div><div><font co=
+lor=3D"#660066"><span style=3D"white-space:pre">	</span> * only have one no=
+p-out as a ping from us and targets should not</font></div><div><font color=
+=3D"#660066"><span style=3D"white-space:pre">	</span> * overflow us with no=
+p-ins</font></div><div><font color=3D"#660066"><span style=3D"white-space:p=
+re">	</span> */</font></div><div><font color=3D"#660066"><span style=3D"whi=
+te-space:pre">	</span>while (!list_empty(&amp;conn-&gt;mgmtqueue)<wbr>) {</=
+font></div><div><font color=3D"#660066">...<br></font></div><div><font colo=
+r=3D"#660066"><span style=3D"white-space:pre">	</span>/* process pending co=
+mmand queue */</font></div><div><font color=3D"#660066"><span style=3D"whit=
+e-space:pre">	</span>while (!list_empty(&amp;conn-&gt;cmdqueue)) {</font></=
+div><div><font color=3D"#660066">...</font></div><div><font color=3D"#66006=
+6"><span style=3D"white-space:pre">	</span>while (!list_empty(&amp;conn-&gt=
+;requeue)) {</font></div><div><br></div></div></code></div><br>Am I looking=
+ at this code correctly?=C2=A0 I guess this order might be better for paral=
+lelization at the target by getting=C2=A0more commands onboard before respo=
+nding to outstanding R2Ts. With immediate/unsolicited data enabled, the ove=
+rhead of transmitting a new commands if higher and probably shouldn&#39;t c=
+ome before responding to R2Ts.=C2=A0</div><div><br></div><div><br></div></d=
+iv></blockquote><div>Do you have NOPs enabled? If so, do you see this issue=
+ with them disabled? I seriously dislike and advise against NOPs. I&#39;ve =
+never seen them actually help anything.<br></div><div><br></div><div>Have y=
+ou tried playing with this code, i.e. changing the order? Without looking d=
+eeply, are the R2Ts in the command queue and not in the requeue queue?</div=
+><div><br></div><div>What kind of load are you presenting to the server?</d=
+iv><div><br></div><div>What do you mean by &quot;the immediate/unsolicited =
+data support is large ~128KB&quot;? What setting(s) did you change?<br></di=
+v></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/4c70b62c-467c-4860-a951-663fb88158c7o%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/4c70b62c-467c-4860-a951-663fb88158c7o%40googlegroups.com</a>.=
+<br />
+
+------=_Part_822_975962372.1593457179366--
+
+------=_Part_821_1851384868.1593457179366--
