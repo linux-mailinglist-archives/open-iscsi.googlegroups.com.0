@@ -1,34 +1,34 @@
 Return-Path: <open-iscsi+bncBCN4TVFXUAGRB4WD5D3QKGQEOVA6PUI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x83f.google.com (mail-qt1-x83f.google.com [IPv6:2607:f8b0:4864:20::83f])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8014020D054
+Received: from mail-ot1-x338.google.com (mail-ot1-x338.google.com [IPv6:2607:f8b0:4864:20::338])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEDE520D056
 	for <lists+open-iscsi@lfdr.de>; Mon, 29 Jun 2020 19:16:35 +0200 (CEST)
-Received: by mail-qt1-x83f.google.com with SMTP id u93sf12618156qtd.8
+Received: by mail-ot1-x338.google.com with SMTP id l32sf11987059otc.7
         for <lists+open-iscsi@lfdr.de>; Mon, 29 Jun 2020 10:16:35 -0700 (PDT)
 ARC-Seal: i=2; a=rsa-sha256; t=1593450994; cv=pass;
         d=google.com; s=arc-20160816;
-        b=UemZ85YnTJdTkIOni4de0/ALTEVKBC6DbVAdg+rFyR3zh+ZSf/LHvm7/yS2srjhAnG
-         mHX52QUwXV8Mt9UI0G83NvwI7jGBWAL5VdOCX4qmfMnTpThqbeigIOFv+MiXMrBXaJTs
-         DfOEHGMd9Bxwq/tJsb4Zsx3lOU2AJhwRQO55dMqLBv9RXGJJx/cKFoh2La1hrsTAYeAO
-         AHcJR/QXMML58fYPLwqCz1fAb4vZFzMi7dW6FWjRjwaVybArjDWKcaARGQ0VpQN4fm5O
-         nSSnKHlUDOoNP0CQGG3nx0dsx5+cf1cIQNUZ+m1TFIcm0Q+I6qFMB6pztvX/WtR5Bg22
-         /Tdg==
+        b=SKOtSwNfvU1Gb6PBFjwhU+Hih+gzigeqqLPkz/rXxGjYi7UPL3l8arswh8STBc/P+f
+         FgHAyWatkHGDXPxhNKG1228d5TSqKlX3eDCpbwJKnRr2lma38k1DDoSslt7cBBJ9NGFf
+         Wu7reIm2ZzAm6akyWmsXtqJnYohlBY+qV201kZGleM9NWrW3oHM07AdCkB7QP2/A5nJl
+         zZgxXSdcoLGRoVluBCIBOsxvN3QDkqEBNNTfPpCXfjGE0bgRmhQlATK8YeH+K/blZ7yO
+         7hjSJbDQLUb4XgLXT7HyYrYve2REKfncRqLjVU4T2yatb0+k8vMG1sAOuwxwuo7uJO0n
+         pOGg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:sender:dkim-signature
          :dkim-signature;
-        bh=3fFlyafeglQjToWyS/BuOBq4bIh8I0tOKvMa1qB7L00=;
-        b=d+G7Lfs3QMg5nofcAi+jw1fuWV/qGiV4CMYan47qMqBOPGOlElcoKcHtYNs9wE7tTq
-         8Fx6TP0zVQNzMUQnEtyzF0tXzo85/BrDdWaQv3mVj/Z0bYtaVEptSi4SyWeyj0Gv33Rn
-         suK8uPaDQnt7fsVbx/bfvpjwNJ5i61IWQHvzbmzYIp+UQAcjEKHc4/pFGrl9pR2UL23a
-         NFbwKDcTPQ9nv1B+R3/Ef2HQ0Lq3bm3BgBBvBeT3tISFwL5fzcAuatfgZwpTAricgmTM
-         uEZg6q1TYqrX+6XRFq/0Rh7FpledSuYdsDEIKlDHS7rjagxdKblH0MQP9RfrFobktk9E
-         cSWg==
+        bh=ijc1eyJzj4HyJRaotFQk1QZck/bS12YNIW/T0l4UjDM=;
+        b=fcKcYkIMBcy9FhnEkiw7wxMlPwLPXhXTrhmZGyowkvi4cODPedJPlk5AkHCc9f3/YX
+         ocAht1GjwCY5YM4zglOUSbWkuXSyyUNH6/hMJWSjvXL1YCkfKjTVE/dJqUHtQGnpNWAP
+         YE7NVyBk/Sy60FxMMABUzZBjMAhGftBoG7BUIuLP3nsnjYEKOfZLEr2+9f3c9hjxmkmB
+         zBBjAHUP7pKFwDkFggH36AlsugDnKSe9rLSTfyr4oJwl9mt1ANRc4nGCyBwBdA/TL6dP
+         e+h5z5y1vrPZus3aGMCUc+v+QGDex/BAz7FwfZkhlD+tAukyCLdkPGTjeo5/VXC/5ovO
+         DEgQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=RySqVmaj;
-       spf=pass (google.com: domain of jiangshanlai@gmail.com designates 2a00:1450:4864:20::444 as permitted sender) smtp.mailfrom=jiangshanlai@gmail.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=DVS9jsOi;
+       spf=pass (google.com: domain of jiangshanlai@gmail.com designates 2607:f8b0:4864:20::d44 as permitted sender) smtp.mailfrom=jiangshanlai@gmail.com;
        dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
@@ -36,26 +36,26 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :subject:to:cc:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=3fFlyafeglQjToWyS/BuOBq4bIh8I0tOKvMa1qB7L00=;
-        b=YYQ+VC9PsSBIW+6mpaR3cHFafkC4prztosEgXa7r+dDkgmezSgWmpU4MSlKvy5QJ/i
-         70XPBcWpzlSAxR/Wd4XyzkDqOQ4mOcNeunufWekO0ZXuBuaJp71dd850aUZ04sY8kNJJ
-         KK6FjUwQnZbPZs7ft7Ns4EPYp4ZKQCdBCxBYzfYkXt7muu1z44yRWC2oR9DGTyrOqQlx
-         8sKiR3ZoebyXnF1Zdo0hWsd/xxEyafOxOiuC2tM9y/JVrNIBo25sh9QbMC8q1/6M+hsv
-         mqYXJ/aYbLT74XerZ8lloXCs3obFUtG50tcHgnwG9tGjQJ0syxkpn6EYp2AX9Ik2jDQp
-         qSYg==
+        bh=ijc1eyJzj4HyJRaotFQk1QZck/bS12YNIW/T0l4UjDM=;
+        b=G+RY8JwyIKquBLGoiizCCOU/LlnrTDPwFXVFeQ5zKszQgNu48PSpbkblWLDEl7lEGs
+         +Ey1dXdbw5zV1SyWN+Uyo2pXVn+//l32ZvpuDD3NFld1lzB1YG6C4DVgpvv/mDdyZxf7
+         R2uIwfqXyjHYxkY6ZMHCH16F7uqAphCYindFShMvdXWoFMBparmLEk9sgpRNdOs73j8s
+         IabP4x1rYZX0BXkqVi6/GaRQmy03f6rnaJy1ZAmGhKJWZxQoPItcxh3vjwyLTL5Y1KNP
+         4ijQ48cRSOWU+iqpxUPk8cEitphHDUADlJyc1YhUaZ0fegNk/F7Dsy8iYHyKJNGKFt4y
+         gfeQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=3fFlyafeglQjToWyS/BuOBq4bIh8I0tOKvMa1qB7L00=;
-        b=JpZy/KU5YqXHJ9I0z1Q52VD4AP6ugWkjZqOAaxwfv60pTiYomTKlYRNR28QDDA6g+g
-         54OdR6tbG7xL/ROJzNWvdQ+nnoOk+IDMjBiIBF6NtcdzJOXTWsNEOfggrp81bIwYQ0z6
-         k2yBsqShPJDeH2eHplgRe/f7WIfFLLgpCm7a4UPI5btEujr1CFXuDnFUKxAOHQNt3E4e
-         +Xah0AZGbMpJvmAk4K2k2yrRpB7STUfCBDfGAMWvsplf5y2pK+RsSlafV7qgoTBYhA3l
-         +fXGmzpPBW4XFv8MIPQj1ZcuDB843/GCKh1EE7GxEKH4uuYbMq52p3CebwuB3Yw3cA2s
-         L9Ww==
+        bh=ijc1eyJzj4HyJRaotFQk1QZck/bS12YNIW/T0l4UjDM=;
+        b=skq153BtZkZ6nlpdr0u6TUqgprkT4ap/YJifC/TxiKmLlG2N4MYpi2km/31oqE3IKr
+         t95c4HsGCGR+V9WGK7e9nFHOd5+c8SpV7xlvsORwqXjoMPkqbSORyVbVWoRPcNBwj5O1
+         rJMlwfcoWOCHRJbfO/oXo5Ji/9pjnKvV4EgERT9htZ+oBJ71ye0nLB8Re/iZWsyLLFHp
+         kmSAJf0q9dGT+QVaBtKqYhYOgqXaeiWTX3IEcOmaRxo6C+LZ1Xb5uRGVP1uKPutp6V5B
+         DZaW7lymZnIzIcCcuZOOMXy4bkr6LciR/5BFcP6gH7ga8zrlnH2FXraNkyFaBs2wV6QO
+         SgYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
@@ -63,66 +63,67 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=3fFlyafeglQjToWyS/BuOBq4bIh8I0tOKvMa1qB7L00=;
-        b=Ngwb6Cjy2d+l6SK+WvTq11PvAztt+2SOye9lwdnWB2sOTEC8aTx1mENLq8Z70bXUiH
-         gMgAP8CsSReHnkZQiX+FvtaCaJ2kWsWHJTUdJJsNVoO2XDtyIQRdzKemmuHaXOmLpDzP
-         YQofB5CHmvxw76MKT9CnKWBQq/SeIfL9lX3cCYu0L8ZPGvxHQ1JyF6Hq7tV5/A1pb6pn
-         UNvJCkDIcTXEb/y3dT66+US84iU3lVk0Mf3QhRmkRHcJ4P5DUngfP1sZwQOyMOiLUfTZ
-         dV8eka+4J5GTtVjbMItKUU0n3uGQbn2W6Jgna8o81OjNRI9gOS+9YXVpHUDHhvmRG2Bv
-         fVag==
+        bh=ijc1eyJzj4HyJRaotFQk1QZck/bS12YNIW/T0l4UjDM=;
+        b=U5V/auxfRoYylySidgTw3JTjKE+NPBkmg2QIWvM85r64ulpgElEhfE7wH9j4mRj/2U
+         1nNst2cjol2jmPAZKiMHCjGtHm2TekHi+Qgwe7QqTynm+cl6vYZ62IYAh/aFaSp9s7tY
+         B4k/1ukZ1WoQ65tB1/zDx+IJHlqYz4zXWqkpSRXpreXR0gqiyc/l9NnNc6smQE2gP22W
+         kxaS1y7pRh7PV8iqK3Hx6aH1Sa19VBUDHUwLpy7yGLA5jkuuiYJ2p1O1JDe+E/kNTPxL
+         cWnoTtQ4s4C0irMNDCPPW9TGncGh1uAfNAdBNfExAQisUSdCHo4JEmGuTcdlZKYF3cJO
+         pEuw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533pzDGDheMnJBCDP0xqBB7cNRu9MRrlBZcvzx17i4SpkDTmk0N9
-	26CVTiCvW6MADqUZapmjnFM=
-X-Google-Smtp-Source: ABdhPJwi8/fN4unlN/lrU6aWtiho2QTADXqvMCT5ZWHcp/D5UeQPDx8Zfd1J8g4UKjwg3Fq9tbqG8g==
-X-Received: by 2002:a0c:eec5:: with SMTP id h5mr14363175qvs.69.1593450994600;
+X-Gm-Message-State: AOAM530lk/93HFbgSZ9y9/85v0gbvyr84TLnZfOGfNsTWU/s5oAe7F8o
+	+T4kLX7aTo9E2OtF/k2moOs=
+X-Google-Smtp-Source: ABdhPJyRGv/fjgS8MDRlqJrCNCHeK0lQfSUZOhjbs8JiySxUbDLTsQDtQxf//9W0LGSMDoSwbB70JQ==
+X-Received: by 2002:a05:6830:1391:: with SMTP id d17mr15252861otq.48.1593450994600;
         Mon, 29 Jun 2020 10:16:34 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ae9:ea09:: with SMTP id f9ls8315772qkg.1.gmail; Mon, 29 Jun
+Received: by 2002:aca:4b14:: with SMTP id y20ls486594oia.1.gmail; Mon, 29 Jun
  2020 10:16:34 -0700 (PDT)
-X-Received: by 2002:a05:620a:81c:: with SMTP id s28mr15195736qks.133.1593450994253;
+X-Received: by 2002:aca:4dcb:: with SMTP id a194mr13086799oib.59.1593450994302;
         Mon, 29 Jun 2020 10:16:34 -0700 (PDT)
-Received: by 2002:a37:6506:0:b029:f2:356:9762 with SMTP id z6-20020a3765060000b02900f203569762msqkb;
-        Sun, 28 Jun 2020 08:54:50 -0700 (PDT)
-X-Received: by 2002:a05:6000:100c:: with SMTP id a12mr14413076wrx.81.1593359690437;
-        Sun, 28 Jun 2020 08:54:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1593359690; cv=none;
+Received: by 2002:aca:7241:0:b029:c1:acaf:8c17 with SMTP id p62-20020aca72410000b02900c1acaf8c17msoic;
+        Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
+X-Received: by 2002:a05:6e02:1043:: with SMTP id p3mr13128438ilj.245.1593391081592;
+        Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1593391081; cv=none;
         d=google.com; s=arc-20160816;
-        b=fudHdFLwv5Zgdrn3nwLaGUD3CycO7Yf2KSmTn4YRjCVKTVUGli/9Xz8NgnsSRMnf6H
-         6WFw4dHb8ShUYqmrmYwuItGRBqaLt2mQDEXgTjdVYQFGeM4WTDsOWv0EVRlXC3k9VHYp
-         aF4CaMX49xgDmCGp2jykQs0rsupZ0NTB4Ewb5kV2WJ+Mdq+FLdavr4Xgiyv2gtAIwQDH
-         ytJVxRxdjHXQu2ukgWGnbJ+Q7zqkJO5NzglB6WcfguzKyST/bcPzcpjC7vgddFSWxOlM
-         11PmDb5k4QJmnXb92+n1YRxOjGW5O3uIWdc4GmHrCwjpsPJsxFD5S+QGy0qhMnjG5c98
-         dvZA==
+        b=vE+a5035BkcKviQbEMgN9QVlbiImFiJcJVXs/CO98Bsjo8JpPf7MY7Y6Kr808UahUa
+         sxkTsILyAH2rUkirQBMa4nQCSltj8mULUYtycLY245tHD0cXyIzq4IuZNkjBq9li3S3g
+         N+GIju6AVyC/hVKbtyPrV3f+i8Mgcb2ZjoHkTJRKdzmCvsX2m3V8NUNwlcNDFZBkLc/J
+         dPRFOlVGuiTqcQD/0WfyO8sCzw4iCqMPWkJmvZ2y9EFiVBMYhwrpoHSKCQKIoSDypW6j
+         6ZjP4PhGD4urskAv6mlSXZq9YOkSwlUfXxuUqOBuEjbzymLwfBkZ5N85ZVaApdPgv3rg
+         mSCQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=sEfpGNC1wgHInVbFM/yJkO/397CoGeIpiR31ps+GqnY=;
-        b=Qa5J2Ylipy/vS70XJxxOO/97ytAFXVxAqssdsIJbU3PLGD0D3Y0UfMNM+NETa0vcLJ
-         uxkY3ZfDrlKgzAVEgI8wN6nzDS3O+Y1tg9qO7TeK87x5Eavfk49ju9nnXpSq+ZH+yaji
-         rwMY9HI30/PcissQ5CBl+htivjspRN0axqliPg+MUo9eex/nNmFyh1LjTHr2T27sBbC3
-         cefSheHXj4OMwH2nSZm8vlXqf03LJAaxwVwDYsTWaergxslqRdS2xJVAMS8Hqhe76E3Q
-         BzEJNInle2qKUf+pUskJc9iItp/FSI2Lo2HEX6VVFYoz81Pzy69dOo7Z8wsD2nxi8isU
-         gcFA==
+        bh=fKC09IE4Z/YqrIvCH2GzaIGeSq5BwtgQav6ZulQOmGE=;
+        b=vDdHFEk2eoIW+ksOh3TvS8ANzp6Cy5Yo5/4yVtI9jkKsGt7VhwO++Kuxs64iSgVLoi
+         PLXWChpDXxNJewQyn7oGLOW77s7tzmT+EMv5NMVRZgMbX+fMteBrTIOyp/V2MIuhsB5V
+         A3TUOnYHmBo6WGE1Gm6kWqBgtNq5dIynbSdX4VnxM7wzmsULH2kQw/fJfkMltYNsdLEJ
+         fVGiM1RErk8BXfLZ79YmCr91pGZY7s0PiqTBY5+eoW7qDaNcOaCQQLTHQ/++FpUv77zO
+         ETchIcEugCPXiNkEkiBDmErfiOHCqwW381rY5zkNQV841O9z/uQoVANPSYpucjikyxKV
+         SFxg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=RySqVmaj;
-       spf=pass (google.com: domain of jiangshanlai@gmail.com designates 2a00:1450:4864:20::444 as permitted sender) smtp.mailfrom=jiangshanlai@gmail.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=DVS9jsOi;
+       spf=pass (google.com: domain of jiangshanlai@gmail.com designates 2607:f8b0:4864:20::d44 as permitted sender) smtp.mailfrom=jiangshanlai@gmail.com;
        dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com. [2a00:1450:4864:20::444])
-        by gmr-mx.google.com with ESMTPS id g141si1085272wmg.0.2020.06.28.08.54.50
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com. [2607:f8b0:4864:20::d44])
+        by gmr-mx.google.com with ESMTPS id q80si1373752iod.0.2020.06.28.17.38.01
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Jun 2020 08:54:50 -0700 (PDT)
-Received-SPF: pass (google.com: domain of jiangshanlai@gmail.com designates 2a00:1450:4864:20::444 as permitted sender) client-ip=2a00:1450:4864:20::444;
-Received: by mail-wr1-x444.google.com with SMTP id f18so6125877wrs.0
-        for <open-iscsi@googlegroups.com>; Sun, 28 Jun 2020 08:54:50 -0700 (PDT)
-X-Received: by 2002:a5d:55c9:: with SMTP id i9mr13066890wrw.404.1593359690077;
- Sun, 28 Jun 2020 08:54:50 -0700 (PDT)
+        Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of jiangshanlai@gmail.com designates 2607:f8b0:4864:20::d44 as permitted sender) client-ip=2607:f8b0:4864:20::d44;
+Received: by mail-io1-xd44.google.com with SMTP id o5so15343899iow.8
+        for <open-iscsi@googlegroups.com>; Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
+X-Received: by 2002:a5e:980f:: with SMTP id s15mr14363091ioj.47.1593391081299;
+ Sun, 28 Jun 2020 17:38:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200611100717.27506-1-bob.liu@oracle.com>
-In-Reply-To: <20200611100717.27506-1-bob.liu@oracle.com>
+References: <20200611100717.27506-1-bob.liu@oracle.com> <CAJhGHyDQLuoCkjwnze_6ZOLwXPtbNxnjxOr=fqqqsR_yxB9xtA@mail.gmail.com>
+ <52fa1d81-e585-37eb-55e5-0ed07ce7adc0@oracle.com>
+In-Reply-To: <52fa1d81-e585-37eb-55e5-0ed07ce7adc0@oracle.com>
 From: Lai Jiangshan <jiangshanlai+lkml@gmail.com>
-Date: Sun, 28 Jun 2020 23:54:38 +0800
-Message-ID: <CAJhGHyDQLuoCkjwnze_6ZOLwXPtbNxnjxOr=fqqqsR_yxB9xtA@mail.gmail.com>
+Date: Mon, 29 Jun 2020 08:37:50 +0800
+Message-ID: <CAJhGHyBPrCr3+iu-dMe69J3+tj99ea8crCGBuXc4yoStD+dEFA@mail.gmail.com>
 Subject: Re: [PATCH 1/2] workqueue: don't always set __WQ_ORDERED implicitly
 To: Bob Liu <bob.liu@oracle.com>
 Cc: LKML <linux-kernel@vger.kernel.org>, Tejun Heo <tj@kernel.org>, 
@@ -131,8 +132,8 @@ Cc: LKML <linux-kernel@vger.kernel.org>, Tejun Heo <tj@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Original-Sender: jiangshanlai@gmail.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b=RySqVmaj;       spf=pass
- (google.com: domain of jiangshanlai@gmail.com designates 2a00:1450:4864:20::444
+ header.i=@gmail.com header.s=20161025 header.b=DVS9jsOi;       spf=pass
+ (google.com: domain of jiangshanlai@gmail.com designates 2607:f8b0:4864:20::d44
  as permitted sender) smtp.mailfrom=jiangshanlai@gmail.com;       dmarc=pass
  (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 Reply-To: open-iscsi@googlegroups.com
@@ -147,80 +148,112 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Thu, Jun 11, 2020 at 6:29 PM Bob Liu <bob.liu@oracle.com> wrote:
+On Mon, Jun 29, 2020 at 8:13 AM Bob Liu <bob.liu@oracle.com> wrote:
 >
-> Current code always set 'Unbound && max_active == 1' workqueues to ordered
-> implicitly, while this may be not an expected behaviour for some use cases.
+> On 6/28/20 11:54 PM, Lai Jiangshan wrote:
+> > On Thu, Jun 11, 2020 at 6:29 PM Bob Liu <bob.liu@oracle.com> wrote:
+> >>
+> >> Current code always set 'Unbound && max_active == 1' workqueues to ordered
+> >> implicitly, while this may be not an expected behaviour for some use cases.
+> >>
+> >> E.g some scsi and iscsi workqueues(unbound && max_active = 1) want to be bind
+> >> to different cpu so as to get better isolation, but their cpumask can't be
+> >> changed because WQ_ORDERED is set implicitly.
+> >
+> > Hello
+> >
+> > If I read the code correctly, the reason why their cpumask can't
+> > be changed is because __WQ_ORDERED_EXPLICIT, not __WQ_ORDERED.
+> >
+> >>
+> >> This patch adds a flag __WQ_ORDERED_DISABLE and also
+> >> create_singlethread_workqueue_noorder() to offer an new option.
+> >>
+> >> Signed-off-by: Bob Liu <bob.liu@oracle.com>
+> >> ---
+> >>  include/linux/workqueue.h | 4 ++++
+> >>  kernel/workqueue.c        | 4 +++-
+> >>  2 files changed, 7 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
+> >> index e48554e..4c86913 100644
+> >> --- a/include/linux/workqueue.h
+> >> +++ b/include/linux/workqueue.h
+> >> @@ -344,6 +344,7 @@ enum {
+> >>         __WQ_ORDERED            = 1 << 17, /* internal: workqueue is ordered */
+> >>         __WQ_LEGACY             = 1 << 18, /* internal: create*_workqueue() */
+> >>         __WQ_ORDERED_EXPLICIT   = 1 << 19, /* internal: alloc_ordered_workqueue() */
+> >> +       __WQ_ORDERED_DISABLE    = 1 << 20, /* internal: don't set __WQ_ORDERED implicitly */
+> >>
+> >>         WQ_MAX_ACTIVE           = 512,    /* I like 512, better ideas? */
+> >>         WQ_MAX_UNBOUND_PER_CPU  = 4,      /* 4 * #cpus for unbound wq */
+> >> @@ -433,6 +434,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
+> >>  #define create_singlethread_workqueue(name)                            \
+> >>         alloc_ordered_workqueue("%s", __WQ_LEGACY | WQ_MEM_RECLAIM, name)
+> >>
+> >> +#define create_singlethread_workqueue_noorder(name)                    \
+> >> +       alloc_workqueue("%s", WQ_SYSFS | __WQ_LEGACY | WQ_MEM_RECLAIM | \
+> >> +                       WQ_UNBOUND | __WQ_ORDERED_DISABLE, 1, (name))
+> >
+> > I think using __WQ_ORDERED without __WQ_ORDERED_EXPLICIT is what you
+> > need, in which case cpumask is allowed to be changed.
+> >
 >
-> E.g some scsi and iscsi workqueues(unbound && max_active = 1) want to be bind
-> to different cpu so as to get better isolation, but their cpumask can't be
-> changed because WQ_ORDERED is set implicitly.
+> I don't think so, see function workqueue_apply_unbound_cpumask():
+>
+> wq_unbound_cpumask_store()
+>  > workqueue_set_unbound_cpumask()
+>    > workqueue_apply_unbound_cpumask() {
+>      ...
+> 5276                 /* creating multiple pwqs breaks ordering guarantee */
+> 5277                 if (wq->flags & __WQ_ORDERED)
+> 5278                         continue;
+>                           ^^^^
+>                           Here will skip apply cpumask if only __WQ_ORDERED is set.
 
-Hello
+wq_unbound_cpumask_store() is for changing the cpumask of
+*all* workqueues. I don't think it can be used to make
+scsi and iscsi workqueues bound to different cpu.
 
-If I read the code correctly, the reason why their cpumask can't
-be changed is because __WQ_ORDERED_EXPLICIT, not __WQ_ORDERED.
+apply_workqueue_attrs() is for changing the cpumask of the specific
+workqueue, which can change the cpumask of __WQ_ORDERED workqueue
+(but without __WQ_ORDERED_EXPLICIT).
 
 >
-> This patch adds a flag __WQ_ORDERED_DISABLE and also
-> create_singlethread_workqueue_noorder() to offer an new option.
+> 5280                 ctx = apply_wqattrs_prepare(wq, wq->unbound_attrs);
 >
-> Signed-off-by: Bob Liu <bob.liu@oracle.com>
-> ---
->  include/linux/workqueue.h | 4 ++++
->  kernel/workqueue.c        | 4 +++-
->  2 files changed, 7 insertions(+), 1 deletion(-)
+>      }
 >
-> diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
-> index e48554e..4c86913 100644
-> --- a/include/linux/workqueue.h
-> +++ b/include/linux/workqueue.h
-> @@ -344,6 +344,7 @@ enum {
->         __WQ_ORDERED            = 1 << 17, /* internal: workqueue is ordered */
->         __WQ_LEGACY             = 1 << 18, /* internal: create*_workqueue() */
->         __WQ_ORDERED_EXPLICIT   = 1 << 19, /* internal: alloc_ordered_workqueue() */
-> +       __WQ_ORDERED_DISABLE    = 1 << 20, /* internal: don't set __WQ_ORDERED implicitly */
+> Thanks for your review.
+> Bob
 >
->         WQ_MAX_ACTIVE           = 512,    /* I like 512, better ideas? */
->         WQ_MAX_UNBOUND_PER_CPU  = 4,      /* 4 * #cpus for unbound wq */
-> @@ -433,6 +434,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
->  #define create_singlethread_workqueue(name)                            \
->         alloc_ordered_workqueue("%s", __WQ_LEGACY | WQ_MEM_RECLAIM, name)
->
-> +#define create_singlethread_workqueue_noorder(name)                    \
-> +       alloc_workqueue("%s", WQ_SYSFS | __WQ_LEGACY | WQ_MEM_RECLAIM | \
-> +                       WQ_UNBOUND | __WQ_ORDERED_DISABLE, 1, (name))
-
-I think using __WQ_ORDERED without __WQ_ORDERED_EXPLICIT is what you
-need, in which case cpumask is allowed to be changed.
-
-Just use alloc_workqueue() with __WQ_ORDERED and max_active=1. It can
-be wrapped as a new function or macro, but I don't think
-create_singlethread_workqueue_noorder() is a good name for it.
-
->  extern void destroy_workqueue(struct workqueue_struct *wq);
->
->  struct workqueue_attrs *alloc_workqueue_attrs(void);
-> diff --git a/kernel/workqueue.c b/kernel/workqueue.c
-> index 4e01c44..2167013 100644
-> --- a/kernel/workqueue.c
-> +++ b/kernel/workqueue.c
-> @@ -4237,7 +4237,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
->          * on NUMA.
->          */
->         if ((flags & WQ_UNBOUND) && max_active == 1)
-> -               flags |= __WQ_ORDERED;
-> +               /* the caller may don't want __WQ_ORDERED to be set implicitly. */
-> +               if (!(flags & __WQ_ORDERED_DISABLE))
-> +                       flags |= __WQ_ORDERED;
->
->         /* see the comment above the definition of WQ_POWER_EFFICIENT */
->         if ((flags & WQ_POWER_EFFICIENT) && wq_power_efficient)
-> --
-> 2.9.5
+> > Just use alloc_workqueue() with __WQ_ORDERED and max_active=1. It can
+> > be wrapped as a new function or macro, but I don't think> create_singlethread_workqueue_noorder() is a good name for it.
+> >
+> >>  extern void destroy_workqueue(struct workqueue_struct *wq);
+> >>
+> >>  struct workqueue_attrs *alloc_workqueue_attrs(void);
+> >> diff --git a/kernel/workqueue.c b/kernel/workqueue.c
+> >> index 4e01c44..2167013 100644
+> >> --- a/kernel/workqueue.c
+> >> +++ b/kernel/workqueue.c
+> >> @@ -4237,7 +4237,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
+> >>          * on NUMA.
+> >>          */
+> >>         if ((flags & WQ_UNBOUND) && max_active == 1)
+> >> -               flags |= __WQ_ORDERED;
+> >> +               /* the caller may don't want __WQ_ORDERED to be set implicitly. */
+> >> +               if (!(flags & __WQ_ORDERED_DISABLE))
+> >> +                       flags |= __WQ_ORDERED;
+> >>
+> >>         /* see the comment above the definition of WQ_POWER_EFFICIENT */
+> >>         if ((flags & WQ_POWER_EFFICIENT) && wq_power_efficient)
+> >> --
+> >> 2.9.5
+> >>
 >
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAJhGHyDQLuoCkjwnze_6ZOLwXPtbNxnjxOr%3DfqqqsR_yxB9xtA%40mail.gmail.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAJhGHyBPrCr3%2Biu-dMe69J3%2Btj99ea8crCGBuXc4yoStD%2BdEFA%40mail.gmail.com.
