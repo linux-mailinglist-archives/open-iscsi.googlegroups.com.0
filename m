@@ -1,128 +1,127 @@
 Return-Path: <open-iscsi+bncBCLI32UIRUJRBVXA5X3QKGQEIXKBYXA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oi1-x23c.google.com (mail-oi1-x23c.google.com [IPv6:2607:f8b0:4864:20::23c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47EB820FA1B
+Received: from mail-qv1-xf3d.google.com (mail-qv1-xf3d.google.com [IPv6:2607:f8b0:4864:20::f3d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1476A20FA19
 	for <lists+open-iscsi@lfdr.de>; Tue, 30 Jun 2020 19:03:19 +0200 (CEST)
-Received: by mail-oi1-x23c.google.com with SMTP id a12sf4336220oia.23
+Received: by mail-qv1-xf3d.google.com with SMTP id r4sf14259483qvh.10
         for <lists+open-iscsi@lfdr.de>; Tue, 30 Jun 2020 10:03:19 -0700 (PDT)
 ARC-Seal: i=2; a=rsa-sha256; t=1593536598; cv=pass;
         d=google.com; s=arc-20160816;
-        b=JZvQ3sjMnX7nyaeHyoOCqA2X71doeGVaF5HzkhwBebyhrkizxUJDCE+W2kHoxZOQTn
-         1yfHzusa3FCTgQvPuuFZENEK58pOqp6D8WPP0XgistiMeKZqngV1b46zt1hFsof4FqzQ
-         UYjdsreinEVGUkdHblbZwegAfgQbM0opKof+2fD2PSmDyngmNP510ZS5BSUFS3LYcA47
-         WXpeVNBYRIeVB1sTJbdhpNpFWvtKQ0ldBOo0b8oPvFJdAlX3vGkV80q55TmleT0qzm1p
-         h5QQjn/Ijxb8f+ybp26G4lUgNHMbj3XDF8AXxlcceQKWiLOFZMnsyFPyosocVSnt6aP+
-         89LQ==
+        b=L4MRWzXAJmHlqpScJSgerxzlZYlpkn5eku0hwYb6XMoPRBuTA+xxogUw0j6gP30REN
+         ohApUK1XGBxUkB//GHwIvMQ/dgpRgZXbot3SEbgjgjlG1GxVQCdWiUupfl8DBGzF7Y+V
+         wLIdB/6/+Ec/OJ8FsYg+C4C3Br6ktV6s5RspkFNMfFTxruhWlnPoQuDffVuhq5ATntPA
+         J/OZjPFWhMtcvU0heXZ+uORyFnIeK093aXdNCXKplfVS49zOZ1pN1M5QCfMC5tOpD9xn
+         DYoM3bT4P8ueDEV39u1cNIOp/Cdq2sTrwyp/5LIReuFzQB9MOvJbEx0+wO21T0sjpq4m
+         fZJw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:subject
-         :message-id:to:from:date:sender:dkim-signature;
-        bh=eAlIhIIFbJPNcnn6RHnbDSdWGMUfVdflk5/iNL/qp3Y=;
-        b=QGnus22fHQYTj1VthIrGRUZNtE8PAV9FJBzdXHEliT17qEy+dukuOr36W0+EgfDNRD
-         rxsD5p7UV3QFRxeKaUz6OMDPeT2uv01F7V0Qm3TPNdZF2DC+ZwqUh5tgL2+87r6NtIJE
-         KSj9/kxgKInVlYBUZivHR14RbCIUWyOwCqG5bU6MzgYCqUpJxJvuovxRs1hTLOsyk3Kz
-         TCVA0l5BJVWi32S19AHnlTr7bD1Qz/Ki2VnCfEnRXIXSc2YTaOWPqGY04K1WK3CdQqkv
-         oMVsfGMDY4linuZ04I594ofqxAaYz5Fpcg33wJyfL4jD/dD8KAu03SRf+3IZM2SBhY9F
-         BeXg==
+         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
+         :from:mime-version:sender:dkim-signature;
+        bh=bKQ/j0cQmvuWadO+QiScoVeZ3xzhHRqM4YYvaQT2k68=;
+        b=JZf1AV6Ig/icRUiB0fmCEm8yrmwaHI5VXE9+HXfjxWeZRUTkDxOTAwSePZu4Xa4YpP
+         P+JR7qzhALop7S2Dhz4VW84oqacEyRpscIBPXI8SO2BukI/b4TOVA7dsqMCQcTs5le33
+         rjP273O9r3GLopbVEjHLEsScMypqnW4mHtWnpVV0Dol6lxVDIAcOi6VTZ4TeQkwwO/s6
+         1RkmDcPZJxe4k/aF+Ls0fBZTWRV9TvjvSzluoyoPlKR7rWuFgfpK9FtpvnZlBLuIPaQK
+         RvSTCEIP6/NcUHv4dSreDy5eUdVEEu9G0CmwhijR9LR5/Ua+2S2zqKDTD9Tc8sECKE61
+         NOFg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b="Ey2xkK/K";
-       spf=pass (google.com: domain of abawer@redhat.com designates 205.139.110.61 as permitted sender) smtp.mailfrom=abawer@redhat.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=i8U6+Lcn;
+       spf=pass (google.com: domain of abawer@redhat.com designates 207.211.31.81 as permitted sender) smtp.mailfrom=abawer@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:message-id:subject:mime-version
+        h=sender:mime-version:from:date:message-id:subject:to
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=eAlIhIIFbJPNcnn6RHnbDSdWGMUfVdflk5/iNL/qp3Y=;
-        b=WK3nUHl26tiKRHIeDDfuVIXJHXku5WtY1RtYrcr3AruHzqdKnBj89t0kCcl7pL8KXu
-         aUqK+VlvWLZXO5YFzV+aLGabNQc5+3Pi1znSyGoKO/+zCRZdTyPJrKtZisWSc1KgyJ6w
-         gmIHZNI3Ud+mSFa+eqDUcIj/eVqLSTLDHUxLlAkvMzpX/dyOkIdjDzgKEWbV0yRbzu1j
-         jwLYGgvf2MSYBhcrJIkOvt5fVnkGzydpD46X1WfrFSjug5mee6jDn5DRRegEndI7VK2D
-         2ji+m9z98sT6eHdjMgrEbZ3QMlJNEpbkU6BuoX81UXED5D/MXSwfXOJrkcGqcrfezd3y
-         Qa0w==
+        bh=bKQ/j0cQmvuWadO+QiScoVeZ3xzhHRqM4YYvaQT2k68=;
+        b=E9atcQEZ2y/gtjGCiOq3EIbzn7hBcR/9V/deoMJ4R2Cb6C/4HHul3Ygf2dj9iwlAze
+         JShVhdSof5yF69BjMi6uPXKpzIIIZlfUW58N/yBuPhRHxUVFbHhSykaDyjIoFnJqwr7K
+         ZQEOisUcZMGmsT1Y57XZuhMKqU8yL/XXWGv9qxeowaLnp66eXe7SbfpnwdvEpez+E/CI
+         9vWED7d4QflGUR9IzBg6S3wBuzhUoNNd5Q51PHVZ20Sxl2zm8AZY4Zx8bKXGF+nhLRWI
+         KIlB0ActnRC8Trie2f5CpkN1PElPgQMYRKiGg3FH+1jUxqXs4aZMXAtXG9kuuSnywix5
+         BV6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:subject
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=eAlIhIIFbJPNcnn6RHnbDSdWGMUfVdflk5/iNL/qp3Y=;
-        b=tU3g7+varr3ZZUSpAEyaMStO4P2mA5JKyov4it/4VLdHEfB+SHyJpt55RSGbsCzgd7
-         MPFHrunhdcevvcvJaLQMRemR2ymk28c2JjHtP21nJdK/5lBYCUFpKE1bof7Dlpbyapkq
-         C+hzB57jgqHonjUjQYj5iAhdWtWGtM0dBhY5BCs6EiQlDqLalQ7Zdk5paZo0RN59ohd/
-         hItUfSEb6HRLw49DmTYN2XHWX7CfcpKKTBf8FU0yWjWmCiy9eR20XdHuV7vXKSH6l/6O
-         A/+9D1y1yMVJxs9kdZfJO3Ajlhts95Ib+O0ENG9ETs8iaNyDSlOW6fiu0UP+JgZchIcU
-         vEcA==
+        h=sender:x-gm-message-state:mime-version:from:date:message-id:subject
+         :to:x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=bKQ/j0cQmvuWadO+QiScoVeZ3xzhHRqM4YYvaQT2k68=;
+        b=IJau7DUefgRco1qYjQxjYZlZD6AK7+DO209LCNcwS7Vu49hQ3v+M8O2I1gT3NpDY0V
+         QiXl8uv1auDjVQKKaurHIJm0WMmMAZAOBOagyrh7Yq1c4dTH3xcs8KFZt4SCd69vM3JR
+         1kEbIMS2uyCThRnQMNqe/SZkMck5gVsLNmRRHCFh0CFmdDN9e3T3nw/4n4reVc/2wlRu
+         sODD3ivX2lFfsiDvdGKnm7cqV4NZlp2vF++T/YJ3uGX4P95kyp7Ak/Eo8EzuKVkfWZSA
+         AyBCyaCphfdUGyv0RdH+iJITm999QzgCxS/T2mhXFERC7V93/VIe+yuO6HNwBxSgWsKD
+         NQPQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530hNnLF8LNNlXvKPxl3RePb8nXj2heyHVM6c674z0xlIqaJ/qPs
-	dsjNGb/rRp/vD9XDJ8acXFQ=
-X-Google-Smtp-Source: ABdhPJz3Psb4uRkdIHXtnu6SnlnpRpw3IlAjjDt5R242LspqK2PdlkFY6VEV5dYuKyQ2KQZj147Z9w==
-X-Received: by 2002:a4a:8c28:: with SMTP id u37mr18974052ooj.26.1593536598143;
+X-Gm-Message-State: AOAM531gUqEZbPNic+2GYhxQRjgecKO/Q5/9uNrOWcylPRGNQs1TV+xm
+	NYrQV/+wsekfBHTWxUASQlc=
+X-Google-Smtp-Source: ABdhPJwE/QG46qgdOW4ysmaYZp4ETAJqtU29c4GbAjcOMKOWHwAgRxdj6cst5+LjN5SuDikLXmPbyg==
+X-Received: by 2002:ad4:4a6d:: with SMTP id cn13mr19364738qvb.165.1593536598106;
         Tue, 30 Jun 2020 10:03:18 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6830:159:: with SMTP id j25ls1081474otp.8.gmail; Tue, 30
- Jun 2020 10:03:18 -0700 (PDT)
-X-Received: by 2002:a9d:2604:: with SMTP id a4mr19540989otb.334.1593536597946;
+Received: by 2002:a37:38f:: with SMTP id 137ls10075086qkd.2.gmail; Tue, 30 Jun
+ 2020 10:03:17 -0700 (PDT)
+X-Received: by 2002:ae9:ed86:: with SMTP id c128mr21366425qkg.475.1593536597904;
         Tue, 30 Jun 2020 10:03:17 -0700 (PDT)
-Received: by 2002:aca:d982:0:b029:c2:a9a:e943 with SMTP id q124-20020acad9820000b02900c20a9ae943msoig;
-        Tue, 30 Jun 2020 04:00:42 -0700 (PDT)
-X-Received: by 2002:aca:b782:: with SMTP id h124mr16004420oif.72.1593514842541;
-        Tue, 30 Jun 2020 04:00:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1593514842; cv=none;
+Received: by 2002:a37:4a01:0:b029:f1:b630:a9ab with SMTP id x1-20020a374a010000b02900f1b630a9abmsqka;
+        Tue, 30 Jun 2020 05:47:23 -0700 (PDT)
+X-Received: by 2002:a25:8404:: with SMTP id u4mr35109210ybk.515.1593521243635;
+        Tue, 30 Jun 2020 05:47:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1593521243; cv=none;
         d=google.com; s=arc-20160816;
-        b=BV9U2Kav7nQbsmMKHvh9afXudnSorH/lGP2hZqMwQwCqS4h8OSdUF4FWIEZzRzOVpM
-         /0Ea2kayAgVEQ/vSsNCbMo6VpFXNwDfqZyFG68FRkYQqt7FYl4bX7JMpQR70Q+bscgpu
-         weVpRDQQa6I7CalfaEGiMP+zpjG95xomv9mgd1zz1CE++Jn3C8vSa39szDSMALycZGbi
-         HW+vFvlxUM4fpOSovkCE62x/MvG4DV33fTecHVVzwQ2D8+pnJE8aDMLYQUu3ElaZJjAI
-         rAQzl69p1GLtQB+2IhbjpE4NPcgPM2PqCAIKSTPa+Ga7fIqor80cNCwZZPJhlA3L3O9e
-         5buA==
+        b=gTMEkcWAY3622Q5YVWjzzVZ35fZdIJyErqD8WTJfdwV1axb2+ikV0Ahw24cuifzWek
+         RQcP3LbrsZFqqZTe5Nf6zmiyRzi4nuv+2cB571S+m1vpr9dKkaxoC4p4aNgjactZUqiH
+         60X/1mCoVh/5U7CktC371ED9OnO3L2QofjFt3KU28rsqynmU5C0GZ89BVNn+UXWgp2iE
+         efrt59vxi4fwPOXSRklt1u8266phuhYY4cqi12/zdOr9g6/0uixej91SM4TNinJiSSiR
+         75GGtWcPoOY7j7aMttciFv7IWQ9WTL655/j+SE15F/UrYfwVRRHD6aYyErdY/uV4Zz9E
+         OC7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:subject:message-id:to:from:date:dkim-signature;
-        bh=ubP68Sn8F9tcI+HN/OYUCVyLYyxPOfLUk+GUbwqHJH0=;
-        b=AqaF6Opi0gLfN/XpNqGsHaLEaf++vuC7FDJ4EV3MRBv5w9sMIcmVNHKBXRd4BNJGhO
-         LSi7czL0IPL1ogBFGRdlvudgd2cIJ52ePdG+yC7uNr5dcMoAwz7w5TGznOB8zBhRwV80
-         VFLAQEerqKD5qUsqLBTQ830wH5Roy3TKuWwpOBS3JqbHF2Hgb9NuJCvLzjqmUEp38WV2
-         HdsMGESIthuUwulx9yR1ZWxfxtIE2yJZwHOZ5ppVzoJAXcguHzhMEIbPLx3h8jsgNg7C
-         hnhkkRNUyiE+or7ZpdKYOSFczUWaMlBrKBtTBZwUxlDigOHyo4FNXEV2jhByTWkkEMAz
-         Os2g==
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=tanpkjbDYg3jn/hi3AtY9eWpggHJUcc3aVlth15iMBc=;
+        b=bn5RBQxS5M3Zfm4hfKWHcDZLdZgSyDR3sqDjYH4mvH3EsoPsKHKOnUqJVwZ1TeIQKR
+         x3TVAfPKoZ7AK+peEqbZ7/4BB2+BBnkaY5bwXcf+f1/tnMPfGkptpPi+TobAQgaHtelq
+         vv7vRnO11CNciJsHKiycw/A4gmjO9YUOMR0AorVanWfCw+pV3stBAZ4U9G5opoqb2RIY
+         00rWixmqePWoX+4PoMUgR5Sf6Ny+N/2+dbRPutjaDWnOD6lIm3RA8Xl82OA3aQdRhlc3
+         OSS7LeWzjha4uXfv/E8En4KLwIOcZ2ZshYVXKNS6UliKFcU6UJbTY4GPf+fYzbHBGhSI
+         odPw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b="Ey2xkK/K";
-       spf=pass (google.com: domain of abawer@redhat.com designates 205.139.110.61 as permitted sender) smtp.mailfrom=abawer@redhat.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=i8U6+Lcn;
+       spf=pass (google.com: domain of abawer@redhat.com designates 207.211.31.81 as permitted sender) smtp.mailfrom=abawer@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com. [205.139.110.61])
-        by gmr-mx.google.com with ESMTPS id y16si93014oot.2.2020.06.30.04.00.42
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com. [207.211.31.81])
+        by gmr-mx.google.com with ESMTPS id n63si116027ybb.1.2020.06.30.05.47.23
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Jun 2020 04:00:42 -0700 (PDT)
-Received-SPF: pass (google.com: domain of abawer@redhat.com designates 205.139.110.61 as permitted sender) client-ip=205.139.110.61;
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-420--27lk_CxMl6MJejyHGt5EQ-1; Tue, 30 Jun 2020 07:00:37 -0400
-X-MC-Unique: -27lk_CxMl6MJejyHGt5EQ-1
-Received: by mail-qt1-f198.google.com with SMTP id a52so2980504qtk.22
-        for <open-iscsi@googlegroups.com>; Tue, 30 Jun 2020 04:00:37 -0700 (PDT)
-X-Received: by 2002:a37:6886:: with SMTP id d128mr19721792qkc.12.1593514837308;
-        Tue, 30 Jun 2020 04:00:37 -0700 (PDT)
-X-Received: by 2002:a37:6886:: with SMTP id d128mr19721773qkc.12.1593514837120;
-        Tue, 30 Jun 2020 04:00:37 -0700 (PDT)
-Date: Tue, 30 Jun 2020 04:00:36 -0700 (PDT)
-From: abawer@redhat.com
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <94cd4d2e-cf0d-4e58-a3a4-e9287928190eo@googlegroups.com>
-Subject: Concurrent logins to different interfaces of the same iscsi target
- and login timeout
+        Tue, 30 Jun 2020 05:47:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of abawer@redhat.com designates 207.211.31.81 as permitted sender) client-ip=207.211.31.81;
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-273-X7weDeSXMwaCwIA2LUy3Hg-1; Tue, 30 Jun 2020 08:47:07 -0400
+X-MC-Unique: X7weDeSXMwaCwIA2LUy3Hg-1
+Received: by mail-qv1-f70.google.com with SMTP id e6so4808068qva.2
+        for <open-iscsi@googlegroups.com>; Tue, 30 Jun 2020 05:47:07 -0700 (PDT)
+X-Received: by 2002:ac8:76ca:: with SMTP id q10mr19728634qtr.270.1593521226793;
+        Tue, 30 Jun 2020 05:47:06 -0700 (PDT)
+X-Received: by 2002:ac8:76ca:: with SMTP id q10mr19728611qtr.270.1593521226419;
+ Tue, 30 Jun 2020 05:47:06 -0700 (PDT)
 MIME-Version: 1.0
+From: Amit Bawer <abawer@redhat.com>
+Date: Tue, 30 Jun 2020 15:46:55 +0300
+Message-ID: <CAOfZdw_ndnRyXHxcovVRPvFD6UYYEQScwuhjkOPvirP7WxF9tA@mail.gmail.com>
+Subject: Concurrent logins to different interfaces of same iscsi target and
+ login timeout
+To: open-iscsi@googlegroups.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_1334_261525644.1593514836862"
+Content-Type: multipart/alternative; boundary="000000000000a4a21b05a94c92ba"
 X-Original-Sender: abawer@redhat.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@redhat.com header.s=mimecast20190719 header.b="Ey2xkK/K";
+ header.i=@redhat.com header.s=mimecast20190719 header.b=i8U6+Lcn;
        spf=pass (google.com: domain of abawer@redhat.com designates
- 205.139.110.61 as permitted sender) smtp.mailfrom=abawer@redhat.com;
+ 207.211.31.81 as permitted sender) smtp.mailfrom=abawer@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -136,31 +135,26 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1334_261525644.1593514836862
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1335_1714911911.1593514836862"
-
-------=_Part_1335_1714911911.1593514836862
+--000000000000a4a21b05a94c92ba
 Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-Couple of questions regarding iscsiadm version 6.2.0.878-2:
+Have couple of question regarding iscsiadm version 6.2.0.878-2:
 
-1) Is it safe to have concurrent logins to different interfaces of the same 
-iscsi target?
-That is, having following commands run at parallel:
+1) Is it safe to have concurrent logins to the same target from different
+interfaces?
+That is, running the following commands in parallel:
 
-iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p 
-10.35.18.150:3260,1 -l
-iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p 
+iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p
 10.35.18.121:3260,1 -l
+iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p
+10.35.18.166:3260,1 -l
 
-
-2) Is there a particular reason behind the default values for 
-node.conn[0].timeo.login_timeout  and node.session.initial_login_retry_max ?
-According to comment in iscsid.conf we are going to wait 120 seconds in 
-case of an unreachable interface which is quite long.
+2) Is the a particular reason for the default values of
+node.conn[0].timeo.login_timeout and node.session.initial_login_retry_max?
+According to comment in iscsid.conf it would spend 120 seconds in case of
+an unreachable interface login:
 
 # The default node.session.initial_login_retry_max is 8 and
 # node.conn[0].timeo.login_timeout is 15 so we have:
@@ -168,39 +162,38 @@ case of an unreachable interface which is quite long.
 # node.conn[0].timeo.login_timeout * node.session.initial_login_retry_max =
 #                                                               120 seconds
 
+
 Thanks,
 Amit
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/94cd4d2e-cf0d-4e58-a3a4-e9287928190eo%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAOfZdw_ndnRyXHxcovVRPvFD6UYYEQScwuhjkOPvirP7WxF9tA%40mail.gmail.com.
 
-------=_Part_1335_1714911911.1593514836862
+--000000000000a4a21b05a94c92ba
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>Couple of questions rega=
-rding iscsiadm version 6.2.0.878-2:</div><div><br></div><div>1) Is it safe =
-to have concurrent logins to different interfaces of the same iscsi target?=
-</div><div>That is, having following commands run at parallel:</div><div><b=
-r></div><div>iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default =
--p 10.35.18.150:3260,1 -l</div><div>iscsiadm -m node -T iqn.2003-01.org.vm-=
-18-198.iqn2 -I default -p 10.35.18.121:3260,1 -l<br></div><div><br></div><d=
-iv><br></div><div>2) Is there a particular reason behind the default values=
- for node.conn[0].timeo.login_timeout=C2=A0 and=C2=A0node.session.initial_l=
-ogin_retry_max  ?</div><div>According to comment in iscsid.conf we are goin=
-g to wait 120 seconds in case of an unreachable interface which is quite lo=
-ng.</div><div><br></div><div># The default node.session.initial_login_retry=
-_max is 8 and<br># node.conn[0].timeo.login_timeout is 15 so we have:<br>#<=
-br># node.conn[0].timeo.login_timeout * node.session.initial_login_retry_ma=
-x =3D<br>#=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 120 seconds<br><br></div><div>Thanks,</div><div>Amit<br></div></d=
-iv>
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>Have couple of question =
+regarding iscsiadm version 6.2.0.878-2:</div><div><br></div><div>1) Is it s=
+afe to have concurrent logins to the same target from different interfaces?=
+ <br></div><div>That is, running the following commands in parallel:</div><=
+div><br></div><div>iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I de=
+fault -p <a href=3D"http://10.35.18.121:3260">10.35.18.121:3260</a>,1 -l</d=
+iv><div>iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p <a=
+ href=3D"http://10.35.18.166:3260">10.35.18.166:3260</a>,1 -l</div><div></d=
+iv><div><br></div><div>2) Is the a particular reason for the default values=
+ of=C2=A0 node.conn[0].timeo.login_timeout and node.session.initial_login_r=
+etry_max?</div><div>According to comment in iscsid.conf it would spend 120 =
+seconds in case of an unreachable interface login:</div><div><br></div><div=
+># The default node.session.initial_login_retry_max is 8 and<br># node.conn=
+[0].timeo.login_timeout is 15 so we have:<br>#<br># node.conn[0].timeo.logi=
+n_timeout * node.session.initial_login_retry_max =3D<br># =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 120 seconds<br></div><=
+div><br></div><div><br></div><div>Thanks,</div><div> Amit<br></div></div>
 
 <p></p>
 
@@ -211,12 +204,10 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/94cd4d2e-cf0d-4e58-a3a4-e9287928190eo%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/94cd4d2e-cf0d-4e58-a3a4-e9287928190eo%40googlegroups.com</a>.=
-<br />
+om/d/msgid/open-iscsi/CAOfZdw_ndnRyXHxcovVRPvFD6UYYEQScwuhjkOPvirP7WxF9tA%4=
+0mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.goog=
+le.com/d/msgid/open-iscsi/CAOfZdw_ndnRyXHxcovVRPvFD6UYYEQScwuhjkOPvirP7WxF9=
+tA%40mail.gmail.com</a>.<br />
 
-------=_Part_1335_1714911911.1593514836862--
-
-------=_Part_1334_261525644.1593514836862--
+--000000000000a4a21b05a94c92ba--
 
