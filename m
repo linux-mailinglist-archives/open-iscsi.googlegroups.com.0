@@ -1,123 +1,125 @@
-Return-Path: <open-iscsi+bncBC6MFJWO34DBBYF25P3QKGQE5GU7ZCI@googlegroups.com>
+Return-Path: <open-iscsi+bncBCLI32UIRUJRBWHO5T3QKGQEEQ4VJJA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ed1-x538.google.com (mail-ed1-x538.google.com [IPv6:2a00:1450:4864:20::538])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8D5920EE9A
-	for <lists+open-iscsi@lfdr.de>; Tue, 30 Jun 2020 08:36:16 +0200 (CEST)
-Received: by mail-ed1-x538.google.com with SMTP id x20sf16342862edr.20
-        for <lists+open-iscsi@lfdr.de>; Mon, 29 Jun 2020 23:36:16 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1593498976; cv=pass;
+Received: from mail-oi1-x23e.google.com (mail-oi1-x23e.google.com [IPv6:2607:f8b0:4864:20::23e])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE2420F54D
+	for <lists+open-iscsi@lfdr.de>; Tue, 30 Jun 2020 15:00:09 +0200 (CEST)
+Received: by mail-oi1-x23e.google.com with SMTP id b188sf4822223oia.4
+        for <lists+open-iscsi@lfdr.de>; Tue, 30 Jun 2020 06:00:09 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1593522008; cv=pass;
         d=google.com; s=arc-20160816;
-        b=ffDCb2076id3tSC5AQjRwd7oGsw5Gn93t81PHGM2Kinorn/+B+ZOd9gXmcZiHcDq6B
-         8bIlk1iFfrNETzxR7jG1wdi6MMUgnlYKlOZMNuqH6MRo0i+gO82hrSyZXIoG2L43bkuJ
-         ZPM/zbYBd58bbu0JA6lXWq0FmBDCyorha5qXmke7rXBXfRP6XvJIeFUbZDTbIbuNoLme
-         /E506M3RiPITW9ZdMD4C0lVig132t/vD1BnnzRvWj727aOrJrWmdfY9sZzrSSc3LiL3L
-         Aq3hLr3g/vXHw+oAH6CRHSluyCeYBCGpIQUJvIvh1GgEVJ1ZyJeoxKb4vxZED3qLNGXM
-         4h4w==
+        b=nT3AEE8DUSFnXHOu4+vgPppNgjLd5WQx2s7XGsMfnK/FJdJ1YxUaFvpStBslnLJINg
+         WqKHqaVUAhQx348o6s7WPIhdfyjP5W2pfMbQHUIf3wYPi5W4+gQ9JqfwpJKiS5LXaT5v
+         +Pha6j8pjP+FN83D+BA4zl2F9Yd2yEpiJlCpNGwtwQwjdLeUbAQkHmY7yHRmlqx0YxZ7
+         KdbSXbFaKia32k7kLalvBe5BOkB/WIdFfPWmvA6Y6vkPs/umvcuPM8t6OJ9nN9X+8QAD
+         OSzIN6FR+nORjYp+3nh2QCzPYLcjw0ZLcnOvm/vzYlRQaTgPrBmdga5iZiwEcbcbBGHz
+         WUEg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-disposition
-         :mime-version:in-reply-to:references:subject:to:from:date:message-id
-         :sender:dkim-signature;
-        bh=AuI37eRZCiuIlQpGq57hj4aQLKp4nHiomFoK9OLvq5k=;
-        b=eqjeKTxilWAlOx12LqHb8TQjyw+Bx6xQgR9g+g9oWoiuaIGdD9myRRJFljrEFxTzEj
-         ZYDGAcUhthH8YXTg26K5/kYi6CA104ds4zlqow0T5Q9YjeunbvtE/GEScFsUGak9d2Rp
-         b7v6Q6XZjk0ZVbhUfC249cdI7GOC3Zp9AsZ9CP9E6u7j3qvzKsRf9q/yJ2rl1fzvpf0Q
-         YbVfQ8Fca5rLYbsgvZ36FkWNizZ4PtIJlVJ3ubx79/ZZlnWywvqo2srzXLqzEiAUXsTN
-         5D+6pA3lk5PahfepSBm6DzA5/OLkncOPLhz0UCCEuOl/ZPOrHHUTtNu+1Kb8garR9BNJ
-         23mA==
+         :list-id:mailing-list:precedence:reply-to:mime-version:subject
+         :message-id:to:from:date:sender:dkim-signature;
+        bh=6SEytApmfRJpx9lX7QZ/miCTMYYN+Mi6ViOoL77PCyY=;
+        b=u+E3GwYZ5wwIn/IVlJY+fHNAHTx4J75vdKFrJtKKxEBFyKwCtTftTUzdc2Hl9Ehw66
+         igg4Errh4Il69C23EHoC5ETW3P9J0Bau7fJIsT8lpiXcnOwykotS3uKwUPs6rC0t1/kb
+         m38bz4lsFeB6d8G7Cjk3LsMbd8Zp/svX2GJSe4tl7v96acpWB0jm6mT7qyJ23MRS/2gS
+         IsWi/asKWct2stJtEDfVuLzL74MloIsCh6ExUvq5GCJlvDCg0aL0z9rE9bXEfuETWAO0
+         Oe6mUlNYeLPmkg8t6KWCzZ+tCvjjisqNErCjGp213fQD2YZ4TcorcWGou8GGLDw873PV
+         GwhA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:3:bdf8 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=TFdvTa+E;
+       spf=pass (google.com: domain of abawer@redhat.com designates 207.211.31.81 as permitted sender) smtp.mailfrom=abawer@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:message-id:date:from:to:subject:references:in-reply-to
-         :mime-version:content-disposition:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=AuI37eRZCiuIlQpGq57hj4aQLKp4nHiomFoK9OLvq5k=;
-        b=oA3w+N8Z5Bo5MySHxtsPZC3r0yj73zrFXiH7ZUTdgWeOyRN7qBL+t5YAFUpomrMtFC
-         cQmqt0WMoeHYh5obDx3ZW+r34PhrMfFwlU5/b02yEKYvb3HBWVx/buav7e00nTi4zBhd
-         YpbKEBt6XQ7AWY6dHkIvfMEMajpCCk8vaO4NFSW/Rgy4dck0CdYMVHpKp3qyEv+HdqPx
-         6jqVul0/zZGmTRISG5v3s8WMsYaYIhu1HcIVC5e4iXI8Hmk24/903e13lLlHYhkHJzRX
-         BHOS85OyE9ENMORAYaSKDQcAmRiSzBMfOJMq5nIvrvqdDuPdviYKXti9UyUi9kCBqGJr
-         AoPw==
+        h=sender:date:from:to:message-id:subject:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=6SEytApmfRJpx9lX7QZ/miCTMYYN+Mi6ViOoL77PCyY=;
+        b=dv3BX6OoAYltKU5MomoiOU74igDJ+JPnpxqRvSZUd1xboxwMKc9p/yCtpcPcaEvDuY
+         ccTsPKRYJM+z0QURv5AE2DNpH0ugJ9aHvUyp9oC2cTHEgXh1SN/tCsKQ8PlG0q1eH4UO
+         sfVDHjqTP9i1e31hO5aJdH1RgDzIge77sSDfQXuH6BXh9wHOnon8yAzGQiYxbog8uelN
+         dbtRYk3koqZu8UathhrhlBSsCrefKWZsgu4xTDikV3dtMl9Y8/9TzbCMuviWbjQigrEP
+         BHWXTLWqVwDdNLoE+dxgzB0O5Fjud5gvJCzGFZxYQT4QLkg/AeuzSVzRPVFAS8CcZGMG
+         KR9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:message-id:date:from:to:subject
-         :references:in-reply-to:mime-version:content-disposition
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=AuI37eRZCiuIlQpGq57hj4aQLKp4nHiomFoK9OLvq5k=;
-        b=TotNqy9DQszKkUUQfe3N84N0pxvw2Lz7IHuW/hRPaB7x7BwAG+cWSraNNsohd1DMdf
-         FI52ZIkazV5x/mQw2sNMhlSUNDgw/Ep85mjTcKn2tZHCc0ywz5+/sF7rkgn68mH/DIu+
-         vnWCg8d/UNe3cWdhseAw6z5vy3FC9q7j8g2pbB6ulw/Dmz9363RmG5MKQFnERRJ/CRVz
-         5Q3GiqVJ3DJo46q3KlGvNq2uoFAGmsjdvVQ9ws8EZYcWh1dV8mRcwWFw8I7Rp3+AAwJD
-         CS4UEA++a8RmzS7SpCAt7BHoGbyci5VypJhoYC3h+IYCDp20otxFwu49rMYJnPM5UJRa
-         u9Zw==
+        h=sender:x-gm-message-state:date:from:to:message-id:subject
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=6SEytApmfRJpx9lX7QZ/miCTMYYN+Mi6ViOoL77PCyY=;
+        b=l27DJMgF2HbTNt9M9QY0X/DLXQV7SN0IETqUbNrIJ8TbTLAOZMIIRv6/kl0AtZlKFK
+         EVSUegCsTonqUpoMThzB7AnBH2Tsxdz/dwX88sBbnQ/ytiFOXMSksTk3PJTIKL0iAQ0l
+         cXprYWlacRct18wEDlME8ZXc2P5+MJleVc1FQ+tXnr9IOzqL4cG7O16QT0B4Ncsbky6d
+         mOBtisYW27aJQBH5ut/sIGGdksFCHZtx39DKs0UrZSubKTB/zU7t8D5ivSRalGKtFmaj
+         6DXNOAyDOMg+8bl+vkus4DoO+n3y/NYHNO0P1z8Nq6IcQmy34QYQt82moFLgfka9MFco
+         d9RA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533A7lBLlp19p2U+kD+nOCIIX7tUeolW3elcns/twHR4orj2CUJK
-	JorkSDrj/WZwzaSFMV1pLTw=
-X-Google-Smtp-Source: ABdhPJyjLxnNrMt7rLjwvPmznUxT5Ln90AjvU371r2961hSBWO3YyXkmUxrHS2TxjkImH9fFQfnezw==
-X-Received: by 2002:a17:906:5496:: with SMTP id r22mr17664556ejo.449.1593498976526;
-        Mon, 29 Jun 2020 23:36:16 -0700 (PDT)
+X-Gm-Message-State: AOAM533TitrPSbhk9PvZRC3Yk0fOa/YsvSgjTlLyunujrfGHkXrsKVh/
+	voZ5O1ybCtvsVWfO6a9T7RI=
+X-Google-Smtp-Source: ABdhPJxAs6rZxBnk/2jqRz0WJzdh5pVQEy13KMqN44mGS+tndGjR3aSSvx67pMIrtVMotjNuY2XyEw==
+X-Received: by 2002:a9d:3ec2:: with SMTP id b60mr11703720otc.355.1593522008243;
+        Tue, 30 Jun 2020 06:00:08 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:906:834a:: with SMTP id b10ls908701ejy.3.gmail; Mon, 29
- Jun 2020 23:36:15 -0700 (PDT)
-X-Received: by 2002:a17:906:2c18:: with SMTP id e24mr17979923ejh.335.1593498975931;
-        Mon, 29 Jun 2020 23:36:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1593498975; cv=none;
+Received: by 2002:a4a:df04:: with SMTP id i4ls1136094oou.2.gmail; Tue, 30 Jun
+ 2020 06:00:07 -0700 (PDT)
+X-Received: by 2002:a4a:41ca:: with SMTP id x193mr18123165ooa.84.1593522007631;
+        Tue, 30 Jun 2020 06:00:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1593522007; cv=none;
         d=google.com; s=arc-20160816;
-        b=YWmfdOwaF+snrjY+K57SrYMnOa3Th1kF31zxwxpVq8v+YFpNraQ0QpNQ7Q7FLyBWJG
-         3eWHmefb1v1NTqevahtYOdQW9Di1rEA9+Xc9VR35OjmYlAhANe3ITYhBTspd2UDCf0jP
-         RNGVlaWsXmL5vMmrZdiYoNPDF9ZkBsWJP+ALqBVALi0KT7WNQXmMfG2LRSXgYtDuf785
-         1NYW7gUqzjN7cycwUM3S6zGueOdr6J5XLm+Bf/F/7YiVtcVdnVk0rC4YRF6C3qYcIAAd
-         Ku/ul9SOFdVKiSDSPCmqmtRsiv4xlO/KzZAQ6mQOptJnQRBx0wAwbBOMsK7fuCAnlX/z
-         1R+Q==
+        b=FTg+FFx3Q6JduUsXjh2awHyTwfcCB/bafNnuQzflbkOStAkAkZJpEw10dvd00r3dpr
+         3QOKhbxcv8/T9qV2Z3m44MNz97xSGfMTIEyrpGfMkis6SDrx6sT9Igwv7uHsgLnHYSCh
+         nmB9wim087Vt+8+IfBoLFUCEZl9M9wVFhayYbJE3IcuMEwh2ORVmI2IzyB/sK64SNiRo
+         Gya01hNDvnuF+MLnrdBi67HUo1nGNsJq6WRWAJRXvz4Y8pCeNOfrATLy/MJ0ecI6ijbt
+         ptUFkLv2GaDWCPLT4SeuH3w39VKXkAu7M962AzJg37X3Tk9AKnRCxnN1jHqnHqoNGpqy
+         5EmA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-disposition:content-transfer-encoding:mime-version
-         :in-reply-to:references:subject:to:from:date:message-id;
-        bh=j8aGG3UcUVOM0a4W5cJ8PQROz8t7NnIhKSsbVbKQ8os=;
-        b=MamTdvGe8TAA+RVCbCteJvOzbjEex+dta074FW+uC24/2bmdc5fqF7OSyxGrh0z2M+
-         N+L40aON9EUffe07LpXJiEkW3A/PcZ1zyKtgWUn7eVvSVao5PXNf3aO1uZo95N0NEDEd
-         ZA5o7zS3H/XEJ6qX5WiziYEIgg0sTZcaTQfVdec//zUAAeC/T0XkYzGF2qziXOmG/944
-         p4pA77q6cX2FDmfXEOVBvP73TY+/+nCU5iJgP3OMzk5nZnlcpi3af1cF5IoC7N89JB5J
-         KNdI8nwnyzWFEh5Pv5iEqrFB+Dk4Srq2981PPvNNwHp5pbyjO+fM7PHRUuhEr9oXgdxx
-         FCUg==
+        h=mime-version:subject:message-id:to:from:date:dkim-signature;
+        bh=70g0RihpZxtRnLo3nlc3lUvmjnTEHGkp22flVW4Ucrk=;
+        b=gNKz1iAyF+UAGODKsEdamMKbzHWFpJCpF6TLRYJWaqWDnLHvUBNCWTMQVEvUsYb8F2
+         WQ2gAv5rN5n0JBPzsiaUhNqoCU9WPaAtLXcGHyv+90W1xsBngV2pHdxGuR2KwUofrpVo
+         7Ggt2rhOP//m2juJljyXMLruIdCXil8wBMNGugIQ4gHVF8l7nE+KwkbhPlKgO+HWdU1P
+         zd65Kc2EYasHhwnT7FtvoA92UhrCivB5VulRBgQrbdRk3K6aFCGb/sTYS9GaJtuexjfq
+         uzYzOIQTP+mUNSwOKgCVqwh4NAAf3aJ+QHZRfRtzzT6mNfuQSnuirKnvmTrORm6oEkbc
+         VugQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:3:bdf8 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
-Received: from mx2.uni-regensburg.de (mx2.uni-regensburg.de. [2001:638:a05:137:165:0:3:bdf8])
-        by gmr-mx.google.com with ESMTPS id q9si128941ejj.1.2020.06.29.23.36.15
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=TFdvTa+E;
+       spf=pass (google.com: domain of abawer@redhat.com designates 207.211.31.81 as permitted sender) smtp.mailfrom=abawer@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com. [207.211.31.81])
+        by gmr-mx.google.com with ESMTPS id m23si258603ooe.0.2020.06.30.06.00.07
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 Jun 2020 23:36:15 -0700 (PDT)
-Received-SPF: pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:3:bdf8 as permitted sender) client-ip=2001:638:a05:137:165:0:3:bdf8;
-Received: from mx2.uni-regensburg.de (localhost [127.0.0.1])
-	by localhost (Postfix) with SMTP id 3131C600004E
-	for <open-iscsi@googlegroups.com>; Tue, 30 Jun 2020 08:36:15 +0200 (CEST)
-Received: from gwsmtp.uni-regensburg.de (gwsmtp1.uni-regensburg.de [132.199.5.51])
-	by mx2.uni-regensburg.de (Postfix) with ESMTP id E583B600004D
-	for <open-iscsi@googlegroups.com>; Tue, 30 Jun 2020 08:36:14 +0200 (CEST)
-Received: from uni-regensburg-smtp1-MTA by gwsmtp.uni-regensburg.de
-	with Novell_GroupWise; Tue, 30 Jun 2020 08:36:14 +0200
-Message-Id: <5EFADD5D020000A100039CE2@gwsmtp.uni-regensburg.de>
-X-Mailer: Novell GroupWise Internet Agent 18.2.1
-Date: Tue, 30 Jun 2020 08:36:13 +0200
-From: "Ulrich Windl" <Ulrich.Windl@rz.uni-regensburg.de>
-To: "open-iscsi" <open-iscsi@googlegroups.com>
-Subject: Antw: [EXT] Re: Large Immediate and/or Unsolicted Data causes
- long delays on R2T responses
-References: <75d706c2-e331-45bf-b764-6aa77703a45a@googlegroups.com>
- <4792_1593457181_5EFA3A1C_4792_1489_1_4c70b62c-467c-4860-a951-663fb88158c7o@googlegroups.com>
-In-Reply-To: <4792_1593457181_5EFA3A1C_4792_1489_1_4c70b62c-467c-4860-a951-663fb88158c7o@googlegroups.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
-X-Original-Sender: Ulrich.Windl@rz.uni-regensburg.de
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates
- 2001:638:a05:137:165:0:3:bdf8 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+        Tue, 30 Jun 2020 06:00:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of abawer@redhat.com designates 207.211.31.81 as permitted sender) client-ip=207.211.31.81;
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-295-cnOiU1xaOam1lriS4cOH_Q-1; Tue, 30 Jun 2020 09:00:04 -0400
+X-MC-Unique: cnOiU1xaOam1lriS4cOH_Q-1
+Received: by mail-qv1-f69.google.com with SMTP id g17so12091204qvw.0
+        for <open-iscsi@googlegroups.com>; Tue, 30 Jun 2020 06:00:04 -0700 (PDT)
+X-Received: by 2002:ac8:4982:: with SMTP id f2mr21334652qtq.182.1593522004311;
+        Tue, 30 Jun 2020 06:00:04 -0700 (PDT)
+X-Received: by 2002:ac8:4982:: with SMTP id f2mr21334641qtq.182.1593522004137;
+        Tue, 30 Jun 2020 06:00:04 -0700 (PDT)
+Date: Tue, 30 Jun 2020 06:00:03 -0700 (PDT)
+From: Amit Bawer <abawer@redhat.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <cc3ad021-753a-4ac4-9e6f-93e8da1e19bbn@googlegroups.com>
+Subject: Concurrent logins to different interfaces of same iscsi target and
+ login timeout
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_120_1504976958.1593522003297"
+X-Original-Sender: abawer@redhat.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@redhat.com header.s=mimecast20190719 header.b=TFdvTa+E;
+       spf=pass (google.com: domain of abawer@redhat.com designates
+ 207.211.31.81 as permitted sender) smtp.mailfrom=abawer@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -131,87 +133,96 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
->>> The Lee-Man <leeman.duncan@gmail.com> schrieb am 29.06.2020 um 20:59 in
-Nachricht
-<4792_1593457181_5EFA3A1C_4792_1489_1_4c70b62c-467c-4860-a951-663fb88158c7o@goog
-egroups.com>:
-> On Saturday, May 2, 2020 at 11:30:27 AM UTC-7, ajhutchin@gmail.com wrote:
->>
->> I am able to create a condition where the open-iscsi initiator fails to 
->> respond to an R2T request if the immediate/unsolicited data support is 
->> large ~128KB.  I've seen instances where a delay on an R2T is only a few 
->> seconds and other instances where no response is received in 180 seconds.
->>
->> If the host is doing a prefill operation with large writes that can be 
->> completed with immediate data alone and a large write that requires an R2T 
->> is sent, the open-iscsi initiator sometimes fails to respond to the 
->> target's R2T. 
->>
->> After inspecting the code, I am convinced it is caused by the lack of 
->> fairness in the *libiscsi  **iscsi_data_xmit* routine, which always 
->> favors the sending a new command over responding to R2Ts. 
->>
->> /**
->>  * iscsi_data_xmit - xmit any command into the scheduled connection
->>  * @conn: iscsi connection
->>  *
->>  * Notes:
->>  * The function can return -EAGAIN in which case the caller must
->>  * re-schedule it again later or recover. '0' return code means
->>  * successful xmit.
->>  **/
->> static int iscsi_data_xmit(struct iscsi_conn *conn)
->> {
->> ...
->> /*
->> * process mgmt pdus like nops before commands since we should
->> * only have one nop-out as a ping from us and targets should not
->> * overflow us with nop-ins
->> */
->> while (!list_empty(&conn->mgmtqueue)) {
->> ...
->> /* process pending command queue */
->> while (!list_empty(&conn->cmdqueue)) {
->> ...
->> while (!list_empty(&conn->requeue)) {
->>
->>
->> Am I looking at this code correctly?  I guess this order might be better 
->> for parallelization at the target by getting more commands onboard before 
->> responding to outstanding R2Ts. With immediate/unsolicited data enabled, 
->> the overhead of transmitting a new commands if higher and probably 
->> shouldn't come before responding to R2Ts. 
->>
->>
->> Do you have NOPs enabled? If so, do you see this issue with them disabled? 
-> I seriously dislike and advise against NOPs. I've never seen them actually 
-> help anything.
+------=_Part_120_1504976958.1593522003297
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_121_2044807183.1593522003297"
 
-They could keep an connection alive that is passing through some firewall when there is no iSCSI I/O, maybe.
-
-> 
-> Have you tried playing with this code, i.e. changing the order? Without 
-> looking deeply, are the R2Ts in the command queue and not in the requeue 
-> queue?
-> 
-> What kind of load are you presenting to the server?
-> 
-> What do you mean by "the immediate/unsolicited data support is large 
-> ~128KB"? What setting(s) did you change?
-> 
-> -- 
-> You received this message because you are subscribed to the Google Groups 
-> "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an 
-> email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit 
-> https://groups.google.com/d/msgid/open-iscsi/4c70b62c-467c-4860-a951-663fb881 
-> 58c7o%40googlegroups.com.
+------=_Part_121_2044807183.1593522003297
+Content-Type: text/plain; charset="UTF-8"
 
 
+[Sorry if this message is duplicated, haven't seen it is published in the 
+group]
 
+Hi,
+
+Have couple of question regarding iscsiadm version 6.2.0.878-2:
+
+1) Is it safe to have concurrent logins to the same target from different 
+interfaces? 
+That is, running the following commands in parallel:
+
+iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p 
+10.35.18.121:3260,1 -l
+iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p 
+10.35.18.166:3260,1 -l
+
+2) Is there a particular reason for the default values of  
+node.conn[0].timeo.login_timeout and node.session.initial_login_retry_max?
+According to comment in iscsid.conf it would spend 120 seconds in case of 
+an unreachable interface login:
+
+# The default node.session.initial_login_retry_max is 8 and
+# node.conn[0].timeo.login_timeout is 15 so we have:
+#
+# node.conn[0].timeo.login_timeout * node.session.initial_login_retry_max =
+#                                                               120 seconds
+
+
+Thanks,
+Amit
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/5EFADD5D020000A100039CE2%40gwsmtp.uni-regensburg.de.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/cc3ad021-753a-4ac4-9e6f-93e8da1e19bbn%40googlegroups.com.
+
+------=_Part_121_2044807183.1593522003297
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><div><span></span></div></div><span><span><span><span><span><span><spa=
+n><span><div><span>[Sorry if this message is duplicated, haven't seen it is=
+ published in the group]</span></div><div><span><br><span dir=3D"ltr"></spa=
+n> </span></div></span></span></span></span></span></span></span></span><sp=
+an><span><span><span><span><span><span><span><div><span></span></div></span=
+></span></span></span></span></span></span></span><div><div><div><div dir=
+=3D"ltr"><div>Hi,</div><div><br></div><div>Have couple of question regardin=
+g iscsiadm version 6.2.0.878-2:</div><div><br></div><div>1) Is it safe to h=
+ave concurrent logins to the same target from different interfaces? <br></d=
+iv><div>That is, running the following commands in parallel:</div><div><br>=
+</div><div>iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p=
+ <a href=3D"http://10.35.18.121:3260">10.35.18.121:3260</a>,1 -l</div><div>=
+iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p <a href=3D=
+"http://10.35.18.166:3260">10.35.18.166:3260</a>,1 -l</div><div><br></div><=
+div>2) Is there a particular reason for the default values of&nbsp; node.co=
+nn[0].timeo.login_<span></span>timeout and node.session.initial_login_<span=
+></span>retry_max?</div><div>According to comment in iscsid.conf it would s=
+pend 120 seconds in case of an unreachable interface login:</div><div><br><=
+/div><div># The default node.session.initial_login_<span></span>retry_max i=
+s 8 and<br># node.conn[0].timeo.login_<span></span>timeout is 15 so we have=
+:<br>#<br># node.conn[0].timeo.login_<span></span>timeout * node.session.in=
+itial_login_<span></span>retry_max =3D<br># &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 120 seconds<br></div><div><br></div><di=
+v><br></div><div>Thanks,</div><div> Amit</div></div></div></div></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/cc3ad021-753a-4ac4-9e6f-93e8da1e19bbn%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/cc3ad021-753a-4ac4-9e6f-93e8da1e19bbn%40googlegroups.com</a>.=
+<br />
+
+------=_Part_121_2044807183.1593522003297--
+
+------=_Part_120_1504976958.1593522003297--
+
