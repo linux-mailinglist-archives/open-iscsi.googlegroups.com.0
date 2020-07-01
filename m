@@ -1,135 +1,159 @@
-Return-Path: <open-iscsi+bncBD7Z7UVWSMJBB5OW533QKGQERHRVDZY@googlegroups.com>
+Return-Path: <open-iscsi+bncBCVPTQVVPQINF67P64CRUBCJERGMA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-vk1-xa3a.google.com (mail-vk1-xa3a.google.com [IPv6:2607:f8b0:4864:20::a3a])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08ABA20FE8F
-	for <lists+open-iscsi@lfdr.de>; Tue, 30 Jun 2020 23:15:35 +0200 (CEST)
-Received: by mail-vk1-xa3a.google.com with SMTP id e12sf1841840vkd.3
-        for <lists+open-iscsi@lfdr.de>; Tue, 30 Jun 2020 14:15:34 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1593551734; cv=pass;
+Received: from mail-pg1-x540.google.com (mail-pg1-x540.google.com [IPv6:2607:f8b0:4864:20::540])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D92721024F
+	for <lists+open-iscsi@lfdr.de>; Wed,  1 Jul 2020 05:07:00 +0200 (CEST)
+Received: by mail-pg1-x540.google.com with SMTP id e127sf6777865pgc.2
+        for <lists+open-iscsi@lfdr.de>; Tue, 30 Jun 2020 20:07:00 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1593572819; cv=pass;
         d=google.com; s=arc-20160816;
-        b=PNi7egjCX45JzA11CEEa5V+fVONPdXNzMpXF2i2QRyku7xEmeJEJHmCtuYsoQ+/rMY
-         rMuJVXiRacsSWJsd9dR4ECxx4l197oU6HmBnJnzAGGhAYarKHAPejEDt2jCQM/xfnIRg
-         3NHk1tRADFHWdOO+0BImWMS59M31a/i3dlersoA6TTAj0tjwFclLbT+ZC8EsZtcXAI6P
-         l+LI5JSUvYUZsmTw0DTaL9JmGSrKv+x7RRtPWeaocODlTzcUM367E1DsLJLG2qiqIMs9
-         gYLjKZp+dLuHLN2Yj6Xe6qiUwf22SDpGShWqDs4c1p1xhL1UERBFGc4Sg/84JcbgIQPr
-         vcUw==
+        b=MyKaNCFtGUTcyI5OhO81nAJMpym27im8bfXT8Zg6IgKhQ6g2jZbd8+huD1udwQDh13
+         /TpnsXsLTLdET2T7dXpkvoQYjtzWj9vxSHxUT8FZYXO4u7er69ZVIZ1mn73D5SWHM/xW
+         rTZkeIOlWR7kHcRb2qh98Y6Z34oM0MYziVnAISvgYjRc+JNkEQPA2740t/is1QJF+b39
+         EVqoT/I9i8XffQfGcTY+/vVwOfsomxJ9UArf7G3I8w6RhSq8pWBzIkRjjENOiPnP3d/B
+         pLjcbpMjY+EqCXjLro9C0FAz5ipPVqg+ay6rLwH4a+xpZSdV4NiFd1a97HSmplDzlGND
+         0ehA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
-         :from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=K1pyC/2v6y+Sl4ecarhaqVjtQVkBLurPCKa415mlF5I=;
-        b=HYkT4AlvfNzU9rUE4DHcstRo78bOeEaRlVpVvwMh3vwUbo02lFFI5tRnTR+ltFsztu
-         13CdLvtvsqYitvQslsNRGN1B32jj9bHXETCQZnyPZfwp7Dk8iacHvRsAtKalupmiRezQ
-         nbBTMQvIODcC9dAtAbL43j57MrU9ygoimTCMImvva9b0WvhcgzyQXxeMwDWKRNjtRBCY
-         +KqS65t0fCTAdvGwvwqA+EOM0HmY9o7i6OGk9XhwHpN2FnQ6yh+Xpt+RLDBNbxmQwOF2
-         1X6Ybh4kkjZzB9LsCFYjGJUt0O4ZVeVnJA0a6atx27Ayh1ANEbS/FMXG4VV87m4YE29A
-         qEtg==
+         :list-id:mailing-list:precedence:reply-to:content-language
+         :in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:sender:dkim-signature;
+        bh=q1ZJm1GeVeSwluPdFwaHFQPpG9Yw+SyDnkgLQuRAewI=;
+        b=A6EKXsKaEwZEgdCw11igh3P3vXdt/6X9JsqxY7mCJpnOmFtWI4Xsp3CGeBHf9VhAjh
+         Y3XwxoqWB7YjRE9BDsv0jcEPj6EI2Pb7daAtZUITU33i7ZwPS0jHYoCALm+zcjETRn4E
+         0+0zCOM4x5gNbetidzGqhXmB+HfXAPaurz4DQEKnm8rR6kULCQknDXIVozW32uzOKlYR
+         AZ5oVeGx9RMwGfJuet6cWL13bXmji80ZoXnYT2kruIp7nh1yz/KD3kc0hVHc+Nowb1Bq
+         BQ1bT+HjVqnoC51iBxx4NUT8ucympZaADY47A8klzxt32hTB453yoi0xLs6QbRoFqjvR
+         y54w==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=cqZ+zgOD;
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d2b as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=gz+Cecqn;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=K1pyC/2v6y+Sl4ecarhaqVjtQVkBLurPCKa415mlF5I=;
-        b=c9CsNT7zgaxRT5Nq5r7MxX0zK61gcRbC6i02/cGs8VteLnUSBXiwxPxF74TXM95t4S
-         EDsLO0VHMUjAqG1FCy3zAJpRNBIFCgX4gOhCnijYJVYa1uZcAr3hITg42obEe50BQCyB
-         SLtVBnUjn4g9vUy/mkreUvmHG8kd5FU05Vj4fvEQVHw1FqI+htDL54GRAQaVlX/gRwFZ
-         A538aHbPQ+H0GYar5lMJhcZVayTtP8kD2uFAAFueFE9C5Her81NHBlp1EM1S3XitRvy4
-         sFHZXC2LvBNWGic5mSAWS/+LJk2VSA+buftKgVxgMx3H73FqAHVQSYk5PrEkXrwS9nuB
-         Ubag==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=K1pyC/2v6y+Sl4ecarhaqVjtQVkBLurPCKa415mlF5I=;
-        b=RDGqGZmwIadiNNukQ2IHBgZSf4RSjkW61wLvRxw4yiNBWpjS/EAQ1xEFLI1PUhSJYQ
-         gYB5VBXkCwbmmZL8W7yRZe8iigqu58b8HcjzTxiEJZTB3CCD6IxxbwMFNJFt1FZmsIqO
-         CMifar6+78xFAbkWS3ca+I/PQHF4FNJ0r8yWDMcwT20JmXjbNpTBDoxEUOphatc+KIfH
-         K/u7UOz1YvFNqwXNhG1W0CQ4SeRPB/LjmKf3ew1yQ8wREZPj54lBFiSMYtUBM1hx3I5U
-         L4g7sVDsMB04TpV4N1SLEwRuz0SwLZAKfgcRjunsXPw0JPyKnZ3dEgsiMfzDK/oHQQvB
-         4JdQ==
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=q1ZJm1GeVeSwluPdFwaHFQPpG9Yw+SyDnkgLQuRAewI=;
+        b=TKwJ0wtNy6xMpDdOKolSZiMg9KA4IpFEG8gwqWEmCdGMB2z4Pwsqg0vW86D9QqnxGP
+         fjs7sbd2uDqQ76NdAXmoxtlH/Dr4pAb/l7gLznidKyauraU8vunjzI70Fs16Xb3QCtvz
+         QjJRHpuVqJZFzEjhLBpdSNjuKUETq/AZfxsD5LARbO2FPsqyeTaO81oVQT46JVmwKqTn
+         bseqGXHuO/exntfiOnURvIEZwSp9pNW7j+MnOM4ihIPkHbHIjqa2rusCt/kPnoojL6B8
+         Zcho3K7E6k/Nn4a+mx3mSWZWu6075gQ1FYX1WlJloCEcnL1z0vX+1Vz9ZikQmOF1C/S7
+         utnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=K1pyC/2v6y+Sl4ecarhaqVjtQVkBLurPCKa415mlF5I=;
-        b=SRHAXBLo86bhw3Ye1esNH9d1uxPgEoQieX6ygShDHTnwgOgmGtsbxo97G/3agpEvZ2
-         Wqnxj7QizBfakoZeYYK9+BurPWdnFZcjeNV97mDpgMcZNw0I4M4BayFNZbShprvazlpY
-         MTRJl7zIfi35F2fQ9n9r5pCs4rpjZshn33Q/0H+TdHVDIQJKex5752XWs/hXsFi7tjU5
-         nZd+JdQb6oJKQn4TbpRfIFAfcOGBfaijJlsrgjOXyMP7O0bxCAVhErMllYiphZA1riDw
-         pt+ijvg+vhtjQ6P5o8uFUWV8YwTl0UAEQG/NkQpRTcHcsIsGsySChe+BpI+eQvsHoBkL
-         Ka2Q==
+        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=q1ZJm1GeVeSwluPdFwaHFQPpG9Yw+SyDnkgLQuRAewI=;
+        b=YUQcIpfwfEERiZHLBl53nR196sTYxJGjnxWFBOqZa1WyQO7XQigC9iDdVzUF5liUOf
+         9DdgGiaD+CuiFfQLaGyGpMXhZeHwUSAf7qZS11iUt34AOJaE+kGauu3dZZVhhc8UXa4P
+         Btm2rvNWKSjPv2BIrUyogkgFFVkVMn7SIKb6/4xRVswKe0cgWoRXCfcnTuquE58tC9n9
+         wNisQU3Frz2exJPNk5cuOaiIt6+R2OJFUqrgoCShKh7OIG7kzqxE6cN2ENi8XfRTHV5W
+         5jYwlzDti/DWSgcnA8Vc2r34xisHPRCLxKH/1H95KGM3LIAh+DFQYwzkIH9OVYk6OUq7
+         YY7g==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM5315Y6HlZ/p4I3ExCUzRCwa0E+BiLNJFD4H6v8Eq19KqGtGE71pT
-	XnBw7vLHs70ar9f938QHFqA=
-X-Google-Smtp-Source: ABdhPJwii5E4zI1ZdNyoV0zqOj+E4ni89oQvfy8GaNh3PFTdHR5xWAkfoxSzIE3VGHZskr5E7FOqiA==
-X-Received: by 2002:a67:fd0b:: with SMTP id f11mr15517778vsr.93.1593551734051;
-        Tue, 30 Jun 2020 14:15:34 -0700 (PDT)
+X-Gm-Message-State: AOAM5339KcWNVzLvFLabRZxGHSqknfiIdps33am4etgvQujnvHK3PZS3
+	qoNTYAk8w4XmLUODH8XXB38=
+X-Google-Smtp-Source: ABdhPJwt+zSKXQRDVxDDs7cOIMbmym7Qbfjkt+b50KONjaySeF3QL1XROVoqVTtfmDdayCxEv4CJmA==
+X-Received: by 2002:a63:7c5:: with SMTP id 188mr18322199pgh.48.1593572818931;
+        Tue, 30 Jun 2020 20:06:58 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a67:f351:: with SMTP id p17ls2534817vsm.5.gmail; Tue, 30 Jun
- 2020 14:15:33 -0700 (PDT)
-X-Received: by 2002:a67:17c6:: with SMTP id 189mr15503981vsx.83.1593551733610;
-        Tue, 30 Jun 2020 14:15:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1593551733; cv=none;
+Received: by 2002:a17:902:565:: with SMTP id 92ls313697plf.2.gmail; Tue, 30
+ Jun 2020 20:06:58 -0700 (PDT)
+X-Received: by 2002:a17:90a:df0f:: with SMTP id gp15mr25692946pjb.98.1593572818560;
+        Tue, 30 Jun 2020 20:06:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1593572818; cv=none;
         d=google.com; s=arc-20160816;
-        b=yhiSPCzw8ljbJb45GY2rokWZi7AuMj97pjKuJlKsqZdAjxzwLf6eNQc2pTNofAGdBi
-         dyoNg3ggT7mHr24a6Eds+GQUjywd04vgWr0Rgm8uc+cdWi99TeapTt2NU52iuBFqgKs0
-         6XX/DnFXVn2ahdv/rha0CxKi57skdSDjcjXWMazB11nm6cJR8DNXTsPuVkn3JxXhlmQw
-         DCyUNHsT7+5fKM59QqaeyB5t6dCDhZT3VPAsYp0V6ajnknFvna6MehXOlGYb56hNbHsr
-         qvSm9ioD+F20as+iVvllxeXtsg54Qvsx+2rlejUAAiA6EdTyP5xPycjjnLtEzLZSbw9O
-         KtaQ==
+        b=RBp9r5QNPEUKHgxNGWUaCRbf/8YhHQInt06JLbOD+/6cGG7oMkoeIfyLe4Ohjp6PyC
+         kDecDnWieYaJkrka3kndMOMNN3nMamDJiOY0AqJ09rfdTJiJtFJYKSCnJ7/MasxzZl3X
+         oUdSsmVAkqV/uH4XnRHvUmJootGzLVZ4Qs/9yLyR5fkTdykSbfZqOJIABsskAnzXioEk
+         zpEXZQldFjTzIKwGXCYhxIQQvel89RSJ6Xf9tu5Cp9a4S3fFpFDxDpiN/X9Bfgkji7gn
+         VZVHOIJh5J8DeS9rKVukfqQfwtJgs+kYInxGe9GcdTDpsRClh7HLVR+8PrV0C2G63hyf
+         WJtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject
          :dkim-signature;
-        bh=faAZUYu3zt+8Eq8U3QVBwuAMkHiCmE3Ie0ej2Brebt8=;
-        b=XseTreFCwVYgrcBxDmfkKa/i8BwbH4azFEkK2pzWS3les0OAfIlATmt1jTPEzdJjnO
-         nAhIQvT6P/JOUmS1UK4/T0d1BTgVdfNtRH/plWN3dnyuLhsiVsy+ky7cqtEZkTWrVQeg
-         hxPtKx5f99vRfdkw4whAneC2VajCSUVGeOHPTkltRotdpX6BP4G2pncUiM1vXxO56rTf
-         zt4qbGzL70HoNiwTsYz0yvVzIawtStcZgtLEW2tHI3Vm2CfhBtuQFHV0urEsyWbvaKni
-         MR5Yyswksd6/dWcwid+SDCOl5M+qe0c1NlSxWXbwP30W8XNunvFIbbkGet5orLCOsyRM
-         e2JQ==
+        bh=C+OQSk8SX2KjNV/BOEHQlX3V1mNEDOQ2Qwd9iZIvMHg=;
+        b=bpD7YaRylM9hkZFMSCTI0qVbljCjsDIqTjfSXHSKW1Hhc+JX1SqZwvQW9wPTpSIhNC
+         D44hd57BbuhucM1K1TIdp3pHSYwmuNxI4rB3xkJDPYWeFwkdZEoGkKanxUviUzXC4MjT
+         7OjtFGwgNslkehrNKaNeYDrvhAfFLxAGahqce/iH/ad3RmXM/SE0xM+xwK1AuPzbLL6g
+         +RCGNujgjA7o1EKti8IT+STprS8V0CP1ssDBnBI8JG4pwclkCOKRxnIjvSyv4sTG9zgr
+         5LldMMjE1Vby4soI4zyZWWexShVgSuHZpbLXiQpodZTGndpIIfE0YcollbjttCwg9Dtb
+         vpkw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20161025 header.b=cqZ+zgOD;
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d2b as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com. [2607:f8b0:4864:20::d2b])
-        by gmr-mx.google.com with ESMTPS id t24si178477uaq.0.2020.06.30.14.15.33
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=gz+Cecqn;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from aserp2120.oracle.com (aserp2120.oracle.com. [141.146.126.78])
+        by gmr-mx.google.com with ESMTPS id kb2si218605pjb.1.2020.06.30.20.06.58
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jun 2020 14:15:33 -0700 (PDT)
-Received-SPF: pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::d2b as permitted sender) client-ip=2607:f8b0:4864:20::d2b;
-Received: by mail-io1-xd2b.google.com with SMTP id a12so22641203ion.13
-        for <open-iscsi@googlegroups.com>; Tue, 30 Jun 2020 14:15:33 -0700 (PDT)
-X-Received: by 2002:a6b:1496:: with SMTP id 144mr23824536iou.6.1593551729822;
- Tue, 30 Jun 2020 14:15:29 -0700 (PDT)
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Jun 2020 20:06:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bob.liu@oracle.com designates 141.146.126.78 as permitted sender) client-ip=141.146.126.78;
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+	by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 06136vQ0180635;
+	Wed, 1 Jul 2020 03:06:57 GMT
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+	by aserp2120.oracle.com with ESMTP id 31xx1dvr63-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 01 Jul 2020 03:06:57 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+	by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0612wlHC085708;
+	Wed, 1 Jul 2020 03:06:56 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+	by userp3020.oracle.com with ESMTP id 31xfvtbt98-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 01 Jul 2020 03:06:56 +0000
+Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
+	by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 06136sV0029228;
+	Wed, 1 Jul 2020 03:06:54 GMT
+Received: from [192.168.0.110] (/183.246.145.120)
+	by default (Oracle Beehive Gateway v4.0)
+	with ESMTP ; Wed, 01 Jul 2020 03:06:53 +0000
+Subject: Re: [PATCH 1/2] workqueue: don't always set __WQ_ORDERED implicitly
+To: Lai Jiangshan <jiangshanlai+lkml@gmail.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, Tejun Heo <tj@kernel.org>,
+        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
+        open-iscsi@googlegroups.com, lduncan@suse.com,
+        michael.christie@oracle.com
+References: <20200611100717.27506-1-bob.liu@oracle.com>
+ <CAJhGHyDQLuoCkjwnze_6ZOLwXPtbNxnjxOr=fqqqsR_yxB9xtA@mail.gmail.com>
+ <52fa1d81-e585-37eb-55e5-0ed07ce7adc0@oracle.com>
+ <CAJhGHyBPrCr3+iu-dMe69J3+tj99ea8crCGBuXc4yoStD+dEFA@mail.gmail.com>
+From: Bob Liu <bob.liu@oracle.com>
+Message-ID: <bdf25dd0-7ac3-52b5-855b-14955443c52b@oracle.com>
+Date: Wed, 1 Jul 2020 11:06:41 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <cc3ad021-753a-4ac4-9e6f-93e8da1e19bbn@googlegroups.com>
- <CAK3e-EYtSezXByd_YavtAVGMk9S_i7==eAYSABLxeSn9h+tE5w@mail.gmail.com> <bf75d5e8-f4ed-4a16-86a8-ab78d0cac1cco@googlegroups.com>
-In-Reply-To: <bf75d5e8-f4ed-4a16-86a8-ab78d0cac1cco@googlegroups.com>
-From: Donald Williams <don.e.williams@gmail.com>
-Date: Tue, 30 Jun 2020 17:15:19 -0400
-Message-ID: <CAK3e-EbOmtv1j6c8AecE1jkGy=zt_0Jdj=Qwj41DOXuwVNPavA@mail.gmail.com>
-Subject: Re: Concurrent logins to different interfaces of same iscsi target
- and login timeout
-To: open-iscsi@googlegroups.com
-Content-Type: multipart/alternative; boundary="000000000000c992ca05a953acc4"
-X-Original-Sender: Don.E.Williams@gmail.com
+In-Reply-To: <CAJhGHyBPrCr3+iu-dMe69J3+tj99ea8crCGBuXc4yoStD+dEFA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9668 signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 adultscore=0 spamscore=0
+ phishscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
+ definitions=main-2007010018
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9668 signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 mlxlogscore=999 cotscore=-2147483648 lowpriorityscore=0
+ malwarescore=0 phishscore=0 impostorscore=0 mlxscore=0 spamscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2004280000 definitions=main-2007010019
+X-Original-Sender: bob.liu@oracle.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20161025 header.b=cqZ+zgOD;       spf=pass
- (google.com: domain of don.e.williams@gmail.com designates
- 2607:f8b0:4864:20::d2b as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+ header.i=@oracle.com header.s=corp-2020-01-29 header.b=gz+Cecqn;
+       spf=pass (google.com: domain of bob.liu@oracle.com designates
+ 141.146.126.78 as permitted sender) smtp.mailfrom=bob.liu@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -143,212 +167,91 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---000000000000c992ca05a953acc4
-Content-Type: text/plain; charset="UTF-8"
+On 6/29/20 8:37 AM, Lai Jiangshan wrote:
+> On Mon, Jun 29, 2020 at 8:13 AM Bob Liu <bob.liu@oracle.com> wrote:
+>>
+>> On 6/28/20 11:54 PM, Lai Jiangshan wrote:
+>>> On Thu, Jun 11, 2020 at 6:29 PM Bob Liu <bob.liu@oracle.com> wrote:
+>>>>
+>>>> Current code always set 'Unbound && max_active == 1' workqueues to ordered
+>>>> implicitly, while this may be not an expected behaviour for some use cases.
+>>>>
+>>>> E.g some scsi and iscsi workqueues(unbound && max_active = 1) want to be bind
+>>>> to different cpu so as to get better isolation, but their cpumask can't be
+>>>> changed because WQ_ORDERED is set implicitly.
+>>>
+>>> Hello
+>>>
+>>> If I read the code correctly, the reason why their cpumask can't
+>>> be changed is because __WQ_ORDERED_EXPLICIT, not __WQ_ORDERED.
+>>>
+>>>>
+>>>> This patch adds a flag __WQ_ORDERED_DISABLE and also
+>>>> create_singlethread_workqueue_noorder() to offer an new option.
+>>>>
+>>>> Signed-off-by: Bob Liu <bob.liu@oracle.com>
+>>>> ---
+>>>>  include/linux/workqueue.h | 4 ++++
+>>>>  kernel/workqueue.c        | 4 +++-
+>>>>  2 files changed, 7 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
+>>>> index e48554e..4c86913 100644
+>>>> --- a/include/linux/workqueue.h
+>>>> +++ b/include/linux/workqueue.h
+>>>> @@ -344,6 +344,7 @@ enum {
+>>>>         __WQ_ORDERED            = 1 << 17, /* internal: workqueue is ordered */
+>>>>         __WQ_LEGACY             = 1 << 18, /* internal: create*_workqueue() */
+>>>>         __WQ_ORDERED_EXPLICIT   = 1 << 19, /* internal: alloc_ordered_workqueue() */
+>>>> +       __WQ_ORDERED_DISABLE    = 1 << 20, /* internal: don't set __WQ_ORDERED implicitly */
+>>>>
+>>>>         WQ_MAX_ACTIVE           = 512,    /* I like 512, better ideas? */
+>>>>         WQ_MAX_UNBOUND_PER_CPU  = 4,      /* 4 * #cpus for unbound wq */
+>>>> @@ -433,6 +434,9 @@ struct workqueue_struct *alloc_workqueue(const char *fmt,
+>>>>  #define create_singlethread_workqueue(name)                            \
+>>>>         alloc_ordered_workqueue("%s", __WQ_LEGACY | WQ_MEM_RECLAIM, name)
+>>>>
+>>>> +#define create_singlethread_workqueue_noorder(name)                    \
+>>>> +       alloc_workqueue("%s", WQ_SYSFS | __WQ_LEGACY | WQ_MEM_RECLAIM | \
+>>>> +                       WQ_UNBOUND | __WQ_ORDERED_DISABLE, 1, (name))
+>>>
+>>> I think using __WQ_ORDERED without __WQ_ORDERED_EXPLICIT is what you
+>>> need, in which case cpumask is allowed to be changed.
+>>>
+>>
+>> I don't think so, see function workqueue_apply_unbound_cpumask():
+>>
+>> wq_unbound_cpumask_store()
+>>  > workqueue_set_unbound_cpumask()
+>>    > workqueue_apply_unbound_cpumask() {
+>>      ...
+>> 5276                 /* creating multiple pwqs breaks ordering guarantee */
+>> 5277                 if (wq->flags & __WQ_ORDERED)
+>> 5278                         continue;
+>>                           ^^^^
+>>                           Here will skip apply cpumask if only __WQ_ORDERED is set.
+> 
+> wq_unbound_cpumask_store() is for changing the cpumask of
+> *all* workqueues. I don't think it can be used to make
+> scsi and iscsi workqueues bound to different cpu.
+> 
+> apply_workqueue_attrs() is for changing the cpumask of the specific
+> workqueue, which can change the cpumask of __WQ_ORDERED workqueue
+> (but without __WQ_ORDERED_EXPLICIT).
+> 
 
-Re: Subnets.  Not all iSCSI targets operate on multiple subnets.  The
-Equallogic for example is intended for a single IP subnet schema.,
-Multiple subnet require routing be enabled.
+Yes, you are right. I made a mistake.
+Sorry for the noise.
 
-Don
+Regards,
+Bob
 
-
-On Tue, Jun 30, 2020 at 1:02 PM The Lee-Man <leeman.duncan@gmail.com> wrote:
-
-> On Tuesday, June 30, 2020 at 8:55:13 AM UTC-7, Donald Williams wrote:
 >>
->> Hello,
+>> 5280                 ctx = apply_wqattrs_prepare(wq, wq->unbound_attrs);
 >>
->>  Assuming that devmapper is running and MPIO properly configured you want
->> to connect to the same volume/target from different interfaces.
->>
->> However in your case you aren't specifying the same interface. "default"
->> but they are on the same subnet.  Which typically will only use the default
->> NIC for that subnet.
->>
->
-> Yes, generally best practices require that each component of your two
-> paths between initiator and target are redundant. This means that, in the
-> case of networking, you want to be on different subnets, served by
-> different switches. You also want two different NICs on your initiator, if
-> possible, although many times they are on the same card. But, obviously,
-> some points are not redundant (like your initiator or target).
->
->>
->> What iSCSI target are you using?
->>
->>  Regards,
->> Don
->>
->> On Tue, Jun 30, 2020 at 9:00 AM Amit Bawer <abawer@redhat.com> wrote:
->>
->>> [Sorry if this message is duplicated, haven't seen it is published in
->>> the group]
->>>
->>> Hi,
->>>
->>> Have couple of question regarding iscsiadm version 6.2.0.878-2:
->>>
->>> 1) Is it safe to have concurrent logins to the same target from
->>> different interfaces?
->>> That is, running the following commands in parallel:
->>>
->>> iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p
->>> 10.35.18.121:3260,1 -l
->>> iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2 -I default -p
->>> 10.35.18.166:3260,1 -l
->>>
->>> 2) Is there a particular reason for the default values of
->>> node.conn[0].timeo.login_timeout and node.session.initial_login_
->>> retry_max?
->>> According to comment in iscsid.conf it would spend 120 seconds in case
->>> of an unreachable interface login:
->>>
->>> # The default node.session.initial_login_retry_max is 8 and
->>> # node.conn[0].timeo.login_timeout is 15 so we have:
->>> #
->>> # node.conn[0].timeo.login_timeout * node.session.initial_login_retry_max
->>> =
->>> #                                                               120
->>> seconds
->>>
->>>
->>> Thanks,
->>> Amit
->>>
->>> --
->>> You received this message because you are subscribed to the Google
->>> Groups "open-iscsi" group.
->>> To unsubscribe from this group and stop receiving emails from it, send
->>> an email to open-iscsi+unsubscribe@googlegroups.com.
->>> To view this discussion on the web visit
->>> https://groups.google.com/d/msgid/open-iscsi/cc3ad021-753a-4ac4-9e6f-93e8da1e19bbn%40googlegroups.com
->>> <https://groups.google.com/d/msgid/open-iscsi/cc3ad021-753a-4ac4-9e6f-93e8da1e19bbn%40googlegroups.com?utm_medium=email&utm_source=footer>
->>> .
->>>
->> --
-> You received this message because you are subscribed to the Google Groups
-> "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an
-> email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit
-> https://groups.google.com/d/msgid/open-iscsi/bf75d5e8-f4ed-4a16-86a8-ab78d0cac1cco%40googlegroups.com
-> <https://groups.google.com/d/msgid/open-iscsi/bf75d5e8-f4ed-4a16-86a8-ab78d0cac1cco%40googlegroups.com?utm_medium=email&utm_source=footer>
-> .
->
+>>      }
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAK3e-EbOmtv1j6c8AecE1jkGy%3Dzt_0Jdj%3DQwj41DOXuwVNPavA%40mail.gmail.com.
-
---000000000000c992ca05a953acc4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Re: Subnets.=C2=A0 Not all iSCSI targets=C2=A0operate on m=
-ultiple subnets.=C2=A0 The Equallogic for example is intended for a single =
-IP subnet schema.,=C2=A0 Multiple=C2=A0subnet require routing be enabled.=
-=C2=A0<div><br></div><div>Don<br><div><br></div></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 30, 2020=
- at 1:02 PM The Lee-Man &lt;<a href=3D"mailto:leeman.duncan@gmail.com">leem=
-an.duncan@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div dir=3D"ltr">On Tuesday, June 30, 2020 at 8:55:13 AM=
- UTC-7, Donald Williams wrote:<blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><div dir=3D"ltr">Hello,<div>=C2=A0</div><div>=C2=A0Assuming that devma=
-pper is running and MPIO properly configured you want to connect to the sam=
-e volume/target from different interfaces.=C2=A0</div><div><br></div><div>H=
-owever in your case you aren&#39;t specifying=C2=A0the same interface. &quo=
-t;default&quot;=C2=A0 but they are on the same subnet.=C2=A0 Which typicall=
-y will only use the default NIC for that subnet.=C2=A0</div></div></blockqu=
-ote><div><br></div><div>Yes, generally best practices require that each com=
-ponent of your two paths between initiator and target are redundant. This m=
-eans that, in the case of networking, you want to be on different subnets, =
-served by different switches. You also want two different NICs on your init=
-iator, if possible, although many times they are on the same card. But, obv=
-iously, some points are not redundant (like your initiator or target). <br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><d=
-iv><br></div><div>What iSCSI target are you using?=C2=A0=C2=A0</div><div><b=
-r></div><div>=C2=A0Regards,</div><div>Don</div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr">On Tue, Jun 30, 2020 at 9:00 AM Amit Bawer &lt;<a=
- href=3D"mailto:abawer@redhat.com" rel=3D"nofollow" target=3D"_blank">abawe=
-r@redhat.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div><div><span></span></div></div><span><span><span><span><spa=
-n><span><span><span><div><span>[Sorry if this message is duplicated, haven&=
-#39;t seen it is published in the group]</span></div><div><span><br><span d=
-ir=3D"ltr"></span> </span></div></span></span></span></span></span></span><=
-/span></span><span><span><span><span><span><span><span><span><div><span></s=
-pan></div></span></span></span></span></span></span></span></span><div><div=
-><div><div dir=3D"ltr"><div>Hi,</div><div><br></div><div>Have couple of que=
-stion regarding iscsiadm version 6.2.0.878-2:</div><div><br></div><div>1) I=
-s it safe to have concurrent logins to the same target from different inter=
-faces? <br></div><div>That is, running the following commands in parallel:<=
-/div><div><br></div><div>iscsiadm -m node -T iqn.2003-01.org.vm-18-198.iqn2=
- -I default -p <a href=3D"http://10.35.18.121:3260" rel=3D"nofollow" target=
-=3D"_blank">10.35.18.121:3260</a>,1 -l</div><div>iscsiadm -m node -T iqn.20=
-03-01.org.vm-18-198.iqn2 -I default -p <a href=3D"http://10.35.18.166:3260"=
- rel=3D"nofollow" target=3D"_blank">10.35.18.166:3260</a>,1 -l</div><div><b=
-r></div><div>2) Is there a particular reason for the default values of=C2=
-=A0 node.conn[0].timeo.login_<span></span>timeout and node.session.initial_=
-login_<span></span>retry_max?</div><div>According to comment in iscsid.conf=
- it would spend 120 seconds in case of an unreachable interface login:</div=
-><div><br></div><div># The default node.session.initial_login_<span></span>=
-retry_max is 8 and<br># node.conn[0].timeo.login_<span></span>timeout is 15=
- so we have:<br>#<br># node.conn[0].timeo.login_<span></span>timeout * node=
-.session.initial_login_<span></span>retry_max =3D<br># =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 120 seconds<br></div><div>=
-<br></div><div><br></div><div>Thanks,</div><div> Amit</div></div></div></di=
-v></div>
-
-<p></p>
-
--- <br>
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br>
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com" rel=3D"n=
-ofollow" target=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/cc3ad021-753a-4ac4-9e6f-93e8da1e19bbn%40googlegroups.=
-com?utm_medium=3Demail&amp;utm_source=3Dfooter" rel=3D"nofollow" target=3D"=
-_blank">https://groups.google.com/d/msgid/open-iscsi/cc3ad021-753a-4ac4-9e6=
-f-93e8da1e19bbn%40googlegroups.com</a>.<br>
-</blockquote></div>
-</blockquote></div>
-
-<p></p>
-
--- <br>
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br>
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com" target=
-=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/bf75d5e8-f4ed-4a16-86a8-ab78d0cac1cco%40googlegroups.=
-com?utm_medium=3Demail&amp;utm_source=3Dfooter" target=3D"_blank">https://g=
-roups.google.com/d/msgid/open-iscsi/bf75d5e8-f4ed-4a16-86a8-ab78d0cac1cco%4=
-0googlegroups.com</a>.<br>
-</blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAK3e-EbOmtv1j6c8AecE1jkGy%3Dzt_0Jdj%3DQwj41DOXuwVNPa=
-vA%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.=
-google.com/d/msgid/open-iscsi/CAK3e-EbOmtv1j6c8AecE1jkGy%3Dzt_0Jdj%3DQwj41D=
-OXuwVNPavA%40mail.gmail.com</a>.<br />
-
---000000000000c992ca05a953acc4--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/bdf25dd0-7ac3-52b5-855b-14955443c52b%40oracle.com.
