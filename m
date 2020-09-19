@@ -1,117 +1,117 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBQWEST5QKGQEKQBR4AI@googlegroups.com>
+Return-Path: <open-iscsi+bncBD54HHNYIIIK7PEY7MCRUBHGGFU6Q@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x13a.google.com (mail-lf1-x13a.google.com [IPv6:2a00:1450:4864:20::13a])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13B92707DD
-	for <lists+open-iscsi@lfdr.de>; Fri, 18 Sep 2020 23:10:26 +0200 (CEST)
-Received: by mail-lf1-x13a.google.com with SMTP id 1sf1274058lfq.18
-        for <lists+open-iscsi@lfdr.de>; Fri, 18 Sep 2020 14:10:26 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1600463426; cv=pass;
+Received: from mail-lj1-x23e.google.com (mail-lj1-x23e.google.com [IPv6:2a00:1450:4864:20::23e])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C13270EC1
+	for <lists+open-iscsi@lfdr.de>; Sat, 19 Sep 2020 17:05:20 +0200 (CEST)
+Received: by mail-lj1-x23e.google.com with SMTP id p3sf3016248ljc.7
+        for <lists+open-iscsi@lfdr.de>; Sat, 19 Sep 2020 08:05:20 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1600527920; cv=pass;
         d=google.com; s=arc-20160816;
-        b=X+H9KC7VYlYskJwm0cIH7UTV0uu0DP3zqqZLdbkKDgn9mFFECdQ1GVb//ra2bIAFtx
-         QNRSUAMTMY7ffeu8MUQyQbr/u2vRyEvK9V51r1gIFhgrS9BjeIt2XffeRg+2GygBMDbd
-         hLBZ3cdouH36vod5PqXFrXznFtMAefGD7GkSJG4nDN7Y4JgNlDz6J0ICpiTspXVaEsq8
-         9Irm/kyj8ft0+XfSEJUBHXJi2z5DqjdmbRpQ7/Ol0yoeVYFttQJfjqycxZbdLjgyEGR/
-         0A18bhHQefzQyYK4mrr8AEF7Jc/bmuOHqQPI0mjkexgm+UP+zYWE4nCRH1ojXlDGECOo
-         8xfA==
+        b=MB1uRPINH5JZt3W30Db6JmfMVUrUiss3GeZs/rL2V/yo9CGf/0yc0m+IhUBAhzU/Mz
+         MRCwCy7UpgtmxwMz+MHmPJcZKnxHpQAJO9r6gbPsNH9um+dxBRp313KDvs4M56lL5X13
+         kIEf3RpDqPDstmoNO42OpSHPBJAXr3Yl+/4yfo53bowuo5UczzsuEW3ulC1/eBgxxBM2
+         PyuDmv4XPOvrYqkYXIlhIdvJ0OQ/DJtlG99xP3ir9AZY8kBCm9t2RSBNOL/gAnL2xEG/
+         gCCZruJCWaa6oTGIJRHxGyyB0JGETRpB02KkeB5qPpgsNjVtI1XHxkWDn4dtS/vOhbrD
+         EJFQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:message-id
          :date:subject:cc:to:from:sender:dkim-signature;
-        bh=y/I2YtKpQe9kVkGy1B4KM6u9kqkJ8tJFextJo9W9gVw=;
-        b=kIonEOa7vuOe0hipHQqRkCZA1t7Meqw+U9i/pis1GXUeDc0aPaX2hBgPNMg2rGRqVX
-         gmJgqJO8VeplDXFqiB2IHIW1pkgjUYJdEHn3vhuu5iIkSNkEqlsFBAS8innDbJCP3IVJ
-         cy+GE9LSvsKBgpg4qD8Ksc0NcHXkLgLRgd+4sKfqMY98RTL5qIFxMZL2kH/du7y8+of8
-         qVlCf8MD2gl1zldeUZz36xJZEKVLsh5iqh6qaHKpKbkNR8QBF4DPgVqo0u5lS7yOUmol
-         LDdgGaFwpzHLZ3S/3FN26Rmd+CFEgiBJKv7SKaYb6LxdXS+YJEQK1Yka+OeRcuqTjNY2
-         0BHQ==
+        bh=akHlwP6xMqm0O2esOdoQSS4/Byxszw282pFTOYu5KCU=;
+        b=yurM4ANUX95KMvCvf2EmK8N/6Wn+gpEKkE/91jN/+SNZMhFNEyri9Paak4o663iQni
+         yMztxIyKKMv0bUQuzHtYpnckxBYer8N1Oy/xNUTmu5XmeRtpYjeGEAp/k0sk84jyPtqs
+         YkQVbMNkR2TMEK9NRsf/7xYbCudsmzifSoQx7v7voENZu3giFAPhcj/XrDzmp2puhuI3
+         oxhweO2W5erhNpKxBrCmbUBS3ZCa/9A1QLWOJi1YLU4mK2pWfbCU9s5ZtoVQVmBRYTsM
+         YABOX3GRUyeVDEdqtDhNO7noVps6XwuydzZ+sYNeb3LC/zE+5XSbN1GTcyaCAaltsKT1
+         +elw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
        spf=pass (google.com: domain of lduncan@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=lduncan@suse.de;
-       dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=suse.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:mime-version
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=y/I2YtKpQe9kVkGy1B4KM6u9kqkJ8tJFextJo9W9gVw=;
-        b=IHR9/jCoc3TRsiJ7/OQxGpAYet04V6S3eWc91Nzx7Cr9IgFdhm9cjeqtCSJ4qQt3My
-         Y+RbwM0T9O9h5LR3QXMUWunsie7K1nIODZzHpURndKFKJ4TVRIDAzQN4Xpk77suF6Unr
-         LILRv7lh1JyfR0p4BJkm3DciNs0SDgM02/o3YmHFUlYcnE4j/F4yDeqsgTDPz9nKTNZB
-         QVxBQRbLeJ/zsEOf9gK0QiZ6H4sBnKszJvSTPzbSprXRr/w4vsgtKD6R/JAWPtM8Dd8p
-         FTacTm4pxPAMkkRVKHPmb+24dXYWhf0IQPEN3jmsgKnK1En0zLbhdtSil6fVtLw9tJsY
-         3BEg==
+        bh=akHlwP6xMqm0O2esOdoQSS4/Byxszw282pFTOYu5KCU=;
+        b=bw47R9twX5RPBfPZwP6cCuyFkLfFinPvn2HXXyz5W0DYT4i1rmsGJCDrrOq/Z/9WfU
+         OsQAAdexhDvxx2VgnsYQU/P2p2Ll0hV7RnOTEWF2cAKmnpfy1Wk/f9Ok5ntJ21o8eW1R
+         HCqUkYozbWrereD0+KDwvYpSfhqcDute9jjgD6m0CEFd5BxdNfUjpNzjuLZBF0NpKUPo
+         z8EHStKXL7BUi8NyZCNTj+cFxwONFBuKukmUMmSZWR7+lNI2tni+vz8noeB2OHInQegi
+         jOilUaBDEBz/3cKqVZQfpTWwzluOA6jH4NaVMvIeb/SjRIq9NZvsvC9iiD6OyE3wm5Uf
+         tx0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=y/I2YtKpQe9kVkGy1B4KM6u9kqkJ8tJFextJo9W9gVw=;
-        b=R8EO+AZE1cLpRwisZf3p9uvxm3PtGNaioPzz8DtgJqNI/zrmlvb+4ro+0XPjOIxazP
-         9N4hze3VaVVb6QFBosp6u8zv0KfSwcnFCsiIoj7S9P3Gp/RpjR9fx7BRdTcdjnVtJ5D+
-         ptkz//kVOzZpuTUlaK1Wt6oFejx0tV3c1rSY88UQ+d88+c2KsR/Ltll7GpAiNg61l1PY
-         uC/kI36PgggMUatDZCmBB3z53q77MUKor+4nAYAH0XLgMfQHdJ+aXEDVOHaxDZt38Bgt
-         KiisTnl4lIloPrL7qqU0g/RDCVIDmajdp2e3BhjFd4YAULcu9F/MjoG+E+j4EPYwbr+b
-         VTwA==
+        bh=akHlwP6xMqm0O2esOdoQSS4/Byxszw282pFTOYu5KCU=;
+        b=AyeoQFFSCF/wzPjj7QeeV7Wj4rZ7qO06IbCvxcHPhvS5Ug1Ru0nyThZ4BAqH5rjJ34
+         6NDtFcGbp0+APVNhejgwR9kJgxizk/Sw7sgyAF+Bh9t5AxaICBJYgN7g9HiQahngH51K
+         DTjwyNPGcAFv1GQ+UwKXZqM+elRKJWGiPfwKbsuZj1yHP8vbNJPLwW3W5zvi0Kva8tkf
+         LleisRneRkhzKGJoYHjX1XL/CuVpoYs5J49hnDQvx02l8LZK9guenUlrD/5j3dY/C084
+         J/szhe8FyZzJEa0qSuXx/33HRhx4mtOwrZdkQn1o7/bgWUbpYM7hTN7+IHhceUfG72mi
+         pNeg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM531qTbyz4NzIrkRTzFW3fh3Tl9jSGfpF6eCf9iJ/yvYU1UjA9b4s
-	qudVdkFe6cwDv45FEm5KCko=
-X-Google-Smtp-Source: ABdhPJyY5hodX0qSYYjGrI3RyzO/5GeL9DmfaV9eYEMyjcMbvcKmGvtH7TAih3XQBRq83+0xZ/gCMg==
-X-Received: by 2002:a2e:9d98:: with SMTP id c24mr8713015ljj.281.1600463426404;
-        Fri, 18 Sep 2020 14:10:26 -0700 (PDT)
+X-Gm-Message-State: AOAM5322InguY8lH2DiA4JVwYTeAiaE1qwz/iEOceAW1bgmVPgFy5OaF
+	GNJ4bOaB7Q4hf3422+VnL94=
+X-Google-Smtp-Source: ABdhPJwI2Q+vs2K4ol6Tfs2Oa6QC/CIYPQ2J9muXsNnOwJ3ugHia8JAI0oHgOaicmEPw0VXdKTlGhA==
+X-Received: by 2002:a05:651c:28c:: with SMTP id b12mr14078944ljo.293.1600527920210;
+        Sat, 19 Sep 2020 08:05:20 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a2e:93c7:: with SMTP id p7ls1004618ljh.11.gmail; Fri, 18 Sep
- 2020 14:10:25 -0700 (PDT)
-X-Received: by 2002:a2e:b169:: with SMTP id a9mr13273098ljm.42.1600463425174;
-        Fri, 18 Sep 2020 14:10:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1600463425; cv=none;
+Received: by 2002:a19:c7c8:: with SMTP id x191ls1853590lff.0.gmail; Sat, 19
+ Sep 2020 08:05:19 -0700 (PDT)
+X-Received: by 2002:a19:3f91:: with SMTP id m139mr13922622lfa.439.1600527919032;
+        Sat, 19 Sep 2020 08:05:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1600527919; cv=none;
         d=google.com; s=arc-20160816;
-        b=YmKh812wcK/R5K8kbO+btbLQJKYFsxpRH/pEj+OPajOr2Vh5Qbd9Hinx+UALoYHNcF
-         jfVJSFBC539X1T/poY7QtttboUl+ke2nAZ2/xR6SxPQWgqY3r29FcjBhF2tJC0nQrJc7
-         5LdDaCazPl9CwkQDIaiui89nh8Kmu/kFORneQmEIMicvXbKTNDJclcAuWEfAnKuEQBJl
-         MPULec0faK2ACc4iW3pWkMFAyQJnIYzm1zUtp4oZaKerIT9OCDsQEDq7rXyZ17ZXHL0e
-         RwZqCIZQaxMw/taHKbbIOUdmwg9GO9c8QYnnD/WrdLUfNHu7dY6+phRXZ3tRhZtsQert
-         5cJQ==
+        b=GMtzbLYr1JDu6yxqNRXTqawxksXq5cQT0T0cS10zBUlQRSou/rJtNCm+7UGfcF9HcD
+         RInMLVL8j46RnbUOAMh1I3U891sMTtVydiC4iCsocxjTKvkmebKbHpKeY9moXhZRjE2i
+         VsDRKKbss2fnTFJ2CoGxfTRbeLXVrOzxrKjiTDMFzl0o2mQXkuPZDUbrlbbDMrYfygqT
+         5d0xYCDcKPEyJVUNSwvWI1yOu1TSeA4eGC5L8FF5EjDEGPkvuxCa+QUjJvi7vVcSOrQg
+         QW3Rw4fpXB5VFAezLoGgqKt3LOOKu2IAK3gC8Vq/hxWsXEdjmDMI8Y/30X27iTIszyDS
+         SMoA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from;
         bh=1EJUAaZm8d4ynNfey3O8d6mZjn3ZPHfsPlyUGiDRBnU=;
-        b=qqT2nwJtlj+lB1AY0xC4cvTgo1DO1NQZ5YL6HgsQ6LYcfl87btX7djXfufOg8SvV4o
-         /UmL6p8TMOQ/r6S1fBfsDaxhgFlgGPe0tjm1H7UmiR+vr+lALXLSnK1NiVO21tb0ur19
-         xlEeensbgSr5QvmJUfQC2qN2A8pYl2rddOzEfJG0l31v2zGtfukzIdOO9TEMJBogYjlk
-         vDjLMnGAfC2ZjtzXiOoJgnhrL3bIut2ZpNz07jjlxXK14dFaVo2ciR+0chzb9pkoNJLO
-         SMBKmva1hXY44TTUBBXz1K4f8327ppmOlu1v6BapP4aB4qwiZ6DGmtSn6x2qkB8fzZfr
-         Tw9w==
+        b=E7p+1cXbDG8KEFsgYCgd+qNKQ2kAG5QVxywkXb9CtHcyy5PDczsFyFBgljk5pEJH9s
+         ETPoxUeE8woVzOvQhogJVgwtobDRPgPzZpofOx9u4Mh4arRqdP+KWvQ8n1fRZ/5SUPc5
+         yqs0jzqS1LvEqxJg5jVR+BqTYrSvrMlgE8VcO9FHXvbuNbcJ6LtDNO4Pysni8/L3tyGJ
+         wS012xwItXwgg7sBP5tSFwWwbLLazmTmErqW4eTcpmV04IIRUZ1TUTfySe3fvou/5nIL
+         v9XdPA2yyEzBl4f4HfwhyP98KRX0BlFQ2pWz6xBxpmlgFXATFMdJmrkj++RaQ0QREI9e
+         2F8g==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
        spf=pass (google.com: domain of lduncan@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=lduncan@suse.de;
-       dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=suse.com
 Received: from mx2.suse.de (mx2.suse.de. [195.135.220.15])
-        by gmr-mx.google.com with ESMTPS id y17si141102lfg.2.2020.09.18.14.10.25
+        by gmr-mx.google.com with ESMTPS id y17si201911lfg.2.2020.09.19.08.05.18
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 18 Sep 2020 14:10:25 -0700 (PDT)
+        Sat, 19 Sep 2020 08:05:18 -0700 (PDT)
 Received-SPF: pass (google.com: domain of lduncan@suse.de designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-	by mx2.suse.de (Postfix) with ESMTP id CC580ACC2;
-	Fri, 18 Sep 2020 21:10:58 +0000 (UTC)
+	by mx2.suse.de (Postfix) with ESMTP id 0E0EFAD20;
+	Sat, 19 Sep 2020 15:05:53 +0000 (UTC)
 Received: by localhost (Postfix, from userid 1000)
-	id CC91850CDA8; Fri, 18 Sep 2020 14:10:22 -0700 (PDT)
-From: Lee Duncan <leeman.duncan@gmail.com>
+	id 80B1650D8B5; Sat, 19 Sep 2020 08:05:16 -0700 (PDT)
+From: <lduncan@suse.com>
 To: linux-scsi@vger.kernel.org
 Cc: open-iscsi@googlegroups.com,
 	Lee Duncan <lduncan@suse.com>
-Subject: [PATCH] scsi: libiscsi: fix NOP race condition
-Date: Fri, 18 Sep 2020 14:09:47 -0700
-Message-Id: <20200918210947.23800-1-leeman.duncan@gmail.com>
+Subject: [RESEND] [PATCH] scsi: libiscsi: fix NOP race condition
+Date: Sat, 19 Sep 2020 08:05:09 -0700
+Message-Id: <20200919150509.1284-1-lduncan@suse.com>
 X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-X-Original-Sender: leeman.duncan@gmail.com
+X-Original-Sender: lduncan@suse.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
  (google.com: domain of lduncan@suse.de designates 195.135.220.15 as permitted
- sender) smtp.mailfrom=lduncan@suse.de;       dmarc=fail (p=NONE sp=QUARANTINE
- dis=NONE) header.from=gmail.com
+ sender) smtp.mailfrom=lduncan@suse.de;       dmarc=fail (p=NONE sp=NONE
+ dis=NONE) header.from=suse.com
 Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: list
@@ -211,4 +211,4 @@ index c25fb86ffae9..b3bbd10eb3f0 100644
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200918210947.23800-1-leeman.duncan%40gmail.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200919150509.1284-1-lduncan%40suse.com.
