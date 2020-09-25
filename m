@@ -1,179 +1,137 @@
-Return-Path: <open-iscsi+bncBDLPRE656MLBBHMWVT5QKGQENPA5QBQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBDLPRE656MLBBVEMXD5QKGQEFURROEY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x13b.google.com (mail-lf1-x13b.google.com [IPv6:2a00:1450:4864:20::13b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C752275390
-	for <lists+open-iscsi@lfdr.de>; Wed, 23 Sep 2020 10:45:18 +0200 (CEST)
-Received: by mail-lf1-x13b.google.com with SMTP id v128sf4393483lfa.5
-        for <lists+open-iscsi@lfdr.de>; Wed, 23 Sep 2020 01:45:18 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1600850718; cv=pass;
+Received: from mail-lj1-x23e.google.com (mail-lj1-x23e.google.com [IPv6:2a00:1450:4864:20::23e])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ED01278BB2
+	for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 17:01:41 +0200 (CEST)
+Received: by mail-lj1-x23e.google.com with SMTP id j4sf1130581ljo.1
+        for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 08:01:41 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1601046100; cv=pass;
         d=google.com; s=arc-20160816;
-        b=hpXFBNIhypIywLwlMTJn1oXz6VjXfjnVicQRi3ZHtZvQNVy9Xgk6g64yccMg8tShX8
-         urp8H9k+w5rYoAx0LsZ1hQHUG0niC6pQ7KVqvv+hcJH84KI3mMXrTxsYAG+lanrWlw+M
-         yrV8ymSYhuEAiA4DZfCEe+QGzt07Ym2S594P3DwK1ADh1SenlzdvlgUR8i8DvkI+X8S/
-         ukD5+8uzyB493HFemV1reZK+6HRgjvCl3WmkOEjmnnPijndegqb+8cJ1VX7SIolqd3CE
-         OAp+bl7p5PE4FT4zSHRh8JLucvmQewabONoegJa5h26V+aYMcERVpGbf+c7xZ5jcHHNn
-         R7HA==
+        b=YYTwk2MyaQDYV8OEsRHuGM/ij4iBFYryZ4u9sXawmYOPkU18qjSNXBQ0zVYyBgIiEG
+         5nud7SrQdoQOVyN6lQ9fnqzHvJE/wr//SUFNjRyK7WSCHSyBC3u7dDmcIaXecqX/BBv2
+         uzuCFHvhyzP1Vt0aMlLD5kInwxvHY6OJ7GMkVCuSbBjJy5kKJ4IzsOCXBdnlNYRiGGbe
+         SmlGHCdrtenqknLfBD5DPFyXY5YosyMZX2bpbGvFAYnQbkvUeivYcXFTCRa+CrJjth+H
+         Eu1/dRVxpEiZ8MF6digqVtXGxQR+CtA/BdI8eQn130l1emejP71lJSM4p6vLxDuexwfE
+         Ztng==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-language
-         :in-reply-to:mime-version:user-agent:date:message-id:autocrypt:from
-         :references:cc:to:subject:sender:dkim-signature;
-        bh=ChAL9m2Hgsx8SRM7PNaHZeJGvpcOnwF0B9YVNXa/kP8=;
-        b=i58S9h+Ot7ofkoSkn5QNeNlONPcKudKQEN3Zq3E0k9LyJ2+Ntc99AvvT6lq8H+7uZj
-         6mGvXZux+3L9plDy998fEQsvLJ+4dae4imL2OBDw3w5kp5vlYodu6uN+eJPgpwsRHSCj
-         XOjb7vYZwJkVxVtEt6LwbYJQqzgk2aGoKu2yXGArtIdLypW+9MTZdUnBj42oNfI8bko2
-         Cm5sa0tn85FwCKQZr4JAmbGnUKBmC437moUzTB80W3HMsV9O4NB37dbee61M1/dDzY3T
-         VvcS2osBu09WPi2/w6UPt4cHWTiQf3n1j4baKv3QHxzloCI1mWkLQLaMLDrZf6Y7Ut34
-         HNkA==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=93VVbInoVoknLvMRZjqecfat4Jz0aLvp5qd53WRg/ms=;
+        b=LHst9L96ysPxvcqFrEWiumV8yeVPNZs9XyfVPcZIAxHYPKzurJhWO4cpNOSZMWzNI1
+         dMKf2JOEaU3n1mwj7q+LQmIy/NDt1n5OsRJBWe9YQfVX6UgUPISyZy0pFT9Qu+4Jf78/
+         lxEj2E4RqZS57FTTZOLzHa07+7wELVMtqSMAjsxSjEUIqb8ZPUwfY+SuAV0YKXdHXMpl
+         mO+e/nA8EcSBlN7mimzfQ2IJJoG5byRCGalMs0Al+LL3L1bg793b3uIzsPYWiebDQpvj
+         0X9Dhj8qUL7rFbX8wY6v3XdPoBopLl1W3i/y14St4jSfRRdqIt32rMHTR7GwkCJ6Hq9g
+         UcPg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
        spf=pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=colyli@suse.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=sender:from:to:cc:subject:date:message-id:mime-version
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=ChAL9m2Hgsx8SRM7PNaHZeJGvpcOnwF0B9YVNXa/kP8=;
-        b=eKvvLxcMMnmJ3pV/dnT6GmakWQrQY/5hKLmRltKBXqujkZhn6dIrrZhl5krjr7jgqI
-         FfzdDOaxsHwOnog/xcHxYsTCrFaRsjGZ1qQnKwmehL6ztR3V+369k+PkYVqy9Eo0LIrP
-         Gdi7FZ6AP5XxJz9+Lth6TTO4BJtzV56hNTKsIc9Aib/UjWm4srOD33SyspIFJVdv2r88
-         v51OpZp/Xs6BAPq15QMV+AGteNjMkj0BKT3Un7zTZgDOslvpL0I2h+VMpNxABS85YrEp
-         CvwnHXIVgKgMX06I9igL59td6NlPDxXOlRnSpbELHAdYfuSO2R5aos+50Kl2q6uoVR+Y
-         Q69Q==
+        bh=93VVbInoVoknLvMRZjqecfat4Jz0aLvp5qd53WRg/ms=;
+        b=qdaN+hMqLJkbQeGyKqw1y6VAy38GqXSnvwYdnHhhzvR48ppNkB54r+JZhIaRVbhKS5
+         mLFlxLJqU5yBPz8dgKqeA7N69t0gBVAvcMHQ8+wSXrzFLtGAtiBB06Z/2/CA/mUka+zr
+         hSDOJyyuG9pk7v0DrbOwNM4t+t5tS1QsvC5nd+D3615DdbmVoe7Hz+46f6A0rnl2RCus
+         Fp/ktrw9/Am8zhlAzD9OOvsAwM3mE/ebZEFY/ePyUatd8GF5CFpcTnMI1T27Mrvz2BG6
+         Sfn7vbYMnZrMh8N5Bfa1OfoLaHAnn7P0uBz+cwc5l9vwdhPYIIw5bDsG/5ckyHWblxlf
+         xt/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=ChAL9m2Hgsx8SRM7PNaHZeJGvpcOnwF0B9YVNXa/kP8=;
-        b=tR26L7QKMlwXQ/DSJc+KOHmO0Wz3aEhmwdhQTpg/CubzrcpVr9yYTqZi75efee8XZj
-         hwtK17oxfJjJQN0deeRerJq95RbVnOyP+kXcgNVCu0EAZyXdnMiLVhmvaRfu+2pcWiRv
-         1CyplmzLmVCFhv/dM286ytaVTI6fG5vflq3bv7jQDZAesszO52OaMbiI8ZgnNex4Napf
-         /PMcuYscKex0B5Ipx2krQjy+7xx9+lOX5o2UDbPJGfRQUkSDaZRC5a0i0bMuWMHwqJJ1
-         TLg2tz+SHrEgYyEae6v0E43gYrq737QFzUs+1M2EgkZKTiH3X+adtP8HZ9ow2nfKrO+v
-         Wq7w==
+        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=93VVbInoVoknLvMRZjqecfat4Jz0aLvp5qd53WRg/ms=;
+        b=TBGbKchaKKnkANq6mHEjf03Ys5DrECfG6CtBR+V2kD6VHlcz8nOVydNts+5Sa31BGW
+         9NQGQ87Qklmxxs9XEQySPzM1FnYn+gFU/TxYbOf7i1YnkMzAsP+IX4jcZHZ5X0zWHE+J
+         e9YGf6+QxGEfJ+gxELmwXM9sm7hIGPn8rkWdWHCPPV3oFOTnAZQzxfuCFgJ1P0JgAR1n
+         xhuEHHuxfp7u2yic2xiyJBqB7l5PA/ZaU+3z7n5KACEmJ7JtL3fw+RSiADBl1+W6Ooyi
+         Z3txCb7OjopZjvLlV1IQp+fW6sbN5qoc4QeDtbCVJ7mePj04LxADUuzbtlPHxWARszwt
+         50cQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM531MCoeBC77+ntRDtH6Q+ucFx0wW6iSO7RnkFUpWF9ErfN/0+dTD
-	xwmRp/1tjnZp0knmJ06gmxY=
-X-Google-Smtp-Source: ABdhPJzH/zmtno00SC46C7Yiz1hx/gYWYed0wJzB2dW84wuhz6VxCsRJGpPhZJzOHU8wd7VuajPtCw==
-X-Received: by 2002:a05:6512:370e:: with SMTP id z14mr3245493lfr.80.1600850718156;
-        Wed, 23 Sep 2020 01:45:18 -0700 (PDT)
+X-Gm-Message-State: AOAM532iWEY4F6eTEp+A1WAtTr4X2mcOKzf8xB6H9K9y35/03SEFqz3F
+	rv6p/fCC+y1hybSFWkwvans=
+X-Google-Smtp-Source: ABdhPJxFjZzhuWz2KCS2dErJAiqrB8voP7tSE8JWYbEyYL0/XkieypUi1MEBkuKQD4dv9gah9rAHGg==
+X-Received: by 2002:a19:87d6:: with SMTP id j205mr1652891lfd.271.1601046100641;
+        Fri, 25 Sep 2020 08:01:40 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac2:5c44:: with SMTP id s4ls1706042lfp.3.gmail; Wed, 23 Sep
- 2020 01:45:17 -0700 (PDT)
-X-Received: by 2002:a19:8446:: with SMTP id g67mr2805825lfd.87.1600850717014;
-        Wed, 23 Sep 2020 01:45:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1600850717; cv=none;
+Received: by 2002:a19:c7c8:: with SMTP id x191ls819277lff.0.gmail; Fri, 25 Sep
+ 2020 08:01:39 -0700 (PDT)
+X-Received: by 2002:ac2:4d8e:: with SMTP id g14mr1655438lfe.386.1601046099569;
+        Fri, 25 Sep 2020 08:01:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1601046099; cv=none;
         d=google.com; s=arc-20160816;
-        b=xDzTmcFhAnZTVbKJPCTf/gzX4HXOfiXCoDxRiIb05sc4lxaCG/2o7vHtK0QqkWaMHg
-         2Tv1UH5HPWYg3AC6PPSGAbNc2mmJtv78X0A+qGgqQgBPG3bOpLSu9fIsPH5cQyz27DLf
-         iWdaHRap6i6qpDxc9upbKYRuH4D2vJ14nVKTSTLAdD5KsmiUaiaE7vyMYTHNcn+RbwWk
-         umiQ8FeytUKMW9kQUQJp89B6ncSq9WmOCB6/ycl3bD7c5UcvXA8LZBVrrIF2jxcI4ZD1
-         L7xmfAlelOTPp9y9Lnqf7saI/yYBXXThWaMRRLwf8ycnvkEdxoKGgY1tc/zKitQjbzd9
-         XYcw==
+        b=k5yse74O3PED2na7lffk0JRpQZir6ruXjAEFLvw4LwABIXgqZCNNTotJn4OPHVjGaZ
+         yuhxOvkZEQjccXMGJcUh3NFUNDbPTL786BKNdoG85nCUBqYyNjXeI5HLaJYv7JfOUb6e
+         BaXtFJ8lqbhjSTDDa4X1y80Rhq7uKfs+Yl70ndg2tCy7RBJAzKeM58zJf8TNxuK05By8
+         jbDs5vrXGO+a7Ru98HLqXbDshSj5vIc3gystjQUaE49gN2aGjppfGqeI/IqlABVw8S8N
+         75g1+9pACwOvwXk3JHTZJo+VEuxLS3Np6gRFDzNsjm8D1GhcIUKPegaO1w3QCSpcKkku
+         iymw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:autocrypt:from:references:cc:to:subject;
-        bh=k3S+//HJ59SukZnEPKBbqADcPJes2+3Qi8myzHjtP+A=;
-        b=w7hmr6muK8gLPnIpFciadJpDeXohe3K1tqi4AJTpUAHkoiLmfd7FD1AYnp/p8bhAck
-         wBE3FF/eg47cJn9Q5kuG0eE9q1rMQMiZa2fx2czdb/kz9/P92ThgYdIHYXFOXEtIy2Kc
-         pLlpQzgPW3gNvBkqYmRQxllNp9wZ0vc3b1WHSP0Pn8tHzLqgf08bXpozz+Fn0ZziOC1L
-         A5peMaNUzBzTWJT1bDIGiShjqfQu0DRYPlot0fjOPFbFpuV+sBL/58NZ5cSC8ngOz+/w
-         /lsfO6k9+FLDn5dY4ELgTLBYRx+i/cG4DgHRl0xoTtX8HG6dWhPQN7q5TNQAtPhoXcJU
-         2Dew==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from;
+        bh=ZAgoNmzkk2wFGuKLSjaCjyabsJNRgYhBVY3y6A/PNHk=;
+        b=KlHK7qp/bu6fMOaSGaAzA4ecLGbeomaVeSd4fdVozzWYCaKm2IY8YBmHb8feZi346o
+         30mzylS4Iqont3ICc+sQHdbR9VAiDpfzf7aajg+IfjedzG1xINPvXuXrKjIZQFavvzHX
+         AdNJr4plQi3BW1FUF2MCy26Agq1n0LoHca7bOlcWxUCr4to8Kcn9IKIXWXVjVev30pjP
+         RrpgfniGesSnhX79EzCfGLQ1KnRJs1QRNHORlZByto992WOLRt6Zp3GBhujc/sajY1uE
+         cMLDdfG9zxlrQet+7FoMg+UixJVFYf3lMa7aFTH+2uTBeT5jCU1Jo8kysDn9P63HMMIn
+         EheA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
        spf=pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=colyli@suse.de
 Received: from mx2.suse.de (mx2.suse.de. [195.135.220.15])
-        by gmr-mx.google.com with ESMTPS id f23si87947ljg.8.2020.09.23.01.45.16
+        by gmr-mx.google.com with ESMTPS id r13si94532ljm.3.2020.09.25.08.01.39
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 23 Sep 2020 01:45:16 -0700 (PDT)
+        Fri, 25 Sep 2020 08:01:39 -0700 (PDT)
 Received-SPF: pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-	by mx2.suse.de (Postfix) with ESMTP id 76627AC65;
-	Wed, 23 Sep 2020 08:45:53 +0000 (UTC)
-Subject: Re: [PATCH v7 1/6] net: introduce helper sendpage_ok() in
- include/linux/net.h
-To: Christoph Hellwig <hch@lst.de>
-Cc: linux-block@vger.kernel.org, linux-nvme@lists.infradead.org,
- netdev@vger.kernel.org, open-iscsi@googlegroups.com,
- linux-scsi@vger.kernel.org, ceph-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org, Chaitanya Kulkarni
- <chaitanya.kulkarni@wdc.com>, Hannes Reinecke <hare@suse.de>,
- Jan Kara <jack@suse.com>, Jens Axboe <axboe@kernel.dk>,
- Mikhail Skorzhinskii <mskorzhinskiy@solarflare.com>,
- Philipp Reisner <philipp.reisner@linbit.com>,
- Sagi Grimberg <sagi@grimberg.me>, Vlastimil Babka <vbabka@suse.com>,
- stable@vger.kernel.org
-References: <20200818131227.37020-1-colyli@suse.de>
- <20200818131227.37020-2-colyli@suse.de> <20200818162404.GA27196@lst.de>
- <217ec0ec-3c5a-a8ed-27d9-c634f0b9a045@suse.de>
- <20200818194930.GA31966@lst.de>
- <04408ff6-f765-8f3e-ead9-aec55043e469@suse.de>
- <20200923084303.GA21657@lst.de>
+	by mx2.suse.de (Postfix) with ESMTP id AD492B02E;
+	Fri, 25 Sep 2020 15:01:38 +0000 (UTC)
 From: Coly Li <colyli@suse.de>
-Autocrypt: addr=colyli@suse.de; keydata=
- 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
-Message-ID: <58455251-7d90-b890-17dc-abe0954715e1@suse.de>
-Date: Wed, 23 Sep 2020 16:45:07 +0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.12.0
+To: linux-block@vger.kernel.org,
+	linux-nvme@lists.infradead.org,
+	netdev@vger.kernel.org,
+	open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org,
+	ceph-devel@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	Coly Li <colyli@suse.de>,
+	Chaitanya Kulkarni <chaitanya.kulkarni@wdc.com>,
+	Chris Leech <cleech@redhat.com>,
+	Christoph Hellwig <hch@lst.de>,
+	Cong Wang <amwang@redhat.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <eric.dumazet@gmail.com>,
+	Hannes Reinecke <hare@suse.de>,
+	Ilya Dryomov <idryomov@gmail.com>,
+	Jan Kara <jack@suse.com>,
+	Jeff Layton <jlayton@kernel.org>,
+	Jens Axboe <axboe@kernel.dk>,
+	Lee Duncan <lduncan@suse.com>,
+	Mike Christie <michaelc@cs.wisc.edu>,
+	Mikhail Skorzhinskii <mskorzhinskiy@solarflare.com>,
+	Philipp Reisner <philipp.reisner@linbit.com>,
+	Sagi Grimberg <sagi@grimberg.me>,
+	Vasily Averin <vvs@virtuozzo.com>,
+	Vlastimil Babka <vbabka@suse.com>
+Subject: [PATCH v8 0/7] Introduce sendpage_ok() to detect misused sendpage in network related drivers
+Date: Fri, 25 Sep 2020 23:01:12 +0800
+Message-Id: <20200925150119.112016-1-colyli@suse.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20200923084303.GA21657@lst.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Language: en-US
 X-Original-Sender: colyli@suse.de
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
  (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted
  sender) smtp.mailfrom=colyli@suse.de
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -186,35 +144,89 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 2020/9/23 16:43, Christoph Hellwig wrote:
-> On Wed, Aug 19, 2020 at 12:22:05PM +0800, Coly Li wrote:
->> On 2020/8/19 03:49, Christoph Hellwig wrote:
->>> On Wed, Aug 19, 2020 at 12:33:37AM +0800, Coly Li wrote:
->>>> On 2020/8/19 00:24, Christoph Hellwig wrote:
->>>>> I think we should go for something simple like this instead:
->>>>
->>>> This idea is fine to me. Should a warning message be through here? IMHO
->>>> the driver still sends an improper page in, fix it in silence is too
->>>> kind or over nice to the buggy driver(s).
->>>
->>> I don't think a warning is a good idea.  An API that does the right
->>> thing underneath and doesn't require boiler plate code in most callers
->>> is the right API.
->>>
->>
->> Then I don't have more comment.
-> 
-> So given the feedback from Dave I suspect we should actually resurrect
-> this series, sorry for the noise.  And in this case I think we do need
-> the warning in kernel_sendpage.
-> 
+This series was original by a bug fix in nvme-over-tcp driver which only
+checked whether a page was allocated from slab allcoator, but forgot to
+check its page_count: The page handled by sendpage should be neither a
+Slab page nor 0 page_count page.
 
-Copied, then I will post a v8 series, which adding a warning message in
-kernel_sendpage() if non-acceptible paage sent in.
+As Sagi Grimberg suggested, the original fix is refind to a more common
+inline routine:
+    static inline bool sendpage_ok(struct page *page)
+    {
+        return  (!PageSlab(page) && page_count(page) >= 1);
+    }
+If sendpage_ok() returns true, the checking page can be handled by the
+concrete zero-copy sendpage method in network layer.
+
+The v8 series has 7 patches,
+- The 1st patch in this series introduces sendpage_ok() in header file
+  include/linux/net.h.
+- The 2nd patch adds WARN_ONCE() for improper zero-copy send in
+  kernel_sendpage().
+- The 3rd patch fixes the page checking issue in nvme-over-tcp driver.
+- The 4th patch adds page_count check by using sendpage_ok() in
+  do_tcp_sendpages() as Eric Dumazet suggested.
+- The 5th and 6th patches just replace existing open coded checks with
+  the inline sendpage_ok() routine.
 
 Coly Li
+
+Cc: Chaitanya Kulkarni <chaitanya.kulkarni@wdc.com>
+Cc: Chris Leech <cleech@redhat.com>
+Cc: Christoph Hellwig <hch@lst.de>
+Cc: Cong Wang <amwang@redhat.com>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Eric Dumazet <eric.dumazet@gmail.com>
+Cc: Hannes Reinecke <hare@suse.de>
+Cc: Ilya Dryomov <idryomov@gmail.com>
+Cc: Jan Kara <jack@suse.com>
+Cc: Jeff Layton <jlayton@kernel.org>
+Cc: Jens Axboe <axboe@kernel.dk>
+Cc: Lee Duncan <lduncan@suse.com>
+Cc: Mike Christie <michaelc@cs.wisc.edu>
+Cc: Mikhail Skorzhinskii <mskorzhinskiy@solarflare.com>
+Cc: Philipp Reisner <philipp.reisner@linbit.com>
+Cc: Sagi Grimberg <sagi@grimberg.me>
+Cc: Vasily Averin <vvs@virtuozzo.com>
+Cc: Vlastimil Babka <vbabka@suse.com>
+---
+Changelog:
+v8: add WARN_ONCE() in kernel_sendpage() as Christoph suggested.
+v7: remove outer brackets from the return line of sendpage_ok() as
+    Eric Dumazet suggested.
+v6: fix page check in do_tcp_sendpages(), as Eric Dumazet suggested.
+    replace other open coded checks with sendpage_ok() in libceph,
+    iscsi drivers.
+v5, include linux/mm.h in include/linux/net.h
+v4, change sendpage_ok() as an inline helper, and post it as
+    separate patch, as Christoph Hellwig suggested.
+v3, introduce a more common sendpage_ok() as Sagi Grimberg suggested.
+v2, fix typo in patch subject
+v1, the initial version.
+
+Coly Li (7):
+  net: introduce helper sendpage_ok() in include/linux/net.h
+  net: add WARN_ONCE in kernel_sendpage() for improper zero-copy send
+  nvme-tcp: check page by sendpage_ok() before calling kernel_sendpage()
+  tcp: use sendpage_ok() to detect misused .sendpage
+  drbd: code cleanup by using sendpage_ok() to check page for
+    kernel_sendpage()
+  scsi: libiscsi: use sendpage_ok() in iscsi_tcp_segment_map()
+  libceph: use sendpage_ok() in ceph_tcp_sendpage()
+
+ drivers/block/drbd/drbd_main.c |  2 +-
+ drivers/nvme/host/tcp.c        |  7 +++----
+ drivers/scsi/libiscsi_tcp.c    |  2 +-
+ include/linux/net.h            | 16 ++++++++++++++++
+ net/ceph/messenger.c           |  2 +-
+ net/ipv4/tcp.c                 |  3 ++-
+ net/socket.c                   |  6 ++++--
+ 7 files changed, 28 insertions(+), 10 deletions(-)
+
+-- 
+2.26.2
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/58455251-7d90-b890-17dc-abe0954715e1%40suse.de.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20200925150119.112016-1-colyli%40suse.de.
