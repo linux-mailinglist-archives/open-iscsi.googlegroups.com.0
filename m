@@ -1,113 +1,135 @@
-Return-Path: <open-iscsi+bncBCOPRU4C2YDRBMVVXD5QKGQEKHRCE7A@googlegroups.com>
+Return-Path: <open-iscsi+bncBCOPRU4C2YDRBBNXXD5QKGQECXZE3QA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc3c.google.com (mail-oo1-xc3c.google.com [IPv6:2607:f8b0:4864:20::c3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9724278E69
-	for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 18:28:35 +0200 (CEST)
-Received: by mail-oo1-xc3c.google.com with SMTP id n16sf1479145oov.17
-        for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 09:28:35 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1601051314; cv=pass;
+Received: from mail-lf1-x137.google.com (mail-lf1-x137.google.com [IPv6:2a00:1450:4864:20::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CA80278E9B
+	for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 18:32:06 +0200 (CEST)
+Received: by mail-lf1-x137.google.com with SMTP id 140sf586662lfk.16
+        for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 09:32:06 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1601051526; cv=pass;
         d=google.com; s=arc-20160816;
-        b=XogFREeNMJkQ+Z3AVcCjFAlSdnNvwtrmBeiSkqlN0MSefAiLeKIfY0Du2ltohowb2p
-         tGPwufRrY8bAJYn7CFee1n0icApFKoW/IgHAY//PFruIheQD4KhL7k/NWEiRbx84oTI5
-         XBKVZdbYFE82nmp/QErk3slwWYsSN+8OCIlb3SjVH5Bemz3K6ipcjYp5Jo+JIBz+fNQj
-         WpLxhHnRZucn6qReFcFFRFI/JcX/MP0TnrgEpz+FF5AVxn+MBaTue/hoIGJIS1pBpxKb
-         zv537F0ZFK3RCQqcj+D5KXuFTkKGb58weKiAfFk4NHrX5jj3IVeKJDhwIJd2WS5vaxBg
-         Hq5A==
+        b=eqDCfzPJtxguJMsLPOnj90s9pzba8JEK1CE+2aurevdEKso6abBEnjLF8LloMXqIjr
+         UctEIx4aRMTVnUg6uXSNFqUDlXdvgTFvbbHfhQSST+0rkuuqNGRhvG2b5a0cJhtyHw0e
+         tOEUvXj+PPSxL0cv9xu7x8Ig7iveS5dCLmaJJRvgsRhckcz44V/ESBGvJO1gpxVtkSDG
+         n8n37noNZoqXZ/J2qnyOGL2gQTPLdGcPybLjR8FyMcsnbafm8Z7Re9NLkM9qvD7fY5Iz
+         MVYX9R7+pWOPO/uKQd5FDIb6CjOVd3SIehmxHfZY1eb8cg4ClYwKzl3dRIeXovvtpVVM
+         y2Ow==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:message-id:date:subject:cc
-         :to:from:mime-version:sender:dkim-signature;
-        bh=6LhkGX4NSg+/y6Xn4/3uzzlodsqtxEH38qUrAZGe/fw=;
-        b=TYCbTeWq6D3ZctsTLy5ilYK61K1XQzKnXO8dmbrcrSpAGfbuKOE9HZO5Vpe69fAUsK
-         6bIeOxcx6XNrEJZ4BHoBMyBs6xeXwRiPGJbpJm9qbkObcwC2/1axPg9a50b059ft+HLr
-         gT2Y+6icsaMVENmEHT6PZRjnr9F8eWnSqvCSd6uuaFop/K7LzcWjdBFah6QipCf0eamU
-         ygfffFZBaMzq+Tb0Fpekmv9xZb23vifyjjhYFJAvmWm4+P9yWAXD3RtLddPM273/6N9K
-         a2K6nM+AIgZxUwerVRZloNgnNqrxlCkOCVLUAuulkODnFx9EPWEFv9vO8HAvGs6UwB8f
-         G4bw==
+         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
+         :from:in-reply-to:references:mime-version:sender:dkim-signature
+         :dkim-signature;
+        bh=YkUd9nO6+8u2iiiyTPnxzVGt1xgFkBrDJBxePfEK64M=;
+        b=aHL6EM3vpzKTpA3WNzpRYLq2FfPwR2QO9dBzRiQIOsudyr05SNp6KPBa4TM990jaS3
+         +pidUxooFPl1BKJRUvLoWFNLjWITgj1GZlf+Bcb6p/fpvxlJnFRgszNPxjYIXB5Qmgk9
+         g8jUV0CM7ZqF2bGu820Cyrb4ljAf0RzE9cO4v1G13GR/eyeqV65VdF8U36EfmA6hn+n7
+         TFWYFS5d6ah2s2uL3vaEnEO4bYMu+RM+xAqdEAomwOF7Ccgo18Olza9HvqAhv3sIr4Y+
+         kcVFG03oOpHUY6YNgzx585/oB+FCrD+cJf2ZbqXiEKfT5JLPYDjzx155isHZmtCBzSlz
+         D89g==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=neutral (google.com: 111.125.192.187 is neither permitted nor denied by best guess record for domain of jitendra@mybox.localdomain) smtp.mailfrom=jitendra@mybox.localdomain;
-       dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=CxsTCzpR;
+       spf=pass (google.com: domain of sonukumar159842@gmail.com designates 2a00:1450:4864:20::232 as permitted sender) smtp.mailfrom=sonukumar159842@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:mime-version:from:to:cc:subject:date:message-id
+        h=sender:mime-version:references:in-reply-to:from:date:message-id
+         :subject:to:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=YkUd9nO6+8u2iiiyTPnxzVGt1xgFkBrDJBxePfEK64M=;
+        b=Kil8LickAk7Uyio2RbEVyYDQ6oj0Ihz3mIRjwSpdJaG2hqh7JM0J9bohpHiHIizigu
+         Ao/y/NWD1S3Gth6oGT48hIjxPGzLryt6DIpLta4hPheCEVv0VjUNUV8kkT83WJNh0zCg
+         UBtLwbuWV+49C9X0X6qy7A9wvYdPZnPkpKS4ogBKLzbiUIIgqktYAx4C06xzgnMx4Glf
+         7BRE2qehYnVp1PUamxB5pFPNvNIj7xdtNDca0Wnh1aEbwJGRbgK7l0ejE2K+fIPn2w7j
+         Zany469tANuN+34nn1s/K6O3KR7xc5gWvZeNN4kG8H+hTAk7CKZ//SkswsLEG35Koxnl
+         Cuqw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=6LhkGX4NSg+/y6Xn4/3uzzlodsqtxEH38qUrAZGe/fw=;
-        b=SXJDhqLX0Y6e4HqHsrIxKr5W5E67HHq6kW2uNt5m0/+Y3+7gydn+UD0B/LuMYpNfLX
-         hxUhG4oTXpBJSoyoCgI4oyQOgxhw0HAODKRQTG/oJ46aSFkhELNk4HUVI+w7NiTnuktv
-         41BgA0l4+/irIrClWp/Lg/e1ZQvYbDiK341j7ee2zrtsaE0dy8uSDoxqiEkWQKxUTqBQ
-         wmA6NRVjoIjQyedWkiZwDi11208CCJWLBvKOT6AfIKDga/iTAxFiJWlG27+em6YaVeTL
-         occqhiMCtrQo81mKTXKOVdp5DEQO8sUaBZTvbe2mGFSiF7mjFiuSHucF0XbpYRH64TUE
-         Yi9g==
+        bh=YkUd9nO6+8u2iiiyTPnxzVGt1xgFkBrDJBxePfEK64M=;
+        b=ZEqwi3pHqVHDLn9X/6V2Trjoq8J8zrQthLeKVIX/HACzRSRkhp3hz/h5G09XoGId8F
+         u7K+zruYKvw94dZgicGyjxYD6mX/88cr442b883fMCECEWITj55ewCgk+3lM0L/Sr3Qd
+         Z+aXbaqy/3J16LMpT7NbOdCBZdHrXAZ1jzp/VBrUjc/nAdrYme879ittCZtdDZvJrO1r
+         udf9Q9ubn0S7X+EiRPH02Pd9GVeHW9QI2S9cgvZJ6xiM+wcjUf3K2XvG6bQZcp/UrnT8
+         15dQA9T4PoQWWc9RFs1BmqO3/5HHnENKv7e99GJwnwEAa1ZCXeeBYjKyHEjAC1ZWmgh4
+         XL/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:mime-version:from:to:cc:subject:date
-         :message-id:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=6LhkGX4NSg+/y6Xn4/3uzzlodsqtxEH38qUrAZGe/fw=;
-        b=E71O6jycwmttGI7gKfBDtyRaLjbIMfpAFTAIm2FLvrSALzk4f33hnlnxuUBFisE7XU
-         poAmcjxnPz9Ttn17aEcpZTH+XmpY4XYq/3EKW96LF1i3IKAH8RTVeIeXdmyPpPdVodJo
-         hIq4L+5mvkyUto3Lv2aYRywIATF46vR0O2pRdJcunfTVTXa1TBauhcJJzC4XnGrwgk/a
-         BtKrrQJBReTdYmxBCnIPemie2aL5h81FBUhvH29U8mt64vYQWHV26HILulgFLRTH/rmk
-         yv5wcGmpkEXKKX0Zolu6MI+P6kG6MpIgTPa3s2pvyvD6dV4yvOyG+8gIqcA4hO8C8Wbk
-         R77A==
+        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
+         :date:message-id:subject:to:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=YkUd9nO6+8u2iiiyTPnxzVGt1xgFkBrDJBxePfEK64M=;
+        b=aBwlQir1abK7va0MqAA0A6n7V2asIfqyK7GVRtoJlNqeOFcrQToy5uPUrSKURe5/Om
+         9fUAR6AQt4RtucdgDLAkJ/UerUp/tgzwvPqovN2hSovbSViQ0vwLUwjJSKDK2dUXMxW6
+         bYkejj1jetnDOL8sxG3Z3CXDOWULROo56HGkv+87CKlMgMLsjp1D2yAi8B5DH0IYEqDf
+         jl8E2h56a21w07YaHD5DYdcm/yc2aqa4AeANlF5hY2CLBvDX1g5KgVV//41gztluvorM
+         i+zQ2j7YAyjHEm11onDMZp531ik62ZKNaFNJx6g7gw9I8fwA9XI+1vVPdUwNVTgzh5x3
+         7HQA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532o/K1C0kW1vREFpOc6iPzXKkWT5hT+k5WGQHRJTx6GQWzzS0LJ
-	fxuawMSa9+M/5v6AKddmIBs=
-X-Google-Smtp-Source: ABdhPJyvH75sRDlVk1HDnLtVMc2uuXN3UdZWwhIzHlFEyWuVmBMiVVwzcw4SVQZ1izCeaCTgSVxvaQ==
-X-Received: by 2002:a54:4f9e:: with SMTP id g30mr71917oiy.81.1601051314661;
-        Fri, 25 Sep 2020 09:28:34 -0700 (PDT)
-MIME-Version: 1.0
+X-Gm-Message-State: AOAM5311HwrMgj0wGhBLvLOHxZET4vnatdDloW1fGo2UPTkKbmviZH/E
+	5vCspwnbibIIfQR+scMAWDo=
+X-Google-Smtp-Source: ABdhPJwDw0UcuH7Xva6mHudgSylygQQyRqdVueN4BjDQx27GObhEX3WwJ4+DVQkqQ1UwlaBuqoOK+g==
+X-Received: by 2002:a2e:8693:: with SMTP id l19mr1705988lji.25.1601051525848;
+        Fri, 25 Sep 2020 09:32:05 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a9d:5c0b:: with SMTP id o11ls864911otk.2.gmail; Fri, 25 Sep
- 2020 09:28:34 -0700 (PDT)
-X-Received: by 2002:a9d:69ce:: with SMTP id v14mr872037oto.11.1601051314288;
-        Fri, 25 Sep 2020 09:28:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1601051314; cv=none;
+Received: by 2002:a2e:86c8:: with SMTP id n8ls477583ljj.1.gmail; Fri, 25 Sep
+ 2020 09:32:04 -0700 (PDT)
+X-Received: by 2002:a2e:3809:: with SMTP id f9mr1756466lja.5.1601051524756;
+        Fri, 25 Sep 2020 09:32:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1601051524; cv=none;
         d=google.com; s=arc-20160816;
-        b=fy/ajqzQNzZv8Yc/b+Vibpp3yqZlC6Nx6VukAIXbes/BydhlBOr7jvOuDnO72dCTke
-         O+SBmJdE9G0Z1kekdQSgU3CrCDREgJTP2DE/yNYTkyOYZFDKltDvxjpUHoNo6GkwaFu8
-         RoVoK9RuzG/KFU8/xBzHQBvC/RNR5zw0HG3p0STgn9sycrpLcsAURcj9lZtqCIo0IeI9
-         NsyIvFNAsHgEea5IOD93xzqBE1Amndd/teh3LwVtI+QfzS6ocmjhZ6vjADTn6wEqzGQx
-         Tre9h0ZVgH5VWu53bTqZkhIgeOJgFvlTIHtSowcEa1QrioGtE6+/v/caCwB3Z4gwmCIL
-         SkpA==
+        b=Lgy6Xr1a4R+WxoIP/u3eg8ZExAjOb4oVcIB3OJraHUS+tDgp2SnEK/bb4Tg1rH8IXr
+         AKIc58H3KIKKdEkNk6yMnIhHXFj3zctvVcXcnFV77By1deXRIgGZwA/KsiesLmVztsZ8
+         CuZQXX1i6ysFbj0XHdU+g9wBkQKgcxr63rfHDkn77PwzFCPEcaPt6IeGRm6QLkYYfV53
+         T1+q6WQEQqTO0ug8MfdzdtqHTS8L22hBGWqLlqnQTn2jungXHvaysnU1T9GLQh9K8nR+
+         eMUKltpLoJZXTRIJzBgVn0eQrMzSawx8QkbPcQUqTI4AeP5yIVN707q8RXWAN2GcrmwH
+         O3Zg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=message-id:date:subject:cc:to:from;
-        bh=nhjLNREQC/wcp1nx5gUGa7C4snpX7JK8Vr8M4NrkTkc=;
-        b=DDm9EtERK3W2U71qJRKLQ3L8Mvg9agYU6BUACYacyKQYJ94xzvbuJKEKPA3rSzqBX6
-         shAhyftt9TKriDmZQUZVPe80MTAexPDMMUYBg6aB07nZWSPyQwvu/HuMtwCtlP9KHEaQ
-         BaaaFJL3aLEGMGM7U169hbUJjgn2R6Q68XtLOOPvJn+MXqBuYSMIYovLgcN1kFcyvpQx
-         2JXm59Oo4WR0GR1+9RAvDwqmqmUfiVorb+qxyJWNPwsE80FVxIMSbVzWuEmsvHIO1H67
-         py3XDCvjSe3PBMZkvkV4sQe0uWulv8b5md0V/Iqu78rqZV5r5hQV2rkwXGhcpdalulLx
-         KSmQ==
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=+Sru9Jv8Tb/NjJa+JAOCff8euZqNqFzFOOYdDlaqyt8=;
+        b=Lm95X1ZCVLrNsxDfIwM42g8mrdWc/p7DipckKElA5fzdqeIzSJ3Hh9jcN8d0T58a+q
+         JtGmgWYHtzvTLdu12WO/v1v3qgEEZYyhewC5G4KSEudjg3eW21BhbPuJdfGzz5IJX9LZ
+         VLjzriBTVZRT25jgfZ/sYWvqrj9PhvbVC6wZ1r17lgFbGcNFj8h1sfHpScFKyDT0aRSY
+         RCO9jerIDLY8OSjyFtyxIBa5Ygolx0yQYMn2as30mpqr9JfXIPUFhns0ltR/TXCFTN6p
+         fF2hRl6OZV2tWDinE5gAR8XdowMy4dpnYGfc9p9tzJfgi64pGPY3mglohkpyhR3O3WwQ
+         yBmw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=neutral (google.com: 111.125.192.187 is neither permitted nor denied by best guess record for domain of jitendra@mybox.localdomain) smtp.mailfrom=jitendra@mybox.localdomain;
-       dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mybox.localdomain ([111.125.192.187])
-        by gmr-mx.google.com with ESMTP id b12si12933ots.3.2020.09.25.09.28.33
-        for <open-iscsi@googlegroups.com>;
-        Fri, 25 Sep 2020 09:28:33 -0700 (PDT)
-Received-SPF: neutral (google.com: 111.125.192.187 is neither permitted nor denied by best guess record for domain of jitendra@mybox.localdomain) client-ip=111.125.192.187;
-Received: by mybox.localdomain (Postfix, from userid 1000)
-	id AD24236DFE0; Fri, 25 Sep 2020 21:58:29 +0530 (IST)
-From: Sonu k <sonukumar159842@gmail.com>
-To: open-iscsi@googlegroups.com,
-	leeman.duncan@gmail.com
-Cc: sonukumar159842@gmail.com
-Subject: [PATCH] TODO: Update to todo list.
-Date: Fri, 25 Sep 2020 21:58:22 +0530
-Message-Id: <1601051302-31762-1-git-send-email-sonukumar159842@gmail.com>
-X-Mailer: git-send-email 1.8.3.1
-X-Original-Sender: sonukumar159842@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=neutral
- (google.com: 111.125.192.187 is neither permitted nor denied by best guess
- record for domain of jitendra@mybox.localdomain) smtp.mailfrom=jitendra@mybox.localdomain;
-       dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Reply-To: open-iscsi@googlegroups.com
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=CxsTCzpR;
+       spf=pass (google.com: domain of sonukumar159842@gmail.com designates 2a00:1450:4864:20::232 as permitted sender) smtp.mailfrom=sonukumar159842@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com. [2a00:1450:4864:20::232])
+        by gmr-mx.google.com with ESMTPS id y75si95984lfa.3.2020.09.25.09.32.04
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Sep 2020 09:32:04 -0700 (PDT)
+Received-SPF: pass (google.com: domain of sonukumar159842@gmail.com designates 2a00:1450:4864:20::232 as permitted sender) client-ip=2a00:1450:4864:20::232;
+Received: by mail-lj1-x232.google.com with SMTP id b19so2945998lji.11
+        for <open-iscsi@googlegroups.com>; Fri, 25 Sep 2020 09:32:04 -0700 (PDT)
+X-Received: by 2002:a2e:b6cd:: with SMTP id m13mr1751956ljo.383.1601051524376;
+ Fri, 25 Sep 2020 09:32:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAOaPBH76JhA0Mm9wNT+m6a-sXPyusVHPMfLwNo73ettORPO8fw@mail.gmail.com>
+ <8f4b4991-b3da-4a5c-9bc2-fb51225b2bd5o@googlegroups.com>
+In-Reply-To: <8f4b4991-b3da-4a5c-9bc2-fb51225b2bd5o@googlegroups.com>
+From: sonu kumar <sonukumar159842@gmail.com>
+Date: Fri, 25 Sep 2020 22:01:38 +0530
+Message-ID: <CAOaPBH7ZNxdDExFQ5GTXXH9+sBSyoUA7_itpDPjvcd7EzqqFEA@mail.gmail.com>
+Subject: Re: Todo list for open-iscsi
+To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
+X-Original-Sender: sonukumar159842@gmail.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@gmail.com header.s=20161025 header.b=CxsTCzpR;       spf=pass
+ (google.com: domain of sonukumar159842@gmail.com designates
+ 2a00:1450:4864:20::232 as permitted sender) smtp.mailfrom=sonukumar159842@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -120,39 +142,19 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-This patch is to update the todo list. Tasks are suggested by The
-Lee-Man
+Thanks The Lee-Man, I just sent out a patch for todo update.
 
-Signed-off-by: Sonu k <sonukumar159842@gmail.com>
----
- TODO | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
 
-diff --git a/TODO b/TODO
-index 7328180..a3d1d91 100644
---- a/TODO
-+++ b/TODO
-@@ -377,3 +377,16 @@ I am working on this one. Hopefully it should be done soon.
- it gets out of sync with the kernel version, and that's not good.
- 
- ---------------------------------------------------------------------------
-+
-+13. Node database
-+
-+Current implementation of node data is not scalable. It handles database using
-+some bunch of files and directories. It has not locking and can not handle
-+thousands of targets.
-+
-+---------------------------------------------------------------------------
-+
-+14. Migration of duplicate functionality out of iscsid/iscsiadm into libopeniscsi
-+and add better error handling .
-+
-+---------------------------------------------------------------------------
--- 
-1.8.3.1
+On Sat, Aug 8, 2020 at 4:01 AM The Lee-Man <leeman.duncan@gmail.com> wrote:
+>
+> Heh. I just realized you uncovered one item you could do: update the todo list! But there are things in that list that you could help with.
+>
+> --
+> You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/8f4b4991-b3da-4a5c-9bc2-fb51225b2bd5o%40googlegroups.com.
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1601051302-31762-1-git-send-email-sonukumar159842%40gmail.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAOaPBH7ZNxdDExFQ5GTXXH9%2BsBSyoUA7_itpDPjvcd7EzqqFEA%40mail.gmail.com.
