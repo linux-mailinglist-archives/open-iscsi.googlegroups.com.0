@@ -1,130 +1,163 @@
-Return-Path: <open-iscsi+bncBD54HHNYIIIJL5FY7MCRUBBIUD3XC@googlegroups.com>
+Return-Path: <open-iscsi+bncBDVIJONZ3YDRB7NRXH5QKGQEDP2O6FA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x13c.google.com (mail-lf1-x13c.google.com [IPv6:2a00:1450:4864:20::13c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 844D82790F5
-	for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 20:42:30 +0200 (CEST)
-Received: by mail-lf1-x13c.google.com with SMTP id j75sf652833lfj.7
-        for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 11:42:30 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1601059350; cv=pass;
+Received: from mail-pg1-x540.google.com (mail-pg1-x540.google.com [IPv6:2607:f8b0:4864:20::540])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D0E52792B4
+	for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 22:54:23 +0200 (CEST)
+Received: by mail-pg1-x540.google.com with SMTP id s2sf3203832pgm.18
+        for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 13:54:23 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1601067261; cv=pass;
         d=google.com; s=arc-20160816;
-        b=h2m4wuqos6bhDanDiYcm9uuy+J3glfLzv7dtaULBLgRSAtlxtXoDriPuJNLAFWDGM1
-         RQCWq53c1CeEXBj6GYmQacS5XmvOVnUrlAp2gxlVI82hYyCmY2MiSMbWuN6AWm+cZDn7
-         AhqOzQefCmR6asAk+djpnI/yCOaRgk5Tpf70v/yLzcEg38x9l2vsGCGUc4l6www/MSOp
-         hFr0DEdj4f2dZsAU5DKcVr3DhqQ4S4fwFsW+4vRD+fz3ZfxLRa/NjqOFWNPCCgTAacp1
-         jarMC7UQTAr8Ll87KMm27mcVDsCUrLHVzLwhk/+UT4UaKtmTfV8dPfSK61xckrCHhZtw
-         nT1w==
+        b=P7LirdOsjGCmeNsH2qGd0b2gNU2+mcI5fHrOPqKO+bb85Z+Rwk6iG59COK5l22X2NJ
+         l+ykEgKpk8VvyCgDqO56CjAK3GMqdRXhx4gP2wnmeGviSagyEr1mz5qhjMczqsKVKneR
+         vowfNUX1kTZD05q8A2kIad79r+it4yGrI5SF7RmfYa89XUvD39RYerOcJZCB/zVZatyo
+         537AlGsSx9gChFX4wz+wXOsSg9xPnYZ4GchModMeWr2mMFg5JKlWI4aMs9Nvy01gWUqu
+         DVGpGSuVld7DbGRdX/E5VHh2PRvucCTNsQITMs4Yy+n6xQQpEGta2DgzP8W1+/NDrgKK
+         cMpg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:sender
+         :list-id:mailing-list:precedence:reply-to:mime-version:in-reply-to
+         :date:references:message-id:organization:from:subject:cc:to:sender
          :dkim-signature;
-        bh=gfG2xvkLqrK+UM77iGJFscz5k6um1G2SjaUNgtwlvJg=;
-        b=XJGXIMwKhJcRi0s47gAimQVcYGKj9+ULsVxHtFDsAMa78kBOrv5mlt7W+8+CYFiSKU
-         OrXc2sdTVCBJMEAfaF3kXuE/CYUpWqrtNOeDR5fvuOyuO1RqPp5JJUsMNCCMADhUrk4g
-         ygsEJsR4+3QmNVptRn7ikw9w8zsNyoVI3V5Xr+BRCDjeZaBfrsEaU2jb3AmtHgyX73yT
-         4DSrXDaYjB0cjF14KG3ZSiEqsEvAsaRRivyyAXC+WDzeBp6/gGW9O9rgHCtR58G7Phaj
-         eti9mzD9ckC6vHe5J+ditis3FS+hlOJYjoSX1tEXOcCu98fWX4a1jr5FPL/Pr6ISnS4t
-         5DqQ==
+        bh=3+Z4bRCXJ0wq+xCLNTtka+aVpL8vs1TB12Q1x3t6jrY=;
+        b=jh7N5SxoJZ0Lr62+FYpV91+2UmTLT5e6FypsdSevHDuhTycRMXCxJ0g4b7C/U2LsDt
+         DqxIKUplCYrI0jwr9keDVDWVWCdpTaq0u+Br8r9YB9RGt949PykVhtgVbbuEfLnkp65F
+         vgx61Bx813XOkbHYkfpqsoa9yZx3KoNgV2ci+G2J9V3x7QAhN/vgZOvk+Pql8bEnlN5n
+         EAdCkqWpYNGwLdJTgWqGXEtdG5O8up//cmxdyicaeqh4xqkU6UwK33bjfwStb0aNjJI6
+         b8KPGnUrG7OjlFFYpCbTCTC71CC/xFe+rjUV6KT86JXNTj5zleJx1z+nscHDRPxNsIeJ
+         xrtw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=susede1 header.b=fA37onwK;
-       spf=pass (google.com: domain of lduncan@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=lduncan@suse.de;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=t0qzyxZi;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.85 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=gfG2xvkLqrK+UM77iGJFscz5k6um1G2SjaUNgtwlvJg=;
-        b=TCCu1U9NwTlRqdb9OwMmYo+XMY8mSvfQFQkwPIksIH8Uwvd7Kq7LuJl1x7zB5xUHIp
-         M1CY4h/siU8sgxVvHVIFiwB54ozi3agjpYZeSVDCDtInH04vTdknJPkMh8DFwvFl6tLT
-         v39tUK31PfY/E0NwRl2ekrMTw0a5ihzEqbPSwabsRX+KVt8KBqBysYMBy2U3BjDIlPgb
-         LD2w3qzMcAA2FoRxC2k0h1jpea2vkghustWPfnqCYlb1Q7K8UQcX1LZ2dMzkFRbVEHm2
-         BgHYrSpaDBmNku8ZiveQCxQbcg9Zaer2WJYUPuAaI6U3OTrFIUkb5W+/YS5oWpLVZ1fy
-         d4dw==
+        h=sender:to:cc:subject:from:organization:message-id:references:date
+         :in-reply-to:mime-version:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=3+Z4bRCXJ0wq+xCLNTtka+aVpL8vs1TB12Q1x3t6jrY=;
+        b=I5prIxqITS1qhjxhmy4k5Z7JuIgHMEpp6ElWy53kulWSctKCMfLN8E7wAUswZsMgdN
+         fKVM6mIptQwCd4j6a9VwwfYVedqi6Lu0QiMmMCKGZN3rcOZpt5dAXEAK6GqzfM9TzVWK
+         GgggAjx4rD7bPmG0CUpLiak/m0mLoZtyJp+oMXdbW4HZk0N4csitGKzkGpiTd908wjyF
+         pWziUlG0myvSyohGY/7C5n+uVgx7SSYDoZPK8ntRSsQBZfCmR5kuDpuI4hubSS5tIsRE
+         WfvTYRDyAi5V6A2jM+Kcn1f+wfbSJnAwGCyzHaZThtrc+sLPn9aE/5VDBYXA9FPtOR7V
+         ydCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=gfG2xvkLqrK+UM77iGJFscz5k6um1G2SjaUNgtwlvJg=;
-        b=d7MZf/3GzNBn8/F3aAyBtX0Zptg88Gf5AzE+IGrUeYezZsNW0TG73ldfkGVxcI6r9h
-         0A5pnXsn4/wOlbY9kSUVJG+mqYa+MrnZQWtjuM4JJwaMtBx4EW3Qj9IYZXJ0F8U29NAf
-         NW2j/yxGx4wFiCtiS3TVbz/CxJ3LGcV7y+nIoRw2tPFdJbG+glB1OXyDnNOaY82Mh6qT
-         23sK3FCZYK4YZka5ory+rkXXwXlcGydvATQCyccpavRqOm38wvcqghqRJdFW2S6OLWOy
-         DdTMkmrHyNT15zaGbUnAw52oQ5W0ZoxVA0szahWLu/C4nz1PFBNQTQiWNHC23ZFms5qc
-         O2Nw==
+        h=sender:x-gm-message-state:to:cc:subject:from:organization
+         :message-id:references:date:in-reply-to:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=3+Z4bRCXJ0wq+xCLNTtka+aVpL8vs1TB12Q1x3t6jrY=;
+        b=OIr5Eg0pJ34XTi5loz22+ArtsVp1Ld8AX5ikeyVybSH1Kt5sxXyzIrGMyGXdKJMmpH
+         9ddut3qRg+cA7Wpz13+03+OVuTh7FmFtpYJ72xGJHUBa7lo5mKR/GB1mrioIEAPfE3/i
+         GVZqW7ZQAInf93AHAyC7EJ/dUdp+awi7pFIiPQ5oimrcQiU8GTyqHGrxS6WiDu8Co8Wj
+         werqonSiB/tPY4LvN5JS3GihsGQLkNbQPO2XLb5vPAvREkjUWnGMBo0lWSRktIoW0OHM
+         TWP/16NlgpLQ0IKJuJcIC0UNOtp6qqJLHgTYBWSdYibZ4APxNT/dglTOr72KhtmJoegI
+         llTA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM53324fBAzp74IJtY66T9h5Ktt/tevQ8Gb397b3PvBVpfKtAf4+eW
-	b/aSdxcaveLKEUNsun0cLLk=
-X-Google-Smtp-Source: ABdhPJwM4J9S/S28ocPa+OYiqvkDCAdFfPkM9sHlJWjLa82+C1fbAz42sQDG/fDJoVwNO/6Sm/bSUA==
-X-Received: by 2002:a19:2214:: with SMTP id i20mr74956lfi.252.1601059350072;
-        Fri, 25 Sep 2020 11:42:30 -0700 (PDT)
+X-Gm-Message-State: AOAM530A0kom+Auvl1UurAuXafnxoyWeP6obvDSwb22b0PUv6x0VNNpY
+	ELx7lxcKUezwT/uOeWl0lZg=
+X-Google-Smtp-Source: ABdhPJxcNtzGUAir/fGl5v9ds9abWzwymwgBG0y1+4ZGNXXzZDVyRgitflu8uzHM2+I2bnWWp4cTBw==
+X-Received: by 2002:a62:15c2:0:b029:150:da14:9ad4 with SMTP id 185-20020a6215c20000b0290150da149ad4mr400872pfv.14.1601067261483;
+        Fri, 25 Sep 2020 13:54:21 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a2e:b0e9:: with SMTP id h9ls516234ljl.5.gmail; Fri, 25 Sep
- 2020 11:42:29 -0700 (PDT)
-X-Received: by 2002:a2e:2244:: with SMTP id i65mr1913241lji.185.1601059349017;
-        Fri, 25 Sep 2020 11:42:29 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1601059349; cv=none;
+Received: by 2002:a17:902:70cc:: with SMTP id l12ls117927plt.1.gmail; Fri, 25
+ Sep 2020 13:54:20 -0700 (PDT)
+X-Received: by 2002:a17:90b:70e:: with SMTP id s14mr373285pjz.206.1601067260628;
+        Fri, 25 Sep 2020 13:54:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1601067260; cv=none;
         d=google.com; s=arc-20160816;
-        b=C7PpdJ1tilm69VTrXAGbCFWbETTZmlac+pu0p2t1Ay5+30A+G4Bk4PhV4voRaDYnfO
-         eVMoywnK9ilc/490fcsB3SIMv30yddox5pGtawFGxwXoCIJtB4hE0EpVfc4z3ip2rBmD
-         NBHAz3DWS9Dfqj3/My4nAk/Lc8zfj+5ZZ12zGCy8FmWYFapd7AhuYXmZa5N0cYTs/3zM
-         +rqWP2f/o8ZwbtJbghEZvgZoI/cMujctYejlU2DADotHjoVfY/YubP0zi7ay7CP+u5bY
-         rItNxc0MTjIdQ5Mip1MjJ0OySJvtPG2g//RDzLY+wTxwGbuJbDRXPhqzK/p+hZBwqPpo
-         HLCQ==
+        b=Z2ZNbnG5gN+TwjodglJMi5hzw0ZQMXnLBsqQ8fJZdXNkzyMk5SpzdckYKFGr9CW6gd
+         gynK1a5axb3rM+7odVhHNYSEm1DwNVCKpLze7Lq6y6FG/2YpCpPIEMCBY4P6cdWiQxcc
+         U7JVAG+QZly/72DHvGlTRwLACyo12Y5atSkr4VOWlpf4PI4DEwnSkwGAxGVY6vfeZwt8
+         BeLO4iRy2LiGeAyHH3LBFf5QNWnODgb4sHxceFFyxWPIMmeWcOIIKtHRDcBeDfAuozux
+         wSMSffmlv/1z0VhGKX8Ow9EB8yKG8BdEOGkw0Kj2+f3lrMdat0FjoCnKQO07Qxpoa6bf
+         nJiA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=/pGAYici4c+A6XTgBrVu69JVBfczsTODgIOBNBt1/98=;
-        b=UJDWNdBmSRfEwI9OfzO/iykZFNXU/0/QN3oNyM52XFHaX8kAKTYDt0YBiXBH0wzfk8
-         3EBNhRwgkHFcKseFOsg2vNrKBl0UFRrw0fbE5Kgv0jgI/SDRfoxHjiAqvdAmpNb229lD
-         7tFGEV/UHuj+f3mPyEs5mXZqk4nG6nwqRRxbQ+VzFSOiPGOkm9WLZSGNacU0RVqcDvTJ
-         jwBJV0TtewvPKViTuEgJqtPeVp0sNDImc+Z3xrZnFjhHWSk1Ur/w7iFgQjpjWxIcIlhG
-         R78+Tw6l/CNwCo8KO4h4A08KBEdFC8MeGSyF0KKLlZcI6trne7IzagduoNWsQU9v2x0H
-         HOKg==
+        h=mime-version:in-reply-to:date:references:message-id:organization
+         :from:subject:cc:to:dkim-signature;
+        bh=KE/6frUW0qLJ4yGqJjxsOBztcMMvJKPi7N6S9765s1A=;
+        b=F64LIj8HbueGAi422YJwhi3E2ICUxrk4O0wGvHCPFme1KSznEBfWxI6rzXIpW2N23a
+         VrgRMzDp7WgL6z2JAzdyTaYQOPTtE7G0WrWfuOtuIOzCKXZczpeS4S2wVg8FnYsgCjdD
+         3AiZxQ2cGs+wGTFvIzjHj8komeDKP1s/4McKA/NDAAsqtwK2w2+7u4LNfCljSsjjmsx3
+         UztAV+7YkPEcn3CnCLcWRhMAUcrW4dpztY0SGN4zPR9F7FFreKoLsdEfOXh5oDd2uSfN
+         cXt8g6mE/3pg3heW4FhF4DwRPN8R8rj6iWx1JSmF9IFi8uvl5DF60Bt+x8JVANuKPs+a
+         B44w==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=susede1 header.b=fA37onwK;
-       spf=pass (google.com: domain of lduncan@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=lduncan@suse.de;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
-Received: from mx2.suse.de (mx2.suse.de. [195.135.220.15])
-        by gmr-mx.google.com with ESMTPS id e1si120606ljg.6.2020.09.25.11.42.28
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=t0qzyxZi;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.85 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from userp2120.oracle.com (userp2120.oracle.com. [156.151.31.85])
+        by gmr-mx.google.com with ESMTPS id b20si302202pls.0.2020.09.25.13.54.20
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 25 Sep 2020 11:42:28 -0700 (PDT)
-Received-SPF: pass (google.com: domain of lduncan@suse.de designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-	by mx2.suse.de (Postfix) with ESMTP id 30F0DAD46;
-	Fri, 25 Sep 2020 18:42:28 +0000 (UTC)
-Received: by localhost (Postfix, from userid 1000)
-	id 91F6D514D9B; Fri, 25 Sep 2020 11:42:26 -0700 (PDT)
-From: <lduncan@suse.com>
-To: linux-scsi@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	open-iscsi@googlegroups.com,
-	martin.petersen@oracle.com,
-	mchristi@redhat.com,
-	hare@suse.com,
-	Lee Duncan <lduncan@suse.com>
-Subject: [PATCH v2 1/1] scsi: libiscsi: fix NOP race condition
-Date: Fri, 25 Sep 2020 11:41:48 -0700
-Message-Id: <02b452b2e33d0728091d27d44794934c134a803e.1601058301.git.lduncan@suse.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1601058301.git.lduncan@suse.com>
-References: <cover.1601058301.git.lduncan@suse.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 25 Sep 2020 13:54:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.85 as permitted sender) client-ip=156.151.31.85;
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+	by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08PKn2cc039197;
+	Fri, 25 Sep 2020 20:54:14 GMT
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+	by userp2120.oracle.com with ESMTP id 33ndnuysne-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 25 Sep 2020 20:54:14 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+	by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08PKoEmv040658;
+	Fri, 25 Sep 2020 20:54:13 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+	by aserp3020.oracle.com with ESMTP id 33r28yufem-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 25 Sep 2020 20:54:13 +0000
+Received: from abhmp0008.oracle.com (abhmp0008.oracle.com [141.146.116.14])
+	by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 08PKsBj6030876;
+	Fri, 25 Sep 2020 20:54:11 GMT
+Received: from ca-mkp.ca.oracle.com (/10.159.214.123)
+	by default (Oracle Beehive Gateway v4.0)
+	with ESMTP ; Fri, 25 Sep 2020 13:54:10 -0700
+To: Coly Li <colyli@suse.de>
+Cc: linux-block@vger.kernel.org, linux-nvme@lists.infradead.org,
+        netdev@vger.kernel.org, open-iscsi@googlegroups.com,
+        linux-scsi@vger.kernel.org, ceph-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Vasily Averin <vvs@virtuozzo.com>,
+        Cong
+ Wang <amwang@redhat.com>, Mike Christie <michaelc@cs.wisc.edu>,
+        Lee
+ Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
+        Christoph
+ Hellwig <hch@lst.de>, Hannes Reinecke <hare@suse.de>
+Subject: Re: [PATCH v8 6/7] scsi: libiscsi: use sendpage_ok() in
+ iscsi_tcp_segment_map()
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+Organization: Oracle Corporation
+Message-ID: <yq18scxinmw.fsf@ca-mkp.ca.oracle.com>
+References: <20200925150119.112016-1-colyli@suse.de>
+	<20200925150119.112016-7-colyli@suse.de>
+Date: Fri, 25 Sep 2020 16:54:07 -0400
+In-Reply-To: <20200925150119.112016-7-colyli@suse.de> (Coly Li's message of
+	"Fri, 25 Sep 2020 23:01:18 +0800")
 MIME-Version: 1.0
-X-Original-Sender: lduncan@suse.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@suse.com header.s=susede1 header.b=fA37onwK;       spf=pass
- (google.com: domain of lduncan@suse.de designates 195.135.220.15 as permitted
- sender) smtp.mailfrom=lduncan@suse.de;       dmarc=pass (p=NONE sp=NONE
- dis=NONE) header.from=suse.com
-Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9755 signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 mlxlogscore=845
+ suspectscore=1 adultscore=0 bulkscore=0 malwarescore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009250150
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9755 signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 phishscore=0 adultscore=0 suspectscore=1 bulkscore=0
+ clxscore=1011 impostorscore=0 mlxlogscore=827 mlxscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2009250150
+X-Original-Sender: martin.petersen@oracle.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@oracle.com header.s=corp-2020-01-29 header.b=t0qzyxZi;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates
+ 156.151.31.85 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -137,92 +170,28 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-From: Lee Duncan <lduncan@suse.com>
 
-iSCSI NOPs are sometimes "lost", mistakenly sent to the
-user-land iscsid daemon instead of handled in the kernel,
-as they should be, resulting in a message from the daemon like:
+Coly,
 
-> iscsid: Got nop in, but kernel supports nop handling.
+> In iscsci driver, iscsi_tcp_segment_map() uses the following code to
+> check whether the page should or not be handled by sendpage:
+>     if (!recv && page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)))
+>
+> The "page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)" part is to
+> make sure the page can be sent to network layer's zero copy path. This
+> part is exactly what sendpage_ok() does.
+>
+> This patch uses  use sendpage_ok() in iscsi_tcp_segment_map() to replace
+> the original open coded checks.
 
-This can occur because of the forward- and back-locks
-in the kernel iSCSI code, and the fact that an iSCSI NOP
-response can be processed before processing of the NOP send
-is complete. This can result in "conn->ping_task" being NULL
-in iscsi_nop_out_rsp(), when the pointer is actually in
-the process of being set.
+Looks fine to me.
 
-To work around this, we add a new state to the "ping_task"
-pointer. In addition to NULL (not assigned) and a pointer
-(assigned), we add the state "being set", which is signaled
-with an INVALID pointer (using "-1").
+Acked-by: Martin K. Petersen <martin.petersen@oracle.com>
 
-Signed-off-by: Lee Duncan <lduncan@suse.com>
----
- drivers/scsi/libiscsi.c | 13 ++++++++++---
- include/scsi/libiscsi.h |  3 +++
- 2 files changed, 13 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
-index 1e9c3171fa9f..cade108c33b6 100644
---- a/drivers/scsi/libiscsi.c
-+++ b/drivers/scsi/libiscsi.c
-@@ -738,6 +738,9 @@ __iscsi_conn_send_pdu(struct iscsi_conn *conn, struct iscsi_hdr *hdr,
- 						   task->conn->session->age);
- 	}
- 
-+	if (unlikely(READ_ONCE(conn->ping_task) == INVALID_SCSI_TASK))
-+		WRITE_ONCE(conn->ping_task, task);
-+
- 	if (!ihost->workq) {
- 		if (iscsi_prep_mgmt_task(conn, task))
- 			goto free_task;
-@@ -941,8 +944,11 @@ static int iscsi_send_nopout(struct iscsi_conn *conn, struct iscsi_nopin *rhdr)
-         struct iscsi_nopout hdr;
- 	struct iscsi_task *task;
- 
--	if (!rhdr && conn->ping_task)
--		return -EINVAL;
-+	if (!rhdr) {
-+		if (READ_ONCE(conn->ping_task))
-+			return -EINVAL;
-+		WRITE_ONCE(conn->ping_task, INVALID_SCSI_TASK);
-+	}
- 
- 	memset(&hdr, 0, sizeof(struct iscsi_nopout));
- 	hdr.opcode = ISCSI_OP_NOOP_OUT | ISCSI_OP_IMMEDIATE;
-@@ -957,11 +963,12 @@ static int iscsi_send_nopout(struct iscsi_conn *conn, struct iscsi_nopin *rhdr)
- 
- 	task = __iscsi_conn_send_pdu(conn, (struct iscsi_hdr *)&hdr, NULL, 0);
- 	if (!task) {
-+		if (!rhdr)
-+			WRITE_ONCE(conn->ping_task, NULL);
- 		iscsi_conn_printk(KERN_ERR, conn, "Could not send nopout\n");
- 		return -EIO;
- 	} else if (!rhdr) {
- 		/* only track our nops */
--		conn->ping_task = task;
- 		conn->last_ping = jiffies;
- 	}
- 
-diff --git a/include/scsi/libiscsi.h b/include/scsi/libiscsi.h
-index c25fb86ffae9..b3bbd10eb3f0 100644
---- a/include/scsi/libiscsi.h
-+++ b/include/scsi/libiscsi.h
-@@ -132,6 +132,9 @@ struct iscsi_task {
- 	void			*dd_data;	/* driver/transport data */
- };
- 
-+/* invalid scsi_task pointer */
-+#define	INVALID_SCSI_TASK	(struct iscsi_task *)-1l
-+
- static inline int iscsi_task_has_unsol_data(struct iscsi_task *task)
- {
- 	return task->unsol_r2t.data_length > task->unsol_r2t.sent;
 -- 
-2.26.2
+Martin K. Petersen	Oracle Linux Engineering
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/02b452b2e33d0728091d27d44794934c134a803e.1601058301.git.lduncan%40suse.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/yq18scxinmw.fsf%40ca-mkp.ca.oracle.com.
