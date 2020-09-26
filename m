@@ -1,162 +1,175 @@
-Return-Path: <open-iscsi+bncBDVIJONZ3YDRB7NRXH5QKGQEDP2O6FA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDLPRE656MLBB3MDXX5QKGQEKIBV3MQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pg1-x540.google.com (mail-pg1-x540.google.com [IPv6:2607:f8b0:4864:20::540])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D0E52792B4
-	for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 22:54:23 +0200 (CEST)
-Received: by mail-pg1-x540.google.com with SMTP id s2sf3203832pgm.18
-        for <lists+open-iscsi@lfdr.de>; Fri, 25 Sep 2020 13:54:23 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1601067261; cv=pass;
+Received: from mail-wr1-x43b.google.com (mail-wr1-x43b.google.com [IPv6:2a00:1450:4864:20::43b])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708E62799A7
+	for <lists+open-iscsi@lfdr.de>; Sat, 26 Sep 2020 15:28:14 +0200 (CEST)
+Received: by mail-wr1-x43b.google.com with SMTP id w7sf2393371wrp.2
+        for <lists+open-iscsi@lfdr.de>; Sat, 26 Sep 2020 06:28:14 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1601126894; cv=pass;
         d=google.com; s=arc-20160816;
-        b=P7LirdOsjGCmeNsH2qGd0b2gNU2+mcI5fHrOPqKO+bb85Z+Rwk6iG59COK5l22X2NJ
-         l+ykEgKpk8VvyCgDqO56CjAK3GMqdRXhx4gP2wnmeGviSagyEr1mz5qhjMczqsKVKneR
-         vowfNUX1kTZD05q8A2kIad79r+it4yGrI5SF7RmfYa89XUvD39RYerOcJZCB/zVZatyo
-         537AlGsSx9gChFX4wz+wXOsSg9xPnYZ4GchModMeWr2mMFg5JKlWI4aMs9Nvy01gWUqu
-         DVGpGSuVld7DbGRdX/E5VHh2PRvucCTNsQITMs4Yy+n6xQQpEGta2DgzP8W1+/NDrgKK
-         cMpg==
+        b=cLz5obkG09oNupyXP5afmwVNOpZJ6uglSNgF4u7tkwj8km6BOJt8vo3S5bwFDhSNDC
+         mLFOVvU1/rOPcUCH0dk0aozZl+R8UUZ7EJg9mILjZj+iYP18o5KhgvlDxyT8/GBBFI2d
+         Mc/QkYRItRCrx/nzLAMa9fZ2WTAQThAdAsr3lRQ+O8Pi2X/gLMlemXNxfECPuHq6nmyq
+         mSTyt2Mc2BCQkAHA2QahYQ5UMxTNg9eQW+5Vd7fJ6ygBOBBfqIQRtD83jYeNzqOWIao3
+         At5rxbUcHer4vIl8sy/PDhfD5NnFI3GZRlWb6obPfkUVOyV0Z6afV0enSLum4K1gwdjg
+         /zBg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:in-reply-to
-         :date:references:message-id:organization:from:subject:cc:to:sender
-         :dkim-signature;
-        bh=3+Z4bRCXJ0wq+xCLNTtka+aVpL8vs1TB12Q1x3t6jrY=;
-        b=jh7N5SxoJZ0Lr62+FYpV91+2UmTLT5e6FypsdSevHDuhTycRMXCxJ0g4b7C/U2LsDt
-         DqxIKUplCYrI0jwr9keDVDWVWCdpTaq0u+Br8r9YB9RGt949PykVhtgVbbuEfLnkp65F
-         vgx61Bx813XOkbHYkfpqsoa9yZx3KoNgV2ci+G2J9V3x7QAhN/vgZOvk+Pql8bEnlN5n
-         EAdCkqWpYNGwLdJTgWqGXEtdG5O8up//cmxdyicaeqh4xqkU6UwK33bjfwStb0aNjJI6
-         b8KPGnUrG7OjlFFYpCbTCTC71CC/xFe+rjUV6KT86JXNTj5zleJx1z+nscHDRPxNsIeJ
-         xrtw==
+         :list-id:mailing-list:precedence:reply-to:content-language
+         :in-reply-to:mime-version:user-agent:date:message-id:subject
+         :autocrypt:from:references:cc:to:sender:dkim-signature;
+        bh=UtPD9xyaN1jtCMbJy0Lc3y0WsOspx0oXmlIqoVAgeqk=;
+        b=x4yc65HutXkqWG9U6p4tzcJzVj2u8CqaeZ/BI4Z1UFnAq85Ip64Nte7QyZKYO0uyp4
+         TtYc+bUagcn26FVghTxipuYUwNWrKh5zeQy32Dj0yuoJBbFru+yT0QAsAnBez7dvYGLH
+         u/ab6Vrvfbv1OyCOmnarl3phceHOEvlseLw4wTwD1Iz65C+g3mDFoJhj27UiP12F19NP
+         jIa5Y4ArbhebKkhBYMk5eenIHU06cs6Z40qlA67vqgEsBxCy2RT801YIiNx76wPWUVvl
+         VFsUJPZnsvhA1xKG7nMmA7+GltXL3RehMoaTqbdY8ou9STGfNekdPjEPqQzroxyidese
+         /u6Q==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=t0qzyxZi;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.85 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+       spf=pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=colyli@suse.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:to:cc:subject:from:organization:message-id:references:date
-         :in-reply-to:mime-version:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=3+Z4bRCXJ0wq+xCLNTtka+aVpL8vs1TB12Q1x3t6jrY=;
-        b=I5prIxqITS1qhjxhmy4k5Z7JuIgHMEpp6ElWy53kulWSctKCMfLN8E7wAUswZsMgdN
-         fKVM6mIptQwCd4j6a9VwwfYVedqi6Lu0QiMmMCKGZN3rcOZpt5dAXEAK6GqzfM9TzVWK
-         GgggAjx4rD7bPmG0CUpLiak/m0mLoZtyJp+oMXdbW4HZk0N4csitGKzkGpiTd908wjyF
-         pWziUlG0myvSyohGY/7C5n+uVgx7SSYDoZPK8ntRSsQBZfCmR5kuDpuI4hubSS5tIsRE
-         WfvTYRDyAi5V6A2jM+Kcn1f+wfbSJnAwGCyzHaZThtrc+sLPn9aE/5VDBYXA9FPtOR7V
-         ydCQ==
+        h=sender:to:cc:references:from:autocrypt:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=UtPD9xyaN1jtCMbJy0Lc3y0WsOspx0oXmlIqoVAgeqk=;
+        b=UobKcXCBr+q58Alhsn+QHKFJbyWGlZCK50i/iV2iuVeOpTugaOwLcwKbp+s18RH9u2
+         ToCILv2YEngmz+1/Cyj13qwgwwbfUQi9g4BfCOoSKW8xObN3NiYDhxdBnOrKmsbAeMs1
+         24pLBHOv673Hn1omyYoiBrTwzmaqz6Y6XpSxENyAiTw2/ouJsNmo5WkD1jGmvwBOADxQ
+         yz9+o4zITb6u9INu2k2JVNTvd3zv7OxOIZVZetBccjLdZULEOg5ktJ/yUFkdYJYfbl34
+         H04RQukgfdwr8c0uJsVdnAaQY6o5+GC9aJQyaARXeMpLy7P6HFXijbRGH20C5fQqtZXN
+         bvSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:to:cc:subject:from:organization
-         :message-id:references:date:in-reply-to:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=3+Z4bRCXJ0wq+xCLNTtka+aVpL8vs1TB12Q1x3t6jrY=;
-        b=OIr5Eg0pJ34XTi5loz22+ArtsVp1Ld8AX5ikeyVybSH1Kt5sxXyzIrGMyGXdKJMmpH
-         9ddut3qRg+cA7Wpz13+03+OVuTh7FmFtpYJ72xGJHUBa7lo5mKR/GB1mrioIEAPfE3/i
-         GVZqW7ZQAInf93AHAyC7EJ/dUdp+awi7pFIiPQ5oimrcQiU8GTyqHGrxS6WiDu8Co8Wj
-         werqonSiB/tPY4LvN5JS3GihsGQLkNbQPO2XLb5vPAvREkjUWnGMBo0lWSRktIoW0OHM
-         TWP/16NlgpLQ0IKJuJcIC0UNOtp6qqJLHgTYBWSdYibZ4APxNT/dglTOr72KhtmJoegI
-         llTA==
+        h=sender:x-gm-message-state:to:cc:references:from:autocrypt:subject
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=UtPD9xyaN1jtCMbJy0Lc3y0WsOspx0oXmlIqoVAgeqk=;
+        b=CgI+je25KYeQEMTTEUqPLS7puw1eDh9KgJpmJytdw1g81/toZHIBLtdlrCe4qG26ir
+         2xV7i7OVyCN+mx31cOvK6BTw63e9yFN0IWmE7YemvbEPhHjI5Sy3BKmqBeVS2/hCxYbm
+         KQ3cuAebt+k6CRfBUlCFi7DgtVbcHGhN7kXg/nf45PdRvuUEXg1FkCLxzxil23L0Am09
+         0uyBoso/BUNNWcY1uX0qLm1HOhp3u82RN/R3vIM5UaIGWTyfXqYPGb9ohyB+MSp5UP11
+         U977hlrkXLRqGp9N1/hGoj6Yt9k609Ool1FUadvlusT3KAydPXh1axIMUk27LzGbWNRF
+         d7Hw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530A0kom+Auvl1UurAuXafnxoyWeP6obvDSwb22b0PUv6x0VNNpY
-	ELx7lxcKUezwT/uOeWl0lZg=
-X-Google-Smtp-Source: ABdhPJxcNtzGUAir/fGl5v9ds9abWzwymwgBG0y1+4ZGNXXzZDVyRgitflu8uzHM2+I2bnWWp4cTBw==
-X-Received: by 2002:a62:15c2:0:b029:150:da14:9ad4 with SMTP id 185-20020a6215c20000b0290150da149ad4mr400872pfv.14.1601067261483;
-        Fri, 25 Sep 2020 13:54:21 -0700 (PDT)
+X-Gm-Message-State: AOAM533MwOLQneQBvSQzCtI9p8BjjcjO453rxQPhvGqDF+fnGYc2DYXw
+	vQFaMyI5/OMIydKzPCRbMgI=
+X-Google-Smtp-Source: ABdhPJwKzEg9931Nl++f5qTZRrTN4gbxlkwh3qYzfofbAQXc+uHDDnzYPRE2KewSnKWp6wgJze31Nw==
+X-Received: by 2002:a5d:4682:: with SMTP id u2mr10259938wrq.254.1601126894164;
+        Sat, 26 Sep 2020 06:28:14 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:902:70cc:: with SMTP id l12ls117927plt.1.gmail; Fri, 25
- Sep 2020 13:54:20 -0700 (PDT)
-X-Received: by 2002:a17:90b:70e:: with SMTP id s14mr373285pjz.206.1601067260628;
-        Fri, 25 Sep 2020 13:54:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1601067260; cv=none;
+Received: by 2002:a05:6000:8:: with SMTP id h8ls6670732wrx.3.gmail; Sat, 26
+ Sep 2020 06:28:13 -0700 (PDT)
+X-Received: by 2002:adf:df05:: with SMTP id y5mr10367409wrl.39.1601126893275;
+        Sat, 26 Sep 2020 06:28:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1601126893; cv=none;
         d=google.com; s=arc-20160816;
-        b=Z2ZNbnG5gN+TwjodglJMi5hzw0ZQMXnLBsqQ8fJZdXNkzyMk5SpzdckYKFGr9CW6gd
-         gynK1a5axb3rM+7odVhHNYSEm1DwNVCKpLze7Lq6y6FG/2YpCpPIEMCBY4P6cdWiQxcc
-         U7JVAG+QZly/72DHvGlTRwLACyo12Y5atSkr4VOWlpf4PI4DEwnSkwGAxGVY6vfeZwt8
-         BeLO4iRy2LiGeAyHH3LBFf5QNWnODgb4sHxceFFyxWPIMmeWcOIIKtHRDcBeDfAuozux
-         wSMSffmlv/1z0VhGKX8Ow9EB8yKG8BdEOGkw0Kj2+f3lrMdat0FjoCnKQO07Qxpoa6bf
-         nJiA==
+        b=lhRY1X82e/Iz1liagamx3VXUbsNloGvouDv/m+IK7XMOmBfBinewGnspwZe6Qs/dcA
+         YDbhlbEKyYscw+yzKXv9aqHdA886GQj3ZbaFfKM0YajeRcpSz5hzdOujgbbYGEgrdh0c
+         0V4NXJuOyWVgyw4PpQce8V2MRcqhAAeKwodFfFCMcf1EidhrGNQbPP/EuTOZO2AcmLrb
+         wo+NYKK0YwVMXGgDeoCzzH8PsHMs7Hr2CnJYYyzj6xBps76U0gYX2Rbi7QoSDaISPY+g
+         yC3j2JxzshmILTBGl8l9xKBNvVQtiT8eZ+ejjdvdvYuJEMdDKM2y7uHq0JWXdiqCbUT/
+         ckMg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:in-reply-to:date:references:message-id:organization
-         :from:subject:cc:to:dkim-signature;
-        bh=KE/6frUW0qLJ4yGqJjxsOBztcMMvJKPi7N6S9765s1A=;
-        b=F64LIj8HbueGAi422YJwhi3E2ICUxrk4O0wGvHCPFme1KSznEBfWxI6rzXIpW2N23a
-         VrgRMzDp7WgL6z2JAzdyTaYQOPTtE7G0WrWfuOtuIOzCKXZczpeS4S2wVg8FnYsgCjdD
-         3AiZxQ2cGs+wGTFvIzjHj8komeDKP1s/4McKA/NDAAsqtwK2w2+7u4LNfCljSsjjmsx3
-         UztAV+7YkPEcn3CnCLcWRhMAUcrW4dpztY0SGN4zPR9F7FFreKoLsdEfOXh5oDd2uSfN
-         cXt8g6mE/3pg3heW4FhF4DwRPN8R8rj6iWx1JSmF9IFi8uvl5DF60Bt+x8JVANuKPs+a
-         B44w==
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:subject:autocrypt:from:references:cc:to;
+        bh=7QgVW1yhfjohTY/8XLzdDqnFLRu+38KAhG1c3fQr2H8=;
+        b=rlHlCJJhZNfeIyubn2XXWHDOgyw3RzwC89G8aIkCXiCgKDMz3uaQ1looqyvwujWC2C
+         4q7WUMqf1I4PoykzkMF+fKPkaIWBbBaBiTij4EvtqxVr9VhU+M3c7Ct0iFlQ6kjf9A5t
+         3vtYqGATBJ+MBjRlLJgXhCggHd1PlAcDYaY+i7eTFdkoB1rfeFp7FyORuOb9NAQLRKoe
+         cYls3GOG0sL1edZGK+EXHRmeboqt/+jER9BMbSdhexrRSCnNMRmc22ForniR3gCFxPL7
+         oYbF56WBE7PVf+EmIMHLMU/BcBbdbm0lJKxEpQZP7hAg71ZDOD5N6WRf1fBtrWS/Bz96
+         bC6g==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=t0qzyxZi;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.85 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from userp2120.oracle.com (userp2120.oracle.com. [156.151.31.85])
-        by gmr-mx.google.com with ESMTPS id b20si302202pls.0.2020.09.25.13.54.20
+       spf=pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=colyli@suse.de
+Received: from mx2.suse.de (mx2.suse.de. [195.135.220.15])
+        by gmr-mx.google.com with ESMTPS id w10si61126wma.1.2020.09.26.06.28.13
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 25 Sep 2020 13:54:20 -0700 (PDT)
-Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.85 as permitted sender) client-ip=156.151.31.85;
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
-	by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08PKn2cc039197;
-	Fri, 25 Sep 2020 20:54:14 GMT
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-	by userp2120.oracle.com with ESMTP id 33ndnuysne-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Sep 2020 20:54:14 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-	by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08PKoEmv040658;
-	Fri, 25 Sep 2020 20:54:13 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
-	by aserp3020.oracle.com with ESMTP id 33r28yufem-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 25 Sep 2020 20:54:13 +0000
-Received: from abhmp0008.oracle.com (abhmp0008.oracle.com [141.146.116.14])
-	by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 08PKsBj6030876;
-	Fri, 25 Sep 2020 20:54:11 GMT
-Received: from ca-mkp.ca.oracle.com (/10.159.214.123)
-	by default (Oracle Beehive Gateway v4.0)
-	with ESMTP ; Fri, 25 Sep 2020 13:54:10 -0700
-To: Coly Li <colyli@suse.de>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 26 Sep 2020 06:28:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+	by mx2.suse.de (Postfix) with ESMTP id CAFBAACB7;
+	Sat, 26 Sep 2020 13:28:12 +0000 (UTC)
+To: Greg KH <gregkh@linuxfoundation.org>
 Cc: linux-block@vger.kernel.org, linux-nvme@lists.infradead.org,
-        netdev@vger.kernel.org, open-iscsi@googlegroups.com,
-        linux-scsi@vger.kernel.org, ceph-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Vasily Averin <vvs@virtuozzo.com>,
-        Cong
- Wang <amwang@redhat.com>, Mike Christie <michaelc@cs.wisc.edu>,
-        Lee
- Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
-        Christoph
- Hellwig <hch@lst.de>, Hannes Reinecke <hare@suse.de>
-Subject: Re: [PATCH v8 6/7] scsi: libiscsi: use sendpage_ok() in
- iscsi_tcp_segment_map()
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-Organization: Oracle Corporation
-Message-ID: <yq18scxinmw.fsf@ca-mkp.ca.oracle.com>
+ netdev@vger.kernel.org, open-iscsi@googlegroups.com,
+ linux-scsi@vger.kernel.org, ceph-devel@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Chaitanya Kulkarni
+ <chaitanya.kulkarni@wdc.com>, Christoph Hellwig <hch@lst.de>,
+ Hannes Reinecke <hare@suse.de>, Jan Kara <jack@suse.com>,
+ Jens Axboe <axboe@kernel.dk>,
+ Mikhail Skorzhinskii <mskorzhinskiy@solarflare.com>,
+ Philipp Reisner <philipp.reisner@linbit.com>,
+ Sagi Grimberg <sagi@grimberg.me>, Vlastimil Babka <vbabka@suse.com>,
+ stable@vger.kernel.org
 References: <20200925150119.112016-1-colyli@suse.de>
-	<20200925150119.112016-7-colyli@suse.de>
-Date: Fri, 25 Sep 2020 16:54:07 -0400
-In-Reply-To: <20200925150119.112016-7-colyli@suse.de> (Coly Li's message of
-	"Fri, 25 Sep 2020 23:01:18 +0800")
+ <20200925150119.112016-2-colyli@suse.de> <20200925151812.GA3182427@kroah.com>
+From: Coly Li <colyli@suse.de>
+Autocrypt: addr=colyli@suse.de; keydata=
+ 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
+Subject: Re: [PATCH v8 1/7] net: introduce helper sendpage_ok() in
+ include/linux/net.h
+Message-ID: <7b0d4f63-2fe5-9032-3b88-97619d8c5081@suse.de>
+Date: Sat, 26 Sep 2020 21:28:03 +0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.12.0
 MIME-Version: 1.0
+In-Reply-To: <20200925151812.GA3182427@kroah.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9755 signatures=668680
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 mlxlogscore=845
- suspectscore=1 adultscore=0 bulkscore=0 malwarescore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009250150
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9755 signatures=668680
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 suspectscore=1 bulkscore=0
- clxscore=1011 impostorscore=0 mlxlogscore=827 mlxscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2009250150
-X-Original-Sender: martin.petersen@oracle.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2020-01-29 header.b=t0qzyxZi;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates
- 156.151.31.85 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Content-Language: en-US
+X-Original-Sender: colyli@suse.de
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted
+ sender) smtp.mailfrom=colyli@suse.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -170,28 +183,90 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
+On 2020/9/25 23:18, Greg KH wrote:
+> On Fri, Sep 25, 2020 at 11:01:13PM +0800, Coly Li wrote:
+>> The original problem was from nvme-over-tcp code, who mistakenly uses
+>> kernel_sendpage() to send pages allocated by __get_free_pages() without
+>> __GFP_COMP flag. Such pages don't have refcount (page_count is 0) on
+>> tail pages, sending them by kernel_sendpage() may trigger a kernel panic
+>> from a corrupted kernel heap, because these pages are incorrectly freed
+>> in network stack as page_count 0 pages.
+>>
+>> This patch introduces a helper sendpage_ok(), it returns true if the
+>> checking page,
+>> - is not slab page: PageSlab(page) is false.
+>> - has page refcount: page_count(page) is not zero
+>>
+>> All drivers who want to send page to remote end by kernel_sendpage()
+>> may use this helper to check whether the page is OK. If the helper does
+>> not return true, the driver should try other non sendpage method (e.g.
+>> sock_no_sendpage()) to handle the page.
+>>
+>> Signed-off-by: Coly Li <colyli@suse.de>
+>> Cc: Chaitanya Kulkarni <chaitanya.kulkarni@wdc.com>
+>> Cc: Christoph Hellwig <hch@lst.de>
+>> Cc: Hannes Reinecke <hare@suse.de>
+>> Cc: Jan Kara <jack@suse.com>
+>> Cc: Jens Axboe <axboe@kernel.dk>
+>> Cc: Mikhail Skorzhinskii <mskorzhinskiy@solarflare.com>
+>> Cc: Philipp Reisner <philipp.reisner@linbit.com>
+>> Cc: Sagi Grimberg <sagi@grimberg.me>
+>> Cc: Vlastimil Babka <vbabka@suse.com>
+>> Cc: stable@vger.kernel.org
+>> ---
+>>  include/linux/net.h | 16 ++++++++++++++++
+>>  1 file changed, 16 insertions(+)
+>>
+>> diff --git a/include/linux/net.h b/include/linux/net.h
+>> index d48ff1180879..05db8690f67e 100644
+>> --- a/include/linux/net.h
+>> +++ b/include/linux/net.h
+>> @@ -21,6 +21,7 @@
+>>  #include <linux/rcupdate.h>
+>>  #include <linux/once.h>
+>>  #include <linux/fs.h>
+>> +#include <linux/mm.h>
+>>  #include <linux/sockptr.h>
+>>  
+>>  #include <uapi/linux/net.h>
+>> @@ -286,6 +287,21 @@ do {									\
+>>  #define net_get_random_once_wait(buf, nbytes)			\
+>>  	get_random_once_wait((buf), (nbytes))
+>>  
+>> +/*
+>> + * E.g. XFS meta- & log-data is in slab pages, or bcache meta
+>> + * data pages, or other high order pages allocated by
+>> + * __get_free_pages() without __GFP_COMP, which have a page_count
+>> + * of 0 and/or have PageSlab() set. We cannot use send_page for
+>> + * those, as that does get_page(); put_page(); and would cause
+>> + * either a VM_BUG directly, or __page_cache_release a page that
+>> + * would actually still be referenced by someone, leading to some
+>> + * obscure delayed Oops somewhere else.
+>> + */
+>> +static inline bool sendpage_ok(struct page *page)
+>> +{
+>> +	return  !PageSlab(page) && page_count(page) >= 1;
+> 
+> Do you have one extra ' ' after "return" there?
 
-Coly,
+It should be fixed in next version.
 
-> In iscsci driver, iscsi_tcp_segment_map() uses the following code to
-> check whether the page should or not be handled by sendpage:
->     if (!recv && page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)))
->
-> The "page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)" part is to
-> make sure the page can be sent to network layer's zero copy path. This
-> part is exactly what sendpage_ok() does.
->
-> This patch uses  use sendpage_ok() in iscsi_tcp_segment_map() to replace
-> the original open coded checks.
+> 
+> And this feels like a mm thing, why put it in net.h and not mm.h?
 
-Looks fine to me.
+This check is specific for kernel_sendpage(), so I want to place it
+closer to where kernel_sendpage() is declared.
 
-Acked-by: Martin K. Petersen <martin.petersen@oracle.com>
+And indeed there was similar discussion about why this helper is not in
+mm code in v5 series. Christoph supported to place sendpage_ok() in
+net.h, an uncompleted piece of his opinion was "It is not a mm bug, it
+is a networking quirk."
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+Thanks.
+
+Coly Li
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/yq18scxinmw.fsf%40ca-mkp.ca.oracle.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/7b0d4f63-2fe5-9032-3b88-97619d8c5081%40suse.de.
