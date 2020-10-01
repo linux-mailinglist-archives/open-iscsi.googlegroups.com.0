@@ -1,31 +1,31 @@
-Return-Path: <open-iscsi+bncBDLPRE656MLBBXMW235QKGQE3OXYXLA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDLPRE656MLBBYMW235QKGQETI35DJI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x13c.google.com (mail-lf1-x13c.google.com [IPv6:2a00:1450:4864:20::13c])
-	by mail.lfdr.de (Postfix) with ESMTPS id F24A527FAC0
-	for <lists+open-iscsi@lfdr.de>; Thu,  1 Oct 2020 09:55:09 +0200 (CEST)
-Received: by mail-lf1-x13c.google.com with SMTP id z77sf1541271lfc.2
-        for <lists+open-iscsi@lfdr.de>; Thu, 01 Oct 2020 00:55:09 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1601538909; cv=pass;
+Received: from mail-lf1-x140.google.com (mail-lf1-x140.google.com [IPv6:2a00:1450:4864:20::140])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5240527FAC6
+	for <lists+open-iscsi@lfdr.de>; Thu,  1 Oct 2020 09:55:14 +0200 (CEST)
+Received: by mail-lf1-x140.google.com with SMTP id 140sf1535564lfk.16
+        for <lists+open-iscsi@lfdr.de>; Thu, 01 Oct 2020 00:55:14 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1601538914; cv=pass;
         d=google.com; s=arc-20160816;
-        b=UTQVfEts2PMnCHPGCSKc46PsyRPgX3DLGJDezyr77tNbMOreD2HbHLdVjNC+kdxUzK
-         W24dhnR2G8SJ3BR/6E+T6PFRR5CwulAzTAhvqMJDaPhnroNcHOb7sn617B7qxRZfXc4e
-         HS2RSh/c9dutnf+R5/T6qO8gkHkAml0eF2cXoWbtsF8Aft/98LYXTM/LUxmh7pk7Mxa3
-         Zd3Bimgz0ZNksekC9j307S3llVvkfd76W3/33aSd5ce/pHy8yOxeA2Ks0zNr0lL9qcBT
-         rAPYvPAxy4gjTxfEbbI96PeArDlo7lR3Ochfqwn0SQXUkEKktQq6nc/QVR+dhXODR7VO
-         AafQ==
+        b=vTZdoKABr2o1Kelh/qP3AsEPOflhpj6rEECiozNpJnkHbLsRnryiluokocQmQmfN8T
+         GTr3w31QXAIUeThyX1vgJavX4Dlo5Ldwe+Iv7wTYn6X1COe+Y8vuXNT/XHbeGEu3Ow7z
+         U0AhjDuceZDqhOfGF8MjInNlMCXv7wdLfBRxNzLlPiASM1kv/ckuJZa3zS8PATy8jA9g
+         UoBs6jVb3semaN7NjzkEVqEZX+b4qnwgCnn31zNj3guYKZXnSi0ZIFOPsSoXn4B4/IKS
+         /kUAdssySy9Q9u8hfccj9KgRt+fMbDBbcVSNlfclJELR9nQcuLRPT7kKk5wONgcVbMAO
+         3f1Q==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=36jl1klpPq8DIun5zMBf5WIlrl3UAvAjpamRVEFvJFg=;
-        b=HGtp2z34STWwaAwCMgRLgATDeOnc7zySFOSCLX/+JVxNuXhQxG0zZh6ReRSApU9R5R
-         kudLXXquzUYMAzzjIe4eXjQceToM0k6UXpSqnouQPstcCPQjKZqr9zdTB1W39utfBJ6E
-         fmSGoG7fvReNYNPpWvJ/UpM2YY8ZYryLJNxfCxp7OhSmVqFDD4AnQNhzzYBSCl68LYIF
-         pkS0SJC1AurpoaxjddIFyNeMVyZ5hUNnTFdjuIF83QwMcvsM2kMOMyptR2EXoX2jycsT
-         SXzmVCziryUSOTXtfn//O8ajXjL8mM76sqX6lgDxEHaBlxZ0evngDBQPoJSOG7SR2sZd
-         TuHw==
+        bh=HyiyeJWeRjR+FByPmWGIzjME9jU66NwTrp4PZ9Wh63U=;
+        b=stFYRT4+vuX5giFSWljUTKr8Woc0tr02UR2ZwnloHkijdU0hGcnV9ZLe6TGfGGIgHH
+         vCO6PUbhRpC+hjRFVylthespBcJDeAI5nHaKHHdQiG/1XEN8+pi7U6n5cyYbPF9vsVJo
+         PQ72kw80DBs7CaV/mXXzyq7RSKuzkPZSTUAXwjkPmvItApzmFjSWW8XqXxNXSn3VRul9
+         Hl3SK0J58AP16+QX2KvrKPgmK3Mm0q/Blribbe25h5VXZOBHXPu87D+E4TdQeM6SfEdw
+         jd9T5z94MHyxbWvqo8I7S0sQ2oq0iSJrzap6BKpz8vhMop5QLq5GoFiV0Qo4nea6ycKh
+         Vyyw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
        spf=pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=colyli@suse.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
@@ -34,13 +34,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=36jl1klpPq8DIun5zMBf5WIlrl3UAvAjpamRVEFvJFg=;
-        b=hksyKljmUNmd53+ZSY9WMEO9Pf4ypiUCHMNJEJMrxmm87ZwkZYqMv+3d0QVXe7GKJT
-         +K2Vvz6BRivPiN2H8ZO58gHOlrdtnNFCbKffC8JyZGBCDQUHuYJS8xekoid7JFo7vtnB
-         cADyAB7puunguTZj4/gzEu8LQaUZbWSOMxwFdWy0zo9fzeeyAPDgazF6Z2oJtZf++4rN
-         Bmb8Gva2B4Ad6ga6uauAYseNKfVKxlGQpRIi4Fk1dgB7QNzkNY6RROWFkwm5SKqSU5/B
-         InKpM0pXVZLl2FV7zyvyqH857xt+B7M5QuZuiEttXAml6F8kkxVplCYc4j8E93nrKYWc
-         v7LQ==
+        bh=HyiyeJWeRjR+FByPmWGIzjME9jU66NwTrp4PZ9Wh63U=;
+        b=KmfkWtOrLjc2yVmuQuFqw5Blt1DCjEIS+yTSMpWhl6GiNhHZ3XTHEJHksAFWQJEvN2
+         J93QRTilEnTUHIk9JW2ysI5f3H2EQEvp53BxIwX5gzSut4MD/Ox+DiXk9P2xrSD2vgKN
+         UCwDj1sXhgE6tQ+qZ56QtcRn0ljUoZcKzbKjdinIsXbcpjK0BSt937leLb+QO2DWRcjU
+         sPMPojPN2auEQLoHbA3EN4Vs0hN6KZttUjPRlMBZYc1dcHIFRDiP092w5Iv+OjL8+Mgm
+         QP8gIL7Xdy7GSqG0lNkcKZDxl9UYNMY6SCduLTONlTNP7A6cAvx11WDtKzYNktly78Cp
+         kkLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -48,54 +48,54 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=36jl1klpPq8DIun5zMBf5WIlrl3UAvAjpamRVEFvJFg=;
-        b=Mxp94tGKERgwXHFx6ioJF514IJbUBDmJaJtfWCkDCYrnqnhA/VAlRJEiUfR5P8ogcE
-         FREXnd7AxUzYjVwqOIi/51rHAMfbmzcfg/hCA8WjUOc6PppHiMKOA6iZJh19fxM7cK9J
-         PY2ftP+4Q8GniM/Xnt3GPU5bbAxxIyIK639frqA3mi/lsw9cJPH8i5gfamvsQX8JztDS
-         LD4CtTNNtTcFwXrY05Uw9aiyR3H58DBKbPR7k1mY4c0Fyd9N8FU+tZ2TJf51UTLfYVhD
-         Lheop3tKnFuFXbLpJHLNzRkVX7mc5d4zBJvWTFZP5b3WzYk23v1AexxElRoNM+AoYfIi
-         StpA==
+        bh=HyiyeJWeRjR+FByPmWGIzjME9jU66NwTrp4PZ9Wh63U=;
+        b=o/lxA39AwPAzmjbXVOT4MPIgtINKcUz+x6HVAL25NkukXlXP6mBkvkSUks3JGn99h7
+         FTNd4r02n5sIPpfJevbx4/xG05u08LH24b8UQZ6lfKL45xhO4xweuwDd5HqAyD6uIv5d
+         3g2ncG/y3ZDvIqyo0PB0trIcRni3oHYIoBQ09mfLzubefEAE5kkRND2H01kvDHTSEI34
+         EPwJ3OoabCcpinHvF37yxiDdLTc0A/bM8Y+Xp/MQEXlJTF8/siYSzNBrjRNn+XVDTFni
+         DXuHK+zXIdbb8Ufr/+T2FQSTaXHG1TjmwwInirgQN3EzB/JO3DF8ItZqjjpbzKLo1OO9
+         yftg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM5335rGWt3dgW7ZJXh264iyPJDl2KmgZu+GSy8u/yDN34SH/KdCZA
-	uTOEgNheY06AGktPB5/tC2w=
-X-Google-Smtp-Source: ABdhPJz9VTAv+OBsj0bMm13RPAItA8pqj9Jk7YsAW3kwx3dyxY5dqTFoaD6WbAv/pOFv3Wihp5VUjw==
-X-Received: by 2002:a05:651c:1307:: with SMTP id u7mr2139096lja.267.1601538909515;
-        Thu, 01 Oct 2020 00:55:09 -0700 (PDT)
+X-Gm-Message-State: AOAM530Y7CCt7/AMYCUrneMDVynakIVb2u3yQ3B0DDrjFCE7lURrfT60
+	R0u0p5d1iw7wk8QS9/Nt1aM=
+X-Google-Smtp-Source: ABdhPJwWh4Gwgd10tIq6Mmy0UptOAnWTyEPj4KJmHGlbZxfYIIgbKrOrBrU8mmr4DV2e5N5b7oq6bQ==
+X-Received: by 2002:a05:651c:484:: with SMTP id s4mr2056779ljc.391.1601538913783;
+        Thu, 01 Oct 2020 00:55:13 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac2:5c44:: with SMTP id s4ls437141lfp.3.gmail; Thu, 01 Oct
- 2020 00:55:08 -0700 (PDT)
-X-Received: by 2002:ac2:4a6d:: with SMTP id q13mr2300254lfp.486.1601538908550;
-        Thu, 01 Oct 2020 00:55:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1601538908; cv=none;
+Received: by 2002:a19:c7c8:: with SMTP id x191ls439625lff.0.gmail; Thu, 01 Oct
+ 2020 00:55:12 -0700 (PDT)
+X-Received: by 2002:a19:189:: with SMTP id 131mr1993810lfb.331.1601538912759;
+        Thu, 01 Oct 2020 00:55:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1601538912; cv=none;
         d=google.com; s=arc-20160816;
-        b=jpqf1J66y+CXwtCSnWiHxkMml8QDmrwAHYEXF+7xwPJAGHu+yqBlhueWAmx/XfGj9D
-         HzQTPTK/jrFz28O9xCMxD50qSQTbkQiprtbfZb5jEBo3o8J1E5F85Z6Ykc3ywlFlxtCV
-         W/YEcwN2MORoiirGsoHrR/KX58jQJwWf+rU6PmV7e895BJBI6KHM8dwjQTDOkGuw3Zxl
-         5uxVqvcdvtcKqy5sgzSMKLj8OGyybxHSyTkQmwvNGq1xL6L/W2OIs1RghdGK7Yn2NSaM
-         G4X49rCJdNONis4OohReh5qC3owH92mIbRmBujJV4Z2z47COOqTRMspJDLsoJpP/8b2O
-         dYxg==
+        b=Ae5NstpKezg89aObkVEPlwtbUW/mvAsFEgNLmuFAhJX3Jqu3iHdzXE1zD9++YMSFB/
+         VXO/NgZR31MdmcnxdDQKtSmHPRV2jbrfse+8YNKERtUydsci9f7dYFF9BvfUZQffkZHg
+         ULVqEDxYD/c1qEc7zFVlzYBtUAM2cNAw1DzKg8mEJEwBbBMg12Yih2mnVhNbhvjh3obw
+         q0dB+n3hE5eA6DcPU8dW0KBmknHucUUdqTqt0dje4OCrQyWNCUFL0Cp/JafPQAWJY7RR
+         872TkfrbhhWG3yZ+J7lyD40d5SU7OAavQBSp1IJPIPpIyX5+1cZ7E66fqJnNS8nGtOwy
+         D+uQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from;
-        bh=MRB2UH/eIUXdo1wj3sBgv5v9rRBrgKrU7ydAJakph+A=;
-        b=I3GKaQ6cS2+8yw0lf0ddtBUPB6n5qlWvEhNUt8dW1pGGgA0eoFl1aPFNtoRpsxOQBt
-         9vhFXKjH5WTx27iybJ7DndacXYWh1q49abvSp4qp3nUYB5z2GAg+JCXj68EKX6UcqDRM
-         yf27Hl+rHub5m2MeICCUAzajzC91XXwZ5A1m7JmvSSgbULUtd30IWj7lEExE+pR2zYna
-         dXULsM+Xiu6wi+MOfzS/r29D+GK3rcxWCzf9JIF6BH3FR3sFLlIEe6JUnIPJ1kLrQrKv
-         HCTwhKs5XiY82fOUMTuBEI5wkZlZoxCV6ixRzMTYlROjVNeUrceiYN45GyvG0HOy+w3Z
-         NhBw==
+        bh=wdxccPJYBdmTzMEd5xc2H4jr+0bv352WMLEJoTJja40=;
+        b=pP9ui/8YcP+jsiJnAusmg9zkWyHoLO21iB5AnC6sVtbKq5wCPfidy999xIPeankZw/
+         jPwVm0Qyyn2+qgsnhv9tXazInczXlB7ZcV5tcLbC+iooWbqXjaHD3PAEewxWGCZPV+H1
+         0wldBAKQtVbGdcUNLkTt5NOItgx1SMv/lst46zPeZuxCP1dQM1ZxxQ2rZnHUe6WN4eRj
+         jWFN44G5tt2yOTIqFXmrv36mwV+s4n/UErePiGXGVWCyeNULsPqzTkVbPUA/8O42hqmi
+         HUWbTJzXnvUTlvlM5lkmLA3aQNfhbMYGDK01jy2JcEGkV6IS0XpxXS4c4IBqYC+E60no
+         xkuw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
        spf=pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=colyli@suse.de
 Received: from mx2.suse.de (mx2.suse.de. [195.135.220.15])
-        by gmr-mx.google.com with ESMTPS id v191si134574lfa.6.2020.10.01.00.55.08
+        by gmr-mx.google.com with ESMTPS id l82si79676lfd.13.2020.10.01.00.55.12
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Oct 2020 00:55:08 -0700 (PDT)
+        Thu, 01 Oct 2020 00:55:12 -0700 (PDT)
 Received-SPF: pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-	by mx2.suse.de (Postfix) with ESMTP id E0864AD4A;
-	Thu,  1 Oct 2020 07:55:07 +0000 (UTC)
+	by mx2.suse.de (Postfix) with ESMTP id 2664FAD64;
+	Thu,  1 Oct 2020 07:55:12 +0000 (UTC)
 From: Coly Li <colyli@suse.de>
 To: linux-block@vger.kernel.org,
 	linux-nvme@lists.infradead.org,
@@ -105,17 +105,11 @@ To: linux-block@vger.kernel.org,
 	ceph-devel@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org,
 	Coly Li <colyli@suse.de>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Vasily Averin <vvs@virtuozzo.com>,
-	Cong Wang <amwang@redhat.com>,
-	Mike Christie <michaelc@cs.wisc.edu>,
-	Lee Duncan <lduncan@suse.com>,
-	Chris Leech <cleech@redhat.com>,
-	Christoph Hellwig <hch@lst.de>,
-	Hannes Reinecke <hare@suse.de>
-Subject: [PATCH v9 6/7] scsi: libiscsi: use sendpage_ok() in iscsi_tcp_segment_map()
-Date: Thu,  1 Oct 2020 15:54:07 +0800
-Message-Id: <20201001075408.25508-7-colyli@suse.de>
+	Jeff Layton <jlayton@kernel.org>,
+	Ilya Dryomov <idryomov@gmail.com>
+Subject: [PATCH v9 7/7] libceph: use sendpage_ok() in ceph_tcp_sendpage()
+Date: Thu,  1 Oct 2020 15:54:08 +0800
+Message-Id: <20201001075408.25508-8-colyli@suse.de>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20201001075408.25508-1-colyli@suse.de>
 References: <20201001075408.25508-1-colyli@suse.de>
@@ -138,47 +132,37 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-In iscsci driver, iscsi_tcp_segment_map() uses the following code to
-check whether the page should or not be handled by sendpage:
-    if (!recv && page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)))
+In libceph, ceph_tcp_sendpage() does the following checks before handle
+the page by network layer's zero copy sendpage method,
+	if (page_count(page) >= 1 && !PageSlab(page))
 
-The "page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)" part is to
-make sure the page can be sent to network layer's zero copy path. This
-part is exactly what sendpage_ok() does.
-
-This patch uses  use sendpage_ok() in iscsi_tcp_segment_map() to replace
-the original open coded checks.
+This check is exactly what sendpage_ok() does. This patch replace the
+open coded checks by sendpage_ok() as a code cleanup.
 
 Signed-off-by: Coly Li <colyli@suse.de>
-Acked-by: Martin K. Petersen <martin.petersen@oracle.com>
-Cc: Vasily Averin <vvs@virtuozzo.com>
-Cc: Cong Wang <amwang@redhat.com>
-Cc: Mike Christie <michaelc@cs.wisc.edu>
-Cc: Lee Duncan <lduncan@suse.com>
-Cc: Chris Leech <cleech@redhat.com>
-Cc: Christoph Hellwig <hch@lst.de>
-Cc: Hannes Reinecke <hare@suse.de>
+Acked-by: Jeff Layton <jlayton@kernel.org>
+Cc: Ilya Dryomov <idryomov@gmail.com>
 ---
- drivers/scsi/libiscsi_tcp.c | 2 +-
+ net/ceph/messenger.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/scsi/libiscsi_tcp.c b/drivers/scsi/libiscsi_tcp.c
-index 37e5d4e48c2f..83f14b2c8804 100644
---- a/drivers/scsi/libiscsi_tcp.c
-+++ b/drivers/scsi/libiscsi_tcp.c
-@@ -128,7 +128,7 @@ static void iscsi_tcp_segment_map(struct iscsi_segment *segment, int recv)
+diff --git a/net/ceph/messenger.c b/net/ceph/messenger.c
+index bdfd66ba3843..d4d7a0e52491 100644
+--- a/net/ceph/messenger.c
++++ b/net/ceph/messenger.c
+@@ -575,7 +575,7 @@ static int ceph_tcp_sendpage(struct socket *sock, struct page *page,
  	 * coalescing neighboring slab objects into a single frag which
  	 * triggers one of hardened usercopy checks.
  	 */
--	if (!recv && page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)))
-+	if (!recv && sendpage_ok(sg_page(sg)))
- 		return;
- 
- 	if (recv) {
+-	if (page_count(page) >= 1 && !PageSlab(page))
++	if (sendpage_ok(page))
+ 		sendpage = sock->ops->sendpage;
+ 	else
+ 		sendpage = sock_no_sendpage;
 -- 
 2.26.2
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201001075408.25508-7-colyli%40suse.de.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201001075408.25508-8-colyli%40suse.de.
