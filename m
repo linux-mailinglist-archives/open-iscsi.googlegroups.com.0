@@ -1,123 +1,268 @@
-Return-Path: <open-iscsi+bncBC6MFJWO34DBBBM6235QKGQEU2MP4CY@googlegroups.com>
+Return-Path: <open-iscsi+bncBD54HHNYIIIOX7WX7MCRUBF7VF77M@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ed1-x53c.google.com (mail-ed1-x53c.google.com [IPv6:2a00:1450:4864:20::53c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016CB27FB1B
-	for <lists+open-iscsi@lfdr.de>; Thu,  1 Oct 2020 10:10:45 +0200 (CEST)
-Received: by mail-ed1-x53c.google.com with SMTP id d13sf1847335edz.18
-        for <lists+open-iscsi@lfdr.de>; Thu, 01 Oct 2020 01:10:45 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1601539845; cv=pass;
+Received: from mail-lf1-x13d.google.com (mail-lf1-x13d.google.com [IPv6:2a00:1450:4864:20::13d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 954DF28038F
+	for <lists+open-iscsi@lfdr.de>; Thu,  1 Oct 2020 18:10:20 +0200 (CEST)
+Received: by mail-lf1-x13d.google.com with SMTP id m9sf2000185lfr.11
+        for <lists+open-iscsi@lfdr.de>; Thu, 01 Oct 2020 09:10:20 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1601568620; cv=pass;
         d=google.com; s=arc-20160816;
-        b=MBtIszy+a+uPBrqappJU40Bphx7/X3Qwc2XLcVNgTu+GyBWks4E9XogGSa18rHNzvH
-         Jgh6ZRdxttA93c9VWx39FHBnp2mHJOIN4hEGuVdp6GSk2SQL/anuO0e7T6UfdfeTBIu2
-         LY/AKwvIRNJHARV7cc4pwgk+vv+NgPlX+5vYRe0fFzrl4K7duO3mapW9HNpl7AiQ/iVR
-         cXjLTSleqcfKetZn4zLn2/kyhOPBHL8BlbNiLze/ROiktGESum2aI4qyN+4hGHSPetWr
-         c4N8lsXk4eQiTmica7yzj2Gg27hO7JguTqrCEZKbsveNOoX2dzrcMqHb0DpLEssPO8TQ
-         QPNw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        b=rNgUkZ5WYnasB9FGhS8NGkR2ZVZn2+NXOJ3AtqXhbVzuyIrl1SU7lXtsa4rJwrnLAu
+         NvShRO2f5klpnfI21gublObRvQUEZ+a7fU5WYsnIFvAR4NUkpwMDb2qF7xDBHCmPvpY3
+         KwlkGcHsrtCGaXFKqTXNimaAa2V2t55JebuSHHt9b7qvlCTR5iiOXfocTpXGbIZ2D0qD
+         S8stUWPg+NcM3711UekXhseoICB3S2n7w5N4mdNf3C2ruq3Ph6/VIsXDaRcjxAM/1omH
+         iCoEeRLCD2yFnaPzZWOz2UeuNUyCOsJRPnFlp1EtLZJ6HYk4m7KQ0KpqqcRszAbaOLfC
+         Ldlg==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-disposition
-         :mime-version:in-reply-to:references:subject:to:from:date:message-id
-         :sender:dkim-signature;
-        bh=fBnk4AXNbKmBeydmAi+0rZuemuDcp923/clsAvxPxrc=;
-        b=ax4i44ienJdImSDJTLde+YndycF0Lc8MGCjy22seyvDbkNPNSQTg/Q3JPrKlv6T1UR
-         XFdW5ee4iJxPdTRrPXoh5c+gJ2vutLPOOo1BbGsO4IPKcWomHk7PS2cExwd7v1j+xvj8
-         uuPpwi5WIjnAsZKg2zcq7q4q2BvkyZabYYPrG8V7gt5NsikriKr9C5Vvd9VViTtz/CrX
-         pknZE2u4/vHQGQs5KmBUEy2JjzFMC9MxhCKOO5Bd8FCDkZe1/gKYe46jo/0NyYZphcjH
-         ivlnOAoJ+himFEm1e6qRdcIH9EubvU0O3DJxFIuT5x5FSq1p9UN+uKAaJj8vvDnAfWpL
-         M5iA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 194.94.157.149 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+         :list-id:mailing-list:precedence:reply-to:mime-version
+         :content-language:in-reply-to:user-agent:date:message-id:autocrypt
+         :from:references:cc:to:subject:sender:dkim-signature;
+        bh=Pk3A2BsTCOXWpO7qNuHH0huwIRIXC/l7/0vSiSHuJwk=;
+        b=sxogSewZ8bfviUzYaAY8EXtx8jRm7IM6tRyY1wLE4YfMgZwWw2nY8fe6NQ6QvyC4x/
+         0oNcWxd3pzwyWPDLRWE5RJpSbPMuGbxPnzINXb2s77kPVqtuXWWDNWfbLt5xGx3dIP1I
+         UcA64vBUQPsT+61yYWoJNc6SWRRQ3co/HrbBhJrpFkXemXv6WGpgfR0+a6GnRHuQ/HMd
+         6sCLFLYrNiFu2Xx0NOdMRb76hY77khmQvC8EPy4uwezdBHrahrn5inGbSANOUeqToabt
+         xnBjypNNEQubmESanzfOjhUwvdflA8z8Wwao38WhlehtA0qj1+GlVgiyconmr0In1DoR
+         3bsw==
+ARC-Authentication-Results: i=3; gmr-mx.google.com;
+       dkim=pass header.i=@suse.com header.s=mimecast20200619 header.b=Sv07Hj7J;
+       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
+       spf=pass (google.com: domain of lduncan@suse.com designates 62.140.7.102 as permitted sender) smtp.mailfrom=lduncan@suse.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:message-id:date:from:to:subject:references:in-reply-to
-         :mime-version:content-disposition:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=fBnk4AXNbKmBeydmAi+0rZuemuDcp923/clsAvxPxrc=;
-        b=BDr1oBBVmCn8IXu9cdMnxbgFH0UInuyGHLQ8vpLooLIWGVu0fLm9cRclyKYe38x6/z
-         G+reOoDsL9eRe+35NURagKo4/I/ZlupESYxhmuuBJZETu5TfKLseffygZOyeY03P6Xin
-         pi1ha9hAGqr04g2tWugf/sD3C7GolEJg7skqXIipXxlwhpL4rJxLpxft8EHqip1aBP/+
-         LCWrAH2RRwVaNG83Jp4HnQITALKO0qcP7y6TyF+Y7joRY7YvvdrJVF5WGzK0XcLgtmkw
-         vatxoyFqMS9VdHSgi1Da2VJjEyshlMsUUYe3IjyPxhTJORMKYEDbsCmRpsWjOZkBbwjH
-         9t4Q==
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:in-reply-to:content-language:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=Pk3A2BsTCOXWpO7qNuHH0huwIRIXC/l7/0vSiSHuJwk=;
+        b=I0Uheo9K+AUjKHi8sL2du7etGbBJIbs6njTcL5t1YqyP6HjfC9ubZzHiejfgXYarTs
+         LhDo5Fslrk/hPLkWzy/xNNWOT1Ugulxfff43h5BwyQudGzVBm2sCpggdW/MT/9risfiq
+         GjrCeKhYsEo1vC5+bnOmUIfPsVMEke6Yp0bSKMtB9gAxVD570r8IacQ/hKpZfgeWU1jk
+         r4ZrYjHEHd9TvcN2zLygS1yUUI2tfrs1/1QR3emhWCaa1L8E1T7RpEcp1Fa7rLdWoaYf
+         CWrLCuFldOEBgljdfn4fy12nUcwHSf6u+FabUVDpsSaWtQSaU8fHCRKAr3scAUmvF3UR
+         2PRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:message-id:date:from:to:subject
-         :references:in-reply-to:mime-version:content-disposition
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=fBnk4AXNbKmBeydmAi+0rZuemuDcp923/clsAvxPxrc=;
-        b=q9ElYpuvTVhKNwEhxr8kXFdsLg89InFcWvRmjfCpCSS6GBKQTnTs/kvhVFVf9rR35l
-         CpXRRn5LkLG6D2w71n1WqVMq4a24FEUWmpDaQIUqjkVQ/g6buBKBhi5TC+ESaQYFFoxA
-         HgE59HlFk/xBbmfOoUIu07UPGK0IeteR/rJoRguvFR4v9NvOsBh2FP0msuenLLKlKuVY
-         tZ/s8Ux4QP6sFB+lDvZTr1cWDKOVU3jisTJToipuhV+MuGvpMtVjFLf1rEGg6nyBdofh
-         5b8GDsz2mJdeK5bBJ/MiANf8+Bfm8DXd6ZOjKVFbx96u5f/mOdYNRC3Q31cCyqjaTA1I
-         MrxA==
+        h=sender:x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:in-reply-to:content-language
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=Pk3A2BsTCOXWpO7qNuHH0huwIRIXC/l7/0vSiSHuJwk=;
+        b=UYPz0hZgXjWdloAzq/36DXUZ1o4ac7AfpBfUwnEGr2i8LID2G0uK3YPk0jqd+/caxL
+         t+3ILUho+gwymOnwTBWt4mez4n231xEO7XEHrz4rleqXDPUBeMTgtDJ4Uw62Ckui0Yez
+         mDv+xHaw1ojCPc6jNoeP00ngUgrcckSf3RBBU4kuqPRJOBVpW5Q7w9arfEDP4U+MCo/k
+         cJuQsJW4gyqkMwuI2KTivdhTYM3SKGQ2slQZCxwij7Iz6eYN7rZQcI18LXOZNOioEBw5
+         IpYIqrlfbe9iOlXF+6utna0K7ied0WP43+IfC7jAesubsVTQixjg4O30Wmg+L3+yU3PU
+         08iQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530CmWemoCt1LksmZvKzZVK2IZQyU5iMrhZ7R4bdNM6PaauzeieX
-	js6AxgnCcR8UaXUnNwc1MlM=
-X-Google-Smtp-Source: ABdhPJy5TGIk/I6WqD3DToev+OGJKfDqdXnIyeyRHhDwRtk7cAHc4zprhNnHCaYi4uqS+vZQ2ayxHQ==
-X-Received: by 2002:a17:906:d92b:: with SMTP id rn11mr1240981ejb.70.1601539845756;
-        Thu, 01 Oct 2020 01:10:45 -0700 (PDT)
+X-Gm-Message-State: AOAM530h8hBeZ1oIqUsPmODj/1bHrbAUmoJU3Fiev32FgXaTl/ipDnJK
+	ZX8jWd5t122KqOVURxkQeJE=
+X-Google-Smtp-Source: ABdhPJxHJ3saiDE9L9d0WPvvwU8UiM9wsXD4GcPUhtH1G9upE767zee0zDlq0JByrJrg7GcLWi0yJA==
+X-Received: by 2002:a2e:b531:: with SMTP id z17mr2832379ljm.30.1601568619334;
+        Thu, 01 Oct 2020 09:10:19 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:906:53cf:: with SMTP id p15ls143679ejo.7.gmail; Thu, 01
- Oct 2020 01:10:44 -0700 (PDT)
-X-Received: by 2002:a17:906:2cd2:: with SMTP id r18mr7124153ejr.371.1601539844706;
-        Thu, 01 Oct 2020 01:10:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1601539844; cv=none;
+Received: by 2002:a19:c7c8:: with SMTP id x191ls1532365lff.0.gmail; Thu, 01
+ Oct 2020 09:10:18 -0700 (PDT)
+X-Received: by 2002:ac2:42c4:: with SMTP id n4mr3202248lfl.563.1601568618224;
+        Thu, 01 Oct 2020 09:10:18 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1601568618; cv=pass;
         d=google.com; s=arc-20160816;
-        b=hos5NS4nRp7kaMRmyvKd3h7zgp/u64WNuiTPfgv4QxrjQWPr7ZN3KUm11wm8kPJUss
-         WthaWXipxU1cdi9bVy94I+RVmfgQ/9H1iVdg5lJb+qsbJqf5V2yOGlJbkp6/03CJiRzu
-         qRl9gJA7cGavCwG7RtdCjw4NoQMize8EOebRr9cz6qRaToxUbsqYyVh0GH0DkbFoWXVP
-         igSsFXgqAzg1aZIe08BBkCA+OGkXzHokh99jAL3urP0fMWxr5p5IdWNot5jltuEGskOr
-         zN4freUvU2xOJDdilSSazRndk+Od9HsExDtZm1Yzunvbvevc+5rb0h8c/snxewLNsEpY
-         YCIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-disposition:content-transfer-encoding:mime-version
-         :in-reply-to:references:subject:to:from:date:message-id;
-        bh=hCxZ06s7qPpRVMOpM7RdNBdXC8KxuvMO3l98wUzRYuI=;
-        b=Rq5q77xIttQ3s3hSQTaU0NUK9H1ICiAJd+Lax2JNldtzQpTNubGVouBlPZDFKzERf7
-         4xcmQk6mDxd5loArwEgoV9D1XYHyl8nu8xlOpUkuxba+187i15mtp3eRcX1QHAxs0Abj
-         UUo6DPJrq1XPM2A0EsGiZOoJKimH0saboJeV817fKidSwvFlQluaS4W/YhYGrhOtcJGM
-         oa2AeiuM6TEMt/V9Vk7hcx6MLW3fHkb/PSUW6E9tTeCiwMizbIATqngVPxxuJNGGCiHr
-         0NMLifWR8cOjr7eh0AVwznrGxYi3v3NOd6Eb/vuCVk+IvIix0Ww/ljPaUxRetwGzaG7t
-         /e3g==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 194.94.157.149 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
-Received: from mx4.uni-regensburg.de (mx4.uni-regensburg.de. [194.94.157.149])
-        by gmr-mx.google.com with ESMTPS id a16si198207ejk.1.2020.10.01.01.10.44
+        b=TlKQMmNaB819SEYAWSJ4nMGYWGN5/I+n9B+wC2Z1r/BotDIwHrDrJcMhNCC6NC6oHq
+         9bn7H6C0oTxo+CUpqCEraRyPo4ZGP1lEy0rktpS5rVa9IcIhOwfwo6aUce4axcZRgc2o
+         srwaHmN+YDhVob7LAeyjzwuNmNfingVwEPzWSjZzj3zqITDsI4XC/yTzWiFrF44DjuPV
+         qchqZx+MTa4E6FAz94pZCOZrNypKa3iALo37TSEgCn1Go/QgGqmiWtcePtDZhw/fLHMX
+         BTiRht4wVsSjZk7iUn/IZbBeBA9ASSprc+PYRHoDKIE6FXF3efSBgb8HtPO/Lc/tRDvm
+         /kXw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-transfer-encoding:content-language:in-reply-to
+         :user-agent:date:message-id:autocrypt:from:references:cc:to:subject
+         :dkim-signature;
+        bh=z+vQhRIcNOFubiodWundG6oDwgbIvTfNw83adZRsmIY=;
+        b=GCXUaEdV2lC3TLenjLbr5+nbc1uCPjWkm/1nyAncoDV1JrsD8fB7GzGcVqRIGgHrh7
+         7jeaRbOEy9Umkijq/POoPdLzJwDEIvEhfQqEVrf1aN7tqABw1udGiJ9jQ7/f1Cx1rKAn
+         7OcoX9olE84qP48wxr2m2PfoGU4NcqtDlo40ji+IH5R8aBtTer51rGG8ffdsxSC+W9zM
+         bWuA54ftX7+LT2CrbV5t4Hhc26k/BXIJ+g+6wTijQcPlHFkSA5V2pnLeSNwNXvQ95jX6
+         6V8KZgVSXjhlkh7ki9G7ajBHbnXs96q4JKjnj2aFEZPNUUIPpIUltieipQTBqC4pRXqB
+         OwUA==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@suse.com header.s=mimecast20200619 header.b=Sv07Hj7J;
+       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
+       spf=pass (google.com: domain of lduncan@suse.com designates 62.140.7.102 as permitted sender) smtp.mailfrom=lduncan@suse.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
+Received: from de-smtp-delivery-102.mimecast.com (de-smtp-delivery-102.mimecast.com. [62.140.7.102])
+        by gmr-mx.google.com with ESMTPS id r13si122482ljm.3.2020.10.01.09.10.17
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Oct 2020 01:10:44 -0700 (PDT)
-Received-SPF: pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 194.94.157.149 as permitted sender) client-ip=194.94.157.149;
-Received: from mx4.uni-regensburg.de (localhost [127.0.0.1])
-	by localhost (Postfix) with SMTP id E9F026000050
-	for <open-iscsi@googlegroups.com>; Thu,  1 Oct 2020 10:10:43 +0200 (CEST)
-Received: from gwsmtp.uni-regensburg.de (gwsmtp1.uni-regensburg.de [132.199.5.51])
-	by mx4.uni-regensburg.de (Postfix) with ESMTP id CE728600004E
-	for <open-iscsi@googlegroups.com>; Thu,  1 Oct 2020 10:10:43 +0200 (CEST)
-Received: from uni-regensburg-smtp1-MTA by gwsmtp.uni-regensburg.de
-	with Novell_GroupWise; Thu, 01 Oct 2020 10:10:43 +0200
-Message-Id: <5F758F01020000A10003BACF@gwsmtp.uni-regensburg.de>
-X-Mailer: Novell GroupWise Internet Agent 18.2.1
-Date: Thu, 01 Oct 2020 10:10:41 +0200
-From: "Ulrich Windl" <Ulrich.Windl@rz.uni-regensburg.de>
-To: "open-iscsi" <open-iscsi@googlegroups.com>
-Subject: Antw: [EXT] [PATCH v9 2/7] net: add WARN_ONCE in
- kernel_sendpage() for improper zero-copy send
+        Thu, 01 Oct 2020 09:10:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lduncan@suse.com designates 62.140.7.102 as permitted sender) client-ip=62.140.7.102;
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+ (mail-he1eur02lp2050.outbound.protection.outlook.com [104.47.5.50]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ de-mta-22-O8IiS_ncOB6ThqHyW_1WkA-1; Thu, 01 Oct 2020 18:10:15 +0200
+X-MC-Unique: O8IiS_ncOB6ThqHyW_1WkA-1
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HJQI11zcA/gt56e02+ZtgWkaR4K4cU0flJd6Dj2/A4zzVlu67d/bmW2QtHLy1+SoNcH9IPR0UGtYdCnKmXU9kM8v5iHVgap/br7tvb9cuh4TubAE/ga3UTpF/tTJeShhqQCO1i39DPkGoHhsNSu2pn8aGsq9SegoAkKw73l9i/7Uo7MEN5bsa86SxWoqIvD6SydjrjxuvtUHYbOmKNAsPsalo+nDYIFHYuui5OtLWOhXydmutUMca15tep95dBF/tniLfSKKz3TWYiqFqiMlz9GiAtQv3H3OzWDzCDWchkIudcvdvnBfYthGNu88KlNHNBtqYe6vYvCpvUsMFzGs/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z+vQhRIcNOFubiodWundG6oDwgbIvTfNw83adZRsmIY=;
+ b=fM5dvTRXAfta7TODxnXURuwgCqSLxZGSZHQpT5ae+b2k1PYIm91htpCnZYyMxT98B32/SozxXg+qUTEY5mq+QRT8xJUjOXAp5aYlH/I6evNoT+a1y4YcYn7gxTII9yIEGP34q7hThjny31o5lbvtMYm7O7SCi5Z4PoxpKPikS5DLeo7iDHqTRsfpAx9OavqPLq1iT7g2C5XN9X9BEONYMDb/wOvddno+sCYZIQtvy9vGWiXdxxVuajRuFUrbP9d03NhYr+OErk/TGZ1+86P/0HIzwuyFaTTrgDZRZ/9Rpoc6QwfOHKReZTtj6LMJDr72WKmchzo2dIl+z76Am/TTdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+Received: from AM5PR04MB3089.eurprd04.prod.outlook.com (2603:10a6:206:b::28)
+ by AM6PR04MB4021.eurprd04.prod.outlook.com (2603:10a6:209:3f::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Thu, 1 Oct
+ 2020 16:10:12 +0000
+Received: from AM5PR04MB3089.eurprd04.prod.outlook.com
+ ([fe80::993e:654f:399e:8230]) by AM5PR04MB3089.eurprd04.prod.outlook.com
+ ([fe80::993e:654f:399e:8230%6]) with mapi id 15.20.3412.029; Thu, 1 Oct 2020
+ 16:10:12 +0000
+Subject: Re: [PATCH v9 6/7] scsi: libiscsi: use sendpage_ok() in
+ iscsi_tcp_segment_map()
+To: Coly Li <colyli@suse.de>, linux-block@vger.kernel.org,
+ linux-nvme@lists.infradead.org, netdev@vger.kernel.org,
+ open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
+ ceph-devel@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ Vasily Averin <vvs@virtuozzo.com>, Cong Wang <amwang@redhat.com>,
+ Mike Christie <michaelc@cs.wisc.edu>, Chris Leech <cleech@redhat.com>,
+ Christoph Hellwig <hch@lst.de>, Hannes Reinecke <hare@suse.de>
 References: <20201001075408.25508-1-colyli@suse.de>
- <20201001075408.25508-3-colyli@suse.de>
-In-Reply-To: <20201001075408.25508-3-colyli@suse.de>
-Mime-Version: 1.0
+ <20201001075408.25508-7-colyli@suse.de>
+From: Lee Duncan <lduncan@suse.com>
+Autocrypt: addr=lduncan@suse.com; keydata=
+ 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
+ Xd8p+B+giaT8a1b5hWuz85V0
+Message-ID: <0df9cb0e-7fd1-5ba0-564a-378aa0b8955f@suse.com>
+Date: Thu, 1 Oct 2020 09:10:05 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+In-Reply-To: <20201001075408.25508-7-colyli@suse.de>
 Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
-X-Original-Sender: Ulrich.Windl@rz.uni-regensburg.de
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates
- 194.94.157.149 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+Content-Language: en-US
+X-ClientProxiedBy: AM3PR07CA0080.eurprd07.prod.outlook.com
+ (2603:10a6:207:6::14) To AM5PR04MB3089.eurprd04.prod.outlook.com
+ (2603:10a6:206:b::28)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.20.3] (73.25.22.216) by AM3PR07CA0080.eurprd07.prod.outlook.com (2603:10a6:207:6::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.13 via Frontend Transport; Thu, 1 Oct 2020 16:10:09 +0000
+X-Originating-IP: [73.25.22.216]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4b562a3b-e332-4c0b-e51e-08d8662479f7
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4021:
+X-Microsoft-Antispam-PRVS: <AM6PR04MB4021886BD5136EC7DE8BAA56DA300@AM6PR04MB4021.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8fycaqf/Gi59yL9rz9oMz0E9hxGJONJhHY8isUbCSWDNkHTFwWHpM8SE9cKixlQUF6es19aaw+rO6mxaLJ0YP/HH5TYwh3hOAOYRTrE9SRGkCBlLoyrEpFZYq0tNsWmIOCOmzwAWZ/AjacI/WBQ05nC5xuj3e+vPH3rhONY+yQuM2OSg78R9jclBmz0UJBVKc96Slsn0+8mLAsc2A6UShdMcjt8JpZypFgZ8LyXU+plJdrhpFlcc/hozeY05rXBDp6jpVPMJvIhws5keQNYcAjtYR+1SYwNuMpnGnIOzNV751HgbowaqaQ2b+KWiuC5dK1sVOjGr/Xi0I0ijTIbMDzZQ6NfCFpGB1IcXO2JhqHyXugVEGVJj19Ma1syqO2pJ4csqMzOouzgpFibwShP20JuxqlHbtHBHiIy1srLrqBE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3089.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(376002)(136003)(346002)(39850400004)(396003)(31686004)(54906003)(186003)(26005)(16526019)(36756003)(2906002)(7416002)(6666004)(52116002)(83380400001)(316002)(53546011)(16576012)(86362001)(66556008)(5660300002)(8936002)(8676002)(31696002)(2616005)(478600001)(956004)(66946007)(4326008)(66476007)(6486002)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: /uN04sei8HD93JsRZJwIjo0qHT9F5IDzcy00XFRdmYku+oLvUqOSSB2RKWANONcFWShLWLeft2isFs8VLkKbPIsT9sILvKdYRmNY/kbpenraAiScLKwirMJzq8klOjzhgudCvQSRFtBnMoGtVSBBynjtryYvMRtRe3DQnpZ5QzOM+xuiCpyPQ+n3FH9oonutF0vfAT1r9CF57x/BPHVE9+E0LgWmQA4GzZX78aJnsoGkrKn3xBbr463YAHtlMolO3skJC4TGm6bHL3nvpyJuGEROYhLjywT282keSuQRVG26GTl6kgNXIoBv1/VJmTIiyK70x34zXWJxnPJ398j5jeNLjZdUBYgJjXn0JlQR7dCQ7iPY4xI8xwR1CS7HcGErfaK4fsnGupFeavj7MXcU8E7ucvMbAMRo94Va1U9orqSN+oyvB4sUk0050CtjBy/QZdfolbObgYNvnbjVnyQA5KC8rXf0cIB2mwNQORp+OGGu//R6yPwtvVqLp5l04/TuZbKV9pONDKh3M07756KNvmytk92HccwSH/ml767ix1avNE5oqpYQSt4LBikn1ksv+sCPcKyoeOb2zTGEujW5Qs6z/JiT90TP/SE3PHNdShOsq39ANsRb3BEjazhIKx51wUAn/QEM9pCmpms0opjS9g==
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4b562a3b-e332-4c0b-e51e-08d8662479f7
+X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3089.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2020 16:10:12.6318
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nSzft0wCRbrgGA99DrRrwlFodoaf3C3OORxfFamCyMcosDX1qcUes3b6bWalEa6Q/q48ZyZnEfsaV/2lOcsVcw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4021
+X-Original-Sender: lduncan@suse.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@suse.com header.s=mimecast20200619 header.b=Sv07Hj7J;
+       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com
+ dmarc=pass fromdomain=suse.com);       spf=pass (google.com: domain of
+ lduncan@suse.com designates 62.140.7.102 as permitted sender)
+ smtp.mailfrom=lduncan@suse.com;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -131,35 +276,49 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
->>> Coly Li <colyli@suse.de> schrieb am 01.10.2020 um 09:54 in Nachricht
-<20201001075408.25508-3-colyli@suse.de>:
-> If a page sent into kernel_sendpage() is a slab page or it doesn't have
-> ref_count, this page is improper to send by the zero copy sendpage()
-> method. Otherwise such page might be unexpected released in network code
-
-s/unexpected/unexpectedly/
-
-> path and causes impredictable panic due to kernel memory management data
-> structure corruption.
+On 10/1/20 12:54 AM, Coly Li wrote:
+> In iscsci driver, iscsi_tcp_segment_map() uses the following code to
+> check whether the page should or not be handled by sendpage:
+>     if (!recv && page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)))
 > 
-> This path adds a WARN_ON() on the sending page before sends it into the
-> concrete zero-copy sendpage() method, if the page is improper for the
-> zero-copy sendpage() method, a warning message can be observed before
-> the consequential unpredictable kernel panic.
+> The "page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)" part is to
+> make sure the page can be sent to network layer's zero copy path. This
+> part is exactly what sendpage_ok() does.
 > 
-> This patch does not change existing kernel_sendpage() behavior for the
-> improper page zero-copy send, it just provides hint warning message for
-> following potential panic due the kernel memory heap corruption.
+> This patch uses  use sendpage_ok() in iscsi_tcp_segment_map() to replace
+> the original open coded checks.
 > 
 > Signed-off-by: Coly Li <colyli@suse.de>
+> Acked-by: Martin K. Petersen <martin.petersen@oracle.com>
+> Cc: Vasily Averin <vvs@virtuozzo.com>
 > Cc: Cong Wang <amwang@redhat.com>
+> Cc: Mike Christie <michaelc@cs.wisc.edu>
+> Cc: Lee Duncan <lduncan@suse.com>
+> Cc: Chris Leech <cleech@redhat.com>
 > Cc: Christoph Hellwig <hch@lst.de>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Sridhar Samudrala <sri@us.ibm.com>
-...
+> Cc: Hannes Reinecke <hare@suse.de>
+> ---
+>  drivers/scsi/libiscsi_tcp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/scsi/libiscsi_tcp.c b/drivers/scsi/libiscsi_tcp.c
+> index 37e5d4e48c2f..83f14b2c8804 100644
+> --- a/drivers/scsi/libiscsi_tcp.c
+> +++ b/drivers/scsi/libiscsi_tcp.c
+> @@ -128,7 +128,7 @@ static void iscsi_tcp_segment_map(struct iscsi_segment *segment, int recv)
+>  	 * coalescing neighboring slab objects into a single frag which
+>  	 * triggers one of hardened usercopy checks.
+>  	 */
+> -	if (!recv && page_count(sg_page(sg)) >= 1 && !PageSlab(sg_page(sg)))
+> +	if (!recv && sendpage_ok(sg_page(sg)))
+>  		return;
+>  
+>  	if (recv) {
+> 
 
+Reviewed-by: Lee Duncan <lduncan@suse.com>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/5F758F01020000A10003BACF%40gwsmtp.uni-regensburg.de.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/0df9cb0e-7fd1-5ba0-564a-378aa0b8955f%40suse.com.
