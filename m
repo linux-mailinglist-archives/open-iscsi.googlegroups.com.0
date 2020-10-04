@@ -1,105 +1,105 @@
-Return-Path: <open-iscsi+bncBDLPRE656MLBBMFL4H5QKGQEVDTKYTY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDLPRE656MLBBVUH4X5QKGQEUIWCV2Q@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x138.google.com (mail-lf1-x138.google.com [IPv6:2a00:1450:4864:20::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79202823A8
-	for <lists+open-iscsi@lfdr.de>; Sat,  3 Oct 2020 12:42:57 +0200 (CEST)
-Received: by mail-lf1-x138.google.com with SMTP id a81sf1638807lfd.1
-        for <lists+open-iscsi@lfdr.de>; Sat, 03 Oct 2020 03:42:57 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1601721777; cv=pass;
+Received: from mail-wr1-x438.google.com (mail-wr1-x438.google.com [IPv6:2a00:1450:4864:20::438])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22E3428286D
+	for <lists+open-iscsi@lfdr.de>; Sun,  4 Oct 2020 05:39:03 +0200 (CEST)
+Received: by mail-wr1-x438.google.com with SMTP id 47sf190923wrc.19
+        for <lists+open-iscsi@lfdr.de>; Sat, 03 Oct 2020 20:39:03 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1601782742; cv=pass;
         d=google.com; s=arc-20160816;
-        b=TkwuJ55Z/uFEli7vioQbPq9LNkLnIcTG9XrJ2euu5gueVML4qBaXL8hN2cFSezoJoi
-         O72vaBKHxHTyPcsWs1wT4nI+vACWP/+kUZLTRSdCxiuQ7e/4paiDITe0T8aCCLipaXoP
-         jgbFmrydXe0XfWnvOcXZCJQTwOJYc8J6rhcwliLMwCPeDfYPOTkQpMQWm24qHs4GoxK8
-         suAoSFz18/wMbOy74RWXunL0I5ZLOBRUFcNBza9F/c9n/cUQlWYVQJAFNgKFB2Ghx85A
-         7Lym7SwF5cgwSch0PSY7gF7O5aFSlSwVMF71xXs60I+V+nK0k88aMx82FIe+muYAuUNe
-         2Qkw==
+        b=MhnXQSp5Or/fIV+p90VPIHnst35LBdLoXEBbzvZOS2o4bv4CycBccJUbQCqcZt8rLU
+         HNnpRVeEMshV2vKli0+sQQ9WgD+gzMtzagUj3yeeXTCAhXr5GI7NFBxqHOFFJWOVCH7V
+         pF8iHWuUp1b3IOzTE09uVUmLv543xeml7eCvkGgkMEGXW7ghYZ/T6qoBntqLbEimYEs8
+         wVNDJP2Cn7j8WH5rwFd2NQ1lIVaZY5in8uMSmrAhM0BfObMIFY4ZHSD7VpfFsd32DzzL
+         SCu3VAkIADQxsPUhaxnhnO/0eLdPSOCdpdGLuXFImqS1wMhdvheYXmgP93fwK8byi7p8
+         J5DQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:content-language
-         :in-reply-to:mime-version:user-agent:date:message-id:autocrypt
-         :references:cc:to:subject:from:sender:dkim-signature;
-        bh=xc70IkR1c//jX8J8xQGwZwTvdYj5khMuGq8QWOTigrY=;
-        b=WZFMAxPwLLW8t21V2Ex0VG9EdtybmpH1kZhHW8YF2opChDciREUUthjDHQKu3KQpZG
-         /G3usOqVb6FBBRlqxxClWnonWbzDQy07I1oVYAFdKMxlcHHFtrU1nX99XNl7XX7TfdmM
-         YEEHX0EhCXIgpSCCB4zNUK1HioRRwfq0h9DSgqpJcqfur4Pr8GptVIQvg/V7uYI2sOCy
-         eBxEBWlhULFbAl08fFtPtmxNLl6oOadsdASEogzsdrfDZk97BJ+JCL38M4dK75nR/xYp
-         IBlRb3d8W8bGFtbTlcyKvGJE+zj6VqsKdRnE95wYq00QGgunt9JKySZiMk0wjSC1fCvZ
-         MnYw==
+         :in-reply-to:mime-version:user-agent:date:message-id:autocrypt:from
+         :references:cc:to:subject:sender:dkim-signature;
+        bh=srmT4D6dYsNo1EavJBPp5ZnePYSXxbh7S7lgjc+s7SI=;
+        b=Eet51hHL6RiCS9a+jeXsCqVamt4iWuB3zgJp4XrcyF55/kBMz2LEkTD72+vb2T+VWH
+         F/R4L6nVhb89+HlHfuo5TWpuemz8jBE7QaP7hbJjn5cXPCYon5B3VM8w/rSJWCg0PPvq
+         DDDBopuUsEYFWTjE4zgOE4e1KHIN8lVPg9sKQ9WobUUhwCA0iQnXRZ+Nzij3gzoK0teF
+         6h5w7UuaPciLf+nsDZi6TCrM2ZWiEfn/QKl1NKNk2eqeCy/W56bLn14NSSOgI5sPEyOs
+         OjClvhxu70+907z9FKELBqodCxc7uanYf9U1W85KWLiFcQzLLF0H8q7p+doGfgTAO1Yg
+         tjTQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
        spf=pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=colyli@suse.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:subject:to:cc:references:autocrypt:message-id:date
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=xc70IkR1c//jX8J8xQGwZwTvdYj5khMuGq8QWOTigrY=;
-        b=mcu+K39bJEcLkyKgZ8sggjrE3cz5tk7cB/G9F76nfoqEV4fAhLWDXQAjI6gbWFKSlm
-         FIBjayZjrSUREGWKq/ZH/4lKAcS0NB3KBtWrVJO57dNC+rroeuqYmWMkEJN1jIfmnKKh
-         /uRFVc66h2X+httrmx9rD3ZYR2jCxbHpVK76lxFPwOVRj4zkksdxlrJfe0dNqSMRUR9O
-         Pu48r/dyrJBFR3/4nQj24wpCKf3AxLZogSsbGfCL5KQuv75Yvf48FzFI7M5+KcJiwY8L
-         cZwgv3hGiObh2tLTb7k9TQS5hug2lyJFDiWpVOKj1rQZdKb9wA+RyeYZuqheEWF1KSUF
-         7qDA==
+        bh=srmT4D6dYsNo1EavJBPp5ZnePYSXxbh7S7lgjc+s7SI=;
+        b=a5goosIo0yeFJtAJa2vgw9CSvMkLtQohydsZY6P4Pap6Qcrkj3GNkOWZeSIdO1ID0+
+         kQJ53aV12RClm4uwHJN7e4dfPKTdMmAvZ8UvpXuesopzHm/ImFUiTCsUP90nMUSu0RDv
+         VXp8tQTC7LcoeSBfzIc1KI3W6Lauo1/wKlQofZ4VhCYHBbnD6t5j+HdzO+FKT5hkfpbF
+         TVOL/q+4iVBO717HhhbCY6XzmHqJsRIfI4SSNLAwrmgwP2cg4WafqkLlNyWMsQMLWtyt
+         N/TDWGJn+DcYq2j0yfazJgIw5hXQK618SIkdoo5I7OI7gJhkLPStkDuV23piyD9lNAow
+         pCkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:subject:to:cc:references:autocrypt
+        h=sender:x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=xc70IkR1c//jX8J8xQGwZwTvdYj5khMuGq8QWOTigrY=;
-        b=j3alw7FaIOoeWrw5ydqFwGym3DYRkrHva0XU1ohpE8qXuKHKUxCnmfSdH6EuLEXmva
-         NqKz+RfLs3t5sFcpcjMO9tMBZyiBB4WleQ+/80Ugc3rTw1xOaHVq7LSUeFG7cuE6eAVJ
-         nR1G6793vwaWDcsQn7YBEsPuT1WfpMlFjZnAN0Vcme5DrE/OVyH/0jUYvrcIch3NfRv6
-         oMSykPt6Omy/m2iQZflGkhmv+hbuOZlXskPzBr4o9kdgbdR4ecJRBxeKBTtGKNIkF17W
-         XAwTkJxQ66GecGRV5DI86YK41U3gV87zZ0ruHPq3DT0ivfvYgIMbLVJY+qHSrx2oe11A
-         DoBQ==
+        bh=srmT4D6dYsNo1EavJBPp5ZnePYSXxbh7S7lgjc+s7SI=;
+        b=Xr3rbHQq87Wfz5Gm1TjnaT4kLlfj47J+g5Z/aHYzVk+sYnfL7C6v+C9Wsia3R+4YFh
+         yRxe6TjGcKFeUZVaxuKqmn1fUBiuXIAs5uBjz6nbayjT9Ep+2QXhoPk1w0ZtCaC4mfgJ
+         V0FnRBMDUxYuXbchPKOyA6OptfFBrzaPTUp8XKjehpIzEtF9Uzb7glEL+miMC8HkZiLU
+         aRtwoeHV4ULfbh7QFi0ZF2pnPyJBoUkHCjYKhLhWuHEsqhSYs3PeIMcPqpxGpQec0tco
+         2cIffiahS/XlnD7pTrlCVrF6FwjqOgTioTf4XLxtWTlPC8FEWv1iffXRX6Ot/pSyR1Ta
+         8f2w==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532krAivcbBtHQ6jEHFCvfZH1dD5ylzle/Dkh0tepobDopE4nHc4
-	RyW7nq96wgqW7QiO3BTVKHk=
-X-Google-Smtp-Source: ABdhPJxgCsAHGo6Mz8N6ZgpRteDRQxDkTNhaUl96/x/tWZrWW0sDcux0BJIXtdZeLkrSUfie1xMZRg==
-X-Received: by 2002:a05:651c:111:: with SMTP id a17mr2006463ljb.240.1601721777142;
-        Sat, 03 Oct 2020 03:42:57 -0700 (PDT)
+X-Gm-Message-State: AOAM533UZ5MVhi2ji3sJlqfdI8EDFzNxde77mLWOjl95f7efTbqNLUKW
+	TaGDa0lkBKj9JJ/YUJso254=
+X-Google-Smtp-Source: ABdhPJx8ZD6RjKlFjUi1Jss/P0POWVIj0XkyE4equSbrJFQde+ypwdINitVtbvsrhJcdKnLSgqZh3Q==
+X-Received: by 2002:adf:e312:: with SMTP id b18mr11336406wrj.372.1601782742780;
+        Sat, 03 Oct 2020 20:39:02 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a2e:86c8:: with SMTP id n8ls508275ljj.1.gmail; Sat, 03 Oct
- 2020 03:42:55 -0700 (PDT)
-X-Received: by 2002:a2e:3619:: with SMTP id d25mr1910310lja.369.1601721775919;
-        Sat, 03 Oct 2020 03:42:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1601721775; cv=none;
+Received: by 2002:a1c:98d8:: with SMTP id a207ls2815515wme.2.canary-gmail;
+ Sat, 03 Oct 2020 20:39:01 -0700 (PDT)
+X-Received: by 2002:a1c:4b0f:: with SMTP id y15mr10556979wma.165.1601782741786;
+        Sat, 03 Oct 2020 20:39:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1601782741; cv=none;
         d=google.com; s=arc-20160816;
-        b=N6NKxG8V8Y84raaTmJZo5LoBLETwU5FcJ+Nv1muNgF1SqeXzb/b1+6svLzscftvI0O
-         KViextnevl5qBlnSgRJBBQdnGrq2xTPmoUElmNTIdzQeywrYUa98s3lbR6uRQcvKGYZM
-         +8gsedF5r8GlGaXKxVYT5isk+c/6eFJ+tNei6EXqFXKn6Vl093Mt+d0JUH1sk02b8GEG
-         jUB747B/Lr8AgikxD/AXHHSQfYLv1xtrrrKKF01B5TfjeuWs3XBE0kZwtsQa66XlYwKR
-         WvkjOd9OWFFOTT/ON4Qt/7EMwvBtEAMhuNAxmENYnc2S/igC/lEsRCW0z8Mar5D+iNqF
-         yJMg==
+        b=XOAPD/Rp8id+oa+BcqEQkryL0rbo1mMCZEU9eqYg5x32+MYkEFIE/I4P9uSZZp96BA
+         PIrDRBEYEKUQG42M7y/1PDLL99EizahiNy5MY7LFtGIub6atxcwzl8uTG02v+52OxDwE
+         6hyHBUVbgSHWYa1lOrxIneTU+jvFjv0bximUkQbgvaB2hDTuUP/yhJ2yeEOZq0y5X0gs
+         KuVObaFCyqzcyCuw1JHbRarQ1C1EqdhS30jy9MbQ9xxNxCPmA+KkqDG9thOayThrqEah
+         jU9qBNVrBFrr4OID+vV/68Nvw34qWkODJQXhfc3imIGlNZQT9qLpfqJ5vRp2Ei4xONbZ
+         Mbig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:autocrypt:references:cc:to:subject:from;
+         :user-agent:date:message-id:autocrypt:from:references:cc:to:subject;
         bh=wZyGK9b2eGTL4YQCmiMk1cgxzsVxV0pW43YPL73i5yk=;
-        b=vBT+hjgBPZldCyPVrXLdwIMzfN/IOxSjta1pvIjkniXi6N9avfMdheOEsumuOusNFG
-         sAkHt3cw0Y/MhJZ2ZH3VPFRQATIIQkafmEKFb5+jCPErGGcO5mRMaPM5jR1U1vCx95Nc
-         9Z5119YACjulh0vXXzehHuOPEZZBiZe+o9HhNF8En0vBFLy017iesZaZDcw6GPHsyRp+
-         vOvDVzzDyRjxlNbUjGtBRgaA6BQLm97R1AfGGHD67pj5cKbaGDfkRKaq1Al3RonVwIGY
-         fdGzSokm6O2J9AvkycsPUZP3f1Z81VGT2Mfh6AA56KKdUhYTCUra3o6xNGwzmDFoGNOL
-         vzrw==
+        b=PnU4en7cm5Hcm1FRG8gE3HS0YwAqazSZgF1kCTPhVUwzymobh/QaPmSetUX+ilVs0n
+         duJ4Zj5zctW/Vf9Kxk5wkPeNMJ0tfOxU33V4uorVCGnbgTodt4z2w3gSbZA7V4KNQcKF
+         OFr56g90ib+73LvjFnadtdiOuZENVd+PEJuXmnmUFDOvHJTGUKk9+Py/uav3i2j8HRYK
+         WIKqRVbYGvXyHLtA8B7bHUg9fo9etgWpJg7tgLyGGZkFQ3oBe+Bw5ERb7Wu0sq6qPlam
+         2FBLXPWGtmsqbS1F0Af/Wg22na181pWSo4s2zx33NNrcY+VtaZ4NMKB9honm/D80Qndf
+         6eNA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
        spf=pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) smtp.mailfrom=colyli@suse.de
 Received: from mx2.suse.de (mx2.suse.de. [195.135.220.15])
-        by gmr-mx.google.com with ESMTPS id r13si67616ljm.3.2020.10.03.03.42.55
+        by gmr-mx.google.com with ESMTPS id w206si148320wmb.2.2020.10.03.20.39.01
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 03 Oct 2020 03:42:55 -0700 (PDT)
+        Sat, 03 Oct 2020 20:39:01 -0700 (PDT)
 Received-SPF: pass (google.com: domain of colyli@suse.de designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-	by mx2.suse.de (Postfix) with ESMTP id 12058B2B6;
-	Sat,  3 Oct 2020 10:42:55 +0000 (UTC)
-From: Coly Li <colyli@suse.de>
-Subject: ...
+	by mx2.suse.de (Postfix) with ESMTP id 491A0AC54;
+	Sun,  4 Oct 2020 03:39:01 +0000 (UTC)
+Subject: Re: [PATCH v10 0/7] Introduce sendpage_ok() to detect misused
+ sendpage in network related drivers
 To: David Miller <davem@davemloft.net>
 Cc: linux-block@vger.kernel.org, linux-nvme@lists.infradead.org,
  netdev@vger.kernel.org, open-iscsi@googlegroups.com,
@@ -112,6 +112,7 @@ Cc: linux-block@vger.kernel.org, linux-nvme@lists.infradead.org,
  vbabka@suse.com
 References: <20201002082734.13925-1-colyli@suse.de>
  <20201002.152829.1002796270145913943.davem@davemloft.net>
+From: Coly Li <colyli@suse.de>
 Autocrypt: addr=colyli@suse.de; keydata=
  mQINBFYX6S8BEAC9VSamb2aiMTQREFXK4K/W7nGnAinca7MRuFUD4JqWMJ9FakNRd/E0v30F
  qvZ2YWpidPjaIxHwu3u9tmLKqS+2vnP0k7PRHXBYbtZEMpy3kCzseNfdrNqwJ54A430BHf2S
@@ -155,8 +156,8 @@ Autocrypt: addr=colyli@suse.de; keydata=
  K0Jx4CEZubakJe+894sX6pvNFiI7qUUdB882i5GR3v9ijVPhaMr8oGuJ3kvwBIA8lvRBGVGn
  9xvzkQ8Prpbqh30I4NMp8MjFdkwCN6znBKPHdjNTwE5PRZH0S9J0o67IEIvHfH0eAWAsgpTz
  +jwc7VKH7vkvgscUhq/v1/PEWCAqh9UHy7R/jiUxwzw/288OpgO+i+2l11Y=
-Message-ID: <7dcb7b57-9313-0a78-0bf1-be799c0efa52@suse.de>
-Date: Sat, 3 Oct 2020 18:42:45 +0800
+Message-ID: <e4482d6a-ee44-04e4-42d0-bb9ab6fc23c7@suse.de>
+Date: Sun, 4 Oct 2020 11:38:49 +0800
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
  Gecko/20100101 Thunderbird/68.12.0
 MIME-Version: 1.0
@@ -260,8 +261,7 @@ Thanks for your review and the thorough maintenance.
 
 Coly Li
 
-
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/7dcb7b57-9313-0a78-0bf1-be799c0efa52%40suse.de.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/e4482d6a-ee44-04e4-42d0-bb9ab6fc23c7%40suse.de.
