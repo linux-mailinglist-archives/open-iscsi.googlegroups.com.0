@@ -1,125 +1,76 @@
-Return-Path: <open-iscsi+bncBAABB4N4Y76AKGQEI467RWQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBB66Z236AKGQEGJKJZNA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3d.google.com (mail-qv1-xf3d.google.com [IPv6:2607:f8b0:4864:20::f3d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D641296567
-	for <lists+open-iscsi@lfdr.de>; Thu, 22 Oct 2020 21:33:06 +0200 (CEST)
-Received: by mail-qv1-xf3d.google.com with SMTP id u4sf1676074qvk.3
-        for <lists+open-iscsi@lfdr.de>; Thu, 22 Oct 2020 12:33:06 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1603395185; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=hBbv56PwWw5nOJH5T++sA/gahq9enBoHqpWDCTakAsbzNw8/p5V30E3jvDvnBHV7Hl
-         z0sCl9O5Qh/7uONwc1cVdHynT1JYJs7q2a+HPR9MfapqFei1xr1zHQ+c7b7ClGFKVa5h
-         DazP3xRlffvFWaxKUeAV3eGf7pwiAqiYc3gdm9kXzHG2oWDPWyuwa5cgFIgvHiCcnsPf
-         mtxEbIT6GreYBD87QfyvrXyRICg7KwqoG+VU4BbDrJkCU7yi6Kl/k7qCkxFU09INcood
-         Yw9hCB3bponqSf2e0zpJzMMBwQNMrAs1CjFyw3KC5uVenUOiWl6KrJAJAPs6URNg0YR9
-         qZvg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:to:from:sender:dkim-signature;
-        bh=0LFxOeOzT+oga0TsS9NCWnpeOP8K72ep19EKmhA4ky8=;
-        b=tApwIKR4fVoXhmXSEnqO2VVt2sStAdpwInr2jdYxvxGASv7H7UDgtfdRsCTjn/u9q6
-         EtaKdLlbuhRqIY70iYTrBie+S5jjJ/O2kMB84zAHk6Rz1RhEkYki8vNl3LaP/SYPDgDw
-         YTrlH2F9AgmPheypcvomOnRxuznW8VMwcTPBgFHiPlGj9MYTySwusYxqEGcvgUTVZ7QV
-         E5fvWAk1QTxaWu8iyWSa6AdDlst+xPE6bMtNfJEhOK++OwDsfQWz58BcR7+b0NLGbeKt
-         sCHJ/extct31J8gKx+A3UenroWdGlJ4Ml/pAU5m/Mw3kFvcqwvwHUIT1cSPul2LgZaIe
-         tgjA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=susede1 header.b=f5GhWlx6;
-       spf=pass (google.com: domain of ailiop@suse.com designates 195.135.220.15 as permitted sender) smtp.mailfrom=ailiop@suse.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
+Received: from mail-oo1-xc40.google.com (mail-oo1-xc40.google.com [IPv6:2607:f8b0:4864:20::c40])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E73298299
+	for <lists+open-iscsi@lfdr.de>; Sun, 25 Oct 2020 17:51:09 +0100 (CET)
+Received: by mail-oo1-xc40.google.com with SMTP id k26sf4754206oop.21
+        for <lists+open-iscsi@lfdr.de>; Sun, 25 Oct 2020 09:51:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:subject:date:message-id:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=0LFxOeOzT+oga0TsS9NCWnpeOP8K72ep19EKmhA4ky8=;
-        b=XzP9jDmFP6acuyVzubPaODPO8jhkOrG5u+3pJBp6EPT0GCcCXes94ONE2xu/WOANrI
-         kquaxtkQEa/AnYMogCtncxtvlQCyMAP0N3XQ/Jrsd9Uo17ZiGbxUHCSz7azVtiyKMzoU
-         6qGVMGucnRK6O6CYVlmx+GfY7CSsdBLo1h9YIDtUHIGX4balqXtCgXOPYiDNz7FsXERH
-         WmSXnDFpru25FGlmmHTl0apf76RoQ71txLkxnuCbG5B5KeJ9EF8O7J7DiatTkRTz6EfG
-         /Ea4bsCaerdWnKCAS4ug+xTHlfLqH+6W6I2B3tVoTCXT0qDUaO9FcfY7H5tlYyqrBLUF
-         zgHA==
+        h=sender:date:from:to:message-id:in-reply-to:references:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=I+suRLZVfxPnNfLv+LDT8DwHUerjORbtaq2Wei7HibI=;
+        b=LOpgp26EYgj68RUaZeE9CHRrnlPY1sSYsnv+SH6+dnUvcde+5Jf1xnXIK08pixVQ94
+         xU1hl/YyNye2huuiTLxnBHNvu7p5u2e5AyKUN6WOWPEOqcAmlOFI3ID63bW/by8+iMyh
+         X53Z/JzPfiaeG/CTqynq8ZElfCdfntdGhqotgyQVVfyQ9IctRsH881PhckUGydGS9lQl
+         HWAIKYToVVYU0rVELsbDbGOOrOTJYHSn9xUbGAuEN/W05P8/TSYzizHV0YkchmGcONv3
+         m/clzsMz4SEYvL20XLannaSZ5BYhp5F/pkfB7TH3HnpjMl2ge+CWmFR6dbtr8yLItN+n
+         5cnw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=I+suRLZVfxPnNfLv+LDT8DwHUerjORbtaq2Wei7HibI=;
+        b=n91vqsXPZyn7uEp9KyNohWqYHyOuzsfdG5XlKzUMwdn+Onw4pzA8E2TtS+oohaVFGr
+         udumtj1heHhxCeS9DrGRdezgh7mXUaiiOEqzxeTrDkwe0+1vcF+OI4QmiFOIDFieN50M
+         8BA1oJlWWt2kh2q//3jzn4hFDyyAt0s7Lm1fzxPmxjfvgAsmM1D4w1hGYr8zc9F+3i0m
+         ZNJRLtCgsjyUMQ48KIVYuNTablM/unyk0c/+HZpXc/gtZtTvTxx4Qp1hJjtzEKjDj9e9
+         Qn8vSoyhFQ2ssrtmaYe7ZbyrwAv28ie+FFBVIND5/SboInbSPK6qaoFUEniCt4iamrCd
+         E6Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:subject:date:message-id
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=0LFxOeOzT+oga0TsS9NCWnpeOP8K72ep19EKmhA4ky8=;
-        b=uUWsKyw6S7AF30rVFSTfBEb2y329RRodFopEzv/OWtkf+n2Rm3JMvNVrmcWAEcAUjP
-         40RhYkgERI5jj6MGXNN19ardduWiCNMDbIHWiVsPE2DEUFYZfr/a62cPElKejSxYhzII
-         N8L8W1PPkJeExHs/1YuKpFVe6mq8ZM54G9GEUbVT/8UFsQNCK0qcvpVHoGt1PXLqtA07
-         tyG3IYPAiGxH9G5AxkhN99lLGLaAxMdxlkd3TkzuBm1VYFBPAP1fXEpgtsOl5xP5T8Bz
-         2L/YOlYnLArzXizUEQHaJNx40IxeQg/Cw3MKiQCUTdA4iNIG374MYcedwIAxdq4+pgHl
-         ZVsA==
+        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
+         :references:subject:mime-version:x-original-sender:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=I+suRLZVfxPnNfLv+LDT8DwHUerjORbtaq2Wei7HibI=;
+        b=UuGRYMgdjrTCnQ9jxn/32CEth5mEC4sPtkrrR/y9VLrKBBX+wMfXuPQ6QKCV4TPCHG
+         jaZK5zeIqfDMaprKoHUgl4uFqCpYyUnd9Yja4ux9jzrT40poTQGrR2x2sJYmiGWPwzR2
+         KJP0X4Dw57eGxKy3KB6BTiAG0oYVIDE7IcY2ITb1m8fR9dvdSfXQjL/XG+xjyZp7TkXe
+         8zURqoGL3ud9QQJaE2Ih0smu5BFnngSJm8JcMotcaa58wcH9fIVpzg1wKTG4D5M7ksTb
+         jxYVWmFAOzIWbhwXS/bKlb0I+9LQxvjJLLicBDYUX5uXtyvppm0d1mw5fvrkjON0T90S
+         pQhA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533T5qTpmPveA73B5peq8QXQzsUqn9JIfuZaeQY/fXaXDjuk1esm
-	4fKryEwIrWEB9pjJH+lH/P8=
-X-Google-Smtp-Source: ABdhPJy37I4/SPrDyvdJ87TxFdDznPvg/lBtBSBvLfbAnLlvOM/jHfhJk5iYxY1ThthLU0jm/1oJCw==
-X-Received: by 2002:a05:620a:70c:: with SMTP id 12mr3095414qkc.153.1603395185719;
-        Thu, 22 Oct 2020 12:33:05 -0700 (PDT)
+X-Gm-Message-State: AOAM5335IBTBwEmY18hcQnjK8K1nSYIbeLXamArFAJgu74js/4p5ZYYL
+	jQMXru8UNQOk6YAxbnf9TdM=
+X-Google-Smtp-Source: ABdhPJze7yjhEhbDbToSuftXIk0ylYLi6JMaU3q7k1fjkQchrjw/S8ftHG0ztK5vkHcWv7vAdvvk1A==
+X-Received: by 2002:aca:e187:: with SMTP id y129mr994814oig.61.1603644667698;
+        Sun, 25 Oct 2020 09:51:07 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:622a:10f:: with SMTP id u15ls943960qtw.10.gmail; Thu, 22
- Oct 2020 12:33:05 -0700 (PDT)
-X-Received: by 2002:ac8:5158:: with SMTP id h24mr3478915qtn.154.1603395185275;
-        Thu, 22 Oct 2020 12:33:05 -0700 (PDT)
-Received: by 2002:a37:b2c1:0:b029:12b:28f0:4e2b with SMTP id b184-20020a37b2c10000b029012b28f04e2bmsqkf;
-        Tue, 20 Oct 2020 03:56:49 -0700 (PDT)
-X-Received: by 2002:adf:f3c7:: with SMTP id g7mr3047327wrp.394.1603191408849;
-        Tue, 20 Oct 2020 03:56:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1603191408; cv=none;
-        d=google.com; s=arc-20160816;
-        b=eaeaecX8UEH5MYC96WzIMMIiOCBxFMGgOdID6OesmDp49GvdGY1GzL/befV0F7Mwqq
-         G5zxiWFiGCRXHC77HRfN95oQgfNYp4Sp+i5AUrT7/cdCj1uk3zwzbuUsUiN4SJ1t0MBT
-         tTL06sokluQLUZCA69T9fbfNq8a/kfqiaez3A5COrj+5frbM04js8HWf0qd4U2Up/Lat
-         6NHKYR+6asaJuDsx4GO5ykcbpdhu6wumESM7+Dk1HpcIr8YjWu5LnH19sfRLW8bucuM2
-         TfhXQUT1AUGF+pPny9w/+VzBvOCzgAXcidaMufSrvOyRzJeYn6HuRM17h7Jto8q4T50F
-         psJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:dkim-signature;
-        bh=6C0tGs1oirkt3RDHBpLaRyUbeerNa+aFVDpgjdIDTIo=;
-        b=Ip8y9a0LvG8sVTcLRVfmw1397hT/OUk/BVcOlCLBpMEBbJInePsfEx4bNc1UmlZOWT
-         QgYEWlvnNq7JTTFWh+9pTPVXVi1SZw4py+8zJOK7bEDMyD2ZmWXBqp4rGL/2yBsp/Ttf
-         NmEJ1BvELo7xe/302VAQqfS6qi9F8Z0WwDhkLyoMGIVQyTtrzXnxe+b3VBnhkdjDK0W8
-         CTqJr8wlkhiJSli9TPYuuSIOOFe+BO0WgxLHmlc+cEGnqu9WGfi/wIi9aT4aaBX0TZ+4
-         lOHfH0mNSB0vSiqUL9DgaVoNNbT7gozoMmzb2Z0ii9jYIWRggwVLDjpa8n/I6o6lbFDL
-         eGZA==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=susede1 header.b=f5GhWlx6;
-       spf=pass (google.com: domain of ailiop@suse.com designates 195.135.220.15 as permitted sender) smtp.mailfrom=ailiop@suse.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
-Received: from mx2.suse.de (mx2.suse.de. [195.135.220.15])
-        by gmr-mx.google.com with ESMTPS id f198si50322wme.2.2020.10.20.03.56.48
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 20 Oct 2020 03:56:48 -0700 (PDT)
-Received-SPF: pass (google.com: domain of ailiop@suse.com designates 195.135.220.15 as permitted sender) client-ip=195.135.220.15;
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-	by mx2.suse.de (Postfix) with ESMTP id 745D8B179
-	for <open-iscsi@googlegroups.com>; Tue, 20 Oct 2020 10:56:48 +0000 (UTC)
-From: Anthony Iliopoulos <ailiop@suse.com>
-To: open-iscsi@googlegroups.com
-Subject: [PATCH] iscsid: drop uid privileges after locking memory
-Date: Tue, 20 Oct 2020 12:57:22 +0200
-Message-Id: <20201020105722.8938-1-ailiop@suse.com>
-X-Mailer: git-send-email 2.29.0
+Received: by 2002:a9d:7394:: with SMTP id j20ls1539601otk.5.gmail; Sun, 25 Oct
+ 2020 09:51:07 -0700 (PDT)
+X-Received: by 2002:a9d:6a55:: with SMTP id h21mr10187219otn.297.1603644667100;
+        Sun, 25 Oct 2020 09:51:07 -0700 (PDT)
+Date: Sun, 25 Oct 2020 09:51:06 -0700 (PDT)
+From: The Lee-Man <leeman.duncan@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <4ad354c3-5d6a-4b1f-b978-afee5d1219aen@googlegroups.com>
+In-Reply-To: <5e784f60-ee52-4cdf-847b-e06f50d491cbn@googlegroups.com>
+References: <5e784f60-ee52-4cdf-847b-e06f50d491cbn@googlegroups.com>
+Subject: Re: Slow iSCSI tape performance
 MIME-Version: 1.0
-X-Original-Sender: ailiop@suse.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@suse.com header.s=susede1 header.b=f5GhWlx6;       spf=pass
- (google.com: domain of ailiop@suse.com designates 195.135.220.15 as permitted
- sender) smtp.mailfrom=ailiop@suse.com;       dmarc=pass (p=NONE sp=NONE
- dis=NONE) header.from=suse.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_1448_378269703.1603644666283"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -128,49 +79,72 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Move the setuid call after mlockall, since the latter requires elevated
-privileges, and will cause iscsid startup to fail when an unprivileged
-uid is specified.
+------=_Part_1448_378269703.1603644666283
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1449_1775471557.1603644666283"
 
-Signed-off-by: Anthony Iliopoulos <ailiop@suse.com>
----
- usr/iscsid.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+------=_Part_1449_1775471557.1603644666283
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/usr/iscsid.c b/usr/iscsid.c
-index e50149823bee..9f1a09fe28f2 100644
---- a/usr/iscsid.c
-+++ b/usr/iscsid.c
-@@ -525,12 +525,6 @@ int main(int argc, char *argv[])
- 		}
- 	}
- 
--	if (uid && setuid(uid) < 0) {
--		log_error("Unable to setuid to %d", uid);
--		log_close(log_pid);
--		exit(ISCSI_ERR);
--	}
--
- 	memset(&daemon_config, 0, sizeof (daemon_config));
- 	daemon_config.pid_file = pid_file;
- 	daemon_config.config_file = config_file;
-@@ -601,6 +595,12 @@ int main(int argc, char *argv[])
- 		exit(ISCSI_ERR);
- 	}
- 
-+	if (uid && setuid(uid) < 0) {
-+		log_error("Unable to setuid to %d", uid);
-+		log_close(log_pid);
-+		exit(ISCSI_ERR);
-+	}
-+
- 	set_state_to_ready();
- 	event_loop(ipc, control_fd, mgmt_ipc_fd);
- 
--- 
-2.29.0
+I haven't heard about disabling TUR for iSCSI tape improvement. Even if 
+true, I'm not sure how you'd do that. You'd need to modify your target IMHO 
+to always reply "ready" for TUR. But TUR is used to clear some conditions 
+at the target, if present, so not sure about the semantics of ignoring 
+TURs. Have you tried setting the streaming bit for the tape drive?
+
+On Wednesday, October 21, 2020 at 6:43:22 AM UTC-7 david.p...@perdrix.co.uk 
+wrote:
+
+> I've seen a report that disabling Test Unit Ready across the iSCSI link 
+> can hugely improve performance of remote tape drives.
+>
+> Is this something I do at the machine hosting the tape drive or at the 
+> client?
+>
+> Is it relevant to open iscsi?
+>
+> Thanks
+> David
+>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201020105722.8938-1-ailiop%40suse.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/4ad354c3-5d6a-4b1f-b978-afee5d1219aen%40googlegroups.com.
+
+------=_Part_1449_1775471557.1603644666283
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I haven't heard about disabling TUR for iSCSI tape improvement. Even if tru=
+e, I'm not sure how you'd do that. You'd need to modify your target IMHO to=
+ always reply "ready" for TUR. But TUR is used to clear some conditions at =
+the target, if present, so not sure about the semantics of ignoring TURs. H=
+ave you tried setting the streaming bit for the tape drive?<br><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr">On Wednesday, Oct=
+ober 21, 2020 at 6:43:22 AM UTC-7 david.p...@perdrix.co.uk wrote:<br/></div=
+><blockquote class=3D"gmail_quote" style=3D"margin: 0 0 0 0.8ex; border-lef=
+t: 1px solid rgb(204, 204, 204); padding-left: 1ex;">I&#39;ve seen a report=
+ that disabling Test Unit Ready across the iSCSI link can hugely improve pe=
+rformance of remote tape drives.<br><br><div>Is this something I do at the =
+machine hosting the tape drive or at the client?</div><div><br></div><div>I=
+s it relevant to open iscsi?</div><div><br></div><div>Thanks</div><div>Davi=
+d<br></div></blockquote></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/4ad354c3-5d6a-4b1f-b978-afee5d1219aen%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/4ad354c3-5d6a-4b1f-b978-afee5d1219aen%40googlegroups.com</a>.=
+<br />
+
+------=_Part_1449_1775471557.1603644666283--
+
+------=_Part_1448_378269703.1603644666283--
