@@ -1,71 +1,142 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBJ563T6AKGQEWAP4ODA@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBO5F3X6AKGQEVGXCYSY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc39.google.com (mail-oo1-xc39.google.com [IPv6:2607:f8b0:4864:20::c39])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C288299671
-	for <lists+open-iscsi@lfdr.de>; Mon, 26 Oct 2020 20:10:33 +0100 (CET)
-Received: by mail-oo1-xc39.google.com with SMTP id e142sf6094935oob.2
-        for <lists+open-iscsi@lfdr.de>; Mon, 26 Oct 2020 12:10:33 -0700 (PDT)
+Received: from mail-pl1-x640.google.com (mail-pl1-x640.google.com [IPv6:2607:f8b0:4864:20::640])
+	by mail.lfdr.de (Postfix) with ESMTPS id 318572999E3
+	for <lists+open-iscsi@lfdr.de>; Mon, 26 Oct 2020 23:50:37 +0100 (CET)
+Received: by mail-pl1-x640.google.com with SMTP id r16sf6970416pls.19
+        for <lists+open-iscsi@lfdr.de>; Mon, 26 Oct 2020 15:50:37 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1603752636; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=fjg/sxKz8+9YPs8y6C9XffEfd787eTgoiXOulFi5pBaRgjkva/SNsaR/wfUwBSAVKx
+         KrO1dOcUryW6tkoJ6tZpOuvDSaXQen0GWKI81LaXgdKTVLF6DqrkEV6aVFO1f2vOwD4H
+         Gl8G+n2IpvoVwifexO3qroQQBsoKzqgyhpyVl+9BI4toc64rOA5yJ4M7KlGkhoQK0ILx
+         n5qxOSs4vDKVF+IiJ2zl42BcGEtc9uj8dAE/ob7UamAd6o1piP9S7qNfkBDevoHr8zUN
+         oKAtuI60E9z4/GyVYD8mL4KzHLntdRaWJFVoTGU9vzJddnipDnQ2WfeN6/LwpXOVOeX7
+         nY1Q==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:message-id:in-reply-to:to
+         :references:date:subject:mime-version:from:sender:dkim-signature
+         :dkim-signature;
+        bh=SNJ4Pv+51LBP7TjqD6LLo0WN8Y2wUbb2wb+Oft0w3QA=;
+        b=xnVa0Lj5BRfW4ExcCjFk/4XI5KrEnPJis2reTQWxEqWDWZAfgWttOp2PpeDdnAX3r8
+         +JPetPY708wQvLlKj6JOtE2HYDSmqzZ5is4Vwdwjk094Xi3xx4v2ik1XuyU2trRxgNCT
+         XcZxdqjqP7zSUli0g5xeB0yRYo2wUl/akocKjkyBnz2fT1bO3XcOwmUsHXS67ZMiE2/p
+         3K59V1X7ruOWfDvR2cRtJtw7bCW76y26Q9MWOC/iclPghO5YQuURTEW+9nmDY4UWEMSJ
+         AgWMHNJmbBL1zrn8sn82fTRdScFQbz0Y+CCXcGKK+ncJSyELB1wc45CTeV4DTl54OdYE
+         i/ew==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=uv+L5RIh;
+       spf=pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::429 as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=ps3rFUSoBe8tiKPhNg8oZY+YcJxospiOx0KXwGm8LKU=;
-        b=erYC4NoT9cQnVwrNWpK8AwBdlSSQjnzNrr7OyTPUpbDCf3bzSupUAL1VLo860Ar4b3
-         gnmIJOnkZUTg+Ln3zlyoBp268eIWViM8vl/r0UQrpsbmNZNW2a3gmWyKjcJMI4MnGmJE
-         t4JGOC/DpeiBZ1D2JMPiJ3amhWkm98p+Pn8XkC4tN1zGNR0U5iRSmx8HZ84yxSGYjhDf
-         mzaDhRFgZjzq2On3DqdmL9/YeI8qkDT100/g3Mju2WhSAMKc157WQMPThWn38eaW5coR
-         W1EsR8XT1VarR28NF49PpbGAiCiv5PK558RDRCavWbsmhySMOiJgySyHt9bUW8HQMxsh
-         N0lA==
+        h=sender:from:mime-version:subject:date:references:to:in-reply-to
+         :message-id:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=SNJ4Pv+51LBP7TjqD6LLo0WN8Y2wUbb2wb+Oft0w3QA=;
+        b=gHwJEYZLal7Caf2JyaHYmrPdfFzTTgt7ZtLu73J6LQaug0hB2phr09k4o/GKt92mAz
+         ma8x+TWosyFsViSx15FqIujcPWk/7LXKU+g4U8jyWEjUYjnTH25P+0EuYgvuDHKjCCzn
+         mdGQ627LACS6FU9I0Bur1bf5+TLaThGItE2zjoUCDmyqrj6qnJZcX3arvBGTmN9dv65I
+         iBd52599VnlCDgf1hGqjoHMjNu4dgwWIK6OvueJitnN104GWe06NJ8rrhF7A2w7u/uuW
+         uOKU4kkFVS3hWG6fk5ZYp+Wbk31h61dTN8fCOFeccFBB5Is5XUpPeUij5xNxVATlwsci
+         VLOw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=ps3rFUSoBe8tiKPhNg8oZY+YcJxospiOx0KXwGm8LKU=;
-        b=VjYhiZTfeZL7nG76nsJ6hrNJupGSoru5U5XLqP4qbYYPVyMM02RKs+1Bei39QL69p0
-         oKJACuW+xJwKBApZUwtFs6qiVWTzmo1A45BidwoxMrUvkkMqI1Zdq1MlaeEzNO5frinm
-         EZIv52X5W9g2xa86YDYAXY319c1ZOHRDAhwh9xdrOs8JQ4g+oQBSQ3Vrbctr+ayIs8pN
-         rbNLkBrnn4/jNsjWlkAXqcmK0XzEwq/kIy/lgOekt8Y9s2d+1+j+7mdsixLAe2nr12AW
-         gayhLynFW2phDlPE/dDntTNWARAdocfKqFZioDZ2secf2Hz84GeOOvdzXHkh3UHnZlXu
-         I+5A==
+        h=from:mime-version:subject:date:references:to:in-reply-to:message-id
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=SNJ4Pv+51LBP7TjqD6LLo0WN8Y2wUbb2wb+Oft0w3QA=;
+        b=oc0BHPoSNDk7lQJyRvKqpHRd/0QiHQM4ZPeZAzkFDUqr5QRwEmO1ClJP52CtcpylK6
+         BDb6tlZvwTl8gDrRnovISdtDW7u/53LV9Y1kN2qE4nbEzJ+Oo8SRvLbyB1dQHGGeKZAx
+         bwvOEvADXcKpKea0Rn8zz40o9yzW44neitEuj/9DB1z8apzNvtghxxUelcreOZePd7hA
+         zg1su0eUjc+r8KFEnAeu/gYOLUG6CvquxhDeE7NC9LSJnEUJYd7u7ai9WAKP8OFBwkfA
+         9PkGajh5BljENZpSssFZa2rajKzoWT2N8hLk46iTEStOM+47yh4nHmyUAT0iin9UvKaK
+         8WTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=ps3rFUSoBe8tiKPhNg8oZY+YcJxospiOx0KXwGm8LKU=;
-        b=YLkac82SUeNQvmok00WsX0VWJKMNIl9PAuqGMegO8qb6rYXLrGyqQ6EV4M9qwX3zRD
-         n/adn9Ji0w8XEzWT4c3N59eEQHe7TKQvu3q//XoK1y4aBV1sLi2fZKFdvVN4bxvI9ANy
-         aJBmlOpkqQX2YCvOz7ukYPmtzhOdkmnNWbGqhNdCWAqJb7sIEqI7ohWIzSCe9qafAQS/
-         P5eUYGeTOtlSEezC1bXvWBl+/gTVAhcYx49d3ga4qCjBO4OPwxalOaNgIihicjg/uZb0
-         4T61F3Evz3YEPmg6nzkZ9/Gf+8q3/Gc4rkqsAj6aak5Fvul6mp+ROcvEFZRYu86vNVmY
-         LK9A==
+        h=sender:x-gm-message-state:from:mime-version:subject:date:references
+         :to:in-reply-to:message-id:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=SNJ4Pv+51LBP7TjqD6LLo0WN8Y2wUbb2wb+Oft0w3QA=;
+        b=ME3wthyKSk5UvEPiVyXRTOYQy4pMvYAV/RdZBIqyXBeFgl/w2RYIe4T/TUSaBcuFhD
+         tHBw6zI3EM6YOp06Zc2IEBITrTLQ1pRFZx9F7eep/YXnw7OiuNK+6eY+Km867OR6XdYE
+         iD5/CQ/+PCAp8MfJlyNUHHMS5f52Q+pWixGAExaIegwpvzOu5OQIlVu9Yv9cXJP2T86f
+         v+6nlKQLYE5GiItbcPgQXygHwLIfbmbsMsF/qx7yqFjhSkheTyxlG5rVZHgPXGFj6QBs
+         p4tD0/6D4xzvGIIhYBdSEQthZdDcFc4yqmdTjYivQncsx06CsRa2ufViQFeGC/T7ALOn
+         1y1w==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533tTA5Y+WZkbtu2ipP5AEBO/ofSt+VHPseRwVriYN8OsYem4qY4
-	aAcpkfTwtC8QlJvPjK7POH4=
-X-Google-Smtp-Source: ABdhPJzfTv4gXiE6RfOHUAiihjzt3kG47mEUdvrJKT02a+lo08jPtLteQOXgLKufHKNdNUmdHz3+MQ==
-X-Received: by 2002:a4a:b78f:: with SMTP id a15mr14905772oop.33.1603739432072;
-        Mon, 26 Oct 2020 12:10:32 -0700 (PDT)
+X-Gm-Message-State: AOAM530NsqYySGJhtLT+75vF1HOa02iHxF78jbQ86Cg7OdOHoXLqfP5q
+	DQ5aWeGcNC4cinRsUn8X5mU=
+X-Google-Smtp-Source: ABdhPJz9UScVl8yDqxYvYTjzRFdqy/Oe23eiv//1nnwtUe8CzFdoAloPLxau3/7DA4lDbZAC7wyoBg==
+X-Received: by 2002:a65:4cce:: with SMTP id n14mr19179935pgt.349.1603752635866;
+        Mon, 26 Oct 2020 15:50:35 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:aca:4713:: with SMTP id u19ls2421475oia.0.gmail; Mon, 26 Oct
- 2020 12:10:31 -0700 (PDT)
-X-Received: by 2002:aca:4a85:: with SMTP id x127mr12287051oia.138.1603739431480;
-        Mon, 26 Oct 2020 12:10:31 -0700 (PDT)
-Date: Mon, 26 Oct 2020 12:10:30 -0700 (PDT)
-From: The Lee-Man <leeman.duncan@gmail.com>
+Received: by 2002:a65:4547:: with SMTP id x7ls3488145pgr.2.gmail; Mon, 26 Oct
+ 2020 15:50:35 -0700 (PDT)
+X-Received: by 2002:a62:7a8d:0:b029:160:9e0:5ff6 with SMTP id v135-20020a627a8d0000b029016009e05ff6mr84347pfc.52.1603752635162;
+        Mon, 26 Oct 2020 15:50:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1603752635; cv=none;
+        d=google.com; s=arc-20160816;
+        b=myn8TVLn1NW+FEepIrw0FqMS7u/0blQpMj/Vmw54xxDP3M0MWTdtw5QMlECJbwsVIM
+         Z5ldPwzvNiLq8CTzaNGHMakOnSpgfUJEC3TBidArw4msFfspijjzQIgyWJ52lm4gi6Oa
+         Z0fjs4ybkM7y5NJIOG1Lus0HIwS3lcy5qeJnwBWBRZfe4L0F6P5CQcusWMA3Rwfjs0Uu
+         wEk94LhemwE0JshlCpk3cU8O1VUjKd3l0hpg3LoKIu3igR2gW0xFQNIuy4CFUU9PZ/a3
+         a1czxBFRvB5U2AXJYcJdKpqiLUh279jpUxMRG23qaSvpTS0IO9IeT5KIbnl+QkItHADt
+         DTKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version:from
+         :dkim-signature;
+        bh=0CnfmDMSiG/QJw62Bs/DVdPjCkpPdbvvBNx/redVwR4=;
+        b=v9n7Q07Mai0ujVT9oXNS9JXdFz+I/FkXVEbwa154HLe6vNLWclOYU5vLfkTvzELOZj
+         +PlAmcT5eMbGVYriVomNV7HhRj7J4tz9UWR6Unqx+0h2knsLA0rwgwdd96pdgpe4QzfM
+         6E0yb1D2XmFLmOmpy3OGtwpdkpbt7h/eHfqxyZ08RkxJkXVexwaDqxtvv7ym/ru9OeYc
+         3bWzoRhV10MdUi+F8zoV1///WgM8o0F6SXnkrTgPgfgjR82bu/3zW1dBupzci3moj04t
+         k0VnoeH4wNJt7lR57wuB1yuzoREwKfRqB9jtOxP5cg4AaQpwlFoEqizCyMFIX/zV596I
+         B+tg==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=uv+L5RIh;
+       spf=pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::429 as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com. [2607:f8b0:4864:20::429])
+        by gmr-mx.google.com with ESMTPS id j63si680065pfd.1.2020.10.26.15.50.35
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Oct 2020 15:50:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::429 as permitted sender) client-ip=2607:f8b0:4864:20::429;
+Received: by mail-pf1-x429.google.com with SMTP id e15so7033036pfh.6
+        for <open-iscsi@googlegroups.com>; Mon, 26 Oct 2020 15:50:35 -0700 (PDT)
+X-Received: by 2002:aa7:9905:0:b029:155:73b6:6f7d with SMTP id z5-20020aa799050000b029015573b66f7dmr15712258pff.78.1603752634673;
+        Mon, 26 Oct 2020 15:50:34 -0700 (PDT)
+Received: from [192.168.10.2] (c-73-25-22-216.hsd1.or.comcast.net. [73.25.22.216])
+        by smtp.gmail.com with ESMTPSA id 9sm28999466pjs.1.2020.10.26.15.50.33
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 26 Oct 2020 15:50:34 -0700 (PDT)
+From: Lee Duncan <leeman.duncan@gmail.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_0CB7E652-D1AB-407A-915B-68DA5E76EA2B"
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
+Subject: Re: Slow iSCSI tape performance
+Date: Mon, 26 Oct 2020 15:50:33 -0700
+References: <5e784f60-ee52-4cdf-847b-e06f50d491cbn@googlegroups.com>
+ <4ad354c3-5d6a-4b1f-b978-afee5d1219aen@googlegroups.com>
+ <007401d6aaf6$48aef2b0$da0cd810$@perdrix.co.uk>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <825ccece-a2a6-411d-bdd2-591b5e9d045dn@googlegroups.com>
-In-Reply-To: <20201020105722.8938-1-ailiop@suse.com>
-References: <20201020105722.8938-1-ailiop@suse.com>
-Subject: Re: [PATCH] iscsid: drop uid privileges after locking memory
-MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_14_1214211804.1603739430468"
+In-Reply-To: <007401d6aaf6$48aef2b0$da0cd810$@perdrix.co.uk>
+Message-Id: <CCD69511-2C68-4703-9BDD-A1345922DA2D@gmail.com>
+X-Mailer: Apple Mail (2.3608.120.23.2.4)
 X-Original-Sender: leeman.duncan@gmail.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@gmail.com header.s=20161025 header.b=uv+L5RIh;       spf=pass
+ (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::429
+ as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;       dmarc=pass
+ (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -79,141 +150,102 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_14_1214211804.1603739430468
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_15_1580188856.1603739430468"
 
-------=_Part_15_1580188856.1603739430468
+--Apple-Mail=_0CB7E652-D1AB-407A-915B-68DA5E76EA2B
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Anythony:
+On Oct 25, 2020, at 10:42 AM, David C. Partridge <david.partridge@perdrix.c=
+o.uk> wrote:
+>=20
+> I believe that it=E2=80=99s something to do with stopping Windows (at the=
+ target) from sending TURs to the tape every 30s or so.
 
-On Thursday, October 22, 2020 at 12:33:08 PM UTC-7 Anthony Iliopoulos wrote:
+Okay, that makes sense. But that has nothing to do with open-iscsi, or even=
+ iSCSI at all.
 
-> Move the setuid call after mlockall, since the latter requires elevated 
-> privileges, and will cause iscsid startup to fail when an unprivileged 
-> uid is specified. 
->
+> =20
+> Setting streaming bit ? Is that something I can do with mt-st or mt comma=
+nds?  The best I am getting is about 29MB/s over a 1Gbit LAN L
 
-I appreciate your patch, but I'm not sure this one has any value.
+I was talking about the ability to tell st to write tape marks without wait=
+ing. This is very handy for streaming tape drives, since it allows it to st=
+ream tape marks as well. But it cannot be set with =E2=80=9Cmt=E2=80=9D =E2=
+=80=94 it needs an ioctl().
 
-When I run regular iscsid (not patched), it dies almost at the start of 
-main(), in the mgmt_ipc_listen() call, if I'm not root. So it never even 
-gets to your patch.
+What kind of throughput does the tape drive supply directly?
 
-Was there an actual bug or problem you were trying to fix?
+> =20
+> Here=E2=80=99s my backup script:
+> ...
 
-P.S. This patch was mangled. Please submit patches in text only, or better 
-yet as a github pull request, since I don't have time to edit submitted 
-patches. Thanks!
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/CCD69511-2C68-4703-9BDD-A1345922DA2D%40gmail.com.
 
->
-> Signed-off-by: Anthony Iliopoulos <ail...@suse.com> 
-> --- 
-> usr/iscsid.c | 12 ++++++------ 
-> 1 file changed, 6 insertions(+), 6 deletions(-) 
->
-> diff --git a/usr/iscsid.c b/usr/iscsid.c 
-> index e50149823bee..9f1a09fe28f2 100644 
-> --- a/usr/iscsid.c 
-> +++ b/usr/iscsid.c 
-> @@ -525,12 +525,6 @@ int main(int argc, char *argv[]) 
-> } 
-> } 
->
-> - if (uid && setuid(uid) < 0) { 
-> - log_error("Unable to setuid to %d", uid); 
-> - log_close(log_pid); 
-> - exit(ISCSI_ERR); 
-> - } 
-> - 
-> memset(&daemon_config, 0, sizeof (daemon_config)); 
-> daemon_config.pid_file = pid_file; 
-> daemon_config.config_file = config_file; 
-> @@ -601,6 +595,12 @@ int main(int argc, char *argv[]) 
-> exit(ISCSI_ERR); 
-> } 
->
-> + if (uid && setuid(uid) < 0) { 
-> + log_error("Unable to setuid to %d", uid); 
-> + log_close(log_pid); 
-> + exit(ISCSI_ERR); 
-> + } 
-> + 
-> set_state_to_ready(); 
-> event_loop(ipc, control_fd, mgmt_ipc_fd); 
->
-> -- 
-> 2.29.0 
->
->
-
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/825ccece-a2a6-411d-bdd2-591b5e9d045dn%40googlegroups.com.
-
-------=_Part_15_1580188856.1603739430468
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail=_0CB7E652-D1AB-407A-915B-68DA5E76EA2B
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
 
-Hi Anythony:<br><br><div class=3D"gmail_quote"><div dir=3D"auto" class=3D"g=
-mail_attr">On Thursday, October 22, 2020 at 12:33:08 PM UTC-7 Anthony Iliop=
-oulos wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin: 0 =
-0 0 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">M=
-ove the setuid call after mlockall, since the latter requires elevated
-<br>privileges, and will cause iscsid startup to fail when an unprivileged
-<br>uid is specified.
-<br></blockquote><div><br></div><div>I appreciate your patch, but I'm not s=
-ure this one has any value.</div><div><br></div><div>When I run regular isc=
-sid (not patched), it dies almost at the start of main(), in the mgmt_ipc_l=
-isten() call, if I'm not root. So it never even gets to your patch.</div><d=
-iv><br></div><div>Was there an actual bug or problem you were trying to fix=
-?</div><div><br></div><div>P.S. This patch was mangled. Please submit patch=
-es in text only, or better yet as a github pull request, since I don't have=
- time to edit submitted patches. Thanks!<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin: 0 0 0 0.8ex; border-left: 1px solid rgb(204, 204,=
- 204); padding-left: 1ex;">
-<br>Signed-off-by: Anthony Iliopoulos &lt;<a href=3D"" data-email-masked=3D=
-"" rel=3D"nofollow">ail...@suse.com</a>&gt;
-<br>---
-<br> usr/iscsid.c | 12 ++++++------
-<br> 1 file changed, 6 insertions(+), 6 deletions(-)
-<br>
-<br>diff --git a/usr/iscsid.c b/usr/iscsid.c
-<br>index e50149823bee..9f1a09fe28f2 100644
-<br>--- a/usr/iscsid.c
-<br>+++ b/usr/iscsid.c
-<br>@@ -525,12 +525,6 @@ int main(int argc, char *argv[])
-<br> 		}
-<br> 	}
-<br>=20
-<br>-	if (uid &amp;&amp; setuid(uid) &lt; 0) {
-<br>-		log_error("Unable to setuid to %d", uid);
-<br>-		log_close(log_pid);
-<br>-		exit(ISCSI_ERR);
-<br>-	}
-<br>-
-<br> 	memset(&amp;daemon_config, 0, sizeof (daemon_config));
-<br> 	daemon_config.pid_file =3D pid_file;
-<br> 	daemon_config.config_file =3D config_file;
-<br>@@ -601,6 +595,12 @@ int main(int argc, char *argv[])
-<br> 		exit(ISCSI_ERR);
-<br> 	}
-<br>=20
-<br>+	if (uid &amp;&amp; setuid(uid) &lt; 0) {
-<br>+		log_error("Unable to setuid to %d", uid);
-<br>+		log_close(log_pid);
-<br>+		exit(ISCSI_ERR);
-<br>+	}
-<br>+
-<br> 	set_state_to_ready();
-<br> 	event_loop(ipc, control_fd, mgmt_ipc_fd);
-<br>=20
-<br>--=20
-<br>2.29.0
-<br>
-<br></blockquote></div>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3Dutf-8"></head><body style=3D"word-wrap: break-word; -webkit-nbsp-mode: s=
+pace; line-break: after-white-space;" class=3D"">On Oct 25, 2020, at 10:42 =
+AM, David C. Partridge &lt;<a href=3D"mailto:david.partridge@perdrix.co.uk"=
+ class=3D"">david.partridge@perdrix.co.uk</a>&gt; wrote:<br class=3D""><div=
+><blockquote type=3D"cite" class=3D""><br class=3D"Apple-interchange-newlin=
+e"><div class=3D""><div class=3D"WordSection1" style=3D"page: WordSection1;=
+ caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-s=
+tyle: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; text-align: start; text-indent: 0px; text-transform: none; white=
+-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-dec=
+oration: none;"><div style=3D"margin: 0cm 0cm 0.0001pt; font-size: 12pt; fo=
+nt-family: &quot;Times New Roman&quot;, serif;" class=3D""><span style=3D"f=
+ont-size: 11pt;" class=3D"">I believe that it=E2=80=99s something to do wit=
+h stopping Windows (at the target) from sending TURs to the tape every 30s =
+or so.</span></div></div></div></blockquote><div><br class=3D""></div>Okay,=
+ that makes sense. But that has nothing to do with open-iscsi, or even iSCS=
+I at all.</div><div><br class=3D""><blockquote type=3D"cite" class=3D""><di=
+v class=3D""><div class=3D"WordSection1" style=3D"page: WordSection1; caret=
+-color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: nor=
+mal; text-align: start; text-indent: 0px; text-transform: none; white-space=
+: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoratio=
+n: none;"><div style=3D"margin: 0cm 0cm 0.0001pt; font-size: 12pt; font-fam=
+ily: &quot;Times New Roman&quot;, serif;" class=3D""><span style=3D"font-si=
+ze: 11pt;" class=3D""><o:p class=3D""></o:p></span></div><div style=3D"marg=
+in: 0cm 0cm 0.0001pt; font-size: 12pt; font-family: &quot;Times New Roman&q=
+uot;, serif;" class=3D""><span style=3D"font-size: 11pt;" class=3D""><o:p c=
+lass=3D"">&nbsp;</o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;" class=3D=
+""><span style=3D"font-size: 11pt;" class=3D"">Setting streaming bit ? Is t=
+hat something I can do with mt-st or mt commands?&nbsp; The best I am getti=
+ng is about 29MB/s over a 1Gbit LAN<span class=3D"Apple-converted-space">&n=
+bsp;</span></span><span style=3D"font-size: 11pt; font-family: Wingdings;" =
+class=3D"">L</span></div></div></div></blockquote><div><br class=3D""></div=
+>I was talking about the ability to tell st to write tape marks without wai=
+ting. This is very handy for streaming tape drives, since it allows it to s=
+tream tape marks as well. But it cannot be set with =E2=80=9Cmt=E2=80=9D =
+=E2=80=94 it needs an ioctl().</div><div><br class=3D""></div><div>What kin=
+d of throughput does the tape drive supply directly?</div><div><br class=3D=
+""><blockquote type=3D"cite" class=3D""><div class=3D""><div class=3D"WordS=
+ection1" style=3D"page: WordSection1; caret-color: rgb(0, 0, 0); font-famil=
+y: Helvetica; font-size: 12px; font-style: normal; font-variant-caps: norma=
+l; font-weight: normal; letter-spacing: normal; text-align: start; text-ind=
+ent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; text-decoration: none;"><div style=3D"margin: =
+0cm 0cm 0.0001pt; font-size: 12pt; font-family: &quot;Times New Roman&quot;=
+, serif;" class=3D""><span style=3D"font-size: 11pt;" class=3D""><o:p class=
+=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; font-size:=
+ 12pt; font-family: &quot;Times New Roman&quot;, serif;" class=3D""><span s=
+tyle=3D"font-size: 11pt;" class=3D""><o:p class=3D"">&nbsp;</o:p></span></d=
+iv><div style=3D"margin: 0cm 0cm 0.0001pt; font-size: 12pt; font-family: &q=
+uot;Times New Roman&quot;, serif;" class=3D""><span style=3D"font-size: 11p=
+t;" class=3D"">Here=E2=80=99s my backup script:<br class=3D"">...</span></d=
+iv></div></div></blockquote></div><br class=3D""></body></html>
 
 <p></p>
 
@@ -224,11 +256,8 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/825ccece-a2a6-411d-bdd2-591b5e9d045dn%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/825ccece-a2a6-411d-bdd2-591b5e9d045dn%40googlegroups.com</a>.=
-<br />
+om/d/msgid/open-iscsi/CCD69511-2C68-4703-9BDD-A1345922DA2D%40gmail.com?utm_=
+medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgid/open-=
+iscsi/CCD69511-2C68-4703-9BDD-A1345922DA2D%40gmail.com</a>.<br />
 
-------=_Part_15_1580188856.1603739430468--
-
-------=_Part_14_1214211804.1603739430468--
+--Apple-Mail=_0CB7E652-D1AB-407A-915B-68DA5E76EA2B--
