@@ -1,128 +1,122 @@
-Return-Path: <open-iscsi+bncBAABBSVB4L6AKGQEYFVDPWI@googlegroups.com>
+Return-Path: <open-iscsi+bncBDO7B5X3UIBBBDVW6T6AKGQET3JMWLQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-f55.google.com (mail-oo1-f55.google.com [209.85.161.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D4C29CB40
-	for <lists+open-iscsi@lfdr.de>; Tue, 27 Oct 2020 22:27:40 +0100 (CET)
-Received: by mail-oo1-f55.google.com with SMTP id t19sf1367306ook.18
-        for <lists+open-iscsi@lfdr.de>; Tue, 27 Oct 2020 14:27:40 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1603834059; cv=pass;
+Received: from mail-oo1-xc3c.google.com (mail-oo1-xc3c.google.com [IPv6:2607:f8b0:4864:20::c3c])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC7D2A141C
+	for <lists+open-iscsi@lfdr.de>; Sat, 31 Oct 2020 09:06:40 +0100 (CET)
+Received: by mail-oo1-xc3c.google.com with SMTP id c2sf2547051ooo.20
+        for <lists+open-iscsi@lfdr.de>; Sat, 31 Oct 2020 01:06:40 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1604131599; cv=pass;
         d=google.com; s=arc-20160816;
-        b=MSl96Mn5lZp4DVu1LQw6bzB6eLAg8OpXeR6+GYc6u3CCimna1iiQEge9whMUfd9n4Q
-         VxkmituLvWkTouknAhQqaIvX1C+tJtDZEuSz2V/9XRckHILZvRk8G4+7wFme/UnSoAPw
-         iNjqlgplJXO0EsvBG38y2MId4BeyAn5LcwHvQJ4PtO+YsqZxM6YZ/OPVngHH2H1pjxJl
-         /C6+73QRkjU7DkviRFP9edjIoOD6BAf0whU6k0suSorPQ/cfPCB0grG/Ycha/q7FjjzS
-         cYvBr6knk4twuRl0kY7Tn+uY5fZpsLKNTC24A4mvv4nGzITa0gxXbQQ2x0RqpP2FlV60
-         mv5w==
+        b=0NaDQy5AKA+iS2/ks0BzuO1KbyxHBU+7lenBt2pLrEcgdRbSiVZn8/sLLyjBALB23U
+         oh9nOMCtdcbGVXH8McLdtC41cxRQTXX4xYL9LFOFdh8AkhUEPnCZtwHMrICg7Pg2x7D/
+         GAMsgyY+MZsSdmBUoQ6dlzbY+z1StYDMggDr/KcdX2qI2mxrOfaNRtFW+wN1JoaBdT/O
+         9W0WWPUKS/OwDtAwi1Ek0RDaG5kWU/QZwejUYHC0KwIa61hsxSvnfknocDIf42EuXobq
+         wl/RNL+7zguvHOCr9cndAxzdLvAfIsfyx0nwGNxsKwDGcUEX0XJpfiviaCSi10AXnyqs
+         54Cg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from;
-        bh=mfunblQl6hpdAe6kCckBYVv1C29l+I1fIoGgVidoum8=;
-        b=ERttxeD4WfupDRo54FnV8gwZSzaw6cApECZRICNFPvrLq006xOX3i23ztbMkcp88F1
-         WNJmWS7lN5NvK1olzOHCD6+7uh3wmPBRIzGCio/rab8610DoFESqjjmkflU8PKf1R7hR
-         reymY0F8nAwAxlmiygMnmqxgxUssNllW7FwlIcXuApgdjcqnCpTyMQ8qz8j72xT788kt
-         BgMC4Lh1rNC9ggU5n3F5jcy/Uvg8Jc8SPaw8MLpi9gwQeOJDEQeJxo/aci2bBbUPyTjW
-         L2Bku34kGUYtuUC595NaQTh0vzN3gZxlyhYtHKVezBSFc6W9XkBl/zBuYC31Dm/EtBhr
-         kstw==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=jkKURJJbCJ+KD446mBWjm0LSaioC+Yvy2gSnkd8zees=;
+        b=AuFoTV97GHa/cJbORTkvO1A71MDF9GvsbryxLHIBdFN6o+QUrLlvFJ95byyyNIzjp5
+         spGrYipiGIIKdgPiND8Vhqu54G4in6Bsz39OjkqlG/j+hLYvR4ZJt8PvxCCHDWaWUtag
+         MKA5w+j44UBnKn7TcluKgsloY5Tm9qScN/HUCpJzxQF3c+NLLWo82N5HReRqfXqXVgy2
+         fys7KiKbj+twJqNGTO8LsdTskiMEackMxuLhg9/5zZFmnBDFXC9qYcNk2S6wDfJHo4OF
+         VTmJJtteNtXrmWWmvT7FtNdNul7gj8FwqFh628DY7UTDdcaS83KQGo3b0WTNyujeabWa
+         M0cQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=default header.b=cMm6QTak;
-       spf=pass (google.com: domain of mchehab@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=mchehab@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+       spf=pass (google.com: domain of wubo40@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=wubo40@huawei.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlegroups.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=jkKURJJbCJ+KD446mBWjm0LSaioC+Yvy2gSnkd8zees=;
+        b=jfddU/oaUsh6go42/hcdCiYiWHsxE/CiPMyQq7y13S9JdzXAGQZTca3QvXCy9KX9oc
+         BCcr8QoN6zhW+7l6bhW30JiakIbLXn4qLAbKClx/iSGjj/owLxHbSza+QccQyuwIfaia
+         SF1qXYNkIUgpz3Otqvw1wQHwpw7RbUWGkR3KWZtiqPQrKmptKQ1MwvpgDIyDebLZDAon
+         b6SHlrlZ86y0/hTcsqgItgZ/XuM6VkDprsg8VYqFSODL14HTBlrUkA5xJPy2HAu5cnGf
+         CVziUGMrjQ6Hm2PmSaOK51m8hJTDybJkqmbcey6dhz1iRH9jPvSutanmziMr6UpjYGL4
+         MbUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:sender:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=mfunblQl6hpdAe6kCckBYVv1C29l+I1fIoGgVidoum8=;
-        b=PXaXndRmdnifU87HewEFQFZHi6kRWy+MahpjQDmQOl3x1M1Vtq9zYHtoGPk+53zH4E
-         dbr8XPKcxDzFPbggjrXQAC7rpcRpYKS0YL1xKpcgEY5sBeak17AMc4J0Yaurcsnby6xs
-         iMhRUZTt15NxQwbTuChuuQB4C/gyb7A2LAC9buV7AhwmYJ7tZfMCTYPnQ92+lqT6l3+H
-         VL8YXsWXDA9PY+nw3mgb925qQD7GYMCkjqIcq20pfgZnteQwwwlkehfndia3SKihMOBq
-         ZTpu1ABiTIDNDLyKS2VWOj+a35XM96cRpn3vXeKB52lzHXVbEXu96l0/fL1zyJ7c2Win
-         LsVw==
-X-Gm-Message-State: AOAM531xRhkMithwf4x8dq7aeyUTVQRQoIrELybeJmMe5PI+qlOXgf2l
-	3lviZGu8tFf/UF5f9BZvjPg=
-X-Google-Smtp-Source: ABdhPJxDwjqi2XWAwx6vydTKW+IUgoIOIWFsc/8eK55FezCULCTOhgYnSmQq3c3909ZooDDNIpPkUQ==
-X-Received: by 2002:a9d:6d97:: with SMTP id x23mr2822055otp.257.1603834058930;
-        Tue, 27 Oct 2020 14:27:38 -0700 (PDT)
+        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=jkKURJJbCJ+KD446mBWjm0LSaioC+Yvy2gSnkd8zees=;
+        b=nqIs6hJa7lhZvUoL2l9NPmnEIORZlPeP7JRQiYdx+RrGdHiCvo4HxXjQ8EsWVuWUwi
+         r4zuS9qZ4XpGLXh79W1R85bNJWVh2HpQpHMjcc2Hua6OOtlMLqukWpuUs5vPcJ1H6h2G
+         ZGbaelqymFnUvAH/IatDkpC3KUCiQEdiND2ugQs3o67mpVaCxUJqyMhzZ+65iz35Gp0m
+         EUm6/NvX0oaVAkd0jApUfXAA9nQAlfchPcEJLE6/vlExZWpivuuLaJaPCma1sB5EkqcX
+         HDPYZRTXSu4mWUFfAhLf1jOl3mTSQ09H4j9wM+0NZI3LTT84Xva7MTYdn0u80lkJ5AKh
+         E6OA==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: AOAM530xg1Rv7zfutJ/Y/v5aB66kzT2ii/4BvH+EhqJLL4ntP6BBGmf5
+	HVjBj+ng0+q1eeA/4d88pT4=
+X-Google-Smtp-Source: ABdhPJzucciEnp0mMwPteloVA7HfBzwK+omNGeUdjRoe/N8un6APlHvlrwuvMfXUwIp1U08aqQuyzg==
+X-Received: by 2002:a05:6830:17d5:: with SMTP id p21mr2153692ota.8.1604131598747;
+        Sat, 31 Oct 2020 01:06:38 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6808:c1:: with SMTP id t1ls814439oic.7.gmail; Tue, 27
- Oct 2020 14:27:38 -0700 (PDT)
-X-Received: by 2002:aca:f0c:: with SMTP id 12mr3090465oip.9.1603834058675;
-        Tue, 27 Oct 2020 14:27:38 -0700 (PDT)
-Received: by 2002:aca:c301:0:b029:e1:c0c6:fa92 with SMTP id t1-20020acac3010000b02900e1c0c6fa92msoif;
-        Fri, 23 Oct 2020 09:33:50 -0700 (PDT)
-X-Received: by 2002:a05:6602:5c7:: with SMTP id w7mr2342519iox.108.1603470829949;
-        Fri, 23 Oct 2020 09:33:49 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1603470829; cv=none;
+Received: by 2002:aca:1a04:: with SMTP id a4ls2146757oia.6.gmail; Sat, 31 Oct
+ 2020 01:06:38 -0700 (PDT)
+X-Received: by 2002:aca:ec91:: with SMTP id k139mr4223289oih.88.1604131598228;
+        Sat, 31 Oct 2020 01:06:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1604131598; cv=none;
         d=google.com; s=arc-20160816;
-        b=XLw8fzPAoTnd+4BRkk8/B2kQjpQzV21rHYiysyzPBASV5bujx+IaVdD4VMz9L+YFbC
-         bsI6W5CW/O/lreIkjQGTbUDwycvFluZ4JYSK3eTfa2RHaQiZ3mIZAUq0/BQ+jwrQXimX
-         /qhAq+P5Zv7yPRS4uOmT7Y0V9vXvslhMdjPjzu8/twKSHhpz4pw1rcTltL7kPKZnKIup
-         DgVIUyU+1YFWvxquEON6R4kto5ND6XaqOAwJ0zWl8AynqyoRfNG4m6P7tBkdBxqWecrw
-         5kuEWyNcHDNR3O1tTvcpm6/7spovVGUUJGpI0btr3Z48Jk87zpVImUGRQKPiAuLj33kv
-         AwTQ==
+        b=VHDP56KzRpAbrS0WdUSfrTPTFglpIO3YexMJQO8HPudHG1ux7XSQ6VPOT+zN1rX5mz
+         xbcaN+faA3o2dmAndOthzSn7KRQFCAdlNw2SHC4l14JnDg5flZlKRR25QWZ56lQD2BoS
+         J9mPkC/5RhHKdVRDpqClXHZd/NwwWCPyhLTyX84275GG5T4Yv/PAgMC84WOYgpQlftmI
+         n7ygdRN9QMKw1k3fi8Yd4jo9wWyH9hW6eiVrJhHGs0mwHLjHCZ6ttwxq9BPwpZO0Xl7/
+         dQ+soPGw/Ujw/R0LcJuRDQf7keFr5RN8K0fFOSleXXk99/xl82RKDeLV8GUF2mTaraZt
+         Aw7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=sender:content-transfer-encoding:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:dkim-signature;
-        bh=uyWH4oEpUJTj/7JJQV+lFaHWI9BpbUEdKoOnNmhE9j4=;
-        b=g3+mCtBlBhK27iD/S/Sc+JkvLmMLKjXyai8YM3UO5+osXd+OnHRm/qz4wpPrZwxHM4
-         uZ4x1GaQjjyXOzKZuHm7MNYlM84KvgOiVF22pWxz2OlpJa1BI8JDJM0ah3/3fzxQ/8QV
-         OfG1xygHC/qCu7eMi31HCXLN00tlKCKVXVxnVtDY0nd4m6WFpFHs+4UqOqgmHzXkgbYt
-         iH/Fy32Re7r65luB8bVunbKBgfVF+pP2uVLH2PDvILx7Wk+xtwwB5oYYI11PYqURv1Or
-         gI6nU2ZJMMxkiLn43HJYOQgIBRTrwxsZ8f6iHs0a1mxL0FP9sGIS+eEkI4rLEgH3UNEy
-         Fqyw==
+        h=mime-version:message-id:date:subject:cc:to:from;
+        bh=ZI5V/Lgnjh+XKR06QuWr6YW14HwfMnAWqmlRKRs26CA=;
+        b=YrAGxV2OOswgWNTujfExDKTaeXNeUaKG0Gw4yGvLoX2KwO9s2NtNwLhfpxHrEINP4i
+         2eLkAfulDCc2aKDQIbRu3T6OhtRkUg72f0umt5/v3k423cTrNOQNdgKl9OReY/wWA7BE
+         Shx+okVS1GEuMbD2LzDpc7l6sgktuExvYylRiLCOKDLligX/dSk/9e8TcCeF/6LfO/EW
+         eh9J7wlxtgFb1UMjnCTMZ7xyDBZyKuZEUSq9gTC74OaB4cpnzDtNocIoZ5HGEEnAUUM+
+         zyhCXMVdM/fAwvw5kELb+r/S3fHfh9gjjSIzT5CqhmBwRAhLXaat+WypIQu8DtM6S4cA
+         RxnQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=default header.b=cMm6QTak;
-       spf=pass (google.com: domain of mchehab@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=mchehab@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from mail.kernel.org (mail.kernel.org. [198.145.29.99])
-        by gmr-mx.google.com with ESMTPS id k3si133990ioq.4.2020.10.23.09.33.49
+       spf=pass (google.com: domain of wubo40@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=wubo40@huawei.com
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com. [45.249.212.191])
+        by gmr-mx.google.com with ESMTPS id n185si567974oih.3.2020.10.31.01.06.37
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 23 Oct 2020 09:33:49 -0700 (PDT)
-Received-SPF: pass (google.com: domain of mchehab@kernel.org designates 198.145.29.99 as permitted sender) client-ip=198.145.29.99;
-Received: from mail.kernel.org (ip5f5ad5a3.dynamic.kabel-deutschland.de [95.90.213.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 1CFEC246A5;
-	Fri, 23 Oct 2020 16:33:48 +0000 (UTC)
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
-	(envelope-from <mchehab@kernel.org>)
-	id 1kW00f-002Awa-Ul; Fri, 23 Oct 2020 18:33:45 +0200
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	"James E.J. Bottomley" <jejb@linux.ibm.com>,
-	"Jonathan Corbet" <corbet@lwn.net>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Chris Leech <cleech@redhat.com>,
-	Lee Duncan <lduncan@suse.com>,
-	linux-kernel@vger.kernel.org,
-	linux-scsi@vger.kernel.org,
-	open-iscsi@googlegroups.com
-Subject: [PATCH v3 27/56] scsi: fix some kernel-doc markups
-Date: Fri, 23 Oct 2020 18:33:14 +0200
-Message-Id: <8ed7f149f25a363eea76e514c253c4e337c59379.1603469755.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1603469755.git.mchehab+huawei@kernel.org>
-References: <cover.1603469755.git.mchehab+huawei@kernel.org>
+        Sat, 31 Oct 2020 01:06:38 -0700 (PDT)
+Received-SPF: pass (google.com: domain of wubo40@huawei.com designates 45.249.212.191 as permitted sender) client-ip=45.249.212.191;
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.60])
+	by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4CNWvt5xTKzhdGg;
+	Sat, 31 Oct 2020 16:06:02 +0800 (CST)
+Received: from huawei.com (10.175.124.27) by DGGEMS412-HUB.china.huawei.com
+ (10.3.19.212) with Microsoft SMTP Server id 14.3.487.0; Sat, 31 Oct 2020
+ 16:05:52 +0800
+From: Wu Bo <wubo40@huawei.com>
+To: <linux-scsi@vger.kernel.org>, <open-iscsi@googlegroups.com>
+CC: <lduncan@suse.com>, <cleech@redhat.com>, <jejb@linux.ibm.com>,
+	<lutianxiong@huawei.com>, <linfeilong@huawei.com>,
+	<liuzhiqiang26@huawei.com>, <wubo40@huawei.com>
+Subject: [PATCH] scsi: libiscsi: Fix cmds hung when sd_shutdown
+Date: Sat, 31 Oct 2020 16:23:42 +0800
+Message-ID: <1604132622-497115-1-git-send-email-wubo40@huawei.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
-X-Original-Sender: mchehab+huawei@kernel.org
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=default header.b=cMm6QTak;       spf=pass
- (google.com: domain of mchehab@kernel.org designates 198.145.29.99 as
- permitted sender) smtp.mailfrom=mchehab@kernel.org;       dmarc=pass (p=NONE
- sp=NONE dis=NONE) header.from=kernel.org
-Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [10.175.124.27]
+X-CFilter-Loop: Reflected
+X-Original-Sender: wubo40@huawei.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of wubo40@huawei.com designates 45.249.212.191 as
+ permitted sender) smtp.mailfrom=wubo40@huawei.com
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -131,115 +125,99 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Some identifiers have different names between their prototypes
-and the kernel-doc markup.
+For some reason, during reboot the system, iscsi.service failed to
+logout all sessions. kernel will hang forever on its
+sd_sync_cache() logic, after issuing the SYNCHRONIZE_CACHE cmd to all
+still existent paths.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+[ 1044.098991] reboot: Mddev shutdown finished.
+[ 1044.099311] reboot: Usermodehelper disable finished.
+[ 1050.611244]  connection2:0: ping timeout of 5 secs expired, recv timeout 5, last rx 4295152378, last ping 4295153633, now 4295154944
+[ 1348.599676] Call trace:
+[ 1348.599887]  __switch_to+0xe8/0x150
+[ 1348.600113]  __schedule+0x33c/0xa08
+[ 1348.600372]  schedule+0x2c/0x88
+[ 1348.600567]  schedule_timeout+0x184/0x3a8
+[ 1348.600820]  io_schedule_timeout+0x28/0x48
+[ 1348.601089]  wait_for_common_io.constprop.2+0x168/0x258
+[ 1348.601425]  wait_for_completion_io_timeout+0x28/0x38
+[ 1348.601762]  blk_execute_rq+0x98/0xd8
+[ 1348.602006]  __scsi_execute+0xe0/0x1e8
+[ 1348.602262]  sd_sync_cache+0xd0/0x220 [sd_mod]
+[ 1348.602551]  sd_shutdown+0x6c/0xf8 [sd_mod]
+[ 1348.602826]  device_shutdown+0x13c/0x250
+[ 1348.603078]  kernel_restart_prepare+0x5c/0x68
+[ 1348.603400]  kernel_restart+0x20/0x98
+[ 1348.603683]  __se_sys_reboot+0x214/0x260
+[ 1348.603987]  __arm64_sys_reboot+0x24/0x30
+[ 1348.604300]  el0_svc_common+0x80/0x1b8
+[ 1348.604590]  el0_svc_handler+0x78/0xe0
+[ 1348.604877]  el0_svc+0x10/0x260
+
+d754941225 (scsi: libiscsi: Allow sd_shutdown on bad transport) Once
+solved this problem. The iscsi_eh_cmd_timed_out() function add system_state
+judgment, and will return BLK_EH_DONE and mark the result as 
+DID_NO_CONNECT when system_state is not SYSTEM_RUNNING, 
+To tell upper layers that the command was handled during 
+the transport layer error handler helper.
+
+The scsi Mid Layer timeout handler function(scsi_times_out) will be
+abort the cmd if the scsi LLD timeout handler return BLK_EH_DONE.
+if abort cmd failed, will enter scsi EH logic.
+
+Scsi EH will do reset target logic, if reset target failed, Will
+call iscsi_eh_session_reset() function to drop the session.
+
+The iscsi_eh_session_reset function will wait for a relogin,
+session termination from userspace, or a recovery/replacement timeout.
+But at this time, the app iscsid has exited, and the session was marked as
+ISCSI_STATE_FAILED, So the SCSI EH process will never be 
+scheduled back again.
+
+PID: 9123   TASK: ffff80020c1b4d80  CPU: 3   COMMAND: "scsi_eh_2"
+ #0 [ffff00008632bb70] __switch_to at ffff000080088738
+ #1 [ffff00008632bb90] __schedule at ffff000080a00480
+ #2 [ffff00008632bc20] schedule at ffff000080a00b58
+ #3 [ffff00008632bc30] iscsi_eh_session_reset at ffff000000d1ab9c [libiscsi]
+ #4 [ffff00008632bcb0] iscsi_eh_recover_target at ffff000000d1d1fc [libiscsi]
+ #5 [ffff00008632bd00] scsi_try_target_reset at ffff0000806f0bac
+ #6 [ffff00008632bd30] scsi_eh_ready_devs at ffff0000806f2724
+ #7 [ffff00008632bde0] scsi_error_handler at ffff0000806f41d4
+ #8 [ffff00008632be70] kthread at ffff000080119ae0
+
+Reported-by: Tianxiong Lu <lutianxiong@huawei.com>
+Signed-off-by: Wu Bo <wubo40@huawei.com>
 ---
- drivers/scsi/iscsi_tcp.c         | 4 ++--
- drivers/scsi/libiscsi.c          | 2 +-
- drivers/scsi/scsi_devinfo.c      | 3 ++-
- drivers/scsi/scsi_lib.c          | 6 +++---
- drivers/scsi/scsi_transport_fc.c | 2 +-
- 5 files changed, 9 insertions(+), 8 deletions(-)
+ drivers/scsi/libiscsi.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
-index df47557a02a3..a9ce6298b935 100644
---- a/drivers/scsi/iscsi_tcp.c
-+++ b/drivers/scsi/iscsi_tcp.c
-@@ -180,7 +180,7 @@ static void iscsi_sw_tcp_state_change(struct sock *sk)
- }
- 
- /**
-- * iscsi_write_space - Called when more output buffer space is available
-+ * iscsi_sw_tcp_write_space - Called when more output buffer space is available
-  * @sk: socket space is available for
-  **/
- static void iscsi_sw_tcp_write_space(struct sock *sk)
-@@ -353,7 +353,7 @@ static int iscsi_sw_tcp_xmit(struct iscsi_conn *conn)
- }
- 
- /**
-- * iscsi_tcp_xmit_qlen - return the number of bytes queued for xmit
-+ * iscsi_sw_tcp_xmit_qlen - return the number of bytes queued for xmit
-  * @conn: iscsi connection
-  */
- static inline int iscsi_sw_tcp_xmit_qlen(struct iscsi_conn *conn)
 diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
-index 1e9c3171fa9f..8a4552f09dfe 100644
+index 1e9c317..2570768 100644
 --- a/drivers/scsi/libiscsi.c
 +++ b/drivers/scsi/libiscsi.c
-@@ -777,7 +777,7 @@ int iscsi_conn_send_pdu(struct iscsi_cls_conn *cls_conn, struct iscsi_hdr *hdr,
- EXPORT_SYMBOL_GPL(iscsi_conn_send_pdu);
+@@ -2380,7 +2380,17 @@ int iscsi_eh_session_reset(struct scsi_cmnd *sc)
  
- /**
-- * iscsi_cmd_rsp - SCSI Command Response processing
-+ * iscsi_scsi_cmd_rsp - SCSI Command Response processing
-  * @conn: iscsi connection
-  * @hdr: iscsi header
-  * @task: scsi command task
-diff --git a/drivers/scsi/scsi_devinfo.c b/drivers/scsi/scsi_devinfo.c
-index ba84244c1b4f..d92cec12454c 100644
---- a/drivers/scsi/scsi_devinfo.c
-+++ b/drivers/scsi/scsi_devinfo.c
-@@ -559,7 +559,8 @@ static int scsi_dev_info_list_add_str(char *dev_list)
- }
- 
- /**
-- * get_device_flags - get device specific flags from the dynamic device list.
-+ * scsi_get_device_flags - get device specific flags from the dynamic
-+ *	device list.
-  * @sdev:       &scsi_device to get flags for
-  * @vendor:	vendor name
-  * @model:	model name
-diff --git a/drivers/scsi/scsi_lib.c b/drivers/scsi/scsi_lib.c
-index 97ff31ed2a44..f74db5160f23 100644
---- a/drivers/scsi/scsi_lib.c
-+++ b/drivers/scsi/scsi_lib.c
-@@ -1502,7 +1502,7 @@ static void scsi_softirq_done(struct request *rq)
- }
- 
- /**
-- * scsi_dispatch_command - Dispatch a command to the low-level driver.
-+ * scsi_dispatch_cmd - Dispatch a command to the low-level driver.
-  * @cmd: command block we are dispatching.
-  *
-  * Return: nonzero return request was rejected and device's queue needs to be
-@@ -2364,7 +2364,7 @@ scsi_device_set_state(struct scsi_device *sdev, enum scsi_device_state state)
- EXPORT_SYMBOL(scsi_device_set_state);
- 
- /**
-- * 	sdev_evt_emit - emit a single SCSI device uevent
-+ * 	scsi_evt_emit - emit a single SCSI device uevent
-  *	@sdev: associated SCSI device
-  *	@evt: event to emit
-  *
-@@ -2412,7 +2412,7 @@ static void scsi_evt_emit(struct scsi_device *sdev, struct scsi_event *evt)
- }
- 
- /**
-- * 	sdev_evt_thread - send a uevent for each scsi event
-+ * 	scsi_evt_thread - send a uevent for each scsi event
-  *	@work: work struct for scsi_device
-  *
-  *	Dispatch queued events to their associated scsi_device kobjects
-diff --git a/drivers/scsi/scsi_transport_fc.c b/drivers/scsi/scsi_transport_fc.c
-index 2ff7f06203da..42a6dd3bd19f 100644
---- a/drivers/scsi/scsi_transport_fc.c
-+++ b/drivers/scsi/scsi_transport_fc.c
-@@ -629,7 +629,7 @@ fc_host_post_vendor_event(struct Scsi_Host *shost, u32 event_number,
- EXPORT_SYMBOL(fc_host_post_vendor_event);
- 
- /**
-- * fc_host_rcv_fpin - routine to process a received FPIN.
-+ * fc_host_fpin_rcv - routine to process a received FPIN.
-  * @shost:		host the FPIN was received on
-  * @fpin_len:		length of FPIN payload, in bytes
-  * @fpin_buf:		pointer to FPIN payload
+ 	mutex_lock(&session->eh_mutex);
+ 	spin_lock_bh(&session->frwd_lock);
+-	if (session->state == ISCSI_STATE_TERMINATE) {
++
++	/*
++	 * During shutdown, if session is prematurely disconnected
++	 * recovery won't happen and there will be hung cmds.
++	 * To solve this case, all cmds would be enter scsi EH.
++	 * But the EH path will wait for wait_event_interruptible() completed,
++	 * when the session state machine is not ISCSI_STATE_TERMINATE,
++	 * ISCSI_STATE_LOGGED_IN and ISCSI_STATE_RECOVERY_FAILED.
++	 */
++	if (session->state == ISCSI_STATE_TERMINATE ||
++		unlikely(system_state != SYSTEM_RUNNING)) {
+ failed:
+ 		ISCSI_DBG_EH(session,
+ 			     "failing session reset: Could not log back into "
 -- 
-2.26.2
+1.8.3.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/8ed7f149f25a363eea76e514c253c4e337c59379.1603469755.git.mchehab%2Bhuawei%40kernel.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1604132622-497115-1-git-send-email-wubo40%40huawei.com.
