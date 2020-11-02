@@ -1,35 +1,33 @@
-Return-Path: <open-iscsi+bncBCHM7NWZ3UFBB6PL636AKGQES6GWIEA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDO7B5X3UIBBBYECQD6QKGQE5FBTK5Y@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pj1-x103a.google.com (mail-pj1-x103a.google.com [IPv6:2607:f8b0:4864:20::103a])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99CF82A1A39
-	for <lists+open-iscsi@lfdr.de>; Sat, 31 Oct 2020 20:07:39 +0100 (CET)
-Received: by mail-pj1-x103a.google.com with SMTP id t15sf1184169pja.7
-        for <lists+open-iscsi@lfdr.de>; Sat, 31 Oct 2020 12:07:39 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1604171258; cv=pass;
+Received: from mail-oo1-xc3a.google.com (mail-oo1-xc3a.google.com [IPv6:2607:f8b0:4864:20::c3a])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E6732A2B0B
+	for <lists+open-iscsi@lfdr.de>; Mon,  2 Nov 2020 13:53:54 +0100 (CET)
+Received: by mail-oo1-xc3a.google.com with SMTP id k16sf4905127oom.10
+        for <lists+open-iscsi@lfdr.de>; Mon, 02 Nov 2020 04:53:53 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1604321633; cv=pass;
         d=google.com; s=arc-20160816;
-        b=XFHrhWUDIkRfHCFAovKWK5cFOXLcXxA8sYL2rNxqov68LIMw1l2HpHpRbUYYgITMeU
-         P1UibgPl5EB7us8b/8Pf72E3coPVq93qOe/zJ3zJU0H688lSJxpjhMVJLyJVlYMfJo+u
-         +l5UTsUGHdBsyGiu6uoLO3qdj7Icqh3rGEDkug5ZzZ9oyLaGDFL6bX/DKMWK6uy9r8vs
-         GpVUQaa4af/4ez7Qh8jbvYgLTwnQI74J6IjOvWhr53lS82hxhwvLCbOA6PRtc1Ss1lAI
-         8H2EtlcsHgBxS+OQtLdMYycu6X+B1dc8+bFRxeJNXG4fS6/W+TjJyvIkh5KKhnFiiFYc
-         n9wA==
+        b=rwdU4IMcsEWqoJARv4lZvuMzFoOWJQcYdAIy8ConS2YjEM7Ms65Rk37F+z4sV1/9My
+         48tS9+OUyRkDHZAvsLZi9MYAkJtCkEKLpPvdJt6kCDONg4k/5xeCIrEjaElwxEi0Sr/h
+         0HcsplzHj6dzRCxmrlm2fteRF61zPcv3yYsSw1j+mDCTsW1+ZObQDnteQ0G8yrdZ2lVf
+         A+NkNvc6AThrBT4n8rJwBdvkpHRSHDP+eirFBSm+IMK0pnhLgo2jpNimoe+v/PmK1Yn/
+         5j+WOydEyAlkxm9axxBoUrCCPaIjrXa9RJIQqOjWrb+ugs34Vp+g3x5XjdbCUndwv02J
+         bCzQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:content-language
          :in-reply-to:mime-version:user-agent:date:message-id:from:references
          :cc:to:subject:sender:dkim-signature;
-        bh=FA6RuX1ddv25kJBlLkMmFIC3iWhpuF+JOYJepC8hf8E=;
-        b=ZRFva/u9svZk2BQyugWdkukKQRb0N42PQgZUu6skVnU0Jgfu2J4zGQUoLQrcyo2HTc
-         r/abOe8AAWTEOgG4SR0YgReUD6uq6b0lLOpF9MossUv792opW6p8MllkSKDg3mYXCjP+
-         XBL8sztJwAPFZRcm7aZJoUldY0zLEhnJCMV+l49GZV1sBcTKHfhaxC0ZAkYBNZ4kaa1Y
-         QsmcTUzFuHBhSiLx8eqK+vBApxDekafFgs6shfNQsLZHUINrzGSGFmh5riPxLbppGbk8
-         lDdLlAnXKmtBed3eK4DWbRxVuf1091RKQAfgvbXokPVeKQ0bplzU4f1QBOVWv/mgsFuW
-         yw6g==
+        bh=+sHSHnySOlzWX5vkibZgXHAcRQtoTPmzfJlAAkN813c=;
+        b=ibtrBvkKE1oMUagv0G2QxZEnXY4nx7xB/J1Cok+t492C7fUdf0SghP0juvDlRFf3qS
+         znTzRn13k52sbuiN4fULv0odGTQDdGMahe+S81nymvfrGyLB9Uaa6YAFr1bx/HW/Z17Y
+         aL62TiJvyvTFEBzye6v+F9gCvRG1GzmiPM8vPigcB9aUYnRY8EUoe1eZEg1kEJIlPfOU
+         63ZHYC1iBuHrnA0v8aKFvb2q6Bxm66zSbozkXaz+eDn5I/NnUdiIn3C/58MfcVj83ILG
+         eF9dWGoD5UHoo/vkf0dyTFFoilAvdtbDNMGDRD89+Rp+wdlEAU+tqWMyfwhS4ZTNHsD/
+         Pqnw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=N4mmZc5M;
-       spf=pass (google.com: domain of michael.christie@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+       spf=pass (google.com: domain of wubo40@huawei.com designates 45.249.212.32 as permitted sender) smtp.mailfrom=wubo40@huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:subject:to:cc:references:from:message-id:date:user-agent
@@ -37,13 +35,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=FA6RuX1ddv25kJBlLkMmFIC3iWhpuF+JOYJepC8hf8E=;
-        b=E9diImmPml2DacppCG/sZ3u6Iom/mbFK9eeyIodVrsfvZ83eiw49b0YHoI4aITxpBT
-         eZ1NSVuRyHRDieASE8yR3qNLmfvi4LIZI/Cmy6Euzas7VGZti/2/O+d8Ea94LR/vhu+i
-         XuGf5KFIoqQ5+iuLZ1G+NP8nWepbno5hsE5o2s3pi5zlr9+ASRHfeSvypiQ+dlWHYgUp
-         hlqUPodqFkoHJQXSMnbKgYkwOLREzwE0nXYKs+Qb63TUV4SB0oXrF1CW3xF/jvmvdLvQ
-         LgrGuvSrC5KLLR/bHsdPqtBSsVDLVzUUdhmRkXoaZGrCexFwa1ow1DcpYmXbU0eZXgZ5
-         CZEw==
+        bh=+sHSHnySOlzWX5vkibZgXHAcRQtoTPmzfJlAAkN813c=;
+        b=CfikjqPBgjcwKa/FZHsNyIkYA5RygUVlBak3C9fzRHU0wk5vgUAlxSpzRi0QhrOpsj
+         29TENr2H+CIycLkTL9He0QvHDepimAOKL3Ts+mKzy/Q0f0KZ8H+HZoFn9/yro/pFC9Hs
+         7YgR1pS5oFRXFM6pL69nlFlbfz86B23CqhmFBA1rPZHYYcQv1cg20ZLjWNJmUEJd+Dn0
+         nCYPiEyTqUgmg5VWg5dUJEiUsYOKFXcFW4o5PQ+1ERRH0L+/YI5zW3VeB09cIPIhL5JP
+         4Uq7/5uaMVbxvEF3ZcKeWzL8Y52mxBolSbJkyZf1ljlaJtZbfZrrZt1jz8f3CQiyCC7I
+         7oTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
@@ -51,106 +49,76 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=FA6RuX1ddv25kJBlLkMmFIC3iWhpuF+JOYJepC8hf8E=;
-        b=fowbB1F739BgI+o1XEEYHFxYwBj2LsMcV2jMIvbl4ADoxyNL7D1uZ9RcAn3X5b9dMX
-         jsYu1x7EJjSvDe2sQkMM01NNcIe8iBV8gcIw8je212oEl65z3BAvcw1kHmaEiZxH3A5S
-         mbzcBk0yVD3uWwlJ5PRiZN9ExS7Nyis1dA+UPvw9VvDDpSECQSw6SmGOazFBVAj7EGzb
-         2lquFNm0ZCcvWvdoieRBEuGqMhSaVupmjecEnwhMP3D30Zxs1fUTE9xPFdK1aqEAn8A3
-         FLQf67oOXUhYIlulgM4/RCFehqlytZAgouqSEMQVrzbNcakp3zen7pNJLm8ELLf0xKJZ
-         1byg==
+        bh=+sHSHnySOlzWX5vkibZgXHAcRQtoTPmzfJlAAkN813c=;
+        b=J2Acl0XDD/WPVydnNeMHYy+/qiSQgto2F7sqORP50Ce2t7oZtkmIT86Fp0VobD6xcf
+         hhXwlbgOpUPja7CF5iH5BVZDOZAlttOCQgK52QwgYYKqMxQo8Yv15JBN7+wOrZUPtqV1
+         JjPYan8SRGuv3z0M1Y8r2mmGAftZOaL7DeHzL/8zgIQKoNXFcJfpJdqCq2Tt0EoR8JF8
+         j5IkmzFyFT3siO5HvADE4D13h/m+AodS19tpuSz/lO9Uhham+JPV1p/bI0XGlWcDl7eq
+         BtMP76KNXONKiXtIATAThb9UKQNChASLXGwIoDxfJAoECZuN2jmgGbzdZX2VS5CkbQnN
+         0Fbw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533Bu7wJLj9mRgBJat7NEvDSMXbAFb+3QiTpwDk1U1Y6trLKmMmQ
-	JAs9jeQuMHpznlfNC3/7is4=
-X-Google-Smtp-Source: ABdhPJyJIXCL8pLzaMIt34Fs5B8J6a7iGh3Ftg6jG9PCretNT3DejOsBSPUZnUp9kSNeBVMfJE3i7g==
-X-Received: by 2002:a05:6a00:2d5:b029:13c:1611:653b with SMTP id b21-20020a056a0002d5b029013c1611653bmr15349028pft.13.1604171257705;
-        Sat, 31 Oct 2020 12:07:37 -0700 (PDT)
+X-Gm-Message-State: AOAM533jUsPBaPkYtceDi2oUb2klETj8HA6zsoynvv2VWFjw40tEH2UG
+	3H0TpEQw2onybBomeiu63N4=
+X-Google-Smtp-Source: ABdhPJwiIsZI7vrIj6Rpbt2EM4wEHhhXFiLOgWB+GK96o2OzqKG0WQm8LUK9CkrSJyvAW4xLCMwBcQ==
+X-Received: by 2002:a4a:c218:: with SMTP id z24mr11999761oop.9.1604321633023;
+        Mon, 02 Nov 2020 04:53:53 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a62:ae08:: with SMTP id q8ls3423505pff.0.gmail; Sat, 31 Oct
- 2020 12:07:37 -0700 (PDT)
-X-Received: by 2002:aa7:8f10:0:b029:161:79ae:eace with SMTP id x16-20020aa78f100000b029016179aeeacemr14929320pfr.45.1604171256980;
-        Sat, 31 Oct 2020 12:07:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1604171256; cv=none;
+Received: by 2002:a05:6830:1f59:: with SMTP id u25ls3506236oth.1.gmail; Mon,
+ 02 Nov 2020 04:53:52 -0800 (PST)
+X-Received: by 2002:a05:6830:19f4:: with SMTP id t20mr3984270ott.239.1604321632551;
+        Mon, 02 Nov 2020 04:53:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1604321632; cv=none;
         d=google.com; s=arc-20160816;
-        b=GjKb3gUBiACM/akxG+DkMiN1uTn40527CQ2xd6+6Pda0YZYWS6KybyoL5NChAFR5zr
-         Izk5qZFKsQwTymYgX9ZAPjf17vP6UQb1m01dBkyoXMFeD63hDY341Vqp6Q1232CVwUoU
-         RwVu5rrz6qUPk0BbFxCxkxZgNRMF+cMm71mTIg1CRVMUnG5mvSWryUKtytMauoVs8cXX
-         J52O0kz2XdDxtbGvlssZ3cx74Y1zAip+lMRH9j1kjtRenrmhbNBDpvq4ksORwPePVVpx
-         8BXnJRjGNA6HWBTOrHyuNJIQcYY3GxqhebV2e8neRl1CC86nuMVkpwrdU8msWv8L7kGj
-         cw5A==
+        b=SZnP79XGPeBp0c6bSng/MT6gyqDgyLimjLmrMTGhPZJfqn2SaWTic7X+8L6fH96TKx
+         0Iaz5/mqqyRNxd8NP4nx6n2Rt/sdMI+DvZYRADu10pOHeCakyrqXZpzlsVwJXZrrMze4
+         pMs2BL96o5bybcqcCrLNYJt9Enh+chrk6B16NKsVayg3D+YQT57KV49cxhrR+oIzZFUQ
+         R0WGWJa/uCrOFQLP3meJWfDtFNUGFjTu4D+XpgF7HyXXSUcwT2VtMw1xgAz01WrZ9Z/0
+         CZUC/+wdZgbHXJ1AwUpjbC2iC4z5tvUaBxANd95F1sAEFw83cZshWJrGJzmXqDocy9+N
+         QK7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :dkim-signature;
-        bh=xi/CFWuKgz+ABQ83ow+3Sm141qAtmXncHIOTvxTiLVM=;
-        b=W6m4UuVP5qvpX0Ph+3B5Ic9eK1tNyLtfkc97W1jRl1JKGnXE57v1hlj9wmfslkpjGm
-         THk5PiPCRH24G8lZxDCs5XUPOYPn9PZEt5b9HOhCFScMXRMqll3g1axH/gYi60XXT3X9
-         OW3mmj7esusOxC1w/2mOdT6Se6sgrkHyTVTa6OKDyp8WRGoPFXx675ka8Gu6k0NqSm0H
-         rHDGSP66dtlhLLOrVXiuEPwRPYrWu0PhUGEPDiQnHqae9ViLBFhZSDjLL1J8DyEGNp8O
-         Vqv5TWQ1plw1sPxkLtssJ7vHNa35rF4eGX5teOwKWL3UOsxhOEb16LCLP0igWYuVpBJT
-         QFzQ==
+         :user-agent:date:message-id:from:references:cc:to:subject;
+        bh=CYCMej33H70M0ftaOsflbG9NXd576DDW3GGirZNH1jo=;
+        b=fjZ8LO6tVII64rF9R3sKCLoqz/4b4VePRjOnc0zwaYXV02sWUy+TwatTxZPrzXw4bN
+         hI+MTO4KiJQgYXa0CHhEhLYpW879ila84WoYwYvQJ8rEyhkzULkg+wQJC2cfTK1FMN/i
+         5/dDEx0IbnYxgdll0hNYPdYvPS5Ey4mSPVwsjaiVDn/t5ELBRqpkfiGu8fegsvf87jY2
+         KiRx1DLp0aMtcdeoDmVVvpEf+I3YjoZ1Guf8Sjz/hmJE/juV/0U/afi+dMj/tuZAk0pX
+         gFMpemY3hjRxNV/lYkx6vl4Mr/uGU3TTVH131PIlVKjgbKOUF9WbiWVo17c95QPuG+Wp
+         WzFQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=N4mmZc5M;
-       spf=pass (google.com: domain of michael.christie@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from aserp2120.oracle.com (aserp2120.oracle.com. [141.146.126.78])
-        by gmr-mx.google.com with ESMTPS id i4si533916pjj.2.2020.10.31.12.07.36
+       spf=pass (google.com: domain of wubo40@huawei.com designates 45.249.212.32 as permitted sender) smtp.mailfrom=wubo40@huawei.com
+Received: from szxga06-in.huawei.com (szxga06-in.huawei.com. [45.249.212.32])
+        by gmr-mx.google.com with ESMTPS id r6si1931541oth.4.2020.11.02.04.53.52
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 31 Oct 2020 12:07:36 -0700 (PDT)
-Received-SPF: pass (google.com: domain of michael.christie@oracle.com designates 141.146.126.78 as permitted sender) client-ip=141.146.126.78;
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-	by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 09VJ7ZQR115962;
-	Sat, 31 Oct 2020 19:07:35 GMT
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-	by aserp2120.oracle.com with ESMTP id 34gyvks4yp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 31 Oct 2020 19:07:35 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-	by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 09VJ6G99170440;
-	Sat, 31 Oct 2020 19:07:35 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-	by aserp3020.oracle.com with ESMTP id 34gyqys3xy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 31 Oct 2020 19:07:35 +0000
-Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
-	by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 09VJ7RDe003531;
-	Sat, 31 Oct 2020 19:07:31 GMT
-Received: from [20.15.0.202] (/73.88.28.6)
-	by default (Oracle Beehive Gateway v4.0)
-	with ESMTP ; Sat, 31 Oct 2020 12:07:27 -0700
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 02 Nov 2020 04:53:52 -0800 (PST)
+Received-SPF: pass (google.com: domain of wubo40@huawei.com designates 45.249.212.32 as permitted sender) client-ip=45.249.212.32;
+Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.60])
+	by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4CPtBR6X17zhfpq;
+	Mon,  2 Nov 2020 20:53:19 +0800 (CST)
+Received: from [10.174.179.35] (10.174.179.35) by
+ DGGEMS407-HUB.china.huawei.com (10.3.19.207) with Microsoft SMTP Server id
+ 14.3.487.0; Mon, 2 Nov 2020 20:53:11 +0800
 Subject: Re: [PATCH] scsi: libiscsi: Fix cmds hung when sd_shutdown
-To: Wu Bo <wubo40@huawei.com>, linux-scsi@vger.kernel.org,
-        open-iscsi@googlegroups.com
-Cc: lduncan@suse.com, cleech@redhat.com, jejb@linux.ibm.com,
-        lutianxiong@huawei.com, linfeilong@huawei.com,
-        liuzhiqiang26@huawei.com
+To: <linux-scsi@vger.kernel.org>, <open-iscsi@googlegroups.com>
+CC: <lduncan@suse.com>, <cleech@redhat.com>, <jejb@linux.ibm.com>,
+	<lutianxiong@huawei.com>, <linfeilong@huawei.com>, <liuzhiqiang26@huawei.com>
 References: <1604132622-497115-1-git-send-email-wubo40@huawei.com>
-From: Mike Christie <michael.christie@oracle.com>
-Message-ID: <15627360-dd21-074c-868b-88d641372594@oracle.com>
-Date: Sat, 31 Oct 2020 14:07:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+From: Wu Bo <wubo40@huawei.com>
+Message-ID: <1c38befc-3faa-8420-9156-3804f5129475@huawei.com>
+Date: Mon, 2 Nov 2020 20:53:11 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
 In-Reply-To: <1604132622-497115-1-git-send-email-wubo40@huawei.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Language: en-US
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9791 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 mlxscore=0 adultscore=0
- suspectscore=0 bulkscore=0 spamscore=0 phishscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2010310158
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9791 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 clxscore=1011
- impostorscore=0 mlxscore=0 mlxlogscore=999 lowpriorityscore=0 adultscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 spamscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2010310158
-X-Original-Sender: michael.christie@oracle.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2020-01-29 header.b=N4mmZc5M;
-       spf=pass (google.com: domain of michael.christie@oracle.com designates
- 141.146.126.78 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+X-Originating-IP: [10.174.179.35]
+X-CFilter-Loop: Reflected
+X-Original-Sender: wubo40@huawei.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of wubo40@huawei.com designates 45.249.212.32 as
+ permitted sender) smtp.mailfrom=wubo40@huawei.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -164,7 +132,7 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 10/31/20 3:23 AM, Wu Bo wrote:
+On 2020/10/31 16:23, Wu Bo wrote:
 > For some reason, during reboot the system, iscsi.service failed to
 > logout all sessions. kernel will hang forever on its
 > sd_sync_cache() logic, after issuing the SYNCHRONIZE_CACHE cmd to all
@@ -194,84 +162,28 @@ On 10/31/20 3:23 AM, Wu Bo wrote:
 > [ 1348.604590]  el0_svc_handler+0x78/0xe0
 > [ 1348.604877]  el0_svc+0x10/0x260
 > 
-> d754941225 (scsi: libiscsi: Allow sd_shutdown on bad transport) Once
-> solved this problem. The iscsi_eh_cmd_timed_out() function add system_state
-> judgment, and will return BLK_EH_DONE and mark the result as
-> DID_NO_CONNECT when system_state is not SYSTEM_RUNNING,
-> To tell upper layers that the command was handled during
-> the transport layer error handler helper.
-> 
-> The scsi Mid Layer timeout handler function(scsi_times_out) will be
-> abort the cmd if the scsi LLD timeout handler return BLK_EH_DONE.
-> if abort cmd failed, will enter scsi EH logic.
-> 
-> Scsi EH will do reset target logic, if reset target failed, Will
-> call iscsi_eh_session_reset() function to drop the session.
-> 
-> The iscsi_eh_session_reset function will wait for a relogin,
-> session termination from userspace, or a recovery/replacement timeout.
-> But at this time, the app iscsid has exited, and the session was marked as
-> ISCSI_STATE_FAILED, So the SCSI EH process will never be
-> scheduled back again.
-> 
-> PID: 9123   TASK: ffff80020c1b4d80  CPU: 3   COMMAND: "scsi_eh_2"
->   #0 [ffff00008632bb70] __switch_to at ffff000080088738
->   #1 [ffff00008632bb90] __schedule at ffff000080a00480
->   #2 [ffff00008632bc20] schedule at ffff000080a00b58
->   #3 [ffff00008632bc30] iscsi_eh_session_reset at ffff000000d1ab9c [libiscsi]
->   #4 [ffff00008632bcb0] iscsi_eh_recover_target at ffff000000d1d1fc [libiscsi]
->   #5 [ffff00008632bd00] scsi_try_target_reset at ffff0000806f0bac
->   #6 [ffff00008632bd30] scsi_eh_ready_devs at ffff0000806f2724
->   #7 [ffff00008632bde0] scsi_error_handler at ffff0000806f41d4
->   #8 [ffff00008632be70] kthread at ffff000080119ae0
-> 
-> Reported-by: Tianxiong Lu <lutianxiong@huawei.com>
-> Signed-off-by: Wu Bo <wubo40@huawei.com>
-> ---
->   drivers/scsi/libiscsi.c | 12 +++++++++++-
->   1 file changed, 11 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
-> index 1e9c317..2570768 100644
-> --- a/drivers/scsi/libiscsi.c
-> +++ b/drivers/scsi/libiscsi.c
-> @@ -2380,7 +2380,17 @@ int iscsi_eh_session_reset(struct scsi_cmnd *sc)
->   
->   	mutex_lock(&session->eh_mutex);
->   	spin_lock_bh(&session->frwd_lock);
-> -	if (session->state == ISCSI_STATE_TERMINATE) {
-> +
-> +	/*
-> +	 * During shutdown, if session is prematurely disconnected
-> +	 * recovery won't happen and there will be hung cmds.
-> +	 * To solve this case, all cmds would be enter scsi EH.
-> +	 * But the EH path will wait for wait_event_interruptible() completed,
-> +	 * when the session state machine is not ISCSI_STATE_TERMINATE,
-> +	 * ISCSI_STATE_LOGGED_IN and ISCSI_STATE_RECOVERY_FAILED.
-> +	 */
-> +	if (session->state == ISCSI_STATE_TERMINATE ||
-> +		unlikely(system_state != SYSTEM_RUNNING)) {
->   failed:
->   		ISCSI_DBG_EH(session,
->   			     "failing session reset: Could not log back into "
 
-Do you need this with the current code? If the system_state is not 
-SYSTEM_RUNNING above, shouldn't we call
+Hi,
 
-iscsi_conn_failure -> iscsi_conn_error_event ->
-stop_conn_work_fn -> iscsi_if_stop_conn(STOP_CONN_TERM) -> iscsi_conn_stop.
+Sorry, I did not add this commit:
 
-iscsi_conn_stop will set session->state to ISCSI_STATE_TERMINATE, so 
-when iscsi_eh_session_reset does:
+commit 0ab710458da113a71c461c4df27e7f1353d9f864
+Author: Bharath Ravi <rbharath@google.com>
+Date:   Sat Jan 25 01:19:25 2020 -0500
 
-wait_event_interruptible(conn->ehwait,
-                          session->state == ISCSI_STATE_TERMINATE ||
+     scsi: iscsi: Perform connection failure entirely in kernel space
 
-....
+It makes the session recovery in the kernel do not need iscsid.
 
-that will fail immediately right?
+This commit was not added in my system, So the problem still exists. 
+After adding the patch, Tested and verified that the problem I 
+encountered has been resolved.
+
+Please ignore this patch.
+
+Thanks.
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/15627360-dd21-074c-868b-88d641372594%40oracle.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1c38befc-3faa-8420-9156-3804f5129475%40huawei.com.
