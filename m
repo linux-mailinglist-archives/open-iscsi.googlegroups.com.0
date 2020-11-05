@@ -1,133 +1,86 @@
-Return-Path: <open-iscsi+bncBD54HHNYIIINBXMQ7UCRUBBLIE7S2@googlegroups.com>
+Return-Path: <open-iscsi+bncBD54HHNYIIIMVCMR7UCRUBA7EBNXW@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x137.google.com (mail-lf1-x137.google.com [IPv6:2a00:1450:4864:20::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2C4E2A841E
-	for <lists+open-iscsi@lfdr.de>; Thu,  5 Nov 2020 17:56:49 +0100 (CET)
-Received: by mail-lf1-x137.google.com with SMTP id v125sf854127lfa.21
-        for <lists+open-iscsi@lfdr.de>; Thu, 05 Nov 2020 08:56:49 -0800 (PST)
-ARC-Seal: i=3; a=rsa-sha256; t=1604595409; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=s5qjIvyUkBA45hj2DA7Pt4qg1UK4LCsDocYYnmzTrze4mRPQno8vng6/vGL3dkkcjJ
-         6vhUaCyUkQ8QkMc0e+j8a9/0F7ZUzNXuGWFVYcemvLc4lTF0YYOpRVCxk/rpnbR/y5dY
-         q0+wu7nzoRgqo/pIDP/PdZQ4AICt61O4egalCdYkG0gP2Oz39n3NUSaTBN7DUAKGmm2b
-         bZ/Oe4BOtU1vMyv+SiX+fF7FofgoenXqX/bgjJf8Zzmq7y496yqnEoJBj8spYNAiSxmV
-         6p+Fpsb2MHtUZeg5rLuFKgAW4J6XXa0fWIqC8fkIHNVyzN377VSZItM/duXBKy2JQkXe
-         vqCw==
-ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version
-         :content-language:in-reply-to:user-agent:date:message-id:autocrypt
-         :from:references:cc:to:subject:sender:dkim-signature;
-        bh=UV+/S5/l/gWOal4xVQ5pfD1phqc6scJu1pKYpwFu4yc=;
-        b=aQvdCVYDnhJ9xj0XbXwsa+SbmyAABTXLSk6ajduTPH2D6hpv1RsVEL666hVYX/ZShM
-         vvDuIOuvHYtBhtWtOnaNptGKPkZPJB4Gd56nQ1Lx28sqVlzlzDQSH7O8MXt+Z2/10H33
-         5PQS6ZkV8eJqPEa0tzN5Y4F3pAX3fp5Vrh2x//zKOuNqdsptheMoAVDrRlCfFIWOHt7E
-         dhKsS8YF0FmphQCth2OnzcrLvRNK9Qsf/NvZ9wtC7F3oqdG/bQVeg+KRd8CVxZELBZzv
-         RsCpYzy2uILTODk0qpjvN7+Xkw564FscM2EfyvBplk0uiezS/1Z/rX7NGanbIDygkRze
-         EYfw==
-ARC-Authentication-Results: i=3; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=mimecast20200619 header.b=VQUhsds4;
-       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
-       spf=pass (google.com: domain of lduncan@suse.com designates 62.140.7.102 as permitted sender) smtp.mailfrom=lduncan@suse.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
+Received: from mail-lf1-x140.google.com (mail-lf1-x140.google.com [IPv6:2a00:1450:4864:20::140])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E242A8620
+	for <lists+open-iscsi@lfdr.de>; Thu,  5 Nov 2020 19:30:35 +0100 (CET)
+Received: by mail-lf1-x140.google.com with SMTP id o7sf970277lfo.9
+        for <lists+open-iscsi@lfdr.de>; Thu, 05 Nov 2020 10:30:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:in-reply-to:content-language:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=UV+/S5/l/gWOal4xVQ5pfD1phqc6scJu1pKYpwFu4yc=;
-        b=Nazmu0wrLbQOLjmNIsqP+/tJiwt3+y451LP3e02NBrxaESMDyKrusUsykOf+0wuF8S
-         X1aNMsujDYsVMS3jHepkFhKF4MnhCeRDyoaK6hOEBrwNiSO7x4CjVEQg4eeKBstHwO7y
-         /ocw3asijGR3WqngpTYVSY4cbc/IFDfd2mmHg4pz8tNe2R4eLXRc24tq0KwAIoVjP4aR
-         5SCf+ZW27gMXChhl8JCTy9IUNx6m1nyAD9JSP5UzbTkZO6X7doVhuilS2wfmzyX0XpOq
-         lPtCTtbB19lJ2w5MB46rVVCLJMucLVxLyva3Tb/x4g0fGhv/ISYA3EOtznuQCdnrG69n
-         7QPQ==
+         :user-agent:in-reply-to:content-language:content-transfer-encoding
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=xPuFm22sQmdAXRWV7sp+4JH3vf+fwZGHrewFIXEAqJ0=;
+        b=A3dsVCPDWWbwA1IYLvCh7SFcZZNXgwgUqOr/c2HMi456n50oX4mdhChk9+8T9+JNfW
+         wgSr/IkIODGbYDenkRKC2Qfn6ar5aTOouEc7hTjAmPLe68gMQ0bDDVdbhZJNfSB39fOt
+         +sIDGhj7oRW1HevxmqOBobH9KLxICO9A7rccjskfELxfhWeHJm0i4WOmz4jWP6mtgAR7
+         7poRJhI3wI0rgUlesQQS2zFCRm9Hbw7604RnttsXfqQfmBz+PUnoTX6ZG6vIcq0MBCxK
+         O+S60SZ0pof5DQNDt5QLuIoBSzfXe7pEF4CUy6vDk4lH/keNRJfjTK/ERXciYnjfV1Dr
+         8W0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:in-reply-to:content-language
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=UV+/S5/l/gWOal4xVQ5pfD1phqc6scJu1pKYpwFu4yc=;
-        b=YFmM72ol3DfTD2gUjyyeyfS2AWRifAqwjiaFr46ohGYP3UkV+s0voRzDaoTROHkc0C
-         T0eSMEwwyf8y63aTKyBHdNSL37Rddo1gXSLyppmiPaN67XbliBuouPrmnlYC7qYgTZ2s
-         ZlBCBKx8V03EIFcRbTKbLQ5C53HHeA8NEbMIbcKqvxi1NTVoH1OPrgRHAN6oYJ/W4C9r
-         dl6uq5RkLN1fUI+FDUTtFmnCA5QTNybUCElfk7TXGE+mhl50wIllCMB/J/Eg5vJkA023
-         mMnKmUUY/4UR6ZySPyW5AA+H25eveYXGFYOLaK0ymvwvRxkqtdWIxH2pwk8bYoZbw+52
-         J5mg==
+         :content-transfer-encoding:mime-version:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=xPuFm22sQmdAXRWV7sp+4JH3vf+fwZGHrewFIXEAqJ0=;
+        b=kW/GEn5NetCgpIb4U1hQ9DHrKmgiqkE1lDmMOxyHhBoNhuZLGuk3OCmDOcHM5o5MbT
+         W9kDjqGwUQp1asBzJiuYt1ZcgxsHgVAW6RAArEEZJF8VsCk70EY0Vabhr8PLEOtr2cav
+         6XoiBPEbGV1UqsIUiUeAe2L9JoC3YR2eMMxTvOW0/vgW/gmEGN3gtpZ4jmCG+qxE4TKl
+         8akuVJVXm0totRJ9lWml48Xo+UBfvuU2lq/PRZWNiS1FbaSUfs4ffvKyqbPQR9PVWRfo
+         fnupM4BmsHWsAXM27C7HohE1jV93NZL+mbkjzhKuI+kLQmHOAWCl9SfXIccx9Ow/Mtz6
+         euvg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530jk5d/UAeZV/HPRtQGzBRAXRNDq/fR2OZMIhlbRU19zsHmQkNn
-	/tGvKfOfi9v/9F5iGHw0Pzs=
-X-Google-Smtp-Source: ABdhPJy0PxuGRerrzGs/PDJQtNac04LzCIyo6w7JFCVfaTWkO8Fxh5wYg344AHPmp1qtfmd9rcwSrA==
-X-Received: by 2002:ac2:5f56:: with SMTP id 22mr1521387lfz.136.1604595409388;
-        Thu, 05 Nov 2020 08:56:49 -0800 (PST)
+X-Gm-Message-State: AOAM530t7JqZHhIl8ow3RTINLtnkjG2Pipulq6Lp+k1OEHQ4vqZLn2vw
+	MTqYARgi+OEXHAGQx3Qx0OI=
+X-Google-Smtp-Source: ABdhPJwdb5jV6WLvEqucr4k8hyQR885yQgT/D7dRhROsulW87OV7h+FpcxiVcZRPziHtl1izYIJikw==
+X-Received: by 2002:a2e:3909:: with SMTP id g9mr1438746lja.436.1604601035292;
+        Thu, 05 Nov 2020 10:30:35 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a19:586:: with SMTP id 128ls1595782lff.1.gmail; Thu, 05 Nov
- 2020 08:56:48 -0800 (PST)
-X-Received: by 2002:a19:f50a:: with SMTP id j10mr1469453lfb.252.1604595407981;
-        Thu, 05 Nov 2020 08:56:47 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1604595407; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=n8dFLV9IVHakxGzF2TMEGbpbqRaKGrMzfOrF5Dq7VRp5Ok6v3fYXsaPCV4m4ejkjry
-         yBlUWXpuds8Dp9ipq5Rnk3igvK32mjqmheDDcExydL+YLiaEbiEm4M7kRsJMcJknbRnk
-         TWGAeDV21/DQZVFgQoFSxeAHJ0A1jbatB3bN0rclNaacD25HUUZ1VRpCcyClLOA2mfPU
-         t5Y86UGohw9ypPt2ZxXJHRXSBv/wBVAGVMu4+C3XXdBtVrd/JbD1TZKqs9mGKw8xCPiJ
-         WGshQabhHrci/69zogrbH28hAGwpkIn0UskqtnQmkYGQep04uhZWPAmKNY9zHVj9R7HN
-         qHKA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:content-transfer-encoding:content-language:in-reply-to
-         :user-agent:date:message-id:autocrypt:from:references:cc:to:subject
-         :dkim-signature;
-        bh=/FzfupCnyP9cuj9s8MX1EhCh7o1KeONKC7JKi6KLZN0=;
-        b=nbAvG6e7ZJJqvoVnXgp28VvBPW8KRIeHjPWGWDYlkreXzcBdFT0Y9U2QwjJUOq3Bku
-         0B1phO41qYsE9EyEzJZCBLarG3PNqS1rVSxXLOQVkPrvy+Gv6Z2SyJi+pD1Txeq1+NyL
-         NTZpYjUyZmR7VVmUOdSyRZXC1yNTdt/QxBCtfzW4cUS0ocvbCjsFcw7vNh4xw1qpqvBQ
-         SUwywVMsVYy7qpzHmQ2FbuOXTr3u13ivjuTVe0I/2PrhFZaiazhFYjfGFt3bdLrbnbwr
-         3WmUZhsIf7SCejDKAftsdWMEz0FYf2sTEEuYGpefN5iw405+xj8EShaeSFDQLnC3FHPh
-         j5rQ==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=mimecast20200619 header.b=VQUhsds4;
-       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
-       spf=pass (google.com: domain of lduncan@suse.com designates 62.140.7.102 as permitted sender) smtp.mailfrom=lduncan@suse.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
+Received: by 2002:a19:84c1:: with SMTP id g184ls1765459lfd.3.gmail; Thu, 05
+ Nov 2020 10:30:34 -0800 (PST)
+X-Received: by 2002:a19:700d:: with SMTP id h13mr1699083lfc.178.1604601033929;
+        Thu, 05 Nov 2020 10:30:33 -0800 (PST)
 Received: from de-smtp-delivery-102.mimecast.com (de-smtp-delivery-102.mimecast.com. [62.140.7.102])
-        by gmr-mx.google.com with ESMTPS id v24si78802lfo.5.2020.11.05.08.56.47
+        by gmr-mx.google.com with ESMTPS id y12si37679lfb.1.2020.11.05.10.30.33
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 05 Nov 2020 08:56:47 -0800 (PST)
+        Thu, 05 Nov 2020 10:30:33 -0800 (PST)
 Received-SPF: pass (google.com: domain of lduncan@suse.com designates 62.140.7.102 as permitted sender) client-ip=62.140.7.102;
-Received: from EUR03-DB5-obe.outbound.protection.outlook.com
- (mail-db5eur03lp2051.outbound.protection.outlook.com [104.47.10.51]) (Using
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+ (mail-he1eur02lp2052.outbound.protection.outlook.com [104.47.5.52]) (Using
  TLS) by relay.mimecast.com with ESMTP id
- de-mta-40-9R4UAGgWOymxiKsn6Vwv_Q-1; Thu, 05 Nov 2020 17:56:46 +0100
-X-MC-Unique: 9R4UAGgWOymxiKsn6Vwv_Q-1
+ de-mta-32-9POQdmosMrGOZTzWwzwC9A-1; Thu, 05 Nov 2020 19:30:32 +0100
+X-MC-Unique: 9POQdmosMrGOZTzWwzwC9A-1
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ApQ+kxA6WdsrH3VJgk0rnepUB1fEQv65VzX5acXvrthy89QkXJXdaGXLduNCQvwHb0eqEvFryPmU0nLy1stT13IKbzTYz10JfhswBF2EmsBX5Ux6fgIDcqFqz0VpoOEb1/s6OyZVJ8fLpHGP2LN7AHGyP8CfRPHIaULxZG9ycgaTzzS8b413oAtdonPZu2kd7H51I60EsC0GsRG1bXBT6MdaCbZYgJzAKXmngrs55pInP+K3h1Bcx9IiUZii8f+v1TYTu3fwWrlLUU3v5VZsTBkQvJvFFFR3tnxao+JGc9rwfrkYTweo8m++FCroUNgtpw8F2vjd9St6iAUbZCgVjQ==
+ b=CukxWFFT1WXP7LCpbnD38A8C0sOk1zTM3pdDlYa6ufbqP1zNeQ7GEyf1ns2DZU7d6iWnaYgU52YmeOCkil3AqL+a2bQZI5o2XoEgWus5PxM0/dh+5yyH+/pNL7Px2iyt//cENpnlt87Pet/uDRXn5hvmNCLFMjmI3bm6WpRqOHLvLm/6c0G2qa6gwY+xcmFMj2k59uNsSjjFoB/24VYE3OoFihuFNUKqlPne/ixK4bza2hsf5h1VqIrFhZqND/baWstQ5g/0zt01NX+HrboR0ydrm8rqzW26RzkP1b2WK3OddfIDb8SBQUHVLFpCtXfhZemG7/BuL5CZAvBJ7YbkBQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/FzfupCnyP9cuj9s8MX1EhCh7o1KeONKC7JKi6KLZN0=;
- b=eDQniD7dnzkneHzFTnfgmcod/GknnkExfVLTiD96qLyhbQXla39hQBIMvwF6xz/w7qurWKCEB1hnBA7LKHBDOpUQ5+PVcRINHI8wTH4ZqxW5UmE6dmMVROkhXafkPcQg5T6jtq29kxiXwCxnl25yHQUA87VRR0jn0YIowg0jZP7HT9J+w4ySdVF1+Qn4z7Srw7T2jbTkESM3tZnhJdOjLvtF9bQVk5eMsG1i1AZsFxSohxYh4rKkMYZYcRIl3MK1XClR9bxUsNKJkVJW3YyNaFUJVWznk8dCxtQvFsAVzpv8SmhZ3LCFumh0b6uZkAlp0mULR7xD9xN/qCJiei+8ZA==
+ bh=xzXuwhvkskKwfMc+ZCQpnKWxEmR/lViTgzkJFbRCV6Y=;
+ b=ChveBf3YpO8UAHWzYzryJSLfw45wpMb5NlfhksGpDZHSHqQJhdCdKZzBGlGmf7M0dVaCWxF8a3rDUlwsXczQygPsAFUtXSRkDPe6RCqjZ16iyMMrD3sYQDxyqYG7yaJ9PGs7vbXiG54hHAQ5LTPW6Lcnz6jypqET9iYtLWWCREMVOkcqkXujPEKkhZOuVM1PxmnhyQcVYLUhx33uFHAWVBs7pKBlPm2TsPPj/1fcNz/a0v/UG2cT5gr2vDPSdqTsy7oBOjE3N5LXMCuhgFHoArevV8Xz7APyWgBRdYhRDxc27CY/7xtZPCMPnMFYbICK1SpWxciyEjIyoCqX9HACzw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
  dkim=pass header.d=suse.com; arc=none
 Received: from AM5PR04MB3089.eurprd04.prod.outlook.com (2603:10a6:206:b::28)
- by AM6PR04MB4616.eurprd04.prod.outlook.com (2603:10a6:20b:1e::29) with
+ by AM6PR04MB4518.eurprd04.prod.outlook.com (2603:10a6:20b:1f::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.27; Thu, 5 Nov
- 2020 16:56:45 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Thu, 5 Nov
+ 2020 18:30:31 +0000
 Received: from AM5PR04MB3089.eurprd04.prod.outlook.com
  ([fe80::d0f5:2f85:a7f2:2952]) by AM5PR04MB3089.eurprd04.prod.outlook.com
  ([fe80::d0f5:2f85:a7f2:2952%7]) with mapi id 15.20.3499.032; Thu, 5 Nov 2020
- 16:56:44 +0000
-Subject: Re: [PATCH] open-iscsi: Fix memory leak in sysfs_get_str
-To: Wenchao Hao <haowenchao@huawei.com>, open-iscsi@googlegroups.com
-Cc: Wu Bo <wubo40@huawei.com>, linfeilong@huawei.com, rose.chen@huawei.com
-References: <20201105025925.29822-1-haowenchao@huawei.com>
+ 18:30:30 +0000
+Subject: Re: [PATCH] scsi: libiscsi: fix NOP race condition
+To: Mike Christie <michael.christie@oracle.com>, linux-scsi@vger.kernel.org
+CC: open-iscsi@googlegroups.com
+References: <20200918210947.23800-1-leeman.duncan@gmail.com>
+ <f0c9b3ff-7d93-9c2b-d405-e52fb4aa8c37@oracle.com>
 From: Lee Duncan <lduncan@suse.com>
 Autocrypt: addr=lduncan@suse.com; keydata=
  xsFNBE6ockoBEADMQ+ZJI8khyuc2jMfgf4RmARpBkZrcHSs1xTKVVBUbpFooDEVi49D/bz0G
@@ -212,46 +165,46 @@ Autocrypt: addr=lduncan@suse.com; keydata=
  iv2n7WpDcR/bT0ADCwtg8piRWMtA8Boc8w5WG06vphxLlDIe/hDMkNlgCUy84gLiRI76VaBh
  9eFpv8Bn4aZBVOiuzj4s2DSAp4G3loUsTuj4uxGgDlfhK1xdJhBvKdO8omG+A73DZ7aKxLPa
  Xd8p+B+giaT8a1b5hWuz85V0
-Message-ID: <802c3a31-3c66-0947-31b1-df610196c5ac@suse.com>
-Date: Thu, 5 Nov 2020 08:56:39 -0800
+Message-ID: <c43612c1-14d7-4ccb-007f-23b9df1474cc@suse.com>
+Date: Thu, 5 Nov 2020 10:30:25 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.0
-In-Reply-To: <20201105025925.29822-1-haowenchao@huawei.com>
+In-Reply-To: <f0c9b3ff-7d93-9c2b-d405-e52fb4aa8c37@oracle.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 X-Originating-IP: [73.25.22.216]
-X-ClientProxiedBy: AM0PR08CA0017.eurprd08.prod.outlook.com
- (2603:10a6:208:d2::30) To AM5PR04MB3089.eurprd04.prod.outlook.com
+X-ClientProxiedBy: FR2P281CA0004.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a::14) To AM5PR04MB3089.eurprd04.prod.outlook.com
  (2603:10a6:206:b::28)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.20.3] (73.25.22.216) by AM0PR08CA0017.eurprd08.prod.outlook.com (2603:10a6:208:d2::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend Transport; Thu, 5 Nov 2020 16:56:43 +0000
+Received: from [192.168.20.3] (73.25.22.216) by FR2P281CA0004.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:a::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.10 via Frontend Transport; Thu, 5 Nov 2020 18:30:29 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 58081e15-8f5c-4f6f-c299-08d881abc6af
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4616:
-X-Microsoft-Antispam-PRVS: <AM6PR04MB4616B297308A10CCB992B45FDAEE0@AM6PR04MB4616.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:949;
+X-MS-Office365-Filtering-Correlation-Id: 4c22e11d-b189-473b-a393-08d881b8e008
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4518:
+X-Microsoft-Antispam-PRVS: <AM6PR04MB4518D12EBC8D09D601165A33DAEE0@AM6PR04MB4518.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: r1aIRdPjlElha6yczIHbZ8IA9+DWVFu1NRFTRdS9OLp++N6FcnkrPfepNR2NyAT2hINogkw8RKX71z715sVB96h01bP3p9hxW1GhLcoZQFPmf6ZLa53FLphzOUPMrNljZV2DbSKsZRgvHX4yHBwpm7FPse3Vzro4X95aYPkWXntPAXJIpNXdQboKiL+1p+CmkZxsMLw/5WVQK8fbtmLj8GbpuQ7ZB67S2jKACIjNoNXpV3I/FzwORfJgVp17RpATpxy/EJlNOQ2EpwmKSSkqbC7AE77G+XcvfPUOXwBTZbecbO1sxFH2x3KmCME33jrHyFiHMrtHs4MTVSn6FU24UyAZAS0JkyATL4ddVqLKtpTC3/ixbKBr/UITCzD2gCdq
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3089.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(346002)(376002)(39860400002)(396003)(136003)(5660300002)(4326008)(2906002)(31686004)(86362001)(31696002)(2616005)(52116002)(316002)(4744005)(36756003)(478600001)(956004)(8936002)(66946007)(186003)(6666004)(66556008)(16526019)(26005)(53546011)(83380400001)(16576012)(6486002)(8676002)(66476007)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: XAB04v9qy/u5bUuFRa3fiBqIKYMZ8IDwM/atEFACiiYLyNk8Mmw/2aRtMUKnss8Z71GfgHKbq1p5owhyzcEeWjxFebRBJJ/7jC8n3szz9H7raamVFnTIRsxtNQb5fr8TWlXN123Yvv8NXU3D/JVlGUiHAA/MvAZSJcs4ti1kcCwt2o/CG8O3pGx+nCksGreaBsfU4XyHoee7jEQF/Y3H306fH9sZEZBCS5I2fO1+qT1ymVFOO4LLADC24jxVRDJuVzYu1dGubUm8IioQEqZoF3xHulOvm6pIOwpzdGBjpxLSBsz7iO2YTz9/b3t14Rz7m8zOTHfPqFLFe3fmzgXz/yEJANedj7P/7EV6HYPAzwdfI9HOmninwk7g1j1MK5Lnaa4HdPNu2m3V+SNYiyV914lElaBc9udS6ykQHfJcE89VhoNqcX1YiQGIHv3NM4g8tGOEs2z9AjhjMMOBSrLgpOfoBSsq0apZHpqCFKES1D6qokS7Ey0NKzZP+WdQDRF7yvkSueliwrAY1ZJG+DfKlhSn7iySg0BJvbHknOZ4gE6p75MZZauRg9P+/WpM/8GcHXzQhlANIOWm3KBI52R0uxYB3rr+yvYNOgbGG8MlOuEWDnKwgqRX4UOHYPV5UTMx6Uvha30UKflciubSlTy6hg==
+X-Microsoft-Antispam-Message-Info: q+y9/OCVQ1HHA6nj57nBaiamYGKQNNsmKtjH9uFZk3wuvvu1zWBMDhCW/6IwYRSicujALPTDlmMk1qm3Pd7Rh569jb+Dw316PWoTx+BLmAjcXtE9llGBsKDFXvilzAV8PyswoJGbgJ1HMONPPvPwUX5Kql7uupZb7k3pcR4AOQNXCHTsVYIshECCcQUde7MpC5KvMYrLaghKpLbQRyqv2HCjFwb0eQScWxNmUPqGrrBXmkBftGig43mTRvhfuEqYYiYiEn6StCiy+Yl3LzPuTap0xLfqGE2zA6hyBEwjsz6klQ4+A/v46AK+PyEdAn+qaybTFTLfBcrrrAfS/itorL5uLDKdOJWkRap5+RVibYd+zXWRSkKYOULC88lqKu0m
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3089.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39850400004)(396003)(346002)(376002)(136003)(53546011)(478600001)(5660300002)(52116002)(4326008)(6666004)(66476007)(8936002)(86362001)(2906002)(66946007)(66556008)(83380400001)(8676002)(16576012)(26005)(316002)(36756003)(31696002)(956004)(6486002)(186003)(2616005)(16526019)(31686004)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: ysF4AEbEEvbaosC3lzTrkTfDr0DBFIuu7C3bz4lyEtkYgHfGtJ3nK9vyTVnvIN8gK5mBfCULjP9ZKYsu4BaRwob5VaoL3BprskgCSIYiqwr1GZhfUZS8YYCRZj5JqzS9Tp87tKqNG0qjarSUv9aGig48GVfYgRpO3DfT2dZ1rIG7uDS7ZwInxF7/ZLhI26/VJPD7vnsepoyzqJqm9COB/WxnLMAKeZ/YyaBx6T45f0psbZyKIRjBc0avos//0J51iILwOVDtnWWUob2V6zNDVegBXIic4oUhotHvg43spU5j5qcefVlYpdhjCTOiamZJ4iy6L+zCV8VixhLxKR5tYtCNoE4h5Mn7secanB2hBeWy3uCusPg6NAmk1kOpcmzLss18aiNQz6pQn8Xsz13L7mCEyrqkxZA1SvRdUN5WLLDmgpFJX5X80/d5WfH+r9RQ2Zb9vtpG9h2KQ4YCOu3MyrFAoJRfE8qjEEU+GaPiYy1zsbZwZ0JaduSwzpk/7y7E/3yDtON9tCt8s/2ETHUnp48Dp4SEuDRcqClYXgHxJxAq/rT900hv9vi0hbuwb2E37IgeM7gnEvbjig4QzXLEWPuWYA4NbDgkvncYRNAsVQfLNXH/9t6dkMoQVl0+dfrvEeS5FlZdWe0DFZi9Y2GTLA==
 X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58081e15-8f5c-4f6f-c299-08d881abc6af
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c22e11d-b189-473b-a393-08d881b8e008
 X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3089.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2020 16:56:44.9271
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2020 18:30:30.7941
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ffYtvpQ7JI2FgW3ARDuePD39JwU4OduLwS3DIFPx009HpNNgkNY9Bx4idMLz/LsOu118mvNG42WIkynICF6LnQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4616
+X-MS-Exchange-CrossTenant-UserPrincipalName: z6nZvlMzZb0iT4SeNBMI0pDfBBU0xSo+LNp3bKEBP+aCwsA9NaVC956L7aoqLtmqBqjTOAOavDTNfBDH66tS1g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4518
 X-Original-Sender: lduncan@suse.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@suse.com header.s=mimecast20200619 header.b=VQUhsds4;
-       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com
- dmarc=pass fromdomain=suse.com);       spf=pass (google.com: domain of
+ header.i=@suse.com header.s=mimecast20200619 header.b=WFLu0cyH;
+       arc=fail (body hash mismatch);       spf=pass (google.com: domain of
  lduncan@suse.com designates 62.140.7.102 as permitted sender)
  smtp.mailfrom=lduncan@suse.com;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.com
 Reply-To: open-iscsi@googlegroups.com
@@ -267,38 +220,115 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 11/4/20 6:59 PM, Wenchao Hao wrote:
-> strlen(sysfs_value) return 0 do not mean sysfs_value
-> is NULL and this memory should be freed
-> 
-> Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
-> ---
->  usr/sysfs.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/usr/sysfs.c b/usr/sysfs.c
-> index 2488160..8d37c69 100644
-> --- a/usr/sysfs.c
-> +++ b/usr/sysfs.c
-> @@ -574,8 +574,12 @@ int sysfs_get_str(char *id, char *subsys, char *param, char *value,
->  
->  	value[0] = '\0';
->  	sysfs_value = sysfs_get_value(id, subsys, param);
-> -	if (!sysfs_value || !strlen(sysfs_value))
-> +	if (!sysfs_value)
-> +		return EIO;
-> +	if (!strlen(sysfs_value)) {
-> +		free(sysfs_value);
->  		return EIO;
-> +	}
->  
->  	len = strlen(sysfs_value);
->  	if (len && (sysfs_value[len - 1] == '\n'))
-> 
+On 11/4/20 1:33 PM, Mike Christie wrote:
+> On 9/18/20 4:09 PM, Lee Duncan wrote:
+>> From: Lee Duncan <lduncan@suse.com>
+>>
+>> iSCSI NOPs are sometimes "lost", mistakenly sent to the
+>> user-land iscsid daemon instead of handled in the kernel,
+>> as they should be, resulting in a message from the daemon like:
+>>
+>>> iscsid: Got nop in, but kernel supports nop handling.
+>>
+>> This can occur because of the new forward- and back-locks,
+>> and the fact that an iSCSI NOP response can occur before
+>> processing of the NOP send is complete. This can result
+>> in "conn->ping_task" being NULL in iscsi_nop_out_rsp(),
+>> when the pointer is actually in the process of being set.
+>>
+>> To work around this, we add a new state to the "ping_task"
+>> pointer. In addition to NULL (not assigned) and a pointer
+>> (assigned), we add the state "being set", which is signaled
+>> with an INVALID pointer (using "-1").
+>>
+>> Signed-off-by: Lee Duncan <lduncan@suse.com>
+>> ---
+>> =C2=A0 drivers/scsi/libiscsi.c | 11 ++++++++++-
+>> =C2=A0 include/scsi/libiscsi.h |=C2=A0 3 +++
+>> =C2=A0 2 files changed, 13 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+>> index 1e9c3171fa9f..5eb064787ee2 100644
+>> --- a/drivers/scsi/libiscsi.c
+>> +++ b/drivers/scsi/libiscsi.c
+>> @@ -738,6 +738,9 @@ __iscsi_conn_send_pdu(struct iscsi_conn *conn,
+>> struct iscsi_hdr *hdr,
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 task->conn->session->age);
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>> =C2=A0 +=C2=A0=C2=A0=C2=A0 if (unlikely(READ_ONCE(conn->ping_task) =3D=
+=3D INVALID_SCSI_TASK))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WRITE_ONCE(conn->ping_task, =
+task);
+>> +
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!ihost->workq) {
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (iscsi_prep_mg=
+mt_task(conn, task))
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 goto free_task;
+>> @@ -941,6 +944,11 @@ static int iscsi_send_nopout(struct iscsi_conn
+>> *conn, struct iscsi_nopin *rhdr)
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iscsi_nopo=
+ut hdr;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iscsi_task *task;
+>> =C2=A0 +=C2=A0=C2=A0=C2=A0 if (!rhdr) {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (READ_ONCE(conn->ping_tas=
+k))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 retu=
+rn -EINVAL;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WRITE_ONCE(conn->ping_task, =
+INVALID_SCSI_TASK);
+>> +=C2=A0=C2=A0=C2=A0 }
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!rhdr && conn->ping_task)
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EINVAL;
+>> =C2=A0 @@ -957,11 +965,12 @@ static int iscsi_send_nopout(struct iscsi_c=
+onn
+>> *conn, struct iscsi_nopin *rhdr)
+>> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 task =3D __iscsi_conn_send_pdu(con=
+n, (struct iscsi_hdr *)&hdr,
+>> NULL, 0);
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!task) {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!rhdr)
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WRIT=
+E_ONCE(conn->ping_task, NULL);
+>=20
+> I don't think you need this. If __iscsi_conn_send_pdu returns NULL, it
+> will have done __iscsi_put_task and done this already.
 
-Reviewed-by: Lee Duncan <lduncan@suse.com>
+Not an issue, as you already replied.
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/802c3a31-3c66-0947-31b1-df610196c5ac%40suse.com.
+>=20
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iscsi_conn_printk=
+(KERN_ERR, conn, "Could not send nopout\n");
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EIO;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 } else if (!rhdr) {
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* only track our=
+ nops */
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 conn->ping_task =3D task;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 conn->last_ping =
+=3D jiffies;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>=20
+> Why in the send path do we always use the READ_ONCE/WRITE_ONCE, but in
+> the completion path like in iscsi_complete_task we don't.
+>=20
+
+The answer is that I was only modifying the code that needed changing
+for this bug. My first pass did not use READ_ONCE() or WRITE_ONCE(), but
+Hannes suggested the change.
+
+Now that I think about it more, the memory barrier stuff would make
+sense only if all the access to that field are protected.
+
+I will resubmit V2 of the patch.
+--=20
+Lee Duncan
+
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/c43612c1-14d7-4ccb-007f-23b9df1474cc%40suse.com.
