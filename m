@@ -1,62 +1,117 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBQOZ5T6QKGQESMERHUA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBK5U5X6QKGQEFTBOWDQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ot1-x339.google.com (mail-ot1-x339.google.com [IPv6:2607:f8b0:4864:20::339])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D822BFEB8
-	for <lists+open-iscsi@lfdr.de>; Mon, 23 Nov 2020 04:30:10 +0100 (CET)
-Received: by mail-ot1-x339.google.com with SMTP id q8sf7574951otk.6
-        for <lists+open-iscsi@lfdr.de>; Sun, 22 Nov 2020 19:30:10 -0800 (PST)
+Received: from mail-ua1-x93c.google.com (mail-ua1-x93c.google.com [IPv6:2607:f8b0:4864:20::93c])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A1CF2C002B
+	for <lists+open-iscsi@lfdr.de>; Mon, 23 Nov 2020 07:43:56 +0100 (CET)
+Received: by mail-ua1-x93c.google.com with SMTP id q90sf731855uaq.12
+        for <lists+open-iscsi@lfdr.de>; Sun, 22 Nov 2020 22:43:56 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1606113835; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=JqWE5Si3VNUESLcKBP5H1ZexDXxoML4dRIiiwlfjx9oiBbP4nQc2UZrJctuCuGt/PV
+         l+M9UihYQ2MqThRX2yqlN5CXqW0/88cQdNEw1TuiRyM8Me7Hs5aWe00HsE/SDAaHFA2A
+         g8NUnN1W2HXoWymxdzdWlKpwk8hh1upRimjFRd4Hn9UzGOqpt+Q6SV1TUIp6TqAYWGFp
+         ppFOECPa8gWOyd94656/LyC/fnjL+bCRSe+z8rgBbtWxtxhzoItuG3uRxqoH7Nn6jLii
+         XXvo9PUUy21nPRU9UNoY5gERPQWHdlYCGWB6X5hhI9njR4/PWpQZB8G69qPLNI8qnrXe
+         eLPA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=yrKTN8PJg2BCz8rWhZuc77DOrJU3dvdeoKYXWAwfTDM=;
+        b=pNxCNpAk1ytCL15lEfyuMDkXaZ6gN+oAOCQ0/X8UFLRulgJxueWW6tdXVo7utvOvjo
+         cTYOLzkJV87VIv0G7wNjq9BcjqBHNh/YawcvpkIzl+Fl0MXsmmC//8B0QD8Y4n8shAKS
+         wjzxTJ0jcRh90COiBACrQnFcI5Z78confNnqw+wwgisVSID6NvLdRaYuffTujgAOcULe
+         JbGDP0YM5UIpxtPkonJyyZJ0ptI05XalA9RdHYJW0yFpi/76I029xpYgXZr22l/cwJty
+         Lwgx3bt/TGF7MX54LzVkQzipRaaZyoFNfW9Y2Mu7E4W9iM1PEpGnyvUD0LL9LwMBHuiL
+         Dszg==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=gz0FPSEuLFZ55fBzwpmOh9yYyePBEefcxnouUvS8sMM=;
-        b=ro4M3sTpqVI9TMguuEeu13V2KLNXnbGOHUpkwnf50wYzc41XgTS557K2zka4EJI3TZ
-         ixUnZ9OdkvqtxYKAzu+z8fnat4HSgDS/mE8j1u9p1aESYImeQS6PQBwb4wxJaVv4QU7b
-         hz9v1vUZYM3Hp149xdvBHL6FF22MrCkXzEKg6cIRO8eRVeGvS+hmJ5W46RzGFFAJM803
-         tkz9gNANoApsqmpsyRakhhNETL2XnUxZHga2hTpgNvO8bh68ZpGZbohY4jAyFkVQWDoR
-         8fyQna6U5gGzITZzCtYOvgZpkjoAq0sArcZLeFTIWVNTWpz5pnBDWMmfbB+VjN9cMWEf
-         bWfA==
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=yrKTN8PJg2BCz8rWhZuc77DOrJU3dvdeoKYXWAwfTDM=;
+        b=MdvhoGDGEyB1UNRtPxm6BdgrG78ICW4qAPr14BNH5jNtmksTn6wYOdpA0GYo0G5VBz
+         5s9nytAVLgVV9GbKxc8oZLKBpJ49nQINJ9k1FD1dXwdUbY0nvIoMmCc7kxiBtbgKFAlW
+         iZ5WkPa05Mm/4QJ79CO+SKCbtZ09VY5zkeiTqVGBjEZWq0pP6c03C9LU1M99gcgN8gW7
+         X8YiXrrfRmqBBnJW68oGFbr1O54JgOrwTtBfgbv2Lw9j8RDtQt5fucXVM3UmgfElZCto
+         TMDbRrNNxOUlONaDxmQn6/TaGOZz3KqepttjOoOAYRrEdQ1M80MdmfDEPAiyRiccJxUj
+         FHeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=gz0FPSEuLFZ55fBzwpmOh9yYyePBEefcxnouUvS8sMM=;
-        b=oT6gzqwSK/H4K2Ai1MaHY4H9fta6y03hFjs8lsCEK26siHn0M9ewDU68rcL8dmvRv3
-         vZzsoj1fgJQm5kFeCs6UenURFws6FJ36Gh6xCpHhIXK8OESAUfkpdWPDVOUjq3SDB9+F
-         gwhnyqa7Bt+ODiQMXzddzZgcVvkOkDeZuOL07ApwRE/AbYv/HSto1kOMYHVmzDd3VQwY
-         o/so6eTWe2Wnpk4WUiZugsKtJlKZcx+8xVUOj5ilvRx34oxechvgkNlQ47et92GmKjsa
-         kSGujSG18KXExb4koafzk7NAi0A2iW/nQIlAPmWUoa3uIo7oeKLkTSbXcs6NbBA9mEAb
-         UMfw==
+        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=yrKTN8PJg2BCz8rWhZuc77DOrJU3dvdeoKYXWAwfTDM=;
+        b=XEfcTvfLhGJnm+xJEDMOho039afLoZsfAFUc4W4FETGCfu5VWsxbVevNC/qOUC8BT9
+         ubN7jswjB2XVqPJC1Hq1k9k4+3/2ATBD7k5Ew0QJ5v5gGOmvX0+9nu9oexoWbKH4H2a6
+         BBiznpuK7qf52vTzCEoM9bmeBu8+Ueo8P6JigDV+tEiqYglH6JQZj8Ys4Icj8vdhrot+
+         pizdmRWCrI6/9wqRiKt6GSKY3wdNa20n+VV42D/2Xc81qohvl4AmjHJ00wDzEWjHuQ12
+         4sivJ6jPTAVgLutxElfmX2dy/C1N1wx2G9C5RwLroUn2Odk1CNv5aV3xcgxUpKte1Kf6
+         ltIg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM5314EcGtJDvRT+HnXg+2cw5NCnSbHiaPKLsU7uJibqZ7ACbki3gp
-	W8YyWSMUTHccowniQuwROWc=
-X-Google-Smtp-Source: ABdhPJww21Hth13z+5OO5JA69CELUmdUPUVDnWRueSDfd+la002REo8vxcMC7AjmfNDVPvnVBeSOuw==
-X-Received: by 2002:a9d:4d17:: with SMTP id n23mr20579048otf.43.1606102209368;
-        Sun, 22 Nov 2020 19:30:09 -0800 (PST)
+X-Gm-Message-State: AOAM532NhqjCfkc8TbhSwiKEoHB2aihS0Qaonk7TdvRmHBI0dqHGDITw
+	dtS1k+U8oZGLfvKjM8nR9ko=
+X-Google-Smtp-Source: ABdhPJyn1ozEkG2rqRiStcCXf95diPdX7wIdnKVqlBSrHCNbE7xzVdayRTld3L1JujUrB/Fmo6+D5A==
+X-Received: by 2002:ab0:41a2:: with SMTP id 31mr15841480uap.23.1606113835203;
+        Sun, 22 Nov 2020 22:43:55 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a9d:51cd:: with SMTP id d13ls3063076oth.11.gmail; Sun, 22
- Nov 2020 19:30:08 -0800 (PST)
-X-Received: by 2002:a9d:7855:: with SMTP id c21mr14009812otm.218.1606102208776;
-        Sun, 22 Nov 2020 19:30:08 -0800 (PST)
-Date: Sun, 22 Nov 2020 19:30:07 -0800 (PST)
+Received: by 2002:a1f:1cc3:: with SMTP id c186ls732264vkc.4.gmail; Sun, 22 Nov
+ 2020 22:43:54 -0800 (PST)
+X-Received: by 2002:a1f:cd07:: with SMTP id d7mr19902993vkg.10.1606113834603;
+        Sun, 22 Nov 2020 22:43:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1606113834; cv=none;
+        d=google.com; s=arc-20160816;
+        b=TpdCkOwZXVOsR1fPOunwCtNkUQSzJf5J38ldsU0acs77KCYAmzv6T+Ttq8rXQmnBGl
+         F+OmZ6/f46+JSbr2nJNd8rRfEgMRgDvH4wpgJb3iKEg6QJHmxAy7fHtfh8s5g9n4eMW7
+         5Ut6GL8DV1vaOmtiRqXyEuPX88uSrwfsefMb03rSJwU9m5a/wxnoj66e7OP1eB2U1hSK
+         rwfp57Mb6eHljB/Vc/kBiz/f6O0mOWohNLePGt1IzjqfvuMMTvoNAyn86vh6im8zQeUB
+         Yx2hmJ9s9RrjANkpgTOgjQmOZGs8OL3j/nMf3cY2WKL6dMXL5mu0+gLfR9+ZvfEtULsf
+         Zeuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from;
+        bh=Rzz3rzFQt6WSYJcGS9bUg/KLwvqRteL6BIN/21JDlQM=;
+        b=wev91bk/0Wy3mNtR9He5oNSRqPEs6Kmelbo47aC2fzJJcuciThQhzcDeIepXhjodLO
+         UZFv7lJArXCmkfBYC81jmnGf8jAgazEiRmY357ElcN+xj2cjG9Y13o3xDL5hqOcnuIDz
+         +Ng5LRgi0ghuuK0TZgcUvAZOOF6ahk0gLtb2n1Oj4nI9VwEjFzWFrATXI1BJDV3++A1d
+         Lmy5b+DwPZjSZDsDdLTPlwgUeWjmKLO9FikygQjJphtRtuNmkGm8B/ZvEcYMi8Vt8p41
+         nRcIHWFfN4HhqhNA4S/OBTSvxzdZwmm8EWrjyEg2A6mDrp2idCQ4Jq52CQjWxtiYVmJ2
+         PENA==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com. [45.249.212.191])
+        by gmr-mx.google.com with ESMTPS id r18si623338vsk.1.2020.11.22.22.43.54
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 22 Nov 2020 22:43:54 -0800 (PST)
+Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) client-ip=45.249.212.191;
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
+	by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4Cfczz0VBdzLt4r;
+	Mon, 23 Nov 2020 14:43:27 +0800 (CST)
+Received: from huawei.com (10.175.101.6) by DGGEMS414-HUB.china.huawei.com
+ (10.3.19.214) with Microsoft SMTP Server id 14.3.487.0; Mon, 23 Nov 2020
+ 14:43:43 +0800
 From: Wenchao Hao <haowenchao@huawei.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <005b4cbd-779a-4dce-895c-ae910a9d20d1n@googlegroups.com>
-In-Reply-To: <2cc4955d-b619-4af4-9f15-d2cd4224e18bn@googlegroups.com>
-References: <20201120062052.51838-1-haowenchao@huawei.com>
- <5FB77CC6020000A10003CD42@gwsmtp.uni-regensburg.de>
- <2cc4955d-b619-4af4-9f15-d2cd4224e18bn@googlegroups.com>
-Subject: Re: [EXT] [PATCH] iscsiadm: Verify mode parameters when recognize
- mode
+To: Lee Duncan <lduncan@suse.com>, <open-iscsi@googlegroups.com>
+CC: <linfeilong@huawei.com>, Wenchao Hao <haowenchao@huawei.com>, Wu Bo
+	<wubo40@huawei.com>, Zhiqiang Liu <liuzhiqiang26@huawei.com>
+Subject: [PATCH v2] iscsiadm: Optimize the the verification of mode paramters
+Date: Mon, 23 Nov 2020 14:42:06 +0800
+Message-ID: <20201123064205.80364-1-haowenchao@huawei.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_766_165391415.1606102207811"
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [10.175.101.6]
+X-CFilter-Loop: Reflected
 X-Original-Sender: haowenchao@huawei.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as
+ permitted sender) smtp.mailfrom=haowenchao@huawei.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -70,106 +125,192 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_766_165391415.1606102207811
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_767_1350072570.1606102207811"
+The mode parameters should be check earlier when recognize the
+mode, rather than mutiple calls after all commandline parameters
+are parsed.
 
-------=_Part_767_1350072570.1606102207811
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
+Signed-off-by: Wu Bo <wubo40@huawei.com>
+Signed-off-by: Zhiqiang Liu <liuzhiqiang26@huawei.com>
+---
+ usr/iscsiadm.c | 89 +++++++++++++++++++++-----------------------------
+ 1 file changed, 37 insertions(+), 52 deletions(-)
 
-OK. There is a logic problem in this patch where I forgotten valid the 
-parameters mode in  verify_mode_params.
-I would send a V2 patch to fix both this problem and the submission 
-message, then make a pull request on github.
-
-On Sunday, November 22, 2020 at 1:02:55 AM UTC+8 The Lee-Man wrote:
-
-> I agree that the patch reduces lines of code, in that we would now have 
-> one call to verify params, rather than multiple calls. Also, as you say, we 
-> check a little sooner, although I don't think that's necessarily a feature.
->
-> But please change the wording of the submission to say something more like 
-> "Check mode parameters earlier and in one place"?
->
-> Please submit this as a pull request on github.com under 
-> open-iscsi/open-iscsi, as that saves me the trouble of manually scraping 
-> the patch off the email and applying it myself. Thank you.
->
-> On Friday, November 20, 2020 at 12:22:37 AM UTC-8 Uli wrote:
->
->> >>> Wenchao Hao <haowe...@huawei.com> schrieb am 20.11.2020 um 07:20 in 
->> Nachricht 
->> <20201120062052.5...@huawei.com>: 
->> > Parameters verify should be performed as soon as possible 
->> > to avoid unuseless work. 
->>
->> "avoid unuseless work" ;-) 
->>
->> Is that useful work? 
->>
->>
->>
->>
+diff --git a/usr/iscsiadm.c b/usr/iscsiadm.c
+index 311978e..667f83c 100644
+--- a/usr/iscsiadm.c
++++ b/usr/iscsiadm.c
+@@ -101,6 +101,22 @@ enum _print_node_tree_mode {
+ 	_PRINT_MODE_NODE,
+ };
+ 
++struct verify_mode_t {
++	char *mode;
++	char *allowed;
++	int skip_m;
++};
++
++static const struct verify_mode_t mode_paras[] = {
++	[MODE_DISCOVERY] = {"discovery", "DSIPdmntplov", 0},
++	[MODE_DISCOVERYDB] = {"discovery", "DSIPdmntplov", 0},
++	[MODE_NODE] = {"node", "RsPIdmlSonvupTULW", 0},
++	[MODE_SESSION] = {"session", "PiRdrmusonuSv", 1},
++	[MODE_HOST] = {"host", "CHdmPotnvxA", 0},
++	[MODE_IFACE] = {"iface", "HIdnvmPoCabci", 0},
++	[MODE_FW] = {"fw", "dml", 0},
++};
++
+ static struct option const long_options[] =
+ {
+ 	{"mode", required_argument, NULL, 'm'},
+@@ -1331,10 +1347,21 @@ sw_discovery:
+ 
+ 
+ static int
+-verify_mode_params(int argc, char **argv, char *allowed, int skip_m)
++verify_mode_params(int argc, char **argv, enum iscsiadm_mode mode)
+ {
+ 	int ch, longindex;
+-	int ret = 0;
++	int ret = ISCSI_SUCCESS;
++	char *allowed;
++	int skip_m;
++	int tmp = optind;
++
++	if (mode > MODE_FW || mode < MODE_DISCOVERY) {
++		log_error("mode %d is not yet supported", mode);
++		return ISCSI_ERR_INVAL;
++	}
++
++	allowed = mode_paras[mode].allowed;
++	skip_m = mode_paras[mode].skip_m;
+ 
+ 	optind = 0;
+ 
+@@ -1343,10 +1370,14 @@ verify_mode_params(int argc, char **argv, char *allowed, int skip_m)
+ 		if (!strchr(allowed, ch)) {
+ 			if (ch == 'm' && skip_m)
+ 				continue;
+-			ret = ch;
++			log_error("%s mode: option '-%c' is not "
++				  "allowed/supported",
++				  mode_paras[mode].mode, ch);
++			ret = ISCSI_ERR_INVAL;
+ 			break;
+ 		}
+ 	}
++	optind = tmp;
+ 
+ 	return ret;
+ }
+@@ -3677,6 +3708,9 @@ main(int argc, char **argv)
+ 			break;
+ 		case 'm':
+ 			mode = str_to_mode(optarg);
++			rc = verify_mode_params(argc, argv, mode);
++			if (ISCSI_SUCCESS != rc)
++				goto free_ifaces;
+ 			break;
+ 		case 'C':
+ 			sub_mode = str_to_submode(optarg);
+@@ -3767,13 +3801,6 @@ main(int argc, char **argv)
+ 		usage(ISCSI_ERR_INVAL);
+ 
+ 	if (mode == MODE_FW) {
+-		if ((rc = verify_mode_params(argc, argv, "dml", 0))) {
+-			log_error("fw mode: option '-%c' is not "
+-				  "allowed/supported", rc);
+-			rc = ISCSI_ERR_INVAL;
+-			goto free_ifaces;
+-		}
+-
+ 		rc = exec_fw_op(NULL, NULL, info_level, do_login, op);
+ 		goto free_ifaces;
+ 	}
+@@ -3787,12 +3814,6 @@ main(int argc, char **argv)
+ 
+ 	switch (mode) {
+ 	case MODE_HOST:
+-		if ((rc = verify_mode_params(argc, argv, "CHdmPotnvxA", 0))) {
+-			log_error("host mode: option '-%c' is not "
+-				  "allowed/supported", rc);
+-			rc = ISCSI_ERR_INVAL;
+-			goto out;
+-		}
+ 		if (sub_mode != -1) {
+ 			switch (sub_mode) {
+ 			case MODE_CHAP:
+@@ -3858,13 +3879,6 @@ main(int argc, char **argv)
+ 	case MODE_IFACE:
+ 		iscsi_default_iface_setup(ctx);
+ 
+-		if ((rc = verify_mode_params(argc, argv, "HIdnvmPoCabci", 0))) {
+-			log_error("iface mode: option '-%c' is not "
+-				  "allowed/supported", rc);
+-			rc = ISCSI_ERR_INVAL;
+-			goto out;
+-		}
+-
+ 		if (!list_empty(&ifaces)) {
+ 			iface = list_entry(ifaces.next, struct iface_rec,
+ 					   list);
+@@ -3883,38 +3897,16 @@ main(int argc, char **argv)
+ 
+ 		break;
+ 	case MODE_DISCOVERYDB:
+-		if ((rc = verify_mode_params(argc, argv, "DSIPdmntplov", 0))) {
+-			log_error("discovery mode: option '-%c' is not "
+-				  "allowed/supported", rc);
+-			rc = ISCSI_ERR_INVAL;
+-			goto out;
+-		}
+-
+ 		rc = exec_disc2_op(type, ip, port, &ifaces, info_level,
+ 				   do_login, do_discover, op, &params,
+ 				   do_show);
+ 		break;
+ 	case MODE_DISCOVERY:
+-		if ((rc = verify_mode_params(argc, argv, "DSIPdmntplov", 0))) {
+-			log_error("discovery mode: option '-%c' is not "
+-				  "allowed/supported", rc);
+-			rc = ISCSI_ERR_INVAL;
+-			goto out;
+-		}
+-
+ 		rc = exec_disc_op(type, ip, port, &ifaces, info_level,
+ 				  do_login, do_discover, op, &params,
+ 				  do_show);
+ 		break;
+ 	case MODE_NODE:
+-		if ((rc = verify_mode_params(argc, argv, "RsPIdmlSonvupTULW",
+-					     0))) {
+-			log_error("node mode: option '-%c' is not "
+-				  "allowed/supported", rc);
+-			rc = ISCSI_ERR_INVAL;
+-			goto out;
+-		}
+-
+ 		if (do_login_all) {
+ 			rc = login_by_startup(group_session_mgmt_mode, wait);
+ 			goto out;
+@@ -3950,13 +3942,6 @@ main(int argc, char **argv)
+ 				  &params);
+ 		break;
+ 	case MODE_SESSION:
+-		if ((rc = verify_mode_params(argc, argv,
+-					      "PiRdrmusonuSv", 1))) {
+-			log_error("session mode: option '-%c' is not "
+-				  "allowed or supported", rc);
+-			rc = ISCSI_ERR_INVAL;
+-			goto out;
+-		}
+ 		if (sid >= 0) {
+ 			char session[64];
+ 			struct session_info *info;
+-- 
+2.27.0
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/005b4cbd-779a-4dce-895c-ae910a9d20d1n%40googlegroups.com.
-
-------=_Part_767_1350072570.1606102207811
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-OK. There is a logic problem in this patch where I forgotten valid the para=
-meters mode in&nbsp;&nbsp;verify_mode_params.<div>I would send a V2 patch t=
-o fix both this problem and the submission message, then make a pull reques=
-t on github.</div><br><div class=3D"gmail_quote"><div dir=3D"auto" class=3D=
-"gmail_attr">On Sunday, November 22, 2020 at 1:02:55 AM UTC+8 The Lee-Man w=
-rote:<br/></div><blockquote class=3D"gmail_quote" style=3D"margin: 0 0 0 0.=
-8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;"><div>I =
-agree that the patch reduces lines of code, in that we would now have one c=
-all to verify params, rather than multiple calls. Also, as you say, we chec=
-k a little sooner, although I don&#39;t think that&#39;s necessarily a feat=
-ure.</div><div><br></div><div>But please change the wording of the submissi=
-on to say something more like &quot;Check mode parameters earlier and in on=
-e place&quot;?<br></div><div><br></div><div>Please submit this as a pull re=
-quest on <a href=3D"http://github.com" target=3D"_blank" rel=3D"nofollow" d=
-ata-saferedirecturl=3D"https://www.google.com/url?hl=3Den&amp;q=3Dhttp://gi=
-thub.com&amp;source=3Dgmail&amp;ust=3D1606188050567000&amp;usg=3DAFQjCNHKMX=
-AcFBxtrFyIXMW9Nf2P2VPYfg">github.com</a> under open-iscsi/open-iscsi, as th=
-at saves me the trouble of manually scraping the patch off the email and ap=
-plying it myself. Thank you.<br></div><br><div class=3D"gmail_quote"><div d=
-ir=3D"auto" class=3D"gmail_attr">On Friday, November 20, 2020 at 12:22:37 A=
-M UTC-8 Uli wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">&gt=
-;&gt;&gt; Wenchao Hao &lt;<a rel=3D"nofollow">haowe...@huawei.com</a>&gt; s=
-chrieb am 20.11.2020 um 07:20 in Nachricht
-<br>&lt;<a rel=3D"nofollow">20201120062052.5...@huawei.com</a>&gt;:
-<br>&gt; Parameters verify should be performed as soon as possible
-<br>&gt; to avoid unuseless work.
-<br>
-<br>&quot;avoid unuseless work&quot; ;-)
-<br>
-<br>Is that useful work?
-<br>
-<br>
-<br>
-<br></blockquote></div></blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/005b4cbd-779a-4dce-895c-ae910a9d20d1n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/005b4cbd-779a-4dce-895c-ae910a9d20d1n%40googlegroups.com</a>.=
-<br />
-
-------=_Part_767_1350072570.1606102207811--
-
-------=_Part_766_165391415.1606102207811--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201123064205.80364-1-haowenchao%40huawei.com.
