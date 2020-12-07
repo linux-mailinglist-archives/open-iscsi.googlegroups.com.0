@@ -1,46 +1,46 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBM4XW37AKGQEXCOWJUY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBFUXW37AKGQEHNJGWWY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-io1-xd37.google.com (mail-io1-xd37.google.com [IPv6:2607:f8b0:4864:20::d37])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B9C92D0903
-	for <lists+open-iscsi@lfdr.de>; Mon,  7 Dec 2020 02:56:04 +0100 (CET)
-Received: by mail-io1-xd37.google.com with SMTP id t23sf9212404ioh.0
-        for <lists+open-iscsi@lfdr.de>; Sun, 06 Dec 2020 17:56:04 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1607306163; cv=pass;
+Received: from mail-qt1-x837.google.com (mail-qt1-x837.google.com [IPv6:2607:f8b0:4864:20::837])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B0A2D0900
+	for <lists+open-iscsi@lfdr.de>; Mon,  7 Dec 2020 02:55:35 +0100 (CET)
+Received: by mail-qt1-x837.google.com with SMTP id j1sf9473842qtd.13
+        for <lists+open-iscsi@lfdr.de>; Sun, 06 Dec 2020 17:55:35 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1607306134; cv=pass;
         d=google.com; s=arc-20160816;
-        b=tIONgrnsUyA3RYqtHEMim5XbXSlrUkRIpy/XF7wUM7iXI7r9j+craWMqNkAVIdknyM
-         wRTb7dNw6E9IUER5G/tvM+LhAzCbTQ1dsYBFGHg2v7EZgI03NSTGbXM2RkSTdLHK5ZU9
-         Xewgu55/VNA91wBzmxA1fsoKU+uOJ96RjOPLP9EZsOhMKIX64N1SS5A5lQzFtFan8FKJ
-         bOZf6a2nP7PR8SxcvmH+W6PzZ9xzg2zVpolRkEe/+8PPVvlaeM/QbkC//M4sljDRNJzK
-         w8HKIlTdaFvZIVv/DxUZLNMECNK9IqbKUda6QPNSBS47KjJhSovJ/4dOccrhq7D3xRay
-         NoiA==
+        b=SUui8DLG9YOqD4+sWki8zgJUKwnY7FC5fnmOzvL2513LaDI/G41Qjfg0uMpRG+wgna
+         Z9bnoefM/qgIBrvqrhD5lkWxxdR/IS/1HMmwE9OskaKh3WpNRciWF542PaEUg5PidXSk
+         ntakyuJHSBZCy/w6/lJOluwnp423k+FwkXQ7GdoSxiENe+FZkM+CUUEFQZgx6oqRZOES
+         BnyR0RUm5Q+zcTIUeWuzYBWjG7Ts6tsPQGHA7dTNM7AT/qD/SOGdnd2TqodUZtTGNkz+
+         s7dDrXO+5/7Kegb01H56DVtENMy7y2703Ld5Vf2Ny3zNG7ZZ4QSuH7MtXysdIFY22xoT
+         L4+g==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=uvlSraN0VBhNo8cLRJicA5BHkWs+jepMaxGejZni5VI=;
-        b=gYs/UJ++CPqRPYb9AtVkhhPv/qZaawveeO4XXgAcZDqDEPjP7/GnKQz3mKqbDkRd4a
-         krLbzGgHQerkjC15GwpXCosSF0oYRR9ZNEghbjtveUdT4K0Z6TXMKsIk6DH52LU7LuDt
-         rAJ+I4XdK9yQ8lb/f9qYPvmKp7bshK9e41GpuAwpLUkFI7FipjrI+rpXzERVY0R/vdm0
-         V9GExyFTPt2MQ/X1JAaD1ZH8RFIqWLZlPKX51PPIweOcBJxGyy/T362cW2r+YbMgdjkG
-         DjjFZP8LzNfbhSshtew6rQpkAXGTuQ7i47F85uvLveXFPYqptZCmyfmtamklqnWT/ODa
-         xsXA==
+        bh=Z8uOAzYAbJ4ibQPqz7tbS+3GhlDsUO7A8cGyC8qSLHE=;
+        b=Wcf/EIcsdwDBJMjmJoB53ZkEt8uHcX51np67XbRyJg+ro5Acwp/R1admO5qI6yrRfc
+         wL2QfRw+qADD+XvfGWQEkPWUTC80BUaTMjyc2R3hH0zg5Ep4F4gtzMa6benmb3Q3044X
+         J19h+Y/46MxO1x/jfl3zr5/2TMVJ6Up9lFuBYZQSEl1WYb2ZEwwJ67Wjot4GcHDLnNcN
+         mJBwDZ8+tR/m+XO7GgslW230AjVQMHEquH6sJM12IVXyXLf6YzJHbaoMytw9Fmadljd4
+         QfswNDBPihStNPxTeJjoJe0wQtXK8cXdP9IOqzrL8GcgevkhGaT7WvOvR5Vq/ql//hPL
+         o9EA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.32 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=uvlSraN0VBhNo8cLRJicA5BHkWs+jepMaxGejZni5VI=;
-        b=UaAlJlQgbQ5x1AGgj0sKAVqY4Sukhs/R31J4iIQ2z3XlCZMGWXbseMNKeYiIyehuhK
-         ocwQ8mAXBB0fWSJppBwm5VChLiMYNHu1dgxx29jTvwWZjK+cnnrMWa/Kat6TMJ+u4mTc
-         EyMZyMz4qADcU3aI5mCKEkvTzBNQsb9SH0jH75u/IfghDYgWiYJzI9UrtZ67J5ygoFfv
-         JnKaYETNjNawkj19BlFT9ZxsJcGhQFDqTR94MZQer5ztxfHErWxFFhAziGtQZc7C2Jwm
-         YsUMJ/Sqj71AoPj6pHURERZx+O9ucGnqClB0cj+y7OCk1HJusFq5JG+TWGAbUIB+0Ptg
-         2ZhQ==
+        bh=Z8uOAzYAbJ4ibQPqz7tbS+3GhlDsUO7A8cGyC8qSLHE=;
+        b=FUaQIaYdW+iTHtPMNTv1rfPyMT2qPrpdRKMOznB38VfMXaegkPdAMbkglrkvdf8I4E
+         sfxo8HOHCwQJb731Vptaui4nBM9U6X2o4dGbMajMR3LD7GSj/MssweSgjMQOCzI/XiNx
+         wznGEAbVIuk6tmcSA9kot362Wmb+n5meg70wn5sjgdhR0JDVUjr5osNxfkVvrzhOgLVj
+         NMbP+nba1tgdYuPtKNw3flpoSO7J03T10Z0HduB2B2uVg40sHZJOo3ZbsYX870qLFRmI
+         zCklFN1+FGv7k2FYJeyn2nriEgrkrU96Y+MKonSGAw9E5gXYiEUfaV4yp2nDX9SN1np4
+         6IyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -48,53 +48,53 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=uvlSraN0VBhNo8cLRJicA5BHkWs+jepMaxGejZni5VI=;
-        b=l0zpQsxR5WUzNdth9hSy3FS5BjFkNX+BjMAHknYhGFnJedheAxPTYCWF5+SaXYB7BJ
-         0rUl3TF6eqr8jlugVn64o3dfMWPUWg7wTo5TeDgaxTq8I8OZ9YBUvEudXVGuDpzoTw/9
-         MJ2Qa5V6QDDP0l3wPK2Te6iwhrAt9Gz0iJc/1LT4SpajsmUFBZpZDoTbS7Mvs8MCtx+X
-         PgUy89NClPSr9WlCgFlIk+b2jj8sKIVwx1Q3rFHwZH0A2EuHQWj+TxLNRIznmmyyZeO2
-         oZteq2rybgSg+g7K4ajdwFknsppbcNSCUZxQsEyOxgwCtDzd0s30NFSUB4KF8F7EhYb0
-         oxuQ==
+        bh=Z8uOAzYAbJ4ibQPqz7tbS+3GhlDsUO7A8cGyC8qSLHE=;
+        b=XVi3ga4f31g4+iIHIkO7yA4GBOTOv41nU5JlvM/2KzxzbSW8KJfHdeeGKwTidEcymA
+         wafLV/rFxy6vyHSTQJxtoWAd0sshZoAVcQ1AG2uGYACJgIIX0BlIszmkStf99rt5fE45
+         B+bjqncarmlvlpGONtvcXeYmznFiXQ7NGtbjCFsKuOnf1WJht/8gu2xJF6uNg53pspuI
+         11+u+xd+RFRBr+A5FuSf6xi8dazaG2i7IGExDHUmn8m1eUGeQx8zTsRzmxrZzfGAIhiI
+         cKdP7LGV6X4RgVtU+hOwySJujRPRZrHnl8sQitnKhgxZEXUtkHBRKhtzPojvc/eDUE92
+         g8NQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533jdyK4+w2X9yfQkQ/VfmgygS/wtZyRyw7dO7a78FWCkOi3iPPu
-	xmgvAkMJqUGfQD8eqBYo0QA=
-X-Google-Smtp-Source: ABdhPJz+0INBL2elRqMRzQpCI3JAjjzEO36biznbX58OwNKBVf9Bxy2sgxDdA+k6b+H1sawB9Oz8bA==
-X-Received: by 2002:a5d:96c9:: with SMTP id r9mr17748216iol.45.1607306163121;
-        Sun, 06 Dec 2020 17:56:03 -0800 (PST)
+X-Gm-Message-State: AOAM530wmHLq/XeQv1sXzobqeIn1jDC7O+rEWCncJ5seuBigcpDrKex2
+	3MLvjiLUop+uhAot56lEMxY=
+X-Google-Smtp-Source: ABdhPJx0N9ywHQaTAdK5DgfkJi+VWC/lSjMgYX48Tu1OmVjDMMLHsaD2ROIM6OcnMBhWmD0AGUf2yQ==
+X-Received: by 2002:ac8:3417:: with SMTP id u23mr21896206qtb.80.1607306134648;
+        Sun, 06 Dec 2020 17:55:34 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6e02:1048:: with SMTP id p8ls3881924ilj.11.gmail; Sun,
- 06 Dec 2020 17:56:02 -0800 (PST)
-X-Received: by 2002:a92:aa47:: with SMTP id j68mr6061287ili.16.1607306162675;
-        Sun, 06 Dec 2020 17:56:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1607306162; cv=none;
+Received: by 2002:a05:620a:648:: with SMTP id a8ls7338187qka.2.gmail; Sun, 06
+ Dec 2020 17:55:34 -0800 (PST)
+X-Received: by 2002:a37:9d16:: with SMTP id g22mr22483196qke.62.1607306134292;
+        Sun, 06 Dec 2020 17:55:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1607306134; cv=none;
         d=google.com; s=arc-20160816;
-        b=F82kPcW0YexEGOSgC+KOEu/SZIUa718bnPywHi0CvTXYMQaTpojndDcdHP6uguisvF
-         RvbD1HFqdlomPqvbuT6p9BXSExjec3tMtR7N3Byr+lgiYWXzGv/oQXgPM3iNVJv6HSr8
-         nxZJbucKQ9GuCEt5xLeXdWk0zKD3JvKcGTw73YxLbQ93CI+Vp18vkwwE+jp6J6oOjkPI
-         qIH85imkkaTEevlYjrFLmqbxRBwM2hD7E9cbK3HUUlOcvskamCuxu/DQQ452EJsTL3U7
-         CWW1TaRgU3YoBP84inHrzpi/tXI4i6XlxlWWKoQ+wAyDDe1jm9FKm07w/RcUpx97OM6w
-         sVaw==
+        b=og/nnh2Ybh9tVQDbvop0YcQoBEuqeE+NYXtuiEKRxyK9m9jsGQCWJesmlweNe2nZmD
+         BLBbFMPPlbT00Tt7PMlNKCat27C8Mu8DBUxlZDs8+3q6NSTfONuzvaM/HkxS1nN7zVaW
+         aPhUsa0BQKSoYaBs9KK5iuGUWllBPvA2FMjlHNQ+1iOLgSgs84+Ztijt8Z5flH9Nr3ph
+         dX+4vX2zW63cYMCr20MpLrewQeTazrgJe7EhvwoCvOuS3Zc+aOFbNuTqJczS7DZZUyQ7
+         Lr4tz43n3q8l1rDwjr46VfW6ZtAoNIZ+8bUPJ7Icuw3aiS7C4jsln18E9cdociMCDYIY
+         SeQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from;
-        bh=SByZ/TEDLrC6J8AdHY14UF9vDElnNb7XflXNwdbK34A=;
-        b=BFWudLLTlqaPv231R7k25COWE4dNXZMG91BdgKGdwDA/kS7+CIzkuWTkKDjijmDr7I
-         +GMiKRlrO5OR+wkJ5BUSGAonLXWN5OLFJWepVEixajvCTGGaLdrGgvgBL0dykwJ4PWPR
-         WI9exMqTj/aZgCa0PG5dmKD1jUjEzh/ao1R+x2+1aLcRXe6NhrragLPMrLLS1xjvYtLx
-         BZu1LcTJ05NEGTY9lssu4SOqZGgQ99Iu2SKNzoGxT10ENlbdKuGvtkgY5L2cU6p9/tNB
-         qWnW68TfUJSPYUb/ASOBoEqs0R1Ggs9p9Jz5Qv0/JaPltPpFMS4ItlVMIkMFbCa/Bh1Q
-         pJHg==
+        bh=QtjcfcYM1cTU8cCHdRLWLF5Zk0hICCb/EXimMCgwzmk=;
+        b=S2NR1D+Lwi9XIADOwr8YoizcQEbiInuk5b7mq7rda6tZVVslN4q8Z7ZF7yWk3XKBlF
+         Wo1wBLz9JGqTxc/h2X81zB3Ouirk76xYfpWWsI9fmHcrtEuQnUdXf2Gg12aLcgRh495P
+         RotDlKqLWZ9zkwLJgb4OduSGOqMbVYnyy7oKGrlHuJcQVFPMDsyE2ocRLn+Aph6HA/pM
+         +xpWkmJiAPLGPSyrfT6zcvV41XkFOjHSGuJKR0Qop86yskVIqqQdfnqe0jfHlyVXRPtX
+         MqFhx6e1Rwo0A1EP7X52irZPI626Ad0JvnC7j+fMjKDvvyUnM07XU2BvwxleWoxABeZC
+         J7Ww==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.32 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
-Received: from szxga06-in.huawei.com (szxga06-in.huawei.com. [45.249.212.32])
-        by gmr-mx.google.com with ESMTPS id q4si630412iog.3.2020.12.06.17.56.02
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com. [45.249.212.191])
+        by gmr-mx.google.com with ESMTPS id x8si561017qtm.3.2020.12.06.17.55.33
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 06 Dec 2020 17:56:02 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.32 as permitted sender) client-ip=45.249.212.32;
+        Sun, 06 Dec 2020 17:55:34 -0800 (PST)
+Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) client-ip=45.249.212.191;
 Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.59])
-	by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4Cq5w83kzDzhnYZ;
-	Mon,  7 Dec 2020 09:54:32 +0800 (CST)
+	by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4Cq5vx70mhzM1S2;
+	Mon,  7 Dec 2020 09:54:21 +0800 (CST)
 Received: from huawei.com (10.175.104.175) by DGGEMS410-HUB.china.huawei.com
  (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Mon, 7 Dec 2020
  09:54:49 +0800
@@ -102,9 +102,9 @@ From: Wenchao Hao <haowenchao@huawei.com>
 To: Lee Duncan <lduncan@suse.com>, <open-iscsi@googlegroups.com>
 CC: <linfeilong@huawei.com>, Zhiqiang Liu <liuzhiqiang26@huawei.com>, Wu Bo
 	<wubo40@huawei.com>, Wenchao Hao <haowenchao@huawei.com>
-Subject: [PATCH 10/12] fwparam_ppc: Fix illegal memory access in fwparam_ppc.c
-Date: Mon, 7 Dec 2020 09:54:08 +0800
-Message-ID: <20201207015410.48488-11-haowenchao@huawei.com>
+Subject: [PATCH 11/12] iscsiuio: Remove unused macro IFNAMSIZ defined in iscsid_ipc.c
+Date: Mon, 7 Dec 2020 09:54:09 +0800
+Message-ID: <20201207015410.48488-12-haowenchao@huawei.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20201207015410.48488-1-haowenchao@huawei.com>
 References: <20201207015410.48488-1-haowenchao@huawei.com>
@@ -114,7 +114,7 @@ X-Originating-IP: [10.175.104.175]
 X-CFilter-Loop: Reflected
 X-Original-Sender: haowenchao@huawei.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao@huawei.com designates 45.249.212.32 as
+ (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as
  permitted sender) smtp.mailfrom=haowenchao@huawei.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -129,134 +129,37 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-bootpath_val is allocated in find_file() and referenced if find_file()
-excute successfully, while it was freed in find_file() and
-dereferenced after find_file() if find_file() returns 1.
-
-This patch remove free(bootpath_val) in find_file() and free
-bootpath_val when it is used done.
+IFNAMSIZ is not used in this file. IFNAMSIZ is a macro defined in
+net/if.h. Maybe this this macro is defined here to give it a self
+defined value rather than system pre-defined at beginning, while
+it seems the code reference the macro in this file is removed, so
+here we can remove it.
 
 Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
 Signed-off-by: Zhiqiang Liu <liuzhiqiang26@huawei.com>
 Signed-off-by: Wu Bo <wubo40@huawei.com>
 ---
- utils/fwparam_ibft/fwparam_ppc.c | 33 ++++++++++++++++++++++----------
- 1 file changed, 23 insertions(+), 10 deletions(-)
+ iscsiuio/src/unix/iscsid_ipc.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/utils/fwparam_ibft/fwparam_ppc.c b/utils/fwparam_ibft/fwparam_ppc.c
-index 25d4532..6a45b8c 100644
---- a/utils/fwparam_ibft/fwparam_ppc.c
-+++ b/utils/fwparam_ibft/fwparam_ppc.c
-@@ -292,15 +292,17 @@ static int find_file(const char *filename)
- 		fprintf(stderr, "%s: Could not open %s: %s (%d)\n",
- 			__func__, filename, strerror(errno), errno);
- 		free(bootpath_val);
-+		bootpath_val = NULL;
- 		return -1;
- 	}
+diff --git a/iscsiuio/src/unix/iscsid_ipc.c b/iscsiuio/src/unix/iscsid_ipc.c
+index 2acac48..ea03d37 100644
+--- a/iscsiuio/src/unix/iscsid_ipc.c
++++ b/iscsiuio/src/unix/iscsid_ipc.c
+@@ -54,9 +54,6 @@
  
- 	bytes_read = read(fd, bootpath_val, bootpath_stat.st_size);
- 	close(fd);
--	free(bootpath_val);
- 	if (bytes_read != bootpath_stat.st_size) {
--		fprintf(stderr, "%s: Could not open %s: %s (%d)\n",
-+		fprintf(stderr, "%s: Failed to read %s: %s (%d)\n",
- 			__func__, filename, strerror(EIO), EIO);
-+		free(bootpath_val);
-+		bootpath_val = NULL;
- 		return -1;
- 	}
+ #define PFX "iscsi_ipc "
  
-@@ -381,6 +383,8 @@ static int loop_devs(const char *devtree)
- 			if (!error)
- 				error = locate_mac(devtree, ofwdevs[i]);
- 
-+			free(bootpath_val);
-+			bootpath_val = NULL;
- 		}
- 	}
- 	return error;
-@@ -468,9 +472,10 @@ int fwparam_ppc_boot_info(struct boot_context *context)
- 	if (error)
- 		goto free_devtree;
- 
--	if (find_file(filename) < 1)
-+	if (find_file(filename) < 1) {
- 		error = ISCSI_ERR_NO_OBJS_FOUND;
--	else {
-+		goto free_devtree;
-+	} else {
- 		if (debug)
- 			printf("%s:\n%s\n\n", filename, bootpath_val);
- 		/*
-@@ -480,12 +485,12 @@ int fwparam_ppc_boot_info(struct boot_context *context)
- 
- 		if (!strstr(bootpath_val, "iscsi")) {
- 			error = ISCSI_ERR_INVAL;
--			goto free_devtree;
-+			goto free_bootpath_val;
- 		}
- 		ofwdevs[0] = calloc(1, sizeof(struct ofw_dev));
- 		if (!ofwdevs[0]) {
- 			error = ISCSI_ERR_NOMEM;
--			goto free_devtree;
-+			goto free_bootpath_val;
- 		}
- 
- 		error = parse_params(bootpath_val, ofwdevs[0]);
-@@ -500,6 +505,10 @@ int fwparam_ppc_boot_info(struct boot_context *context)
- 		free(ofwdevs[0]);
- 	}
- 
-+free_bootpath_val:
-+	free(bootpath_val);
-+	bootpath_val = NULL;
-+
- free_devtree:
- 	free(devtree);
- 	return error;
-@@ -542,9 +551,10 @@ int fwparam_ppc_get_targets(struct list_head *list)
- 	if (error)
- 		goto free_devtree;
- 
--	if (find_file(filename) < 1)
-+	if (find_file(filename) < 1) {
- 		error = ISCSI_ERR_NO_OBJS_FOUND;
--	else {
-+		goto free_devtree;
-+	} else {
- 		if (debug)
- 			printf("%s:\n%s\n\n", filename, bootpath_val);
- 		/*
-@@ -554,12 +564,12 @@ int fwparam_ppc_get_targets(struct list_head *list)
- 
- 		if (!strstr(bootpath_val, "iscsi")) {
- 			error = ISCSI_ERR_INVAL;
--			goto free_devtree;
-+			goto free_bootpath_val;
- 		}
- 		ofwdevs[0] = calloc(1, sizeof(struct ofw_dev));
- 		if (!ofwdevs[0]) {
- 			error = ISCSI_ERR_NOMEM;
--			goto free_devtree;
-+			goto free_bootpath_val;
- 		}
- 
- 		error = parse_params(bootpath_val, ofwdevs[0]);
-@@ -576,6 +586,9 @@ int fwparam_ppc_get_targets(struct list_head *list)
- 		}
- 		free(ofwdevs[0]);
- 	}
-+free_bootpath_val:
-+	free(bootpath_val);
-+	bootpath_val = NULL;
- 
- free_devtree:
- 	free(devtree);
+-/* TODO fix me */
+-#define IFNAMSIZ 15
+-
+ #include "nic.h"
+ #include "nic_utils.h"
+ #include "nic_vlan.h"
 -- 
 2.27.0
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201207015410.48488-11-haowenchao%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201207015410.48488-12-haowenchao%40huawei.com.
