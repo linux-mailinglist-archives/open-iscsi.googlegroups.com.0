@@ -1,31 +1,31 @@
 Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBDEXW37AKGQEQ7ATPMQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pf1-x43f.google.com (mail-pf1-x43f.google.com [IPv6:2607:f8b0:4864:20::43f])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5822E2D08F9
-	for <lists+open-iscsi@lfdr.de>; Mon,  7 Dec 2020 02:55:26 +0100 (CET)
-Received: by mail-pf1-x43f.google.com with SMTP id q13sf4904635pfn.18
-        for <lists+open-iscsi@lfdr.de>; Sun, 06 Dec 2020 17:55:26 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1607306125; cv=pass;
+Received: from mail-vk1-xa3e.google.com (mail-vk1-xa3e.google.com [IPv6:2607:f8b0:4864:20::a3e])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8B62D08F6
+	for <lists+open-iscsi@lfdr.de>; Mon,  7 Dec 2020 02:55:25 +0100 (CET)
+Received: by mail-vk1-xa3e.google.com with SMTP id 18sf5697316vky.14
+        for <lists+open-iscsi@lfdr.de>; Sun, 06 Dec 2020 17:55:25 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1607306124; cv=pass;
         d=google.com; s=arc-20160816;
-        b=ZlKtU7z7THGwbYtigVIrm8bYrkg79ErNmEa7L06xt/Ee7POcPsG9eBovT1Ee2NMvts
-         d+wnJDqjM4BLYnFoYWC4jPooGYRsMLweqCsPZc5qs7cJAd+4qnb5TPQAq1hpkF+runip
-         bMguCA9p0zm/vOEV6cl3iGuUlOlPDLEalB4sXBEGdcK90M7MAKPzDj/OSo1q8/JyrIYu
-         +LZ0ean41IL0yYSpFsTjWlkrIkxLIWPp1W5LgTzWzwlCXAb/Csb20LJlIQBfqi1rei6R
-         TVX558+zgvCHccJPvottceaHzmP0zKN+9BJj6WTKx3VrktJYm13NX25WScLRBzyFW7O/
-         Ap9Q==
+        b=0uH2yM2a+3kjVAVyzSMMnQFG5uXDO6bwvSJyAN5487SI4hpxKwCDCCwCLhb24h2Xf1
+         OOH/EEUySCy9lL5gwP8K7Xu66TomXgQ6j6nuBEwY38jpaImZdBpAm+EP5UkqZ5sh5bTc
+         2SOJKtimVIE77iRyzajF4vnDvN7fLjQDlKuRttBPncLS/FgRIeitCnBSOm6wi4D95aCS
+         wxZ5IMVSDWVHWkuYowGwdx/iawNfL9++Cnr1GoVHlNkQXpS6VTfM+SeBZigh/IwVcUHr
+         if6Gw9gMgGCDHcesjNZ9zzD8NliMPcCwUJ6WsqyDe9ksaCbSZSNxSGiLIKafNdtaFokH
+         fgwA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=7FAPwNi47o8BSZ1GvlacDWZveV3VjeFUb6QAGlTbVAk=;
-        b=B7cXBtCTCSFuvwmImqAvX3Nnt+davyiBC1/yhaE6jHeQxKagLqk5pIZAZP9k2byJHA
-         e8/x6rGIbdePi0GhI1Zxz0+q0O+GqYQ46ORnc5K8h+E0jyokzEtVToTvSYGZ+1w9L1Cu
-         LlKxzFE3UWlmGZAIdczAT0CdO9NbGk9+XxkozT2eeQw2/8T7MsURFIgmJPcO5wfKkcel
-         2U4/CnEeRojMEDYnPTP4JHPJtfqU0Jno/y9feH4M1opLeYpCmcz2oJ52HA68SSrZzQJX
-         rMQcmJsVVuPyHP2XFqFuXH5EyARFeDuhPAFLYahJ78bH3q7HT8gCqYucpSoO8miZ9KhU
-         bHsQ==
+        bh=wFsmU/esvdxFKA27q2dNS8eRcKYV4snY173HajncAVU=;
+        b=qeXYwBSPbnGGgLu0pzofN1qYfd8fvOUeSH3JBBItkJ8U3JLmf1RWv5Jvq+upLMmXKj
+         LsU3/EATaQ5KZzJpSmqrlLFr43KGbXMtPnO3r0AcAySEqySW1QDzLYepxrTScMKULLro
+         n3EMixOmZWWN5yP4awzVu17GnJ1aYiy+Fr8Kzu55AXBbIvpMpc71scyua8bARDlYQoDm
+         2HsFQ/DXGg2mknXfuLZgLOjCuSf/0HfVTOmUvAaEMePv0HNyo+oV4tuFEp2OUqvQ0joy
+         yt8WzrvVpAyhwJd4rxgObV96QlAnHmG8scG55J9xDOBWZCJkt79Q/fFlgMCZecYgwuX2
+         tuGQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
        spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.35 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
@@ -34,13 +34,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=7FAPwNi47o8BSZ1GvlacDWZveV3VjeFUb6QAGlTbVAk=;
-        b=ihsPGSFIr6Wu6h6gN0OFirJxfNMiCz++ZijBSIi2bviXchOQ92FiEnL6oH0rS4ea4m
-         mB3J6AmgfNtwJ5xLBiQ/Qs2gTLBkT35pc1jm0jR713yp/zxfwKc6n9EzKJqd9qzPzHSI
-         EoQt+ebjuvbn43FtvYR0LVW3ZNmUOd1Nj5fJsLzgSJjJV1wz1oJad6IinEtLUwRqovOQ
-         5pR+mrWC5jUEkAx1amDlEiVfGFnLocVs858iAdYgCesFRUf56U0RztCUGBeoPbUa+Ea+
-         yWrTFRTIW/mX/AM2peGbw7t9htpFGpvFZM20ivuEV5ay/TA1q8XAOfG5oHuWwI5dp7UY
-         T83w==
+        bh=wFsmU/esvdxFKA27q2dNS8eRcKYV4snY173HajncAVU=;
+        b=eR67DTf2JmoMja4ks2fJV7WlkuYdXOCmYAPKan0J3U/sFW///ciJM9IKhtzv8aFcyF
+         +nKmYjloIzSbgv/Mrxq5HBcr2UDRaQVfJiTi28aOy/UWy5wqKBb3qu0IC1JqbAwRNGeR
+         lAQ6K3bzRtcprCVO/BtJTnXqFR1tThJ4ioo1HzmZGfEOJeW2Tf9hFtRIZ4sXAKwQ2u+D
+         raiaDkZv1bgpJu8/+8bIGGM7+1CGJcwTrkzF6eUC88Rqvo6omLfa7KxkYSS65RjrkzHk
+         eLteCPczXXxevn4OwLgTH6kIJnc3jx8dTR1Wn5OQ3PAvWy2cZ7inFDiTO9BXpzvkyQcc
+         rLNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -48,63 +48,63 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=7FAPwNi47o8BSZ1GvlacDWZveV3VjeFUb6QAGlTbVAk=;
-        b=PWsK9R5qrlQy3pvsm/OJW/1487y726Gc9PBebO8sr+zDyOuqe/sz1lVNpFIo1bvf9+
-         8Q05nr6W7MgImOB9i7Xz/V8gnkAUtQbw5velKQNTFuUwoyfhvfT0ZJWc2RjwKGrWQ5UE
-         7jfAUQr30rROQI06EoRbNXTJYmuaMLnXKJ3c5+qnIsnoPzSy55POtQi0kPGjsme6laUe
-         Xe8YMh0fvLPDp7YDrWCZluhwVm94W3CggzVtMV5DX6tZ5XEYz3dbr9JOJlG6+ku3z6SY
-         ESadH6wSZ+pjrECX/aJu/y3XAeDinrXYEKEMyR1Ct/eyyaXlTyagE4eN4tl6hTUjbhup
-         TL2w==
+        bh=wFsmU/esvdxFKA27q2dNS8eRcKYV4snY173HajncAVU=;
+        b=GATr5PVbebHyGxsgp7iJolaO1GaFVa8i3L/kK3vlvb3/xqU6siA+l1egSK2aDbvYo4
+         yF0nIChX1637iNtX3Ds/6LeJchRwZug0SgfYsOo33eNckxLZF6wPs0dXWJRejJ40vbmP
+         SKzZiCEkflN7M9h4QCwqGU1DQ4KdcmtYH2k34trbAK1FsxRuuXNph+KC5KnhruP6+OvE
+         +3I/QcPSYMqLxAXXGH2UJeQlfHjReBPdFoT7fAOE8n/X6O/8FuH7ES3dtTm+d69Nzvqf
+         xmFgyECngB0s/LpjIR3W7G+kEQyM99n/NV4QWyj8j6dbuUf45l+cG+2dQMal/8MPLRJ2
+         Mzwg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530G8NiS6AinnNxswDh9vk4YkgdLHyd4yL+1GPk37+LcyiH6FxNG
-	SYXRjNhGwY6yYrc63B9mupQ=
-X-Google-Smtp-Source: ABdhPJxnLPMfHy0K1hcU0Rr3Z2d41hee9sc4VAy2dHTbdRHDU7ew7FMM1TfWT2YssNkhVMVwacJkHA==
-X-Received: by 2002:a17:90a:c588:: with SMTP id l8mr14190826pjt.147.1607306124579;
+X-Gm-Message-State: AOAM530OCgH4ShwtzT6sH3lL+f/hVRrxuh+mJDbapsQkCdu/k7+SRbZ2
+	1vg45Ssn4UKUC4KQy9wzEjA=
+X-Google-Smtp-Source: ABdhPJyoZjh3OrIyVrv0x5n9OP64tNS+JoHjTtB6c+5CMGg0kQImm1vlx9ec1iZQnUAWc20LjIkqXA==
+X-Received: by 2002:a1f:9acc:: with SMTP id c195mr3187522vke.1.1607306124750;
         Sun, 06 Dec 2020 17:55:24 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a63:4b61:: with SMTP id k33ls4987168pgl.0.gmail; Sun, 06 Dec
- 2020 17:55:23 -0800 (PST)
-X-Received: by 2002:aa7:860b:0:b029:19e:2827:93b7 with SMTP id p11-20020aa7860b0000b029019e282793b7mr632175pfn.22.1607306123850;
-        Sun, 06 Dec 2020 17:55:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1607306123; cv=none;
+Received: by 2002:ab0:638e:: with SMTP id y14ls1161002uao.9.gmail; Sun, 06 Dec
+ 2020 17:55:24 -0800 (PST)
+X-Received: by 2002:ab0:1d95:: with SMTP id l21mr7111334uak.138.1607306124211;
+        Sun, 06 Dec 2020 17:55:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1607306124; cv=none;
         d=google.com; s=arc-20160816;
-        b=T8GcAR4moAbQGuBaftBOJAPAGRIULtyjWy+wNDUpHgow6+59M23Cq6KsT9irUgcOcj
-         o7EuLcz8uXuUrDWc3f7mSlMBD89DgLFMhGLVBtGNNLVBifbVk7VUeqmTgAAwe5LVNEAG
-         98AUyF8MVdFwzhZBTBZK6hHQB7dUvooPDCL5cNWDE5ienFFRHKgoSBIVZuRMnxrYs1wV
-         wWSDwgIwbc/I3cOYGNpYUOkrf6YfhW78DEl/k4PhdSfFt/41MLUGodAKgoF+Qt7K3wWY
-         2UDGt3hFPsVnLZwjIjmfAy1jCvQtfS/+VOT/IMJ0WygIHNbIu7sOpMZrbM1VIToLpUcQ
-         4cmg==
+        b=p0hkTW3QMQd/3Rq+PiXhZHSm9XUivocu8EWo/acupaZxRQ4Zv+TUUvMiG2CkOfMmY0
+         m25NpyPSkk5NQEU8XQvgtHUIXVGie6es2ZTw5ya3WETbyTjLTZvgyspugYuokimcAKap
+         kOrDbDT5BTPuz+RrE7kUYOXDOcD6lFUQ3fMm426ho61Dg3zHcKUwvWQ1tb97w+GMLkGm
+         xij4Q8a7R+6UnfKdefvzvKzoQ/VoqOF2RfFeXwG8AQQkTsOn0BLdZERP46eIvpzDAa4e
+         fzlUgrwArq+qyR4e5oit3k2+EqECMkTlt6MLidsswY96fpGjvYJ8NSlqCXu7Qb+j1HK5
+         948A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from;
-        bh=uIkrBlOAgJEyU3itHKFMySfJJlo2AmZgR3xToDqJF5o=;
-        b=I4e3vzuF1tsSzyZ/hjdrXQkWQSekExy9M5F1XpHRtlWJS2RgblPQQoqd0wsKEjovJh
-         LfY8Yoz4TpAp5jljJlV/zQ+KGAhwKG02nMxsBFYz+X7RGL619zjJCnIN8tqOTYLk422K
-         Cos/U4y56Lfa7+zQlbUbxkGjBSTW4Tl0kvHPBnFfj7dBuwtyiyzn59cZ7VlNUEuGtQtA
-         jlgCvbmyeY5dR3C2ngATrF9UIZW9VBgmm9AFAIKcNZ0WDSYtYVBUY7SDNvJsbcQ1c7fB
-         eM/PGXxK8sWi6BBYl2a0JPCIhT3qfENNovqDaHdi9xf0Zy26471S3yHWrUAKyl0+0ODf
-         IPNA==
+        bh=nsiRLCakw+iH/Ee82zGeruz/k6aNVAxR7LOL9fxw6Tk=;
+        b=CLriCMiBQoDlNnEYA5rD7V0xYLlcnZnr8uL2GYidMwHOQkNxP0VOc+Pk+iA5/XBjHM
+         9cs3grMfi4V6DkOgHvzX/Fkyw+/ru7S//6fMght6ueSfaCdnkRH9wwOp9g6lOCDqL9bD
+         vWYrWBdd++xJA4pFxLLNtBS/V1JraOFx23ctgAjV2hhQia800Qdk3O23NFSS/XEXK1L+
+         WOdprGumIctIOxuWxEeU5aMTtAqV1XWgVL88g71dkQpA4mPM19fge3U0EPlBnv7I9XCm
+         1l9Ynw2QwSOQlSJN5ltksWQxra9858uzmwGNBDnCM3eRJXpXzXAElDgs3hJUD6afXTbC
+         gYsA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
        spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.35 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
 Received: from szxga07-in.huawei.com (szxga07-in.huawei.com. [45.249.212.35])
-        by gmr-mx.google.com with ESMTPS id a8si792037plp.4.2020.12.06.17.55.23
+        by gmr-mx.google.com with ESMTPS id f26si567039uao.0.2020.12.06.17.55.23
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 06 Dec 2020 17:55:23 -0800 (PST)
+        Sun, 06 Dec 2020 17:55:24 -0800 (PST)
 Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.35 as permitted sender) client-ip=45.249.212.35;
 Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.58])
-	by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4Cq5vx0bBrz79TM;
+	by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4Cq5vx0krJz79TP;
 	Mon,  7 Dec 2020 09:54:21 +0800 (CST)
 Received: from huawei.com (10.175.104.175) by DGGEMS410-HUB.china.huawei.com
  (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Mon, 7 Dec 2020
- 09:54:43 +0800
+ 09:54:44 +0800
 From: Wenchao Hao <haowenchao@huawei.com>
 To: Lee Duncan <lduncan@suse.com>, <open-iscsi@googlegroups.com>
 CC: <linfeilong@huawei.com>, Zhiqiang Liu <liuzhiqiang26@huawei.com>, Wu Bo
 	<wubo40@huawei.com>, Wenchao Hao <haowenchao@huawei.com>
-Subject: [PATCH 02/12] iscsi-iname: Verify open() return value before calling read()
-Date: Mon, 7 Dec 2020 09:54:00 +0800
-Message-ID: <20201207015410.48488-3-haowenchao@huawei.com>
+Subject: [PATCH 03/12] iscsiuio: Fix invalid parameter when call fstat()
+Date: Mon, 7 Dec 2020 09:54:01 +0800
+Message-ID: <20201207015410.48488-4-haowenchao@huawei.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20201207015410.48488-1-haowenchao@huawei.com>
 References: <20201207015410.48488-1-haowenchao@huawei.com>
@@ -129,44 +129,59 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-System call open() might return -1 if an error occurred which
-should be taken into consideration.
+Both qedi_open() and bnx2x_open() perform 15 times retry
+to make system call open() successful, while this retry
+mechanism can not make sure open() can execute successfully.
+So this patch verify return value of open(), if it is still
+INVALID_FD just print error info and return the errno.
 
 Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
 Signed-off-by: Zhiqiang Liu <liuzhiqiang26@huawei.com>
-Signed-off-by: Wu Bo <wubo40@huawei.com>
 ---
- utils/iscsi-iname.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ iscsiuio/src/unix/libs/bnx2x.c | 7 +++++++
+ iscsiuio/src/unix/libs/qedi.c  | 7 +++++++
+ 2 files changed, 14 insertions(+)
 
-diff --git a/utils/iscsi-iname.c b/utils/iscsi-iname.c
-index 0f587e1..834352e 100644
---- a/utils/iscsi-iname.c
-+++ b/utils/iscsi-iname.c
-@@ -96,7 +96,8 @@ main(int argc, char *argv[])
- 	 * uniqueness properties
- 	 */
- 
--	if ((fd = open(RANDOM_NUM_GENERATOR, O_RDONLY))) {
-+	fd = open(RANDOM_NUM_GENERATOR, O_RDONLY);
-+	if (fd != -1) {
- 		e = read(fd, &entropy, 16);
- 		if (e >= 1)
- 			MD5Update(&context, (md5byte *)entropy, e);
-@@ -141,7 +142,8 @@ main(int argc, char *argv[])
- 	 * good as any other).
- 	 */
- 
--	if ((fd = open(RANDOM_NUM_GENERATOR, O_RDONLY))) {
-+	fd = open(RANDOM_NUM_GENERATOR, O_RDONLY);
-+	if (fd != -1) {
- 		if (read(fd, entropy, 1) == 1)
- 			bytes = &digest[(entropy[0] % (sizeof(digest) - 6))];
- 		close(fd);
+diff --git a/iscsiuio/src/unix/libs/bnx2x.c b/iscsiuio/src/unix/libs/bnx2x.c
+index c5e7b71..0e326d4 100644
+--- a/iscsiuio/src/unix/libs/bnx2x.c
++++ b/iscsiuio/src/unix/libs/bnx2x.c
+@@ -751,6 +751,13 @@ static int bnx2x_open(nic_t *nic)
+ 			count++;
+ 		}
+ 	}
++	if (nic->fd == INVALID_FD) {
++		LOG_ERR(PFX "%s: Could not open device: %s, [%s]",
++			nic->log_name, nic->uio_device_name,
++			strerror(errno));
++		rc = errno;
++		goto open_error;
++	}
+ 	if (fstat(nic->fd, &uio_stat) < 0) {
+ 		LOG_ERR(PFX "%s: Could not fstat device", nic->log_name);
+ 		rc = -ENODEV;
+diff --git a/iscsiuio/src/unix/libs/qedi.c b/iscsiuio/src/unix/libs/qedi.c
+index 3414cb5..1af8d1b 100644
+--- a/iscsiuio/src/unix/libs/qedi.c
++++ b/iscsiuio/src/unix/libs/qedi.c
+@@ -517,6 +517,13 @@ static int qedi_open(nic_t *nic)
+ 			count++;
+ 		}
+ 	}
++	if (nic->fd == INVALID_FD) {
++		LOG_ERR(PFX "%s: Could not open device: %s, [%s]",
++			nic->log_name, nic->uio_device_name,
++			strerror(errno));
++		rc = errno;
++		goto open_error;
++	}
+ 	if (fstat(nic->fd, &uio_stat) < 0) {
+ 		LOG_ERR(PFX "%s: Could not fstat device", nic->log_name);
+ 		rc = -ENODEV;
 -- 
 2.27.0
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201207015410.48488-3-haowenchao%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201207015410.48488-4-haowenchao%40huawei.com.
