@@ -1,121 +1,123 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBFUXW37AKGQEHNJGWWY@googlegroups.com>
+Return-Path: <open-iscsi+bncBC6MFJWO34DBBZHUXT7AKGQEUJBQOIQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-io1-xd38.google.com (mail-io1-xd38.google.com [IPv6:2607:f8b0:4864:20::d38])
-	by mail.lfdr.de (Postfix) with ESMTPS id E27C72D0901
-	for <lists+open-iscsi@lfdr.de>; Mon,  7 Dec 2020 02:55:35 +0100 (CET)
-Received: by mail-io1-xd38.google.com with SMTP id z10sf3526314iol.2
-        for <lists+open-iscsi@lfdr.de>; Sun, 06 Dec 2020 17:55:35 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1607306134; cv=pass;
+Received: from mail-lj1-x23c.google.com (mail-lj1-x23c.google.com [IPv6:2a00:1450:4864:20::23c])
+	by mail.lfdr.de (Postfix) with ESMTPS id A25092D2622
+	for <lists+open-iscsi@lfdr.de>; Tue,  8 Dec 2020 09:33:40 +0100 (CET)
+Received: by mail-lj1-x23c.google.com with SMTP id o19sf5783063ljg.17
+        for <lists+open-iscsi@lfdr.de>; Tue, 08 Dec 2020 00:33:40 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1607416420; cv=pass;
         d=google.com; s=arc-20160816;
-        b=oh944oy37tc0OHOCk0PJcOMzTrOnMh0ziko8mIyz0iBiIcFXAzf15iF/vPtimXnwqW
-         o0W1l9w/jCPTGfTdHjqCYE01RhdRoRjZ/W+lKxMP98cVnIcSg1HgZ2tneRWdh+/z0lVn
-         qB8WXi61P7WJybAxobdI5UFpbRgnIf1yBoDfRVwcqZYLTI2BlCdKeGykdpM73XkUiBhH
-         QY4hf9mRzSIsjXEJ+UHSyiNU5GaTdg5XnR1snnDBur6ITSsoL9IKW+h3ELO0Ug3STSd8
-         1XtWHScdoz+g2MEB1ers77kYz6W8B9rKrndVy30lw8qgrYwYjOVnepS99MJBKAGcNC8d
-         lSXA==
+        b=VDAzTaWt/Q5rl/rR/UiaUoinOJ2TSDg48DmMhBYo9Nat3siLX+wOzIXy1VJPMsPTWb
+         /3P7X3/6d7HNZ9fVMzHAyOsVNAruyt5ztVI0q5QIppTje2jNkxEV8OzyFbkeErfPHAW4
+         OZW/j+4ITtkvyRemPdgkjUxvbJYCB1qn+r3o6E9tP+xBqe+jfQh76JcMTWWtB76MGTCk
+         q0Xwo7Tt0raywj5fskrrQwS2KrHjgWKVIQDKbNn2o04Y29tIp42RnTKxPhJ+wfuU/y1Z
+         18LwhVhfnZbEpp39oVDo1N2uNys+V7zKMHIccqhC5DxGpJSsH332paCS8XYeNPucH52j
+         PceA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:sender
-         :dkim-signature;
-        bh=ADp7p4eKlFuNF2P4CfIIaLVz2/R/X8ttFLiFaLJdHgo=;
-        b=oatxPQ1Aav04Fo3Sv3iRkTgaqeJ3vXey23ASzQx3Kl9oHPeC/Ysn33AF11SyA9OvXM
-         VECPheud2BzmShQVtuWzGqTwP/Ixljo4S5+bjNO2b0Qc70VVlTQcgifvIeKkPztn70x1
-         WQsd8jrWajOCrj/EoykIbcZpGDvgXfPNOpcjoP9exSaGEQAfMxDDEkZVFBYoHQjQp2yt
-         1DBbKl4pVR2Vs2BmBaPXfFM0I87KPJcGRLKFyZoZNjTyQNpCu6EaIG9/BGHQN8N5l8n6
-         Xv9/TPqbsXRjNEt+ghnA/x+l8+ZKhCAtYtzofpZkmWukxI1oyZOMI2AUxf0nAf+JHZmZ
-         hk2Q==
+         :list-id:mailing-list:precedence:reply-to:content-disposition
+         :mime-version:in-reply-to:references:subject:to:from:date:message-id
+         :sender:dkim-signature;
+        bh=DA3N9xBxxE9RZDsIcKz23kN6QP6mkKz47LgDeyZJZz8=;
+        b=YQH7F2Af7tlopnVWM1t2EHdCgEFLc5BbT8eHLvyaD74MbWeBjLzS692v80U4s4+jPs
+         aVftGALMEW8gXmv1gB3mscbb1C1LntTFxapF/QdjUqcUi+zB5EA0+VSDmPk9AC7FfFI9
+         2hQIyqoNoD5Enn3zyCATTkLtL/P0LgkOp19aDBOEd8bEH1ng2hboS7li8/US6AjXegPS
+         AssXEwEljLL99I29V9EIxoNWqbMo4OT/3KrcJKezUe9c9rKNNn3b/VWk9BDKKw0xWsOm
+         uTaeLX/k7xnB++QvpSdwf+dnGVhvw1OqriKyIWynkNeKDlQdaElP50JkwYYxnWuRmjcr
+         Y/Ng==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:3:bdf7 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=ADp7p4eKlFuNF2P4CfIIaLVz2/R/X8ttFLiFaLJdHgo=;
-        b=IILyj+ipKMLjKLCnbgx13gi88E1qYzkZDtpQhx/Z97SAWPPFhEgTHgwXTgItPoM3dL
-         nRyGz/u0cAlTaB27RD3AnIUexwKbPdhJzro9nhTQefEITx2eruu45oZYp1OSlAMCrCvy
-         rKhd+O7eFmPNOQ8Cntc/l9/2dpXoGFeDvxj4xYTsXILWvKQPq03l1Ben+Er7DjDyyTC9
-         7Qj/7Zu1Y1eZVxCASsWVEeg0ChBLAHKiPNZg92AlebG9+/NOLiaC9X/m9GDM8FKB3JBv
-         RslNexKe3x9Xe7wE3bx5pXZA3bqjCBUmpIdcFdtcV8ZC0EE/I53DRZLNLksDZzRQsA0W
-         pTyw==
+        h=sender:message-id:date:from:to:subject:references:in-reply-to
+         :mime-version:content-disposition:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=DA3N9xBxxE9RZDsIcKz23kN6QP6mkKz47LgDeyZJZz8=;
+        b=l7kgpP/QrZ95M9hc8OqdqJ6RjZIPcArq2ZS7KFiGy0vFPl9Th6RbrCRcEWkfxKy69G
+         rIpdhYp0tIuTfMCMv4fw080T5TDI5QcmtVN2DCt5WmMd7R+6WmDyOvIEnpKieqtw301L
+         +lTSYRg7CeSHG7ArhpTVW0OwpA1pNx9ejKCpbJLuHZHnSbc9qJz3ta9/AMkSJ/r6OBYD
+         PtCvt21GFl61zUSG1szsAc9Wc9xYCs+/wCfTx5KPw+lwutqZOAiYg1iyjwhfzBbH+A05
+         Gu77nCQFCOdP8AK5gpkesDnouzZ61K6r8pr8D7f6SkzRPwISCYk1yRM9rdGwq1mcRSrS
+         cBxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=ADp7p4eKlFuNF2P4CfIIaLVz2/R/X8ttFLiFaLJdHgo=;
-        b=kAxRDT9D5ZfsTUyz5vxMOI6h7WInh0vaeYD3U9Ujc2yo0MdETeNJauUgnaIN1uSTH5
-         pK2rvSUrTcXnIYANv0i2EZagiVYYUnWmwUQxnva/m/isttq2amv1d92k4QimTPt2R9m6
-         7b0z1/UoSwfO1gFOy+hR5TtFnXRdjSWM247+WZ+lqOBz4Rht8ShqZP8K1vVRH9Y+3vgA
-         vFOi3j966y/1UGABuR6dTiUoqRMhKTtLy/vTNdPrqJ5lwh209gDKgerlq0BFrJvC2Ecz
-         v4iyyEwokQWP6khmEDlCdzHBwhcq1Oo0YBQHdJkqma1HWQtZfU9Fa6KevWab1vJXCCou
-         MZDQ==
+        h=sender:x-gm-message-state:message-id:date:from:to:subject
+         :references:in-reply-to:mime-version:content-disposition
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=DA3N9xBxxE9RZDsIcKz23kN6QP6mkKz47LgDeyZJZz8=;
+        b=CvzKLnDPEdcMbiUP6fJlrl4frhxljVtrnqgHJs2hgBLhz1PwoC3Ceub7LwGWodh0cv
+         dx8UMLNvjWUtT5IvtqIKRk89/bXoGFSIV3BRw1JaXSErE3P0vVUkX+j69ANcM4bwW/6D
+         LJGFxdr9q4MUxwVAlQvfdrW6ZC+16GtbOTjY9p6ezoV+DN7PW6oDexRM8tlw769vAE42
+         fa6MeFloXmnu5n/0KTpGOfcY7K7QZxwpTFHNLKsP3bNtOYkfPTwC6tkIhm4PceP5NY+C
+         SvFMpOwaHHVDmO9gN53T1WIz8lsmjovnmKqt0TK5QZRGxaOO58fuN2RMPa6oahfi2Vs6
+         jQVA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532w760nIqpxjhHYcJ0OL5Xv06GPvTNRapZgVDZXnvb7vQbG9f10
-	C5JDACKEkZEfoOKzoE5HmF0=
-X-Google-Smtp-Source: ABdhPJxg8gPZwNiQxxOG82bt5cf+lkkiOa6iiJ8hnUiMN+/GTXaCuBygei6o3RrNWsOC0MV2vbfb6w==
-X-Received: by 2002:a92:7f0e:: with SMTP id a14mr7181925ild.181.1607306134737;
-        Sun, 06 Dec 2020 17:55:34 -0800 (PST)
+X-Gm-Message-State: AOAM531hWplLYsq1aDQ8YtVYRKZgvvgG7eOlZceqLZyYFoL265ZwCieb
+	gLt4NIuc4TYU8EaUGAuAIOQ=
+X-Google-Smtp-Source: ABdhPJyUTIhaojKBycOT9O/Y3abHxh+Yr5u2vAlQ7XjseGVCGT5+4slOsEWTGkqHSqgF3EZsZ9t69w==
+X-Received: by 2002:a2e:97c8:: with SMTP id m8mr9747719ljj.338.1607416420270;
+        Tue, 08 Dec 2020 00:33:40 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6e02:f48:: with SMTP id y8ls2623881ilj.7.gmail; Sun, 06
- Dec 2020 17:55:34 -0800 (PST)
-X-Received: by 2002:a92:4019:: with SMTP id n25mr8357531ila.25.1607306134190;
-        Sun, 06 Dec 2020 17:55:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1607306134; cv=none;
+Received: by 2002:a2e:9a94:: with SMTP id p20ls2742020lji.0.gmail; Tue, 08 Dec
+ 2020 00:33:39 -0800 (PST)
+X-Received: by 2002:a2e:760c:: with SMTP id r12mr3852196ljc.11.1607416419320;
+        Tue, 08 Dec 2020 00:33:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1607416419; cv=none;
         d=google.com; s=arc-20160816;
-        b=lawvak020vBjABGduSlX3657ZuEjyn7jcBRV9OPL4UEni9mXzfEDZOhryN9Yl9Egv+
-         k2CjH7eyC5X3hwsK9UsUKGOaiEur82XMDHBrnvssFuPd9B/up+ik4b6X7XZvaFgr9qeE
-         zwdQysk+kSEPDgZxTBWLFH7mC1hfDF1AQqHMzuClGbaNm+gNYb4ht9w02B8sFwdlstCh
-         MAN2QdymADXWol1vrw6P9mZAHbQCCeUgahrtcdxlvDs/QSv8CvnRcYHp/HTkMznaK6P2
-         8s8g6ntez0VFh4/xEugH/QGXoR2rCw0ohWOprC0VO8FvSvegI/Dh1iiGk4z5WfdnXpgl
-         2Hdg==
+        b=JEzUjrjI/em7kR0m9X4EvuyPEEmalKTSJQTehCV+dYrrt2NNUMfrTs3rZwLMcdQZQd
+         HdDumOHftM8lTPPi+KKzqgVTGniNcrPLUXF9crXGHBLTGWLLSCme+1fF1uLu9YGKzN/y
+         G8HF7fLj6aqQOfg8jqonxwioqyYCMPTgXN8n/VotObM1AD4O8scErWXRrpmFp2AUX0hm
+         SR2N/Kn4fKGaCweo1ioFlfN0kZCJc+YgUKiCiHMuqXJuLCBx0T1LhamT6ljgX9+opJ3G
+         rlPynTikk4jEprquLvrs+E2a2kD0Bb8pJj4ZFfGQNnC8v5Z2QKmY7nWQEf29dyYpIkg1
+         d+iQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from;
-        bh=XRIs+pTIA9dYcU5az6Zw0k4dQlXfM+R8pmj8edVht5M=;
-        b=ICxHUYCNxW2f3V5bx3vr97IXGK2US76bkWq+4laBgKIcRcVskKvOigC8sPTJywpa06
-         XJwXz6+wqERPy2gMsq/FtSx2O1c26eDMKoZYdNZA18XVhZPWLurglJyJB5jAyoyT8jXB
-         fdv5Ae3WsguZl4Ezqf2JtBn87IX3TR4ze7bPStUCyWsRnaUz9A17DDo4W/gDVIIb/Yuu
-         BT110GxhVjB4WswmfLhL3jv2mSiVty19L0zurJLrYs+nuhijhoyHYAHMYMmWBDchKz5q
-         Nt82EAOrFiO/6EIyu3LsPeXgv5Og8Lxv1WLxxroe+XPImDeSjoNqy5s8pKRkwl3ShgPJ
-         SL3g==
+        h=content-disposition:content-transfer-encoding:mime-version
+         :in-reply-to:references:subject:to:from:date:message-id;
+        bh=no+pzKreL5/WhOb3WRQQEnriKF72jzc4DOgSRUuNwSo=;
+        b=kwYxUBt9FA1O/FxSn3Oor9EOd7d8yQrKFJoB7W9cg/liucnGqXStxLEOGGJ5NfdwSU
+         iRDA2CgvFg3+c3IVAAW3z8ywRoln9RQjGusyYZsKRKy5VBozh5FhooOfJzve24Zq+wRN
+         tAExem+Z3UgoJslaZiUP5jH3UpIibeIxIC6FI6T43Z62It8LjEyLpI0INiQFHBReMMIU
+         PbVjrqjHPVEI/52sCbB4zntWIA6b8X6ksFyJOllj68GwpO1nJz1laYlpEihBGU/lxoTc
+         ARR0McR16cDdHiJrNCydu5SKzGgTCAerbvc1HM34Vw6IeC/3zYEFz40O20UE1H5JoM0V
+         ZaLQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
-Received: from szxga05-in.huawei.com (szxga05-in.huawei.com. [45.249.212.191])
-        by gmr-mx.google.com with ESMTPS id o12si501340ilu.3.2020.12.06.17.55.33
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:3:bdf7 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+Received: from mx1.uni-regensburg.de (mx1.uni-regensburg.de. [2001:638:a05:137:165:0:3:bdf7])
+        by gmr-mx.google.com with ESMTPS id h21si258845ljj.6.2020.12.08.00.33.39
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 06 Dec 2020 17:55:34 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as permitted sender) client-ip=45.249.212.191;
-Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.59])
-	by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4Cq5vx6p8rzM1S0;
-	Mon,  7 Dec 2020 09:54:21 +0800 (CST)
-Received: from huawei.com (10.175.104.175) by DGGEMS410-HUB.china.huawei.com
- (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Mon, 7 Dec 2020
- 09:54:50 +0800
-From: Wenchao Hao <haowenchao@huawei.com>
-To: Lee Duncan <lduncan@suse.com>, <open-iscsi@googlegroups.com>
-CC: <linfeilong@huawei.com>, Zhiqiang Liu <liuzhiqiang26@huawei.com>, Wu Bo
-	<wubo40@huawei.com>, Wenchao Hao <haowenchao@huawei.com>
-Subject: [PATCH 12/12] fwparam_ppc: Fix memory leak in fwparam_ppc.c
-Date: Mon, 7 Dec 2020 09:54:10 +0800
-Message-ID: <20201207015410.48488-13-haowenchao@huawei.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20201207015410.48488-1-haowenchao@huawei.com>
+        Tue, 08 Dec 2020 00:33:39 -0800 (PST)
+Received-SPF: pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:3:bdf7 as permitted sender) client-ip=2001:638:a05:137:165:0:3:bdf7;
+Received: from mx1.uni-regensburg.de (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id ED6AC6000050
+	for <open-iscsi@googlegroups.com>; Tue,  8 Dec 2020 09:33:37 +0100 (CET)
+Received: from gwsmtp.uni-regensburg.de (gwsmtp1.uni-regensburg.de [132.199.5.51])
+	by mx1.uni-regensburg.de (Postfix) with ESMTP id 882E4600004D
+	for <open-iscsi@googlegroups.com>; Tue,  8 Dec 2020 09:33:37 +0100 (CET)
+Received: from uni-regensburg-smtp1-MTA by gwsmtp.uni-regensburg.de
+	with Novell_GroupWise; Tue, 08 Dec 2020 09:33:37 +0100
+Message-Id: <5FCF3A5F020000A10003D5BB@gwsmtp.uni-regensburg.de>
+X-Mailer: Novell GroupWise Internet Agent 18.3.0
+Date: Tue, 08 Dec 2020 09:33:35 +0100
+From: "Ulrich Windl" <Ulrich.Windl@rz.uni-regensburg.de>
+To: "open-iscsi" <open-iscsi@googlegroups.com>
+Subject: Antw: [EXT] [PATCH 05/12] open-iscsi: Fix NULL pointer
+ dereference in mgmt_ipc_read_req()
 References: <20201207015410.48488-1-haowenchao@huawei.com>
-MIME-Version: 1.0
+ <20201207015410.48488-6-haowenchao@huawei.com>
+In-Reply-To: <20201207015410.48488-6-haowenchao@huawei.com>
+Mime-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.175.104.175]
-X-CFilter-Loop: Reflected
-X-Original-Sender: haowenchao@huawei.com
+Content-Disposition: inline
+X-Original-Sender: Ulrich.Windl@rz.uni-regensburg.de
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao@huawei.com designates 45.249.212.191 as
- permitted sender) smtp.mailfrom=haowenchao@huawei.com
+ (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates
+ 2001:638:a05:137:165:0:3:bdf7 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -129,62 +131,54 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-calloc() is called because loop_devs() to allocate memory
-which stored in array ofwdev. These memory should be freed
-at the end.
+>>> Wenchao Hao <haowenchao@huawei.com> schrieb am 07.12.2020 um 02:54 in Nachricht
+<20201207015410.48488-6-haowenchao@huawei.com>:
+> If malloc() returns NULL on fail, we should return -ENOMEM to
+> avoid NULL pointer dereference.
+> 
+> Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
+> Signed-off-by: Zhiqiang Liu <liuzhiqiang26@huawei.com>
+> Signed-off-by: Wu Bo <wubo40@huawei.com>
+> ---
+>  usr/mgmt_ipc.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/usr/mgmt_ipc.c b/usr/mgmt_ipc.c
+> index c292161..054378e 100644
+> --- a/usr/mgmt_ipc.c
+> +++ b/usr/mgmt_ipc.c
+> @@ -453,8 +453,11 @@ mgmt_ipc_read_req(queue_task_t *qtask)
+>  		/* Remember the allocated pointer in the
+>  		 * qtask - it will be freed by write_rsp.
+>  		 * Note: we allocate one byte in excess
+> -		 * so we can append a NUL byte. */
+> +		 * so we can append a NULL byte. */
 
-Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
-Signed-off-by: Zhiqiang Liu <liuzhiqiang26@huawei.com>
-Signed-off-by: Wu Bo <wubo40@huawei.com>
----
- utils/fwparam_ibft/fwparam_ppc.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Nitpick: "NUL" is a well-defined ACSII character, while NULL is a well-defined C pointer. Thus I'd keep NUL.
 
-diff --git a/utils/fwparam_ibft/fwparam_ppc.c b/utils/fwparam_ibft/fwparam_ppc.c
-index 6a45b8c..da9d76e 100644
---- a/utils/fwparam_ibft/fwparam_ppc.c
-+++ b/utils/fwparam_ibft/fwparam_ppc.c
-@@ -446,6 +446,7 @@ int fwparam_ppc_boot_info(struct boot_context *context)
- 	char filename[FILENAMESZ];
- 	int error;
- 	char *devtree;
-+	int i;
- 
- 	/*
- 	 * For powerpc, our operations are fundamentally to locate
-@@ -511,6 +512,10 @@ free_bootpath_val:
- 
- free_devtree:
- 	free(devtree);
-+	for (i = 0; i < dev_count; i++)
-+		if (ofwdevs[i])
-+			free(ofwdevs[i]);
-+
- 	return error;
- }
- 
-@@ -525,6 +530,7 @@ int fwparam_ppc_get_targets(struct list_head *list)
- 	struct boot_context *context;
- 	int error;
- 	char *devtree;
-+	int i;
- 
- 	/*
- 	 * For powerpc, our operations are fundamentally to locate
-@@ -592,5 +598,9 @@ free_bootpath_val:
- 
- free_devtree:
- 	free(devtree);
-+	for (i = 0; i < dev_count; i++)
-+		if (ofwdevs[i])
-+			free(ofwdevs[i]);
-+
- 	return error;
- }
--- 
-2.27.0
+>  		qtask->payload = malloc(req->payload_len + 1);
+> +		if (!qtask->payload)
+> +			return -ENOMEM;
+> +
+>  		rc = mgmt_ipc_read_data(qtask->mgmt_ipc_fd,
+>  				qtask->payload,
+>  				req->payload_len);
+> -- 
+> 2.27.0
+> 
+> -- 
+> You received this message because you are subscribed to the Google Groups 
+> "open-iscsi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an 
+> email to open-iscsi+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit 
+> https://groups.google.com/d/msgid/open-iscsi/20201207015410.48488-6-haowencha 
+> o%40huawei.com.
+
+
+
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20201207015410.48488-13-haowenchao%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/5FCF3A5F020000A10003D5BB%40gwsmtp.uni-regensburg.de.
