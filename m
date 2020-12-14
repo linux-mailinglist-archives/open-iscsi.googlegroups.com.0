@@ -1,125 +1,118 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBB5XZ2D7AKGQESDV5FCA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDO7B5X3UIBBBA6B3T7AKGQE2ISBZII@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yb1-xb39.google.com (mail-yb1-xb39.google.com [IPv6:2607:f8b0:4864:20::b39])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C362D842C
-	for <lists+open-iscsi@lfdr.de>; Sat, 12 Dec 2020 04:45:59 +0100 (CET)
-Received: by mail-yb1-xb39.google.com with SMTP id e68sf3906191yba.7
-        for <lists+open-iscsi@lfdr.de>; Fri, 11 Dec 2020 19:45:59 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1607744758; cv=pass;
+Received: from mail-pg1-x53d.google.com (mail-pg1-x53d.google.com [IPv6:2607:f8b0:4864:20::53d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C3132D9418
+	for <lists+open-iscsi@lfdr.de>; Mon, 14 Dec 2020 09:21:25 +0100 (CET)
+Received: by mail-pg1-x53d.google.com with SMTP id o17sf11306758pgm.18
+        for <lists+open-iscsi@lfdr.de>; Mon, 14 Dec 2020 00:21:25 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1607934083; cv=pass;
         d=google.com; s=arc-20160816;
-        b=IdQrKO9t5JZEnpZcqxKBamXUbbzadz5baLLGl32H9jgqXNe4RBsyg3I3KUp9qWaGaB
-         YsUMt2nuNan7m8Fy07M5Y6cXj1OJ+hydCl+edUzQ/suHh7gBKC5p4swvecXQsMfJuV3G
-         HJ5cghvKhUX6f0ycmcAf5oyqHJJxC7X7oDznWGhpvBrCXhTaNZkqSPd8WNFHh7YE4LsX
-         FCgE9/U/gnygxJwyyFjX4hVcc7JlXHz1JxZGG4LDjSb+wckzQmtGU9CjMJDpEFwqvwfE
-         8M4Th5lAEHBf0/1p+AJ8tztEm9Q5GTKF7J66GCwFSlU8wI93/uC7/VZKleyFt+Osflky
-         Wk7w==
+        b=ZIsAuFLLZOjK+SSVSA+cXBlBNx/b7MBKk7oHVdxM/bFIiXpS0X9orNshbujmUMt2Sq
+         ++iDsEnKPyODRMHe0P4gZNQQJfJZUWtBYjbONemIDXYh9S2xIo18nmvP+16FQbBOItdn
+         QIyadiLIsZqv38s42BALVGJXscsO+4EpQsIxPvH+ME9oOmYc5MVNcR9nsm+fAAlItPaA
+         TAYjd5EusiSHcNyeKmmrV89K4NTZVi6X4G/9XfhYOyf2z7evWQTu1FQQVqeWuxImL40v
+         HF1iumxhEFNWtPYw3JWvU7JqHmRaKCdnl5WGmJoCmL+tmLrKchO3kRHhNWg0sov3vq88
+         MYyw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-language
-         :in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:sender:dkim-signature;
-        bh=ElHT19F/r6IEBHbb/TySIuoba9HnY/zHo3Xszxx1O0M=;
-        b=LPHILToA4CfIbZ8GbovNU7XBky6RwpT9KlT/2GN8ABPqpUmN562DXHIWzhGqVtK18J
-         U4g9cmaIPEvfoakc0685oSLCucFH6L7Qbh4kRMa7wR9mE4hNs3HmjKGgoaLdR2RMB83t
-         NREMWdfIwsAsV0xX1IV0aWjSakfOIW8lzYouVNC8tlffFmZe+//7kGB2aps+gssI0k2a
-         7jEdpXGb49BvKQx8NW+rCg/TOftoChpxAKA/3djLjLmVQd2Tkx0CbRHZd7PL7sFiaFVO
-         bhBwNXI2+GY1OvFf7fhM2CRZbnil3oDu9KV3//hvXW5S1jpAzWtmTxA3MSVVi5T3vGQr
-         q8Zw==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=dNqcx4iRH18B+c4nODJHbzX8BwfEcrp9wP4vnuzt7mI=;
+        b=Fs7w529PBJXwpMHFKZjolJSWesiI+BnR5NZ8/DduFKzT3CpD4obWsSNh5lYS/MR7R1
+         9XQNEGXg94ryMRSelp1O4Og/90vjN7Uh9g1B2X7Bow256Mr0jA9p/111/7+FSCFtvcnP
+         oflgUeivA90CIf39lM3NhzV5+h0+Ntr7ckZl2rgZQbVT2wOsk79Y7q89jHCH0qs2J+xn
+         4utg23TDkwWRRiUZckdOdsRzHmnif7HH2ztfDPhaVmWUiAnyNrdWb08/nHm2KfZlbRK2
+         U5FVLmjhCQflFR/lUVM32X2ues41SGj1fEx5gKjQsBU/tgupPE+Tw7xr++BfSrjgTnIc
+         2pig==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.190 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
+       spf=pass (google.com: domain of wubo40@huawei.com designates 45.249.212.190 as permitted sender) smtp.mailfrom=wubo40@huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=ElHT19F/r6IEBHbb/TySIuoba9HnY/zHo3Xszxx1O0M=;
-        b=YzgRkt4j8q/G7LW1KfhNiFOAqVPq6ViGMTPPsmOfTtqnVyL6jXN6wa5FdM6UqBfOlw
-         S8JPbZfrZfMjbWd/2v+Gl2XQ8SPE7uHWY2N/pVlutnShalxgMDQSC8krCLXmejdjCDMC
-         VF3oKNhqXj91/rhgHjTHmRbd/Go573yoJ6wJDUJP9MgkM73+c0qQJom3vIJ5atL2x5JF
-         igQ+5imL9/FKLLHvNZlFhxBkzN442zMCJdkFvin1uTUXH6WNXDS22eVVHeUjar9SfHC8
-         yvPHsfBXIyV/qOnPRLmQex4AB6VKy0fODnD8FhuDqboRHlbWqLvSlYn3X4Yrc1tdAFrk
-         HInw==
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=dNqcx4iRH18B+c4nODJHbzX8BwfEcrp9wP4vnuzt7mI=;
+        b=pG1I3U6neIL2ircESDdyHDcTsQnVutssuyvmTzMHjD0bVbjuTPCONWqMDYEilvk36w
+         ddkCZpy7mRbHuLxWoNeyGdvoib+xbSXT9TmNElzO6a8VeZcp1PHniYUZBZNawnLplQiE
+         Gb6urmOEpAsX+0TJj449bcFXBXITI04GIj6NwJxF03Ye0tQERLlgEcQrAADXGXUNKyIo
+         0bqRLYxK/Z2MdwMsIlzeAdMLfqIiNgTKQkpKemfGM+oYub+mBsL32hcIU0latnL654kQ
+         /vzRbrO7pSI26eM0TrYI5KY/+WGuYsvSsgxjLxgYallVtwbp3fCHOa8Bt4mEu0dMtXWc
+         T7LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=ElHT19F/r6IEBHbb/TySIuoba9HnY/zHo3Xszxx1O0M=;
-        b=gLVajJ97lXkqRMgVQj8n0YyNMfJPGolQsS1yf8bs01lCE0Td36MtU/pjeb6hYfXTJO
-         ta2Y7O0eX8YwE8D/14Lp7iQZa29z9OiFuKVv2zZYDj5u72EEmYJLVKn74AqYWwXfBZvT
-         TFtJaBsliA1g2eXi6AtkP6M4SvX8OsLykbhbbLllOHJXeS24W6vI1XRlyiP+Tih9pWvC
-         3kC7axpCOXaxQ0CnTGpSV0SBSFhxk3x6sPDdwQDHUKG/Wel0vgNu4ZCl+cS2A8dGA475
-         G139dqq/bvEwlz96p0kOEywEM2u8DeK1gAxzGdbVWjMWff1IYV91U+u/IlR5rfpiVB8E
-         HTjg==
+        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :mime-version:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:x-spam-checked-in-group
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=dNqcx4iRH18B+c4nODJHbzX8BwfEcrp9wP4vnuzt7mI=;
+        b=KmHoxlwXaEWoTKbA0xowDB1ojuWLJ9w45kTncSRpJb/iLtqZn5U+VLXdPBG7q/aKxI
+         m8qPUveXNztQMnIwihGjm2ChwA+pBnBRZ9w2G4pbjfEvcDGWBN1uqFvP8vJYejTVqXqL
+         5KZUvztNHw6DlzZzGwrppPW8p66XslaQnI0S7e841KP67C2cZIDJaM+vnMDGx6pFNStm
+         BX4KkmezyA40Unou5smwg8pG9p1/XOY9EErUwdkrQRiotR+Fc1R3wQsoO9N0w+Tk7JiJ
+         dgUINbqmjwinBtUn/ZErdmS8GkmPU1MgGJFsq0x0PbP10Oi9pKchk3JgZTIDHdawsjOU
+         0+kg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530V5zhpwNGMY4XqKIa7LZ1f7dfAZWXKBhg4Hjnw6z5/OnxAIyHx
-	q/wIpS/OoEy8p00eRu+S7mQ=
-X-Google-Smtp-Source: ABdhPJx5a6sQjOhXjfdY2OTkZEdovJ8dmIPfy66iZu13oHYyGD7Gzsu0/CtEAfHbPkv7ouy3//vkwQ==
-X-Received: by 2002:a25:8283:: with SMTP id r3mr23198328ybk.66.1607744758344;
-        Fri, 11 Dec 2020 19:45:58 -0800 (PST)
+X-Gm-Message-State: AOAM533Z1rshBCPV8qaAAuofPYJs321YvYklWAgKjflT1eQu8vzVyONC
+	ezalv4qFGDXBAjTkw1BG0+o=
+X-Google-Smtp-Source: ABdhPJw8R2qJ5H+tjY0BzdOmZ3hVJTlSOzcbXFukWPrgZsY0KfIRKSvYXVJDTz50nvC7pH0xlECEVQ==
+X-Received: by 2002:a05:6a00:88b:b029:19c:780e:1cd with SMTP id q11-20020a056a00088bb029019c780e01cdmr23149618pfj.64.1607934083569;
+        Mon, 14 Dec 2020 00:21:23 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a25:df91:: with SMTP id w139ls5164718ybg.5.gmail; Fri, 11
- Dec 2020 19:45:57 -0800 (PST)
-X-Received: by 2002:a25:ac03:: with SMTP id w3mr22805028ybi.135.1607744757932;
-        Fri, 11 Dec 2020 19:45:57 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1607744757; cv=none;
+Received: by 2002:a62:6491:: with SMTP id y139ls6091107pfb.6.gmail; Mon, 14
+ Dec 2020 00:21:23 -0800 (PST)
+X-Received: by 2002:a63:5f93:: with SMTP id t141mr9488860pgb.299.1607934082976;
+        Mon, 14 Dec 2020 00:21:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1607934082; cv=none;
         d=google.com; s=arc-20160816;
-        b=bPgVVgIKPfEPQD+QEYUCGhZRSuRxbQJdfJqe4DECdVON/ph9TzQeFs710p5B2PM5yN
-         tjELdu5ske+lQmWvkuSxF3x21u79ZcXFmSAekvMzU1G+SFmtum+OX7Un8hXdgX0y02MB
-         wcATTFvONjd1+yUhDYvp0UF0jDSElDjy5UndRFjNH60WvsISBQFENHZDj98+TgJWT1pz
-         r+KzM6yT+Xni+IUpv5ypA/rfkRe3fSQbLFN4VthBNiFrrJnUTL0vfbMttSAnLo/ASn0A
-         CqbfEYKEKRQMG+cf26558jRl4DfI5vE7MoOWgMnzRyP1U80uG1Hx5S1GcC722dO4xIae
-         zV1Q==
+        b=KJtFU7dXXo1QS51eg43Q5kzC6t1gUD+DJeQyGYwN+sVYxOQkm4J+PaEWPdooUeG0Dn
+         GcFAifdZ/O/sdmuA0tmbj528siOXuKzp6g5w9hrYIkMsRqJDohYgqmOkpcGizeumnSQ6
+         nOWDcFIyOgI2RCOreqsIEpkx5cyL1uwLLRs/XWr4HClGg9ATwGaLNL/Q7LB2Jvm4tJDr
+         Vl6bScXdcOgl3TIFoC2Zs7QaPx1WXcrqU0BGfyngMChbwTevjDWKLF9dV3BiCTJBFdvw
+         35wmymzY+OXlP95MJr0ULf9Z8OndI1Ec59m1CjJgICs0XyWwrInL+ERHDVGUOGnJMtFi
+         +fsA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-language:content-transfer-encoding:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject;
-        bh=XF7ncpeUcCtvWkRblDXoQ4kJAWvBDXKyD2ivNtZ5e1c=;
-        b=mvEzaYmCf5NdYAFqAuS9Nb9umjVbVoXCppgdIVAOejiujmCUQ6z74O6ytTEThnjx5b
-         Qh3r5JZx9gdvNUr/7c8wGFvcgBFw+wRo3xJzesInMjqYbPffzC1r30KfUXeXyVWtPIaO
-         eLaGlQ0BzYcjmGv6AOVrFqykeNWVR6InV6b9CxSt/juuS74pVjYPMwr4aNqwIB9Y4xQ6
-         jDwkHyepq7SXsh/6Rvr9rSWkGGe6OuuKTDW7hjJoc/nHk6fNAZjmMkOooeM1ckt+YNRI
-         Hu4QE96XBJP06ju3Qz62KjEgN+z/wRrRJzO7C87Zal2Sb/8SQMor35d9F+v+XmhB6YOh
-         XBUg==
+        h=mime-version:message-id:date:subject:cc:to:from;
+        bh=mnyS53oBjsQ+h2tS8qRFH7MQJxm/gNPP2iTUEkS4lZ0=;
+        b=x836CoqugrBKrNhaMZ/6WvbIh42hI+ZJff9Zyvhobbhmpg+rOKxFh8nukWcHMYp+Ys
+         KzrDHkaOv9VlQA0UBMFwXHfZnTMz0yxfDe+ruwlaDCbd1nvhGyfld5f4UfxbBBf838hF
+         Bq8zgM1YMNHz36AKASl2R0pcbp/jjQBaOHj26Ai3+Q1QXwRy5MxYMukzHoH4qb/5ntQB
+         BVRf4KKNNSn9qrrkoJClxvQTMKWK2zCm7Cbf6Al/2mH8mXKRlw3z4iGvq5K8xlkZxCfs
+         3GdXlO96Y6OX91eJr7mNO86CpYvfYPD/wZ+Sn9WgzFebUOPjpKEop2MBDFGYgf3+0ZoB
+         +hYA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.190 as permitted sender) smtp.mailfrom=haowenchao@huawei.com
+       spf=pass (google.com: domain of wubo40@huawei.com designates 45.249.212.190 as permitted sender) smtp.mailfrom=wubo40@huawei.com
 Received: from szxga04-in.huawei.com (szxga04-in.huawei.com. [45.249.212.190])
-        by gmr-mx.google.com with ESMTPS id e10si1132552ybp.4.2020.12.11.19.45.57
+        by gmr-mx.google.com with ESMTPS id v8si1231489pgj.1.2020.12.14.00.21.22
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 11 Dec 2020 19:45:57 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.190 as permitted sender) client-ip=45.249.212.190;
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.60])
-	by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CtD7h6CW5z15bPY;
-	Sat, 12 Dec 2020 11:45:20 +0800 (CST)
-Received: from [10.136.113.116] (10.136.113.116) by
- DGGEMS412-HUB.china.huawei.com (10.3.19.212) with Microsoft SMTP Server id
- 14.3.487.0; Sat, 12 Dec 2020 11:45:48 +0800
-Subject: Re: [PATCH 00/12] open-iscsi: fix serverl issues reported by Coverity
-To: Lee Duncan <lduncan@suse.com>, <open-iscsi@googlegroups.com>
-CC: <linfeilong@huawei.com>, Zhiqiang Liu <liuzhiqiang26@huawei.com>, Wu Bo
-	<wubo40@huawei.com>
-References: <20201207015410.48488-1-haowenchao@huawei.com>
- <8affd4aa-63af-f05d-2975-86da75f5ebc7@suse.com>
-From: Wenchao Hao <haowenchao@huawei.com>
-Message-ID: <d7b61124-8f77-a82e-e18a-6eaa11e8980b@huawei.com>
-Date: Sat, 12 Dec 2020 11:45:48 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        Mon, 14 Dec 2020 00:21:22 -0800 (PST)
+Received-SPF: pass (google.com: domain of wubo40@huawei.com designates 45.249.212.190 as permitted sender) client-ip=45.249.212.190;
+Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.60])
+	by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CvZ8K479tzkrZB;
+	Mon, 14 Dec 2020 16:20:33 +0800 (CST)
+Received: from huawei.com (10.175.124.27) by DGGEMS404-HUB.china.huawei.com
+ (10.3.19.204) with Microsoft SMTP Server id 14.3.498.0; Mon, 14 Dec 2020
+ 16:21:09 +0800
+From: Wu Bo <wubo40@huawei.com>
+To: <lduncan@suse.com>, <cleech@redhat.com>, <michaelc@cs.wisc.edu>,
+	<linux-scsi@vger.kernel.org>, <open-iscsi@googlegroups.com>
+CC: <martin.petersen@oracle.com>, <jejb@linux.ibm.com>,
+	<lutianxiong@huawei.com>, <linfeilong@huawei.com>,
+	<liuzhiqiang26@huawei.com>, <wubo40@huawei.com>, <haowenchao@huawei.com>
+Subject: [RFC PATCH] scsi:libiscsi:Fix possible NULL dereference in iscsi_eh_cmd_timed_out
+Date: Mon, 14 Dec 2020 16:41:57 +0800
+Message-ID: <1607935317-263599-1-git-send-email-wubo40@huawei.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-In-Reply-To: <8affd4aa-63af-f05d-2975-86da75f5ebc7@suse.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Language: en-US
-X-Originating-IP: [10.136.113.116]
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [10.175.124.27]
 X-CFilter-Loop: Reflected
-X-Original-Sender: haowenchao@huawei.com
+X-Original-Sender: wubo40@huawei.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao@huawei.com designates 45.249.212.190 as
- permitted sender) smtp.mailfrom=haowenchao@huawei.com
+ (google.com: domain of wubo40@huawei.com designates 45.249.212.190 as
+ permitted sender) smtp.mailfrom=wubo40@huawei.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -133,17 +126,190 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 2020/12/12 0:32, Lee Duncan wrote:
-> I have reviewed a couple of these, but you need to submit them as pull
-> requests to github.com/open-iscsi/open-iscsi.
->
-> The "reviewed-by" tag I replied to a couple of them really isn't needed,
-> as I'm the one that will be merging them (or not) on github (sans Chris,
-> my co-maintainer, who sometimes does that).
+When testing kernel 4.18 version, NULL pointer dereference problem occurs
+in iscsi_eh_cmd_timed_out function.
 
-I submitted a pull request to github already.
+I think this bug in the upstream is still exists.
+
+The analysis reasons are as follows:
+1)  For some reason, I/O command did not complete within 
+    the timeout period. The block layer timer works, 
+    call scsi_times_out() to handle I/O timeout logic. 
+    At the same time the command just completes.
+
+2)  scsi_times_out() call iscsi_eh_cmd_timed_out() 
+    to processing timeout logic.  although there is an NULL judgment 
+	for the task, the task has not been released yet now.    
+
+3)  iscsi_complete_task() call __iscsi_put_task(), 
+    The task reference count reaches zero, the conditions for free task 
+    is met, then iscsi_free_task () free the task, 
+    and let sc->SCp.ptr = NULL. After iscsi_eh_cmd_timed_out passes 
+    the task judgment check, there may be NULL dereference scenarios
+    later.
+	
+   CPU0                                       	       CPU3
+
+    |- scsi_times_out()                        		|- iscsi_complete_task()
+    |                                       		|
+    |- iscsi_eh_cmd_timed_out()                 	|- __iscsi_put_task()
+    |                                       		|
+    |- task=sc->SCp.ptr, task is not NUL, check passed  |- iscsi_free_task(task) 
+    |                                       		|
+    | 							|-> sc->SCp.ptr = NULL
+    |                                                   |
+    |- task is NULL now, NULL pointer dereference       |
+    |                                           	| 
+   \|/                                     	       \|/
+
+Calltrace:
+[380751.840862] BUG: unable to handle kernel NULL pointer dereference at 0000000000000138
+[380751.843709] PGD 0 P4D 0
+[380751.844770] Oops: 0000 [#1] SMP PTI
+[380751.846283] CPU: 0 PID: 403 Comm: kworker/0:1H Kdump: loaded Tainted: G
+[380751.851467] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996)
+[380751.856521] Workqueue: kblockd blk_mq_timeout_work
+[380751.858527] RIP: 0010:iscsi_eh_cmd_timed_out+0x15e/0x2e0 [libiscsi]
+[380751.861129] Code: 83 ea 01 48 8d 74 d0 08 48 8b 10 48 8b 4a 50 48 85 c9 74 2c 48 39 d5 74
+[380751.868811] RSP: 0018:ffffc1e280a5fd58 EFLAGS: 00010246
+[380751.870978] RAX: ffff9fd1e84e15e0 RBX: ffff9fd1e84e6dd0 RCX: 0000000116acc580
+[380751.873791] RDX: ffff9fd1f97a9400 RSI: ffff9fd1e84e1800 RDI: ffff9fd1e4d6d420
+[380751.876059] RBP: ffff9fd1e4d49000 R08: 0000000116acc580 R09: 0000000116acc580
+[380751.878284] R10: 0000000000000000 R11: 0000000000000000 R12: ffff9fd1e6e931e8
+[380751.880500] R13: ffff9fd1e84e6ee0 R14: 0000000000000010 R15: 0000000000000003
+[380751.882687] FS:  0000000000000000(0000) GS:ffff9fd1fac00000(0000) knlGS:0000000000000000
+[380751.885236] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[380751.887059] CR2: 0000000000000138 CR3: 000000011860a001 CR4: 00000000003606f0
+[380751.889308] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[380751.891523] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[380751.893738] Call Trace:
+[380751.894639]  scsi_times_out+0x60/0x1c0
+[380751.895861]  blk_mq_check_expired+0x144/0x200
+[380751.897302]  ? __switch_to_asm+0x35/0x70
+[380751.898551]  blk_mq_queue_tag_busy_iter+0x195/0x2e0
+[380751.900091]  ? __blk_mq_requeue_request+0x100/0x100
+[380751.901611]  ? __switch_to_asm+0x41/0x70
+[380751.902853]  ? __blk_mq_requeue_request+0x100/0x100
+[380751.904398]  blk_mq_timeout_work+0x54/0x130
+[380751.905740]  process_one_work+0x195/0x390
+[380751.907228]  worker_thread+0x30/0x390
+[380751.908713]  ? process_one_work+0x390/0x390
+[380751.910350]  kthread+0x10d/0x130
+[380751.911470]  ? kthread_flush_work_fn+0x10/0x10
+[380751.913007]  ret_from_fork+0x35/0x40
+
+crash> dis -l iscsi_eh_cmd_timed_out+0x15e
+xxxxx/drivers/scsi/libiscsi.c: 2062
+
+1970 enum blk_eh_timer_return iscsi_eh_cmd_timed_out(struct scsi_cmnd *sc)
+{
+...
+1984         spin_lock_bh(&session->frwd_lock);
+1985         task = (struct iscsi_task *)sc->SCp.ptr;
+1986         if (!task) {    
+1987                 /*
+1988                  * Raced with completion. Blk layer has taken ownership
+1989                  * so let timeout code complete it now.
+1990                  */     
+1991                 rc = BLK_EH_DONE;
+1992                 goto done;
+1993         }
+
+...
+
+2052         for (i = 0; i < conn->session->cmds_max; i++) {
+2053                 running_task = conn->session->cmds[i];
+2054                 if (!running_task->sc || running_task == task ||
+2055                      running_task->state != ISCSI_TASK_RUNNING)
+2056                         continue;
+2057
+2058                 /*
+2059                  * Only check if cmds started before this one have made
+2060                  * progress, or this could never fail
+2061                  */
+2062                 if (time_after(running_task->sc->jiffies_at_alloc, 
+2063                                task->sc->jiffies_at_alloc))    <---
+2064                         continue;
+2065
+...
+}
+
+carsh> struct scsi_cmnd ffff9fd1e6e931e8
+struct scsi_cmnd {
+  ...
+  SCp = {
+    ptr = 0x0,   <--- iscsi_task
+    this_residual = 0,
+    ...
+  },
+}
+
+Fixes: 3e5c28ad03 ("libiscsi: merge iscsi_mgmt_task and iscsi_cmd_task")
+Signed-off-by: Wu Bo <wubo40@huawei.com>
+---
+ drivers/scsi/libiscsi.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+index 0bb5d76..e2cacdd 100644
+--- a/drivers/scsi/libiscsi.c
++++ b/drivers/scsi/libiscsi.c
+@@ -876,7 +876,9 @@ static void iscsi_scsi_cmd_rsp(struct iscsi_conn *conn, struct iscsi_hdr *hdr,
+ 	ISCSI_DBG_SESSION(session, "cmd rsp done [sc %p res %d itt 0x%x]\n",
+ 			  sc, sc->result, task->itt);
+ 	conn->scsirsp_pdus_cnt++;
++	spin_lock_bh(&session->frwd_lock);
+ 	iscsi_complete_task(task, ISCSI_TASK_COMPLETED);
++	spin_unlock_bh(&session->frwd_lock);
+ }
+ 
+ /**
+@@ -917,7 +919,9 @@ static void iscsi_scsi_cmd_rsp(struct iscsi_conn *conn, struct iscsi_hdr *hdr,
+ 			  "[sc %p res %d itt 0x%x]\n",
+ 			  sc, sc->result, task->itt);
+ 	conn->scsirsp_pdus_cnt++;
++	spin_lock_bh(&conn->session->frwd_lock);
+ 	iscsi_complete_task(task, ISCSI_TASK_COMPLETED);
++	spin_unlock_bh(&conn->session->frwd_lock);
+ }
+ 
+ static void iscsi_tmf_rsp(struct iscsi_conn *conn, struct iscsi_hdr *hdr)
+@@ -1001,7 +1005,10 @@ static int iscsi_nop_out_rsp(struct iscsi_task *task,
+ 			rc = ISCSI_ERR_CONN_FAILED;
+ 	} else
+ 		mod_timer(&conn->transport_timer, jiffies + conn->recv_timeout);
++	spin_lock_bh(&conn->session->frwd_lock);
+ 	iscsi_complete_task(task, ISCSI_TASK_COMPLETED);
++	spin_unlock_bh(&conn->session->frwd_lock);
++
+ 	return rc;
+ }
+ 
+@@ -1241,7 +1248,9 @@ int __iscsi_complete_pdu(struct iscsi_conn *conn, struct iscsi_hdr *hdr,
+ 		}
+ 
+ 		iscsi_tmf_rsp(conn, hdr);
++		spin_lock_bh(&session->frwd_lock);
+ 		iscsi_complete_task(task, ISCSI_TASK_COMPLETED);
++		spin_unlock_bh(&session->frwd_lock);
+ 		break;
+ 	case ISCSI_OP_NOOP_IN:
+ 		iscsi_update_cmdsn(session, (struct iscsi_nopin*)hdr);
+@@ -1264,7 +1273,10 @@ int __iscsi_complete_pdu(struct iscsi_conn *conn, struct iscsi_hdr *hdr,
+ recv_pdu:
+ 	if (iscsi_recv_pdu(conn->cls_conn, hdr, data, datalen))
+ 		rc = ISCSI_ERR_CONN_FAILED;
++	spin_lock_bh(&session->frwd_lock);
+ 	iscsi_complete_task(task, ISCSI_TASK_COMPLETED);
++	spin_unlock_bh(&session->frwd_lock);
++
+ 	return rc;
+ }
+ EXPORT_SYMBOL_GPL(__iscsi_complete_pdu);
+-- 
+1.8.3.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/d7b61124-8f77-a82e-e18a-6eaa11e8980b%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1607935317-263599-1-git-send-email-wubo40%40huawei.com.
