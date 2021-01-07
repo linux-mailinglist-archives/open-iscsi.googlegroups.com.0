@@ -1,68 +1,150 @@
-Return-Path: <open-iscsi+bncBCO7VZXEXUARBUUT3H7QKGQEAFQTDYI@googlegroups.com>
+Return-Path: <open-iscsi+bncBDZ5D6GN2YDBBOW23T7QKGQEATHNIZA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc3a.google.com (mail-oo1-xc3a.google.com [IPv6:2607:f8b0:4864:20::c3a])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A08A2EC6F3
-	for <lists+open-iscsi@lfdr.de>; Thu,  7 Jan 2021 00:37:56 +0100 (CET)
-Received: by mail-oo1-xc3a.google.com with SMTP id d192sf2835937oob.11
-        for <lists+open-iscsi@lfdr.de>; Wed, 06 Jan 2021 15:37:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20161025;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=67Zo6HlHkBJRa2O+k951Vi2uA+XiKDbMpgNqp+VNNrU=;
-        b=e9SRDBc0a8Z/gQ9THHhtTA/3pURSpelPZgP4moBJh0jQhJEMYlA80e8vKbS9a+oJNX
-         YkWZS8G+IzfYZVgKwb+QWluOSfMEnmwbEJ+vglajK2YkaR0GhWMD2OY8ZCOJN7CLUYlg
-         ExjNMjgbWXe1ZM5oXzJ1zfLkbKXV9YPmc0qTX79aApyif6O/XqbdyL9uRrUZnwUQ8a/U
-         Dqd5EPYu79kp9YQZYF90qUblPyKzGiGtACdLdDkusy009at8RvndvJApy96wkIuDTHS8
-         229PMC2z6i1bgoMU8aljRcXBZ22ITqsn3AuLk6RiTc/1IpSRAk0kknib7xhYUUj2jlne
-         dqUw==
+Received: from mail-pg1-f186.google.com (mail-pg1-f186.google.com [209.85.215.186])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A112ED3BD
+	for <lists+open-iscsi@lfdr.de>; Thu,  7 Jan 2021 16:48:12 +0100 (CET)
+Received: by mail-pg1-f186.google.com with SMTP id j37sf4993945pgb.9
+        for <lists+open-iscsi@lfdr.de>; Thu, 07 Jan 2021 07:48:12 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1610034491; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=kvFuUaSQto7w+wFCtpj9lZU8A32I+GLSh2VnHUSR8r9kTZJNlq/diGsr5UYZ6l9v5/
+         5SE02kCzkF2xmN/58xxSfm98oLhnaiGFLaBl1+Q3FEsK4BPSzw6C0AVoelXRNSDUWbE8
+         ODUBIG99cxg6VNeeHCxCuHNPPXOvLrYq0MGzYsu6empa08B/nKkgR/a64/aLeeqf3VOK
+         Lo+68C4EOrh876XA/gVyGOhTDxb+cGKFeicS9qsFmMIugny8WHUomIkX6tQBJ9RrxoSF
+         VDRs19Qz3gp6kig+1M8lcjYwgW8UHE34IzVypvVhsPNlbPemmC8jta3mblJ1h+fCVHL3
+         wUaA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
+         :in-reply-to:references:subject:cc:to:sender:from:date:message-id
+         :mime-version;
+        bh=MTgR/CziBp1T0+TwSYcsKqg0nbVJxq9Osfz2qpYV4l8=;
+        b=lUumkz5kzUUkdvU5sMPGD9v6SABlBiy/VtwMj295Rl21qLuqyiAmeg9eBdU40zL0vs
+         tQmh6EhtiqLFT7v89r28MxxJzBN5J3CjbXbTQOhC3npxlcZ6ZFu/1n9vSF14JdpsnH0L
+         YalwN6M9r2py0pzYwsOOVwSnxMbA+mWXZgH/C1CP6JkdiO0+jcXlaet345TmsOK3DUNf
+         UNAjpRQykZ1U/WZD7yh/cN0qtmo4M5Scz/gXG5Lo77vsmhV4J3iasvLTcED+6gmDD4RE
+         bZhxYqNSE7FgPVsYbmhGpKtqAIA0fm/+lN3syvMHonpsUFgmsdbesVcaF0yqKScq82Hm
+         4xZA==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=WsNcydjI;
+       spf=pass (google.com: domain of gulam.mohamed@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=gulam.mohamed@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:message-id:in-reply-to:references
-         :subject:mime-version:x-original-sender:reply-to:precedence
-         :mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=67Zo6HlHkBJRa2O+k951Vi2uA+XiKDbMpgNqp+VNNrU=;
-        b=uDQnQsgAyoH0yv9dMB8a5m02gh5Bt98qWAJ3VefC2asH5eccqnKhu/kDS2pB/ZvBmk
-         72g7+YzONIY6h797/CrQ2bWJuLD/yCkiJ3TRSCTbphJhTpT41zrYnXfxd5MXCvYcsyhE
-         I9/5gzMN+la8mzDGOILNFI9ZgFz68vexo6U1qu9CnzW/xJoPqBI1vTDiVZYeWnL6umVp
-         VORmvwq1YVJyncghKWhCTKEvIOGm40g2bW41B84a8yELcdOJuzXrwgIHcNGJYm7tlk3z
-         WLMy4gb2wJjDz+5GfhBrTLpH4QFpdW7VyLa6DMUFGQw7dpNLc3l8cw+VjpA8Wop9fJIg
-         oB/w==
-X-Gm-Message-State: AOAM530B5gHPpcYXkfebbmEdWnr7a/vwXAnJj2IBwe3yWBlxQbA3D7lu
-	pbRONEMgbGqFeVJgBEFPGKo=
-X-Google-Smtp-Source: ABdhPJyse6Cf+lHetQRbf5j4s1H+4t7khPAPkvcP++Hnt+qzhSOy8WQtJQu6ETD+fup3PvhEovxtsw==
-X-Received: by 2002:aca:f44f:: with SMTP id s76mr4987420oih.120.1609976275370;
-        Wed, 06 Jan 2021 15:37:55 -0800 (PST)
+        h=x-gm-message-state:mime-version:message-id:date:from:sender:to:cc
+         :subject:references:in-reply-to:content-transfer-encoding
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=MTgR/CziBp1T0+TwSYcsKqg0nbVJxq9Osfz2qpYV4l8=;
+        b=LvpFmkyyFPU3X9F/xlukt0NzTPCu5+TY6+x8pCDKJ1AWZ7ihnO9FTS7FpbPtdavVqs
+         pIlRJ+FmbCaoi5ycPQLrW6Ehzx8+bjeCcXFWaw1wjQDkqUcO0WlZKPwAnKeME6G6gvPM
+         /bz/Ay426gJY/uDaRPpc1UpGBZkzs98rn3lTuN73juWzgfRSHHsNYzHpW2SRHqg941zz
+         UHCcybCvK+5yBPFtlmPbz8QBw+CJtOHS9DYj67cJrybMWrxvDJz6D5JTu0seaOWxWS2m
+         GmSgyjIwqn5D9uovicZOenxe5v9DQaYyKOiR78oC8e0KPmd7bLfVayu0o2lIqahyg+gi
+         Snmw==
+X-Gm-Message-State: AOAM533MiDHpzPdTOVHpML0fxSpuCN/L0yYTBpQqHpgurU1Ls6EFdC7x
+	OfwffBwLeInxisHUQjS+aPU=
+X-Google-Smtp-Source: ABdhPJx9m0jE6c1dbWoWONW2XWu1N0nPWdNYu6fNb24C8mK93XTSargN0i3ONERiDxQUKuUiC17OSg==
+X-Received: by 2002:a17:902:9686:b029:dc:3372:6e14 with SMTP id n6-20020a1709029686b02900dc33726e14mr9518491plp.24.1610034491230;
+        Thu, 07 Jan 2021 07:48:11 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:aca:aad2:: with SMTP id t201ls1270044oie.1.gmail; Wed, 06
- Jan 2021 15:37:54 -0800 (PST)
-X-Received: by 2002:aca:1918:: with SMTP id l24mr4686841oii.2.1609976274757;
-        Wed, 06 Jan 2021 15:37:54 -0800 (PST)
-Received: by 2002:a05:6808:a84:b029:e3:727a:da8e with SMTP id q4-20020a0568080a84b02900e3727ada8emsoij;
-        Mon, 28 Dec 2020 14:36:01 -0800 (PST)
-X-Received: by 2002:aca:dd09:: with SMTP id u9mr705834oig.73.1609194961259;
-        Mon, 28 Dec 2020 14:36:01 -0800 (PST)
-Date: Mon, 28 Dec 2020 14:36:00 -0800 (PST)
-From: "'Christian Fischer' via open-iscsi" <open-iscsi@googlegroups.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <c7dd8133-c778-4d2a-800e-f6d96a441b4an@googlegroups.com>
-In-Reply-To: <92c2365f-197a-4ae3-a2b1-e9f544cf71b7n@googlegroups.com>
-References: <48afec52-1107-f3df-1c74-0d55da4c1e11@greenbone.net>
- <92c2365f-197a-4ae3-a2b1-e9f544cf71b7n@googlegroups.com>
-Subject: Re: Clarification request on open-iscsi affected by uIP
- vulnerabilities (AMNESIA:33)
+Received: by 2002:a62:5c85:: with SMTP id q127ls2674672pfb.11.gmail; Thu, 07
+ Jan 2021 07:48:10 -0800 (PST)
+X-Received: by 2002:a63:e22:: with SMTP id d34mr2433011pgl.142.1610034490178;
+        Thu, 07 Jan 2021 07:48:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1610034490; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vudB70WvZtoP77fBV4KOVnd0aau4LQuzqWydRHfHPuhwh3H8CzvX8wJs+SWZl0/JAq
+         jcRHb9rDl6wq2dFtcZpfbREqC0t81l1hLIdG7oInpE34h0N08W0gRHAvLCcgqhHv50Yk
+         f8a6hIjiHtLbAIrIfF1hR6p/YKBZS//1VM52gX5aawTtbeMgp9Bv/LTU4OCwhqmn8hpX
+         W0SRvu6E6J2pxwbZzfwKwnHVwrwajFemy4UTGTqfQIZyUr0oeRxtnKUzl570p1bONHzR
+         8pCmgDg1XGfYGgP6Br+Boxzsm1AFTeUzm9zD5y2glxty5So8ThuspFjPOb9lxjJ9HS+X
+         SdUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:in-reply-to:references:subject:cc:to
+         :sender:from:date:message-id:mime-version:dkim-signature;
+        bh=HEo/4+hyn0YdKS47Mma7PweDhqDTetKtGjZMclPyJlA=;
+        b=ikKSykCXbKb7CRh7+2crhKwdYQ1bma3SQxnhLPYZzRYKFo+yAUS+wOhzP/Lye4SqAe
+         Ojf/me2UecQbFFXwA/Bb5XXu4gmzoTe8AbHFJ/MAm29fwj2zoed/TlosCLC1qbrXHit/
+         Bbi5ZrnrJQ9gBi2caLCz72NFRkkgLXobqtdtkUpbhRd9Vx92JjbYWR1BtcJqQh29A9jD
+         T1br1A3pFu1Nj+lbJ+MvoZpg7s0r0ZaedA1Dxy+f/wAPwGJKSjoETyFUedCD5qR8WnmT
+         7LWqij/THxAzrZkSHQfZwbHkH6Xmh1gvIjnXT+0Belvgv8ylmGwj52FXTBn2Oxp8UOXn
+         eZDg==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=WsNcydjI;
+       spf=pass (google.com: domain of gulam.mohamed@oracle.com designates 141.146.126.78 as permitted sender) smtp.mailfrom=gulam.mohamed@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from aserp2120.oracle.com (aserp2120.oracle.com. [141.146.126.78])
+        by gmr-mx.google.com with ESMTPS id o14si321327pjt.0.2021.01.07.07.48.09
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 07 Jan 2021 07:48:10 -0800 (PST)
+Received-SPF: pass (google.com: domain of gulam.mohamed@oracle.com designates 141.146.126.78 as permitted sender) client-ip=141.146.126.78;
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+	by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 107FdsMl049661;
+	Thu, 7 Jan 2021 15:48:08 GMT
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+	by aserp2120.oracle.com with ESMTP id 35wepmcxk7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 07 Jan 2021 15:48:08 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+	by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 107FVjkM115576;
+	Thu, 7 Jan 2021 15:48:08 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+	by userp3030.oracle.com with ESMTP id 35w3g2w6sb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 07 Jan 2021 15:48:07 +0000
+Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
+	by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 107Fm52W012821;
+	Thu, 7 Jan 2021 15:48:06 GMT
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_8064_204927108.1609194960741"
-X-Original-Sender: christian.fischer@greenbone.net
-X-Original-From: Christian Fischer <christian.fischer@greenbone.net>
+Message-ID: <0abfcf5b-5ab8-4968-bf6d-eb4dee32e2f4@default>
+Date: Thu, 7 Jan 2021 15:48:02 +0000 (UTC)
+From: Gulam Mohamed <gulam.mohamed@oracle.com>
+Sender: Gulam Mohamed <gulam.mohamed@oracle.com>
+To: Michael Christie <michael.christie@oracle.com>
+Cc: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
+        "James
+ E.J. Bottomley" <jejb@linux.ibm.com>,
+        Martin Petersen
+ <martin.petersen@oracle.com>,
+        open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Junxiao Bi
+ <junxiao.bi@oracle.com>
+Subject: RE: [PATCH] iscsi: Do Not set param when sock is NULL
+References: <1a8aaa17-b1a3-4d6a-b87a-ff49d61a0d0b@default>
+ <9df96d73-015c-4de6-96fa-2f315b066909@default>
+ <05277786-2E1F-432D-AE73-F39565C6BEA4@oracle.com>
+In-Reply-To: <05277786-2E1F-432D-AE73-F39565C6BEA4@oracle.com>
+X-Priority: 3
+X-Mailer: Oracle Beehive Extensions for Outlook 2.0.1.9.1  (1003210) [OL
+ 16.0.5095.0 (x86)]
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9856 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 malwarescore=0 adultscore=0
+ phishscore=0 spamscore=0 mlxlogscore=999 suspectscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101070097
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9856 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 spamscore=0
+ impostorscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 clxscore=1011 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101070097
+X-Original-Sender: gulam.mohamed@oracle.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@oracle.com header.s=corp-2020-01-29 header.b=WsNcydjI;
+       spf=pass (google.com: domain of gulam.mohamed@oracle.com designates
+ 141.146.126.78 as permitted sender) smtp.mailfrom=gulam.mohamed@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -71,139 +153,251 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_8064_204927108.1609194960741
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_8065_810882092.1609194960741"
+Hi Michael,
 
-------=_Part_8065_810882092.1609194960741
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+             As per your suggestions in below mail, I have completed the su=
+ggested changes and tested them. Can you please review and let me know your=
+ comments? Here is the patch:
 
-Hi,
+Description
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+1. This Kernel panic could be due to a timing issue when there is a race be=
+tween the sync thread and the initiator was processing of a login response =
+from the target. The session re-open can be invoked from two places
+  a. Sessions sync thread when the iscsid restart
+  b. From iscsid through iscsi error handler 2. The session reopen sequence=
+ is as follows in user-space (iscsi-initiator-utils)
+   a. Disconnect the connection
+   b. Then send the stop connection request to the kernel which releases th=
+e connection (releases the socket)
+   c. Queues the reopen for 2 seconds delay
+   d. Once the delay expires, create the TCP connection again by calling th=
+e connect() call
+   e. Poll for the connection
+   f. When poll is successful i.e when the TCP connection is established, i=
+t performs
+      i. Creation of session and connection data structures
+      ii. Bind the connection to the session. This is the place where we as=
+sign the sock to tcp_sw_conn->sock
+      iii. Sets the parameters like target name, persistent address etc .
+      iv. Creates the login pdu
+       v. Sends the login pdu to kernel
+      vi. Returns to the main loop to process further events. The kernel th=
+en sends the login request over to the target node
+   g. Once login response with success is received, it enters into full fea=
+ture phase and sets the negotiable parameters like max_recv_data_length, ma=
+x_transmit_length, data_digest etc .
+3. While setting the negotiable parameters by calling "iscsi_session_set_ne=
+g_params()", kernel panicked as sock was NULL
 
-and thanks for this summary / the clarification about the affected and=20
-fixed versions which clears up everything.
+What happened here is
+---------------------
+1. Before initiator received the login response mentioned in above point 2.=
+f.v, another reopen request was sent from the error handler/sync session fo=
+r the same session, as the initiator utils was in main loop to process furt=
+her events (as mentioned in point 2.f.vi above).
+2. While processing this reopen, it stopped the connection which released t=
+he socket and queued this connection and at this point of time the login re=
+sponse was received for the earlier on
 
-It seems there is also a new security advisory around this vulnerabilities=
+Fix
+---
+
+1. Create a flag "set_param_fail" in iscsi_cls_conn structure 2. On ep_disc=
+onnect and stop_conn set this flag to indicate set_param calls for connecti=
+on level settings should fail 3. This way, scsi_transport_iscsi can set and=
+ check this bit for all drivers 2. On bind_conn clear the bit
+
+Signed-off-by: Gulam Mohamed <gulam.mohamed@oracle.com>
+---
+ drivers/scsi/scsi_transport_iscsi.c | 6 ++++++  include/scsi/scsi_transpor=
+t_iscsi.h | 3 +++
+ 2 files changed, 9 insertions(+)
+
+diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transp=
+ort_iscsi.c
+index 2e68c0a87698..15c5a7223a40 100644
+--- a/drivers/scsi/scsi_transport_iscsi.c
++++ b/drivers/scsi/scsi_transport_iscsi.c
+@@ -2473,6 +2473,8 @@ static void iscsi_if_stop_conn(struct iscsi_cls_conn =
+*conn, int flag)
+ 	 * it works.
+ 	 */
+ 	mutex_lock(&conn_mutex);
++	if (!test_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail))
++		set_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail);
+ 	conn->transport->stop_conn(conn, flag);
+ 	mutex_unlock(&conn_mutex);
 =20
-which gives some more background information:
-
-https://github.com/open-iscsi/open-iscsi/security/advisories/GHSA-r278-fm99=
--8rgp
-
-I have also already contacted the CISA again and asked for an update of=20
-their advisory, hope they will correct the wrong version info (2.1.12) soon=
-.
+@@ -2895,6 +2897,8 @@ iscsi_set_param(struct iscsi_transport *transport, st=
+ruct iscsi_uevent *ev)
+ 			session->recovery_tmo =3D value;
+ 		break;
+ 	default:
++		if (test_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail))
++			return -ENOTCONN;
+ 		err =3D transport->set_param(conn, ev->u.set_param.param,
+ 					   data, ev->u.set_param.len);
+ 	}
+@@ -2956,6 +2960,7 @@ static int iscsi_if_ep_disconnect(struct iscsi_transp=
+ort *transport,
+ 		mutex_lock(&conn->ep_mutex);
+ 		conn->ep =3D NULL;
+ 		mutex_unlock(&conn->ep_mutex);
++		set_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail);
+ 	}
+=20
+ 	transport->ep_disconnect(ep);
+@@ -3716,6 +3721,7 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghd=
+r *nlh, uint32_t *group)
+ 		ev->r.retcode =3D	transport->bind_conn(session, conn,
+ 						ev->u.b_conn.transport_eph,
+ 						ev->u.b_conn.is_leading);
++		clear_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail);
+ 		mutex_unlock(&conn_mutex);
+=20
+ 		if (ev->r.retcode || !transport->ep_connect) diff --git a/include/scsi/s=
+csi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
+index 8a26a2ffa952..71b1952b913b 100644
+--- a/include/scsi/scsi_transport_iscsi.h
++++ b/include/scsi/scsi_transport_iscsi.h
+@@ -29,6 +29,8 @@ struct bsg_job;
+ struct iscsi_bus_flash_session;
+ struct iscsi_bus_flash_conn;
+=20
++#define ISCSI_SET_PARAM_FAIL_BIT	1
++
+ /**
+  * struct iscsi_transport - iSCSI Transport template
+  *
+@@ -206,6 +208,7 @@ struct iscsi_cls_conn {
+=20
+ 	struct device dev;		/* sysfs transport/container device */
+ 	enum iscsi_connection_state state;
++	unsigned long set_param_fail; /* set_param for connection should fail=20
++*/
+ };
+=20
+ #define iscsi_dev_to_conn(_dev) \
+--
+2.27.0
 
 Regards,
-Christian
+Gulam Mohamed.
 
-On Friday, December 18, 2020 at 8:42:35 PM UTC+1 The Lee-Man wrote:
+-----Original Message-----
+From: Michael Christie=20
+Sent: Tuesday, November 24, 2020 4:37 AM
+To: Gulam Mohamed <gulam.mohamed@oracle.com>
+Cc: Lee Duncan <lduncan@suse.com>; Chris Leech <cleech@redhat.com>; James E=
+.J. Bottomley <jejb@linux.ibm.com>; Martin K. Petersen <martin.petersen@ora=
+cle.com>; open-iscsi@googlegroups.com; linux-scsi@vger.kernel.org; linux-ke=
+rnel@vger.kernel.org; Junxiao Bi <junxiao.bi@oracle.com>
+Subject: Re: [PATCH] iscsi: Do Not set param when sock is NULL
 
-> Hi Christian:
->
-> Chris Leech just merged in the mitigations for these CVEs and tagged a ne=
-w=20
-> release.
->
-> These CVEs were all related to the uip package that iscsiuio uses. But in=
-=20
-> fact iscsiuio only uses uip for network "services", such as DHCP, ARP, et=
-c,=20
-> and not for normal TCP/IP communications. So the risk was, honestly, neve=
-r=20
-> very high.
->
-> I believe all the CVEs were published 12/8 (or so), but we were working o=
-n=20
-> them for a while before that.
->
-> P.S. Thanks to Chris for doing the mitigation work and research, and then=
-=20
-> merging/publishing the result!
->
-> On Thursday, December 17, 2020 at 10:41:06 AM UTC-8 Christian Fischer=20
-> wrote:
->
->> Hi,=20
->>
->> the following CVEs related to the recent AMNESIA:33 vulnerabilities=20
->> affecting various open source network stack components:=20
->>
->> https://nvd.nist.gov/vuln/detail/CVE-2020-13987=20
->> https://nvd.nist.gov/vuln/detail/CVE-2020-13988=20
->> https://nvd.nist.gov/vuln/detail/CVE-2020-17437=20
->> https://nvd.nist.gov/vuln/detail/CVE-2020-17438=20
->> https://nvd.nist.gov/vuln/detail/CVE-2020-17439=20
->> https://nvd.nist.gov/vuln/detail/CVE-2020-17440=20
->> https://nvd.nist.gov/vuln/detail/CVE-2020-24334=20
->> https://nvd.nist.gov/vuln/detail/CVE-2020-24335 (not published yet)=20
->>
->> While the CVEs are mentioning Contiki and / or uIP a paper [1] of the=20
->> research teams reveals this detail:=20
->>
->> > The open-iscsi project, which provides an implementation of the iSCSI=
-=20
->> > protocol used by Linux distributions, such as Red Hat, Fedora, SUSE=20
->> > and Debian, also imports part of the uIP code. Again, we were able to=
-=20
->> > detect that some CVEs apply to it.=20
->>
->> and=20
->>
->> > Some of the vendors and projects using these original stacks, such as=
-=20
->> > open-iscsi, issued their own patches.=20
->>
->> Unfortunately the "some CVEs apply to it" is not further specified (not=
-=20
->> even the CVEs for open-iscsi are listen) and i wasn't able to pinpoint=
-=20
->> the exact details. Some sources [2] mention 2.1.12 as the fixed version=
-=20
->> of open-iscsi (which is wrong as the latest available version is 2.1.2=
-=20
->> from July 2020, i have already contacted the CISA about that a few days=
-=20
->> ago but haven't received any response yet) while others [3] mention <=3D=
-=20
->> 2.1.1 as vulnerable.=20
->>
->> As none of the current releases listed at [4] mention the uIP=20
->> vulnerabilities in some way i would like to ask for clarification of the=
-=20
->> following:=20
->>
->> - Which CVEs of uIP applies to the code base of uIP imported into=20
->> open-iscsi?=20
->> - Which releases of open-iscsi are affected?=20
->> - Which release of open-iscsi is fixing one or more of this=20
->> vulnerabilities?=20
->>
->> Thank you very much in advance for a response.=20
->>
->> Regards,=20
->>
->> [1]=20
->>
->> https://www.forescout.com/company/resources/amnesia33-how-tcp-ip-stacks-=
-breed-critical-vulnerabilities-in-iot-ot-and-it-devices/=20
->> [2] https://us-cert.cisa.gov/ics/advisories/icsa-20-343-01=20
->> [3]=20
->>
->> https://www.heise.de/news/Amnesia-33-Sicherheitshinweise-und-Updates-zu-=
-den-TCP-IP-Lecks-im-Ueberblick-4984341.html=20
->> [4] https://github.com/open-iscsi/open-iscsi/releases=20
->>
->> --=20
->>
->> Christian Fischer | PGP Key: 0x54F3CE5B76C597AD=20
->> Greenbone Networks GmbH | https://www.greenbone.net=20
->> Neumarkt 12, 49074 Osnabr=C3=BCck, Germany | AG Osnabr=C3=BCck, HR B 202=
-460=20
->> Gesch=C3=A4ftsf=C3=BChrer: Dr. Jan-Oliver Wagner=20
->>
->
+
+
+> On Nov 4, 2020, at 11:40 PM, Gulam Mohamed <gulam.mohamed@oracle.com> wro=
+te:
+>=20
+> Description
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D
+> 1. This Kernel panic could be due to a timing issue when there is a race =
+between the sync thread and the initiator was processing of a login respons=
+e from the target. The session re-open can be invoked from two places
+>          a.	Sessions sync thread when the iscsid restart
+>          b.	From iscsid through iscsi error handler
+> 2. The session reopen sequence is as follows in user-space (iscsi-initiat=
+or-utils)
+>          a.	Disconnect the connection
+>          b.	Then send the stop connection request to the kernel which rel=
+eases the connection (releases the socket)
+>          c.	Queues the reopen for 2 seconds delay
+>         d.	Once the delay expires, create the TCP connection again by cal=
+ling the connect() call
+>         e.	Poll for the connection
+>          f.	When poll is successful i.e when the TCP connection is establ=
+ished, it performs
+> 	i. Creation of session and connection data structures
+> 	ii. Bind the connection to the session. This is the place where we assig=
+n the sock to tcp_sw_conn->sock
+> 	iii. Sets the parameters like target name, persistent address etc .
+> 	iv. Creates the login pdu
+> 	v. Sends the login pdu to kernel
+> 	vi. Returns to the main loop to process further events. The kernel then =
+sends the login request over to the target node
+> 	g. Once login response with success is received, it enters into full fea=
+ture phase and sets the negotiable parameters like max_recv_data_length, ma=
+x_transmit_length, data_digest etc .
+> 3. While setting the negotiable parameters by calling=20
+> "iscsi_session_set_neg_params()", kernel panicked as sock was NULL
+>=20
+> What happened here is
+> --------------------------------
+> 1.	Before initiator received the login response mentioned in above point =
+2.f.v, another reopen request was sent from the error handler/sync session =
+for the same session, as the initiator utils was in main loop to process fu=
+rther events (as=20
+> 	mentioned in point 2.f.vi above).=20
+> 2.	While processing this reopen, it stopped the connection which released=
+ the socket and queued this connection and at this point of time the login =
+response was received for the earlier one
+
+
+To make sure I got this you are saying before iscsi_sw_tcp_conn_stop calls =
+iscsi_sw_tcp_release_conn that the recv path has called iscsi_recv_pdu righ=
+t?
+
+
+> 3.	The kernel passed over this response to user-space which then sent the=
+ set_neg_params request to kernel
+> 4.	As the connection was stopped, the sock was NULL and hence while the k=
+ernel was processing the set param request from user-space, it panicked
+>=20
+> Fix
+> ----
+> 1.	While setting the set_param in kernel, we need to check if sock is NUL=
+L
+> 2.	If the sock is NULL, then return EPERM (operation not permitted)
+> 3.	Due to this error handler will be invoked in user-space again to recov=
+er the session
+>=20
+> Signed-off-by: Gulam Mohamed <gulam.mohamed@oracle.com>
+> Reviewed-by: Junxiao Bi <junxiao.bi@oracle.com>
+> ---
+> diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c index=20
+> df47557a02a3..fd668a194053 100644
+> --- a/drivers/scsi/iscsi_tcp.c
+> +++ b/drivers/scsi/iscsi_tcp.c
+> @@ -711,6 +711,12 @@ static int iscsi_sw_tcp_conn_set_param(struct iscsi_=
+cls_conn *cls_conn,
+>        struct iscsi_tcp_conn *tcp_conn =3D conn->dd_data;
+>        struct iscsi_sw_tcp_conn *tcp_sw_conn =3D tcp_conn->dd_data;
+>=20
+> +       if (!tcp_sw_conn->sock) {
+> +               iscsi_conn_printk(KERN_ERR, conn,
+> +                               "Cannot set param as sock is NULL\n");
+> +               return -ENOTCONN;
+> +       }
+> +
+
+I think this might have 2 issues:
+
+1. It only fixes iscsi_tcp. What about other drivers that free/null resourc=
+es/fields in ep_disconnect that we layer need to access in the set_param ca=
+llback (the cxgbi drivers)?
+
+2. What about drivers that do not free/null fields (be2iscsi, bnx2i, ql4xxx=
+ and qedi) so the set_param calls end up just working. What state will user=
+space be in where we have logged in, but iscsid also thinks we are in the m=
+iddle of trying to login?
+
+I think we could do:
+
+1. On ep_disconnect and stop_conn set some iscsi_cls_conn bit that indicate=
+s set_param calls for connection level settings should fail. scsi_transport=
+_iscsi could set and check this bit for all drivers.
+2. On bind_conn clear the bit.
 
 --=20
 You received this message because you are subscribed to the Google Groups "=
@@ -211,189 +405,4 @@ open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to open-iscsi+unsubscribe@googlegroups.com.
 To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/c7dd8133-c778-4d2a-800e-f6d96a441b4an%40googlegroups.com.
-
-------=_Part_8065_810882092.1609194960741
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hi,</div><div><br></div><div>and thanks for this summary / the clarifi=
-cation about the affected and fixed versions which clears up everything.<br=
-></div><div><br></div><div>It seems there is also a new security advisory a=
-round this vulnerabilities which gives some more background information:</d=
-iv><div><br></div><div>https://github.com/open-iscsi/open-iscsi/security/ad=
-visories/GHSA-r278-fm99-8rgp<br></div><div></div><div><br></div><div>I have=
- also already contacted the CISA again and asked for an update of their adv=
-isory, hope they will correct the wrong version info (2.1.12) soon.<br></di=
-v><div><br></div><div>Regards,</div><div>Christian<br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr">On Friday, December=
- 18, 2020 at 8:42:35 PM UTC+1 The Lee-Man wrote:<br/></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin: 0 0 0 0.8ex; border-left: 1px solid rgb(=
-204, 204, 204); padding-left: 1ex;"><div>Hi Christian:</div><div><br></div>=
-<div>Chris Leech just merged in the mitigations for these CVEs and tagged a=
- new release.</div><div><br></div><div>These CVEs were all related to the u=
-ip package that iscsiuio uses. But in fact iscsiuio only uses uip for netwo=
-rk &quot;services&quot;, such as DHCP, ARP, etc, and not for normal TCP/IP =
-communications. So the risk was, honestly, never very high.</div><div><br><=
-/div><div>I believe all the CVEs were published 12/8 (or so), but we were w=
-orking on them for a while before that.</div><div><br></div><div>P.S. Thank=
-s to Chris for doing the mitigation work and research, and then merging/pub=
-lishing the result!<br></div><br><div class=3D"gmail_quote"><div dir=3D"aut=
-o" class=3D"gmail_attr">On Thursday, December 17, 2020 at 10:41:06 AM UTC-8=
- Christian Fischer wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">Hi,
-<br>
-<br>the following CVEs related to the recent AMNESIA:33 vulnerabilities=20
-<br>affecting various open source network stack components:
-<br>
-<br><a href=3D"https://nvd.nist.gov/vuln/detail/CVE-2020-13987" rel=3D"nofo=
-llow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?=
-hl=3Den&amp;q=3Dhttps://nvd.nist.gov/vuln/detail/CVE-2020-13987&amp;source=
-=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNE7r5z5X7HS8bIKzh1eN3H5s=
-91YwQ">https://nvd.nist.gov/vuln/detail/CVE-2020-13987</a>
-<br><a href=3D"https://nvd.nist.gov/vuln/detail/CVE-2020-13988" rel=3D"nofo=
-llow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?=
-hl=3Den&amp;q=3Dhttps://nvd.nist.gov/vuln/detail/CVE-2020-13988&amp;source=
-=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNFE61sW_gZYRQgMBXb2grez7=
-WotXw">https://nvd.nist.gov/vuln/detail/CVE-2020-13988</a>
-<br><a href=3D"https://nvd.nist.gov/vuln/detail/CVE-2020-17437" rel=3D"nofo=
-llow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?=
-hl=3Den&amp;q=3Dhttps://nvd.nist.gov/vuln/detail/CVE-2020-17437&amp;source=
-=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNGgWo4Z-2GiWaXCWF0sxI7Xa=
-d-9ZQ">https://nvd.nist.gov/vuln/detail/CVE-2020-17437</a>
-<br><a href=3D"https://nvd.nist.gov/vuln/detail/CVE-2020-17438" rel=3D"nofo=
-llow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?=
-hl=3Den&amp;q=3Dhttps://nvd.nist.gov/vuln/detail/CVE-2020-17438&amp;source=
-=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNFq-sH6Ex0XEwX4LihgGPpGe=
-kWEcQ">https://nvd.nist.gov/vuln/detail/CVE-2020-17438</a>
-<br><a href=3D"https://nvd.nist.gov/vuln/detail/CVE-2020-17439" rel=3D"nofo=
-llow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?=
-hl=3Den&amp;q=3Dhttps://nvd.nist.gov/vuln/detail/CVE-2020-17439&amp;source=
-=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNGXUl1n5gs_QamJ_FC9PDw23=
-PltSg">https://nvd.nist.gov/vuln/detail/CVE-2020-17439</a>
-<br><a href=3D"https://nvd.nist.gov/vuln/detail/CVE-2020-17440" rel=3D"nofo=
-llow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?=
-hl=3Den&amp;q=3Dhttps://nvd.nist.gov/vuln/detail/CVE-2020-17440&amp;source=
-=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNH_CcMa97BK6O-JxJAWzE71D=
-uy1Wg">https://nvd.nist.gov/vuln/detail/CVE-2020-17440</a>
-<br><a href=3D"https://nvd.nist.gov/vuln/detail/CVE-2020-24334" rel=3D"nofo=
-llow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?=
-hl=3Den&amp;q=3Dhttps://nvd.nist.gov/vuln/detail/CVE-2020-24334&amp;source=
-=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNGA7AN_nD84k4PPyq573Ljyw=
-C4xNA">https://nvd.nist.gov/vuln/detail/CVE-2020-24334</a>
-<br><a href=3D"https://nvd.nist.gov/vuln/detail/CVE-2020-24335" rel=3D"nofo=
-llow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?=
-hl=3Den&amp;q=3Dhttps://nvd.nist.gov/vuln/detail/CVE-2020-24335&amp;source=
-=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNEf84Y3yREyb05S9SzRvtLub=
-ZVmkw">https://nvd.nist.gov/vuln/detail/CVE-2020-24335</a> (not published y=
-et)
-<br>
-<br>While the CVEs are mentioning Contiki and / or uIP a paper [1] of the=
-=20
-<br>research teams reveals this detail:
-<br>
-<br> &gt; The open-iscsi project, which provides an implementation of the i=
-SCSI
-<br> &gt; protocol used by Linux distributions, such as Red Hat, Fedora, SU=
-SE
-<br> &gt; and Debian, also imports part of the uIP code. Again, we were abl=
-e to
-<br> &gt; detect that some CVEs apply to it.
-<br>
-<br>and
-<br>
-<br> &gt; Some of the vendors and projects using these original stacks, suc=
-h as
-<br> &gt; open-iscsi, issued their own patches.
-<br>
-<br>Unfortunately the &quot;some CVEs apply to it&quot; is not further spec=
-ified (not=20
-<br>even the CVEs for open-iscsi are listen) and i wasn&#39;t able to pinpo=
-int=20
-<br>the exact details. Some sources [2] mention 2.1.12 as the fixed version=
-=20
-<br>of open-iscsi (which is wrong as the latest available version is 2.1.2=
-=20
-<br>from July 2020, i have already contacted the CISA about that a few days=
-=20
-<br>ago but haven&#39;t received any response yet) while others [3] mention=
- &lt;=3D=20
-<br>2.1.1 as vulnerable.
-<br>
-<br>As none of the current releases listed at [4] mention the uIP=20
-<br>vulnerabilities in some way i would like to ask for clarification of th=
-e=20
-<br>following:
-<br>
-<br>- Which CVEs of uIP applies to the code base of uIP imported into=20
-<br>open-iscsi?
-<br>- Which releases of open-iscsi are affected?
-<br>- Which release of open-iscsi is fixing one or more of this vulnerabili=
-ties?
-<br>
-<br>Thank you very much in advance for a response.
-<br>
-<br>Regards,
-<br>
-<br>[1]=20
-<br><a href=3D"https://www.forescout.com/company/resources/amnesia33-how-tc=
-p-ip-stacks-breed-critical-vulnerabilities-in-iot-ot-and-it-devices/" rel=
-=3D"nofollow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.=
-com/url?hl=3Den&amp;q=3Dhttps://www.forescout.com/company/resources/amnesia=
-33-how-tcp-ip-stacks-breed-critical-vulnerabilities-in-iot-ot-and-it-device=
-s/&amp;source=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNFazRxUioWs=
-N-eqkIsQCizZeAl2Kg">https://www.forescout.com/company/resources/amnesia33-h=
-ow-tcp-ip-stacks-breed-critical-vulnerabilities-in-iot-ot-and-it-devices/</=
-a>
-<br>[2] <a href=3D"https://us-cert.cisa.gov/ics/advisories/icsa-20-343-01" =
-rel=3D"nofollow" target=3D"_blank" data-saferedirecturl=3D"https://www.goog=
-le.com/url?hl=3Den&amp;q=3Dhttps://us-cert.cisa.gov/ics/advisories/icsa-20-=
-343-01&amp;source=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNHjQvcX=
-cFZV_7v5uMRmiHwtJAqhtw">https://us-cert.cisa.gov/ics/advisories/icsa-20-343=
--01</a>
-<br>[3]=20
-<br><a href=3D"https://www.heise.de/news/Amnesia-33-Sicherheitshinweise-und=
--Updates-zu-den-TCP-IP-Lecks-im-Ueberblick-4984341.html" rel=3D"nofollow" t=
-arget=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?hl=3Den=
-&amp;q=3Dhttps://www.heise.de/news/Amnesia-33-Sicherheitshinweise-und-Updat=
-es-zu-den-TCP-IP-Lecks-im-Ueberblick-4984341.html&amp;source=3Dgmail&amp;us=
-t=3D1609281054699000&amp;usg=3DAFQjCNGNzchMqmRhFV4IcuepslOvG_UJzA">https://=
-www.heise.de/news/Amnesia-33-Sicherheitshinweise-und-Updates-zu-den-TCP-IP-=
-Lecks-im-Ueberblick-4984341.html</a>
-<br>[4] <a href=3D"https://github.com/open-iscsi/open-iscsi/releases" rel=
-=3D"nofollow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.=
-com/url?hl=3Den&amp;q=3Dhttps://github.com/open-iscsi/open-iscsi/releases&a=
-mp;source=3Dgmail&amp;ust=3D1609281054699000&amp;usg=3DAFQjCNENx6k7vO_7bAoy=
-kNMB2TjsikPtNw">https://github.com/open-iscsi/open-iscsi/releases</a>
-<br>
-<br>--=20
-<br>
-<br>Christian Fischer | PGP Key: 0x54F3CE5B76C597AD
-<br>Greenbone Networks GmbH | <a href=3D"https://www.greenbone.net" rel=3D"=
-nofollow" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/=
-url?hl=3Den&amp;q=3Dhttps://www.greenbone.net&amp;source=3Dgmail&amp;ust=3D=
-1609281054699000&amp;usg=3DAFQjCNEcV4ftXfSwJ-HMV4zuSQJZsKYtPQ">https://www.=
-greenbone.net</a>
-<br>Neumarkt 12, 49074 Osnabr=C3=BCck, Germany | AG Osnabr=C3=BCck, HR B 20=
-2460
-<br>Gesch=C3=A4ftsf=C3=BChrer: Dr. Jan-Oliver Wagner
-<br></blockquote></div></blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/c7dd8133-c778-4d2a-800e-f6d96a441b4an%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/c7dd8133-c778-4d2a-800e-f6d96a441b4an%40googlegroups.com</a>.=
-<br />
-
-------=_Part_8065_810882092.1609194960741--
-
-------=_Part_8064_204927108.1609194960741--
+open-iscsi/0abfcf5b-5ab8-4968-bf6d-eb4dee32e2f4%40default.
