@@ -1,162 +1,68 @@
-Return-Path: <open-iscsi+bncBCHM7NWZ3UFBBDNRS6AAMGQET5T2QYQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBCRKJ2M45MFBBLFKU2AAMGQEP3UVKUY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf39.google.com (mail-qv1-xf39.google.com [IPv6:2607:f8b0:4864:20::f39])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7C72FA93E
-	for <lists+open-iscsi@lfdr.de>; Mon, 18 Jan 2021 19:50:55 +0100 (CET)
-Received: by mail-qv1-xf39.google.com with SMTP id cc1sf17403320qvb.3
-        for <lists+open-iscsi@lfdr.de>; Mon, 18 Jan 2021 10:50:55 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1610995854; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=jvyAzZEtgTI00tVSAnVwxjhuMWeXMWMWD2QVwBjV1f02SyWvUrRDQ+Y+ck+HXCcUam
-         A0rgaGVPS/jQWtMRxc7rphbLy87qhiT5N+9gPhc1bjLVOvMV9+u8FZj0/0h0Bz6FCijC
-         WbL6nr6+WQAxHr8CqBLeV8A8T6ALsBwdkc0UkKonYD6PdtpIEWMtuCpoZ+uhYqA21TFH
-         WwHVFfghqU/rEk+tFbdgQO/W5d1QpiMueot5Cbk8EGB3cu7o1koX22TX4VaW7G6mL8Le
-         Fr3yByF+iFppVgP/RM9gM5eOtresBlqFK652WG1D5LvWqBxq+gSETqdf458bbZuQp0mk
-         +mvA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
-         :content-language:in-reply-to:mime-version:user-agent:date
-         :message-id:from:references:cc:to:subject:sender:dkim-signature;
-        bh=5HQe8C++JQszFENyFh8KAgLQ10SVOJh3RqkC12fUhIY=;
-        b=tBxyxuK0Tr+54hcgviDUqSbv7ah4JwBWYSOU5XePvechYF5C4NtTUAbH619A7FaCzz
-         LKVma1XForkMi/8NGpkJaGg7jKpXNbqtcmqbZ5aElDj+ETN3pve04mlhHGB5Yw6ZvTt4
-         JcZIXmp25/kaKmsOQ+I9CeSihj3ttWhBipBRzd5WTrFqILYm7Via5X4BffSEhWijw/sA
-         gIzVqghJONrPx2KCxvODyiVNfWx+RBGQJmD7nihP7Qn6qwOIxjA3Y/uks6clZH3lmfWw
-         hz5Z7eXeusLcrRTBWh2uep4kwX6myNwwmvoiFqVFIkI5op8JuXVa+DFDdgRx5zdPNXps
-         G24A==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=wgmKcvSx;
-       spf=pass (google.com: domain of michael.christie@oracle.com designates 141.146.126.79 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from mail-oo1-xc38.google.com (mail-oo1-xc38.google.com [IPv6:2607:f8b0:4864:20::c38])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E17F2FED7A
+	for <lists+open-iscsi@lfdr.de>; Thu, 21 Jan 2021 15:52:30 +0100 (CET)
+Received: by mail-oo1-xc38.google.com with SMTP id t4sf1142464ooc.1
+        for <lists+open-iscsi@lfdr.de>; Thu, 21 Jan 2021 06:52:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=5HQe8C++JQszFENyFh8KAgLQ10SVOJh3RqkC12fUhIY=;
-        b=Spq/rC5Xk1TmL38g0nU0zmIvv2K/7cu/P+1lxYcqbE1MmjFIg7dpRuUS4xwdbLZpWT
-         1V9dSJgEkFlNAUK+qismsGRapzbcAzWOogi5zZtlBRAF8EhhOw6tbl9zdf3W9OBvJCDT
-         u0+mWuYOkqy6uW9QkXWVNmWoJMJFz+u//4EHTPCHuQv6TzP4WPupnjeADr38AIKTxUT0
-         MCbWTEt3dW8rur/4qzkDtrinM7Ecfd2+RMOW1xQFSGCr6kTw+OEXiyKT2FeMB5ghDGj+
-         sVv0q9MXF52u4leAboovV8rePHP8wuCdcG2fnHtVXHNU8nyFV7ZgPZmcgwuwaw+p/Fij
-         gL6Q==
+        h=sender:date:from:to:message-id:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=mojScYmgUiN/TEt4TpsPY3vivG4MfSn3SX1qDrtX2Qs=;
+        b=QiY8N2VBTo+Pj+RwZObXZ2rVlAZOCO7q3lHf2+v+wb+c6lTh0767I9iwMzQDaHFNw4
+         ZU7mHId13bgbI9jt4jm1HN/Bcgx/B9455d2ZAndP2qzLH+YPmXIDXgoQwvmFxWSV/Smz
+         fz/6Y4vCt7hiimGMFUoe1RrSA4mfh/bLeoGzsH2cc063m8r0bNBU7Q/h6T3SQh5fwqBB
+         FBECPLuNAkKkAmVCp3Rj2ZP+w9bV7PNg2WEsGhBozIaqLTiG0fwoVK7FiwYhFerVM1a9
+         HE4dI+8/MEkJnD32gCHITqNhrJ0pjh/R/r+oIs6mfnTQ8Ye+DLNP6U7dx260DXXOaLiH
+         ucqA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:subject:mime-version:x-original-sender
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=mojScYmgUiN/TEt4TpsPY3vivG4MfSn3SX1qDrtX2Qs=;
+        b=FmwFRA2lHHDKAJ9TsU6GtwTNMjxan1jGVzEOMIrvu+lwt3e6YRd3nI0he+yWmfkS0P
+         sv0XpbMdpYatZuINVHsSHfQxwjyrT82X969HTmHcP6It3ifWaVtyEtrwbIHu4QwKHcPO
+         ZW/ilVc8gI03SgoAzeZ/f79cNu1u5RClQStOwv8fSNLfCqkZc/vttGx/aOx72GWZa2KQ
+         kYMzFapRCxvQpypbBez9OhABUT6ShesOf4ZKSxy2nfnQx5WjhcSPPdrG8d9kgRgSIt+f
+         O0aTJ1ZJFD+oi6BybE/LtVL77bsuIB8nzIPfCX1zBUrLzHo2RhZqfqEOHam2+1a/biUA
+         7HxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
+        h=sender:x-gm-message-state:date:from:to:message-id:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=5HQe8C++JQszFENyFh8KAgLQ10SVOJh3RqkC12fUhIY=;
-        b=F3Pio8xbRXvEwxHdXLCwlrwa7FxK+rqBFbsob7L975xulg+jVVftY5yJNg3K4+DHBK
-         Z0FIP31Cco18Cox6KAcPb4pvw9eL9bU2TqLLwivW82ct8nv3hoVWdCleDD0RerhQuqAv
-         mosIItK0czaBUFutCFSjpqn7N3JMUXRi/jcsZwL0LFCPnmhv23MAt81FU9vScDrnmQ8A
-         HVD3HeuL8Khnty7BoF76zvsMuW41ghCfTrOcbZNib4E0SQg9DQQ6NRE+L+C1IN71WQJp
-         GXhikQlj1iwX5hbxNpZNzG2s6+aunVqQgLfiaiUGqqHnMtgg4qIyr1659AsQ6O1blTen
-         o3XA==
+        bh=mojScYmgUiN/TEt4TpsPY3vivG4MfSn3SX1qDrtX2Qs=;
+        b=ApVeyqFK83otkIDiw5TqEc/oDwJX7EvsUpahZlPDobBMZXmpbWneY13X41E2Mj15Dm
+         0/KhBp871FidL7LeyYBX1Fy0zYY/dpZ73pCWuUVDdn5qcUxIrE5t2w7wTIqexf3KScO8
+         FOWJ55BoXBggx0McIVwWpZYS6FHmBuv4NpjFGxmUmXKzCyfQuGbQU7VV9Gj6ogFr/Q3E
+         locS2coB41q6D9LJUoXytS/ZBak/g7OYySL+PjmmfQYZyUq0uRh6rTacihz4RmDplfWe
+         qCYFdDDbwiI422g65EydgRGyl/wfKmcw0esgdkAA8LwJUWuCS9IgAqS+6e8XxwfUGReI
+         EzIA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530Tg7itflPOyUsmr5OyUa0dAbSlf45B0bk+P+P9IMfCXfroRc6r
-	Bpm5a7xCpRwlTEHIFCW6Sng=
-X-Google-Smtp-Source: ABdhPJxSKp6EGTDFAVbYonRu2LAQzXfwyWg1dVQmAOUEdhpOszJytYqT8kZ3Si2Ng3bVq8L94z9fIw==
-X-Received: by 2002:ac8:7767:: with SMTP id h7mr1018655qtu.136.1610995854102;
-        Mon, 18 Jan 2021 10:50:54 -0800 (PST)
+X-Gm-Message-State: AOAM533FKFxsnvni1ISdi0IFj0L5iRGN50S6Ai2K31bVuKbPVWiJWbLV
+	yQXVcVZcuik2JcVHOY6AFmE=
+X-Google-Smtp-Source: ABdhPJwLVFY4yM0FvL/iuiU+++HYljCAq7a7HTE6W78l+X9DLThkC2HiY4OWg0/st/9Q37wRUGdl7Q==
+X-Received: by 2002:aca:b657:: with SMTP id g84mr6396910oif.86.1611240749165;
+        Thu, 21 Jan 2021 06:52:29 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:620a:132f:: with SMTP id p15ls9498994qkj.0.gmail; Mon,
- 18 Jan 2021 10:50:53 -0800 (PST)
-X-Received: by 2002:a05:620a:218e:: with SMTP id g14mr965083qka.243.1610995853651;
-        Mon, 18 Jan 2021 10:50:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1610995853; cv=none;
-        d=google.com; s=arc-20160816;
-        b=PLy2kkpIpikYsJeVxSkfe7aHB9Joi9uNq+LIq27NcBnHsbT54X9CkXt1WKl3Aspp8I
-         +5foiJgnzaBsgBHZRJ+OYkIp4X0jVNq9PLb033FMLxewDCIz3NffTiwZxindShHoQfO1
-         +KTqXgEEOVHGdcnNoyJqVA4ooadQqOjMqTsHyPX0ov0HvKFxKHwkVN9+onlf0uazj+pk
-         TwPaXXWeM09r+ZsimXVWY6xdS9wCGNuYCD29+8imiaQG1zX6ujyWy0t7RmeP2VLn44g1
-         gd/SRx6FZM+YlhAorjjFIKEDcNf3T2FYK2ivTm0FEZGBgS9EUFu0DHb+zD5hmecLH6OG
-         DFMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :dkim-signature;
-        bh=8GefXcpZPbzkuLk9I0fDJwYB6Bx6bVC/7hGxIaOiLgU=;
-        b=WKPi9DAy1Rtu98pWqDdWQF+4ThoqAFLT5ok3bghAmnNWDLnej1IPXk2TAVooBiPmsd
-         KfXFO9mEbcfScsiA6RG4zsa7JyHAJLY2ovK5mpgoVfs2R0b/uv7/Z0xlHpkYhDDTq4lz
-         y8FAR41noEelQzxxFkwH4Z1xGlE5LscCEKyQ6W6h1nuyUM6au71EfMwn7V2mXaE9bUjI
-         M0qIyRyH2euAvOTfSoHFyV1MFlJGRmawong4E3cSQOwiROJSjopwkXx1BvOO7VSYn+W6
-         sMGI1HOU/40sAPmRTYvQ0HxxWOtzyBB9sEn2PBLeoNuHUvszxwfbGlYgmu2w7/yrFs9q
-         xLbQ==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=wgmKcvSx;
-       spf=pass (google.com: domain of michael.christie@oracle.com designates 141.146.126.79 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from aserp2130.oracle.com (aserp2130.oracle.com. [141.146.126.79])
-        by gmr-mx.google.com with ESMTPS id j33si1763532qtd.5.2021.01.18.10.50.53
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 18 Jan 2021 10:50:53 -0800 (PST)
-Received-SPF: pass (google.com: domain of michael.christie@oracle.com designates 141.146.126.79 as permitted sender) client-ip=141.146.126.79;
-Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
-	by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10IIeloR102230;
-	Mon, 18 Jan 2021 18:50:52 GMT
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-	by aserp2130.oracle.com with ESMTP id 363nnaegpm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 18 Jan 2021 18:50:52 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-	by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10IIiKMa028695;
-	Mon, 18 Jan 2021 18:50:51 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-	by userp3020.oracle.com with ESMTP id 3649wqbx53-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 18 Jan 2021 18:50:51 +0000
-Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
-	by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 10IIoigB018752;
-	Mon, 18 Jan 2021 18:50:45 GMT
-Received: from [20.15.0.204] (/73.88.28.6)
-	by default (Oracle Beehive Gateway v4.0)
-	with ESMTP ; Mon, 18 Jan 2021 10:50:43 -0800
-Subject: Re: [PATCH] iscsi: Do Not set param when sock is NULL
-To: Gulam Mohamed <gulam.mohamed@oracle.com>
-Cc: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        Martin Petersen <martin.petersen@oracle.com>,
-        open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Junxiao Bi <junxiao.bi@oracle.com>
-References: <1a8aaa17-b1a3-4d6a-b87a-ff49d61a0d0b@default>
- <9df96d73-015c-4de6-96fa-2f315b066909@default>
- <05277786-2E1F-432D-AE73-F39565C6BEA4@oracle.com>
- <0abfcf5b-5ab8-4968-bf6d-eb4dee32e2f4@default>
-From: Mike Christie <michael.christie@oracle.com>
-Message-ID: <ca8ea0a8-37a5-0ebd-a73e-70edb82ac2b4@oracle.com>
-Date: Mon, 18 Jan 2021 12:50:42 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: by 2002:a05:6830:14a:: with SMTP id j10ls612710otp.4.gmail; Thu, 21
+ Jan 2021 06:52:28 -0800 (PST)
+X-Received: by 2002:a05:6830:3152:: with SMTP id c18mr10595337ots.191.1611240748430;
+        Thu, 21 Jan 2021 06:52:28 -0800 (PST)
+Date: Thu, 21 Jan 2021 06:52:27 -0800 (PST)
+From: "ajhu...@gmail.com" <ajhutchin@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <eb5a3e8a-713d-4ae2-82bd-6c18afc5d6e8n@googlegroups.com>
+Subject: Kernel panic: Hung task on unbind session
 MIME-Version: 1.0
-In-Reply-To: <0abfcf5b-5ab8-4968-bf6d-eb4dee32e2f4@default>
-Content-Type: text/plain; charset="UTF-8"
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9868 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 mlxlogscore=999 bulkscore=0
- spamscore=0 phishscore=0 malwarescore=0 adultscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101180112
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9868 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0 spamscore=0
- mlxlogscore=999 clxscore=1015 bulkscore=0 adultscore=0 lowpriorityscore=0
- suspectscore=0 phishscore=0 mlxscore=0 malwarescore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101180112
-X-Original-Sender: michael.christie@oracle.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2020-01-29 header.b=wgmKcvSx;
-       spf=pass (google.com: domain of michael.christie@oracle.com designates
- 141.146.126.79 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_7732_758826301.1611240747574"
+X-Original-Sender: ajhutchin@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -170,190 +76,266 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 1/7/21 9:48 AM, Gulam Mohamed wrote:
-> Hi Michael,
->=20
->              As per your suggestions in below mail, I have completed the =
-suggested changes and tested them. Can you please review and let me know yo=
-ur comments? Here is the patch:
->=20
-> Description
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> 1. This Kernel panic could be due to a timing issue when there is a race =
-between the sync thread and the initiator was processing of a login respons=
-e from the target. The session re-open can be invoked from two places
->   a. Sessions sync thread when the iscsid restart
->   b. From iscsid through iscsi error handler 2. The session reopen sequen=
-ce is as follows in user-space (iscsi-initiator-utils)
->    a. Disconnect the connection
->    b. Then send the stop connection request to the kernel which releases =
-the connection (releases the socket)
->    c. Queues the reopen for 2 seconds delay
->    d. Once the delay expires, create the TCP connection again by calling =
-the connect() call
->    e. Poll for the connection
->    f. When poll is successful i.e when the TCP connection is established,=
- it performs
->       i. Creation of session and connection data structures
->       ii. Bind the connection to the session. This is the place where we =
-assign the sock to tcp_sw_conn->sock
->       iii. Sets the parameters like target name, persistent address etc .
->       iv. Creates the login pdu
->        v. Sends the login pdu to kernel
->       vi. Returns to the main loop to process further events. The kernel =
-then sends the login request over to the target node
->    g. Once login response with success is received, it enters into full f=
-eature phase and sets the negotiable parameters like max_recv_data_length, =
-max_transmit_length, data_digest etc .
-> 3. While setting the negotiable parameters by calling "iscsi_session_set_=
-neg_params()", kernel panicked as sock was NULL
->=20
-> What happened here is
-> ---------------------
-> 1. Before initiator received the login response mentioned in above point =
-2.f.v, another reopen request was sent from the error handler/sync session =
-for the same session, as the initiator utils was in main loop to process fu=
-rther events (as mentioned in point 2.f.vi above).
-> 2. While processing this reopen, it stopped the connection which released=
- the socket and queued this connection and at this point of time the login =
-response was received for the earlier on
->=20
-> Fix
-> ---
->=20
-> 1. Create a flag "set_param_fail" in iscsi_cls_conn structure 2. On ep_di=
-sconnect and stop_conn set this flag to indicate set_param calls for connec=
-tion level settings should fail 3. This way, scsi_transport_iscsi can set a=
-nd check this bit for all drivers 2. On bind_conn clear the bit
->=20
-> Signed-off-by: Gulam Mohamed <gulam.mohamed@oracle.com>
-> ---
->  drivers/scsi/scsi_transport_iscsi.c | 6 ++++++  include/scsi/scsi_transp=
-ort_iscsi.h | 3 +++
->  2 files changed, 9 insertions(+)
->=20
-> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_tran=
-sport_iscsi.c
-> index 2e68c0a87698..15c5a7223a40 100644
-> --- a/drivers/scsi/scsi_transport_iscsi.c
-> +++ b/drivers/scsi/scsi_transport_iscsi.c
-> @@ -2473,6 +2473,8 @@ static void iscsi_if_stop_conn(struct iscsi_cls_con=
-n *conn, int flag)
->  	 * it works.
->  	 */
->  	mutex_lock(&conn_mutex);
-> +	if (!test_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail))
-> +		set_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail);
+------=_Part_7732_758826301.1611240747574
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_7733_1188216954.1611240747574"
 
-You can just do a test_and_set_bit.
+------=_Part_7733_1188216954.1611240747574
+Content-Type: text/plain; charset="UTF-8"
 
->  	conn->transport->stop_conn(conn, flag);
->  	mutex_unlock(&conn_mutex);
-> =20
-> @@ -2895,6 +2897,8 @@ iscsi_set_param(struct iscsi_transport *transport, =
-struct iscsi_uevent *ev)
->  			session->recovery_tmo =3D value;
->  		break;
->  	default:
-> +		if (test_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail))
-> +			return -ENOTCONN;
->  		err =3D transport->set_param(conn, ev->u.set_param.param,
->  					   data, ev->u.set_param.len);
->  	}
-> @@ -2956,6 +2960,7 @@ static int iscsi_if_ep_disconnect(struct iscsi_tran=
-sport *transport,
->  		mutex_lock(&conn->ep_mutex);
->  		conn->ep =3D NULL;
->  		mutex_unlock(&conn->ep_mutex);
-> +		set_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail);
->  	}
-> =20
->  	transport->ep_disconnect(ep);
-> @@ -3716,6 +3721,7 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsg=
-hdr *nlh, uint32_t *group)
->  		ev->r.retcode =3D	transport->bind_conn(session, conn,
->  						ev->u.b_conn.transport_eph,
->  						ev->u.b_conn.is_leading);
-> +		clear_bit(ISCSI_SET_PARAM_FAIL_BIT, &conn->set_param_fail);
+Hi Folks,
 
-You should check retcode and only clear if it indicates success.
+I am looking at a kernel panic due to a hung task and could use some help 
+understanding whether this is a known issue.  Kernel version is 4.14.63.
 
+Here is an complete stack trace of the hung kworker task.
 
->  		mutex_unlock(&conn_mutex);
-> =20
->  		if (ev->r.retcode || !transport->ep_connect) diff --git a/include/scsi=
-/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
-> index 8a26a2ffa952..71b1952b913b 100644
-> --- a/include/scsi/scsi_transport_iscsi.h
-> +++ b/include/scsi/scsi_transport_iscsi.h
-> @@ -29,6 +29,8 @@ struct bsg_job;
->  struct iscsi_bus_flash_session;
->  struct iscsi_bus_flash_conn;
-> =20
-> +#define ISCSI_SET_PARAM_FAIL_BIT	1
-> +
->  /**
->   * struct iscsi_transport - iSCSI Transport template
->   *
-> @@ -206,6 +208,7 @@ struct iscsi_cls_conn {
-> =20
->  	struct device dev;		/* sysfs transport/container device */
->  	enum iscsi_connection_state state;
-> +	unsigned long set_param_fail; /* set_param for connection should fail=
-=20
+crash> bt 106700
+PID: 106700  TASK: ffff885eb22ebe80  CPU: 8   COMMAND: "kworker/u32:0"
+ #0 [ffffc900550ebab8] __schedule at ffffffff815f0b78
+ #1 [ffffc900550ebb50] schedule at ffffffff815f1248
+ #2 [ffffc900550ebb58] schedule_timeout at ffffffff815f4fe6
+ #3 [ffffc900550ebbf8] wait_for_completion at ffffffff815f1cf0
+ #4 [ffffc900550ebc48] flush_workqueue at ffffffff8108ec66
+ #5 [ffffc900550ebce8] drain_workqueue at ffffffff8108ef84
+ #6 [ffffc900550ebd10] destroy_workqueue at ffffffff81091ce5
+ #7 [ffffc900550ebd30] scsi_host_dev_release at ffffffffa0095ced [scsi_mod]
+ #8 [ffffc900550ebd48] device_release at ffffffff81453c90
+ #9 [ffffc900550ebd68] kobject_put at ffffffff815d8130
+#10 [ffffc900550ebd88] iscsi_session_release at ffffffffa0aebf88 
+[scsi_transport_iscsi]
+#11 [ffffc900550ebda8] device_release at ffffffff81453c90
+#12 [ffffc900550ebdc8] kobject_put at ffffffff815d8130
+#13 [ffffc900550ebde8] device_release at ffffffff81453c90
+#14 [ffffc900550ebe08] kobject_put at ffffffff815d8130
+#15 [ffffc900550ebe28] scsi_remove_target at ffffffffa00a3e92 [scsi_mod]
+#16 [ffffc900550ebe70] __iscsi_unbind_session at ffffffffa0aecd8d 
+[scsi_transport_iscsi]
+#17 [ffffc900550ebe98] process_one_work at ffffffff8108f62a
+#18 [ffffc900550ebed8] worker_thread at ffffffff8108f84b
+#19 [ffffc900550ebf10] kthread at ffffffff8109536a
+#20 [ffffc900550ebf50] ret_from_fork at ffffffff816001ef
 
-You don't need a comment since the bit and field name say the same thing.
+After poking around in the kdump, I've discovered that the worker thread 
+that called __iscsi_unbind_session did so for a work item that came from 
+the same workqueue that is being destroyed at the top of the stack. My 
+understanding of work queues is that this isn't allowed and will result in 
+a hung task.   
 
-Th implementation is a little odd, because it's a bitmap with only one bit,
-and named specifically for the one bit. It would be best to either do:
+Here we can see where the __iscsi_unbind_session work is queued to a SCSI 
+work queue
 
-1. single bool/bit:
+static int
+iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t 
+*group)
+{
+.
+.
+.
+case ISCSI_UEVENT_UNBIND_SESSION:
+session = iscsi_session_lookup(ev->u.d_session.sid);
+if (session)
+scsi_queue_work(iscsi_session_to_shost(session),     <--- unbind work 
+queued to scsi work queue
+&session->unbind_work);
+else
+err = -EINVAL;
+break;
+Here we can see that this puts the work item onto Scsi_Host->work_q 
 
-unsigned conn_bound:1;
-or
-bool conn_bound;
+int scsi_queue_work(struct Scsi_Host *shost, struct work_struct *work)
+{
+if (unlikely(!shost->work_q)) {
+shost_printk(KERN_ERR, shost,
+"ERROR: Scsi host '%s' attempted to queue scsi-work, "
+"when no workqueue created.\n", shost->hostt->name);
+dump_stack();
 
-2. generic bitmap:
+return -EINVAL;
+}
 
-#define ISCSI_CONN_FLAGS_BOUND 1
+return queue_work(shost->work_q, work);      <--- Work item goes into 
+Scsi_Host->work_q
+}
+Here we can see the scsi_host_dev_release routine destroying the 
+Scsi_Host->work_q
 
-unsigned long conn_state_flags;
+static void scsi_host_dev_release(struct device *dev)
+{
+struct Scsi_Host *shost = dev_to_shost(dev);
+struct device *parent = dev->parent;
 
-3. fix up the iscsi_cls_conn->state values so it works in general and also
-for your case.
+scsi_proc_hostdir_rm(shost->hostt);
 
-For this conn state one we would fix up the conn state, because it's curren=
-tly
-looks wrong, and when the conn is down it still shows "up", and it doesn't =
-seem
-to show "failed".
+/* Wait for functions invoked through call_rcu(&shost->rcu, ...) */
+rcu_barrier();
 
-So add a new state ISCSI_CONN_BOUND in:
+if (shost->tmf_work_q)
+destroy_workqueue(shost->tmf_work_q);
+if (shost->ehandler)
+kthread_stop(shost->ehandler);
+if (shost->work_q)
+destroy_workqueue(shost->work_q);      <--- Destroying Scsi_Host->work_q
 
-static const char *const connection_state_names[] =3D {
-        [ISCSI_CONN_UP] =3D "up",
-        [ISCSI_CONN_DOWN] =3D "down",
-        [ISCSI_CONN_FAILED] =3D "failed"
-};
+I did some searching and couldn't locate a similar stack trace. Does anyone 
+know if this a known issue? 
 
-In iscsi_if_ep_disconnect and iscsi_if_stop_conn set:
+If not a known issue, any ideas as to what would normally keep the 
+Scsi_Host device from being removed inline in this call stack? This 
+happened on two hosts with mniutes of each other after starting to 
+disconnect from 2 targets. I believe the unbind session was kicked off from 
+an iscsiadm command to terminate the session but other than that nothing 
+out of the ordinary was going on. 
 
-conn->state =3D ISCSI_CONN_DOWN.
+Thanks in advance, 
+Adam
 
-In that code where we call transport->bind_conn() do
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/eb5a3e8a-713d-4ae2-82bd-6c18afc5d6e8n%40googlegroups.com.
 
-if (!ev->r.retcode)
-	conn->state =3D ISCSI_CONN_BOUND
+------=_Part_7733_1188216954.1611240747574
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-and then in iscsi_set_param do
+<div>Hi Folks,</div><div><br></div><div>I am looking at a kernel panic due =
+to a hung task and could use some help understanding whether this is a know=
+n issue.&nbsp; Kernel version is 4.14.63.</div><div><br></div><div>Here is =
+an complete stack trace of the hung kworker task.</div><div><br></div><div>=
+<font face=3D"Courier New">crash&gt; bt 106700</font></div><div><font face=
+=3D"Courier New">PID: 106700&nbsp; TASK: ffff885eb22ebe80&nbsp; CPU: 8&nbsp=
+; &nbsp;COMMAND: "kworker/u32:0"</font></div><div><font face=3D"Courier New=
+">&nbsp;#0 [ffffc900550ebab8] __schedule at ffffffff815f0b78</font></div><d=
+iv><font face=3D"Courier New">&nbsp;#1 [ffffc900550ebb50] schedule at fffff=
+fff815f1248</font></div><div><font face=3D"Courier New">&nbsp;#2 [ffffc9005=
+50ebb58] schedule_timeout at ffffffff815f4fe6</font></div><div><font face=
+=3D"Courier New">&nbsp;#3 [ffffc900550ebbf8] wait_for_completion at fffffff=
+f815f1cf0</font></div><div><font face=3D"Courier New">&nbsp;#4 [ffffc900550=
+ebc48] flush_workqueue at ffffffff8108ec66</font></div><div><font face=3D"C=
+ourier New">&nbsp;#5 [ffffc900550ebce8] drain_workqueue at ffffffff8108ef84=
+</font></div><div><font face=3D"Courier New">&nbsp;#6 [ffffc900550ebd10] de=
+stroy_workqueue at ffffffff81091ce5</font></div><div><font face=3D"Courier =
+New">&nbsp;#7 [ffffc900550ebd30] scsi_host_dev_release at ffffffffa0095ced =
+[scsi_mod]</font></div><div><font face=3D"Courier New">&nbsp;#8 [ffffc90055=
+0ebd48] device_release at ffffffff81453c90</font></div><div><font face=3D"C=
+ourier New">&nbsp;#9 [ffffc900550ebd68] kobject_put at ffffffff815d8130</fo=
+nt></div><div><font face=3D"Courier New">#10 [ffffc900550ebd88] iscsi_sessi=
+on_release at ffffffffa0aebf88 [scsi_transport_iscsi]</font></div><div><fon=
+t face=3D"Courier New">#11 [ffffc900550ebda8] device_release at ffffffff814=
+53c90</font></div><div><font face=3D"Courier New">#12 [ffffc900550ebdc8] ko=
+bject_put at ffffffff815d8130</font></div><div><font face=3D"Courier New">#=
+13 [ffffc900550ebde8] device_release at ffffffff81453c90</font></div><div><=
+font face=3D"Courier New">#14 [ffffc900550ebe08] kobject_put at ffffffff815=
+d8130</font></div><div><font face=3D"Courier New">#15 [ffffc900550ebe28] sc=
+si_remove_target at ffffffffa00a3e92 [scsi_mod]</font></div><div><font face=
+=3D"Courier New">#16 [ffffc900550ebe70] __iscsi_unbind_session at ffffffffa=
+0aecd8d [scsi_transport_iscsi]</font></div><div><font face=3D"Courier New">=
+#17 [ffffc900550ebe98] process_one_work at ffffffff8108f62a</font></div><di=
+v><font face=3D"Courier New">#18 [ffffc900550ebed8] worker_thread at ffffff=
+ff8108f84b</font></div><div><font face=3D"Courier New">#19 [ffffc900550ebf1=
+0] kthread at ffffffff8109536a</font></div><div><font face=3D"Courier New">=
+#20 [ffffc900550ebf50] ret_from_fork at ffffffff816001ef</font></div><div><=
+br></div><div>After poking around in the kdump, I've discovered that the wo=
+rker thread that called __iscsi_unbind_session did so for a work item that =
+came from the same workqueue that is being destroyed at the top of the stac=
+k. My understanding of work queues is that this isn't allowed and will resu=
+lt in a hung task.&nbsp; &nbsp;</div><div><br></div><div>Here we can see wh=
+ere the __iscsi_unbind_session work is queued to a SCSI work queue</div><di=
+v><br></div><div><font face=3D"Courier New"><span style=3D"white-space:pre"=
+>	</span>static int</font></div><div><font face=3D"Courier New"><span style=
+=3D"white-space:pre">	</span>iscsi_if_recv_msg(struct sk_buff *skb, struct =
+nlmsghdr *nlh, uint32_t *group)</font></div><div><font face=3D"Courier New"=
+><span style=3D"white-space:pre">	</span>{</font></div><div><font face=3D"C=
+ourier New"><span style=3D"white-space:pre">	</span>.</font></div><div><fon=
+t face=3D"Courier New"><span style=3D"white-space:pre">	</span>.</font></di=
+v><div><font face=3D"Courier New"><span style=3D"white-space:pre">	</span>.=
+</font></div><div><font face=3D"Courier New"><span style=3D"white-space:pre=
+">		</span>case ISCSI_UEVENT_UNBIND_SESSION:</font></div><div><font face=3D=
+"Courier New"><span style=3D"white-space:pre">			</span>session =3D iscsi_s=
+ession_lookup(ev-&gt;u.d_session.sid);</font></div><div><font face=3D"Couri=
+er New"><span style=3D"white-space:pre">			</span>if (session)</font></div>=
+<div><font face=3D"Courier New"><span style=3D"white-space:pre">				</span>=
+scsi_queue_work(iscsi_session_to_shost(session),&nbsp; &nbsp; &nbsp;&lt;---=
+ unbind work queued to scsi work queue</font></div><div><font face=3D"Couri=
+er New"><span style=3D"white-space:pre">						</span>&amp;session-&gt;unbin=
+d_work);</font></div><div><font face=3D"Courier New"><span style=3D"white-s=
+pace:pre">			</span>else</font></div><div><font face=3D"Courier New"><span =
+style=3D"white-space:pre">				</span>err =3D -EINVAL;</font></div><div><fon=
+t face=3D"Courier New"><span style=3D"white-space:pre">			</span>break;</fo=
+nt></div><div><span style=3D"white-space:pre"><font face=3D"Courier New">		=
+</font></span></div><div>Here we can see that this puts the work item onto =
+Scsi_Host-&gt;work_q&nbsp;</div><div><br></div><div><font face=3D"Courier N=
+ew"><span style=3D"white-space:pre">	</span>int scsi_queue_work(struct Scsi=
+_Host *shost, struct work_struct *work)</font></div><div><font face=3D"Cour=
+ier New"><span style=3D"white-space:pre">	</span>{</font></div><div><font f=
+ace=3D"Courier New"><span style=3D"white-space:pre">		</span>if (unlikely(!=
+shost-&gt;work_q)) {</font></div><div><font face=3D"Courier New"><span styl=
+e=3D"white-space:pre">			</span>shost_printk(KERN_ERR, shost,</font></div><=
+div><font face=3D"Courier New"><span style=3D"white-space:pre">				</span>"=
+ERROR: Scsi host '%s' attempted to queue scsi-work, "</font></div><div><fon=
+t face=3D"Courier New"><span style=3D"white-space:pre">				</span>"when no =
+workqueue created.\n", shost-&gt;hostt-&gt;name);</font></div><div><font fa=
+ce=3D"Courier New"><span style=3D"white-space:pre">			</span>dump_stack();<=
+/font></div><div><font face=3D"Courier New"><br></font></div><div><font fac=
+e=3D"Courier New"><span style=3D"white-space:pre">			</span>return -EINVAL;=
+</font></div><div><font face=3D"Courier New"><span style=3D"white-space:pre=
+">		</span>}</font></div><div><font face=3D"Courier New"><br></font></div><=
+div><font face=3D"Courier New"><span style=3D"white-space:pre">		</span>ret=
+urn queue_work(shost-&gt;work_q, work);&nbsp; &nbsp; &nbsp; &lt;--- Work it=
+em goes into Scsi_Host-&gt;work_q</font></div><div><font face=3D"Courier Ne=
+w"><span style=3D"white-space:pre">	</span>}</font></div><div><span style=
+=3D"white-space:pre">	</span></div><div>Here we can see the scsi_host_dev_r=
+elease routine destroying the Scsi_Host-&gt;work_q</div><div><br></div><div=
+><span style=3D"white-space:pre">	</span><font face=3D"Courier New">static =
+void scsi_host_dev_release(struct device *dev)</font></div><div><font face=
+=3D"Courier New"><span style=3D"white-space:pre">	</span>{</font></div><div=
+><font face=3D"Courier New"><span style=3D"white-space:pre">		</span>struct=
+ Scsi_Host *shost =3D dev_to_shost(dev);</font></div><div><font face=3D"Cou=
+rier New"><span style=3D"white-space:pre">		</span>struct device *parent =
+=3D dev-&gt;parent;</font></div><div><font face=3D"Courier New"><br></font>=
+</div><div><font face=3D"Courier New"><span style=3D"white-space:pre">		</s=
+pan>scsi_proc_hostdir_rm(shost-&gt;hostt);</font></div><div><font face=3D"C=
+ourier New"><br></font></div><div><font face=3D"Courier New"><span style=3D=
+"white-space:pre">		</span>/* Wait for functions invoked through call_rcu(&=
+amp;shost-&gt;rcu, ...) */</font></div><div><font face=3D"Courier New"><spa=
+n style=3D"white-space:pre">		</span>rcu_barrier();</font></div><div><font =
+face=3D"Courier New"><br></font></div><div><font face=3D"Courier New"><span=
+ style=3D"white-space:pre">		</span>if (shost-&gt;tmf_work_q)</font></div><=
+div><font face=3D"Courier New"><span style=3D"white-space:pre">			</span>de=
+stroy_workqueue(shost-&gt;tmf_work_q);</font></div><div><font face=3D"Couri=
+er New"><span style=3D"white-space:pre">		</span>if (shost-&gt;ehandler)</f=
+ont></div><div><font face=3D"Courier New"><span style=3D"white-space:pre">	=
+		</span>kthread_stop(shost-&gt;ehandler);</font></div><div><font face=3D"C=
+ourier New"><span style=3D"white-space:pre">		</span>if (shost-&gt;work_q)<=
+/font></div><div><font face=3D"Courier New"><span style=3D"white-space:pre"=
+>			</span>destroy_workqueue(shost-&gt;work_q);&nbsp; &nbsp; &nbsp;<span st=
+yle=3D"white-space:pre">		</span>&lt;--- Destroying Scsi_Host-&gt;work_q</f=
+ont></div><div><span style=3D"white-space:pre">			</span></div><div><br></d=
+iv><div>I did some searching and couldn't locate a similar stack trace. Doe=
+s anyone know if this a known issue?&nbsp;</div><div><br></div><div>If not =
+a known issue, any ideas as to what would normally keep the Scsi_Host devic=
+e from being removed inline in this call stack? This happened on two hosts =
+with mniutes of each other after starting to disconnect from 2 targets. I b=
+elieve the unbind session was kicked off from an iscsiadm command to termin=
+ate the session but other than that nothing out of the ordinary was going o=
+n.&nbsp;</div><div><br></div><div>Thanks in advance,&nbsp;</div><div>Adam</=
+div>
 
-if (conn->state !=3D ISCSI_CONN_BOUND)
-	return -ENOTCONN
+<p></p>
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
 To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/ca8ea0a8-37a5-0ebd-a73e-70edb82ac2b4%40oracle.com.
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/eb5a3e8a-713d-4ae2-82bd-6c18afc5d6e8n%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/eb5a3e8a-713d-4ae2-82bd-6c18afc5d6e8n%40googlegroups.com</a>.=
+<br />
+
+------=_Part_7733_1188216954.1611240747574--
+
+------=_Part_7732_758826301.1611240747574--
