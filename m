@@ -1,166 +1,128 @@
-Return-Path: <open-iscsi+bncBDPZFFEBQUJBBR6PS2BAMGQEXD4FQMA@googlegroups.com>
+Return-Path: <open-iscsi+bncBAABBEXTVGBAMGQE47J4FDY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yb1-xb3c.google.com (mail-yb1-xb3c.google.com [IPv6:2607:f8b0:4864:20::b3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4763306D4
-	for <lists+open-iscsi@lfdr.de>; Mon,  8 Mar 2021 05:27:53 +0100 (CET)
-Received: by mail-yb1-xb3c.google.com with SMTP id n10sf11326141ybb.12
-        for <lists+open-iscsi@lfdr.de>; Sun, 07 Mar 2021 20:27:53 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1615177672; cv=pass;
+Received: from mail-ot1-x338.google.com (mail-ot1-x338.google.com [IPv6:2607:f8b0:4864:20::338])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F80337EC3
+	for <lists+open-iscsi@lfdr.de>; Thu, 11 Mar 2021 21:12:03 +0100 (CET)
+Received: by mail-ot1-x338.google.com with SMTP id c21sf13496310oto.18
+        for <lists+open-iscsi@lfdr.de>; Thu, 11 Mar 2021 12:12:03 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1615493522; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Q2SHoHz8+R29aGS2gUn5L/x86TXjF/1g8aEww1qAKMCvgR1g30FFe9K5YoNe5Eep8Z
-         ZUKRCXbKOxqlp/ZyRPMZ8/KVF3rXSbvS3xTB4qoyFRb04LlhEZCdstopKib3OknZkPqv
-         T5JQajFT/DkENKkKar8kRVNVCs4FzTSYhhzq1Yj7kVAqVc5mm+AOyyy/7H39KH2NauRo
-         mspiigT+WL3XBwwZ8fKak4xJ+EfaTWv1lEc8T8tcMuEJ97vLVb09AZPG8fyeYru1DGvU
-         0/kMSDyo/cgCU+JJ7MgFsAEHLBD4KEgAxyqXxl/IbUQdW2IPvdgLIR7patvrVn7mXQoe
-         CYUw==
+        b=Y449DqNXHnxuze6vI0ai1HEq4zJJhgqWhIu1oxlz53wcxoP9n8Ihs7O7/FvlDzJwU+
+         nUEJRtIy6j7Wz9foEw4oD3aZq5PoZFJPgbsjLJjfZ4igUiCPS3djlPSk09rgWrNI6U+g
+         i4o9k2Xe+rC1LR3ftKsQbMx5Vimd/q5/r2+L4TeRC2tFiPaBr11YIQIrZbVKiEwI7saA
+         qg5fJVxmIdXubYQHyyjuPO5s8sLdWl+U2sdMDWWJc6H8aYt1hrQdB3mqnsU7BHAuX46w
+         2IhzxTsPR9aMF+YDpmDzfne2E9eES1716CB0VQqBmzdEejpvoVdelVZuFNTqrFCboXAc
+         5oxg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:mime-version:user-agent:references
-         :in-reply-to:date:cc:to:reply-to:from:subject:message-id:sender
-         :dkim-signature;
-        bh=9EeKMD67wepZFr4nERSoMDHUp6vwxJr1i7mxiMa4kWk=;
-        b=y1gBEzHi66GL0P274MwSK0HA4zB6P4AoYKKrFFAeq/XkXrcZ3kpoY63mHI+uW+1lAM
-         0n4ZcgpgyeqCnjA5ZQeTwiw6cWxrL+67iP4WAV21hmtKnYJG5zFkQUPwotm9KrggnNAS
-         TCs3akLffJgAvocCzIvoODNcqa6KYUjJgihoEX71il0lK1hPV/BTlb/mSdE9Pg/AGZ8O
-         9gVg1KZmgJBEw07Dnu8wiOxDNFb1MT0dUdbP7sQZLsS5i+nlrWUNlqE7/zFTrycGY8CW
-         49B5HvLHA/zvbubKA2cAYjFgnqziNeKVKYNXmUB6YWbNNjbUE+S3iBn0ftE9i9G9MXAA
-         ja8Q==
+         :list-id:mailing-list:precedence:reply-to:message-id:date:subject:cc
+         :to:from:mime-version:sender:dkim-signature;
+        bh=dtcYTpf2dlrQwNJ3XxBojBCUbVIFx/+E3ubQ2DRMtrU=;
+        b=VzFt6otwIcKKiypKlVoyJeRmAUMokluvhm1AIwoQWysieLFHu7YboCNUYqcwEKp/2U
+         iZ2G7IUVV3SS8jBsVcVhocqKQCLhYrt229/hUJknOa5xmnDAhJ5CzIAUFQXNXlTrdOjo
+         EoyA8okXSStAaj1lyVSTJuDb5xiz+0hzv92iVfj5DtBlvX4CKqKKgR5BeM79xyv+i+Fn
+         oHOpOpa+x2HUIJGvFQuqgNb4irhHikCCzZyFn5TmezfJGy3zEL5wf2GRMsl7A7OKnSu/
+         Mxy5ledvVcYBeO1yPSg/Fr1ienoqVCK9zal6QRFWoMdEcF28IaP0WtgHuD4wMj0JwSFg
+         PxsQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@ibm.com header.s=pp1 header.b=Ls+2TA4B;
-       spf=pass (google.com: domain of jejb@linux.ibm.com designates 148.163.156.1 as permitted sender) smtp.mailfrom=jejb@linux.ibm.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ibm.com
+       spf=pass (google.com: domain of jiapeng.chong@linux.alibaba.com designates 47.88.44.36 as permitted sender) smtp.mailfrom=jiapeng.chong@linux.alibaba.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=alibaba.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:message-id:subject:from:reply-to:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:x-original-sender
-         :x-original-authentication-results:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=9EeKMD67wepZFr4nERSoMDHUp6vwxJr1i7mxiMa4kWk=;
-        b=XdAybb9T47VeRd6ZkbICG1lMoWAfOJMg3zYvmCPp+soa1pdx2aQXyx/uCQYK5E0YC2
-         zitWKlXFF+9GE9Q2+t1zNi9MKREjrPRXnB3fFVYVr/V2okMx95jTVzHMebE6KWl3X9Ib
-         Y/CopUJ82JPOuJNTCGQPHfwSvC10pwLGgZp2bvGN9jEMCcHAs7J0qFXwU/RmuE9BDyLN
-         hE/Yc9z+zc+yTxcMjAushG9kYjigFI08z7CR96A9nZnw10riYC93RGlamaxBavuVz3b1
-         cKp2s9cQgRz9wQVoEOw2MKq0UAz+Moj3iWSZEWfXb2nbgkCvmUg5o3/x7HU33PUTEILx
-         FGAg==
+        h=sender:mime-version:from:to:cc:subject:date:message-id
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=dtcYTpf2dlrQwNJ3XxBojBCUbVIFx/+E3ubQ2DRMtrU=;
+        b=jR0OTeoB/8r9D7Fgkp50BQAbRGYg5eVEj41xgCAkb4bFMf5Jp1lF+9YQho+qAN0aU0
+         1xpmEpKOGypwOUboIGAB304BFIy3w/VdV3cOwoOKA6DJm/CgeBRvrHz8b9VgUdnEUvUo
+         HpvAmn6ah4N5B8Wpy23lGWzZZnoZOsIK6bHamLsjjuNlLQLfZS/qrwcKvnqzVf6u8503
+         74l54xKNGyBYPJ8DafBjpi5rrQXwceiN+OxNOwYkVW2Nx04zfj7c/4CVZR/1O7uYfVUL
+         cVkmbmxdPACz3n3tIhsMD1mBhLpegqR9AaDo5Qv/3H7dk8APc6zKNNrorzPuCK2/nM8z
+         3WRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:message-id:subject:from:reply-to:to:cc
-         :date:in-reply-to:references:user-agent:mime-version
-         :x-original-sender:x-original-authentication-results:precedence
-         :mailing-list:list-id:x-spam-checked-in-group:list-post:list-help
+        h=sender:x-gm-message-state:mime-version:from:to:cc:subject:date
+         :message-id:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=9EeKMD67wepZFr4nERSoMDHUp6vwxJr1i7mxiMa4kWk=;
-        b=WooHKaDVq67Vm1uNLLjcV8VyryenuKx3PYoCRA6WMn9FGoFK8Tq8H9aYuXJ4xZCAoZ
-         mGmaFtst0Ttb2TZTKbmEMUbuXtRiacLE7u/ltO40UccHS+92LYkM73Ex8pSVKmpEXWPt
-         t49QEbhrYH3ppQrtNMN3r91+FI0z0cQmrwbJm6jJwWX6SW+wc0mEagAOdpDU1e7e9IaN
-         xPen+HSxcldTyU7S6/FXEgyil0DIQTH1ijFghR4bkkWvOh56IijcF4e3IxWHWHzoyDWJ
-         qOjkgWGztCz2+fxYmbnqL7wMGFHib7ImjTfsz2SlDsUhGOngMGTUpiGULJzYmFyjQSJa
-         +y7w==
+        bh=dtcYTpf2dlrQwNJ3XxBojBCUbVIFx/+E3ubQ2DRMtrU=;
+        b=ZKUGbsdlZrqFHLb/fWJ4kyyryqPw/4e73clTJT5uIupBMe9AScUsgVelvT9rz1wqgT
+         D78zTa+QcH39lHfeZjCeq77DE3ouoHll66DUW1VT7ZwPpGrwiyoQTuPFi3tkXOzwKr10
+         ocL9v8pEaIS4KiXtz4zzSTJuLv2VCFBs4U57daeNGp/or3TWrFQRq18ZS0SHqHyr/gcg
+         Wf1JyYqh0hE4YUSeT4cWI1MzBjFXOJ45rZmQUwa0NKHug5QXWSVe4P4KM4YJfArOGKPa
+         863VuQk1fzlus6jGEdxr5TINCVD0xdm4+OWL8bfouK6mRDdex9HGRtmhkHgTAw69UGmT
+         ypCw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533EQZgvGH5mz20Sedi7WMTIQjvkKJiHG7nE7RKBfR7vRZmmY4Ax
-	8GyDaILEIoJgFah5Ijp+C/A=
-X-Google-Smtp-Source: ABdhPJzk7O8FJDf7LVG3DZdGQlToTYnaVnOwxl/yTUjmG+4QzdeqT6v2PCB6lyoHPp3wrTMzUsuCrw==
-X-Received: by 2002:a25:5014:: with SMTP id e20mr29276017ybb.396.1615177671839;
-        Sun, 07 Mar 2021 20:27:51 -0800 (PST)
-X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a25:d8c7:: with SMTP id p190ls8000345ybg.6.gmail; Sun, 07
- Mar 2021 20:27:51 -0800 (PST)
-X-Received: by 2002:a25:68cf:: with SMTP id d198mr29343497ybc.258.1615177671220;
-        Sun, 07 Mar 2021 20:27:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1615177671; cv=none;
-        d=google.com; s=arc-20160816;
-        b=VEc4M1Kbm/kZGljqpVN/NSaeQrLiMIAdVPMlkb0nOejnIZUTQ0oiuHiNxWDTAuVnd5
-         Vhm6ReoYyvuqqF8Xqj6d3wTbiHX+Y8WQM4+pjWNptQiieo3xz7LEYVYIyYUiuwqtJPfR
-         hgdJ+KFNratjjSpdDAWBFg9g3MEWjWh0ie4Z19uzNWBPPz/Z6++30PVlwrqzIcEEEVtT
-         asZyUlC6sOOd/KRgi4iRQt06lYOIj0aWZ3rLBcDw4ilM8SDITCLJjVK9OGgbhRlHEikA
-         bZdyND1Xwno6SIw1G4hYcIwHFaHl/jkXWZHrcEvue8wDIefFdQDXQA4irzYi761XV8HD
-         91Yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:user-agent:references
-         :in-reply-to:date:cc:to:reply-to:from:subject:message-id
-         :dkim-signature;
-        bh=NP39ZWoz9Xd3g1UX+nyLKlZg2ptzC85JVgl8ySjGpMg=;
-        b=yu/6OIFtDMz7Ho2WmYE8LoKOoeSltVWx5sIkMaRkzVSD2MbjjIQkytj1GVVaO0ruoG
-         nuQ9kUO185gGD1BBgvwMXrDYegMFAXHHs8aC6XrG/hkx/BviuWuhrUBdkRtq7pFf3alP
-         GWzeH0dA3P7/rJq7O2h4kurLt81s9KcCmy5DBtsgae+TjfRki7e/zQIQzeLnCNMKRCts
-         /3j6b8fm3dYzWJEcqnb1Mb+OChiemIdI6g1QbJVIOuOpyh3grxetaaJWbuqnYwCP+XL+
-         1X/z/FUPrYmeufyHsFB0RpYn/tr0jeTL2JGAkbVg04laEl13SO2us6kB/G9hmDhYqRR9
-         iCcg==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@ibm.com header.s=pp1 header.b=Ls+2TA4B;
-       spf=pass (google.com: domain of jejb@linux.ibm.com designates 148.163.156.1 as permitted sender) smtp.mailfrom=jejb@linux.ibm.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ibm.com
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com. [148.163.156.1])
-        by gmr-mx.google.com with ESMTPS id l14si905017ybp.4.2021.03.07.20.27.50
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 07 Mar 2021 20:27:51 -0800 (PST)
-Received-SPF: pass (google.com: domain of jejb@linux.ibm.com designates 148.163.156.1 as permitted sender) client-ip=148.163.156.1;
-Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12843bxa133135;
-	Sun, 7 Mar 2021 23:27:50 -0500
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com with ESMTP id 3757ww5dpk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 07 Mar 2021 23:27:50 -0500
-Received: from m0098393.ppops.net (m0098393.ppops.net [127.0.0.1])
-	by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 12843kaI133704;
-	Sun, 7 Mar 2021 23:27:49 -0500
-Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
-	by mx0a-001b2d01.pphosted.com with ESMTP id 3757ww5dpc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 07 Mar 2021 23:27:49 -0500
-Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
-	by ppma05wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 1284MpYh023807;
-	Mon, 8 Mar 2021 04:27:48 GMT
-Received: from b03cxnp08025.gho.boulder.ibm.com (b03cxnp08025.gho.boulder.ibm.com [9.17.130.17])
-	by ppma05wdc.us.ibm.com with ESMTP id 3741c93yx3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 08 Mar 2021 04:27:48 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-	by b03cxnp08025.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 1284Rlka26411308
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 8 Mar 2021 04:27:47 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 577327805C;
-	Mon,  8 Mar 2021 04:27:47 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E057B78063;
-	Mon,  8 Mar 2021 04:27:45 +0000 (GMT)
-Received: from jarvis.int.hansenpartnership.com (unknown [9.80.211.242])
-	by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
-	Mon,  8 Mar 2021 04:27:45 +0000 (GMT)
-Message-ID: <2b90f003bbf8064c2372cba6a61b31cb8dec7a69.camel@linux.ibm.com>
-Subject: Re: [PATCH] scsi: iscsi: Switch to using the new API kobj_to_dev()
-From: James Bottomley <jejb@linux.ibm.com>
-Reply-To: open-iscsi@googlegroups.com
-To: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, lduncan@suse.com
-Cc: cleech@redhat.com, martin.petersen@oracle.com, open-iscsi@googlegroups.com,
-        linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Sun, 07 Mar 2021 20:27:44 -0800
-In-Reply-To: <1615174470-45135-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-References: <1615174470-45135-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.34.4
+X-Gm-Message-State: AOAM533J7dAFaB3YkXczZlomFSId45rrzCr0gRZW/pB/C4UV0ZO3a1uR
+	bVGjdvBQfD0nBTFYd8icnnA=
+X-Google-Smtp-Source: ABdhPJw39kE8Ym0MtEKT7SD47YJWk2y1mAYZq6PEfmwO8PgHwyqtK/9Hd4X6TD12+eEWuZEcfxQ9mg==
+X-Received: by 2002:aca:ab85:: with SMTP id u127mr7519735oie.113.1615493522431;
+        Thu, 11 Mar 2021 12:12:02 -0800 (PST)
 MIME-Version: 1.0
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-08_01:2021-03-03,2021-03-08 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
- spamscore=0 clxscore=1011 priorityscore=1501 phishscore=0
- lowpriorityscore=0 bulkscore=0 suspectscore=0 mlxscore=0 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2103080018
-X-Original-Sender: jejb@linux.ibm.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@ibm.com header.s=pp1 header.b=Ls+2TA4B;       spf=pass (google.com:
- domain of jejb@linux.ibm.com designates 148.163.156.1 as permitted sender)
- smtp.mailfrom=jejb@linux.ibm.com;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ibm.com
+X-BeenThere: open-iscsi@googlegroups.com
+Received: by 2002:aca:c650:: with SMTP id w77ls1704499oif.1.gmail; Thu, 11 Mar
+ 2021 12:12:02 -0800 (PST)
+X-Received: by 2002:aca:ed94:: with SMTP id l142mr7735074oih.177.1615493522065;
+        Thu, 11 Mar 2021 12:12:02 -0800 (PST)
+Received: by 2002:aca:fc56:0:b029:f0:e583:46d9 with SMTP id a83-20020acafc560000b02900f0e58346d9msoii;
+        Tue, 2 Mar 2021 01:41:19 -0800 (PST)
+X-Received: by 2002:a92:1e12:: with SMTP id e18mr16980633ile.270.1614678079039;
+        Tue, 02 Mar 2021 01:41:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1614678079; cv=none;
+        d=google.com; s=arc-20160816;
+        b=f1AHgOtamhnQVcqbyLXCmTQYKe7f9ZzEDzrZaGGFiiubGlEwqWrqAyfbfc9rw1mXfP
+         Ou4hQCsvnF2rHDHsRPKbAbD8zI09l/27TXLmlGBp4RCsmzOeMJIbF8EvFfyDyBAAlVeY
+         6qjLf3gPY8jDrtuD741fmcItCxhagJy7KokSHHjGk1AKGoghv1ng11QUrbhymjRFzHP6
+         5OTR1eY53vuGqBOV9rnP9aBukyyWQUBLdtGvFs99/8CbnTA002KmBX8+GcACqmB+IJGy
+         q1n7R4wWZENbnPBBIM+aXFA5ph5bvjaxYeN0Uum9Mq3VEd6HKxC4+XJoqe8A7sgsC6na
+         UfRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:date:subject:cc:to:from;
+        bh=3N1FWCcqWK+J4mEy5ADpLmAXI2vd6Vhmp4qNZpAs8HQ=;
+        b=KpJu4KCPvLj87WaeblOQS2OKf7ic9RyUA/zNzAOAtUpS5gP0U/Mta6Jqf9NhoAF8+L
+         oQ4AhQkRqZzmxDM+gK3Wtg9XauNbL2xmqjjNvDQCY37J7TRyu1Spk4ImO7mEIzsxGh8q
+         z3TdlyOlfm3z/LPC2f0mPzETxUFMc+4icmLZw7+IN6Xtoyigjwkq/6RbTm4OjCq/fe9J
+         4ueQ5XluZt3YAEo5JOd4A/G5ocs13FhX20F4W7a7wtpxaUA7RGnaDg89AUaOh/mkcdtO
+         cwtnU90lM69VUmimNnfKI9XCGiEvBsA4Qgy+Arse+1Y05Xm7gc7oRigmPxgiP3QJDAoF
+         +kOw==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       spf=pass (google.com: domain of jiapeng.chong@linux.alibaba.com designates 47.88.44.36 as permitted sender) smtp.mailfrom=jiapeng.chong@linux.alibaba.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=alibaba.com
+Received: from out4436.biz.mail.alibaba.com (out4436.biz.mail.alibaba.com. [47.88.44.36])
+        by gmr-mx.google.com with ESMTPS id c2si967512ilj.4.2021.03.02.01.41.17
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Mar 2021 01:41:18 -0800 (PST)
+Received-SPF: pass (google.com: domain of jiapeng.chong@linux.alibaba.com designates 47.88.44.36 as permitted sender) client-ip=47.88.44.36;
+X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R961e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=alimailimapcm10staff010182156082;MF=jiapeng.chong@linux.alibaba.com;NM=1;PH=DS;RN=8;SR=0;TI=SMTPD_---0UQ4Q0Ci_1614678045;
+Received: from j63c13417.sqa.eu95.tbsite.net(mailfrom:jiapeng.chong@linux.alibaba.com fp:SMTPD_---0UQ4Q0Ci_1614678045)
+          by smtp.aliyun-inc.com(127.0.0.1);
+          Tue, 02 Mar 2021 17:40:52 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: lduncan@suse.com
+Cc: cleech@redhat.com,
+	jejb@linux.ibm.com,
+	martin.petersen@oracle.com,
+	open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+Subject: [PATCH] scsi: iscsi: Switch to using the new API kobj_to_dev()
+Date: Tue,  2 Mar 2021 17:40:44 +0800
+Message-Id: <1614678044-5635-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Original-Sender: jiapeng.chong@linux.alibaba.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of jiapeng.chong@linux.alibaba.com designates 47.88.44.36
+ as permitted sender) smtp.mailfrom=jiapeng.chong@linux.alibaba.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=alibaba.com
+Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
-X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -169,38 +131,58 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Mon, 2021-03-08 at 11:34 +0800, Jiapeng Chong wrote:
-> Fix the following coccicheck warnings:
-> 
-> ./drivers/scsi/scsi_transport_iscsi.c:930:60-61: WARNING opportunity
-> for kobj_to_dev().
+Fix the following coccicheck warnings:
 
-I have to ask, what is the point of this?  container_of is usually
-pretty safe ... as in it will detect when you screw up the usage.  The
-only real misuse you can get is when the input type has an object of
-the same name and return type and you got confused between two objects
-with this property, but misuses like this resulting in bugs are very,
-very rare.
+./drivers/scsi/scsi_transport_iscsi.c:4453:61-62: WARNING opportunity
+for kobj_to_dev().
 
-Usually we wrap container_of because the wrapping is a bit shorter as
-you can see: kobj_to_dev is about half the size of the container_of
-form ... but is there any other reason to do it?
+./drivers/scsi/scsi_transport_iscsi.c:4309:61-62: WARNING opportunity
+for kobj_to_dev().
 
-The problem is that container_of is a standard way of doing cast outs
-in the kernel and we have hundreds of them.  To be precise, in scsi
-alone:
+./drivers/scsi/scsi_transport_iscsi.c:4040:61-62: WARNING opportunity
+for kobj_to_dev().
 
-jejb@jarvis:~/git/linux/drivers/scsi> git grep container_of|wc -l
-496
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/scsi/scsi_transport_iscsi.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-So we really don't want to encourage wrapping them all because the
-churn would be unbelievable and the gain minute.  So why should this
-one case especially be wrapped when we don't want to wrap the others?
-
-James
-
+diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+index 969d24d..debedcd 100644
+--- a/drivers/scsi/scsi_transport_iscsi.c
++++ b/drivers/scsi/scsi_transport_iscsi.c
+@@ -4037,7 +4037,7 @@ static ISCSI_CLASS_ATTR(conn, field, S_IRUGO,				\
+ static umode_t iscsi_conn_attr_is_visible(struct kobject *kobj,
+ 					 struct attribute *attr, int i)
+ {
+-	struct device *cdev = container_of(kobj, struct device, kobj);
++	struct device *cdev = kobj_to_dev(kobj);
+ 	struct iscsi_cls_conn *conn = transport_class_to_conn(cdev);
+ 	struct iscsi_transport *t = conn->transport;
+ 	int param;
+@@ -4306,7 +4306,7 @@ static ISCSI_CLASS_ATTR(priv_sess, field, S_IRUGO | S_IWUSR,		\
+ static umode_t iscsi_session_attr_is_visible(struct kobject *kobj,
+ 					    struct attribute *attr, int i)
+ {
+-	struct device *cdev = container_of(kobj, struct device, kobj);
++	struct device *cdev = kobj_to_dev(kobj);
+ 	struct iscsi_cls_session *session = transport_class_to_session(cdev);
+ 	struct iscsi_transport *t = session->transport;
+ 	int param;
+@@ -4450,7 +4450,7 @@ static ISCSI_CLASS_ATTR(host, field, S_IRUGO, show_host_param_##param,	\
+ static umode_t iscsi_host_attr_is_visible(struct kobject *kobj,
+ 					 struct attribute *attr, int i)
+ {
+-	struct device *cdev = container_of(kobj, struct device, kobj);
++	struct device *cdev = kobj_to_dev(kobj);
+ 	struct Scsi_Host *shost = transport_class_to_shost(cdev);
+ 	struct iscsi_internal *priv = to_iscsi_internal(shost->transportt);
+ 	int param;
+-- 
+1.8.3.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/2b90f003bbf8064c2372cba6a61b31cb8dec7a69.camel%40linux.ibm.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1614678044-5635-1-git-send-email-jiapeng.chong%40linux.alibaba.com.
