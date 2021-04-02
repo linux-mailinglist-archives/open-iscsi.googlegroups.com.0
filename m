@@ -1,71 +1,127 @@
-Return-Path: <open-iscsi+bncBDR7L5OKTAGBBTGURCBQMGQEARGPIBI@googlegroups.com>
+Return-Path: <open-iscsi+bncBCUJ7YGL3QFBBDEXTOBQMGQEILMEFSA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ot1-x339.google.com (mail-ot1-x339.google.com [IPv6:2607:f8b0:4864:20::339])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA3A34D816
-	for <lists+open-iscsi@lfdr.de>; Mon, 29 Mar 2021 21:28:13 +0200 (CEST)
-Received: by mail-ot1-x339.google.com with SMTP id e2sf10134194otk.8
-        for <lists+open-iscsi@lfdr.de>; Mon, 29 Mar 2021 12:28:13 -0700 (PDT)
+Received: from mail-oo1-xc3b.google.com (mail-oo1-xc3b.google.com [IPv6:2607:f8b0:4864:20::c3b])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9FFD352707
+	for <lists+open-iscsi@lfdr.de>; Fri,  2 Apr 2021 09:45:17 +0200 (CEST)
+Received: by mail-oo1-xc3b.google.com with SMTP id y16sf3982635oou.0
+        for <lists+open-iscsi@lfdr.de>; Fri, 02 Apr 2021 00:45:17 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1617349517; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=TC+zxTor11AwZRIiXYMxgjke8baf7JA86xM1LZtHAosrttrBSjfO2ZDSqcf5uT3OFm
+         GuwK5Tqw+djWPpyVVw7gpT9n+Dagrpd5sTWzb3JC1I4QHJHbvSfI5mwFU9td0XPJ9/cX
+         rvdw49s4CmDSTol6DIBCB/Yh9lDHGifizsfeMv+nb0XQk6pc7kiKUAeJIDZ6HWtIl4nx
+         eKzMbNhK5v9/nUN+LBVi8FmWHW7+IVTDkjppSr5KJYuKpNxSgGVlXglHGTrBOjDf9bil
+         u8D63YTb4eko2tT54NcdMMHlc774Ook2d2xfZoVViSVUmqS/haKCgf8w6PgyVaMDwHm9
+         hr5Q==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:sender:dkim-signature;
+        bh=T2JAxf4mhpXFONa7iCqfSw/PMtLzXZXDkA1B3G+gWgI=;
+        b=pEbyZXnsFC6PFbyZlwR90od9iqqHX2D/66XD1P6kKXctBv4x3XbBjF7yca+CrpEmw/
+         jBbd5K1zUZ+W8HCj7rlsIUx0r/auhpI0NAB5A87QemBwzn3zh5ejX2I2nT3igA0WQa7v
+         Ul1R56FNobyllYYJpbSfyekxhbBUotsye3NpdKfRXqyhjTqpBB0xM8fa3tuiWo8xOr9O
+         WnEh0GEs8fZuLuSrfalyEEUpoyVybvhjXGWs5Ju1ih3pJatXT4mTeppC76p7+idgFJIs
+         iurg5x26k2W/eJfkSvsFODxZ+jpvk3p0fTYbj5Qnm8tzt31x+g7bJS0EE6TxKFUJHcfT
+         UE5w==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=kuXPhZGb;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=pXMwX4F/jdLdvkgDV1wHv1ZF6bgXBJOIRAFzRgaf5/A=;
-        b=PlZ0YdXE4vdY3HIpNjGJynkaHUrZQYMojwslmJP8v9K/RJsBYCPkGOmJMAGYTnpDLv
-         K3FDoCPQlTP+NlrhIQSAIuyICIrbLVHcNeoDoPqfgxhyrN9Bk3sicI0luA1wasPCgZ/r
-         nZrP5gahsileQerunoyab7yjHxQsAvjaW6E9Wnts+re4ZG5w+KnGhTF9VuxbdonEKTWO
-         8BC47JoZUF8o8WiA2HfuUu0BEugHpbPfpailXtWWvFv2MQiTMsPcqUWuUueeQfhq802a
-         GuHZHmMMVVwcq6LHOJRlyIwHKYAGneaOK//udaO57FXOUYaimZ1ARXZEVvpkvUGL5Bgp
-         b2uQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=pXMwX4F/jdLdvkgDV1wHv1ZF6bgXBJOIRAFzRgaf5/A=;
-        b=uEB1pXToe5bmE7ydOB2m+pDyvJjDp/IU3s2aEL8yrqEQ408ROBkZMJcdgEqips37sY
-         0ePuPU+HL+6Sb1quhneIdujyY/SktLX2q5fONTRPyjdr6LS1uApGD1rE0ZpRlBNeh0B8
-         XmECVN+FLvC6GurJ49/bsJr0TjjH32ARFXNPALhmHmz6NSXgEA3h21LOowWpxeTfId6I
-         u6Jp+jsZx/MYoXA16K+LKAAkFDHqLeaAjb+GLL3uolxiLr44DbzfUE1nStyDLTiSrBfY
-         1+NFWIcT37w8AJFITJYYOOaBCGUATLFTa1z0S3/uZPNO6PSSilYArrhnf970Bs0o8CeX
-         QLhA==
+        bh=T2JAxf4mhpXFONa7iCqfSw/PMtLzXZXDkA1B3G+gWgI=;
+        b=m6Xid61DfBR75akqRU53fjjX3Vro1fnY8hCcPduWw43F3BMHExykOws/YVUX6fBym5
+         Hfegop9yY7UyuAZgsGoiSzwmbBEe6fKtcGPlEvdr3+ovoT9PnQPePNpk6ylQsjjk70Qf
+         cd5aYWuj/KiFMQHQJp7OgByOkhmmUM80MNJrU3n71EeHKTHsIPcE8LRTxf6e39RvKOip
+         1dfxs1x77GmwUqFpU2+j26r+L43eT7x0jRe5n2bnprQ/vlEj4MYcHz+bGFT+yakNgP6p
+         kc8Q/ADzKtIIIhkpCYYrUs1kXBjEdolqFsGwvEr+QG4wEiiCnAPuWogxtItZVnUJGJ1U
+         u60A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
+        h=sender:x-gm-message-state:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to
+         :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=pXMwX4F/jdLdvkgDV1wHv1ZF6bgXBJOIRAFzRgaf5/A=;
-        b=teUljlu6GfU8gN7XXAR0t3jxQTr44LS2AG2v43AFEJ4QBe0mK7wBUkW1e3A/3Xwrpg
-         bOjt0AsXtJY/8xqIo9lGCn1nKdOmhBjMR5A0F6X1VewVLdqw5vlPPioHKXS+Qsr7yLuZ
-         xp0d+oOqrQOl7/xG7cpI5pK8Ct7upYd3IL+fJohkLtq20qMYWczxVCopJxAnwHJFiMNz
-         WDtJGsydk0n2d3x4NGmRkR8EVJs1HaoBwmDLnbr2Z/xCwysWLdUHrWFHlPqVUVwihc0E
-         OoFUMELueiy45k0+7Qel/uoSRrrM5Tr5mEGJ3jBEMVScoJrJJDMBPRrRL8XxEO2AvuiA
-         fmxw==
+        bh=T2JAxf4mhpXFONa7iCqfSw/PMtLzXZXDkA1B3G+gWgI=;
+        b=NbwpvzCXfy/tmZ/IKkfFvykHXUbQacCGTyRGnX9tZQj+nx+UgXkiJ355YGTGP4/DNA
+         lRZ6xU1xJ5VVnfiu1BZ9p40Y38CwNMD66u0L3Cu+UxFm2IcVDQlWNov5U6vbcFTpoTro
+         /SeINMLL+mi97jveGEqV/k+hXjdPk6QHLbCvq7sbNwjqEgK0PdV93khkTzSVWxPKiA5O
+         go9BI5137bNYzE/iWZEjCEeGCx22QMRpGalDqFLIEem5Rsj4L/sQ4YVoXTl5N/jCt3hj
+         ffjgWz+AEQ6e0eiSroe3vvQmY8IjyYgmfKdggXSj3klkcAlm8lNNiRgsIW9nbvlLj/X9
+         ZfUA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532oDfiDaQseZL0l8+XH8vEjneiDrUDjtsIjN+9jQ0VyWo71Qrqe
-	lWeFR7d0hVCv2YG++F+yA6M=
-X-Google-Smtp-Source: ABdhPJz/NjKy0i54XNyLNOQnk3UVVE59CTjXsuFtzNFkfi/eJmVn6WDLht2r1Y+AAIEUQFCfjfs4Qw==
-X-Received: by 2002:a9d:1ca1:: with SMTP id l33mr23096551ota.368.1617046092258;
-        Mon, 29 Mar 2021 12:28:12 -0700 (PDT)
+X-Gm-Message-State: AOAM532uY59FkaAtqaU2QifhaMxj/5S4GMfIlqpQVCIypDoL2FEM9lyh
+	7FbYKT5chlHOg2nHPmWSRbM=
+X-Google-Smtp-Source: ABdhPJw5uUCHuRDEt5tcQkNb+6OhPeClAmCe5GJayA0wpAJZwrydP5Efw5nBbBE3ReF6lUrZTh2OwA==
+X-Received: by 2002:aca:bb06:: with SMTP id l6mr8934612oif.121.1617349516896;
+        Fri, 02 Apr 2021 00:45:16 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a9d:60ce:: with SMTP id b14ls4445596otk.4.gmail; Mon, 29 Mar
- 2021 12:28:11 -0700 (PDT)
-X-Received: by 2002:a9d:68d7:: with SMTP id i23mr24515213oto.133.1617046091620;
-        Mon, 29 Mar 2021 12:28:11 -0700 (PDT)
-Date: Mon, 29 Mar 2021 12:28:10 -0700 (PDT)
-From: "neutro...@gmail.com" <neutronsharc@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <359a4d74-f833-4f77-82f0-76131b018d76n@googlegroups.com>
-In-Reply-To: <f76e46dc-f2eb-48fa-8431-f85ee719a181n@googlegroups.com>
-References: <f76e46dc-f2eb-48fa-8431-f85ee719a181n@googlegroups.com>
-Subject: Re: IO request returns prematurely when iscsi connection is down
+Received: by 2002:a4a:4913:: with SMTP id z19ls508127ooa.4.gmail; Fri, 02 Apr
+ 2021 00:45:16 -0700 (PDT)
+X-Received: by 2002:a4a:b102:: with SMTP id a2mr10583300ooo.30.1617349516414;
+        Fri, 02 Apr 2021 00:45:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1617349516; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vAb06EAjv2uvV5bVxcGILPkIRjc6n3d+wIxRxQ85jqMWpid19RRknSN58tCohsIG4W
+         5S3J1JAgMvrMR6FayfuQqP7PfiJEZCFlhb5wF8+3+UwkCAlp0ztyVxWefeNj1MidqqxL
+         eXEPx/mcg2OASn8s0icfoaNvMTREgf9b/zvVjIqwpIJon/FHKAtHujyx8BKcR7Xw8mtK
+         UIMPgLF+CWQ2sHd94XMUR43A4p0saMp6IGnjOACitxWCymd0GE8MkEK7A0BR9ZcmmR8r
+         Edp4iY2Ac63dobT1QrShmOb2T3oJv3A2fUcdXrmzUNap+bEaTv2mODE9orh/K35ZGcXS
+         eogg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:dkim-signature;
+        bh=0n8GwcflH6RuJzx9DlwCp3cKiTumO+3aJifGVAgHNWc=;
+        b=HWD/4YCjgdQRpJGOX4Wdoxky/jwBCyNS107NWUT3ugo4F9dE9fpQ+PMEj5CbWf+CHw
+         uu5Pto90Zgvk9X5+MKWlSGt7r8lk9siMdtKrkoKlyoXYCyqfmj1OKOhnBV5cR3Lk1eNd
+         E7qRHZ4FbEuE5qMuiqwhtM+iN2DfB1WoSiwg8iVVe9SipHjGA9mRKdweSEQhkk3HfpzV
+         tYir08RKZpIccFBqF1ImNq3hvexhiycY3k9ot+Jl5Yc9+ibXM1PQrnOnvZBUqEAP/e8g
+         ZNwio/JANX90vRY6SGijgg1xj7RLdS1WH0Qx9nd8HnFqBNzjcqj6ZaCZHYCC0J5xUGVb
+         Bebg==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=kuXPhZGb;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+Received: from mail.kernel.org (mail.kernel.org. [198.145.29.99])
+        by gmr-mx.google.com with ESMTPS id f2si1222442oob.2.2021.04.02.00.45.16
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 02 Apr 2021 00:45:16 -0700 (PDT)
+Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 198.145.29.99 as permitted sender) client-ip=198.145.29.99;
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CB30B6100C;
+	Fri,  2 Apr 2021 07:45:14 +0000 (UTC)
+Date: Fri, 2 Apr 2021 09:45:12 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: yangerkun <yangerkun@huawei.com>
+Cc: stable@vger.kernel.org, vbabka@suse.cz, linux-mm@kvack.org,
+	open-iscsi@googlegroups.com, cleech@redhat.com,
+	"zhangyi (F)" <yi.zhang@huawei.com>,
+	Kefeng Wang <wangkefeng.wang@huawei.com>, liuyongqiang13@huawei.com,
+	"Zhengyejian (Zetta)" <zhengyejian1@huawei.com>,
+	Yang Yingliang <yangyingliang@huawei.com>, chenzhou10@huawei.com
+Subject: Re: [QUESTION] WARNNING after 3d8e2128f26a ("sysfs: Add sysfs_emit
+ and sysfs_emit_at to format sysfs output")
+Message-ID: <YGbLiIL8ewIX1Hrt@kroah.com>
+References: <5837f5d9-2235-3ac2-f3f2-712e6cf4da5c@huawei.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_2020_1662771622.1617046090879"
-X-Original-Sender: neutronsharc@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Disposition: inline
+In-Reply-To: <5837f5d9-2235-3ac2-f3f2-712e6cf4da5c@huawei.com>
+X-Original-Sender: gregkh@linuxfoundation.org
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@linuxfoundation.org header.s=korg header.b=kuXPhZGb;       spf=pass
+ (google.com: domain of gregkh@linuxfoundation.org designates 198.145.29.99 as
+ permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -79,138 +135,47 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_2020_1662771622.1617046090879
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2021_877252551.1617046090880"
+On Fri, Apr 02, 2021 at 03:16:21PM +0800, yangerkun wrote:
+> sysfs_emit(3d8e2128f26a ("sysfs: Add sysfs_emit and sysfs_emit_at to
+> format sysfs output")) has a hidden constraint that the buf should be
+> alignment with PAGE_SIZE. It's OK since 59bb47985c1d ("mm, sl[aou]b:
+> guarantee natural alignment for kmalloc(power-of-two)") help us to solve
+> scenes like CONFIG_SLUB_DEBUG or CONFIG_SLOB which will break this.
+> 
+> 
+> But since lots of stable branch(we reproduce it with 4.19 stable) merge
+> 3d8e2128f26a ("sysfs: Add sysfs_emit and sysfs_emit_at to format sysfs
+> output") without 59bb47985c1d ("mm, sl[aou]b: guarantee natural
+> alignment for kmalloc(power-of-two)"), we will get the follow warning
+> with command 'cat /sys/class/iscsi_transport/tcp/handle' once we enable
+> CONFIG_SLUB_DEBUG and start kernel with slub_debug=UFPZ!
+> 
+> 
+> Obviously, we can backport 59bb47985c1d ("mm, sl[aou]b: guarantee
+> natural alignment for kmalloc(power-of-two)") to fix it. But this will
+> waste some memory to ensure natural alignment which seems unbearable for
+> embedded device. So for stable branch like 4.19, can we just remove the
+> warning in sysfs_emit since the only user for it is iscsi, and seq_read
+> + sysfs_kf_seq_show can ensure that the buf in sysfs_emit must be aware
+> of PAGE_SIZE. Or does there some other advise for this problem?
 
-------=_Part_2021_877252551.1617046090880
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+More users of this function will be backported over time as we all know,
+so just removing the functions is not good.
 
-Bound the thread to hopefully catch some attention.
+Why is the buffer alignment considered a "waste" here?  If that change
+is in Linus's tree and newer kernels (it showed up in 5.4 which was
+released quite a while ago), where are the people complaining about it
+there?
 
-On Friday, February 19, 2021 at 8:28:14 PM UTC-8 neutro...@gmail.com wrote:
+I think backporting 59bb47985c1d ("mm, sl[aou]b: guarantee natural
+alignment for kmalloc(power-of-two)") seems like the correct thing to do
+here to bring things into alignment (pun intended) with newer kernels.
 
-> Hello all,
->
-> I encounter a weird issue with open-iscsi.  I have a test machine with 50=
-0=20
-> iscsi volumes backed by an IP san.  The test machine then performs r/w wi=
-th=20
-> o_direct on those 500 raw block devices.  During the test I trigger a=20
-> failure on the IP san so some iscsi connections break.  iscsi client is=
-=20
-> able to reconnect and recover,  however,  immediately after recovery, =20
->  some iscsi read finds corrupted data.
->
-> This issue happens frequently. After a lot of tracing on the IP san=20
-> server,  we become sure that those corrupted read requests have never bee=
-n=20
-> received by iscsi server at IP san.
->
-> In the following timeline diagram,  the client generates the read around=
-=20
-> time t1 when connections are turned down.  iscsi connection recovered at=
-=20
-> time t2.  The time between t1 and t2 is about 15~20 seconds. Read returns=
-=20
-> several seconds after t2. =20
->
->                      cut iscsi connections             iscsi connection=
-=20
-> recoveryed
-> ------------------------- t1 -------------------------------------------=
-=20
-> t2 ---------------------------------->
->
->
-> The client machine uses Linux libaio to perform read/write.  The=20
-> read/write is performed in the following approach:
->
-> - blk devices are opened with O_DIRECT,  io buffer is 4K-aligned,  io=20
-> offset is 4K aligned.
-> - Call io_submit() to submit requests to blk device.
-> - call io_getevents() to wait for completion events.=20
->      * If the status is =E2=80=9CN bytes done=E2=80=9D,  assumes I/O was =
-successful.
->      * If the status is =E2=80=9C-1=E2=80=9D, assume IO failure.
->
-> Is it possible that,  iscsi layer will mark a blk_read/write completion=
-=20
-> with 0-bytes done because the connection is not available,  and the upper=
-=20
-> layer will receive a completion with 0-bytes as the result?
->
-> Thank you for reading.
->
->
-> -Shawn
->
->
+thanks,
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/359a4d74-f833-4f77-82f0-76131b018d76n%40googlegroups.com.
+greg k-h
 
-------=_Part_2021_877252551.1617046090880
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Bound the thread to hopefully catch some attention.<br><br><div class=3D"gm=
-ail_quote"><div dir=3D"auto" class=3D"gmail_attr">On Friday, February 19, 2=
-021 at 8:28:14 PM UTC-8 neutro...@gmail.com wrote:<br/></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin: 0 0 0 0.8ex; border-left: 1px solid rg=
-b(204, 204, 204); padding-left: 1ex;">Hello all,<div><br></div><div>I encou=
-nter a weird issue with open-iscsi.=C2=A0 I have a test machine with 500 is=
-csi volumes backed by an IP san.=C2=A0 The test machine then performs r/w w=
-ith o_direct on those 500 raw block devices.=C2=A0 During the test I trigge=
-r a failure on the IP san so some iscsi connections break.=C2=A0 iscsi clie=
-nt is able to reconnect and recover,=C2=A0 however,=C2=A0 immediately after=
- recovery,=C2=A0 =C2=A0some iscsi read finds corrupted data.</div><div><br>=
-</div><div>This issue happens frequently. After a lot of tracing on the IP =
-san server,=C2=A0 we become sure that those corrupted read requests have ne=
-ver been received by iscsi server at IP san.<br></div><div><br></div><div><=
-div>In the following timeline diagram,=C2=A0 the client generates the read =
-around time t1 when connections are turned down.=C2=A0 iscsi connection rec=
-overed at time t2.=C2=A0 The time between t1 and t2 is about 15~20 seconds.=
- Read returns several seconds after t2.=C2=A0=C2=A0</div><div><br></div><di=
-v>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0cut iscsi connections=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0isc=
-si connection recoveryed</div><div>------------------------- t1 -----------=
--------------------------------- t2 ----------------------------------&gt;<=
-/div><div><br></div><div><br></div></div><div>The client machine uses Linux=
- libaio to perform read/write.=C2=A0 The read/write is performed in the fol=
-lowing approach:</div><div><br></div><div>- blk devices are opened with O_D=
-IRECT,=C2=A0 io buffer is 4K-aligned,=C2=A0 io offset is 4K aligned.</div><=
-div>- Call io_submit() to submit requests to blk device.</div><div>- call i=
-o_getevents() to wait for completion events.=C2=A0</div><div>=C2=A0 =C2=A0 =
-=C2=A0* If the status is =E2=80=9CN bytes done=E2=80=9D,=C2=A0 assumes I/O =
-was successful.</div><div>=C2=A0 =C2=A0 =C2=A0* If the status is =E2=80=9C-=
-1=E2=80=9D, assume IO failure.</div><div><br></div><div>Is it possible that=
-,=C2=A0 iscsi layer will mark a blk_read/write completion with 0-bytes done=
- because the connection is not available,=C2=A0 and the upper layer will re=
-ceive a completion with 0-bytes as the result?<br></div><div><br></div><div=
->Thank you for reading.</div><div><br></div><div><br></div><div>-Shawn</div=
-><div><br></div></blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/359a4d74-f833-4f77-82f0-76131b018d76n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/359a4d74-f833-4f77-82f0-76131b018d76n%40googlegroups.com</a>.=
-<br />
-
-------=_Part_2021_877252551.1617046090880--
-
-------=_Part_2020_1662771622.1617046090879--
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/YGbLiIL8ewIX1Hrt%40kroah.com.
