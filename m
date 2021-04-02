@@ -1,132 +1,134 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBB7ETWSBQMGQEKDNEELA@googlegroups.com>
+Return-Path: <open-iscsi+bncBAABBW6EXWBQMGQEBO6KQOI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pl1-x63a.google.com (mail-pl1-x63a.google.com [IPv6:2607:f8b0:4864:20::63a])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA21D3560AC
-	for <lists+open-iscsi@lfdr.de>; Wed,  7 Apr 2021 03:25:17 +0200 (CEST)
-Received: by mail-pl1-x63a.google.com with SMTP id s23sf3679718plp.1
-        for <lists+open-iscsi@lfdr.de>; Tue, 06 Apr 2021 18:25:17 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1617758716; cv=pass;
+Received: from mail-qk1-x740.google.com (mail-qk1-x740.google.com [IPv6:2607:f8b0:4864:20::740])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88EB358E0B
+	for <lists+open-iscsi@lfdr.de>; Thu,  8 Apr 2021 22:06:52 +0200 (CEST)
+Received: by mail-qk1-x740.google.com with SMTP id t24sf2021499qkg.3
+        for <lists+open-iscsi@lfdr.de>; Thu, 08 Apr 2021 13:06:52 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1617912411; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Ml2iCswq8+trCklVOMGReR4bZr7jQeNbdm22kAoGfKmrCeiyIheQzaPgWocyvYP+4P
-         uoq2oRkhQ+9wWhMt75eypsYg6yngAbnHv/fAbocjknioobHK3M5BFD3zcfcGHoKwm/UP
-         0id0zqtHXkyzO5xieS9GieGEF6NmdfJn6dvLUXSadE8zhIEHd4lKbjsOvaH6s9xK7MIk
-         44aFeuuiaYCBZ0Ig73YwZEq4nVHemL4EBnzhyhM8u6mtyJGsUbAxxxb0m8Q1ZrapDwc1
-         2T2Sn6ifloRtRdnkc62vxFQmcQpzaF10S1zzkhqrErTO65SMJg5sL9MY17PKxIPHInKM
-         +usg==
+        b=KO1GkKTtJErbfdY24lBaDTg9JL2zc9eHha+Sdei9ouXiiqjDU+rWlFCmpU5jk3Knl8
+         uWzOUUdbRWy7VocEUnoGKPcXcuSU9HbLdpKlJvYjW8Vi7yq1NRHCC5lF7YhbCka/e5hj
+         A7JeA+RTSA90bfuomis+8bx0vKlpVvqrtzygJlUDJrtiES/oPbjwMkicoO/jNq9hccZH
+         lenn8FHih+yLWm8UE9wa1aekKz+fAxzWgKCfDD3Qyayy+SM11f8J1kzxMM+xbN4kStKY
+         FsFJwNXwre8M2J1+3wSQRXzQaZfPoQwrgzK5OMZKUamMY8JCY49QCc4EPM0qivIl4LzJ
+         AzBg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:sender
-         :dkim-signature;
-        bh=rQ/b/gpxFrf87LbQLv4JB1UWfQNV2AcVKnTxNkA/nqc=;
-        b=R5F/e2SnzmswG7cW5UPdD7C2N6s0bqFWGNJxYQ2uGlK1UG7JM4j0OBTM1CW1047U8S
-         XmoVuH+vTMmOzQ8rgA9DKyvbgHRd5hEa33DUzm7iIk56KXbHYDvMRD8xbYovqTc7SF8B
-         YvOx/aH0CpT+IQxsd/rajWuHaVK9mbnqx+1Rq1fRFh9mSPtoEyfy4XlAooRO12Welgla
-         mzJPbUJTloDa8HiGYJTXkphgHtDBvqsQVN+ak+VigOUBTwn87qqSj31CK9OucqmAksIU
-         XH7/Mfj+OhCqg+JggiYErAG6rurtvbIvREUGr+Crm0GVCWPptEmMZObNPzLDFU46fg9M
-         kJwQ==
+         :list-id:mailing-list:precedence:reply-to:mime-version:user-agent
+         :date:message-id:subject:from:cc:to:sender:dkim-signature;
+        bh=FTLCFNq2KdPjqAqqrVdKa4syPmWwvZSEwjmcgPdUAvY=;
+        b=RSp7hElS3QFkRasX7NffrgAuR88GDYGsCtZK4uc58aA1FZ1i/39TqZkhpoP5UXV7Mz
+         eL/eE4zapkrNHyODsKtTcDEsWYMcqdPIaYIEnZ1g1v4WQorcT6QHaFEQMIJicq+Oxovr
+         ybGygY9OBR5AOmcxuz4ARQje7/1m/hOeK1ywNUqFmPHkYwDctUH96BFkNaICnAB1vi5v
+         yTBJXifU8LbEDhSQnHbukDuvgCQm8IN9Y4RjCPnEAwwLeiOmd2eTmHFFP0OMZrtzx11r
+         aNgEBMZUOdCYm0EBclIuq4sBbYse8MPRFduqQyEREGVFSsHanF9BepkWSKuOMwh5bRgp
+         1Tzg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.190 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
+       spf=pass (google.com: domain of yangerkun@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=yangerkun@huawei.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=rQ/b/gpxFrf87LbQLv4JB1UWfQNV2AcVKnTxNkA/nqc=;
-        b=Ln+iQ1yG5mcoWUGHN0xsqkCAGeIWXKIhk12WdaGGB6/OETtTcDO7BSCCHRU/K5ihn6
-         OQ8eLQUP0l1TDoisaMPXgiaokcmti0ZNBZWjeqagXCPpNdFh01/+dH9w5PAYZpfNZ2gn
-         nZXOexLoxzf9zXPwSMtDMnHSgls+rn1vFtR/W1t6hGm3ig96qFyBXevktKKlT1BcLXbo
-         +4BXkqvyAmXBec/RVhWXfDEiMvioZ5NNNv8F0g6LD6DadEPG3/dKFW4H+4KLLaEI0als
-         oOTKvpsbqbHgGm6TTh803O3UlxS8RlZeLXNOWpPu84+xzPO+mxT9DoSrrYivhIltFM/v
-         v6/g==
+        h=sender:to:cc:from:subject:message-id:date:user-agent:mime-version
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=FTLCFNq2KdPjqAqqrVdKa4syPmWwvZSEwjmcgPdUAvY=;
+        b=QTy0o8aQkoKLa3SwoWhMkN6zakcE+AyNZB0SfFdsefTaeIt4yjw5ZsDO9Twq/ZZ0iw
+         3HaTyHSwP0cn8WZW83fYo1YeoKUhbAF7s4Z1IxoeqJYVWSHJCnPEXXjo5p0H0cC9URnp
+         ut6iYk/8MFI5R2/4Uijjje+/zhrzi2yOg+6qk8AE0RFv2AMW/6xMEOjACeqMkfvsH11F
+         EOJViyjBeeetE9gbUpcrYXzJsOqewghQLk0mWW+81nyX1OEDVnnYkD+6ahflUyJLpQza
+         LZM4GfMX4NaHjI3ecoX6oFaGLaRA9KWrMReAz/f5HfbG/z4O6WSEZXmcNNMN0tyjswdJ
+         ozeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:x-original-sender
+        h=sender:x-gm-message-state:to:cc:from:subject:message-id:date
+         :user-agent:mime-version:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=rQ/b/gpxFrf87LbQLv4JB1UWfQNV2AcVKnTxNkA/nqc=;
-        b=csiw+iY3Ekz51YzC5EFq/XjWxAQhBr3/+GAo4sg+aWEoizCGBj8sVAH7gJQSYRbWXm
-         adm3MD7ohvF/Dse+bkI1kZ92B+j0QMssXdDzPfENSj3im1Q5VadwcR7iZNWOjQo83NY6
-         YuNy9JrcM9Abz002S0+5mrRsV+UJeEY0ybpRxBoo+GnAneHzGqBfKoRK2RlNeXPzBVb+
-         BfM1gVhiXz6cDICpNOb6p5U3H5JjwMz7e9jh2JkWvTKZO0JUdpTF/sKQWD4WrZT4pjkq
-         TkJYfdlqPcNW3VvLIaAg7nUs0fUXD72yTk00sxziBix8uk89+ptB/Lj0IG5BMfCLawN/
-         rR0A==
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=FTLCFNq2KdPjqAqqrVdKa4syPmWwvZSEwjmcgPdUAvY=;
+        b=nbYa3COXMFOMlcN3T4QG5EVvtwnEAX6EY+zsXibQ2pytTR/ZktKN5Key56tLhx167k
+         ERmMPo4lfvzsV0vXyej2RMGdFcttD4lP4BtTbCjbwZ5mZ5TJB1hgcBuk/F2Z3D27bNFA
+         40NcJLwKBmc0K5I7Bx6U9kttVHRINfI3nEU92dcpU0f2SkPrmGVJIIpldXiCSa45eucf
+         y1sXFcuj/4AW/fBvH2xrFwo6gq2Iwth6nK1pziTuEInvphf1ekVqjgm2uxvvu9mu6Eb+
+         +gPWgbaczU01YKmmFTUi+5LY1gPyK9SAGqgRqWQK18TwgMj8en4QqaZnWEoegcj2iExS
+         jVQw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532GawtXX6Xsvdw8+Z0GcTypRWJsGYSZsCTEdIfEVCdvV71YwsHC
-	CJYk7WGFn35lejJgKZY7lME=
-X-Google-Smtp-Source: ABdhPJy0QKC2ivAFGbGRPh3uo6LfkLWBwttCXr4UxLFxm+rZgPkk5n2P8QD5DLGSxMkFsw2sTIs+iA==
-X-Received: by 2002:a17:90a:2c4b:: with SMTP id p11mr927210pjm.75.1617758716296;
-        Tue, 06 Apr 2021 18:25:16 -0700 (PDT)
+X-Gm-Message-State: AOAM532I7grmzzb5A/aMDqHeFwFR/H0gwYg3ImKoQAzU/PrKOyoJ4F9O
+	BLIVccLAwPwmr2Ymiozl1i0=
+X-Google-Smtp-Source: ABdhPJzZHilirSrVhlsUXTrtEJou9/7uuPRhpR50EqGjof7VuKS5CriSxeeONzV4YJxNY0zm79QcGA==
+X-Received: by 2002:a05:622a:4d3:: with SMTP id q19mr9286840qtx.55.1617912411806;
+        Thu, 08 Apr 2021 13:06:51 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:90a:cb0b:: with SMTP id z11ls382400pjt.2.canary-gmail;
- Tue, 06 Apr 2021 18:25:15 -0700 (PDT)
-X-Received: by 2002:a17:90a:156:: with SMTP id z22mr912634pje.181.1617758715635;
-        Tue, 06 Apr 2021 18:25:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1617758715; cv=none;
+Received: by 2002:a05:620a:f97:: with SMTP id b23ls3825919qkn.0.gmail; Thu, 08
+ Apr 2021 13:06:51 -0700 (PDT)
+X-Received: by 2002:a05:620a:440a:: with SMTP id v10mr10182874qkp.357.1617912411426;
+        Thu, 08 Apr 2021 13:06:51 -0700 (PDT)
+Received: by 2002:a37:c48:0:b029:2bc:50b8:e1c5 with SMTP id 69-20020a370c480000b02902bc50b8e1c5msqkm;
+        Fri, 2 Apr 2021 00:16:36 -0700 (PDT)
+X-Received: by 2002:a1f:978e:: with SMTP id z136mr8341049vkd.17.1617347795542;
+        Fri, 02 Apr 2021 00:16:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1617347795; cv=none;
         d=google.com; s=arc-20160816;
-        b=OXJ9hS/dncRXcLZFciYeHGMWWQfiRlpCQCSXTIQymsmZzND/s3PN3xI0L53q7owfPx
-         npowbbo3M7/kuNIzRko3Dle0zDKmMbPr55uv0/L/ognVcRa6kXdaXbtNRFaxvPdSnTXz
-         RVdEAu2cZPrz6FfJxaIy7MQloCWa8jp6lRNMasvCgHgGQcNTAJJtJONwFljpvLgGKDr+
-         UAlrJQcaNW9WND1UQ8/8W/6MeuVq1xOPebhkTCQ5y+0huyPL74tUQwMWrp/7xZnM3pPp
-         w6k/74xLtVge+LnqGsmSQnO2nYCvmfNYKiQynMa6wOXxpo2fa/XaY2Ur3G8AGOqXKpSi
-         CzWw==
+        b=0goxOAc4rsDUATMBjtth1a9CluYdn85ZABjfzSdy/jWLyH9Dl7XuZYcrFIpY21N8vE
+         /pOeB6VOtMWp+SD/SIsdeE6zomp7EiaIW2LNpn8ViZVtIv4NnZ0oDB3oKKYw99M8l6/1
+         9OpiWPGPPQEbVBYiEQOP/e0VdxzYxZjaiU4KFRiAoRWp2mDHh6BdcQDH2QHg2eLThjpJ
+         fEHcWDQMb1DrhKUtObCs6BIcMVdV4tDvI7viACsdPC658D9ommXIYs8+TBUz6VfyNyZN
+         FFiFAvPHm4ghu9B/mnEteJZwKv0Yn9VfMX0KYU4pdxchiBzcATqf/pOGIQw6TetNYhJc
+         FfMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from;
-        bh=X/DweJOtwoR6RPTeFMzxAJGbVCm82fn2JpXmiK66Wx8=;
-        b=ZxhQhsVsES8dAbo9qEezZISdVRR790KalHlKI8YqPpeC4ELaw2HNCaPFxIDgNtcpEx
-         xeh3wC1+ObGKEpF7mLsplmKxvLGQSKazix5l8+o0vDvWE/hG7I0ZfEVIg1TDlOFlMon0
-         R9BjMmIRYtVIbLyQ6OPgax6/1t56IYAl1zbHY6cPg9YpwdpYv/u1nOtOUvHLXVDKRLYY
-         xs7/KVZL4fI1X0u7un4ifh87hU3jXSQZiXaHe92IwZ5wyRoMsu0yRDR6V9qaJ+ODHa7Z
-         thQDyTSBqL7BeRhV/B2jvk928LGtQpaIY2XH6hKQjE2rMpRCJEMHXE64tjhq6Q+YXU6Q
-         KhNQ==
+        h=content-transfer-encoding:mime-version:user-agent:date:message-id
+         :subject:from:cc:to;
+        bh=8AaYMfsLiAVdgJ9keQcRNyYNSc4g/MyRw+qoLZdw0IE=;
+        b=nrYkLtGtHTga8air1ar6G6lnNTSvFYWZlsMwKRXIp3ciImNZgNvD86DU9wht14HE5f
+         37lErB+Y9LAuAH3w9rvqMvJXI5JV3CugseS2o/mWd4ghk8pWFtc3djLN84M9ehbczKv7
+         so5AUHrjEeBlO0iTmxq8SIxjG9f/SL2tM/4/2X+Wd+F84Pa7XRhjQtkr5P9c5z74yKUU
+         SwpJUqYRjbZBKIRagLKaxwEKmGz23THtgUbg4qAxoIslw97zZkgcJq8CYXSuA+y33egH
+         r7vo9hzvETyz6qa/5/njBtgnhRtKf/XLaZK2ieT1R5Ori4/iFE9izhnM5849KGRPGZ5B
+         n2Ug==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.190 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
+       spf=pass (google.com: domain of yangerkun@huawei.com designates 45.249.212.191 as permitted sender) smtp.mailfrom=yangerkun@huawei.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=huawei.com
-Received: from szxga04-in.huawei.com (szxga04-in.huawei.com. [45.249.212.190])
-        by gmr-mx.google.com with ESMTPS id bj7si752478plb.5.2021.04.06.18.25.15
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com. [45.249.212.191])
+        by gmr-mx.google.com with ESMTPS id u22si434659vsn.0.2021.04.02.00.16.34
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 06 Apr 2021 18:25:15 -0700 (PDT)
-Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.190 as permitted sender) client-ip=45.249.212.190;
-Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.60])
-	by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4FFRSj1qhnzpVNR;
-	Wed,  7 Apr 2021 09:21:57 +0800 (CST)
-Received: from huawei.com (10.175.101.6) by DGGEMS405-HUB.china.huawei.com
- (10.3.19.205) with Microsoft SMTP Server id 14.3.498.0; Wed, 7 Apr 2021
- 09:24:33 +0800
-From: Wenchao Hao <haowenchao@huawei.com>
-To: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>, "James E
- . J . Bottomley" <jejb@linux.ibm.com>, "Martin K . Petersen"
-	<martin.petersen@oracle.com>
-CC: <open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Wu Bo <wubo40@huawei.com>,
-	<linfeilong@huawei.com>, Wenchao Hao <haowenchao@huawei.com>
-Subject: [PATCH 2/2] scsi: iscsi_tcp: Fix use-after-free in iscsi_sw_tcp_host_get_param()
-Date: Wed, 7 Apr 2021 09:24:50 +0800
-Message-ID: <20210407012450.97754-3-haowenchao@huawei.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20210407012450.97754-1-haowenchao@huawei.com>
-References: <20210407012450.97754-1-haowenchao@huawei.com>
+        Fri, 02 Apr 2021 00:16:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yangerkun@huawei.com designates 45.249.212.191 as permitted sender) client-ip=45.249.212.191;
+Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.58])
+	by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FBWVz3WV7zNsDJ;
+	Fri,  2 Apr 2021 15:13:47 +0800 (CST)
+Received: from [10.174.177.143] (10.174.177.143) by
+ DGGEMS411-HUB.china.huawei.com (10.3.19.211) with Microsoft SMTP Server id
+ 14.3.498.0; Fri, 2 Apr 2021 15:16:21 +0800
+To: <stable@vger.kernel.org>, <vbabka@suse.cz>, <gregkh@linuxfoundation.org>,
+	<linux-mm@kvack.org>, <open-iscsi@googlegroups.com>, <cleech@redhat.com>
+CC: "zhangyi (F)" <yi.zhang@huawei.com>, Kefeng Wang
+	<wangkefeng.wang@huawei.com>, <liuyongqiang13@huawei.com>, "Zhengyejian
+ (Zetta)" <zhengyejian1@huawei.com>, <yangerkun@huawei.com>, Yang Yingliang
+	<yangyingliang@huawei.com>, <chenzhou10@huawei.com>
+From: yangerkun <yangerkun@huawei.com>
+Subject: [QUESTION] WARNNING after 3d8e2128f26a ("sysfs: Add sysfs_emit and
+ sysfs_emit_at to format sysfs output")
+Message-ID: <5837f5d9-2235-3ac2-f3f2-712e6cf4da5c@huawei.com>
+Date: Fri, 2 Apr 2021 15:16:21 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.175.101.6]
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-Originating-IP: [10.174.177.143]
 X-CFilter-Loop: Reflected
-X-Original-Sender: haowenchao@huawei.com
+X-Original-Sender: yangerkun@huawei.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao@huawei.com designates 45.249.212.190 as
- permitted sender) smtp.mailfrom=haowenchao@huawei.com;       dmarc=pass
+ (google.com: domain of yangerkun@huawei.com designates 45.249.212.191 as
+ permitted sender) smtp.mailfrom=yangerkun@huawei.com;       dmarc=pass
  (p=NONE sp=NONE dis=NONE) header.from=huawei.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
-X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -135,80 +137,117 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-iscsi_sw_tcp_host_get_param() would access struct iscsi_session, while
-struct iscsi_session might be freed by session destroy flow in
-iscsi_free_session(). This commit fix this condition by freeing session
-after host has already been removed.
+sysfs_emit(3d8e2128f26a ("sysfs: Add sysfs_emit and sysfs_emit_at to
+format sysfs output")) has a hidden constraint that the buf should be
+alignment with PAGE_SIZE. It's OK since 59bb47985c1d ("mm, sl[aou]b:
+guarantee natural alignment for kmalloc(power-of-two)") help us to solve
+scenes like CONFIG_SLUB_DEBUG or CONFIG_SLOB which will break this.
 
-Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
----
- drivers/scsi/iscsi_tcp.c | 27 ++++++++++++++++++---------
- 1 file changed, 18 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
-index dd33ce0e3737..d559abd3694c 100644
---- a/drivers/scsi/iscsi_tcp.c
-+++ b/drivers/scsi/iscsi_tcp.c
-@@ -839,6 +839,18 @@ iscsi_sw_tcp_conn_get_stats(struct iscsi_cls_conn *cls_conn,
- 	iscsi_tcp_conn_get_stats(cls_conn, stats);
- }
- 
-+static void
-+iscsi_sw_tcp_session_teardown(struct iscsi_cls_session *cls_session)
-+{
-+	struct Scsi_Host *shost = iscsi_session_to_shost(cls_session);
-+
-+	iscsi_session_destroy(cls_session);
-+	iscsi_host_remove(shost);
-+
-+	iscsi_free_session(cls_session);
-+	iscsi_host_free(shost);
-+}
-+
- static struct iscsi_cls_session *
- iscsi_sw_tcp_session_create(struct iscsi_endpoint *ep, uint16_t cmds_max,
- 			    uint16_t qdepth, uint32_t initial_cmdsn)
-@@ -884,12 +896,13 @@ iscsi_sw_tcp_session_create(struct iscsi_endpoint *ep, uint16_t cmds_max,
- 	tcp_sw_host = iscsi_host_priv(shost);
- 	tcp_sw_host->session = session;
- 
--	if (iscsi_tcp_r2tpool_alloc(session))
--		goto remove_session;
-+	if (iscsi_tcp_r2tpool_alloc(session)) {
-+		iscsi_sw_tcp_session_teardown(cls_session);
-+		return NULL;
-+	}
-+
- 	return cls_session;
- 
--remove_session:
--	iscsi_session_teardown(cls_session);
- remove_host:
- 	iscsi_host_remove(shost);
- free_host:
-@@ -899,17 +912,13 @@ iscsi_sw_tcp_session_create(struct iscsi_endpoint *ep, uint16_t cmds_max,
- 
- static void iscsi_sw_tcp_session_destroy(struct iscsi_cls_session *cls_session)
- {
--	struct Scsi_Host *shost = iscsi_session_to_shost(cls_session);
- 	struct iscsi_session *session = cls_session->dd_data;
- 
- 	if (WARN_ON_ONCE(session->leadconn))
- 		return;
- 
- 	iscsi_tcp_r2tpool_free(cls_session->dd_data);
--	iscsi_session_teardown(cls_session);
--
--	iscsi_host_remove(shost);
--	iscsi_host_free(shost);
-+	iscsi_sw_tcp_session_teardown(cls_session);
- }
- 
- static umode_t iscsi_sw_tcp_attr_is_visible(int param_type, int param)
--- 
-2.27.0
+But since lots of stable branch(we reproduce it with 4.19 stable) merge
+3d8e2128f26a ("sysfs: Add sysfs_emit and sysfs_emit_at to format sysfs
+output") without 59bb47985c1d ("mm, sl[aou]b: guarantee natural
+alignment for kmalloc(power-of-two)"), we will get the follow warning
+with command 'cat /sys/class/iscsi_transport/tcp/handle' once we enable
+CONFIG_SLUB_DEBUG and start kernel with slub_debug=UFPZ!
+
+
+Obviously, we can backport 59bb47985c1d ("mm, sl[aou]b: guarantee
+natural alignment for kmalloc(power-of-two)") to fix it. But this will
+waste some memory to ensure natural alignment which seems unbearable for
+embedded device. So for stable branch like 4.19, can we just remove the
+warning in sysfs_emit since the only user for it is iscsi, and seq_read
++ sysfs_kf_seq_show can ensure that the buf in sysfs_emit must be aware
+of PAGE_SIZE. Or does there some other advise for this problem?
+
+
+# without 59bb47985c1d + 1G ram
+[root@localhost ~]# free
+               total        used        free      shared  buff/cache
+available
+Mem:         947336      169960      389732         896      387644
+624216
+Swap:             0           0           0
+
+# merge with 59bb47985c1d + 1G ram
+[root@localhost ~]# free
+               total        used        free      shared  buff/cache
+available
+Mem:         947340      175176      374396         896      397768
+618964
+Swap:             0           0           0
+[root@localhost ~]#
+
+
+[   37.683332] ------------[ cut here ]------------
+[   37.692747] invalid sysfs_emit: buf:00000000f75441ab
+[   37.693914] WARNING: CPU: 1 PID: 576 at fs/sysfs/file.c:577 
+sysfs_emit+0xb9/0xe0
+[   37.694861] Modules linked in:
+[   37.695264] CPU: 1 PID: 576 Comm: cat Not tainted 
+4.19.183-00023-gdf225d326e8c #7
+[   37.696210] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), 
+BIOS ?-20190727_073836-buildvm-ppc64le-16.ppc.fedoraproject.org-3.fc31 
+04/01/2014
+[   37.697866] RIP: 0010:sysfs_emit+0xb9/0xe0
+[   37.698387] Code: 47 c9 c3 48 83 05 76 33 b3 04 01 48 89 fe 48 c7 c7 
+64 08 bb 8a 48 83 05 7c 33 b3 04 01 e8 13 7f be 00 48 83 05 77 33 b3 04 
+01 <0f> 0b 48 83 05 75 33 b3 04 01 48 83 05 73
+[   37.700713] RSP: 0018:ffffc90000af7cf8 EFLAGS: 00010202
+[   37.701370] RAX: 0000000000000000 RBX: ffff88803e0e4c00 RCX: 
+0000000000000006
+[   37.702261] RDX: 0000000000000007 RSI: 0000000000000006 RDI: 
+ffff888039455bf0
+[   37.703171] RBP: ffffc90000af7d48 R08: 00000000000002f8 R09: 
+0000000000000005
+[   37.704079] R10: 00000000000002f7 R11: ffffffff8bd9534d R12: 
+ffff88801a013740
+[   37.705001] R13: ffff88803db37a08 R14: ffff88803db37a30 R15: 
+ffff88803db37a48
+[   37.705918] FS:  00007fcb96411580(0000) GS:ffff888039440000(0000) 
+knlGS:0000000000000000
+[   37.706956] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   37.707692] CR2: 00007fcb88cf0000 CR3: 000000001a501000 CR4: 
+00000000000006e0
+[   37.708607] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 
+0000000000000000
+[   37.709520] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 
+0000000000000400
+[   37.710427] Call Trace:
+[   37.710784]  show_transport_handle+0x3e/0x60
+[   37.711338]  dev_attr_show+0x22/0x60
+[   37.711808]  sysfs_kf_seq_show+0xc6/0x190
+[   37.712332]  kernfs_seq_show+0x25/0x30
+[   37.712862]  seq_read+0xe1/0x540
+[   37.713292]  ? __handle_mm_fault+0xba3/0x1c70
+[   37.713866]  kernfs_fop_read+0x36/0x230
+[   37.714371]  __vfs_read+0x3c/0x230
+[   37.714819]  ? handle_mm_fault+0x1d1/0x340
+[   37.715345]  vfs_read+0xb5/0x1b0
+[   37.715774]  ksys_read+0x67/0x130
+[   37.716218]  __x64_sys_read+0x1e/0x30
+[   37.716701]  do_syscall_64+0x95/0x3d0
+[   37.717175]  ? do_async_page_fault+0x2e/0x190
+[   37.717747]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   37.718406] RIP: 0033:0x7fcb963363f2
+[   37.718881] Code: c0 e9 b2 fe ff ff 50 48 8d 3d 8a 41 0a 00 e8 75 f0 
+01 00 0f 1f 44 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 0f 
+05 <48> 3d 00 f0 ff ff 77 56 c3 0f 1f 44 00 04
+[   37.721290] RSP: 002b:00007ffea78dff18 EFLAGS: 00000246 ORIG_RAX: 
+0000000000000000
+[   37.722264] RAX: ffffffffffffffda RBX: 0000000000020000 RCX: 
+00007fcb963363f2
+[   37.723169] RDX: 0000000000020000 RSI: 00007fcb88cf1000 RDI: 
+0000000000000003
+[   37.724100] RBP: 00007fcb88cf1000 R08: 00007fcb88cf0010 R09: 
+0000000000000000
+[   37.725039] R10: 0000000000000022 R11: 0000000000000246 R12: 
+0000000000020f00
+[   37.725945] R13: 0000000000000003 R14: 0000000000020000 R15: 
+0000000000020000
+[   37.726857] ---[ end trace fbd5b85cd7d85530 ]---
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20210407012450.97754-3-haowenchao%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/5837f5d9-2235-3ac2-f3f2-712e6cf4da5c%40huawei.com.
