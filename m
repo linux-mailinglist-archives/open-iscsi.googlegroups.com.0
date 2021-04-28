@@ -1,127 +1,68 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBBMVZ3OBQMGQEACSKNLQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBCBYNVUV2QIBBDVSU2CAMGQEUCD5NLI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48BD35F345
-	for <lists+open-iscsi@lfdr.de>; Wed, 14 Apr 2021 14:14:43 +0200 (CEST)
-Received: by mail-qk1-x73a.google.com with SMTP id k188sf12966717qkb.5
-        for <lists+open-iscsi@lfdr.de>; Wed, 14 Apr 2021 05:14:43 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1618402483; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=BkqzNFOVR0U2X9RZ+wj/V0TGtPy0ExAHo3jgUigqVf7Kz+WOzv3FLKIAUBUQ6ZOr/G
-         ADcAT/CoK+UJkEVZrOOhJWnDdgnw53Ud5F3vVefP7NiZvl+k3F6HP/OMaAFZwmsHJwrA
-         d0ytxD9Lcqw40PpCCQvlmWPao6qVeiDWc1PP4EsyEhIX7mQUeF5PmS+NSLvrd0qicjX3
-         PDMZkf899aTHO+11EJy2CyQIW6o8uN+kw1tzEu23LLkopllsCCjwzWKgWU1iGcFlYERt
-         mQNmfLi8kiW/hKszjKYUYnifhvOrRSb5glAk2sVzox1ZKLtug11R5FHjmJfQ+mv/r3c4
-         83/A==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:dkim-signature;
-        bh=3pL57BJMUBNxMDZzzTjQrm+71Rp1BbQQ0xIW2hKAK0Q=;
-        b=IxZEIWuCRl+9BwSv9Z5PGMRBdjf/Weyyu46RIlufQSGarpB5FFR5GcIocYzDqvsCSe
-         sQJ+HU+LAXbAZpCrQwGe04lYaRXo3Rc75UeLSHTpPjWKiZF75nTDXfUEtOVO4Z7S3M4I
-         wLE4pYMrM/Fl2d0SXooqNYadCi+PTndN2baLzJnlME0znDDkgXJaikHF95vRGk+hm01x
-         WG073iVaT3kz1mnbwPw9OnikIwN7DF76Y8PLxOW2tI2MZpvIvLxM+UNCnXSuVnjRP+pe
-         0rn0eLWOD6QbawMm40lnnK4PWFZJ34Ps9MspVKMZT1sATNZJDggVAAwSdfHehA7noZ4y
-         cagw==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b="C/Os0pNE";
-       spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: from mail-qv1-xf38.google.com (mail-qv1-xf38.google.com [IPv6:2607:f8b0:4864:20::f38])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3191436DE13
+	for <lists+open-iscsi@lfdr.de>; Wed, 28 Apr 2021 19:19:12 +0200 (CEST)
+Received: by mail-qv1-xf38.google.com with SMTP id p2-20020ad452e20000b0290177fba4b9d5sf28663586qvu.6
+        for <lists+open-iscsi@lfdr.de>; Wed, 28 Apr 2021 10:19:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=3pL57BJMUBNxMDZzzTjQrm+71Rp1BbQQ0xIW2hKAK0Q=;
-        b=UtbcRmK/luo2/TFSlQpn9XJhsBaNOZ8wY2x8fALKUEurglkKc1CpVZyoa3pZFVTWCV
-         KjR+yfRQhp9f7ZNPSH/2Qexc+WPSsiRiymy+S5s7uDeR1NKdOxljs1TAFNwROEtUF8cD
-         nUzLKE3tUfjUcrnxS4xGl56erMQvRqwZjkZDg7qoDIhpIQvD67AEtPrAPQbmGUqjHLVv
-         4tb6eUOc2+0HY1nG14b0sULxqskPmXpqlsRuZGQLs2/w9yi8UzVI87+0NPQT7RTO7bhA
-         yzPfnyfDy9vzD/pdMnwFbQ6rFpYRXVDK9rHgjoxan+7Cmb2ZPRiSVWf97PBQ9T5PE8NT
-         OGhQ==
+        h=sender:date:from:to:message-id:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=g5rA5twbimedZ1WxjW9lkkct7eDcrsaXZZR1EG9kEOY=;
+        b=KPqsj0YlKybYJzpIlXHKzhsCdTT+19INniBFiQDZlBjapJZZdB24zPz+FdxMcmrtCJ
+         T9vNj0ZpOFObo+eAbAqmO02KH9wu3P6/mfhJ2PtBBS+W/R7Wafh/DcEfjtRHiOLPuXho
+         LajUT5hZ6bV57PTa36ZmZRbhv95rCKR5NXndFaYV61Eelux5Hgc3UcPyvwl6B0FZ0fwr
+         2DGRfWdqP5Z3NHaiUeRdjdhjiz5zL2CjZM6QawpyzjHXOIr5VRFDv8PNP8iw8uJQ/fef
+         6W0vVy5arvjjaFCwah3TvArw0RR66igJoRcat6+RiDmTT+O/Rjx+xJWVb5glImzC9QMd
+         HapQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:subject:mime-version:x-original-sender
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=g5rA5twbimedZ1WxjW9lkkct7eDcrsaXZZR1EG9kEOY=;
+        b=WUi6GwnC2/4ph/GdXBIzCJZW5NGSe0nsEPDmk0PTUAghiwFvsYf4lX3SHqplmGtd1F
+         b9Q6USOUXah/Xhf2hNijtYN5FH6JoUz0t8k6p3Z/13oWmOiZzHltDZhpEpELlRZf9B9V
+         KEThcnVEyGvBbJGrDe9L1eS9zinWr2eTy8HRTPhTgmCbCqwf40nhX4fQjMS8jU3KGE48
+         0rsan+/mormva95XLkWFnyelt/UAhGdAXpeVxSph95WQKV4Lu1HSdo/sy64NZWAZtEiw
+         hka6Ui8T8d+lHpFYf6GOcD/ML6O/Kbx7DeGlbbqiU3L4oj/IY/JbOi/gusbkr0XRigG8
+         FaoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=3pL57BJMUBNxMDZzzTjQrm+71Rp1BbQQ0xIW2hKAK0Q=;
-        b=ZSbaXCCjqvSBw3bhvMFcqtXLSfgltD/xl93czbSUKU7v72D3j2F3JXEBPCTUqOQgL5
-         PXF535En6rx0LlpcndRhPvOlBjp09kAOSQ3Mj1+ZF2n6x3PLUPYJwLlRjIH9UUGWpWCq
-         dJTYFg2b+MO3BWxkX8dHlNBN7OUAla28WjtjSYy9bsxn/UucR4OH74sAbitG3KDGCVlB
-         dI6viMeoBJmcbHXmhsls3KjL5r0tIP4ZsK0cC3trUWswDTii5wP8Yp+VILv0/dj8zYjz
-         sFOuq2ZfR7xZfpEkWQUSC7Dh8YZnEAFyUh4uoOFU5QXepXg+wJVfcb0AdPHQ2Ztvmsty
-         HFjQ==
+        h=sender:x-gm-message-state:date:from:to:message-id:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=g5rA5twbimedZ1WxjW9lkkct7eDcrsaXZZR1EG9kEOY=;
+        b=Pu5/wi2nAQ0208tvjpQ+Pm2NYdIW4sQDunuRGRtktc7OLZlADp9FoAq0ZTsOKWf25R
+         X8Rbj1KB7lBlqp1NxpvRrsuvnnfO3XwkmpByXXCmQCTc2gUr/eoOfP6GZMVzy/Czo9mQ
+         gsdnkTttWZqJZswUBChSPXrvA3jVZRVJ9zDLyf8JZbSM613SIFgTnnUgJErAVGnf27sP
+         m595ywKQdqkdgQa2rLChtBWaa6ykx1wx7KnXy/vUaRx9cSZVggna2Slky0BcrXrHPHqp
+         WqfOufzepZB19fI9f1XcR3j4dD3J2ULcPLxHdWrjPe71ZDHKGYYSxgboRnZ/g7OxxTFO
+         WN6Q==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532IizpFQ6te6P2P4FMx3CTkpaozkBQNjfjMH0PNDY0lSM6fEhPs
-	enlRobBVm3wB/4KWlSJvBm4=
-X-Google-Smtp-Source: ABdhPJzYKqKVaLEGJwgEGJUZCb8Lj67yA1tw32ACHwGxUjo8r544v+TVBMpZLA21L9cIvMHFd+GAQw==
-X-Received: by 2002:a0c:c488:: with SMTP id u8mr36818652qvi.47.1618402483097;
-        Wed, 14 Apr 2021 05:14:43 -0700 (PDT)
+X-Gm-Message-State: AOAM530PD+1d8CoSsTHQqYwThjYz70nTf6NG9vaCevNdog6yuwrf8zcv
+	hrCuCiauBNZG0j8q6qrgs7Q=
+X-Google-Smtp-Source: ABdhPJw2LDCCsZnID/TOWYN4KhQYfKOSFkQsceuItfu8lKRXL7xuDlUS8KHa5tPoAHuQShS+G3z6Aw==
+X-Received: by 2002:a37:8906:: with SMTP id l6mr30832948qkd.198.1619630351013;
+        Wed, 28 Apr 2021 10:19:11 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a37:9e11:: with SMTP id h17ls1147155qke.10.gmail; Wed, 14
- Apr 2021 05:14:42 -0700 (PDT)
-X-Received: by 2002:a05:620a:13ac:: with SMTP id m12mr36833666qki.458.1618402482543;
-        Wed, 14 Apr 2021 05:14:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1618402482; cv=none;
-        d=google.com; s=arc-20160816;
-        b=EZSdhgGwvI66oXU/yDUK2wtpPkgJXZpRBTAjRmqVvaSDisXapT42JSBb73ywiVB1fE
-         NbaJ+YSj7SdRt9kf0z2ii67cYOTd79ubiGm+xvdAqNbveGyO5vkBGMZPG0pDAwXZGQrR
-         IwCzxvbSQYRA4NqJNgsmMvW9Dv7wvTqvTrOqQ45naqBGDpvLBujgl+PlOLA4geSHDCyS
-         z+y5uOkOZ0so0oobOldu2GDH4xde34e+4ieBi5GE9VYfI+due75vFGZ+HAe8xWehIKUL
-         LHsIIQrSk16BBgioyy5NERw/5wC468VUSIHZGgb5U/jtOqfqxKOaLr8Eej7NAkqcVM8p
-         AKqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:dkim-signature;
-        bh=/I5rlzd0M5kxYPdlYT6Oc+cW8y/mJ/i7s2Xhzx3llpQ=;
-        b=UKHeijcec5nQjKMIx5cZL98Ti4JX1QEi0jY2dkQb/5qF7rlQkkWIAwmNlawGOpL3KJ
-         YN4TU92VEeCy4zwhWqkbu2XEyeC1KT8E66oY8ujv1Sa8WDth14oqXFyXDrOqEQYHA+xq
-         AfkZd6HJ2HfXFc1G5JMKALuGIf2sZtWD4vtF7EB7TnzHeaVEj5F/WOEnGvDOBdikVQNb
-         n3z3XzJ9VsjUhqYQroATeJ6jc1K0WUXhIv+DyIcZVEaeAFPCaJg7wMuY2yqGtoKRTzrv
-         rgZpGRx8nwwBPoUcKubumCuuKh2tgzXRKjn2rGsK9+4u6xQHWm8BRCjuUtkmkBYZwI2/
-         yMRg==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b="C/Os0pNE";
-       spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from mail.kernel.org (mail.kernel.org. [198.145.29.99])
-        by gmr-mx.google.com with ESMTPS id r26si1537445qtf.3.2021.04.14.05.14.42
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Apr 2021 05:14:42 -0700 (PDT)
-Received-SPF: pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) client-ip=198.145.29.99;
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4A25A6105A;
-	Wed, 14 Apr 2021 12:14:41 +0000 (UTC)
-Date: Wed, 14 Apr 2021 08:14:40 -0400
-From: Sasha Levin <sashal@kernel.org>
-To: Mike Christie <michael.christie@oracle.com>
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Gulam Mohamed <gulam.mohamed@oracle.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
-Subject: Re: [PATCH AUTOSEL 5.10 07/22] scsi: iscsi: Fix race condition
- between login and sync thread
-Message-ID: <YHbcsA22Ag3o4QAZ@sashalap>
-References: <20210405160432.268374-1-sashal@kernel.org>
- <20210405160432.268374-7-sashal@kernel.org>
- <be0783c0-4ca8-d7fd-ce97-c24c2f1d8e84@oracle.com>
+Received: by 2002:ac8:718b:: with SMTP id w11ls160280qto.3.gmail; Wed, 28 Apr
+ 2021 10:19:10 -0700 (PDT)
+X-Received: by 2002:ac8:7409:: with SMTP id p9mr19039284qtq.208.1619630350388;
+        Wed, 28 Apr 2021 10:19:10 -0700 (PDT)
+Date: Wed, 28 Apr 2021 10:19:09 -0700 (PDT)
+From: indra jeet <swarnendra1029@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <0b82ba52-fa44-46a1-b2f0-d2f985f43e11n@googlegroups.com>
+Subject: learning about iscsi discovery, login and logout
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <be0783c0-4ca8-d7fd-ce97-c24c2f1d8e84@oracle.com>
-X-Original-Sender: sashal@kernel.org
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=k20201202 header.b="C/Os0pNE";       spf=pass
- (google.com: domain of sashal@kernel.org designates 198.145.29.99 as
- permitted sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE
- sp=NONE dis=NONE) header.from=kernel.org
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_2691_1613910907.1619630349680"
+X-Original-Sender: swarnendra1029@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -135,49 +76,99 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Tue, Apr 06, 2021 at 12:24:32PM -0500, Mike Christie wrote:
->On 4/5/21 11:04 AM, Sasha Levin wrote:
->> From: Gulam Mohamed <gulam.mohamed@oracle.com>
->>
->> [ Upstream commit 9e67600ed6b8565da4b85698ec659b5879a6c1c6 ]
->>
->> A kernel panic was observed due to a timing issue between the sync thread
->> and the initiator processing a login response from the target. The session
->> reopen can be invoked both from the session sync thread when iscsid
->> restarts and from iscsid through the error handler. Before the initiator
->> receives the response to a login, another reopen request can be sent from
->> the error handler/sync session. When the initial login response is
->> subsequently processed, the connection has been closed and the socket has
->> been released.
->>
->> To fix this a new connection state, ISCSI_CONN_BOUND, is added:
->>
->>  - Set the connection state value to ISCSI_CONN_DOWN upon
->>    iscsi_if_ep_disconnect() and iscsi_if_stop_conn()
->>
->>  - Set the connection state to the newly created value ISCSI_CONN_BOUND
->>    after bind connection (transport->bind_conn())
->>
->>  - In iscsi_set_param(), return -ENOTCONN if the connection state is not
->>    either ISCSI_CONN_BOUND or ISCSI_CONN_UP
->>
->> Link: https://urldefense.com/v3/__https://lore.kernel.org/r/20210325093248.284678-1-gulam.mohamed@oracle.com__;!!GqivPVa7Brio!Jiqrc6pu3EgrquzpG-KpNQkNebwKUgctkE0MN1MloQ2y5Y4OVOkKN0yCr2_W_CX2oRet$
->> Reviewed-by: Mike Christie <michael.christie@oracle.com>
->
->
->There was a mistake in my review of this patch. It will also require
->this "[PATCH 1/1] scsi: iscsi: fix iscsi cls conn state":
->
->https://lore.kernel.org/linux-scsi/20210406171746.5016-1-michael.christie@oracle.com/T/#u
+------=_Part_2691_1613910907.1619630349680
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2692_1181194293.1619630349680"
 
-As the fix isn't upstream yet, I'll drop 9e67600ed6b for now and
-re-queue it for the next round. Thanks!
+------=_Part_2692_1181194293.1619630349680
+Content-Type: text/plain; charset="UTF-8"
 
--- 
-Thanks,
-Sasha
+Hi Everyone,
+
+I am trying to understand open-iscsi implementation. 
+
+Firstly, I picked up following paths to explore,
+
+   1. discovery
+   2. login/logout
+
+1. Discovery
+In this code path, we usually call to 
+
+discovery_sendtarget
+--> request_target
+     --> iscsi_io_send_pdu,  which basically writes on a socket opened by 
+iscsiadm, and reads from the socket by "iscsi_io_rev_pdu".
+
+2. login/logout
+In this code path, it get usually triggers to 
+
+mgmt_ipc_session_login
+   -> __session_login_task
+        -> iscsi_conn_connect
+                --> iscsi_sched_ev_context
+                        --> session_conn_poll 
+                                --> iscsi_login_req
+                                      --> iscsi_io_send_pdu
+
+In my understanding, discovery, login/logout does not involve iscsi kernel 
+and send pdu over open by userspace socket.
+
+Is that my understanding correct and can somebody point me out more pointer 
+for these path.
+
+Thanks in advance.
+
+---
+Indra
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/YHbcsA22Ag3o4QAZ%40sashalap.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/0b82ba52-fa44-46a1-b2f0-d2f985f43e11n%40googlegroups.com.
+
+------=_Part_2692_1181194293.1619630349680
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Everyone,<div><br></div><div>I am trying to understand open-iscsi implem=
+entation.&nbsp;</div><div><br></div><div>Firstly, I picked up following pat=
+hs to explore,<br></div><div><ol><li>discovery</li><li>login/logout</li></o=
+l></div><div>1. Discovery</div><div>In this code path, we usually call to&n=
+bsp;</div><div><br></div><div>discovery_sendtarget</div><div>--&gt; request=
+_target</div><div>&nbsp; &nbsp; &nbsp;--&gt; iscsi_io_send_pdu,&nbsp; which=
+ basically writes on a socket opened by iscsiadm, and reads from the socket=
+ by "iscsi_io_rev_pdu".</div><div><br></div><div>2. login/logout</div><div>=
+In this code path, it get usually triggers to&nbsp;</div><div><br></div><di=
+v>mgmt_ipc_session_login</div><div>&nbsp; &nbsp;-&gt;&nbsp;__session_login_=
+task</div><div>&nbsp; &nbsp; &nbsp; &nbsp; -&gt;&nbsp;iscsi_conn_connect</d=
+iv><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --&gt;&nbsp=
+;iscsi_sched_ev_context</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --&gt;&nbsp;session_conn_poll&nb=
+sp;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --&gt;&nbsp;iscsi_login_=
+req</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --&=
+gt;&nbsp;iscsi_io_send_pdu</div><div><br></div><div>In my understanding, di=
+scovery, login/logout does not involve iscsi kernel and send pdu over open =
+by userspace socket.<br><br>Is that my understanding correct and can somebo=
+dy point me out more pointer for these path.</div><div><br></div><div>Thank=
+s in advance.</div><div><br></div><div>---</div><div>Indra</div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/0b82ba52-fa44-46a1-b2f0-d2f985f43e11n%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/0b82ba52-fa44-46a1-b2f0-d2f985f43e11n%40googlegroups.com</a>.=
+<br />
+
+------=_Part_2692_1181194293.1619630349680--
+
+------=_Part_2691_1613910907.1619630349680--
