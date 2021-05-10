@@ -1,68 +1,68 @@
-Return-Path: <open-iscsi+bncBCBYNVUV2QIBBDVSU2CAMGQEUCD5NLI@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBYML46CAMGQER3YR56Y@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf38.google.com (mail-qv1-xf38.google.com [IPv6:2607:f8b0:4864:20::f38])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3191436DE13
-	for <lists+open-iscsi@lfdr.de>; Wed, 28 Apr 2021 19:19:12 +0200 (CEST)
-Received: by mail-qv1-xf38.google.com with SMTP id p2-20020ad452e20000b0290177fba4b9d5sf28663586qvu.6
-        for <lists+open-iscsi@lfdr.de>; Wed, 28 Apr 2021 10:19:12 -0700 (PDT)
+Received: from mail-qv1-xf3f.google.com (mail-qv1-xf3f.google.com [IPv6:2607:f8b0:4864:20::f3f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68FE7379AE5
+	for <lists+open-iscsi@lfdr.de>; Tue, 11 May 2021 01:46:42 +0200 (CEST)
+Received: by mail-qv1-xf3f.google.com with SMTP id f20-20020a0caa940000b02901c5058e5813sf13890513qvb.23
+        for <lists+open-iscsi@lfdr.de>; Mon, 10 May 2021 16:46:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=g5rA5twbimedZ1WxjW9lkkct7eDcrsaXZZR1EG9kEOY=;
-        b=KPqsj0YlKybYJzpIlXHKzhsCdTT+19INniBFiQDZlBjapJZZdB24zPz+FdxMcmrtCJ
-         T9vNj0ZpOFObo+eAbAqmO02KH9wu3P6/mfhJ2PtBBS+W/R7Wafh/DcEfjtRHiOLPuXho
-         LajUT5hZ6bV57PTa36ZmZRbhv95rCKR5NXndFaYV61Eelux5Hgc3UcPyvwl6B0FZ0fwr
-         2DGRfWdqP5Z3NHaiUeRdjdhjiz5zL2CjZM6QawpyzjHXOIr5VRFDv8PNP8iw8uJQ/fef
-         6W0vVy5arvjjaFCwah3TvArw0RR66igJoRcat6+RiDmTT+O/Rjx+xJWVb5glImzC9QMd
-         HapQ==
+        bh=BRp9fW22Q/kiDrMa9Ko42D3g/Ox5xWxH8w+Tukvs2Jo=;
+        b=lSsfdFHaOq2nGC90QVNNDA9c5iDbodKsFjpF7UbGT9X9TdKfE3NqG/+ex2yuDbhjs5
+         VwsZ6nvfEgwYvT+wGPwkTGdP4Hh8740WFGUJrWS84Phz2XUcrJ8edkLCuP4oLu2MkTHN
+         aleVl8qn4LYT6cOwyzeKKsgBeHnd9mAAn3krqu/ZvMdW4AVbbeaBh7yZwngVvNtGwzbY
+         EWsDWYWLCssUiNxGALEDaHq8UKLSAqOCGBmiMFBJRQJXYhsdgzQbOFW369ldvzqf97aK
+         /v/ZYvZslV+I+N3DRTilIj3JjNLukTdLvpRO0vyEpvf+JUyspasxQZSikTvEv9hG5UqM
+         dohw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:message-id:subject:mime-version:x-original-sender
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=g5rA5twbimedZ1WxjW9lkkct7eDcrsaXZZR1EG9kEOY=;
-        b=WUi6GwnC2/4ph/GdXBIzCJZW5NGSe0nsEPDmk0PTUAghiwFvsYf4lX3SHqplmGtd1F
-         b9Q6USOUXah/Xhf2hNijtYN5FH6JoUz0t8k6p3Z/13oWmOiZzHltDZhpEpELlRZf9B9V
-         KEThcnVEyGvBbJGrDe9L1eS9zinWr2eTy8HRTPhTgmCbCqwf40nhX4fQjMS8jU3KGE48
-         0rsan+/mormva95XLkWFnyelt/UAhGdAXpeVxSph95WQKV4Lu1HSdo/sy64NZWAZtEiw
-         hka6Ui8T8d+lHpFYf6GOcD/ML6O/Kbx7DeGlbbqiU3L4oj/IY/JbOi/gusbkr0XRigG8
-         FaoQ==
+        bh=BRp9fW22Q/kiDrMa9Ko42D3g/Ox5xWxH8w+Tukvs2Jo=;
+        b=vXLg1AHwerfbk/Jhimzv4IsR7rfYLcXY5yz+KoUo9DsQPkJ7EkmjZcEX34flaFukdK
+         PHWk6LMoF9lqa0Strp+A2nHuHKLhTEyLSC3iaQOct3WmF0ECDHyYLYYwmFpLvqSsS6YK
+         4ksGqx/RgZimFTCbrHuo+sUvVJm+4nHwLPQa/CFBGUeQGAp0RnXx8LAX1rqPsG65qmCi
+         f0QiIMF3gOc8kmozIk2QjUrDcYOH2PTRYOpY0t7RD1c+/jGenGnIqO0EZBmzfZst6UHD
+         /gp7duOubHjp2xU4gt7+dPmq6auc9ZIAmvXrgVZ0y9rXV6hvhRet9a+7nCqQo+NboAlu
+         V8Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=g5rA5twbimedZ1WxjW9lkkct7eDcrsaXZZR1EG9kEOY=;
-        b=Pu5/wi2nAQ0208tvjpQ+Pm2NYdIW4sQDunuRGRtktc7OLZlADp9FoAq0ZTsOKWf25R
-         X8Rbj1KB7lBlqp1NxpvRrsuvnnfO3XwkmpByXXCmQCTc2gUr/eoOfP6GZMVzy/Czo9mQ
-         gsdnkTttWZqJZswUBChSPXrvA3jVZRVJ9zDLyf8JZbSM613SIFgTnnUgJErAVGnf27sP
-         m595ywKQdqkdgQa2rLChtBWaa6ykx1wx7KnXy/vUaRx9cSZVggna2Slky0BcrXrHPHqp
-         WqfOufzepZB19fI9f1XcR3j4dD3J2ULcPLxHdWrjPe71ZDHKGYYSxgboRnZ/g7OxxTFO
-         WN6Q==
+        bh=BRp9fW22Q/kiDrMa9Ko42D3g/Ox5xWxH8w+Tukvs2Jo=;
+        b=mkHH6phYGirI9Dz0zo4ixHkDLaYZMEygnIeCYfHFfPQau59J05TonsC81FqDlwRdBT
+         DUlm1cIMpWvHqdT0Gx3wfc7CV1UPy9PbajuzBWscUs6HZLpIzeN/S0A7oCHgnsIoeJi9
+         BWbaC8o3R69GEkN3w8rYvV7FO1vUUt8didM5vrZ3ANOjdYqmUnqI2v2LZee4R7vCYB+C
+         n3RC4xoNhhBp3949yQgLljSExN6EW7uTAVkK2eArEfn/td5KEXNJqiwsGY02r/d5y6sc
+         bHY5YYAz+3F1oc7CGUyFGy9K22QbqzkPGkFGaBbhtkU18wbnwCFszKFBkUMPpCvvUmQS
+         K+uA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530PD+1d8CoSsTHQqYwThjYz70nTf6NG9vaCevNdog6yuwrf8zcv
-	hrCuCiauBNZG0j8q6qrgs7Q=
-X-Google-Smtp-Source: ABdhPJw2LDCCsZnID/TOWYN4KhQYfKOSFkQsceuItfu8lKRXL7xuDlUS8KHa5tPoAHuQShS+G3z6Aw==
-X-Received: by 2002:a37:8906:: with SMTP id l6mr30832948qkd.198.1619630351013;
-        Wed, 28 Apr 2021 10:19:11 -0700 (PDT)
+X-Gm-Message-State: AOAM531Jljgrhwppn7u03O4nSXK+Pw0BRG4ZP/jdAvEzWchyFmCdZIqM
+	N5TpnuGtVYQr4VMfNA2618k=
+X-Google-Smtp-Source: ABdhPJxtgXC1q7a11LZe2oLirB6PlctqxDQie/rbLPb+RTmi6wovFIhHdpXQz9C/nvJqkok1viiv4g==
+X-Received: by 2002:ae9:e518:: with SMTP id w24mr10110300qkf.490.1620690401310;
+        Mon, 10 May 2021 16:46:41 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac8:718b:: with SMTP id w11ls160280qto.3.gmail; Wed, 28 Apr
- 2021 10:19:10 -0700 (PDT)
-X-Received: by 2002:ac8:7409:: with SMTP id p9mr19039284qtq.208.1619630350388;
-        Wed, 28 Apr 2021 10:19:10 -0700 (PDT)
-Date: Wed, 28 Apr 2021 10:19:09 -0700 (PDT)
-From: indra jeet <swarnendra1029@gmail.com>
+Received: by 2002:ac8:5810:: with SMTP id g16ls7216127qtg.11.gmail; Mon, 10
+ May 2021 16:46:40 -0700 (PDT)
+X-Received: by 2002:ac8:7fcc:: with SMTP id b12mr24497969qtk.343.1620690400698;
+        Mon, 10 May 2021 16:46:40 -0700 (PDT)
+Date: Mon, 10 May 2021 16:46:40 -0700 (PDT)
+From: The Lee-Man <leeman.duncan@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <0b82ba52-fa44-46a1-b2f0-d2f985f43e11n@googlegroups.com>
-Subject: learning about iscsi discovery, login and logout
+Message-Id: <43e49037-b88c-4954-aa42-54e6807ff259n@googlegroups.com>
+Subject: Shouldn't firmware nodes be marked as "onboot", for consistency?
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_2691_1613910907.1619630349680"
-X-Original-Sender: swarnendra1029@gmail.com
+	boundary="----=_Part_3620_1791365981.1620690400113"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -76,84 +76,46 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_2691_1613910907.1619630349680
+------=_Part_3620_1791365981.1620690400113
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_2692_1181194293.1619630349680"
+	boundary="----=_Part_3621_998398278.1620690400113"
 
-------=_Part_2692_1181194293.1619630349680
+------=_Part_3621_998398278.1620690400113
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Everyone,
 
-I am trying to understand open-iscsi implementation. 
+Hi All:
 
-Firstly, I picked up following paths to explore,
+I'm working on getting iBFT (firmware) booting working well using 
+open-iscsi with dual paths and DM/multipathing, and I noticed something.
 
-   1. discovery
-   2. login/logout
+When you run "iscsiadm -m discovery -t fw", it creates node database 
+entries for your firmware targets. But it sets "node.startup", and 
+"node.conn[0].startup" to "manual" instead of "onboot", even though 
+open-iscsi treats these entries like "onboot", since they are based on 
+firmware.
 
-1. Discovery
-In this code path, we usually call to 
-
-discovery_sendtarget
---> request_target
-     --> iscsi_io_send_pdu,  which basically writes on a socket opened by 
-iscsiadm, and reads from the socket by "iscsi_io_rev_pdu".
-
-2. login/logout
-In this code path, it get usually triggers to 
-
-mgmt_ipc_session_login
-   -> __session_login_task
-        -> iscsi_conn_connect
-                --> iscsi_sched_ev_context
-                        --> session_conn_poll 
-                                --> iscsi_login_req
-                                      --> iscsi_io_send_pdu
-
-In my understanding, discovery, login/logout does not involve iscsi kernel 
-and send pdu over open by userspace socket.
-
-Is that my understanding correct and can somebody point me out more pointer 
-for these path.
-
-Thanks in advance.
-
----
-Indra
+I find it a little more consistent if they are marked as "onboot". A simple 
+path in iscsiadm would change this. Any objections?
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/0b82ba52-fa44-46a1-b2f0-d2f985f43e11n%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/43e49037-b88c-4954-aa42-54e6807ff259n%40googlegroups.com.
 
-------=_Part_2692_1181194293.1619630349680
+------=_Part_3621_998398278.1620690400113
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Everyone,<div><br></div><div>I am trying to understand open-iscsi implem=
-entation.&nbsp;</div><div><br></div><div>Firstly, I picked up following pat=
-hs to explore,<br></div><div><ol><li>discovery</li><li>login/logout</li></o=
-l></div><div>1. Discovery</div><div>In this code path, we usually call to&n=
-bsp;</div><div><br></div><div>discovery_sendtarget</div><div>--&gt; request=
-_target</div><div>&nbsp; &nbsp; &nbsp;--&gt; iscsi_io_send_pdu,&nbsp; which=
- basically writes on a socket opened by iscsiadm, and reads from the socket=
- by "iscsi_io_rev_pdu".</div><div><br></div><div>2. login/logout</div><div>=
-In this code path, it get usually triggers to&nbsp;</div><div><br></div><di=
-v>mgmt_ipc_session_login</div><div>&nbsp; &nbsp;-&gt;&nbsp;__session_login_=
-task</div><div>&nbsp; &nbsp; &nbsp; &nbsp; -&gt;&nbsp;iscsi_conn_connect</d=
-iv><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --&gt;&nbsp=
-;iscsi_sched_ev_context</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --&gt;&nbsp;session_conn_poll&nb=
-sp;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --&gt;&nbsp;iscsi_login_=
-req</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --&=
-gt;&nbsp;iscsi_io_send_pdu</div><div><br></div><div>In my understanding, di=
-scovery, login/logout does not involve iscsi kernel and send pdu over open =
-by userspace socket.<br><br>Is that my understanding correct and can somebo=
-dy point me out more pointer for these path.</div><div><br></div><div>Thank=
-s in advance.</div><div><br></div><div>---</div><div>Indra</div>
+<br><div>Hi All:</div><div><br></div><div>I'm working on getting iBFT (firm=
+ware) booting working well using open-iscsi with dual paths and DM/multipat=
+hing, and I noticed something.</div><div><br></div><div>When you run "iscsi=
+adm -m discovery -t fw", it creates node database entries for your firmware=
+ targets. But it sets "node.startup", and "node.conn[0].startup" to "manual=
+" instead of "onboot", even though open-iscsi treats these entries like "on=
+boot", since they are based on firmware.</div><div><br></div><div>I find it=
+ a little more consistent if they are marked as "onboot". A simple path in =
+iscsiadm would change this. Any objections?<br></div>
 
 <p></p>
 
@@ -164,11 +126,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/0b82ba52-fa44-46a1-b2f0-d2f985f43e11n%40googlegroups.=
+om/d/msgid/open-iscsi/43e49037-b88c-4954-aa42-54e6807ff259n%40googlegroups.=
 com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/0b82ba52-fa44-46a1-b2f0-d2f985f43e11n%40googlegroups.com</a>.=
+id/open-iscsi/43e49037-b88c-4954-aa42-54e6807ff259n%40googlegroups.com</a>.=
 <br />
 
-------=_Part_2692_1181194293.1619630349680--
+------=_Part_3621_998398278.1620690400113--
 
-------=_Part_2691_1613910907.1619630349680--
+------=_Part_3620_1791365981.1620690400113--
