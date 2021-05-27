@@ -1,229 +1,60 @@
-Return-Path: <open-iscsi+bncBDVIJONZ3YDRBJENXSCQMGQEWJLD56Y@googlegroups.com>
+Return-Path: <open-iscsi+bncBDAKBNEQZYKRBKH2XSCQMGQE2UULCCI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc3c.google.com (mail-oo1-xc3c.google.com [IPv6:2607:f8b0:4864:20::c3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EDF53924EE
-	for <lists+open-iscsi@lfdr.de>; Thu, 27 May 2021 04:40:38 +0200 (CEST)
-Received: by mail-oo1-xc3c.google.com with SMTP id k9-20020a4a43090000b02901cfd837f7basf1808119ooj.14
-        for <lists+open-iscsi@lfdr.de>; Wed, 26 May 2021 19:40:37 -0700 (PDT)
-ARC-Seal: i=3; a=rsa-sha256; t=1622083237; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=Mij1IUO7uChob9NT3PcUI8uBrlo70QTG4pIOnmLH7qy8OfXaokp6F2ffZu5dtGieD3
-         qEoDLmsSw6EK8+ODY0EDiKr/awgSMm0gj8fBW/ZeEXX9Tm+7Kyq3p1y2Ovcvm+tkW18H
-         JcMdZr2OjgMPVKB0O5WrQyli8Zq7mBvpnYeRNqt1TmauGUC871HKXq8C/x0iVP4HvAH0
-         9w+mTWYYWWdwpXB35y7H98fQFNJ2grtw42NLgDI1398AvonDiqarb0MQjmPzeZpsUUCw
-         QKTuMfTY+InW4qkgBp4qqWn+pvBTJhlq7KNHkD+gB/eFxvW/r9w/tnbYi1wFiGHR5N7k
-         hrgw==
-ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:in-reply-to
-         :date:references:message-id:organization:from:subject:cc:to:sender
-         :dkim-signature;
-        bh=QKOOgVtKw/lNd5Z5ewrvfSHOyE7uax5c2/hYI8AbJyY=;
-        b=cHSifkcLPTd+vEQzjnZ5kww9KFe170WUUC7rnmE+Bf6r8b4jTL6bDUHlwh2y7uy2+4
-         KoxURHLn4j+vL77F7xgvoeQlv5U7rUnq740qrlxtVupkv5ZxBEdVwU6/cW25AyQK1fDj
-         kOOzWBDb8DOQSnbQ/D6lENUvvCiVpABOxI2wTbWrqMhua1KLss8LcFcwX5s0pn54xQTe
-         ltNhbo9HZ6Ss0fepGyncRAnoVu9BVqjC8AwIR8ImTr+ft/H9x4k8sXNJIRrAcpefsjJe
-         BXJHyqYAjf9ZbA34g42GUjLUrDuK2hDLnv4G85/4p4aTsfcCoK7e9QenR5jhXlPHnmVu
-         +/Ww==
-ARC-Authentication-Results: i=3; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=aR3HabEO;
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=PmoWrjil;
-       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from mail-qk1-x737.google.com (mail-qk1-x737.google.com [IPv6:2607:f8b0:4864:20::737])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA8363927AE
+	for <lists+open-iscsi@lfdr.de>; Thu, 27 May 2021 08:33:13 +0200 (CEST)
+Received: by mail-qk1-x737.google.com with SMTP id b19-20020a05620a0893b02902e956b29f5dsf2713870qka.16
+        for <lists+open-iscsi@lfdr.de>; Wed, 26 May 2021 23:33:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:to:cc:subject:from:organization:message-id:references:date
-         :in-reply-to:mime-version:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=QKOOgVtKw/lNd5Z5ewrvfSHOyE7uax5c2/hYI8AbJyY=;
-        b=nmlNRDAKDvVu0yX1/cbXO0J6IkchMlVML5hNBNFQB9kYmKDEgDbHJrvexNNQCoaMDv
-         qrEWGHKJUFra5YBBstwmWfPvxdDeQU5HTvmS+u1iI2IdS51szyb3w+PiOOoDngVfIbAD
-         9oIDy3BbAA+1G+Y2PwscBCoveNvN7MINX4c/1Yf2Ql3G2gfM5CGNH4P308b+CY51WdSL
-         4dRnh0HHNxKNdr22EoJlBva3wXFWtscjJcUQWouGxi+smZXczHQdXMqA4lm6/LXTyGOE
-         wc3Z7/TPPqH/OgbMs3e8dcWPLlQ7NutjJgdLNHSzhLjllh/xEnYDU1nlm/EnwRW8itT2
-         +fRA==
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=rykMgamtql0KT2HOw8iaJtd/NNvusZgYNJE2gt4vUSQ=;
+        b=XdwuLUP1y4C2HDhowG+BRssW7Zlc6K01A+66jy+sSQJ/5+V2Lz6LIjzex9zEUF1T1D
+         tZ42IiQj29KHIKKOUYaXjhZKe6qiq+GD6nIU4/uaSu5pcC2mZVfSLW7BswL1SzU/AfMk
+         +EOhVmpjWlzCKKNrUTZHacuZNpL3uh9KfpoaFrAEaJqgBmtRJGsRMHcQ4pa7bo1OFgKa
+         EgKY0uD/z15IfkFaxid6vMAqvbWWT79eIFJ7Pd8cIlSutf5gELn4+BOPabwMkvOLPmmc
+         IWEPFrkgnHmByHWXivTvpCoLBnJO2Pv242UIM2LcQuL/YkWK7MgNUAQqeb1KDAJK7tA7
+         8G6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:to:cc:subject:from:organization
-         :message-id:references:date:in-reply-to:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=QKOOgVtKw/lNd5Z5ewrvfSHOyE7uax5c2/hYI8AbJyY=;
-        b=hnCN27+mfZf6zKav/AgLg0AV4qv3qMddLrqd9JZecbYbzzXsE59ypOoJX/IXyVOTPY
-         yN6Z6rFeGmuD0pHc2cjlLQf8n52IhpGE9DGdZ5p0A6eJH0adRpx0IvCyGKLU2oLSWomz
-         dqPQDho4guZ7KJIoRDYrHiieoLzHkKY/gr8lbpswcexZmWBJ00raT25K+8gDbDg/eUty
-         4JpZ/hCWXIOS1OHp6sXT9XrHUoy5y/jMrbo/+7zrahN3xsylpX4SxbeqGUmDkxx+0qfO
-         voESOfUSpRm/gURkLF5a2bV3Z8fdGvNJxAIJdSC+gJtgvQiMIrS+atMRmXK360EBQDP9
-         MhfQ==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532dvhHO66QdKqqzLcdAuooDD5xYrAXF09D5jV6durCBOlmWIX//
-	FLFbYh8q6BQjUzykHOSUjFw=
-X-Google-Smtp-Source: ABdhPJxwmyDU998DsX6pyGBJ5Rv+yaXHG51BvDJffFij97OaSnyMYotgYYOkR4wbV/lgZ8yUORwetw==
-X-Received: by 2002:a9d:5eb:: with SMTP id 98mr1078915otd.61.1622083236977;
-        Wed, 26 May 2021 19:40:36 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:message-id:in-reply-to:references
+         :subject:mime-version:x-original-sender:reply-to:precedence
+         :mailing-list:list-id:x-spam-checked-in-group:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=rykMgamtql0KT2HOw8iaJtd/NNvusZgYNJE2gt4vUSQ=;
+        b=C42tKsG2Tc3nww7RCDojTKSp65b7Bw6CN3SKkPTJG/s98XMZzhk3q3L887D0wTL+LM
+         Nu4sAj+IMrEcXZb0vdJ4Kx9+Q7UVsSTOxJSW7kkktJZsFQAgXLH9TIBMvlkx4cz+ED0F
+         RTNj8kz0/5FDoS6DBBLTcYcCAOgepikzNfS2F0PQ4rmh2N6FrUBRRi/SoPglSxpKzH/g
+         4Dl2m3U2/lJruIK180gDSXpKSPzjhaiTF3t28yozMCroPdRKaSN8uUZkmNEn0Z/YDdnC
+         I0EaOpP8L7L1NFXZrcclio3dha5bMWJNputCnXFb+VEoCaPoL/kPFcBw4NwX+XxZQEBV
+         OMrQ==
+X-Gm-Message-State: AOAM533S2cqMM9vfwa5QHG/gSRIlNP9A8gEEPK+j61QPocCfC8zdwkp8
+	lvbKKHoSGjbDUUZPdYW8pjE=
+X-Google-Smtp-Source: ABdhPJxzwbaEdKi35JSyQup9pJjTgOYvZcj7RxRIcOXA5C3MtrTpvfqvfY1/qUy5vn+7jb0XFdcavg==
+X-Received: by 2002:a37:6488:: with SMTP id y130mr1997383qkb.301.1622097192675;
+        Wed, 26 May 2021 23:33:12 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a9d:6d11:: with SMTP id o17ls479775otp.11.gmail; Wed, 26 May
- 2021 19:40:36 -0700 (PDT)
-X-Received: by 2002:a05:6830:2472:: with SMTP id x50mr1012769otr.277.1622083236533;
-        Wed, 26 May 2021 19:40:36 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1622083236; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=lfRc+DN1Ewl7EUX0GTnVLLmqXsbxgDgVx7uZgZP2Y8QRtYaUk88JXEXUaDTecDpYlD
-         HsLXHN2O3NAQNP5y6iJder7lENgI1IoJMfVygYEGou/Gtnmcc5t2Eoa98VQfRtUuyiJs
-         ronRzXOwLoR9EWSyFpLuRJ753rDks0jgEzs2GXFpAPZ7U/iCyQDFyzf+5Q0k2BJ5Bpn2
-         OgSHAcOQ2EAwnODXFxjN5BYJRvlwyqDavI4PlkdjsiPXv9R2b5L1pSSVZERuoBeOnKfc
-         i689k+We+wMVjuPXJXLr/ic8KW0IbF69w0dOXQkkqvIUrfRaFCmGhbXzzrCjDfBQIpHK
-         LkAg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:in-reply-to:date:references:message-id:organization
-         :from:subject:cc:to:dkim-signature:dkim-signature;
-        bh=MUFz+CMpOKzQGkKnSiJgv5LKeuEzVhM5q2sgVeCHfmA=;
-        b=wme07IVJ7+i/Q7TTpZi6gj6PRluJ8lLPWDB/WiCNQ4F5rCfFFH6mE5b8joP8MJWZzE
-         XVROvCfVGAbczehJxUm2NvPsHQH8u5L6sFBntOcFkIYbQqZpZ1KEfyAfUBHS9+e/PSVD
-         WUOeblhcx/nH2zN9cLFDHq8SDC08mqqpDlVsnuPAkecKbm/5OXgeN4kRep1LW85pGLrZ
-         Lkzx3LIjcSbxNL0Jetje/RRmbWPci6XdTlQgkSyIb6sZ8yt0lwhGb33NPAko6SXhC+le
-         5+NrVak/0YYtnXkbpdhRjfUG6rZJtpPmXZkJF/hwrTVvvH7kF0NnbUSto04IPyRilBuL
-         TsdQ==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=aR3HabEO;
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=PmoWrjil;
-       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from userp2130.oracle.com (userp2130.oracle.com. [156.151.31.86])
-        by gmr-mx.google.com with ESMTPS id c4si137158oto.0.2021.05.26.19.40.36
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 May 2021 19:40:36 -0700 (PDT)
-Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 156.151.31.86 as permitted sender) client-ip=156.151.31.86;
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-	by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 14R2YB94024283;
-	Thu, 27 May 2021 02:40:32 GMT
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-	by userp2130.oracle.com with ESMTP id 38q3q928ds-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 27 May 2021 02:40:32 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-	by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 14R2Z1NY095436;
-	Thu, 27 May 2021 02:40:31 GMT
-Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2174.outbound.protection.outlook.com [104.47.55.174])
-	by aserp3020.oracle.com with ESMTP id 38rehesbd5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 27 May 2021 02:40:31 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Oso8qMIUjjI4TMz6xaYPcJb9vYzoLdZB6QiQ+Nx07Qu0Ro81Us3B9n5CTpaqt38ZTYyMrFsdoKmNknTIepjJLDzWDaf12CqWUPw2zmchlPh7Ld4m195ZpRRoa81ud5IeN13oJcVXEb4UCFopU23F6Kpz0QSwBQI07GFy7ca7LLrOOsYrGbxxTf2q7w0GuKy1mEyOFcNUuIpFO8A/mwcCeFBle2Wb16+AtxVHf/2d+vjJoxkIQkxZxoMPhXxGbJc+HClRB1AqcmrPsMXK3KXBtejd+yAtEnUMwVXZiHzW5adFV/bDkusCZGjjfHJM3W4CFB+lKFauUGN5kRYLhc6Edg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MUFz+CMpOKzQGkKnSiJgv5LKeuEzVhM5q2sgVeCHfmA=;
- b=eZYwphKbMZmBIMC/AXabM/JUekTW/85ghZHRQK5m/huyRrwfZosMqYpEEDvymidyu34NHGp5DWnPv2CWcLB8uKZlOrzcEW/Q7JujMKAmCRqlMQY+OsWs3khFfHiKC8TvLwMRYIjxTw9vTHPgx2JFBfkksUZ6iRT3sC6UIA6AN9mMIMtkWK8bnKlInDEQAJ02OvINq3J3zNjHFNmMCk4Fr8BnQlIdiVU5mDclwvN7VbbNO/Vw40IaCes6da46ieUPQCnWAUZb88kfz+g6JEg/yZU4DUvft/uFMIWIq8Go08pee3v8eRdLswR7/+3vGi3MRHboph8v7ZkK2+muxv30Vg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-Received: from PH0PR10MB4759.namprd10.prod.outlook.com (2603:10b6:510:3d::12)
- by PH0PR10MB4438.namprd10.prod.outlook.com (2603:10b6:510:36::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20; Thu, 27 May
- 2021 02:40:30 +0000
-Received: from PH0PR10MB4759.namprd10.prod.outlook.com
- ([fe80::4c61:9532:4af0:8796]) by PH0PR10MB4759.namprd10.prod.outlook.com
- ([fe80::4c61:9532:4af0:8796%7]) with mapi id 15.20.4150.027; Thu, 27 May 2021
- 02:40:30 +0000
-To: "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc: Ulrich Windl <Ulrich.Windl@rz.uni-regensburg.de>,
-        <open-iscsi@googlegroups.com>, <dgilbert@interlog.com>,
-        <jejb@linux.ibm.com>, <linux-scsi@vger.kernel.org>
-Subject: Re: Aw: [EXT] Re: [PATCH 1/1] scsi: Fix spelling mistakes in header
- files
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-Organization: Oracle Corporation
-Message-ID: <yq1y2c0vs0t.fsf@ca-mkp.ca.oracle.com>
-References: <20210517095945.7363-1-thunder.leizhen@huawei.com>
-	<162200196243.11962.5629932935575912565.b4-ty@oracle.com>
-	<60AE2272020000A100041478@gwsmtp.uni-regensburg.de>
-	<215847b9-f64d-8cb2-e53b-13123770ca1a@huawei.com>
-Date: Wed, 26 May 2021 22:40:26 -0400
-In-Reply-To: <215847b9-f64d-8cb2-e53b-13123770ca1a@huawei.com> (Leizhen's
-	message of "Thu, 27 May 2021 10:11:41 +0800")
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [138.3.200.58]
-X-ClientProxiedBy: SN4PR0501CA0076.namprd05.prod.outlook.com
- (2603:10b6:803:22::14) To PH0PR10MB4759.namprd10.prod.outlook.com
- (2603:10b6:510:3d::12)
+Received: by 2002:a37:5f44:: with SMTP id t65ls1452099qkb.0.gmail; Wed, 26 May
+ 2021 23:33:12 -0700 (PDT)
+X-Received: by 2002:a37:b6c4:: with SMTP id g187mr1948157qkf.491.1622097192119;
+        Wed, 26 May 2021 23:33:12 -0700 (PDT)
+Date: Wed, 26 May 2021 23:33:11 -0700 (PDT)
+From: "'H. Giebels' via open-iscsi" <open-iscsi@googlegroups.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <d54dddca-dd0a-40a1-a698-a3107445beb5n@googlegroups.com>
+In-Reply-To: <CAK3e-EYB3NurR6MzAzf2WBRUMDiKKbH23w3OFF8u86zW-nRj-g@mail.gmail.com>
+References: <92ea6c0d-de4b-47f0-95c3-d22257089eban@googlegroups.com>
+ <086c0e6e-4df9-409c-80a4-d611fd36a363n@googlegroups.com>
+ <CAK3e-EYB3NurR6MzAzf2WBRUMDiKKbH23w3OFF8u86zW-nRj-g@mail.gmail.com>
+Subject: Re: trimming iscsi luns?
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from ca-mkp.ca.oracle.com (138.3.200.58) by SN4PR0501CA0076.namprd05.prod.outlook.com (2603:10b6:803:22::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.12 via Frontend Transport; Thu, 27 May 2021 02:40:29 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a92226e6-f336-4af4-9c5f-08d920b8cae2
-X-MS-TrafficTypeDiagnostic: PH0PR10MB4438:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <PH0PR10MB4438CA77041EA62D067C06888E239@PH0PR10MB4438.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jYQeTUGhQPfqS7npIirN1Ah7CtV6of3SoxG9inZdOjKr/7mLLaKb2NTXaZH5/TtckI5Hanfcl3OiIM4j+ez7F/s3eSA6UiQKaMUmQ2xUeGCBsCpyPmfCiVAQvYN9q1yClfAJZANKUK/SzIwjyuVSxODBx9tnStl+DZHgkiprVE5H9ldRm2dV7kc8qnD4Gv2JBis6DnE0HGnZdxHuIYwTm9EO13P3Zllx/TWdS8p7fIpMdibQEv8+GtERyoWIzX7jTGBqxBnRlvyBS2BqH+fYzLYVmlbRDKpADBYSSfU1xYoDenIFpXyKL81spwNnoaJBLhD48bGVDiuPNdtwaGnMhfenlsEImP+m+MCG9KtKcABWL2IE9m72Pm/+wQJgBQ0HouPpwhXypU/zgev2Qb/KxF6axHxhG+OfCfHjLQ+Br6Pa40H2AbctjtZnuB7sG0O2fmjYVW/nfs0fyp3g4NNhFtItETbxalm4esr/jBvCyN1ORE+DeyhIDQ9iC0hetn7kyn8HhtMvArBg2Df5LfLiDqIXUPrswgSorH8OIcZ43WWFzwuMwSUckdPfU0onGRq4fbgzGwHHrN+78plnh8mVXNYqZQ7nIpLt47a9IBwJ9lP3cfTwaLPDmTCREpGejkM4tdHqXXNcCCLRndCED5zG92Cmtf9Uu8+czxa5r0zTofs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR10MB4759.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(396003)(39860400002)(376002)(136003)(366004)(956004)(52116002)(86362001)(6666004)(66946007)(66556008)(4744005)(16526019)(36916002)(186003)(7696005)(54906003)(5660300002)(38350700002)(478600001)(6916009)(2906002)(55016002)(8936002)(8676002)(4326008)(316002)(26005)(38100700002)(83380400001)(66476007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?IVOQQXvwT3djKjV/aXQNyw2dplDzGavMdoZ+/xMu6CADqwg81Pvp6jsquO+v?=
- =?us-ascii?Q?N+pjn4xlnVHFDE1t2sDc/2YJ0CbtIZJKBYS2EGTBwtOCbAicwMYB7aOYJ/fQ?=
- =?us-ascii?Q?g/4T7n/eG79U/Omom6rIwbfQpjXvOCUqYnr+ZQmE00Q72FUYwi6tShxDHbBF?=
- =?us-ascii?Q?S5qGGXHQLJKSKRD+6wfw1fB5Cdxvka01cD0IzXuJ08dEKnegXM5Q3fRL8gia?=
- =?us-ascii?Q?YaFQI6CmIFEqBo4kyaAUBssTzuBrWOMN+MONZNnUXZkCJvxSWQaCq5FthYNH?=
- =?us-ascii?Q?HGypfqgCBpTirsRO4nY1ncgzZp8h+Z63w21QQnYygX/CVMdqzgqh2oskSOC7?=
- =?us-ascii?Q?UqfUWQEWoVDl9tIJ8j2YIsbQEk8D3EKArGNFyD3wdM5kC/m5vi7N+vFdICTj?=
- =?us-ascii?Q?oWOH+8G1Dx1eJ61bbG1D8xdAB1FgQDZLTqV/wXPfmgbetyex+COIl7kO21jA?=
- =?us-ascii?Q?ByOMdEvcoNO48mepLe3WqpTzY5WAQvrOc9SbyNi6BHjblpHBWCGnF5sCL36J?=
- =?us-ascii?Q?KJOvgNeI65SRZZaVFmD19ytWB6WgnyUzWQma7Nc1MQO2uDhNuVm7rqRtUwzV?=
- =?us-ascii?Q?caXnqwhXV21Qk0gl3rTZW371C6XTZzRtU2vthHDPEUbRlHbbwovDK9rS9NgI?=
- =?us-ascii?Q?QLNx9CkNyWgpCvbN8ePZA+t1r/dBH1SFSHol/ulBZmduEbWsBEoRBj07zFq0?=
- =?us-ascii?Q?wo+c+p8nX46EVqVnR2vxc6slc6Q5T3NaM7Hxs6oJs9AMdpn5+cM8azHvEfB9?=
- =?us-ascii?Q?sH8FK7XQf5X6TgyDMmPx5P/oSQpmwlQs0P5WqcXUyxC3a0WniyuvwDUfih5Z?=
- =?us-ascii?Q?0ijSKM+P3N3Bh6dYvCzkqHrorA/G6dhbmMe4nbQ7sTe39cxPtoZxgM/OiOoS?=
- =?us-ascii?Q?867xFPv6RbsNPE7DFP7Tx4PnWU8RTDDccklcw8OTxdVkQSg8SD/+jGLN+HfZ?=
- =?us-ascii?Q?0AnHUGfn4pDwcRy4aPabRiU5U4EVqRuGY/d010FV4TQf1pt5v8iKmdc739RN?=
- =?us-ascii?Q?omh2ccUq/r609B73r96lkQfY+mVIvUL4PMOcsUcFNCEIUW9YrmksAG8AT6tf?=
- =?us-ascii?Q?OCaFKnJmDkxIAqu/iX88TGXqRcMpLVFxLyVEP69zr047PKjlG8C2hjRiaMib?=
- =?us-ascii?Q?ZRlYuGT9dDZVoBfpXRwOj7nGwCKgvdjSfMo2/xooxYMqd8DLTttH+0bcnFoG?=
- =?us-ascii?Q?Os8KAJyg+iAqJGGt/6M/jQqii4Brq7JABMkm2KtbGxnsqzC9+KOQSdDMSX/S?=
- =?us-ascii?Q?2fxQcn5xHgp2By3SdH1s6P3Z6eihyFckJytlJAUldKEpF4gWYKxDmggrUFnL?=
- =?us-ascii?Q?cvJIsojPZJ/N96Bq0LQWfT9d?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a92226e6-f336-4af4-9c5f-08d920b8cae2
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR10MB4759.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2021 02:40:30.0451
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qhaMvoOzwDxAybpfeeI6nZVOlXj86jkB+UrgB69Iy/CO8i+aDI/4BxcqLlAv0+qM03NFRiRjXx1/MJdbi9bulIwXkmLzYvVu6AEZQCt6PVo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB4438
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9996 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 spamscore=0 adultscore=0
- mlxscore=0 mlxlogscore=999 malwarescore=0 phishscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
- definitions=main-2105270015
-X-Proofpoint-GUID: r_XpG9CZD3Jehwz22xpW16ilfmIeSUww
-X-Proofpoint-ORIG-GUID: r_XpG9CZD3Jehwz22xpW16ilfmIeSUww
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9996 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxscore=0 clxscore=1011
- malwarescore=0 bulkscore=0 impostorscore=0 phishscore=0 spamscore=0
- adultscore=0 priorityscore=1501 mlxlogscore=999 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
- definitions=main-2105270015
-X-Original-Sender: martin.petersen@oracle.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2020-01-29 header.b=aR3HabEO;
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com
- header.b=PmoWrjil;       arc=pass (i=1 spf=pass spfdomain=oracle.com
- dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates
- 156.151.31.86 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_252_1302071430.1622097191345"
+X-Original-Sender: pinguinpunk@googlemail.com
+X-Original-From: "H. Giebels" <pinguinpunk@googlemail.com>
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -237,25 +68,211 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
+------=_Part_252_1302071430.1622097191345
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_253_1197968317.1622097191345"
 
-It's an unfortunate quirk of b4 that it quotes the description from the
-original patch submission and not the message that ends up being
-committed. As a result my commentary didn't make it to the list.
+------=_Part_253_1197968317.1622097191345
+Content-Type: text/plain; charset="UTF-8"
 
-> Busses isn't a misspelling, it's just that few people use it these
-> days.
 
-In the context of electronics and computing "busses" still appears to be
-widely in use. In any case, whether to use one or the other is up to the
-author of the code in question. I only merged fixed for what was obvious
-typos.
+Hello Don,
 
-Thanks!
+thanks very much for further elaborating on this. I completely forgot to 
+mention, the taget side is lio / targetcli. Sorry for this.
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+Indeed I've got sidetracked by the non-flash notion of iscsiadm. But this 
+refers to something else - probably to those mysterious flashnodes 
+mentioned in the man page. 
+
+The target lun is a sparse file on a xfs filesystem (ontop of a md0 raid, 
+but with trim enabled: raid456.devices_handle_discard_safely=Y)
+
+The filesystem on the lun itself is f2fs. That does report discard 
+capabilities already during mkfs time. At least, if -t=1 is specified. 
+
+Now I did a quick test with deleting half of the mounted lun, and indeed, 
+the real size of beforementioned sparse file shrunk. Took a while, but 
+finally I can confirm, setting emulate_tpu=1 on the target side does do the 
+trick. If the backend supports it, of course. 
+
+I would suspect, it would work the same way for block based backstores 
+(thin provisioned lvm, sparse zvols), but currently I have no means to 
+verify this. 
+
+Just for future reference, as I have had troubles correctly interviewing 
+google about this. 
+
+don.e.w...@gmail.com schrieb am Mittwoch, 26. Mai 2021 um 19:07:20 UTC+2:
+
+> Hello, 
+>  It is also the OS/filesystem that must support the TRIM or UNMAP 
+> command.  I.e. in EXT4 you have to set the option 'discard' when mounting a 
+> volume to support TRIM/UNMAP feature. Using something like 'fsttrim' 
+>
+>  If your backend storage is RAIDed then typically any SSDs are not 
+> presented as SSD/FLASH drives to the host. Physical drives are virtualized 
+> by the RAID controller and LUNs are presented to the host.  
+>
+>   Once the TRIM/UNMAP command is sent  it's up to the backend storage 
+> device to handle that properly. 
+>
+>  Open-iSCSI itself is the transport to the target from the OS.  It does 
+> not initiate TRIP/UNMAP or any other SCSI commands on its own.  It will 
+> pass along those SCSI commands the OS sends and send back all results. 
+>
+>  Regards, 
+> Don 
+>
+>
+>  
+>  
+>
+> On Wed, May 26, 2021 at 10:33 AM 'H. Giebels' via open-iscsi <
+> open-...@googlegroups.com> wrote:
+>
+>> I think I've got it. It is the emulate_tpu parameter on the target side. 
+>> Needs some more confirmation, though
+>>
+>> H. Giebels schrieb am Mittwoch, 26. Mai 2021 um 15:26:39 UTC+2:
+>>
+>>>
+>>> Hello,
+>>>
+>>> not exactly sure, wether this is an issue of targetcli or open iscsi. 
+>>> The target lun is a sparse file, and I would like to be able to trim that 
+>>> lun to reclaim free space. Think thin volume on a file backend. 
+>>>
+>>> Now iscsiadm -m session shows me (non-flash), what I suppose is the 
+>>> reason, why I get an operation not permitted error when trying to so so. 
+>>>
+>>> The manpage talks about a flash node, but it is nowhere explained, what 
+>>> that is and wether this is related to flash storage at all. So maybe there 
+>>> is some documentation about the terms used?
+>>>
+>>> But primarily I would like to know, wether the information about the 
+>>> trimability is a matter of the target advertising it or wether this has to 
+>>> be defined during creation of the lun on the client side (-o new).
+>>>
+>>> Thanks
+>>>
+>>> Hermann
+>>>
+>>>
+>>> -- 
+>> You received this message because you are subscribed to the Google Groups 
+>> "open-iscsi" group.
+>> To unsubscribe from this group and stop receiving emails from it, send an 
+>> email to open-iscsi+...@googlegroups.com.
+>> To view this discussion on the web visit 
+>> https://groups.google.com/d/msgid/open-iscsi/086c0e6e-4df9-409c-80a4-d611fd36a363n%40googlegroups.com 
+>> <https://groups.google.com/d/msgid/open-iscsi/086c0e6e-4df9-409c-80a4-d611fd36a363n%40googlegroups.com?utm_medium=email&utm_source=footer>
+>> .
+>>
+>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/yq1y2c0vs0t.fsf%40ca-mkp.ca.oracle.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/d54dddca-dd0a-40a1-a698-a3107445beb5n%40googlegroups.com.
+
+------=_Part_253_1197968317.1622097191345
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<br>Hello Don,<br><br>thanks very much for further elaborating on this. I c=
+ompletely forgot to mention, the taget side is lio / targetcli. Sorry for t=
+his.<br><br>Indeed I've got sidetracked by the non-flash notion of iscsiadm=
+. But this refers to something else - probably to those mysterious flashnod=
+es mentioned in the man page. <br><br>The target lun is a sparse file on a =
+xfs filesystem (ontop of a md0 raid, but with trim enabled: raid456.devices=
+_handle_discard_safely=3DY)<br><br>The filesystem on the lun itself is f2fs=
+. That does report discard capabilities already during mkfs time. At least,=
+ if -t=3D1 is specified. <br><br>Now I did a quick test with deleting half =
+of the mounted lun, and indeed, the real size of beforementioned sparse fil=
+e shrunk. Took a while, but finally I can confirm, setting emulate_tpu=3D1 =
+on the target side does do the trick. If the backend supports it, of course=
+. <br><br>I would suspect, it would work the same way for block based backs=
+tores (thin provisioned lvm, sparse zvols), but currently I have no means t=
+o verify this. <br><br>Just for future reference, as I have had troubles co=
+rrectly interviewing google about this. <br><br><div class=3D"gmail_quote">=
+<div dir=3D"auto" class=3D"gmail_attr">don.e.w...@gmail.com schrieb am Mitt=
+woch, 26. Mai 2021 um 19:07:20 UTC+2:<br/></div><blockquote class=3D"gmail_=
+quote" style=3D"margin: 0 0 0 0.8ex; border-left: 1px solid rgb(204, 204, 2=
+04); padding-left: 1ex;"><div dir=3D"ltr">Hello,=C2=A0<div>=C2=A0It is also=
+ the OS/filesystem that must support the TRIM or UNMAP command.=C2=A0 I.e. =
+in EXT4 you have to set the option &#39;discard&#39; when mounting a volume=
+ to support TRIM/UNMAP feature. Using=C2=A0something like &#39;fsttrim&#39;=
+=C2=A0</div><div><br></div><div>=C2=A0If your backend storage is RAIDed the=
+n typically any SSDs are not presented as SSD/FLASH drives to the host. Phy=
+sical drives are virtualized by the RAID controller and LUNs are presented =
+to the host.=C2=A0=C2=A0</div><div><br></div><div>=C2=A0 Once the TRIM/UNMA=
+P command is sent=C2=A0 it&#39;s up to the backend storage device to handle=
+ that properly.=C2=A0</div><div><br></div><div>=C2=A0Open-iSCSI itself is t=
+he transport to the target from the OS.=C2=A0 It does not initiate TRIP/UNM=
+AP or any other SCSI commands on its own.=C2=A0 It will pass along those SC=
+SI commands the OS sends and send back all results.=C2=A0</div><div><br></d=
+iv><div>=C2=A0Regards,=C2=A0</div><div>Don=C2=A0</div><div><br></div><div><=
+br></div><div>=C2=A0</div><div>=C2=A0</div></div><br><div class=3D"gmail_qu=
+ote"></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Wed, May 26, 2021 at 10:33 AM &#39;H. Giebels&#39; via open-iscsi &lt;<=
+a href data-email-masked rel=3D"nofollow">open-...@googlegroups.com</a>&gt;=
+ wrote:<br></div></div><div class=3D"gmail_quote"><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">I think I&#39;ve got it. It is the emulate_tpu par=
+ameter on the target side. Needs some more confirmation, though<br><br><div=
+ class=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr">H. Giebels sc=
+hrieb am Mittwoch, 26. Mai 2021 um 15:26:39 UTC+2:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><br>Hello,<br><br>not exactly sure, weth=
+er this is an issue of targetcli or open iscsi. The target lun is a sparse =
+file, and I would like to be able to trim that lun to reclaim free space. T=
+hink thin volume on a file backend. <br><br>Now iscsiadm -m session shows m=
+e (non-flash), what I suppose is the reason, why I get an operation not per=
+mitted error when trying to so so. <br><br>The manpage talks about a flash =
+node, but it is nowhere explained, what that is and wether this is related =
+to flash storage at all. So maybe there is some documentation about the ter=
+ms used?<br><br>But primarily I would like to know, wether the information =
+about the trimability is a matter of the target advertising it or wether th=
+is has to be defined during creation of the lun on the client side (-o new)=
+.<br><br>Thanks<br><br>Hermann<br><br><br></blockquote></div>
+
+<p></p></blockquote></div><div class=3D"gmail_quote"><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+
+-- <br>
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br>
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href data-email-masked rel=3D"nofollow">open-iscsi+...@googlegro=
+ups.com</a>.<br>
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/086c0e6e-4df9-409c-80a4-d611fd36a363n%40googlegroups.=
+com?utm_medium=3Demail&amp;utm_source=3Dfooter" target=3D"_blank" rel=3D"no=
+follow" data-saferedirecturl=3D"https://www.google.com/url?hl=3Dde&amp;q=3D=
+https://groups.google.com/d/msgid/open-iscsi/086c0e6e-4df9-409c-80a4-d611fd=
+36a363n%2540googlegroups.com?utm_medium%3Demail%26utm_source%3Dfooter&amp;s=
+ource=3Dgmail&amp;ust=3D1622183476534000&amp;usg=3DAFQjCNG_wXYDNDLz66OREBWv=
+e6tNjREJPQ">https://groups.google.com/d/msgid/open-iscsi/086c0e6e-4df9-409c=
+-80a4-d611fd36a363n%40googlegroups.com</a>.<br>
+</blockquote></div>
+</blockquote></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/d54dddca-dd0a-40a1-a698-a3107445beb5n%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/d54dddca-dd0a-40a1-a698-a3107445beb5n%40googlegroups.com</a>.=
+<br />
+
+------=_Part_253_1197968317.1622097191345--
+
+------=_Part_252_1302071430.1622097191345--
