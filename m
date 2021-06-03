@@ -1,145 +1,78 @@
-Return-Path: <open-iscsi+bncBAABBTO54OCQMGQEA2EUK7Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBLW74OCQMGQE5H5RPUI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3e.google.com (mail-qv1-xf3e.google.com [IPv6:2607:f8b0:4864:20::f3e])
-	by mail.lfdr.de (Postfix) with ESMTPS id 646EB39A3DE
-	for <lists+open-iscsi@lfdr.de>; Thu,  3 Jun 2021 17:01:35 +0200 (CEST)
-Received: by mail-qv1-xf3e.google.com with SMTP id n3-20020a0cee630000b029020e62abfcbdsf690575qvs.16
-        for <lists+open-iscsi@lfdr.de>; Thu, 03 Jun 2021 08:01:35 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1622732494; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=S0GdaFgRZjCIkuiZDL8ghQSK5HlJU+3gT0clIMN//B5CISjtDUqX9MQjd99tllT22p
-         3XfIwb+4IuUHnkEXkm/WPdssq5SW0Sa52VeuOT148XN9DhdD2McdBRhB3LWmId/bSJW0
-         07Iom6tVhcIjjXPqsJL8sA7hNKmluu++dPS4QqU0vwDajWKsW7WxsriC22bSaXACgtdz
-         oHO3DSO5oZBdtpeGsM1KPXsIOo5BnthcKMhFhMR7BNT/JSynL+oc70J8MJDeCYuYxBev
-         t8NQvYNoDY8yAHMZQatkY9kz3AgiRniZl3xdat9EDdedMtfzaLEBMYtTuvVPPs1eUrxc
-         psGQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-language
-         :in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :to:subject:sender:dkim-signature;
-        bh=094QETp5QdFYaJJtVtwAQBzZSeuRwQGxlqrHh7eEZRQ=;
-        b=hoPrc6RS5NW14l0F1EOdDAPLg4t+hORrMUlzoDmuuIjT1i7x+CbdpojDZQ8vwBB/Hw
-         7VHV1uckvSLH7ZtU3ZzNeH1Rs77Op4eqAKmKenKMRIHeh7ys9t5x611gBrEzPR7fVZKm
-         NpxuAl42I1E3Uz01s5Hd5fm2boy62BL8r+1a702hY6cVh8MVn6aZKxva4EAymPYCGDiR
-         uc3H73O4r9739GO6i0pT1SGwJWluYkh4im5SozPI9HzX0dEwx3Fy3/kGPElrvdOqeNZh
-         4wBjzD2SAlnWrpdUgc46frm0eq5cy3J8Tode0wAsjm9n6SSSDwcPOLaBTVsFYCU/5OOZ
-         F4HQ==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of thunder.leizhen@huawei.com designates 45.249.212.35 as permitted sender) smtp.mailfrom=thunder.leizhen@huawei.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=huawei.com
+Received: from mail-qv1-xf40.google.com (mail-qv1-xf40.google.com [IPv6:2607:f8b0:4864:20::f40])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE3B39A3F2
+	for <lists+open-iscsi@lfdr.de>; Thu,  3 Jun 2021 17:05:20 +0200 (CEST)
+Received: by mail-qv1-xf40.google.com with SMTP id k6-20020a0cd6860000b029021936c6e8ffsf4611503qvi.7
+        for <lists+open-iscsi@lfdr.de>; Thu, 03 Jun 2021 08:05:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
-        h=sender:subject:to:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
+        h=sender:date:from:to:message-id:in-reply-to:references:subject
+         :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=094QETp5QdFYaJJtVtwAQBzZSeuRwQGxlqrHh7eEZRQ=;
-        b=gcGQS2AWRyieY0zFJVJQSKEQ1/lU7I/Ce1v+7Y0pCyfhksDXEPUoA4NeczN+z9dun/
-         TBAfbk00TDVDZ7lh8/qu8C/D9RJWufDLDUGuU9QL5i8jwxuBP5fuxN4SrV4oeVcGzAbY
-         8jHc48Mh/0LNOIJ6G2SB5f/ilI+gpnSIP2EuzkVXBD7YQ/lqenx6Q7m4rNvvyS3xdrRr
-         TJb2+8+M0LvO3ggsixix2QCigBuI2TkBJCl2kKCEx/a96zwIXgoa8kYNWKOlbbvHk84D
-         d0wWpBT8DNog2JZciU5wsw95C7uLYISmi79rXmn3QOBcG5HMZge4Y6k/BZh/mDY9zKUH
-         sbGQ==
+        bh=vnesUjO3v+gDBtVJCAfGz5EzsuEy4oKooBXDVNMJXQ0=;
+        b=Sl4E8f7KvaaYZSDSTdnUE7FXZG8qnhsLMM0CXbZv38e1yjJ5SaG6AYQ74V88L1055R
+         ep8cKsx2ha403Siy5J+RufZyFmorafOoTMSBq6lmdbuSuhS9AKpy+dJp1cXkSkHtIxrS
+         Uuloq1AfXGK3Wyw0Mrl3uj4hljVmFjrtcpE5BHUqxtkMbN5iXKgCLjkCVFPzTiXThxBJ
+         9k2fgCXKWBnlZAlOFjeM4/2wZvRuafVklKw1AsWrW+or/UJ+ITaNIJXHOgde4/9zEffo
+         zH+zVVgdRs/kkGyfSOno48M4UFzWpqsEz7D6BZXrsoNucw1A2qWezfT1Y7pMaAsYARsA
+         qnrA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=vnesUjO3v+gDBtVJCAfGz5EzsuEy4oKooBXDVNMJXQ0=;
+        b=Br2oeSNofCzeqNAhGYT/C7sPNRAehGdxifcKnJRHAAjFZHYHg/QBCoJeeZTwpydAaD
+         XsYeA2z13g125GoYYeIfMIEpHkEzlci28pT4q7dR/mN4oIwNyiewKW5BLK5IFadtC8hk
+         dj1byJzaBLcEmu0dYvqZwVma8OBzsKE/aCqLWlYR0uO4xA6nHE3taBkog32KsrvBvYHN
+         hlkReAcwkL/0lS0HSOKAvRR+QWpOnUVWrk/70qDUd4zyv5kmNEJx3EPaQKjCca0U824c
+         6qdYy1XbQpPMocZq8T0xqIE1x1rUunuNFjYU/UzWDUsgJ5o0gt4QbFe3z1ODfGaTidfl
+         QLCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:subject:to:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=094QETp5QdFYaJJtVtwAQBzZSeuRwQGxlqrHh7eEZRQ=;
-        b=kM76Q1guEhPa10KEwONf+X0ryiMUzYyk+bVPoJqAXs+qd8fRZijQOfiliMYDTlQqcG
-         oh5VjFfpBs4hP/LulL+6McxEEYudWcb+IwFpdx6rLExa/Xo7YTCpmS5xpUiLhs9ljF6F
-         NDYGW3cajYATeV/arXXNHe/JvMFm2/ZdoXelWWKM/Q7y2cToDT9K6csaJ4znn72BczdD
-         sR3xblxdWO1jbisoDJwBh0iy9nbejwSGcedaPqHcX3jsB8bCjXIg0qoShBDcL/IX9HM9
-         Ieotcgq7oiaQJLayAF7VXDmSvXkwaydyiFSC/arkLKSxwsdu4Z7SCMwpsTMDWd8poHmm
-         5myw==
+        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
+         :references:subject:mime-version:x-original-sender:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=vnesUjO3v+gDBtVJCAfGz5EzsuEy4oKooBXDVNMJXQ0=;
+        b=VI0LrsAMmyzuUpVIDDQjsPRDNwYCg0PbLe/CMw8NkboF+fcRRpE9JvsV3enAT/Trc5
+         aZaBhKbAbOkSUOgJkc47Zv2pNoBQ38tjOcEbRk2PeFUFA52Q6NY98kw53h4IqY7Z6P4y
+         8Tdqsc+YYpx8SuzaXgDQiWB9w5wc728pv9aq7vS+0pUWD9PCrYnE4z+PynXU4uVDZUcn
+         L1ZVfDEtUQW8iFH2fduDVxCqYuAPnws1ediuleXOoSlOj/koKlMpzML/XJbYN0A8NnM9
+         yPVRzGd7wUi3jTwf068bIcQK9rbyk6EJcTfunqE/pEXep+JjZLkddag8/7qUrjLEsTOP
+         aeRQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532pdKIKOQ1fTb6eHdmPsRFqeILipKR7Qk05zQF95BJ+tSSgPhNx
-	Nx9LwGRgZrbVkL5dOXFzfHU=
-X-Google-Smtp-Source: ABdhPJyVgaBn0GKHrX4iGg9/o9ffHhfYtROnrvNs9RoOCPP9M5SzZUYpHh2ETH7p+CR3UsoB/n6l2A==
-X-Received: by 2002:a37:8403:: with SMTP id g3mr33362511qkd.469.1622732493991;
-        Thu, 03 Jun 2021 08:01:33 -0700 (PDT)
+X-Gm-Message-State: AOAM533zvoxVQRyO5H05Mv3ozd/BjAp8uagm09yGdgPx9yQd8ojRJiCS
+	g98wJzp6thl7Z7xjVdiGcQE=
+X-Google-Smtp-Source: ABdhPJz3jW6LSif6pYvqxg8RCsAcGv8ObyotcpJBptBJ8VuZVG9uHgg/+HitKg8IAmTdJEb90Ngi0g==
+X-Received: by 2002:ac8:7d14:: with SMTP id g20mr326948qtb.298.1622732719037;
+        Thu, 03 Jun 2021 08:05:19 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6214:180c:: with SMTP id o12ls1245280qvw.5.gmail; Thu,
- 03 Jun 2021 08:01:33 -0700 (PDT)
-X-Received: by 2002:a0c:ff03:: with SMTP id w3mr294517qvt.6.1622732493535;
-        Thu, 03 Jun 2021 08:01:33 -0700 (PDT)
-Received: by 2002:a37:a50:0:b029:3a6:3d2:85c6 with SMTP id af79cd13be357-3a6a3f6861fms85a;
-        Wed, 26 May 2021 19:12:17 -0700 (PDT)
-X-Received: by 2002:a05:620a:1359:: with SMTP id c25mr1226224qkl.228.1622081537641;
-        Wed, 26 May 2021 19:12:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1622081537; cv=none;
-        d=google.com; s=arc-20160816;
-        b=UDyt44vS3IYqJ4mC6cGBzNqg7CxindIPL+Frjh0nlQB/vteTGNbjOcXZIM1U1J/buJ
-         unsjerhJGMEv5xVz5jjFTKk/fidmjX1EkNNKO1+Viy02EEkKpP1Lj3MvaYFFw9PA5x/t
-         mxFharfLq1nHPA+H6KkCwfVHS+fD0JwSEOKlbpWI5gJdzobLVTvhqEgD5IwK7/w2lBXs
-         i37F/XVqgZpgsMBAeflDtfyp7w2lPcw5igLqKI9SiCuFNXdwy4UOFCjdnjsw0bg9+h+S
-         Ek+WOwqEDd2d6s4wgGDN+zxn/1zmpmZmgO6EyfYml38Iho3Cbh2y5df6eccyiRfEAGFP
-         /H7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:to:subject;
-        bh=jUOQnhypCROdqlb2PwDNTvjKXC+ZGnUJ9uKoaaBc5/g=;
-        b=BpQOb4MsbfK6R/ga7i6wUL/BokF8nrusmJ+ZguAhF/2FbIIkRLAR9fz30wC4OKjQPn
-         XIP/ZLsVJIPTT9YLIR4ZkwtvN4MhOQNUm2uzy9ms74eUz2R+TnBqEq2wj2ve6QP9K0Mi
-         n0QpT8g0fmtLnWna0p7qwmA8jyXnbtLwR3s8f4DpPqGnab8FvH+8MgvbuWJoJ7oEwtdu
-         3ns7y+IErhjT3xYy2/0mohY/1/zCnBY8VuetHZiu99BHbxxWyyzlGd7fPkR6fMnlMT+6
-         +kYJraM7z+AJ3VkzUQEIoiXstNNcZ20yKWuZ0KeW1jrZ4AIZyuAfgKenD3mBz/kBtb+7
-         y+ug==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of thunder.leizhen@huawei.com designates 45.249.212.35 as permitted sender) smtp.mailfrom=thunder.leizhen@huawei.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=huawei.com
-Received: from szxga07-in.huawei.com (szxga07-in.huawei.com. [45.249.212.35])
-        by gmr-mx.google.com with ESMTPS id x24si78956qkx.3.2021.05.26.19.12.17
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 May 2021 19:12:17 -0700 (PDT)
-Received-SPF: pass (google.com: domain of thunder.leizhen@huawei.com designates 45.249.212.35 as permitted sender) client-ip=45.249.212.35;
-Received: from dggems704-chm.china.huawei.com (unknown [172.30.72.58])
-	by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4FrB7k5sZkz81Qq;
-	Thu, 27 May 2021 10:08:50 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggems704-chm.china.huawei.com (10.3.19.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 27 May 2021 10:11:43 +0800
-Received: from [127.0.0.1] (10.174.177.72) by dggpemm500006.china.huawei.com
- (7.185.36.236) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Thu, 27 May
- 2021 10:11:43 +0800
-Subject: Re: Aw: [EXT] Re: [PATCH 1/1] scsi: Fix spelling mistakes in header
- files
-To: Ulrich Windl <Ulrich.Windl@rz.uni-regensburg.de>,
-	<open-iscsi@googlegroups.com>, <dgilbert@interlog.com>, <jejb@linux.ibm.com>,
-	<linux-scsi@vger.kernel.org>
-References: <20210517095945.7363-1-thunder.leizhen@huawei.com>
- <162200196243.11962.5629932935575912565.b4-ty@oracle.com>
- <60AE2272020000A100041478@gwsmtp.uni-regensburg.de>
-From: "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <215847b9-f64d-8cb2-e53b-13123770ca1a@huawei.com>
-Date: Thu, 27 May 2021 10:11:41 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+Received: by 2002:a37:554:: with SMTP id 81ls2183480qkf.9.gmail; Thu, 03 Jun
+ 2021 08:05:18 -0700 (PDT)
+X-Received: by 2002:a05:620a:c0b:: with SMTP id l11mr33142qki.181.1622732718332;
+        Thu, 03 Jun 2021 08:05:18 -0700 (PDT)
+Date: Thu, 3 Jun 2021 08:05:17 -0700 (PDT)
+From: The Lee-Man <leeman.duncan@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <fb43a674-d703-4b2d-ac74-3940e6ed2ba0n@googlegroups.com>
+In-Reply-To: <3AF81341-6AC0-4FF7-955E-7ACCBC8A1E77@oracle.com>
+References: <AQHXUZvVoJiBY6puzU22V3vtdPYO9ar0oLUA>
+ <06EC4AC0-4E03-4D2D-A23C-FDE7377BA3A0@oracle.com>
+ <3AF81341-6AC0-4FF7-955E-7ACCBC8A1E77@oracle.com>
+Subject: Re: Submitting a change
 MIME-Version: 1.0
-In-Reply-To: <60AE2272020000A100041478@gwsmtp.uni-regensburg.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Language: en-US
-X-Originating-IP: [10.174.177.72]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Original-Sender: thunder.leizhen@huawei.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of thunder.leizhen@huawei.com designates 45.249.212.35 as
- permitted sender) smtp.mailfrom=thunder.leizhen@huawei.com;       dmarc=pass
- (p=NONE sp=NONE dis=NONE) header.from=huawei.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_1028_1518779424.1622732717655"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -148,50 +81,115 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
+------=_Part_1028_1518779424.1622732717655
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1029_248717230.1622732717655"
 
+------=_Part_1029_248717230.1622732717655
+Content-Type: text/plain; charset="UTF-8"
 
-On 2021/5/26 18:26, Ulrich Windl wrote:
-> (Amazingly I also did think "busses" is correct -- seems to be a common mistake; maybe only for Germans that would pronounce "busses" differently from "buses"...)
+On Thursday, June 3, 2021 at 8:01:35 AM UTC-7 Anjali Kulkarni wrote:
 
-I just googled: busses or buses
+> *fall. -> foll. 
+> *Gothic -> GitHub
+>
+> On May 25, 2021, at 12:26 PM, Anjali Kulkarni <Anjali.K...@oracle.com> 
+> wrote:
+>
+> Hi, 
+> I am interested in submitting a change upstream for open-iscsi. How can I 
+> go about doing this? 
+> Also, is the iscsi utils on the fall. Gothic location, used on redhat as 
+> well?
+> https://github.com/open-iscsi/open-iscsi
+>
+> Thanks
+> Anjali
+>
+>
+> There are a couple of ways to submit changes. The best way is to submit a 
+> pull request on github.
+>
+ 
 
-Busses isn't a misspelling, it's just that few people use it these days. The link below makes it clear:
+> Open-iscsi is at github.com/open-iscsi/open-iscsi. If you don't use 
+> github, you could submit a patch to this list, though you must be careful 
+> your email client doesn't munge up the patch.
+>
 
-https://www.merriam-webster.com/words-at-play/plural-of-bus
-
-> 
-> 
->>>> Martin K. Petersen 26.05.2021, 06:08 >>>
-> 
-> On Mon, 17 May 2021 17:59:45 +0800, Zhen Lei wrote:
-> 
->> Fix some spelling mistakes in comments:
->> pathes ==> paths
->> Resouce ==> Resource
->> retreived ==> retrieved
->> keep-alives ==> keep-alive
->> recevied ==> received
->> busses ==> buses
->> interruped ==> interrupted
-> 
-> Applied to 5.14/scsi-queue, thanks!
-> 
-> [1/1] scsi: Fix spelling mistakes in header files
-> https://git.kernel.org/mkp/scsi/c/40d6b939e4df
-> 
-> --
-> Martin K. Petersen Oracle Linux Engineering
-> 
-> --
-> You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/162200196243.11962.5629932935575912565.b4-ty%40oracle.com.
-> 
-> 
-> .
-> 
+-- 
+Lee Duncan
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/215847b9-f64d-8cb2-e53b-13123770ca1a%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/fb43a674-d703-4b2d-ac74-3940e6ed2ba0n%40googlegroups.com.
+
+------=_Part_1029_248717230.1622732717655
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thursday, June 3, 2021 at 8:01:35 AM UTC-7 Anjali Kulkarni wrote:<br><di=
+v class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin: =
+0 0 0 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;"=
+>
+
+
+
+<div style=3D"word-wrap:break-word;line-break:after-white-space">
+<span style=3D"font-size:14px">*fall. -&gt; foll.</span>
+<div><span style=3D"font-size:14px">*Gothic -&gt; GitHub<br>
+</span>
+<div><br>
+<blockquote type=3D"cite">
+<div>On May 25, 2021, at 12:26 PM, Anjali Kulkarni &lt;<a href=3D"" data-em=
+ail-masked=3D"" rel=3D"nofollow">Anjali.K...@oracle.com</a>&gt; wrote:</div=
+>
+<br>
+<div>
+<div style=3D"word-wrap:break-word;line-break:after-white-space">
+<span style=3D"font-size:14px">Hi,</span>
+<div><span style=3D"font-size:14px">I am interested in submitting a change =
+upstream for open-iscsi. How can I go about doing this?&nbsp;</span></div>
+<div><span style=3D"font-size:14px">Also, is the iscsi utils on the fall. G=
+othic location, used on redhat as well?</span></div>
+<div><a href=3D"https://github.com/open-iscsi/open-iscsi" style=3D"font-siz=
+e:14px" target=3D"_blank" rel=3D"nofollow" data-saferedirecturl=3D"https://=
+www.google.com/url?hl=3Den&amp;q=3Dhttps://github.com/open-iscsi/open-iscsi=
+&amp;source=3Dgmail&amp;ust=3D1622818912923000&amp;usg=3DAFQjCNH_piIoCOJK2g=
+4PnQASsQWKBCgurg">https://github.com/open-iscsi/open-iscsi</a></div>
+<div><span style=3D"font-size:14px"><br>
+</span></div>
+<div><span style=3D"font-size:14px">Thanks</span></div>
+<div><span style=3D"font-size:14px">Anjali</span></div>
+</div>
+</div>
+</blockquote>
+</div>
+<br><div>There are a couple of ways to submit changes. The best way is to s=
+ubmit a pull request on github.</div><div></div></div></div></blockquote><d=
+iv>&nbsp;</div><blockquote class=3D"gmail_quote" style=3D"margin: 0 0 0 0.8=
+ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;"><div sty=
+le=3D"word-wrap:break-word;line-break:after-white-space"><div><div>Open-isc=
+si is at github.com/open-iscsi/open-iscsi. If you don't use github, you cou=
+ld submit a patch to this list, though you must be careful your email clien=
+t doesn't munge up the patch.<br></div></div></div></blockquote><div><br></=
+div><div>-- <br></div><div>Lee Duncan<br></div></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/fb43a674-d703-4b2d-ac74-3940e6ed2ba0n%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/fb43a674-d703-4b2d-ac74-3940e6ed2ba0n%40googlegroups.com</a>.=
+<br />
+
+------=_Part_1029_248717230.1622732717655--
+
+------=_Part_1028_1518779424.1622732717655--
