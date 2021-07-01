@@ -1,74 +1,75 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBLGC66DAMGQECSTJ4MI@googlegroups.com>
+Return-Path: <open-iscsi+bncBC5LJAFHUIPRBLGL66DAMGQEACRJYFA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
 Received: from mail-qt1-x83d.google.com (mail-qt1-x83d.google.com [IPv6:2607:f8b0:4864:20::83d])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCCB43B940D
-	for <lists+open-iscsi@lfdr.de>; Thu,  1 Jul 2021 17:37:17 +0200 (CEST)
-Received: by mail-qt1-x83d.google.com with SMTP id b11-20020ac812cb0000b0290250bfff0028sf3549743qtj.9
-        for <lists+open-iscsi@lfdr.de>; Thu, 01 Jul 2021 08:37:17 -0700 (PDT)
+	by mail.lfdr.de (Postfix) with ESMTPS id 831413B9466
+	for <lists+open-iscsi@lfdr.de>; Thu,  1 Jul 2021 17:56:29 +0200 (CEST)
+Received: by mail-qt1-x83d.google.com with SMTP id h10-20020ac87d4a0000b029024eccb9d079sf3603929qtb.1
+        for <lists+open-iscsi@lfdr.de>; Thu, 01 Jul 2021 08:56:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20161025;
         h=sender:date:from:to:message-id:in-reply-to:references:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=g2UG30dpUXOZLPVqI+ftZE9fAy/tZmdshpmIjq9MSpY=;
-        b=a4gCbaJOA/5ZB20eZly9txOADQebfYMw9B5SZCXm1B0Piy4GqRdTLWrXUeX3qTzAng
-         6V3fBpyX3ltpvltSp2SJzN6ntfC8AsJNG9I563JXVR2wg3p62SwlaPjVvfky7XeMyFB1
-         GsFx63aDT6Yp5hVDh88DSNNFHVvzkZJz13kyESJVE1BsVhh+z1lWERLh8+B9IdPospIk
-         FuFmNlsKd6gb3f/NTy/UG0Z2C5ifEWVd4SgYcJhtFrBy4CNq187udk/PlhVu+VdoEjmw
-         /ipA4D3Rt9hKjqOa784vzXezlCxWM0Lv4FsvowDv2XLarT6FHyMyOdLkQDP563do4Y7V
-         kNPQ==
+        bh=ad1MA/j7LMlJBoCO2mWnf2K7aSDcRb1TEOGrsNk8KME=;
+        b=P+PMKBgIpEBRiwRzKEOHZCvir2zBAsd/5+Jp1R31KSoB88o1oHcxYacSw/TE6QIZKr
+         HI/NtF7gB2z1oefSaZ8IynhQaFd9rxi4cEZLP3BJA0eR7KXHiMkAg0pkcFKq0O8ETe+o
+         JEOGv/cC6eC7LIeodtUrmqZP1x3SwQDCK+bi+0M12v2VcstKhkA9qFYx8UUFOmS592zl
+         xUb1ew4cWFqnT7gR/aBC+AAGKe99xbjhvBymN5ldO9sj0pHmqlDtrbry4jJf76GuuroP
+         jgVJe/uGZvKWbyqlm+CugbZuCKqMCM8MkkKHC5V8wI/GjaziHHbdwPgAOVjJEJAhFFtB
+         xpoA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=4cgroup-co-za.20150623.gappssmtp.com; s=20150623;
         h=date:from:to:message-id:in-reply-to:references:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=g2UG30dpUXOZLPVqI+ftZE9fAy/tZmdshpmIjq9MSpY=;
-        b=kzfVqbScN10qKhI1p6RdDcw+4MCN3W5fTJ8lIQ+VnbUUvFwKOxKFDSXOPo4IuTv3t7
-         hLdX9xcj2c/VFmjJyu1vOXYBinqCgAfIQT2DW0yWRH1R8WHn/eu0wvbrD2O1gsUZagtJ
-         b0U6bU1RVa4YSSRKmkVJNhJFmhsjbDuj3wEPtJg5RjXPLLCFNlqROeHSg6ptAcaOQcxW
-         3Dj5tSQgxze0PcTsa/QyS+wDBWk2frQiZRd35HTEDh7oEecQKzLk7I3N2y92LlyZyMdt
-         ZQzp+j1j2li7fZWfbEpEOfgL39sps20FRmhUKanPG+6nVUSbiQMh9ow9Lu67rkSsnXWj
-         pYmg==
+        bh=ad1MA/j7LMlJBoCO2mWnf2K7aSDcRb1TEOGrsNk8KME=;
+        b=yCJ2816kIiPQt4PrtqcsqPtI9MW/y3ycy/rIZFeR2Zn6uLs0YuUSrB5ID/XVfWsJUw
+         H2CPj1DOZDeCSrPqiGLUpNf4NW1mGNS+XFq/5O2AJLdQ9zk0QMRpD2q9ntR3q0iR+o1l
+         CrssMvkGDzucJh0vwhQxBJkeyeciydUPNBxOizZnJVFRTRhYC1PYEAXrq02wrIaqaP8k
+         y16CoZMnMRSsfVttIjeXd5X2Zl0HzC4fNH2gjOFT1NmCjnjMWlezz+d2GlwplIlHo7QO
+         bZ5iNB7BVbak0GDueMBEbhNrwn3C40ezbKBjNx/PV7SLtOXa3g4RVuHEfQQrU06xYm+5
+         BQYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
          :references:subject:mime-version:x-original-sender:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=g2UG30dpUXOZLPVqI+ftZE9fAy/tZmdshpmIjq9MSpY=;
-        b=bkN3UOC6+OMynWDHKKVuC88ruHDvPMKZ+gTbBXmBnP0HLh6ikVKguAxymH3nY0ChWX
-         yXAiAwSf98XcfHawpCEzWCIRIywBKLR59wu7hJte5nBPqh3cgJQ++OWgPUvmGJ1fMyCr
-         fKdHk4ZEhrHF5DTplQtd+1WWhZ6xi/JGPuPMR83pV6tgPVSaPtEnQ/E1TNa/kDygK0bo
-         xIP2tN8RQt8Cxy1EhxoTXTpaxdrsBvyMArp17ythAouzXkqdlG3CybY86eDUGI79Qem4
-         C9ZpNYo+pXzVlaYIKhT99vMRPhX92ruxNW4pceOlufmV6jk2OqEraHFUAFErLSUhycjf
-         PCWA==
+        bh=ad1MA/j7LMlJBoCO2mWnf2K7aSDcRb1TEOGrsNk8KME=;
+        b=mdWC+ed1VrReMJTaoeW5PVoC0UpkhPMA7SN58ZcSap7NsSiwwNEI2jQoPAVBJQGli9
+         Hc3VxJglvYbPKAt9AJOWncuW2GyDFfkmbGApdzqiIkVgg0nRhAbJlz/LqWSUVq+5t3xf
+         JzzN9wACrIXiYtncksONDMOJbYxQVwBnIFpIeiQSgfERRcUv/rVU0i0yOcgBZt0PIvOh
+         +1zmgC5bVonROw1iVizI0J23hd1V/ojG4DqjUSJqTySOIPiP8U0H3p/Ttl9ewbFXRe/P
+         OfZCwwSV5gCga4ZsxIFLWP/xGzWwjP9yAwpMq3RvWb8FnsS5MlecdFzZqcLkmpUBIqvp
+         Z6gQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM533yQ0TxBWzTxhDJ7f2L4mI2kH7XG5pPxyesYN2ouDks8SY43WkW
-	6DTQPfm9+NK+Bk/0d/wS7K8=
-X-Google-Smtp-Source: ABdhPJwCuXkQr/tzP7Boob6cKsRz/dD9Xr4rqDdFnReQgFwnsrMPkkLfYasNFbAS+QOVFNSJpFX13w==
-X-Received: by 2002:a05:6214:170f:: with SMTP id db15mr479110qvb.48.1625153836573;
-        Thu, 01 Jul 2021 08:37:16 -0700 (PDT)
+X-Gm-Message-State: AOAM533ZcSPiXDltquRZyt+4BN+0U25OVXMJLXYCZLYSI+s9+zyIwAzt
+	0cx4TeKeuPtAR3ITMf/Z4vk=
+X-Google-Smtp-Source: ABdhPJwDboFAIagE/WhaiPFD2W+Cy21x4c+FA4XkesBYVJiIHItFpLeKYN9xwBUmOvMjvIzO3USg/w==
+X-Received: by 2002:a05:622a:34a:: with SMTP id r10mr646520qtw.94.1625154988630;
+        Thu, 01 Jul 2021 08:56:28 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ae9:e814:: with SMTP id a20ls4003538qkg.4.gmail; Thu, 01 Jul
- 2021 08:37:16 -0700 (PDT)
-X-Received: by 2002:a37:315:: with SMTP id 21mr572878qkd.491.1625153835736;
-        Thu, 01 Jul 2021 08:37:15 -0700 (PDT)
-Date: Thu, 1 Jul 2021 08:37:15 -0700 (PDT)
-From: The Lee-Man <leeman.duncan@gmail.com>
+Received: by 2002:a05:620a:148c:: with SMTP id w12ls4022452qkj.11.gmail; Thu,
+ 01 Jul 2021 08:56:28 -0700 (PDT)
+X-Received: by 2002:a37:70d:: with SMTP id 13mr725449qkh.240.1625154987873;
+        Thu, 01 Jul 2021 08:56:27 -0700 (PDT)
+Date: Thu, 1 Jul 2021 08:56:27 -0700 (PDT)
+From: Riaan Pretorius <riaan.pretorius@4cgroup.co.za>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <303b57a8-5d06-44ef-9212-ee350ea6bd1fn@googlegroups.com>
-In-Reply-To: <f3e8a3df-cfb2-4913-b518-e01a801614dbn@googlegroups.com>
+Message-Id: <b5244724-f131-4ad7-9db2-a3ca3c0548d1n@googlegroups.com>
+In-Reply-To: <303b57a8-5d06-44ef-9212-ee350ea6bd1fn@googlegroups.com>
 References: <07b30064-72b3-42c1-ae71-f40c885c06ffn@googlegroups.com>
  <60DC55B5020000A100042163@gwsmtp.uni-regensburg.de>
  <B3425A37-BF5B-48DE-A3DB-3DFC856F19E7@comcast.net>
  <f3e8a3df-cfb2-4913-b518-e01a801614dbn@googlegroups.com>
+ <303b57a8-5d06-44ef-9212-ee350ea6bd1fn@googlegroups.com>
 Subject: Re: Antw: [EXT] ISCSI Target and Initiator on same host
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_1284_696438124.1625153835150"
-X-Original-Sender: leeman.duncan@gmail.com
+	boundary="----=_Part_1430_1177860234.1625154987232"
+X-Original-Sender: riaan.pretorius@4cgroup.co.za
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -82,118 +83,201 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1284_696438124.1625153835150
+------=_Part_1430_1177860234.1625154987232
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_1285_1817041964.1625153835150"
+	boundary="----=_Part_1431_1324834227.1625154987232"
 
-------=_Part_1285_1817041964.1625153835150
+------=_Part_1431_1324834227.1625154987232
 Content-Type: text/plain; charset="UTF-8"
 
-I need a bit more information about your setup. What target are you using? 
-I'm guessing LIO, since that's the most common (using targetcli), but there 
-are others, and each one is different with respect to ACLs, using 
-passwords, etc.
+Hi All,
 
-I use LIO/targetcli, and I usually work with the initiator and target on 
-the same system, no problem. This is a network protocol, so it shouldn't 
-matter if the initiator and target are on the same system or miles apart, 
-as long as they are connected via the network.
+Thank you all for your comments. I have originally wondered if it was 
+possible to share the target to the host itself and that was answered as a 
+yes. that lead me to "I must be doing something wrong". It turns out it was 
+2 things. 
 
-With LIO, you have to either add your initiator IQN to the ACL for the 
-target, or you need to put the target in "demo" mode. Though poorly named, 
-demo mode allows connection without ACLs (it generates the ACLs on the fly).
+1st the way I created my LUNs was wrong and 2nd forgot about the ACL. After 
+I reviewed those 2 things, everything is working as expected.  Just had to 
+re-read the examples i was working from to better understand the issue. 
 
-Are you using initiator and/or target name/password protection? If so, that 
-adds a layer of complication. For testing, I do not set up any 
-names/passwords.
+Original way:
+asmdatadisk4 is a udev raw device
 
-How to you try to connect to your target? What distribution are you on and 
-what version of that distro? Do you run iscsi discovery first, then 
-connect? Show us the sequence of commands you use, and the actual error 
-messages you say you are getting?
+/iscsi> 
+create iqn.2021-04.local.poc-ora-cluster1:asmdatadisk4
+cd iqn.2021-04.local.poc-ora-cluster1:asmdatadisk4/tpg1/
+luns/ create/backstores/block/asmdatadisk4
+acls/ create iqn.2021-04.local.poc-ora-cluster1:asmdatadisk4
+set attribute authentication=0
+set attribute generate_node_acls=1
+set attribute demo_mode_write_protect=0
+cd ../..
 
-Are you setting up the target the automatically reconnect on each reboot? 
-If so, the steps you take to do that may differ per distrubution. And what 
-systemd services do you have running?
 
-You need to supply much more information, in general, when asking for 
-technical help. :)
+Working way:
+cd /backstores/block
+create name=LUN_0 dev=/dev/sdf
+create name=LUN_1 dev=/dev/sdd
+create name=LUN_2 dev=/dev/sde
 
-On Wednesday, June 30, 2021 at 8:15:03 AM UTC-7 riaan.p...@4cgroup.co.za 
-wrote:
+cd /iscsi
+create
+ls
+cd 
+iqn.2003-01.org.linux-iscsi.poc-ora-cluster1.x8664:sn.d67e31a1c6f9/tpg1/luns
 
-> I get strange messages in my logs when i tried do that. and get disk 
-> "flapping" when the disk just appear and reappear continuously after a 
-> reboot.   logically it would make sense that you can do this, but 
-> practically  there is weird issues. Would you guys say it might be a 
-> misconfiguration ?
+create /backstores/block/LUN_0
+create /backstores/block/LUN_1
+create /backstores/block/LUN_2
+
+and of course this line for ACL
+cd 
+/iscsi/iqn.2003-01.org.linux-iscsi.poc-ora-cluster1.x8664:sn.d67e31a1c6f9/tpg1
+set attribute authentication=0 demo_mode_write_protect=0 
+generate_node_acls=1 cache_dynamic_acls=1
+
+
+Apologies for not replying sooner, was working on getting this demo going.
+On Thursday, 1 July 2021 at 17:37:15 UTC+2 The Lee-Man wrote:
+
+> I need a bit more information about your setup. What target are you using? 
+> I'm guessing LIO, since that's the most common (using targetcli), but there 
+> are others, and each one is different with respect to ACLs, using 
+> passwords, etc.
 >
-> On Wednesday, 30 June 2021 at 15:10:54 UTC+2 Paul Koning wrote:
+> I use LIO/targetcli, and I usually work with the initiator and target on 
+> the same system, no problem. This is a network protocol, so it shouldn't 
+> matter if the initiator and target are on the same system or miles apart, 
+> as long as they are connected via the network.
 >
+> With LIO, you have to either add your initiator IQN to the ACL for the 
+> target, or you need to put the target in "demo" mode. Though poorly named, 
+> demo mode allows connection without ACLs (it generates the ACLs on the fly).
+>
+> Are you using initiator and/or target name/password protection? If so, 
+> that adds a layer of complication. For testing, I do not set up any 
+> names/passwords.
+>
+> How to you try to connect to your target? What distribution are you on and 
+> what version of that distro? Do you run iscsi discovery first, then 
+> connect? Show us the sequence of commands you use, and the actual error 
+> messages you say you are getting?
+>
+> Are you setting up the target the automatically reconnect on each reboot? 
+> If so, the steps you take to do that may differ per distrubution. And what 
+> systemd services do you have running?
+>
+> You need to supply much more information, in general, when asking for 
+> technical help. :)
+>
+> On Wednesday, June 30, 2021 at 8:15:03 AM UTC-7 riaan.p...@4cgroup.co.za 
+> wrote:
+>
+>> I get strange messages in my logs when i tried do that. and get disk 
+>> "flapping" when the disk just appear and reappear continuously after a 
+>> reboot.   logically it would make sense that you can do this, but 
+>> practically  there is weird issues. Would you guys say it might be a 
+>> misconfiguration ?
 >>
+>> On Wednesday, 30 June 2021 at 15:10:54 UTC+2 Paul Koning wrote:
 >>
->> > On Jun 30, 2021, at 7:29 AM, Ulrich Windl <
->> Ulrich...@rz.uni-regensburg.de> wrote:
->> > 
->> > I think I did that about 10 years ago...
->> > 
->> >>>> Riaan Pretorius <riaan.p...@4cgroup.co.za> schrieb am 30.06.2021 um 
->> 12:41
->> > in Nachricht <07b30064-72b3-42c1...@googlegroups.com>:
->> >> I have an interesting question to ask:
->> >> 
->> >> Is it possible to share the target on the same server as a initiator ?
->> >> e.g. server1: target -> server1: initiator 
->>
->> Yes, I've used that in a test setup when I needed to put a file system on 
->> iSCSI (to test pNFS).
->>
->> paul
->>
->>
+>>>
+>>>
+>>> > On Jun 30, 2021, at 7:29 AM, Ulrich Windl <
+>>> Ulrich...@rz.uni-regensburg.de> wrote: 
+>>> > 
+>>> > I think I did that about 10 years ago... 
+>>> > 
+>>> >>>> Riaan Pretorius <riaan.p...@4cgroup.co.za> schrieb am 30.06.2021 
+>>> um 12:41 
+>>> > in Nachricht <07b30064-72b3-42c1...@googlegroups.com>: 
+>>> >> I have an interesting question to ask: 
+>>> >> 
+>>> >> Is it possible to share the target on the same server as a initiator 
+>>> ? 
+>>> >> e.g. server1: target -> server1: initiator 
+>>>
+>>> Yes, I've used that in a test setup when I needed to put a file system 
+>>> on iSCSI (to test pNFS). 
+>>>
+>>> paul 
+>>>
+>>>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/303b57a8-5d06-44ef-9212-ee350ea6bd1fn%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/b5244724-f131-4ad7-9db2-a3ca3c0548d1n%40googlegroups.com.
 
-------=_Part_1285_1817041964.1625153835150
+------=_Part_1431_1324834227.1625154987232
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>I need a bit more information about your setup. What target are you us=
-ing? I'm guessing LIO, since that's the most common (using targetcli), but =
-there are others, and each one is different with respect to ACLs, using pas=
-swords, etc.</div><div><br></div><div>I use LIO/targetcli, and I usually wo=
-rk with the initiator and target on the same system, no problem. This is a =
-network protocol, so it shouldn't matter if the initiator and target are on=
- the same system or miles apart, as long as they are connected via the netw=
-ork.</div><div><br></div><div>With LIO, you have to either add your initiat=
-or IQN to the ACL for the target, or you need to put the target in "demo" m=
-ode. Though poorly named, demo mode allows connection without ACLs (it gene=
-rates the ACLs on the fly).</div><div><br></div><div>Are you using initiato=
-r and/or target name/password protection? If so, that adds a layer of compl=
-ication. For testing, I do not set up any names/passwords.</div><div><br></=
-div><div>How to you try to connect to your target? What distribution are yo=
-u on and what version of that distro? Do you run iscsi discovery first, the=
-n connect? Show us the sequence of commands you use, and the actual error m=
-essages you say you are getting?</div><div><br></div><div>Are you setting u=
-p the target the automatically reconnect on each reboot? If so, the steps y=
-ou take to do that may differ per distrubution. And what systemd services d=
-o you have running?</div><div><br></div><div>You need to supply much more i=
-nformation, in general, when asking for technical help. :)<br></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr">On Wednesday=
-, June 30, 2021 at 8:15:03 AM UTC-7 riaan.p...@4cgroup.co.za wrote:<br/></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin: 0 0 0 0.8ex; border-l=
-eft: 1px solid rgb(204, 204, 204); padding-left: 1ex;">I get strange messag=
-es in my logs when i tried do that. and get disk &quot;flapping&quot; when =
-the disk just appear and reappear continuously after a reboot.=C2=A0 =C2=A0=
-logically it would make sense that you can do this, but practically=C2=A0 t=
-here is weird issues. Would you guys say it might be a misconfiguration ?<b=
-r><br><div class=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr">On =
-Wednesday, 30 June 2021 at 15:10:54 UTC+2 Paul Koning wrote:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0 0 0 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">
+Hi All,<div><br></div><div>Thank you all for your comments. I have original=
+ly wondered if it was possible to share the target to the host itself and t=
+hat was answered as a yes. that lead me to "I must be doing something wrong=
+". It turns out it was 2 things.&nbsp;</div><div><br></div><div>1st the way=
+ I created my LUNs was wrong and 2nd forgot about the ACL. After I reviewed=
+ those 2 things, everything is working as expected.&nbsp; Just had to re-re=
+ad the examples i was working from to better understand the issue.&nbsp;<br=
+></div><div><br></div><div>Original way:</div><div>asmdatadisk4 is a udev r=
+aw device<br></div><div><br></div><div><div>/iscsi&gt;&nbsp;</div><div>crea=
+te iqn.2021-04.local.poc-ora-cluster1:asmdatadisk4</div><div>cd iqn.2021-04=
+.local.poc-ora-cluster1:asmdatadisk4/tpg1/</div><div>luns/ create/backstore=
+s/block/asmdatadisk4</div><div>acls/ create iqn.2021-04.local.poc-ora-clust=
+er1:asmdatadisk4</div><div>set attribute authentication=3D0</div><div>set a=
+ttribute generate_node_acls=3D1</div><div>set attribute demo_mode_write_pro=
+tect=3D0</div><div>cd ../..</div></div><div><br></div><div><br></div><div>W=
+orking way:</div><div><div>cd /backstores/block</div><div>create name=3DLUN=
+_0 dev=3D/dev/sdf</div><div>create name=3DLUN_1 dev=3D/dev/sdd</div><div>cr=
+eate name=3DLUN_2 dev=3D/dev/sde</div><div><br></div><div>cd /iscsi</div><d=
+iv>create</div></div><div><div>ls</div><div>cd iqn.2003-01.org.linux-iscsi.=
+poc-ora-cluster1.x8664:sn.d67e31a1c6f9/tpg1/luns</div><div><br></div><div>c=
+reate /backstores/block/LUN_0</div><div>create /backstores/block/LUN_1</div=
+><div>create /backstores/block/LUN_2</div></div><div><br></div><div>and of =
+course this line for ACL</div><div><div>cd /iscsi/iqn.2003-01.org.linux-isc=
+si.poc-ora-cluster1.x8664:sn.d67e31a1c6f9/tpg1</div><div>set attribute auth=
+entication=3D0 demo_mode_write_protect=3D0 generate_node_acls=3D1 cache_dyn=
+amic_acls=3D1</div></div><div><br></div><div><br></div><div>Apologies for n=
+ot replying sooner, was working on getting this demo going.</div><div class=
+=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr">On Thursday, 1 July=
+ 2021 at 17:37:15 UTC+2 The Lee-Man wrote:<br/></div><blockquote class=3D"g=
+mail_quote" style=3D"margin: 0 0 0 0.8ex; border-left: 1px solid rgb(204, 2=
+04, 204); padding-left: 1ex;"><div>I need a bit more information about your=
+ setup. What target are you using? I&#39;m guessing LIO, since that&#39;s t=
+he most common (using targetcli), but there are others, and each one is dif=
+ferent with respect to ACLs, using passwords, etc.</div><div><br></div><div=
+>I use LIO/targetcli, and I usually work with the initiator and target on t=
+he same system, no problem. This is a network protocol, so it shouldn&#39;t=
+ matter if the initiator and target are on the same system or miles apart, =
+as long as they are connected via the network.</div><div><br></div><div>Wit=
+h LIO, you have to either add your initiator IQN to the ACL for the target,=
+ or you need to put the target in &quot;demo&quot; mode. Though poorly name=
+d, demo mode allows connection without ACLs (it generates the ACLs on the f=
+ly).</div><div><br></div><div>Are you using initiator and/or target name/pa=
+ssword protection? If so, that adds a layer of complication. For testing, I=
+ do not set up any names/passwords.</div><div><br></div><div>How to you try=
+ to connect to your target? What distribution are you on and what version o=
+f that distro? Do you run iscsi discovery first, then connect? Show us the =
+sequence of commands you use, and the actual error messages you say you are=
+ getting?</div><div><br></div><div>Are you setting up the target the automa=
+tically reconnect on each reboot? If so, the steps you take to do that may =
+differ per distrubution. And what systemd services do you have running?</di=
+v><div><br></div><div>You need to supply much more information, in general,=
+ when asking for technical help. :)<br></div><br><div class=3D"gmail_quote"=
+><div dir=3D"auto" class=3D"gmail_attr">On Wednesday, June 30, 2021 at 8:15=
+:03 AM UTC-7 <a href data-email-masked rel=3D"nofollow">riaan.p...@4cgroup.=
+co.za</a> wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">I get=
+ strange messages in my logs when i tried do that. and get disk &quot;flapp=
+ing&quot; when the disk just appear and reappear continuously after a reboo=
+t.=C2=A0 =C2=A0logically it would make sense that you can do this, but prac=
+tically=C2=A0 there is weird issues. Would you guys say it might be a misco=
+nfiguration ?<br><br><div class=3D"gmail_quote"><div dir=3D"auto" class=3D"=
+gmail_attr">On Wednesday, 30 June 2021 at 15:10:54 UTC+2 Paul Koning wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex">
 <br>
 <br>&gt; On Jun 30, 2021, at 7:29 AM, Ulrich Windl &lt;<a rel=3D"nofollow">=
 Ulrich...@rz.uni-regensburg.de</a>&gt; wrote:
@@ -215,7 +299,7 @@ tem on iSCSI (to test pNFS).
 <br>
 <br>	paul
 <br>
-<br></blockquote></div></blockquote></div>
+<br></blockquote></div></blockquote></div></blockquote></div>
 
 <p></p>
 
@@ -226,11 +310,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/303b57a8-5d06-44ef-9212-ee350ea6bd1fn%40googlegroups.=
+om/d/msgid/open-iscsi/b5244724-f131-4ad7-9db2-a3ca3c0548d1n%40googlegroups.=
 com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/303b57a8-5d06-44ef-9212-ee350ea6bd1fn%40googlegroups.com</a>.=
+id/open-iscsi/b5244724-f131-4ad7-9db2-a3ca3c0548d1n%40googlegroups.com</a>.=
 <br />
 
-------=_Part_1285_1817041964.1625153835150--
+------=_Part_1431_1324834227.1625154987232--
 
-------=_Part_1284_696438124.1625153835150--
+------=_Part_1430_1177860234.1625154987232--
