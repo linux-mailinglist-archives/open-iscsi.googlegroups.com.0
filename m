@@ -1,33 +1,33 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBBDEHUSDQMGQEYW5AD2A@googlegroups.com>
+Return-Path: <open-iscsi+bncBDTZTRGMXIFBB6EIUSDQMGQESTXGR5I@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3e.google.com (mail-qv1-xf3e.google.com [IPv6:2607:f8b0:4864:20::f3e])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB073C2CD1
-	for <lists+open-iscsi@lfdr.de>; Sat, 10 Jul 2021 04:18:53 +0200 (CEST)
-Received: by mail-qv1-xf3e.google.com with SMTP id eo5-20020ad459450000b02902d60d0f0744sf4810084qvb.2
-        for <lists+open-iscsi@lfdr.de>; Fri, 09 Jul 2021 19:18:53 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1625883532; cv=pass;
+Received: from mail-pj1-x103c.google.com (mail-pj1-x103c.google.com [IPv6:2607:f8b0:4864:20::103c])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3CF13C2D8D
+	for <lists+open-iscsi@lfdr.de>; Sat, 10 Jul 2021 04:22:50 +0200 (CEST)
+Received: by mail-pj1-x103c.google.com with SMTP id 16-20020a17090a19d0b029016fc64ff1a2sf6217857pjj.1
+        for <lists+open-iscsi@lfdr.de>; Fri, 09 Jul 2021 19:22:50 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1625883769; cv=pass;
         d=google.com; s=arc-20160816;
-        b=eobMJCmPvxbKHqMzMcsverzG3C/9tSLZNx+uVkHksZbwfaQCF/Lw1Er1RI6sfx8b7f
-         s31y/NyJ223gDbrm4bKDkrRRz8rV6PvOZLNQWBX6bxkoILyf+SDlEncX08KffiYykJzx
-         j1PRgI6TCACZ5b8nOsDRzWuSrI9tZhVIkRbXZwAQoqwbkHRdalwlktlQakmUPU/ns6Cg
-         fObgxb78gR1DB18urHQSKyn4zEAKr7IkGvdGAkVaboGsooQpcn53SUSTdUzkaJz90oja
-         skw5CPu6mEmCgZG23iIIjFM4e+kDlpFSenibY1Uav+prJX/Or6FMtNpJF8nFS8uoPKJ2
-         xuaA==
+        b=d7s5EilPe9gfK8db5kiQ4/6rEa4L/YrgTD7qTstZP6Do8Nq6he5IKfB09j+myHP2HN
+         sasv5vH4M6vdnhYeJAGQfTs2vaxs6MPPtuvadgL3qJ2gDv9T/Lmuijlt2zS0J2QB3htt
+         +aH4UIOImmEukvbtBeciiI7vPtSicYWSwJVc59+v133zxuAPNvDdEZanYmn3bQrT601W
+         9WZXTn/HOwnI4y2IKCzhIX1ezehXsYqUM4/s894Oxk+tPeQJsHTGy8H8jpIoegOpHmsY
+         z2Rm9z0r1WiUG5McIn2mn85VjAbASQt8QuNsniEwa7IHCmmb5Xd9rycd6Ux+Cq1mGP9J
+         QrNQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=Q98WHljLn3vRlaovLK8ebkHN5B7p9s4a30iQTAq1KU8=;
-        b=RaFdQTF6IZ+LJGrfELYKOzsh6aQcJmPotg8OG20GXqhw+c9PLtVx5p/bKdPPwhRZh/
-         NYufzvIUXpbV8t7lnjmaaWYQEcU2hmwIAFtSfihfA5CnUksbsb/CSFfZzq761OBE8X5e
-         F+VS8mJUS/PCDXKe5wAA4Wka7WJkLhddntT//7x3DB7lK0bhLvrEFZ3c9fLg4r64Oe97
-         AZ+Ez2yTtW8OkGC5PmJHqKzKpvWMEok/rii+wcYftzYXrmqSNWSqmB1ZCNwbkksXpS1M
-         XjOlMt6Kp8XIFmkQToAOtCu6TL0L9WcCpGhGQ971aP/XKYpc0Xsbr8vDUdRc/P4Z8wy/
-         BClw==
+        bh=SvzLS4J9SXoE0BYM7TFLyPpsKmfodq7AHw3iFgaotvw=;
+        b=AcCirTAxtwnEg/WhNzM80rm4HkB+5KkEjFC7MfYQxCxWiYKrfWwvK+wQdyt2Mlcjfe
+         FrNGTkpsSqZfIQuu911fTcWdKx98y/pN3E+tQkrKBTTsemzAN2SrL4mIXNDEaD95WshS
+         Ozzl/Lb7pvMGtf+C8LyW0TZhXwpl9IUS4uNYaTgt7ciEjUedupWdajIAtYIkUI0PEPrL
+         cPH0b0Hg9ImbBVj4neN2LAdtRdz1wz4rl5JsxLRClzlH0Dh7k2+4l+EmBr2HQQDeornf
+         cRFDvi/cB7Ww+BXjW6/EOGAbT/yLWrDg6xS0TtL9r2MMxXO1DlFheTgGTx74avN9BKiz
+         f70A==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=qch6bM4g;
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b="bhf/AVK6";
        spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=Q98WHljLn3vRlaovLK8ebkHN5B7p9s4a30iQTAq1KU8=;
-        b=J3YoCS8WZOKR408gG95a8SSPTNkzlZFNF0a8fbhqMw0ZL6xKxUh63HFC2lJKVci+MP
-         EPk6Ph8pc/YIIDI3ha10PZ8ObESMTS6fBuoh0iU/pkHV1rVe7Vx7EHGlvG5+HxgbVL61
-         j6wBoSbnbEZnpCD/iGoj7MEzcq2dJXWji9u2g87b7e3tijGwOR+DQVO0g5xjkYD+53Ug
-         BimeS4j0zPo7dlC+65n0F9k2bLNwdK213N2vEvSS9ii0DUYzU0f1ZgWemPpIZTo645D4
-         RPE+u0kYsgHLxYD0Y/5ksU4V04nBK8T7HCaA0LsZOoxEV9f63bZmtTfK/hrcSakk+mHt
-         I+tQ==
+        bh=SvzLS4J9SXoE0BYM7TFLyPpsKmfodq7AHw3iFgaotvw=;
+        b=ARkLfIeSTDbcrt57mQFU8rYYDHRwHM/e3Q701dLzNL2/36Q5f5fmhTUnoBX0p8qWsf
+         Yr1CDBUcEjYqUNPDXXPlfPtCWDRoKnfr6xKFjQqT7r3xuUII7oMHO4m4poGGvdoQ96rn
+         DG9CwsRd6hnzvG7extWe0l52mzdqPfboD2pVKUJ4OJYKrxPf1ILuMZ6W/PivbA+HhcWk
+         qtJDqpfLVG/vcAIwyvyA/WrkFpoPkbttu32YOCgbGLllN4IB0dYtFTySLg31odUNZqdI
+         P+6LZxD02qq+z/pNqYRo+5nB//pnwti6yauUAropbr88H6uoXy+59/xdEEksLXG4acPc
+         XrnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -50,54 +50,54 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=Q98WHljLn3vRlaovLK8ebkHN5B7p9s4a30iQTAq1KU8=;
-        b=nIlKJ6VYs64cs8bYSdDbvcARJIDDZS6whFYLcObBd6m3jLawVe6IIo5XXhYxpg/GLa
-         FtzXLIJMtiAIk6dOeV44ssXO8HUi6R+pDRSLEYfcYGRIPV+i4A+iZCPKSvMOy0ewywtE
-         8Nbxq3ZiulwpgX4ubNJ85MqSMZl5LtCbvIihtvD5h9VrlzZSwBekMaryIQZL9TIah3yC
-         u9SYduOQL/tSOeYODf4RG3l4BXSQGDAzhnnyqyMtCGwaeD0Eul94Okji3Bp6aTfITm/y
-         oW/+2X8qhjJcTbblN+dhHPM1m6UTc4/iN1Jgw7vP2PdgYaWOXVWnK1/9mFwTO+8JGmqA
-         h9KA==
+        bh=SvzLS4J9SXoE0BYM7TFLyPpsKmfodq7AHw3iFgaotvw=;
+        b=tthq/bIOsxjDKW7Kdp9SeEZYZar8J/08DFmHjsj/hCimuSHQ62euzdIxYCpaWfXJvI
+         XXqPCKVX86GLvTh033vhoJku4ZSAK67KybGGfgFFycJ8Ntm+7OjF7a+zcCLvJVzrkWXm
+         g/qUNHhyDIjSPcGUZyC/eRk415un6gUBihtM4aKEM3dbXpXpErWYwMx6Y+jCbJ71tz3u
+         qsdACqMAJqUS3W5BUBV6oCh+HiNEmzhl+sqYs4fc82QluXyd+5pd/8o8eq0jY15+dMie
+         DX91YD5yrve6UW9Gs+rqQ9EQq8XZFP33teg4Ry2duTo5cVbt2nXQ+gBnSl/eZeRG4u+M
+         brow==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM5329oWSh2wREGb1FFHC9N3JfLXMKI4EiZbeF1HtRi9pWC22q166V
-	jWxtHJEHseATCJTFivbH2g0=
-X-Google-Smtp-Source: ABdhPJzMmt65ww4vXjbyhzgqMQJdWBmESF1pL5bIQhdBq8FhKP7eFHR2bXmSWlhJqurfY/DDoHKVMQ==
-X-Received: by 2002:a05:620a:450f:: with SMTP id t15mr38000760qkp.411.1625883532445;
-        Fri, 09 Jul 2021 19:18:52 -0700 (PDT)
+X-Gm-Message-State: AOAM530j5+RgAzVGqcUijMZSHRfSwRyuSUt58LQ4pmMRFpHF3ibexkfB
+	XPavEY3heKyNtB/owknyJlU=
+X-Google-Smtp-Source: ABdhPJwVTl4/sQLVY6AXWFsLTkhK03YBnc0tRZAE5JxtHfodG5FhVU7c6wmd3z3PMesK5D0KaDugaA==
+X-Received: by 2002:a17:902:cec7:b029:12a:ece2:5907 with SMTP id d7-20020a170902cec7b029012aece25907mr1156273plg.48.1625883768960;
+        Fri, 09 Jul 2021 19:22:48 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:622a:38d:: with SMTP id j13ls3275709qtx.5.gmail; Fri, 09
- Jul 2021 19:18:52 -0700 (PDT)
-X-Received: by 2002:ac8:4794:: with SMTP id k20mr11875534qtq.371.1625883532028;
-        Fri, 09 Jul 2021 19:18:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1625883532; cv=none;
+Received: by 2002:a17:902:ea08:: with SMTP id s8ls3929666plg.4.gmail; Fri, 09
+ Jul 2021 19:22:48 -0700 (PDT)
+X-Received: by 2002:a17:90b:4c12:: with SMTP id na18mr11495026pjb.157.1625883768304;
+        Fri, 09 Jul 2021 19:22:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1625883768; cv=none;
         d=google.com; s=arc-20160816;
-        b=oS7IXFgHaDH7RbSIVC5plVfIGRBJP6Tsqkh5jS8XrUqs3hVteeKBd3+RIvqSatqmbH
-         zGiJGxdMvek/5JnonPyPe88zHqnLQSVRvqUQVWTkzTc5nr8vQ6C1417NtriP5wUzaC+M
-         oGqoH/JYRIAQYSV6if93uRe9R7C8cfWbwFGNB6DPiSdR03zODDLj5fBErLBH3ztbDKC0
-         IGAacp2yN/NB5XjQRyuRNHMXbT9QP5HakPGBdVQN556xCKJ0QiMNFoLLwClPbCArnJJ+
-         CuYJiqLtgsduAhoUjXibaGZcJFtgCCWOlz4W5yYUvof39/BEi+SG0J2M0CKSpqIAUqLe
-         +8uA==
+        b=KooXjMG/Sb4YeAuqtA4zbTTipsYqzJffHiewWmAVU+im7vvKfv4WP0owjyCpcrrXAh
+         XmuMvDH50KEF1q0LOoOElpA3QTCqdreh7BmYUvwvP1GIN6FbmGKPXJ6jnqcjo0k3+mVT
+         rZINlx6d5POt4qWSMjVno+yWBC6AUr/XFbcV3lqQnfcU9fFWKfmheBBeULeiXy063ioz
+         itggoVsprf+vsW+1yTXzrldMSYRCyuAnsx8jAO/pl3lClgZsWXBqcSj3Si2+98cTF1Lu
+         ggFwnlrbb9MKBv12X7UEA6W/bLnoduPxb3rzr9UmuXwa+1M7z8TH5SGueJGHfksrNDRE
+         6KRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=IGy8a5ZxlFKNI96giO6yJiI0+PfCIDQHOlEgoHILzdY=;
-        b=Du0IPnUDrxDRs9UkdXopdzO/1uedGxZ69ptBoVA0Uq+us2bT97+IRVjoJUGoCf5Bnt
-         3rLPXpvW3/i2BosyYOorXKrhEdJpSf5MDt1crM3CSlebNF5MKIxK4vQ3mOmCCD42alRW
-         ODRojvr9fH85xG4YZd1+7dnmlJzp1c9DqrYkB39GBBrdTFlIsjXL4eHTY9MWSJqlKMhk
-         eQjJwkb0tdyNzrqDz2KEpKWnlWrIfF2w3MvfaPvKyjF3gGA/C6klPTCl0hlOHxW04OYZ
-         puu7iCwQ7NmANyvrIeJ8oowgYV/Wk2Inr1ycfa1iquLYL5WtZpHnQnK8YOlLjLAR4Kse
-         dS2g==
+        bh=kFHzzVGrPR3L28DTtVN7DJuEcsFmr4hJg0+4NGTotHY=;
+        b=QCNRi2GgZZqYmWY7+GRFBGdLBMz6/5ax6PvLWK6NxrgWeOQFkbEkG98CP+RQCjy7WB
+         HzCCXcLw4Jx8C8km04uVltQGUvNO4FWK2a3GuDLWufX/MW81cO4cw2BhXUMf+PPYQyTb
+         ps0OCpQQCMICR0NmmOvWLQRc6J8yYx/CXO6eD1B3/isc32HG8oGIRj0GPxSomkeF5WcR
+         hf1GBuLMOxNSb8gmrw69OAMQ7Hp6p2PRoVyF3Yy96n7+yeqtnvRLclzdoGQ9ieTh0FjI
+         eZbE5Rj8ECKqUTG8d7pF9EiokIz9PmEVQdJAlKRnMyhU/cSf1Dafd/B4rjMY/zfeoTsl
+         awvQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=qch6bM4g;
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b="bhf/AVK6";
        spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 Received: from mail.kernel.org (mail.kernel.org. [198.145.29.99])
-        by gmr-mx.google.com with ESMTPS id n17si698055qkn.5.2021.07.09.19.18.51
+        by gmr-mx.google.com with ESMTPS id bt9si957642pjb.3.2021.07.09.19.22.48
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Jul 2021 19:18:52 -0700 (PDT)
+        Fri, 09 Jul 2021 19:22:48 -0700 (PDT)
 Received-SPF: pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) client-ip=198.145.29.99;
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5648F613C3;
-	Sat, 10 Jul 2021 02:18:50 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 18C76613D6;
+	Sat, 10 Jul 2021 02:22:47 +0000 (UTC)
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -105,20 +105,21 @@ Cc: Mike Christie <michael.christie@oracle.com>,
 	Lee Duncan <lduncan@suse.com>,
 	"Martin K . Petersen" <martin.petersen@oracle.com>,
 	Sasha Levin <sashal@kernel.org>,
-	open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.13 045/114] scsi: iscsi: Fix conn use after free during resets
-Date: Fri,  9 Jul 2021 22:16:39 -0400
-Message-Id: <20210710021748.3167666-45-sashal@kernel.org>
+	linux-rdma@vger.kernel.org,
+	linux-scsi@vger.kernel.org,
+	open-iscsi@googlegroups.com
+Subject: [PATCH AUTOSEL 5.12 039/104] scsi: iscsi: Stop queueing during ep_disconnect
+Date: Fri,  9 Jul 2021 22:20:51 -0400
+Message-Id: <20210710022156.3168825-39-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210710021748.3167666-1-sashal@kernel.org>
-References: <20210710021748.3167666-1-sashal@kernel.org>
+In-Reply-To: <20210710022156.3168825-1-sashal@kernel.org>
+References: <20210710022156.3168825-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-Original-Sender: sashal@kernel.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=k20201202 header.b=qch6bM4g;       spf=pass
+ header.i=@kernel.org header.s=k20201202 header.b="bhf/AVK6";       spf=pass
  (google.com: domain of sashal@kernel.org designates 198.145.29.99 as
  permitted sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE
  sp=NONE dis=NONE) header.from=kernel.org
@@ -138,412 +139,295 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
 
 From: Mike Christie <michael.christie@oracle.com>
 
-[ Upstream commit ec29d0ac29be366450a7faffbcf8cba3a6a3b506 ]
+[ Upstream commit 891e2639deae721dc43764a44fa255890dc34313 ]
 
-If we haven't done a unbind target call we can race where
-iscsi_conn_teardown wakes up the EH thread and then frees the conn while
-those threads are still accessing the conn ehwait.
+During ep_disconnect we have been doing iscsi_suspend_tx/queue to block new
+I/O but every driver except cxgbi and iscsi_tcp can still get I/O from
+__iscsi_conn_send_pdu() if we haven't called iscsi_conn_failure() before
+ep_disconnect. This could happen if we were terminating the session, and
+the logout timed out before it was even sent to libiscsi.
 
-We can only do one TMF per session so this just moves the TMF fields from
-the conn to the session. We can then rely on the
-iscsi_session_teardown->iscsi_remove_session->__iscsi_unbind_session call
-to remove the target and it's devices, and know after that point there is
-no device or scsi-ml callout trying to access the session.
+Fix the issue by adding a helper which reverses the bind_conn call that
+allows new I/O to be queued. Drivers implementing ep_disconnect can use this
+to make sure new I/O is not queued to them when handling the disconnect.
 
-Link: https://lore.kernel.org/r/20210525181821.7617-14-michael.christie@oracle.com
+Link: https://lore.kernel.org/r/20210525181821.7617-3-michael.christie@oracle.com
 Reviewed-by: Lee Duncan <lduncan@suse.com>
 Signed-off-by: Mike Christie <michael.christie@oracle.com>
 Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/scsi/libiscsi.c | 115 +++++++++++++++++++---------------------
- include/scsi/libiscsi.h |  11 ++--
- 2 files changed, 60 insertions(+), 66 deletions(-)
+ drivers/infiniband/ulp/iser/iscsi_iser.c |  1 +
+ drivers/scsi/be2iscsi/be_main.c          |  1 +
+ drivers/scsi/bnx2i/bnx2i_iscsi.c         |  1 +
+ drivers/scsi/cxgbi/cxgb3i/cxgb3i.c       |  1 +
+ drivers/scsi/cxgbi/cxgb4i/cxgb4i.c       |  1 +
+ drivers/scsi/libiscsi.c                  | 70 +++++++++++++++++++++---
+ drivers/scsi/qedi/qedi_iscsi.c           |  1 +
+ drivers/scsi/qla4xxx/ql4_os.c            |  1 +
+ drivers/scsi/scsi_transport_iscsi.c      | 10 +++-
+ include/scsi/libiscsi.h                  |  1 +
+ include/scsi/scsi_transport_iscsi.h      |  1 +
+ 11 files changed, 78 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/infiniband/ulp/iser/iscsi_iser.c b/drivers/infiniband/ulp/iser/iscsi_iser.c
+index 8fcaa1136f2c..6baebcb6d14d 100644
+--- a/drivers/infiniband/ulp/iser/iscsi_iser.c
++++ b/drivers/infiniband/ulp/iser/iscsi_iser.c
+@@ -1002,6 +1002,7 @@ static struct iscsi_transport iscsi_iser_transport = {
+ 	/* connection management */
+ 	.create_conn            = iscsi_iser_conn_create,
+ 	.bind_conn              = iscsi_iser_conn_bind,
++	.unbind_conn		= iscsi_conn_unbind,
+ 	.destroy_conn           = iscsi_conn_teardown,
+ 	.attr_is_visible	= iser_attr_is_visible,
+ 	.set_param              = iscsi_iser_set_param,
+diff --git a/drivers/scsi/be2iscsi/be_main.c b/drivers/scsi/be2iscsi/be_main.c
+index 90fcddb76f46..e9658a67d9da 100644
+--- a/drivers/scsi/be2iscsi/be_main.c
++++ b/drivers/scsi/be2iscsi/be_main.c
+@@ -5809,6 +5809,7 @@ struct iscsi_transport beiscsi_iscsi_transport = {
+ 	.destroy_session = beiscsi_session_destroy,
+ 	.create_conn = beiscsi_conn_create,
+ 	.bind_conn = beiscsi_conn_bind,
++	.unbind_conn = iscsi_conn_unbind,
+ 	.destroy_conn = iscsi_conn_teardown,
+ 	.attr_is_visible = beiscsi_attr_is_visible,
+ 	.set_iface_param = beiscsi_iface_set_param,
+diff --git a/drivers/scsi/bnx2i/bnx2i_iscsi.c b/drivers/scsi/bnx2i/bnx2i_iscsi.c
+index 1e6d8f62ea3c..b6c1da46d582 100644
+--- a/drivers/scsi/bnx2i/bnx2i_iscsi.c
++++ b/drivers/scsi/bnx2i/bnx2i_iscsi.c
+@@ -2276,6 +2276,7 @@ struct iscsi_transport bnx2i_iscsi_transport = {
+ 	.destroy_session	= bnx2i_session_destroy,
+ 	.create_conn		= bnx2i_conn_create,
+ 	.bind_conn		= bnx2i_conn_bind,
++	.unbind_conn		= iscsi_conn_unbind,
+ 	.destroy_conn		= bnx2i_conn_destroy,
+ 	.attr_is_visible	= bnx2i_attr_is_visible,
+ 	.set_param		= iscsi_set_param,
+diff --git a/drivers/scsi/cxgbi/cxgb3i/cxgb3i.c b/drivers/scsi/cxgbi/cxgb3i/cxgb3i.c
+index 37d99357120f..edcd3fab6973 100644
+--- a/drivers/scsi/cxgbi/cxgb3i/cxgb3i.c
++++ b/drivers/scsi/cxgbi/cxgb3i/cxgb3i.c
+@@ -117,6 +117,7 @@ static struct iscsi_transport cxgb3i_iscsi_transport = {
+ 	/* connection management */
+ 	.create_conn	= cxgbi_create_conn,
+ 	.bind_conn	= cxgbi_bind_conn,
++	.unbind_conn	= iscsi_conn_unbind,
+ 	.destroy_conn	= iscsi_tcp_conn_teardown,
+ 	.start_conn	= iscsi_conn_start,
+ 	.stop_conn	= iscsi_conn_stop,
+diff --git a/drivers/scsi/cxgbi/cxgb4i/cxgb4i.c b/drivers/scsi/cxgbi/cxgb4i/cxgb4i.c
+index 2c3491528d42..efb3e2b3398e 100644
+--- a/drivers/scsi/cxgbi/cxgb4i/cxgb4i.c
++++ b/drivers/scsi/cxgbi/cxgb4i/cxgb4i.c
+@@ -134,6 +134,7 @@ static struct iscsi_transport cxgb4i_iscsi_transport = {
+ 	/* connection management */
+ 	.create_conn	= cxgbi_create_conn,
+ 	.bind_conn		= cxgbi_bind_conn,
++	.unbind_conn	= iscsi_conn_unbind,
+ 	.destroy_conn	= iscsi_tcp_conn_teardown,
+ 	.start_conn		= iscsi_conn_start,
+ 	.stop_conn		= iscsi_conn_stop,
 diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
-index ab39d7f65bbb..dfe906307e55 100644
+index 4834219497ee..2aaf83678654 100644
 --- a/drivers/scsi/libiscsi.c
 +++ b/drivers/scsi/libiscsi.c
-@@ -230,11 +230,11 @@ static int iscsi_prep_ecdb_ahs(struct iscsi_task *task)
-  */
- static int iscsi_check_tmf_restrictions(struct iscsi_task *task, int opcode)
- {
--	struct iscsi_conn *conn = task->conn;
--	struct iscsi_tm *tmf = &conn->tmhdr;
-+	struct iscsi_session *session = task->conn->session;
-+	struct iscsi_tm *tmf = &session->tmhdr;
- 	u64 hdr_lun;
- 
--	if (conn->tmf_state == TMF_INITIAL)
-+	if (session->tmf_state == TMF_INITIAL)
- 		return 0;
- 
- 	if ((tmf->opcode & ISCSI_OPCODE_MASK) != ISCSI_OP_SCSI_TMFUNC)
-@@ -254,24 +254,19 @@ static int iscsi_check_tmf_restrictions(struct iscsi_task *task, int opcode)
- 		 * Fail all SCSI cmd PDUs
- 		 */
- 		if (opcode != ISCSI_OP_SCSI_DATA_OUT) {
--			iscsi_conn_printk(KERN_INFO, conn,
--					  "task [op %x itt "
--					  "0x%x/0x%x] "
--					  "rejected.\n",
--					  opcode, task->itt,
--					  task->hdr_itt);
-+			iscsi_session_printk(KERN_INFO, session,
-+					     "task [op %x itt 0x%x/0x%x] rejected.\n",
-+					     opcode, task->itt, task->hdr_itt);
- 			return -EACCES;
- 		}
- 		/*
- 		 * And also all data-out PDUs in response to R2T
- 		 * if fast_abort is set.
- 		 */
--		if (conn->session->fast_abort) {
--			iscsi_conn_printk(KERN_INFO, conn,
--					  "task [op %x itt "
--					  "0x%x/0x%x] fast abort.\n",
--					  opcode, task->itt,
--					  task->hdr_itt);
-+		if (session->fast_abort) {
-+			iscsi_session_printk(KERN_INFO, session,
-+					     "task [op %x itt 0x%x/0x%x] fast abort.\n",
-+					     opcode, task->itt, task->hdr_itt);
- 			return -EACCES;
- 		}
- 		break;
-@@ -284,7 +279,7 @@ static int iscsi_check_tmf_restrictions(struct iscsi_task *task, int opcode)
- 		 */
- 		if (opcode == ISCSI_OP_SCSI_DATA_OUT &&
- 		    task->hdr_itt == tmf->rtt) {
--			ISCSI_DBG_SESSION(conn->session,
-+			ISCSI_DBG_SESSION(session,
- 					  "Preventing task %x/%x from sending "
- 					  "data-out due to abort task in "
- 					  "progress\n", task->itt,
-@@ -936,20 +931,21 @@ iscsi_data_in_rsp(struct iscsi_conn *conn, struct iscsi_hdr *hdr,
- static void iscsi_tmf_rsp(struct iscsi_conn *conn, struct iscsi_hdr *hdr)
- {
- 	struct iscsi_tm_rsp *tmf = (struct iscsi_tm_rsp *)hdr;
-+	struct iscsi_session *session = conn->session;
- 
- 	conn->exp_statsn = be32_to_cpu(hdr->statsn) + 1;
- 	conn->tmfrsp_pdus_cnt++;
- 
--	if (conn->tmf_state != TMF_QUEUED)
-+	if (session->tmf_state != TMF_QUEUED)
- 		return;
- 
- 	if (tmf->response == ISCSI_TMF_RSP_COMPLETE)
--		conn->tmf_state = TMF_SUCCESS;
-+		session->tmf_state = TMF_SUCCESS;
- 	else if (tmf->response == ISCSI_TMF_RSP_NO_TASK)
--		conn->tmf_state = TMF_NOT_FOUND;
-+		session->tmf_state = TMF_NOT_FOUND;
- 	else
--		conn->tmf_state = TMF_FAILED;
--	wake_up(&conn->ehwait);
-+		session->tmf_state = TMF_FAILED;
-+	wake_up(&session->ehwait);
+@@ -1387,23 +1387,32 @@ void iscsi_session_failure(struct iscsi_session *session,
  }
+ EXPORT_SYMBOL_GPL(iscsi_session_failure);
  
- static int iscsi_send_nopout(struct iscsi_conn *conn, struct iscsi_nopin *rhdr)
-@@ -1826,15 +1822,14 @@ EXPORT_SYMBOL_GPL(iscsi_target_alloc);
- 
- static void iscsi_tmf_timedout(struct timer_list *t)
+-void iscsi_conn_failure(struct iscsi_conn *conn, enum iscsi_err err)
++static bool iscsi_set_conn_failed(struct iscsi_conn *conn)
  {
--	struct iscsi_conn *conn = from_timer(conn, t, tmf_timer);
--	struct iscsi_session *session = conn->session;
-+	struct iscsi_session *session = from_timer(session, t, tmf_timer);
+ 	struct iscsi_session *session = conn->session;
  
- 	spin_lock(&session->frwd_lock);
--	if (conn->tmf_state == TMF_QUEUED) {
--		conn->tmf_state = TMF_TIMEDOUT;
-+	if (session->tmf_state == TMF_QUEUED) {
-+		session->tmf_state = TMF_TIMEDOUT;
- 		ISCSI_DBG_EH(session, "tmf timedout\n");
- 		/* unblock eh_abort() */
--		wake_up(&conn->ehwait);
-+		wake_up(&session->ehwait);
- 	}
+-	spin_lock_bh(&session->frwd_lock);
+-	if (session->state == ISCSI_STATE_FAILED) {
+-		spin_unlock_bh(&session->frwd_lock);
+-		return;
+-	}
++	if (session->state == ISCSI_STATE_FAILED)
++		return false;
+ 
+ 	if (conn->stop_stage == 0)
+ 		session->state = ISCSI_STATE_FAILED;
+-	spin_unlock_bh(&session->frwd_lock);
+ 
+ 	set_bit(ISCSI_SUSPEND_BIT, &conn->suspend_tx);
+ 	set_bit(ISCSI_SUSPEND_BIT, &conn->suspend_rx);
+-	iscsi_conn_error_event(conn->cls_conn, err);
++	return true;
++}
++
++void iscsi_conn_failure(struct iscsi_conn *conn, enum iscsi_err err)
++{
++	struct iscsi_session *session = conn->session;
++	bool needs_evt;
++
++	spin_lock_bh(&session->frwd_lock);
++	needs_evt = iscsi_set_conn_failed(conn);
++	spin_unlock_bh(&session->frwd_lock);
++
++	if (needs_evt)
++		iscsi_conn_error_event(conn->cls_conn, err);
+ }
+ EXPORT_SYMBOL_GPL(iscsi_conn_failure);
+ 
+@@ -2180,6 +2189,51 @@ static void iscsi_check_transport_timeouts(struct timer_list *t)
  	spin_unlock(&session->frwd_lock);
  }
-@@ -1857,8 +1852,8 @@ static int iscsi_exec_task_mgmt_fn(struct iscsi_conn *conn,
- 		return -EPERM;
- 	}
- 	conn->tmfcmd_pdus_cnt++;
--	conn->tmf_timer.expires = timeout * HZ + jiffies;
--	add_timer(&conn->tmf_timer);
-+	session->tmf_timer.expires = timeout * HZ + jiffies;
-+	add_timer(&session->tmf_timer);
- 	ISCSI_DBG_EH(session, "tmf set timeout\n");
  
- 	spin_unlock_bh(&session->frwd_lock);
-@@ -1872,12 +1867,12 @@ static int iscsi_exec_task_mgmt_fn(struct iscsi_conn *conn,
- 	 * 3) session is terminated or restarted or userspace has
- 	 * given up on recovery
- 	 */
--	wait_event_interruptible(conn->ehwait, age != session->age ||
-+	wait_event_interruptible(session->ehwait, age != session->age ||
- 				 session->state != ISCSI_STATE_LOGGED_IN ||
--				 conn->tmf_state != TMF_QUEUED);
-+				 session->tmf_state != TMF_QUEUED);
- 	if (signal_pending(current))
- 		flush_signals(current);
--	del_timer_sync(&conn->tmf_timer);
-+	del_timer_sync(&session->tmf_timer);
- 
- 	mutex_lock(&session->eh_mutex);
- 	spin_lock_bh(&session->frwd_lock);
-@@ -2309,17 +2304,17 @@ int iscsi_eh_abort(struct scsi_cmnd *sc)
- 	}
- 
- 	/* only have one tmf outstanding at a time */
--	if (conn->tmf_state != TMF_INITIAL)
-+	if (session->tmf_state != TMF_INITIAL)
- 		goto failed;
--	conn->tmf_state = TMF_QUEUED;
-+	session->tmf_state = TMF_QUEUED;
- 
--	hdr = &conn->tmhdr;
-+	hdr = &session->tmhdr;
- 	iscsi_prep_abort_task_pdu(task, hdr);
- 
- 	if (iscsi_exec_task_mgmt_fn(conn, hdr, age, session->abort_timeout))
- 		goto failed;
- 
--	switch (conn->tmf_state) {
-+	switch (session->tmf_state) {
- 	case TMF_SUCCESS:
- 		spin_unlock_bh(&session->frwd_lock);
- 		/*
-@@ -2334,7 +2329,7 @@ int iscsi_eh_abort(struct scsi_cmnd *sc)
- 		 */
- 		spin_lock_bh(&session->frwd_lock);
- 		fail_scsi_task(task, DID_ABORT);
--		conn->tmf_state = TMF_INITIAL;
-+		session->tmf_state = TMF_INITIAL;
- 		memset(hdr, 0, sizeof(*hdr));
- 		spin_unlock_bh(&session->frwd_lock);
- 		iscsi_start_tx(conn);
-@@ -2345,7 +2340,7 @@ int iscsi_eh_abort(struct scsi_cmnd *sc)
- 		goto failed_unlocked;
- 	case TMF_NOT_FOUND:
- 		if (!sc->SCp.ptr) {
--			conn->tmf_state = TMF_INITIAL;
-+			session->tmf_state = TMF_INITIAL;
- 			memset(hdr, 0, sizeof(*hdr));
- 			/* task completed before tmf abort response */
- 			ISCSI_DBG_EH(session, "sc completed while abort	in "
-@@ -2354,7 +2349,7 @@ int iscsi_eh_abort(struct scsi_cmnd *sc)
- 		}
- 		fallthrough;
- 	default:
--		conn->tmf_state = TMF_INITIAL;
-+		session->tmf_state = TMF_INITIAL;
- 		goto failed;
- 	}
- 
-@@ -2413,11 +2408,11 @@ int iscsi_eh_device_reset(struct scsi_cmnd *sc)
- 	conn = session->leadconn;
- 
- 	/* only have one tmf outstanding at a time */
--	if (conn->tmf_state != TMF_INITIAL)
-+	if (session->tmf_state != TMF_INITIAL)
- 		goto unlock;
--	conn->tmf_state = TMF_QUEUED;
-+	session->tmf_state = TMF_QUEUED;
- 
--	hdr = &conn->tmhdr;
-+	hdr = &session->tmhdr;
- 	iscsi_prep_lun_reset_pdu(sc, hdr);
- 
- 	if (iscsi_exec_task_mgmt_fn(conn, hdr, session->age,
-@@ -2426,7 +2421,7 @@ int iscsi_eh_device_reset(struct scsi_cmnd *sc)
- 		goto unlock;
- 	}
- 
--	switch (conn->tmf_state) {
-+	switch (session->tmf_state) {
- 	case TMF_SUCCESS:
- 		break;
- 	case TMF_TIMEDOUT:
-@@ -2434,7 +2429,7 @@ int iscsi_eh_device_reset(struct scsi_cmnd *sc)
- 		iscsi_conn_failure(conn, ISCSI_ERR_SCSI_EH_SESSION_RST);
- 		goto done;
- 	default:
--		conn->tmf_state = TMF_INITIAL;
-+		session->tmf_state = TMF_INITIAL;
- 		goto unlock;
- 	}
- 
-@@ -2446,7 +2441,7 @@ int iscsi_eh_device_reset(struct scsi_cmnd *sc)
- 	spin_lock_bh(&session->frwd_lock);
- 	memset(hdr, 0, sizeof(*hdr));
- 	fail_scsi_tasks(conn, sc->device->lun, DID_ERROR);
--	conn->tmf_state = TMF_INITIAL;
-+	session->tmf_state = TMF_INITIAL;
- 	spin_unlock_bh(&session->frwd_lock);
- 
- 	iscsi_start_tx(conn);
-@@ -2469,8 +2464,7 @@ void iscsi_session_recovery_timedout(struct iscsi_cls_session *cls_session)
- 	spin_lock_bh(&session->frwd_lock);
- 	if (session->state != ISCSI_STATE_LOGGED_IN) {
- 		session->state = ISCSI_STATE_RECOVERY_FAILED;
--		if (session->leadconn)
--			wake_up(&session->leadconn->ehwait);
-+		wake_up(&session->ehwait);
- 	}
- 	spin_unlock_bh(&session->frwd_lock);
- }
-@@ -2515,7 +2509,7 @@ int iscsi_eh_session_reset(struct scsi_cmnd *sc)
- 	iscsi_conn_failure(conn, ISCSI_ERR_SCSI_EH_SESSION_RST);
- 
- 	ISCSI_DBG_EH(session, "wait for relogin\n");
--	wait_event_interruptible(conn->ehwait,
-+	wait_event_interruptible(session->ehwait,
- 				 session->state == ISCSI_STATE_TERMINATE ||
- 				 session->state == ISCSI_STATE_LOGGED_IN ||
- 				 session->state == ISCSI_STATE_RECOVERY_FAILED);
-@@ -2576,11 +2570,11 @@ static int iscsi_eh_target_reset(struct scsi_cmnd *sc)
- 	conn = session->leadconn;
- 
- 	/* only have one tmf outstanding at a time */
--	if (conn->tmf_state != TMF_INITIAL)
-+	if (session->tmf_state != TMF_INITIAL)
- 		goto unlock;
--	conn->tmf_state = TMF_QUEUED;
-+	session->tmf_state = TMF_QUEUED;
- 
--	hdr = &conn->tmhdr;
-+	hdr = &session->tmhdr;
- 	iscsi_prep_tgt_reset_pdu(sc, hdr);
- 
- 	if (iscsi_exec_task_mgmt_fn(conn, hdr, session->age,
-@@ -2589,7 +2583,7 @@ static int iscsi_eh_target_reset(struct scsi_cmnd *sc)
- 		goto unlock;
- 	}
- 
--	switch (conn->tmf_state) {
-+	switch (session->tmf_state) {
- 	case TMF_SUCCESS:
- 		break;
- 	case TMF_TIMEDOUT:
-@@ -2597,7 +2591,7 @@ static int iscsi_eh_target_reset(struct scsi_cmnd *sc)
- 		iscsi_conn_failure(conn, ISCSI_ERR_SCSI_EH_SESSION_RST);
- 		goto done;
- 	default:
--		conn->tmf_state = TMF_INITIAL;
-+		session->tmf_state = TMF_INITIAL;
- 		goto unlock;
- 	}
- 
-@@ -2609,7 +2603,7 @@ static int iscsi_eh_target_reset(struct scsi_cmnd *sc)
- 	spin_lock_bh(&session->frwd_lock);
- 	memset(hdr, 0, sizeof(*hdr));
- 	fail_scsi_tasks(conn, -1, DID_ERROR);
--	conn->tmf_state = TMF_INITIAL;
-+	session->tmf_state = TMF_INITIAL;
- 	spin_unlock_bh(&session->frwd_lock);
- 
- 	iscsi_start_tx(conn);
-@@ -2939,7 +2933,10 @@ iscsi_session_setup(struct iscsi_transport *iscsit, struct Scsi_Host *shost,
- 	session->tt = iscsit;
- 	session->dd_data = cls_session->dd_data + sizeof(*session);
- 
-+	session->tmf_state = TMF_INITIAL;
-+	timer_setup(&session->tmf_timer, iscsi_tmf_timedout, 0);
- 	mutex_init(&session->eh_mutex);
++/**
++ * iscsi_conn_unbind - prevent queueing to conn.
++ * @cls_conn: iscsi conn ep is bound to.
++ * @is_active: is the conn in use for boot or is this for EH/termination
++ *
++ * This must be called by drivers implementing the ep_disconnect callout.
++ * It disables queueing to the connection from libiscsi in preparation for
++ * an ep_disconnect call.
++ */
++void iscsi_conn_unbind(struct iscsi_cls_conn *cls_conn, bool is_active)
++{
++	struct iscsi_session *session;
++	struct iscsi_conn *conn;
 +
- 	spin_lock_init(&session->frwd_lock);
- 	spin_lock_init(&session->back_lock);
++	if (!cls_conn)
++		return;
++
++	conn = cls_conn->dd_data;
++	session = conn->session;
++	/*
++	 * Wait for iscsi_eh calls to exit. We don't wait for the tmf to
++	 * complete or timeout. The caller just wants to know what's running
++	 * is everything that needs to be cleaned up, and no cmds will be
++	 * queued.
++	 */
++	mutex_lock(&session->eh_mutex);
++
++	iscsi_suspend_queue(conn);
++	iscsi_suspend_tx(conn);
++
++	spin_lock_bh(&session->frwd_lock);
++	if (!is_active) {
++		/*
++		 * if logout timed out before userspace could even send a PDU
++		 * the state might still be in ISCSI_STATE_LOGGED_IN and
++		 * allowing new cmds and TMFs.
++		 */
++		if (session->state == ISCSI_STATE_LOGGED_IN)
++			iscsi_set_conn_failed(conn);
++	}
++	spin_unlock_bh(&session->frwd_lock);
++	mutex_unlock(&session->eh_mutex);
++}
++EXPORT_SYMBOL_GPL(iscsi_conn_unbind);
++
+ static void iscsi_prep_abort_task_pdu(struct iscsi_task *task,
+ 				      struct iscsi_tm *hdr)
+ {
+diff --git a/drivers/scsi/qedi/qedi_iscsi.c b/drivers/scsi/qedi/qedi_iscsi.c
+index 08c05403cd72..ef16537c523c 100644
+--- a/drivers/scsi/qedi/qedi_iscsi.c
++++ b/drivers/scsi/qedi/qedi_iscsi.c
+@@ -1401,6 +1401,7 @@ struct iscsi_transport qedi_iscsi_transport = {
+ 	.destroy_session = qedi_session_destroy,
+ 	.create_conn = qedi_conn_create,
+ 	.bind_conn = qedi_conn_bind,
++	.unbind_conn = iscsi_conn_unbind,
+ 	.start_conn = qedi_conn_start,
+ 	.stop_conn = iscsi_conn_stop,
+ 	.destroy_conn = qedi_conn_destroy,
+diff --git a/drivers/scsi/qla4xxx/ql4_os.c b/drivers/scsi/qla4xxx/ql4_os.c
+index 7bd9a4a04ad5..ff663cb330c2 100644
+--- a/drivers/scsi/qla4xxx/ql4_os.c
++++ b/drivers/scsi/qla4xxx/ql4_os.c
+@@ -259,6 +259,7 @@ static struct iscsi_transport qla4xxx_iscsi_transport = {
+ 	.start_conn             = qla4xxx_conn_start,
+ 	.create_conn            = qla4xxx_conn_create,
+ 	.bind_conn              = qla4xxx_conn_bind,
++	.unbind_conn		= iscsi_conn_unbind,
+ 	.stop_conn              = iscsi_conn_stop,
+ 	.destroy_conn           = qla4xxx_conn_destroy,
+ 	.set_param              = iscsi_set_param,
+diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+index 441f0152193f..82491343e94a 100644
+--- a/drivers/scsi/scsi_transport_iscsi.c
++++ b/drivers/scsi/scsi_transport_iscsi.c
+@@ -2964,7 +2964,7 @@ static int iscsi_if_ep_connect(struct iscsi_transport *transport,
+ }
  
-@@ -3043,7 +3040,6 @@ iscsi_conn_setup(struct iscsi_cls_session *cls_session, int dd_size,
- 	conn->c_stage = ISCSI_CONN_INITIAL_STAGE;
- 	conn->id = conn_idx;
- 	conn->exp_statsn = 0;
--	conn->tmf_state = TMF_INITIAL;
- 
- 	timer_setup(&conn->transport_timer, iscsi_check_transport_timeouts, 0);
- 
-@@ -3068,8 +3064,7 @@ iscsi_conn_setup(struct iscsi_cls_session *cls_session, int dd_size,
- 		goto login_task_data_alloc_fail;
- 	conn->login_task->data = conn->data = data;
- 
--	timer_setup(&conn->tmf_timer, iscsi_tmf_timedout, 0);
--	init_waitqueue_head(&conn->ehwait);
-+	init_waitqueue_head(&session->ehwait);
- 
- 	return cls_conn;
- 
-@@ -3104,7 +3099,7 @@ void iscsi_conn_teardown(struct iscsi_cls_conn *cls_conn)
- 		 * leading connection? then give up on recovery.
- 		 */
- 		session->state = ISCSI_STATE_TERMINATE;
--		wake_up(&conn->ehwait);
-+		wake_up(&session->ehwait);
+ static int iscsi_if_ep_disconnect(struct iscsi_transport *transport,
+-				  u64 ep_handle)
++				  u64 ep_handle, bool is_active)
+ {
+ 	struct iscsi_cls_conn *conn;
+ 	struct iscsi_endpoint *ep;
+@@ -2981,6 +2981,8 @@ static int iscsi_if_ep_disconnect(struct iscsi_transport *transport,
+ 		conn->ep = NULL;
+ 		mutex_unlock(&conn->ep_mutex);
+ 		conn->state = ISCSI_CONN_FAILED;
++
++		transport->unbind_conn(conn, is_active);
  	}
- 	spin_unlock_bh(&session->frwd_lock);
  
-@@ -3179,7 +3174,7 @@ int iscsi_conn_start(struct iscsi_cls_conn *cls_conn)
- 		 * commands after successful recovery
- 		 */
- 		conn->stop_stage = 0;
--		conn->tmf_state = TMF_INITIAL;
-+		session->tmf_state = TMF_INITIAL;
- 		session->age++;
- 		if (session->age == 16)
- 			session->age = 0;
-@@ -3193,7 +3188,7 @@ int iscsi_conn_start(struct iscsi_cls_conn *cls_conn)
- 	spin_unlock_bh(&session->frwd_lock);
+ 	transport->ep_disconnect(ep);
+@@ -3012,7 +3014,8 @@ iscsi_if_transport_ep(struct iscsi_transport *transport,
+ 		break;
+ 	case ISCSI_UEVENT_TRANSPORT_EP_DISCONNECT:
+ 		rc = iscsi_if_ep_disconnect(transport,
+-					    ev->u.ep_disconnect.ep_handle);
++					    ev->u.ep_disconnect.ep_handle,
++					    false);
+ 		break;
+ 	}
+ 	return rc;
+@@ -3737,7 +3740,7 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
+ 		conn = iscsi_conn_lookup(ev->u.b_conn.sid, ev->u.b_conn.cid);
  
- 	iscsi_unblock_session(session->cls_session);
--	wake_up(&conn->ehwait);
-+	wake_up(&session->ehwait);
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(iscsi_conn_start);
-@@ -3287,7 +3282,7 @@ void iscsi_conn_stop(struct iscsi_cls_conn *cls_conn, int flag)
- 	spin_lock_bh(&session->frwd_lock);
- 	fail_scsi_tasks(conn, -1, DID_TRANSPORT_DISRUPTED);
- 	fail_mgmt_tasks(session, conn);
--	memset(&conn->tmhdr, 0, sizeof(conn->tmhdr));
-+	memset(&session->tmhdr, 0, sizeof(session->tmhdr));
- 	spin_unlock_bh(&session->frwd_lock);
- 	mutex_unlock(&session->eh_mutex);
- }
+ 		if (conn && conn->ep)
+-			iscsi_if_ep_disconnect(transport, conn->ep->id);
++			iscsi_if_ep_disconnect(transport, conn->ep->id, true);
+ 
+ 		if (!session || !conn) {
+ 			err = -EINVAL;
+@@ -4656,6 +4659,7 @@ iscsi_register_transport(struct iscsi_transport *tt)
+ 	int err;
+ 
+ 	BUG_ON(!tt);
++	WARN_ON(tt->ep_disconnect && !tt->unbind_conn);
+ 
+ 	priv = iscsi_if_transport_lookup(tt);
+ 	if (priv)
 diff --git a/include/scsi/libiscsi.h b/include/scsi/libiscsi.h
-index 091f284bd6e9..2bb452a8f134 100644
+index 02f966e9358f..091f284bd6e9 100644
 --- a/include/scsi/libiscsi.h
 +++ b/include/scsi/libiscsi.h
-@@ -195,12 +195,6 @@ struct iscsi_conn {
- 	unsigned long		suspend_tx;	/* suspend Tx */
- 	unsigned long		suspend_rx;	/* suspend Rx */
- 
--	/* abort */
--	wait_queue_head_t	ehwait;		/* used in eh_abort() */
--	struct iscsi_tm		tmhdr;
--	struct timer_list	tmf_timer;
--	int			tmf_state;	/* see TMF_INITIAL, etc.*/
--
- 	/* negotiated params */
- 	unsigned		max_recv_dlength; /* initiator_max_recv_dsl*/
- 	unsigned		max_xmit_dlength; /* target_max_recv_dsl */
-@@ -270,6 +264,11 @@ struct iscsi_session {
- 	 * and recv lock.
- 	 */
- 	struct mutex		eh_mutex;
-+	/* abort */
-+	wait_queue_head_t	ehwait;		/* used in eh_abort() */
-+	struct iscsi_tm		tmhdr;
-+	struct timer_list	tmf_timer;
-+	int			tmf_state;	/* see TMF_INITIAL, etc.*/
- 
- 	/* iSCSI session-wide sequencing */
- 	uint32_t		cmdsn;
+@@ -424,6 +424,7 @@ extern int iscsi_conn_start(struct iscsi_cls_conn *);
+ extern void iscsi_conn_stop(struct iscsi_cls_conn *, int);
+ extern int iscsi_conn_bind(struct iscsi_cls_session *, struct iscsi_cls_conn *,
+ 			   int);
++extern void iscsi_conn_unbind(struct iscsi_cls_conn *cls_conn, bool is_active);
+ extern void iscsi_conn_failure(struct iscsi_conn *conn, enum iscsi_err err);
+ extern void iscsi_session_failure(struct iscsi_session *session,
+ 				  enum iscsi_err err);
+diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
+index fc5a39839b4b..8874016b3c9a 100644
+--- a/include/scsi/scsi_transport_iscsi.h
++++ b/include/scsi/scsi_transport_iscsi.h
+@@ -82,6 +82,7 @@ struct iscsi_transport {
+ 	void (*destroy_session) (struct iscsi_cls_session *session);
+ 	struct iscsi_cls_conn *(*create_conn) (struct iscsi_cls_session *sess,
+ 				uint32_t cid);
++	void (*unbind_conn) (struct iscsi_cls_conn *conn, bool is_active);
+ 	int (*bind_conn) (struct iscsi_cls_session *session,
+ 			  struct iscsi_cls_conn *cls_conn,
+ 			  uint64_t transport_eph, int is_leading);
 -- 
 2.30.2
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20210710021748.3167666-45-sashal%40kernel.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20210710022156.3168825-39-sashal%40kernel.org.
