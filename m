@@ -1,68 +1,121 @@
-Return-Path: <open-iscsi+bncBDWOZE472MPRBPORT2EQMGQE2CSJNQY@googlegroups.com>
+Return-Path: <open-iscsi+bncBC6MFJWO34DBBWEPUKEQMGQEMWDQDVQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3c.google.com (mail-qv1-xf3c.google.com [IPv6:2607:f8b0:4864:20::f3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBC483F8A56
-	for <lists+open-iscsi@lfdr.de>; Thu, 26 Aug 2021 16:44:14 +0200 (CEST)
-Received: by mail-qv1-xf3c.google.com with SMTP id u8-20020a0cec880000b029035825559ec4sf219207qvo.22
-        for <lists+open-iscsi@lfdr.de>; Thu, 26 Aug 2021 07:44:14 -0700 (PDT)
+Received: from mail-lj1-x23e.google.com (mail-lj1-x23e.google.com [IPv6:2a00:1450:4864:20::23e])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0ED63F9464
+	for <lists+open-iscsi@lfdr.de>; Fri, 27 Aug 2021 08:36:19 +0200 (CEST)
+Received: by mail-lj1-x23e.google.com with SMTP id v25-20020a2e2f190000b029019bb571862dsf2283825ljv.20
+        for <lists+open-iscsi@lfdr.de>; Thu, 26 Aug 2021 23:36:19 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1630046169; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=F0PzqnTzEqyvBD8MhpR+IWWQRthyUunaB+3++gTETPQu4kbt9WrVS9+wvbg83v8q1X
+         DnHH/Yez1dOxB7QQwSNixz/Y8py1/SAMPxMe9SxNBFHF0tDk9Q6QHnu8TLmi1VAtOjoV
+         YjbGbi/IUXhhCMFz8lHxBciGJlah7L/HkRqrbtvo2o8zGwKEuDK75cWMgvoNBRyRfA+t
+         eiO8cbsN5cPOdEp9O4Ee0CXsCB2Yy6HVr6zN845VGkPsH3izT7VqXKjKDA4KoazWGpf2
+         gJHr/CHh2M7Mh5gkMzm83Ve0hhFG6YPVmobSz0k0QK8O2hJRbHHALCP6QpF0RkDf3+Lx
+         RY8A==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:content-disposition
+         :mime-version:in-reply-to:references:subject:to:from:date:message-id
+         :sender:dkim-signature;
+        bh=lAivaSPy/oy2os3UJAau9nschoMffFcL7HjLCox95iM=;
+        b=JJHeiK10SVhcXf13kuzpxCtw4awRTdrJbNlGf7XR0qqwGuHRneuDURYPv99OOqMWsW
+         veQiNKy2e1UP3Wyja+UQZiDsg7uN2kfP68bwPsoQOLuowzrSlbC1GR/kBe+NHihu6seZ
+         svXpNSpiYnwCJVWMiHAOwkf/+AvHM8P5nFUMb9LMv+Q00ZQxJ+zZpDAZBkeJ1efoEyi4
+         7g2TcWcP7nuVmrZDAMpHqUHCs+XB4TLdFzJMAV54xGxMO/87Hsxk5ylHdjeWiAIpa1Lv
+         aaXEyEsngsqqqpwYetWvSbSsiISVMqClkNhA8WvBMJtko2n9vZlN+Ok87GUBb3wZkYMf
+         4XsA==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=sender:date:from:to:message-id:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=PRhTnUxIO3xdvu4BynCMFh9dkKeRvuvrzeDX8xj5l30=;
-        b=UnSy+E2PboFRT8tN/ueD5emKgMlxEfJMgqaHRH346jDWoz11YoOOf3ft3LsA5pKiD0
-         XvGOPL8yhYQmoPO970BcGx1n5lcesY0TlO4th87jejCjy0/VSzsqIPdmTbo6bjoPD1sX
-         5RDo5W7NmVm70b+yOXx+k1Nfk85zjKBVfOK+FFFgh26ZwePh8WXrA9mpNLBbEQzao1du
-         p0ZmxCQsMx+aEeLGdADBn0WgezBUXX/XSPkSfOzXGmvn50yLKGfND7L/xsp8SgXcpPhN
-         bHXg9AUIFFM0/HuGEQbMp+2boAKLSjfuF01YL8NVJJRFAfUebO+2dWB0VyQ4g7ixVmUl
-         UIGQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:message-id:subject:mime-version:x-original-sender
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=PRhTnUxIO3xdvu4BynCMFh9dkKeRvuvrzeDX8xj5l30=;
-        b=R4KquXb9mfCCKRoHTtP305k0D+Ak1nh1gfax8CjWjSfzGE1wF/7XRFkx1xmLwV4lbC
-         LMkT60AdHSY52ROp4XHFM2KfOCsVX6Rc9Umjo4YqgUKYiWaiYi87VxwePVk2OuhP2epI
-         olO26B7Cz76x7VigLPtexNIc+NVCcmPY0zQDDgjuEB/7k9Ec306RYGQV/XAjFBDqQAJZ
-         Ti1suMDLMK/BUl0v63XH5IW1VqDD134lo4YU+yK1M8Ztl0xFNL0Y/AQoGHbDO7IjPQCi
-         4BtbiUKhDbQISJ2goiaKtPz01JrA4Q36B0WOjOk+8Eu4ec57h//gDA8Qz2kixU9Xd/Z4
-         2W/g==
+        h=sender:message-id:date:from:to:subject:references:in-reply-to
+         :mime-version:content-disposition:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=lAivaSPy/oy2os3UJAau9nschoMffFcL7HjLCox95iM=;
+        b=L3yj655khakZ/hoPa6zCRo6D8TXl/WRtEN/i6Quq2FaOjfh1hmvTuF91MBI4wMsF7a
+         gaEkqMrErgtgVV1pxp3GH2gR+i2s8xogXM2uFvw8XocCUmMPAfLIrtrgYar2ebJ5qkSW
+         CUM/Dbg3xO+Ik+qYSueBv83/zP7AyYmi+efhlEVHc8yyf4mmjNsQ8x/UvjvLvUFgNwkh
+         DygatdFtQdnOHskZuS3ZdmuJOAJxARlsSwACCWNmQX5Mdf6V1+B/XefSPZIFWkEUSxsw
+         UjYHjcw1F8rk3zzDGcbN1WzFNIjx2DDCp1DmONCmmZvZxBl3GataQTcOLSui71fgUBTw
+         8tLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=sender:x-gm-message-state:date:from:to:message-id:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=PRhTnUxIO3xdvu4BynCMFh9dkKeRvuvrzeDX8xj5l30=;
-        b=PbubymGGzC373pjr2ExbNldX4yGeK00jAglTeMnZeaQw0DERh/omi4dBKtOwKr3RRN
-         pxA2jmUfFcMyTluj/LEKHzmGaAqEGeQkckVvOwfAzfEzz7jW3AMyCr/HUC7R11EsLb/Q
-         QeACKJeY0UZEj9yBRsrauwg4hbk5DNyZj24iIwHRYvQlpnEjFRIov51jrDEnXAR2uBAK
-         V8LuSWAwaCpg5LmpjRi04Z37aJRWaZ6TXe2zyO3DM1bnLX50kRkPNdWmvBmTHIERFRT6
-         /9GXkRozxNEMX7Z4duoO6BoU2PHh4t/9gS8hWXenDRZsrByxdTubeHyxskOqEri2ESks
-         A48w==
+        h=sender:x-gm-message-state:message-id:date:from:to:subject
+         :references:in-reply-to:mime-version:content-disposition
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=lAivaSPy/oy2os3UJAau9nschoMffFcL7HjLCox95iM=;
+        b=WzHkTjN8XfZpLiYNHbiRf7Sz4o4KMakh4096SZhWzjnljGgkK3B6bJ569vaxqFPE3v
+         wfrLmN+4tTJeZ4PhG6cuOMrF5Ayt94VyCmg48zBr4WSUcZmH7pRKc4USDfiSxbXnHkOr
+         mGk+ooYBSPKQFbmmer23jscn4b2eaAxC8x3ZnKNyllRuwuNaLbgNHPwX5AAvQzOC/cha
+         DVeCPkOcMjJURM/C+rlGBewDJc+8BB+3FHKkfEg7qlXdcaU3l+xcd4Yl2C3oNx9Yj4jo
+         FMLkg4yG3TM65v8x1/7EYMRuWIma+1Las90jJxpCAYqxyEX8NWq3TRCDUp5sQqy6Lnci
+         VfaQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM5335dAa9pZKQPYGsVnjLVenh6nTFgssrcsmT9cze9P7G8TB3USwC
-	3lNoIYtHHImvVbjZXet8Mo4=
-X-Google-Smtp-Source: ABdhPJxt4YX9qaNT6VMn5uJrXFafXk1tmIuBwEwKgRylk+hg+q5CEfw4mXl3pyKCk4roGUdOZ+rbGw==
-X-Received: by 2002:ad4:4b14:: with SMTP id r20mr3438530qvw.61.1629989053919;
-        Thu, 26 Aug 2021 07:44:13 -0700 (PDT)
+X-Gm-Message-State: AOAM532Z7S7GfH+8W2tL3cGzVGgsoyw35FPZ01H7dtK2evKRvF+HnrPW
+	uh0XDPFJVhBOlbt6CxP5VLo=
+X-Google-Smtp-Source: ABdhPJyLNtmyPz+b3AXs4z99OGo1mX4EKERidT28r6UTxOE8clAtgCagdBlfelL4n2BUV30TfwxopA==
+X-Received: by 2002:a2e:9cd9:: with SMTP id g25mr6294122ljj.346.1630046169093;
+        Thu, 26 Aug 2021 23:36:09 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6214:23cf:: with SMTP id hr15ls1805394qvb.4.gmail; Thu,
- 26 Aug 2021 07:44:13 -0700 (PDT)
-X-Received: by 2002:a0c:aa52:: with SMTP id e18mr1130181qvb.38.1629989053256;
-        Thu, 26 Aug 2021 07:44:13 -0700 (PDT)
-Date: Thu, 26 Aug 2021 07:44:12 -0700 (PDT)
-From: Fernando Perfumo <fp2031@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <a410c8bc-f3d7-4d6a-a6d5-f8dbdcd62d41n@googlegroups.com>
-Subject: linux iscsi target setup for IP camera
-MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_1442_26410345.1629989052485"
-X-Original-Sender: fp2031@gmail.com
+Received: by 2002:ac2:4146:: with SMTP id c6ls1750313lfi.2.gmail; Thu, 26 Aug
+ 2021 23:36:08 -0700 (PDT)
+X-Received: by 2002:ac2:51b4:: with SMTP id f20mr5532927lfk.632.1630046168041;
+        Thu, 26 Aug 2021 23:36:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1630046168; cv=none;
+        d=google.com; s=arc-20160816;
+        b=PRkTyHkTCRqmLnLXNubKRRX9QZ3HrDhfMKCS5ToWAxNvdc0esWnvuFH9ArKHCU+Rma
+         fem0s6SGJeTeX0g6qoUS5WSJnXOzcfbhtEgW3+tlxnUnVQ5PzvpHWcKiLuXzkh1MeUBN
+         rbC8FI5qXGn85ss/UJxfWx1Kt0qESbGHhuY1jbr0DAm2vBFAKdIUiX+JC/cFpYghOcXM
+         KoMfGgDB+7diNyJWhtJx+it3qcVUXUIPKPJoU6feWDPsdXdiA5z8k9vJUYgQ+sbZt7Wf
+         3EwLOPofxbphRbSkEPvozW+Al8jx08iPKEpgyj3VSsGRhwzBcq1LR6TmKLAfH/u9D7l8
+         MUlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-disposition:content-transfer-encoding:mime-version
+         :in-reply-to:references:subject:to:from:date:message-id;
+        bh=yf7jixqXnoLCJ56X5jrkMDfKCFxYUY1P7hmrbpu4UYM=;
+        b=eggoaXf9LK7BRV02M26Lz7r5cDtmWjiKF3qjIbuqWVLJyUhpMK0yMjoXRRHN1/jcpt
+         erkzjJBY9Lggu2Gl2ULenYLpgRHiIHQdinE2d0vJOBrIamNDhcz5vJbQwUC8sLVepM+e
+         YWj4Bqk2s3tSW8KdQx0kgsMSmCkeTJyCQKjmWEk/n8sZXCSWPIEHoloqFkREJjgjFgu+
+         e0dH70GEak+O5bhuQk0wIbPVml2uGH8ksoFbSURpL4lr4Ge7xCPKZyVGsLd0BuvXBXqT
+         w9FMey03pj2iOaHZ7ypESnQnG4IXa7mAdXV7ymYLlw9yHB5yK18I94e0ekfR5C7SUNrw
+         2N4g==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+Received: from mx4.uni-regensburg.de (mx4.uni-regensburg.de. [2001:638:a05:137:165:0:4:4e7a])
+        by gmr-mx.google.com with ESMTPS id p7si341002ljj.5.2021.08.26.23.36.07
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 26 Aug 2021 23:36:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) client-ip=2001:638:a05:137:165:0:4:4e7a;
+Received: from mx4.uni-regensburg.de (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id E1138600004F
+	for <open-iscsi@googlegroups.com>; Fri, 27 Aug 2021 08:36:06 +0200 (CEST)
+Received: from gwsmtp.uni-regensburg.de (gwsmtp1.uni-regensburg.de [132.199.5.51])
+	by mx4.uni-regensburg.de (Postfix) with ESMTP id C2A28600004E
+	for <open-iscsi@googlegroups.com>; Fri, 27 Aug 2021 08:36:06 +0200 (CEST)
+Received: from uni-regensburg-smtp1-MTA by gwsmtp.uni-regensburg.de
+	with Novell_GroupWise; Fri, 27 Aug 2021 08:36:06 +0200
+Message-Id: <612887D5020000A100043866@gwsmtp.uni-regensburg.de>
+X-Mailer: Novell GroupWise Internet Agent 18.3.1
+Date: Fri, 27 Aug 2021 08:36:05 +0200
+From: "Ulrich Windl" <Ulrich.Windl@rz.uni-regensburg.de>
+To: "open-iscsi" <open-iscsi@googlegroups.com>
+Subject: Antw: [EXT] linux iscsi target setup for IP camera
+References: <a410c8bc-f3d7-4d6a-a6d5-f8dbdcd62d41n@googlegroups.com>
+In-Reply-To: <a410c8bc-f3d7-4d6a-a6d5-f8dbdcd62d41n@googlegroups.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Disposition: inline
+X-Original-Sender: Ulrich.Windl@rz.uni-regensburg.de
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates
+ 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -76,90 +129,62 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1442_26410345.1629989052485
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1443_294057490.1629989052485"
+I think at the very least you'll have to provide some details (like logs from Linux, and maybe some details from Windows where it is said to work).
+Or a technical specification of the camera at least.
 
-------=_Part_1443_294057490.1629989052485
-Content-Type: text/plain; charset="UTF-8"
+Regards,
+Ulrich
+
+>>> Fernando Perfumo <fp2031@gmail.com> schrieb am 26.08.2021 um 16:44 in Nachricht
+<a410c8bc-f3d7-4d6a-a6d5-f8dbdcd62d41n@googlegroups.com>:
+
+> I'm trying to set up iscsi target on Debian 11 for recording video from 
+> Bosch ip cameras.
+> 
+> I can connect to the target from windows, but not from the cameras.
+> 
+> tcpdump shows in the negotiation's packets the presence of "X-" parameters 
+> on the camera TCP packets.
+> I've seen in the iscsi RFC these extra parameters are optional.
+> 
+> Does somebody knows if the existence of "X-" parameters can break the 
+> negotiation of targets and luns on iscsi linux implemetations?
+> 
+> There is no more references to X- and X# parameters on internet except on 
+> the original iscsi RFC, else I would have found some. 
+> 
+> I want to modify the iscsi sources to allow admins to test and supply 
+> convenient responses to 'X-com.whatever' maker's parameters, and I would 
+> appreciate your suggestions.
+> 
+> I've heard these ip cameras work too with microsoft's iscsi -non bosch 
+> altered- target implementations, so it may be only matter of supplying 
+> convenient responses to X- parameters.
+> 
+> Thanks
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+>   
+> 
+> 
+> -- 
+> You received this message because you are subscribed to the Google Groups 
+> "open-iscsi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an 
+> email to open-iscsi+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit 
+> https://groups.google.com/d/msgid/open-iscsi/a410c8bc-f3d7-4d6a-a6d5-f8dbdcd6 
+> 2d41n%40googlegroups.com.
 
 
-I'm trying to set up iscsi target on Debian 11 for recording video from 
-Bosch ip cameras.
-
-I can connect to the target from windows, but not from the cameras.
-
-tcpdump shows in the negotiation's packets the presence of "X-" parameters 
-on the camera TCP packets.
-I've seen in the iscsi RFC these extra parameters are optional.
-
-Does somebody knows if the existence of "X-" parameters can break the 
-negotiation of targets and luns on iscsi linux implemetations?
-
-There is no more references to X- and X# parameters on internet except on 
-the original iscsi RFC, else I would have found some. 
-
-I want to modify the iscsi sources to allow admins to test and supply 
-convenient responses to 'X-com.whatever' maker's parameters, and I would 
-appreciate your suggestions.
-
-I've heard these ip cameras work too with microsoft's iscsi -non bosch 
-altered- target implementations, so it may be only matter of supplying 
-convenient responses to X- parameters.
-
-Thanks
-
-
-
-
-
-
-
-  
 
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/a410c8bc-f3d7-4d6a-a6d5-f8dbdcd62d41n%40googlegroups.com.
-
-------=_Part_1443_294057490.1629989052485
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<br><div>I'm trying to set up iscsi target on Debian 11 for recording video=
- from Bosch ip cameras.</div><div><br></div><div>I can connect to the targe=
-t from windows, but not from the cameras.</div><div><br></div><div>tcpdump =
-shows in the negotiation's packets the presence of "X-" parameters on the c=
-amera TCP packets.<br></div><div>I've seen in the iscsi RFC these extra par=
-ameters are optional.</div><div><br></div><div>Does somebody knows if the e=
-xistence of "X-" parameters can break the negotiation of targets and luns o=
-n iscsi linux implemetations?</div><div><br></div><div>There is no more ref=
-erences to X- and X# parameters on internet except on the original iscsi RF=
-C, else I would have found some. <br></div><div><br></div><div>I want to mo=
-dify the iscsi sources to allow admins to test and supply convenient respon=
-ses to 'X-com.whatever' maker's parameters, and I would appreciate your sug=
-gestions.</div><div><br></div><div>I've heard these ip cameras work too wit=
-h microsoft's iscsi -non bosch altered- target implementations, so it may b=
-e only matter of supplying convenient responses to X- parameters.</div><div=
-><br></div><div>Thanks<br></div><div><br></div><div> <br></div><div><br></d=
-iv><div><br></div><div> <br></div><div><br></div><div><br></div><div> &nbsp=
-; <br></div><div><br></div><div><br></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/a410c8bc-f3d7-4d6a-a6d5-f8dbdcd62d41n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/a410c8bc-f3d7-4d6a-a6d5-f8dbdcd62d41n%40googlegroups.com</a>.=
-<br />
-
-------=_Part_1443_294057490.1629989052485--
-
-------=_Part_1442_26410345.1629989052485--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/612887D5020000A100043866%40gwsmtp.uni-regensburg.de.
