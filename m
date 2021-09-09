@@ -1,76 +1,130 @@
-Return-Path: <open-iscsi+bncBDIYT2GSWABBBOXD4OEQMGQE3EDV2QI@googlegroups.com>
+Return-Path: <open-iscsi+bncBAABBYN65GEQMGQEB2ER6RQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x83d.google.com (mail-qt1-x83d.google.com [IPv6:2607:f8b0:4864:20::83d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FAC2403E4C
-	for <lists+open-iscsi@lfdr.de>; Wed,  8 Sep 2021 19:24:12 +0200 (CEST)
-Received: by mail-qt1-x83d.google.com with SMTP id o9-20020ac80249000000b002a0c9fd54d5sf4189385qtg.4
-        for <lists+open-iscsi@lfdr.de>; Wed, 08 Sep 2021 10:24:12 -0700 (PDT)
+Received: from mail-ot1-x338.google.com (mail-ot1-x338.google.com [IPv6:2607:f8b0:4864:20::338])
+	by mail.lfdr.de (Postfix) with ESMTPS id 563B6405D4A
+	for <lists+open-iscsi@lfdr.de>; Thu,  9 Sep 2021 21:24:19 +0200 (CEST)
+Received: by mail-ot1-x338.google.com with SMTP id i2-20020a05683033e200b00538e5aa7d41sf1660496otu.1
+        for <lists+open-iscsi@lfdr.de>; Thu, 09 Sep 2021 12:24:19 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1631215458; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=wYSwTGv9LzjjUfBt7jkpu2p0Er1hD2zgt5QuLWZ4o9HIFU1Ce7foz3SYnYBfb2ff+c
+         xXQeioBLhs0ItJbsN/15S9v524pZLWq0OMqFiKASNdmzZyE1y7pB14x8Rf8TziQazEKO
+         sUivFTWs2MZzv1CCuInEfrNZyRvL1fjGlmmh4pqT1myiwN0xUJFa1ihbdroZLOaPSLBL
+         II4Sp7XXxqC9WAZ+RxIYkZzC+vtiBmUtzuNyyJkx/vqoimNgOgOEx8nX8fG34c885K5A
+         0A/8i7c/Fok3soMNXkBeKEPSM7+nP4lQ8drWgVlTaJYQ0I0ETVVJn6B4Jz4M6ZEuXTrT
+         y1Ug==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:message-id:date:subject:cc
+         :to:from:mime-version:sender:dkim-signature;
+        bh=PqIhRxvOCmPJQDZXVZDajR52hNcqIBpBv7qXvyxMBJw=;
+        b=j2/jxSoO/N+k0pELYHl71HpRSgSO1h66vICMYIKFM5elkZsyvO89unTRgHwl0l9Jpv
+         Baim/WhrC38uUmu1W+j5GRbwQiggpV/DaZYKsnaQrx5/DQbEnBtZDekNIQfexHe9clXJ
+         Tufl/tgxqPm2I/aDuyl1gMyHsCCd5LgE2BUq0kcD7Yx5WEPAigfWOq/iTN/y90yR67Qc
+         7TSToNUGtMwqNvQRc9C1J4DI05U0h7mZOlsWJwytK5jAT3yDrydnZBSJ9x/ctbURV6mn
+         QJSTaBFm2IWsQj/sFyty9KnAspVR99r3QdZEKW3jbAoJaF+P9YdHhCeUb67IF5nUVsDU
+         W2pQ==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       spf=pass (google.com: domain of dinghui@sangfor.com.cn designates 59.111.176.42 as permitted sender) smtp.mailfrom=dinghui@sangfor.com.cn;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sangfor.com.cn
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=0gR2Sq3hWMhALaxX7xvey9FJQhxChl86R9SPPNDVB9s=;
-        b=ieXn3s+2nc/SlbOsbie0AQ6mRBJ6mJzjuSa85p79d6f0e9ci8vJc+yKqAOnSYNz196
-         i3eOPL8TQeKxTreXYGrZ34F+5hveZFpHYn75mmYnwH+XiCTkvrP+mJZrGwnBsd8jKjPD
-         KkbaiEgzw80EG7Z8T6pUx7lQ2JJqUttpaKhr571O0BQoJfgP/4B4QtmkNmBg3sEiWQm1
-         Oxl/gThfimsQ7QDt/JZIQqsoaJZRt7Qhfkyt7L7GHXB+j2K1oynFJzyIJikDA0od9Zzk
-         9FSde9f38t1W+kHm3StkJoTs0XrWC0X6LjPxJ1tKuR0uQ3VJLGKe05d4ORlBT4f5koFM
-         a9mA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=0gR2Sq3hWMhALaxX7xvey9FJQhxChl86R9SPPNDVB9s=;
-        b=TqSzw3MM+99L/xR+IMS5hAITHDqXzQeHdpbQEMAuqNOk0aIm7rYfIFlcelAQ7H5oYF
-         SX5lMRphmPOKSHX/X93lyBVPXHWCVTspGaqSNgaMLv3BfBpL9bMH4A0iZCtYKPETjCev
-         4DAN+BbTJqUICTjheLi6gYbwel5qxGyC50JoVbZh3jJn+3ZP8Xm3jjrmszV2W8EzdBUn
-         bHYoMQ8++lXmt0flpl2ifuxt52lrJ8uPGg1dOZYMjke0+dlFDtb3G0G7w+gw3L/TctAH
-         MXi+Q+/9UwQH2+t9SzZZHGxGCSSDJH8LfgT2t+jjwJPpnCoYaIi2Od63B54mx6G1ZArn
-         5xBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
+        h=sender:mime-version:from:to:cc:subject:date:message-id
+         :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=0gR2Sq3hWMhALaxX7xvey9FJQhxChl86R9SPPNDVB9s=;
-        b=JYDRKD6+piYAJYNNk1k0u4324uXJsqzelOt1cv/10oJMqsAkOdETryD6SOK14q/y/l
-         7POxf2Xppc2VL0PmTFs+ndBfPai+34ZQqSYGIbp2o+uDoKUgMH9Fupwu1MkuYhQ/FJwg
-         6DKD3CnUPYbWOTVz/EU3vi6UOUgDhH7U5S8WhPEtZo+KjgIzCi6NXtYSEdSV/lc6Ucps
-         zJ/EC0T5hli3VhNTiZMcMHN8qaYWFHQ/K6nhWqZeeyU2UFS8Zq6pKZzzlXatln9a23rU
-         86Sz8rXZ+Ey3q2CQ1KIp6Az34W2p/wnK3jzeHKgfh+V3XrDJ6U9z0gdraSom85b7eKfb
-         J5QA==
+        bh=PqIhRxvOCmPJQDZXVZDajR52hNcqIBpBv7qXvyxMBJw=;
+        b=mDr9j9rvuauJ/7wS03LBrQcfpdRKZbKfmwqC43JTv2g16fM3jTOH3Z7r5wiogs22sB
+         EZzgzxHXsqqZSokdM5cjbx50nsXT80ViuriUPM7ZimkF9w8YLaum/P4Due8pq62Hv3ua
+         WFftJd7hfDSx92sGvhM3W5ETrcExI1Zn69sgpYfAPwboDd5KerKQ0PGwk6P/CqnuZZNN
+         d8MOF2OpXoQfCRXA6CQ0seMZyaFUzOIj5oboVZYv/3puXJHDBlyxKYtutXVZTdLYWU1/
+         aN1LJSuqk9pbKYu+1X8afw8xcZuRw5nAChdR6UvYB2K1qvVrsKAcY/1w2QXzwNkb8b60
+         ietg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=sender:x-gm-message-state:mime-version:from:to:cc:subject:date
+         :message-id:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=PqIhRxvOCmPJQDZXVZDajR52hNcqIBpBv7qXvyxMBJw=;
+        b=AvCMVHAfr0+cQI2qhy3yNwtTBBMTOHkLoFcusMjLkhpHu//4ASRkQ6VjiKh7aZIlQ9
+         0PbHRROXDX+1Pj2xA4J2elCjelFDINKUmwS+0AOwl6kZynO1othRv0JmdyEXs5ubBmRY
+         1tyYn5s4McQT/sB38AwOY4tM9nHohWDlZc86XEtdYi5VlEekQGFRmATVjIXIjbesNXev
+         i6sxiBtaaMfvw6N0iKRgtLHeXTk5cFr1lHvn+iXo4GtB5V4NW7l9vhNnJwX+SOzbGKdz
+         5tW2ZgSIK9PHLIS7JPYdwDUs3dgh3g9LEZt76ujWwW8D2vdS/BE3XI5kYe8zriqgB9VN
+         04pw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532Pdr8r/gqMqdSIo12DTKKLMeywv67tgnqzsvVhoM0tJaks9AAJ
-	nghT8qOGp10zFUNt2H+Zoec=
-X-Google-Smtp-Source: ABdhPJxt7hEXn/DwQqzYMzuGMl9+cc4n0VqBnvYAko6cYOS2WiRTs9yBBOyNv/4ONAJC+XPXERRLag==
-X-Received: by 2002:a05:620a:1239:: with SMTP id v25mr4505697qkj.202.1631121850917;
-        Wed, 08 Sep 2021 10:24:10 -0700 (PDT)
-X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ae9:e303:: with SMTP id v3ls1818215qkf.5.gmail; Wed, 08 Sep
- 2021 10:24:10 -0700 (PDT)
-X-Received: by 2002:a05:620a:f8a:: with SMTP id b10mr4599738qkn.424.1631121850618;
-        Wed, 08 Sep 2021 10:24:10 -0700 (PDT)
-Received: by 2002:a37:4643:0:b0:3fc:63ed:ee86 with SMTP id af79cd13be357-42890cfe985ms85a;
-        Sun, 5 Sep 2021 23:37:08 -0700 (PDT)
-X-Received: by 2002:ac8:7194:: with SMTP id w20mr9635375qto.217.1630910228058;
-        Sun, 05 Sep 2021 23:37:08 -0700 (PDT)
-Date: Sun, 5 Sep 2021 23:37:07 -0700 (PDT)
-From: Dhiraj Surana <surana.dhiraj@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <0a3e1a93-457c-4362-a13c-39b87d690724n@googlegroups.com>
-In-Reply-To: <eff2c74b-046c-443d-9b89-1e0aeadc966e@googlegroups.com>
-References: <eff2c74b-046c-443d-9b89-1e0aeadc966e@googlegroups.com>
-Subject: Re: iscsiadm: iface iter could not read dir /var/lib/iscsi/nodes/
+X-Gm-Message-State: AOAM532TOd/oTYJGSJdNw38yBknVn+2K0c64ovc6g709dmaFKmJVM2zR
+	W/inkBv4Raxwh1tDC3SGJSI=
+X-Google-Smtp-Source: ABdhPJywzUpO+pdtphrdauTg6q3eok6y5iHKGtAmu72TnKW1RUtpme431ZVzBw11lJ2pdG8g8yzumA==
+X-Received: by 2002:a4a:3944:: with SMTP id x4mr1156089oog.69.1631215458028;
+        Thu, 09 Sep 2021 12:24:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_6340_264790475.1630910227826"
-X-Original-Sender: surana.dhiraj@gmail.com
+X-BeenThere: open-iscsi@googlegroups.com
+Received: by 2002:a05:6830:2143:: with SMTP id r3ls878078otd.0.gmail; Thu, 09
+ Sep 2021 12:24:17 -0700 (PDT)
+X-Received: by 2002:a05:6830:4b6:: with SMTP id l22mr1270455otd.129.1631215457814;
+        Thu, 09 Sep 2021 12:24:17 -0700 (PDT)
+Received: by 2002:aca:4bcd:0:b0:25a:47c7:7cd9 with SMTP id 5614622812f47-26dbbef3202msb6e;
+        Thu, 9 Sep 2021 08:48:04 -0700 (PDT)
+X-Received: by 2002:a17:902:edd0:b0:135:b351:bd5a with SMTP id q16-20020a170902edd000b00135b351bd5amr3298120plk.52.1631202483906;
+        Thu, 09 Sep 2021 08:48:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1631202483; cv=none;
+        d=google.com; s=arc-20160816;
+        b=UTmSBDl4T92K/yi18mS7xEH/Lzs1VlObdYCd09Ur+tiCEeg+TbltVGOpqM2L1A5nD7
+         2DvWuNU4i1iy/AT0YFSSSNZ0p+2Y7fj1P/s9FObTAlWgsQ0WriA/N1tFRiXi3bQs4MNc
+         5Lvasi87S/UGHIOealzQ5pSZEvQUmdNuAofeGtbSQqIAXh4FNuUq8z+WNays93A1wB8Q
+         DTNA0gyhVOn000ZN5oPTzbKpSicEepxeihE8Mj9f2y0h1xX++qJAVG/17GDpGlBkxA3e
+         VUnGRaDU8SlTrI12C9Y2UsURU8zX/NgJIZn20hn6tJgO1ODGrLpCKvRjlYQVA82B1Gqs
+         MF0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:date:subject:cc:to:from;
+        bh=5IKxfSIVmM+pvYliBzujoQUaZGVHElpQwjWBJfPA1DI=;
+        b=H+yhwuYS6kmxPR7lGPpN5Gi4DGDJwWeeDrkMisHoUBu2+vhAWVAvaHnoi37GBwvaJE
+         VcptqK2DRPdOwQg0BewfVobkZTW4xBoHL5PM47zf3zQazFYwhw7SQ4K/q0b/tETVHItg
+         hW40vBF0SI8zLfV5A0D717QjO17CN1f2baslLq3JE2RL2u87DP5cbOo1tcxvQ+T8//aU
+         PLazspa1EXoh074e34fZ3ekfI61B75MYIaShMGIlyEHbttlenqtWMbVu3VfUAPnlGIZ8
+         hY9q4GRA5t+jCpeAfOKH3u0Wywp2fLuiA6R7lLxz4UlIwmHZ7PeGsR7gez+JJ1/RsRv5
+         7sEA==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       spf=pass (google.com: domain of dinghui@sangfor.com.cn designates 59.111.176.42 as permitted sender) smtp.mailfrom=dinghui@sangfor.com.cn;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sangfor.com.cn
+Received: from mail-m17642.qiye.163.com (mail-m17642.qiye.163.com. [59.111.176.42])
+        by gmr-mx.google.com with ESMTPS id v7si191194pjk.2.2021.09.09.08.48.03
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 Sep 2021 08:48:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of dinghui@sangfor.com.cn designates 59.111.176.42 as permitted sender) client-ip=59.111.176.42;
+Received: from localhost.localdomain (unknown [113.116.176.115])
+	by mail-m17642.qiye.163.com (Hmail) with ESMTPA id 3BE3F2201A4;
+	Thu,  9 Sep 2021 23:48:01 +0800 (CST)
+From: Ding Hui <dinghui@sangfor.com.cn>
+To: lduncan@suse.com,
+	cleech@redhat.com,
+	jejb@linux.ibm.com,
+	michael.christie@oracle.co,
+	open-iscsi@googlegroups.com,
+	linux-kernel@vger.kernel.org
+Cc: Ding Hui <dinghui@sangfor.com.cn>
+Subject: [PATCH 1/3] scsi: libiscsi: move init ehwait to iscsi_session_setup()
+Date: Thu,  9 Sep 2021 23:47:27 +0800
+Message-Id: <20210909154729.20715-1-dinghui@sangfor.com.cn>
+X-Mailer: git-send-email 2.17.1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+	kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRkaQ0lWSExMQ0tJTUgdSx
+	lLVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6K0k6Nxw5ET4ICh8QDRcOM0IV
+	IS8aFEJVSlVKTUhKSUtJT0NKTE5PVTMWGhIXVR8SFRwTDhI7CBoVHB0UCVUYFBZVGBVFWVdZEgtZ
+	QVlKSkhVSkpNVUpMTVVKSk5ZV1kIAVlBSUpCSjcG
+X-HM-Tid: 0a7bcb3e9529d998kuws3be3f2201a4
+X-Original-Sender: dinghui@sangfor.com.cn
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of dinghui@sangfor.com.cn designates 59.111.176.42 as
+ permitted sender) smtp.mailfrom=dinghui@sangfor.com.cn;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=sangfor.com.cn
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -82,155 +136,45 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_6340_264790475.1630910227826
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_6341_327959615.1630910227826"
+commit ec29d0ac29be ("scsi: iscsi: Fix conn use after free during
+resets") move member ehwait from conn to session, but left init ehwait
+in iscsi_conn_setup().
 
-------=_Part_6341_327959615.1630910227826
-Content-Type: text/plain; charset="UTF-8"
+Due to one session can be binded by multi conns, the conn after the
+first will reinit the session->ehwait, move init ehwait to
+iscsi_session_setup() to fix it.
 
-hi , 
+Fixes: ec29d0ac29be ("scsi: iscsi: Fix conn use after free during resets")
+Signed-off-by: Ding Hui <dinghui@sangfor.com.cn>
+---
+ drivers/scsi/libiscsi.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-did you get the resolution for this issue , even i am seeing hte similar 
-kind of issue while deleting and creating the iscsi and iser session.
-
-20210903 10:44:36 [ 11175] run_system_cmd: Running: iscsiadm -m node 
---targetname iqn.1986-03.com.ibm:2145.stand2fab3plus9.118.54.153.node1 -I 
-iface.stand2host1:1 -p 192.170.15.10:3260 --login iscsiadm: Could not 
-execute operation on all records: encountered iSCSI database failure 
-20210903 10:44:36 [ 11175] run_system_cmd: rc=6, signal=0 core_available=0 
-when running iscsiadm -m node --targetname 
-iqn.1986-03.com.ibm:2145.stand2fab3plus9.118.54.153.node1 -I 
-iface.stand2host1:1 -p 192.170.15.10:3260 --login, 20210903 10:44:36 [ 
-11175] ------------------------------------------------------------------ 
-run_system_cmd: iscsiadm -m node --targetname 
-iqn.1986-03.com.ibm:2145.stand2fab3plus9.118.54.153.node1 -I 
-iface.stand2host1:1 -p 192.170.15.10:3260 --login failed, rc=6, signal=0, 
-core_available=0 - exiting.... 20210903 10:44:36 [ 11175] 
-------------------------------------------------------------------
-
-[root@stand2host1 nodes]# iscsiadm -m node -o delete
-iscsiadm: Could not execute operation on all records: encountered iSCSI 
-database failure
-
-
-On Friday, 26 December 2014 at 18:50:50 UTC+5:30 bharatv...@gmail.com wrote:
-
-> Dear All,
->
-> I was trying to login to a SAN Device logical volume from my linux server, 
-> which is connected to SAN Device with 10Gb NIC card.
-> IQN of volume was 
-> : iqn.2001-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldset-0018.target0016 
-> and I executed command as follows:
->
-> "/sbin/iscsiadm -m node -T 
-> iqn.2001-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldset-0018.target0016 
-> -p 172.168.2.165 --login"
->
-> But, it failed with:
-> Error Code : 6
-> Error message : iscsiadm: iface iter could not read dir 
-> /var/lib/iscsi/nodes/iqn.2001-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldset-0048.target0012/
-> 172.168.2.165,3260,3.
-> iscsiadm: Could not execute operation on all records: encountered iSCSI 
-> database failure
->
-> This error message was quite confusing as it shows that reading iface for 
-> IQN : 
-> "iqn.2001-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldset-0048.target0012" 
-> failed but I tried login to 
-> "iqn.2001-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldset-0018.target0016".
-> Moreover, iSCSI session for 
-> "iqn.2001-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldset-0048.target0012" 
-> was logged out around 6 minutes ago.
->
-> I am unaware about the iscsi internals, and could not understand the 
-> reason for it.
-> I suspect that at the time of iSCSI login all iface are read.
->
-> Please help me in this.
->
-> Thanks in anticipation.
->
+diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+index 4683c183e9d4..712a45368385 100644
+--- a/drivers/scsi/libiscsi.c
++++ b/drivers/scsi/libiscsi.c
+@@ -2947,6 +2947,7 @@ iscsi_session_setup(struct iscsi_transport *iscsit, struct Scsi_Host *shost,
+ 	session->tmf_state = TMF_INITIAL;
+ 	timer_setup(&session->tmf_timer, iscsi_tmf_timedout, 0);
+ 	mutex_init(&session->eh_mutex);
++	init_waitqueue_head(&session->ehwait);
+ 
+ 	spin_lock_init(&session->frwd_lock);
+ 	spin_lock_init(&session->back_lock);
+@@ -3074,8 +3075,6 @@ iscsi_conn_setup(struct iscsi_cls_session *cls_session, int dd_size,
+ 		goto login_task_data_alloc_fail;
+ 	conn->login_task->data = conn->data = data;
+ 
+-	init_waitqueue_head(&session->ehwait);
+-
+ 	return cls_conn;
+ 
+ login_task_data_alloc_fail:
+-- 
+2.17.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/0a3e1a93-457c-4362-a13c-39b87d690724n%40googlegroups.com.
-
-------=_Part_6341_327959615.1630910227826
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-hi ,&nbsp;<div><br></div><div>did you get the resolution for this issue , e=
-ven i am seeing hte similar kind of issue while deleting and creating the i=
-scsi and iser session.</div><div><br></div><div>20210903 10:44:36 [ 11175] =
-run_system_cmd: Running: iscsiadm -m node --targetname iqn.1986-03.com.ibm:=
-2145.stand2fab3plus9.118.54.153.node1 -I iface.stand2host1:1 -p 192.170.15.=
-10:3260 --login
-iscsiadm: Could not execute operation on all records: encountered iSCSI dat=
-abase failure
-20210903 10:44:36 [ 11175] run_system_cmd: rc=3D6, signal=3D0 core_availabl=
-e=3D0 when running iscsiadm -m node --targetname iqn.1986-03.com.ibm:2145.s=
-tand2fab3plus9.118.54.153.node1 -I iface.stand2host1:1 -p 192.170.15.10:326=
-0 --login,
-20210903 10:44:36 [ 11175] ------------------------------------------------=
-------------------
-                           run_system_cmd: iscsiadm -m node --targetname iq=
-n.1986-03.com.ibm:2145.stand2fab3plus9.118.54.153.node1 -I iface.stand2host=
-1:1 -p 192.170.15.10:3260 --login failed,
-                           rc=3D6, signal=3D0, core_available=3D0 - exiting=
-....
-20210903 10:44:36 [ 11175] ------------------------------------------------=
-------------------<br></div><div><br></div><div><div>[root@stand2host1 node=
-s]# iscsiadm -m node -o delete</div><div>iscsiadm: Could not execute operat=
-ion on all records: encountered iSCSI database failure</div><div><br></div>=
-<br></div><div class=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr"=
->On Friday, 26 December 2014 at 18:50:50 UTC+5:30 bharatv...@gmail.com wrot=
-e:<br/></div><blockquote class=3D"gmail_quote" style=3D"margin: 0 0 0 0.8ex=
-; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;"><div dir=
-=3D"ltr">Dear All,<div><br></div><div>I was trying to login to a SAN Device=
- logical volume from my linux server, which is connected to SAN Device with=
- 10Gb NIC card.</div><div>IQN of volume was :=C2=A0iqn.2001-03.jp.nec:stora=
-ge01:ist-m000-sn-0000000942014090.lx-ddsldset-0018.target0016 and I execute=
-d command as follows:</div><div><br></div><div>&quot;/sbin/iscsiadm -m node=
- -T iqn.2001-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldset-0=
-018.target0016 -p 172.168.2.165 --login&quot;</div><div><br></div><div>But,=
- it failed with:</div><div>Error Code : 6</div><div>Error message : iscsiad=
-m: iface iter could not read dir /var/lib/iscsi/nodes/iqn.2001-03.jp.nec:st=
-orage01:ist-m000-sn-0000000942014090.lx-ddsldset-0048.target0012/<a href=3D=
-"http://172.168.2.165" target=3D"_blank" rel=3D"nofollow" data-saferedirect=
-url=3D"https://www.google.com/url?hl=3Den-GB&amp;q=3Dhttp://172.168.2.165&a=
-mp;source=3Dgmail&amp;ust=3D1630995535356000&amp;usg=3DAFQjCNGMdD_JFFruZLX0=
-A7fBwNCH7PdLGw">172.168.2.165</a>,3260,3.</div><div>iscsiadm: Could not exe=
-cute operation on all records: encountered iSCSI database failure<br></div>=
-<div><br></div><div>This error message was quite confusing as it shows that=
- reading iface for IQN : &quot;iqn.2001-03.jp.nec:storage01:ist-m000-sn-000=
-0000942014090.lx-ddsldset-0048.target0012&quot; failed but I tried login to=
- &quot;iqn.2001-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldse=
-t-0018.target0016&quot;.</div><div>Moreover, iSCSI session for &quot;iqn.20=
-01-03.jp.nec:storage01:ist-m000-sn-0000000942014090.lx-ddsldset-0048.target=
-0012&quot; was logged out around 6 minutes ago.</div><div><br></div><div>I =
-am unaware about the iscsi internals, and could not understand the reason f=
-or it.</div><div>I suspect that at the time of iSCSI login all iface are re=
-ad.</div><div><br></div><div>Please help me in this.</div><div><br></div><d=
-iv>Thanks in anticipation.</div></div></blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/0a3e1a93-457c-4362-a13c-39b87d690724n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/0a3e1a93-457c-4362-a13c-39b87d690724n%40googlegroups.com</a>.=
-<br />
-
-------=_Part_6341_327959615.1630910227826--
-
-------=_Part_6340_264790475.1630910227826--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20210909154729.20715-1-dinghui%40sangfor.com.cn.
