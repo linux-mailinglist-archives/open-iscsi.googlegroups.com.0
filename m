@@ -1,31 +1,31 @@
-Return-Path: <open-iscsi+bncBC63XVGIQQLRBC7S6GEQMGQEYVAD7TI@googlegroups.com>
+Return-Path: <open-iscsi+bncBC63XVGIQQLRBDHZ6GEQMGQEFUTPQYA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pf1-x43a.google.com (mail-pf1-x43a.google.com [IPv6:2607:f8b0:4864:20::43a])
-	by mail.lfdr.de (Postfix) with ESMTPS id 272664075F0
-	for <lists+open-iscsi@lfdr.de>; Sat, 11 Sep 2021 11:38:21 +0200 (CEST)
-Received: by mail-pf1-x43a.google.com with SMTP id r206-20020a6276d7000000b004365c6064fbsf2836161pfc.5
-        for <lists+open-iscsi@lfdr.de>; Sat, 11 Sep 2021 02:38:21 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1631353099; cv=pass;
+Received: from mail-pj1-x103f.google.com (mail-pj1-x103f.google.com [IPv6:2607:f8b0:4864:20::103f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C784075FA
+	for <lists+open-iscsi@lfdr.de>; Sat, 11 Sep 2021 11:53:18 +0200 (CEST)
+Received: by mail-pj1-x103f.google.com with SMTP id 41-20020a17090a0fac00b00195a5a61ab8sf3593269pjz.3
+        for <lists+open-iscsi@lfdr.de>; Sat, 11 Sep 2021 02:53:18 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1631353996; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Lg2DpvIjR7W3RLbRCLdxMiE2oX81nhug0Z9VMSbUPt6rqDP9J0OyJGPmyQNJHNVODd
-         XSEtRjdxcq7Mh8OeHBRBmwjgih7CGjV9mpHhnduJq8dgQw6fbxDKNPM41sMA4SJDudVi
-         b8hD5NshnAouf1Dx6rI+ASAGSvdJ1/Ywycus1Hp4BAm8nUK7B368OSeXGBB3dKxxoLf+
-         l9jesRMhiIRvscy/jHuxaeVBJJB9wRtBNe0z0TB4e4UNAMixCHOqrL0Oe/a+WlHmmeM4
-         nnC34T9F7sZMdhQ3ORx7QvMyUFn9TJnRK3bLg6e4luCGCVoNVf6odSRwhHB4YJn8lq1T
-         EGAg==
+        b=LEKdd2WuD1zdJ6QN92nyF/3JMvH9eEEBNpM6tGvfk2TE4lPoLVJ15g0OfhMxKgQqwU
+         HvCrF2BIl4NXwIKPhzvFV86hAttBc8FxtA/IfA44J4zkr/7nfDj1tGOuTVSK4KuiGa0G
+         d7RByn/uEslCnZqDEqX9R7oAzQ6WuaamURw3ZYrONK5dxM4x37Ab71OznTKu32PbD1XE
+         Aun9Rm1nN0baE/2j0/Dp6BikfCy5lvPbXlqItWzM3gs+3QChoS7R6jty4I7ezRAw6JPq
+         J7qNcwD1LfvH1ZIVZjwFP/2qhsowWocKvyzdI7E6XwRSzH+MftdRY/9vP6033xTKrmE6
+         /MkA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
          :content-language:in-reply-to:mime-version:user-agent:date
          :message-id:from:references:to:subject:sender:dkim-signature;
-        bh=DcVZNNAABQAjijG2NNlO7bicbumyj0d7I9N1aUDFqS8=;
-        b=d+5NkmJDf38rBeychxCBv2l2G/jbqpf9IWVW+xENS0hcjyAVAqcUPsbyfva2c4YZV1
-         3fLgHJiAs6hzR1h/xk3/vCmyA83ei42GyYfpf9kMVK6wqiuyOIe6Bs4PL+y9f0AkjD39
-         SbuDFr/YZzDWcOUwrC/+aYoH+7jWTuF5VFPh5iG9oXvxV69vuE6ey3Wa4tYMvvzMszj5
-         FHzf1v4lOevJToYO5jwIoGMQaDcA1gpJLojqu3EmZypwOoCUTBrJm/oiSjLaWhB0b22m
-         8r2c2XivQ1VKh3Te3pa44P3K2HrDIJerm6q6fNdTHumG90QDsKP9JGrb/Nm78iySd3/8
-         NkOw==
+        bh=0/HgYuvhGoG7YdNUzzgbS9mmyDC8WlZyAG7bQg5GJSI=;
+        b=tVX+x4iWZkzQ0QX7Ykx3aUmLzNsHuJChKWV/xR9JGXlcgIjGY5p2cI8wUCjstrreTm
+         g+Ijk7tJFsV4AFZVMlPiinGASO2+S6VxK6IJgGuA98I/yVXngA10KY25KTjYWPWpDF+d
+         bHQMA4zGyyDG0j9PLwTsJExhkcfWRLvm2IUmXwr4T1esctjDZMNlkfwtH+xi31PJXud7
+         ZTOpf5uSlKG8VBieOTm72rTFPxa5TuRrAKLuyrTQOlvch69kz6EYwVz4Q+aXTjsgMGig
+         C2I7KLIc7HHqSoAGzGQJUB4UPQmG6arsUPJnwUfv4zsN54cSa5wnxZoHA9jttPQax0jF
+         ef4Q==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
        spf=pass (google.com: domain of dinghui@sangfor.com.cn designates 59.111.176.42 as permitted sender) smtp.mailfrom=dinghui@sangfor.com.cn;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sangfor.com.cn
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=DcVZNNAABQAjijG2NNlO7bicbumyj0d7I9N1aUDFqS8=;
-        b=AGznZLr4ZZLjIb0plxNd1K/RNe1OrKoksdRC33I7FZaiFY2UtKUkcuSsbOYubTitV9
-         egnxknvXK9yXZsVUlgwYtaHp/xJiHPqcAIPCues1rv2OhkM9jOmmNKKukKqMoqnrG1kV
-         PNw/tltK+ja+QYO/3pHBwlAs0H8Gq75mggD8cXGizALjayagu47XJ0VHHWpLRGIQcw6T
-         Q3jYf9ux9NQ7kEkVsL8rHKHla3EUHdP3MeDALP0eJtuyfY4mreu/er9LSRLCeSqZ+kyc
-         61fx05T1Ot5EZus/Lzfvp++axtR4TsJBxhDuYnBlRAFMztffyMm0V4044S5TqOpJeQ2F
-         llKQ==
+        bh=0/HgYuvhGoG7YdNUzzgbS9mmyDC8WlZyAG7bQg5GJSI=;
+        b=AmbTjWKqog3a9nBs309CF+6z2OzKkIUn7UC260lhocRdlA4F9gjIroKUHA6iy+/S2J
+         i3Y5+eO5m1blSxcsBJCUCwvBTihsp6FSL6/w5z6Y5xotI3sitn/wiBZblDGCjLO+rcOn
+         Zv0/E85y4o3tdMIjVwc8IpHJ69NKZTlwgqOgC+ILEyCn6uKz8KawPpQ7a/DHGjOd7Odc
+         PeTdQMLgOB0UiZteaLKpY8lhMl+jWybpI5tRpjRYTHv7lEODs414z5iethBuRDs3+TBy
+         nJavdxCgLUrBL4q8yqEZ13Hrh3jIjxF23bwHY2ahZFoL1RSpC8i4ivPMZ0T51iLGRCxw
+         APeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=sender:x-gm-message-state:subject:to:references:from:message-id
@@ -51,80 +51,80 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=DcVZNNAABQAjijG2NNlO7bicbumyj0d7I9N1aUDFqS8=;
-        b=ZWt6LOCBCOk2fHN6UuMLJiWBSQU8+KBt1dtONECd03T7IHOXi1jFcfc2M+zAqjNNHj
-         I2WPhheWKcYrwK+QGSB8wD1NQQxG5z1duLc1TwGQXIPqq+PPzLh77NsYBexnoCf2MiTO
-         5dwHEHc0BycvAHHsVSLifQrW7j6JOtwZLEoXmZTRruOBIDzwbQa5Qn91OaXLSfFOpAI/
-         /huxsH7yMHaHkrRmWzPhum3BkmFO/bVHbw+jpJmv07FaOBRNmk74H+8SJ+oJo0/ubI6g
-         RavVGlXoDSSzOBst//S/+a3X0wdjSJy9NZsgjNH4whqen6SkHbz2eRRPDphMmSPDEKEn
-         d8Rg==
+        bh=0/HgYuvhGoG7YdNUzzgbS9mmyDC8WlZyAG7bQg5GJSI=;
+        b=kXzbK5embyVaCO/8kObArMz2hRAv/SwYX/uu0Zm4xMxl2O5ds6wgTLSO9I+kvgHZvY
+         M4qIzO5M8ZuHdrNAn9AgjxIOH1NtZ+/VOnxXCA8WOPx+t2wNKm5VUqnEt0ZAGheemcJM
+         r8GNACIneSUJrnCQ7KzoZuTNq0z8sl+F5JKrUe/zoDdShDleWn4TabQ2go4tGKLwDrSK
+         2vyAbUM35DVEVlseJIVeICHPNyDeHxvjwxbX9VZjOz/bQq9oj6+oQLuW5KYmDFUZUXwn
+         AxqOx+3htpkzEpyXD6BWeHkf1+EZg6eOc0v0j3vhaREbuUVT1KWqAxOs90J6nshk1akZ
+         h41g==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM5338CRXc+xU8yB0FBLUeGbgxUZ4tQR7dSf/YnEHIV1UBaXlP1bmn
-	DYFdpcNkAfsPcZkfTvZ/hsM=
-X-Google-Smtp-Source: ABdhPJzC/qZJseNFk1f3GV3T3inuGlw/FDaTBIhxvq3eJHlRQYADak5ulXSpkE7fYKKhAx0eOUux3A==
-X-Received: by 2002:a63:3d4a:: with SMTP id k71mr1807272pga.276.1631353099661;
-        Sat, 11 Sep 2021 02:38:19 -0700 (PDT)
+X-Gm-Message-State: AOAM532iab4xE3/lpVlj+svE5DIMVRFdoL4NGhsF3f4fZE2ihmG7i/tJ
+	Y0mx08RGz+JUl323Imx2rdQ=
+X-Google-Smtp-Source: ABdhPJxjg9I+pK9qNlcRCHTRX2SEgBVgbmgXRGlArC9GRGSf3QYwmrU5Pe5+2le2+K1W8NVeRXod4Q==
+X-Received: by 2002:a63:e909:: with SMTP id i9mr1843824pgh.162.1631353996512;
+        Sat, 11 Sep 2021 02:53:16 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:90b:4c92:: with SMTP id my18ls602177pjb.3.gmail; Sat, 11
- Sep 2021 02:38:19 -0700 (PDT)
-X-Received: by 2002:a17:902:ce8a:b0:13a:130c:e07f with SMTP id f10-20020a170902ce8a00b0013a130ce07fmr1725204plg.69.1631353099029;
-        Sat, 11 Sep 2021 02:38:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1631353099; cv=none;
+Received: by 2002:a17:90a:d995:: with SMTP id d21ls620942pjv.3.canary-gmail;
+ Sat, 11 Sep 2021 02:53:16 -0700 (PDT)
+X-Received: by 2002:a17:902:7145:b0:137:2e25:5bf0 with SMTP id u5-20020a170902714500b001372e255bf0mr1906121plm.10.1631353995928;
+        Sat, 11 Sep 2021 02:53:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1631353995; cv=none;
         d=google.com; s=arc-20160816;
-        b=Z0P6SNVGxSd/Ea0avi4r040iE6RJLpVjGarqqNG7Xq+AWiWC4Y/gZ6T+RC/G4tln+/
-         cI8AOQilV2ZTjHw10DZKzOHS4hX0eQc576ZgIn9JOZwyNnoGLKZ4Eba8NWSuo5+T4ppy
-         gI8c8CyzmSA77QYt8TxVA4CWBQk932cWr8dZHwY9s9IXBhCHjApGY5TuSJVI1X8BUNIX
-         fhdNpo1Sl4u6a1uhiCmPWpSGu+htfTvQgYAkFXYSYHa9GvLEo9Hk6ZpImGUxgBeS4p6x
-         4L0jLILuETGsfli8gBqrAWR2bkSoVuM2HvuDzD13oySZ+/Iu4odEVSOIvmevKVr0AI/B
-         0ecg==
+        b=w295tnBnKcFn1UorDoSfrA1T0v/iBGH9IlhPLoZCC4h41sBuh78ldxHBWcKeh7H+P6
+         Gg2u/yrSyPOyF/V5JzI4t9kaXUbDvxRRioBsWc3j+uPnE4vRYj70WqvThiZLhIcSZ8XV
+         txSo4KvzRFvE9GNOrWPia4y2/q39WZTuJn58QgV+c5uZy0bQWy3fPIZHvnZ9tFRZ5EnT
+         P38gZ87WnJA1q/qLTDn7yByAsrYOhWeu5Zr5DgOmiLBPA0HKIaUixOYOfdXWGRn0WoOj
+         F/+q2pinlIt0BixR/8O39gIQrvks1DId+FW+b/hpBlvqYz0Sb8jWWfwy4Y1DGCHidMgW
+         2U2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:content-language:in-reply-to:mime-version
          :user-agent:date:message-id:from:references:to:subject;
-        bh=bOuePNN6pheSEGLzPVnsBIAYYawDy133sOVv99jUNQo=;
-        b=nidKyVWNGm+GwHKjFxJWk+RcO642bE+NCSIOprY9hgPA9CYDRd7IxsWEYeKkMGUWmY
-         Mh7PlK1T6M1muhmg1X+Hr2XidRRtLqDHl8YToKF2WFONcCyYJBk5sepPztNwVOPeTcp1
-         J5rBaMs69M2S3GMlLdwZ6c0m/ebohgljtKfPHTpvLDTWypAFYjnmEoBlhMrsUiDA02Om
-         W4zKKXpQe/3L0sJShGrFFdc4sClTbFYecryKOV4FbBKSNRjyU2egK32GZJZIFVoZcEyN
-         E7F8/tMikZXFHVNxJazVWjlRptQleni9OL1N8T8C1yOAJ/m7v5gpfVe1yWaMGzvq232r
-         qbBQ==
+        bh=6v/2DVZb9t41H9AGL3I+ZRd//iPSurp+lR2nBmi4sCk=;
+        b=mJP4Sb6KsRBLv0RXVeJrJ4+qa48gvjRiHAkZednFrX8ugUOkfxTU8bW2G+KoZ6zosP
+         Z20ainveVrvv5qxcHsRNGNaNehA6+i1pcpzHgkDQMAn/rHqwqglWHDCEkJwBALCKD7lq
+         nJbBoCYR7OtKcB8UQKvmmn0pj++qD0GXbUYZN2Lo4P47JuyXoZBQriomhDIxuwym0miO
+         n1DGyXg+yS6AJ7yHDzms2VDv4J4eFj9Qz04Hk/re1E9MmYRMFfPv7lLkOAEd2phAqlGv
+         dvUtZoTLU5moeub5+ZC8syrFUNwdFoE+tjnDo4HT8YAlj9GbvwlhVsPyAJpoDz3bzWFV
+         HYFg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
        spf=pass (google.com: domain of dinghui@sangfor.com.cn designates 59.111.176.42 as permitted sender) smtp.mailfrom=dinghui@sangfor.com.cn;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sangfor.com.cn
 Received: from mail-m17642.qiye.163.com (mail-m17642.qiye.163.com. [59.111.176.42])
-        by gmr-mx.google.com with ESMTPS id r14si122600pgv.3.2021.09.11.02.38.18
+        by gmr-mx.google.com with ESMTPS id y2si138278pjp.2.2021.09.11.02.53.15
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 11 Sep 2021 02:38:19 -0700 (PDT)
+        Sat, 11 Sep 2021 02:53:15 -0700 (PDT)
 Received-SPF: pass (google.com: domain of dinghui@sangfor.com.cn designates 59.111.176.42 as permitted sender) client-ip=59.111.176.42;
 Received: from 2CD-RMPB.local (unknown [113.116.176.115])
-	by mail-m17642.qiye.163.com (Hmail) with ESMTPA id E3024220121;
-	Sat, 11 Sep 2021 17:37:04 +0800 (CST)
-Subject: Re: [PATCH 1/3] scsi: libiscsi: move init ehwait to
- iscsi_session_setup()
+	by mail-m17642.qiye.163.com (Hmail) with ESMTPA id 1370B22012B;
+	Sat, 11 Sep 2021 17:52:02 +0800 (CST)
+Subject: Re: [PATCH 2/3] scsi: libiscsi: fix invalid pointer dereference in
+ iscsi_eh_session_reset
 To: Mike Christie <michael.christie@oracle.com>, lduncan@suse.com,
  cleech@redhat.com, jejb@linux.ibm.com, martin.petersen@oracle.com,
  open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20210910010220.24073-1-dinghui@sangfor.com.cn>
- <20210910010220.24073-2-dinghui@sangfor.com.cn>
- <03817f8e-8fed-6e7a-e76f-8608f8cfd979@oracle.com>
+ <20210910010220.24073-3-dinghui@sangfor.com.cn>
+ <302af74d-5b72-5b2f-050a-33f0978e321f@oracle.com>
 From: Ding Hui <dinghui@sangfor.com.cn>
-Message-ID: <486018fb-edf9-1f58-d911-ca7c5e9451e2@sangfor.com.cn>
-Date: Sat, 11 Sep 2021 17:37:04 +0800
+Message-ID: <2863c857-7121-1e96-0c28-d7f697b99ef7@sangfor.com.cn>
+Date: Sat, 11 Sep 2021 17:52:01 +0800
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:78.0)
  Gecko/20100101 Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <03817f8e-8fed-6e7a-e76f-8608f8cfd979@oracle.com>
+In-Reply-To: <302af74d-5b72-5b2f-050a-33f0978e321f@oracle.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-	kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRpOTU1WTENJSE8ZSx1KTR
-	ofVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Myo6Kio*DT4TOBw6GU0*Dxo#
-	ETowFDpVSlVKTUhKSE5IS0lOTktCVTMWGhIXVR8SFRwTDhI7CBoVHB0UCVUYFBZVGBVFWVdZEgtZ
-	QVlKSkhVSkpNVUpMTVVKSk5ZV1kIAVlBSE1PSTcG
-X-HM-Tid: 0a7bd437b28fd998kuwse3024220121
+	kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRpMTUNWQ00ZGkJPHR0dTU
+	8ZVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PT46Qzo5DD4LAhxCGD48Ikg6
+	I0owFClVSlVKTUhKSE5IQklJTU1PVTMWGhIXVR8SFRwTDhI7CBoVHB0UCVUYFBZVGBVFWVdZEgtZ
+	QVlKSkhVSkpNVUpMTVVKSk5ZV1kIAVlBSE1DTDcG
+X-HM-Tid: 0a7bd4456332d998kuws1370b22012b
 X-Original-Sender: dinghui@sangfor.com.cn
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
  (google.com: domain of dinghui@sangfor.com.cn designates 59.111.176.42 as
@@ -143,58 +143,59 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 2021/9/11 12:25 =E4=B8=8A=E5=8D=88, Mike Christie wrote:
+On 2021/9/11 12:38 =E4=B8=8A=E5=8D=88, Mike Christie wrote:
 > On 9/9/21 8:02 PM, Ding Hui wrote:
->> commit ec29d0ac29be ("scsi: iscsi: Fix conn use after free during
->> resets") move member ehwait from conn to session, but left init ehwait
->> in iscsi_conn_setup().
+>> like commit 5db6dd14b313 ("scsi: libiscsi: Fix NULL pointer dereference =
+in
+>> iscsi_eh_session_reset"), access conn->persistent_address here is not sa=
+fe
+>> too.
 >>
->> Due to one session can be binded by multi conns, the conn after the
+>> The persistent_address is independent of conn refcount, so maybe
+>> already freed by iscsi_conn_teardown(), also we put the refcount of conn
+>> above, the conn pointer may be invalid.
 >=20
-> A session can only have 1 conn. There is some code that makes it look
-> like we can do multiple conns or swap the single conn, but it was never
-> fully implemented/supported upstream.
+> This shouldn't happen like you describe above, because when we wake up
+> we will see the session->state is ISCSI_STATE_TERMINATE. We will then
+> not reference the conn in that code below.
 >=20
-> However, I like the patch. The init should be done in iscsi_session_setup=
-,
-> so could you fix up the commit, so it's correct?
+> However, it looks like we could hit an issue where if a user was resettin=
+g
+> the persistent_address or targetname via iscsi_set_param -> iscsi_switch_=
+str_param
+> then we could be accessing freed memory. I think we need the frwd_lock wh=
+en swapping
+> the strings in iscsi_switch_str_param.
 >=20
 
-Thanks=EF=BC=8CI'll update the commit log and send v2 1/3.
+Thanks for your detailed explanation, I'll drop 2/3 and 3/3 in v2 patch.
+I expect that the persistent_address issue be fixed in your future patchset=
+.
 
->> first will reinit the session->ehwait, move init ehwait to
->> iscsi_session_setup() to fix it.
+Sorry for my ignorance.
+
+>=20
 >>
->> Fixes: ec29d0ac29be ("scsi: iscsi: Fix conn use after free during resets=
-")
 >> Signed-off-by: Ding Hui <dinghui@sangfor.com.cn>
 >> ---
->>   drivers/scsi/libiscsi.c | 3 +--
->>   1 file changed, 1 insertion(+), 2 deletions(-)
+>>   drivers/scsi/libiscsi.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
 >>
 >> diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
->> index 4683c183e9d4..712a45368385 100644
+>> index 712a45368385..69b3b2148328 100644
 >> --- a/drivers/scsi/libiscsi.c
 >> +++ b/drivers/scsi/libiscsi.c
->> @@ -2947,6 +2947,7 @@ iscsi_session_setup(struct iscsi_transport *iscsit=
-, struct Scsi_Host *shost,
->>   	session->tmf_state =3D TMF_INITIAL;
->>   	timer_setup(&session->tmf_timer, iscsi_tmf_timedout, 0);
->>   	mutex_init(&session->eh_mutex);
->> +	init_waitqueue_head(&session->ehwait);
->>  =20
->>   	spin_lock_init(&session->frwd_lock);
->>   	spin_lock_init(&session->back_lock);
->> @@ -3074,8 +3075,6 @@ iscsi_conn_setup(struct iscsi_cls_session *cls_ses=
-sion, int dd_size,
->>   		goto login_task_data_alloc_fail;
->>   	conn->login_task->data =3D conn->data =3D data;
->>  =20
->> -	init_waitqueue_head(&session->ehwait);
->> -
->>   	return cls_conn;
->>  =20
->>   login_task_data_alloc_fail:
+>> @@ -2531,8 +2531,8 @@ int iscsi_eh_session_reset(struct scsi_cmnd *sc)
+>>   	spin_lock_bh(&session->frwd_lock);
+>>   	if (session->state =3D=3D ISCSI_STATE_LOGGED_IN) {
+>>   		ISCSI_DBG_EH(session,
+>> -			     "session reset succeeded for %s,%s\n",
+>> -			     session->targetname, conn->persistent_address);
+>> +			     "session reset succeeded for %s\n",
+>> +			     session->targetname);
+>>   	} else
+>>   		goto failed;
+>>   	spin_unlock_bh(&session->frwd_lock);
 >>
 >=20
 
@@ -209,4 +210,4 @@ open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to open-iscsi+unsubscribe@googlegroups.com.
 To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/486018fb-edf9-1f58-d911-ca7c5e9451e2%40sangfor.com.cn.
+open-iscsi/2863c857-7121-1e96-0c28-d7f697b99ef7%40sangfor.com.cn.
