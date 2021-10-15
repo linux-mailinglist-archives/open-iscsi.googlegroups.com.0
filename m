@@ -1,33 +1,33 @@
-Return-Path: <open-iscsi+bncBCYMVIPVXQMBBAPGU2FQMGQEQDVS47Y@googlegroups.com>
+Return-Path: <open-iscsi+bncBCYMVIPVXQMBBYPIU2FQMGQEHYDUGFA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ua1-x93e.google.com (mail-ua1-x93e.google.com [IPv6:2607:f8b0:4864:20::93e])
-	by mail.lfdr.de (Postfix) with ESMTPS id F31D842F956
-	for <lists+open-iscsi@lfdr.de>; Fri, 15 Oct 2021 18:57:38 +0200 (CEST)
-Received: by mail-ua1-x93e.google.com with SMTP id k2-20020ab04302000000b002cae18c5454sf1968197uak.15
-        for <lists+open-iscsi@lfdr.de>; Fri, 15 Oct 2021 09:57:38 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1634317058; cv=pass;
+Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
+	by mail.lfdr.de (Postfix) with ESMTPS id D794542F98D
+	for <lists+open-iscsi@lfdr.de>; Fri, 15 Oct 2021 19:03:30 +0200 (CEST)
+Received: by mail-qk1-x73a.google.com with SMTP id j17-20020a05620a0a5100b0045f8ed4f72fsf7262510qka.1
+        for <lists+open-iscsi@lfdr.de>; Fri, 15 Oct 2021 10:03:30 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1634317410; cv=pass;
         d=google.com; s=arc-20160816;
-        b=UpaIfr1PSsZjzYKnMYqtZu+0Vw6+XH69dQjOHBZNaBqRWMEk/GyU2+TZPuvQgAYadp
-         PnuztkkyYlAl96u2Lw+pwg0KqmKXPn1Nq9sfm9VBLzsjHyUV2Vkv1+wadRwxIXvWCOP9
-         1xK3YCDAdc32nEVFHQ2LAg47tOF33fl9es3ZZJYA67ofFKrgWZeXMsCYYUJYsUgQIe0R
-         yre6Bg/RDLouTd/JJYpL5plDGZriffLgiEXiOTv/e2Aum6rzvfxPuAEivNbi3HgIDFj/
-         lJK8qya+z84/ILdv7Ya3oZ1u3LYmjIX7hyIzkzgBvQ7v1OpWGLzTtJCae/uHd9Pf2b5C
-         OnZw==
+        b=JGMELWUjzA9uglPA6HS6EFWU+Q/G0XlGSPZP05Xj75D/t95ZftZUlflSX0g18D5tL3
+         Bt1v8rrVyUEHVV1OX0QmBBNk016Tkm6Palw88LXPH8wAMoWVZqJlHwQvM8YyyW4Y0W+R
+         CNlweQfmBreTTbPtu+JwqtE3PH2XCEamDMVVhhaXpR4Hl6vnkrm3qDsnZJvo3U2AGhc3
+         2LVbQ/oxTVUYk8LIoKkSLwh1qEArhtJsmA5uHCZJbnCOwDvWWt0D3cy4Gvc7WF21NfXp
+         0XzbiBqEF/AEcOKJjbSH1EvhCX8cXI6jUBS6yD4ezLrp+G/dXB9Ys9H1RZowbY0ueEIm
+         a/8w==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:sender:dkim-signature;
-        bh=e7bCwMS04CvtbT37SvkMmXFIQoQsxs0i0TyKqRPH9vs=;
-        b=UiSpJW4R3ffLsKHNb0fK46A9LTpqKgME1fmjnt5EA74bJxS9UEED8yas86sPfvkpiU
-         /sBk4CjUPQamkXmKw/mU1FxmoqdYSgFaHrmaRvAc15vltOPJxNkQoz3pwyo6adUNhK2e
-         MQ2Qj19h+LHWKkcuyu1lLYfb4Qndpx9E+/pwjjjacD1pi5e6hhThrMmTrJqF6rvuVhEW
-         Qen2ZDu1hflT95gTn/9uvMGeqAQI2bj/JQQJfkB93cMGSVoukbh8JuMGsZ+N35ZifGQK
-         gqD//kD9orjiVPR7755StsM2ETqCXCCuGxw3eQ1MAyKKnZzGUVY9IdE/pmI9FSR3lfxp
-         ovng==
+        bh=nEV68H2GGz/AGDO8LmBSa2xkSiBZ0yC2qu4ni9lBh+Q=;
+        b=xsyu0uxNjO4MohSgmrsvsBY//+N+Tfssx6j1ZF0m+U3yBUnWTKQfVhsZvN2x6rWrMH
+         UaFqvMPIZrgDKLzY7jABxccMwejw3lbGq+FppKsjQo6bbrMOK9GmS0psCagDsB4ob+mh
+         /79l9KE/4t7RAMs84CjcnGAiVi2/bLQCy96ZsACszuWO2ieuS3DVVyDoMtik+/NrDP1x
+         Kn/LEWaJKY8Kcza+Yziha/e61ksEIylcNXhk0LDPXW9zTRtphWIA/0ys2FerKG/JxcRH
+         wg4VQzg2I6zPwSb+PXx4XniU8VIg5HS6F0ep6AB/OV7r7j6lIFgVP3viIM8HHceVVk25
+         c4UA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=ZORbdGZF;
-       spf=pass (google.com: domain of cleech@redhat.com designates 216.205.24.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=ZB3BlE0C;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.151.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
@@ -35,13 +35,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :subject:to:cc:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=e7bCwMS04CvtbT37SvkMmXFIQoQsxs0i0TyKqRPH9vs=;
-        b=Mt9tOBOSDxKfQakCksDZeDvLAuWxqewblNSMUXpLb3qiywZY2EfPvcP/7d/eNIpM3g
-         E32T/GPSu8dsJ7r3bJfTX6ns0BhDtGMMHVyduS8Ledid3t0+A88ivWLY7V12SDjOb2s2
-         EZeOqw0jZsisvUMbJpObuXNTYTrdc4fT6ajvfjC10z193ABCtGVamzbYwTVaJNy19NRJ
-         sy7kaki/9E1NkUXzb8XI3QZfcPbshseAIFutMror5/H0EfVrcmW+GoF5EOsKeCC33Pwk
-         RSncs8NiJL2YKJl/PY7Kon8slQL8fKrmiom5FXa2kayCTVmgmtRnmtoB2PEmLi3wxBU1
-         k/5A==
+        bh=nEV68H2GGz/AGDO8LmBSa2xkSiBZ0yC2qu4ni9lBh+Q=;
+        b=AZaEqsdo7/FvRnjtpgaiiXSv5UISZYseAbV6E+O0zmA/YfW3tkSyqKgzYkdiPsEQJD
+         ZX4ejzOTGQBXWr+XYCmnFa9x1gxy40L5WOtXfaQVK9Ft/U7vBCMegzPw5d7seFfZHuxN
+         UwGvyPpB+DNWps2snFRX3x9KqsWoWbS1J9xQr0aDytqDm9q0EfcqkmBcBAeXBSRF3HKd
+         53GBjpMvxMg0WE9lhQ/PEROdH+FR7uOQL3LEUa8az7YhW1x3y+yrvdhYLKM0HtoWUtH0
+         t7VN1IHTgtpwCLRO6Te7b7ERZ1+K1M/ymfkrorwgazXalcwUiC46ziozqjsdA79VgKYe
+         m+bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
@@ -49,69 +49,69 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=e7bCwMS04CvtbT37SvkMmXFIQoQsxs0i0TyKqRPH9vs=;
-        b=0Tx6lubKATxMGcOHPYGxFAtKygc72GpCYWhJiE5WPvJKGNV06nOyjZva0KFDx7aATS
-         GmQeU40pYCU71MR8QKGti7NBZ+ik+ksbERJxYE0kRXa/hIlX2fkTdjWrkEgdvhmzBJx+
-         37nBIxy2kI9t49mcVj/+F+dRwfKzxkLTmcJhnqUygtuQ0GIn3fiiOiTygM0HEUZOMUbo
-         AaTO86o/c+HOVL3yzal988OlwZVfuUfPyJ4XlFi0SYfJssrkakNZWUydK8Sf/nRcG8bU
-         mgWoJphYyM3oasmpzjkNxRi2NFpanLqd600PsRH4KyEOoAD9v0darXkgCPsjuQWP8urU
-         fo5A==
+        bh=nEV68H2GGz/AGDO8LmBSa2xkSiBZ0yC2qu4ni9lBh+Q=;
+        b=SNaKdmQIlSwyDNTznP+g/uqyl+yF8PHwCo/onSk60aHGbL4E09adjIFMoOt5m7l6Yq
+         eAdfgM0C/L1sOhSoOcWyZbFn4EcWXIn2LcQHH6kYO39hVy/C+hecQXaWWxMjosTXIJ2+
+         x+8bydmh0s0hC/2fgLCvvWt9vCKIeOBU/p5lHhf69PaY3HixpVWrQmlxG/AY9lZ21zf9
+         Edqpk/p8ZyHFlFfPwSLUGfrHcRAGv59XdzLPl24hA/zQ8ACIglJ/8muWJXCX8Os1e6h8
+         kjL8MxUML8jcRdfh84/EU2jAz+6r0f0HPu5c9ZB8wR8MEoWDPKLezjZIHkUOfd6WZH2+
+         5DbA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM5314m6qUVwhHNy1izHtIEhMrsZyrA7FSxvL2jtZrFRZRDFCTEfkH
-	nsbv9nmZP1IQ8eWXWPwE2W4=
-X-Google-Smtp-Source: ABdhPJzSVgWYVDOyE/++cG93MkYxyqLiVZEz568Fn8G4NG5U7KTVLRld4jqut7/lzJDnBTUqwhZJZA==
-X-Received: by 2002:ab0:16d4:: with SMTP id g20mr13822263uaf.114.1634317057817;
-        Fri, 15 Oct 2021 09:57:37 -0700 (PDT)
+X-Gm-Message-State: AOAM530kv/Juf2nLYJPwaW8HGeh5Gwxr/zreWFug7Uv8Kw8qRjoiykIF
+	IhsAfZePhak53gUBzM/arP4=
+X-Google-Smtp-Source: ABdhPJzwBieAJBuvss4xvZPTJhj/H1subYTTD5WcxqenQGqZE9S90J5UF9xup0Ji4Qh2rZtBGhXLEA==
+X-Received: by 2002:a05:622a:248:: with SMTP id c8mr14508067qtx.357.1634317409987;
+        Fri, 15 Oct 2021 10:03:29 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ab0:7c74:: with SMTP id h20ls1795381uax.1.gmail; Fri, 15 Oct
- 2021 09:57:37 -0700 (PDT)
-X-Received: by 2002:ab0:471d:: with SMTP id h29mr13717089uac.11.1634317057241;
-        Fri, 15 Oct 2021 09:57:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1634317057; cv=none;
+Received: by 2002:ac8:5a8e:: with SMTP id c14ls5337696qtc.3.gmail; Fri, 15 Oct
+ 2021 10:03:29 -0700 (PDT)
+X-Received: by 2002:ac8:5fc5:: with SMTP id k5mr14471679qta.273.1634317409548;
+        Fri, 15 Oct 2021 10:03:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1634317409; cv=none;
         d=google.com; s=arc-20160816;
-        b=QOnuYFS1qpSrRe73aUeE1F5+wcxwdD/zFCH1d9jIatu1pyZov+52Yn9XBGWzYkCrya
-         7yxWuu7Y3hMP3+FflLXfpY64pKlVSe5ETpPVmWUuB004YgGR7Yv1WHdgx+jjRwOdnwhF
-         rGaTSOMfO+7HPky5R6sRLk5nz5xLHsJ9ck1FkYZsXaQ7on5CztZU3wGcKf07V+P7jIJa
-         j9RMP0kD5qe9hTn4mI2mknNQQssE+fV0rPVQpgdtCcnfV61SPh+Xj15gVDA4ddo7Lrh7
-         BUzw66fXQBzR+MTzjNXvab7r48EA19lzkwDX2pdZ/HiVSqfIVCMuAux20yV9ZXsRoOV8
-         iPGw==
+        b=GOozB5LjMv9NsITNcce02gzIB2hGLN1msZuUL6fSWafirImFkZpSsVv0mUShptrn8u
+         5CgN9wLhZbKXkmWLKRknUw4yFBjV2zhryEu8/Tj4IZVe+DYq0Rp5lmxuUO410X17l733
+         4XSF/EuRQO9ebjKdtjm57AEJeqPnU2Q9s2SEiEz3jaMXYSNb9shLhyszbe3oyCPYyFxR
+         ZgFPK+2PsoaelbiauoHtpUlZTOAvqezJneZHB+kufmaiM/Bt/mQONRZiMn30ty+2EAb1
+         XxTaCfjf8B/1C/Bw5WTqym4rKrqrwT13BdVNDzz23kV5brj1ytkYMe+X6Xfk94Bho+9C
+         V8JA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=rfuOnFiPtKk5SrJUq7GfU0ulZlmipPkZ4HzZn/kieC4=;
-        b=xqluWOhXo5n3w2PlT4e3S7qqpE9mX9UgLPeC/Pi3d3hORNNY44YzGdXI7BoeHkE1Fu
-         AocCpOfLBHyoftzTvhW8P3rPREjBm+Em7MVCnhlr0iEXTh491M3rH+A052lY396thKBS
-         razH/FIv+6HisnqM3xtCInqJ/iOH9N89tmL/pMNKODDfMsCdHNCPGsbHxfrWr8HURT5o
-         /MU3TP1ueL5f1IrfW8wcTmxS06Bc3cStNVnSc1LLxbljU7R9XgYnsQmzjBeC2Dre+UcC
-         XIbbMqipPzdpKgv8ZJI/yWKr+Ma0oXO0MXVGjATdEJK/OGgn1Dyn8RLZQFka/+0guxE/
-         aEtw==
+        bh=4dN0h5lrPhvnBjfapbewXwM2oI6C3bfdTUY0cpFI420=;
+        b=Z4amtYOwCdm227C0fGve3w+Mqsyeiz7BGpnGYvLE7HAGWrlZZeI95PVQRtz8uZxL0o
+         53GpwsOuA0g5rM+2n7hzbTMEnit2AsWmVWCv4udKRh0mavFfbEktAkdIxos3OHIUttmM
+         eIEPauvKXTJfie0bftcFvmCsIpHK8waf9OJuE8gOEbC+0y7NHFekkUPqUCc2PdeyGMQg
+         kn9logoGvRKsCDV1d0/P7pGX9Iz9F99SFHiHxuZmS4fdeayluJuKUekpOhQRAnl5f2AT
+         Wd5xjUJVE3CGfJqK2PxyxvR/+9Qn3hrLdW7eYoxOXLMNoEVbwn4GF8rDb7dT/OQKZzCy
+         txjg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=ZORbdGZF;
-       spf=pass (google.com: domain of cleech@redhat.com designates 216.205.24.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=ZB3BlE0C;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.151.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [216.205.24.124])
-        by gmr-mx.google.com with ESMTPS id c19si458334uad.1.2021.10.15.09.57.37
+Received: from us-smtp-delivery-124.mimecast.com (usb-smtp-delivery-124.mimecast.com. [170.10.151.124])
+        by gmr-mx.google.com with ESMTPS id i13si117722qkp.1.2021.10.15.10.03.29
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 15 Oct 2021 09:57:37 -0700 (PDT)
-Received-SPF: pass (google.com: domain of cleech@redhat.com designates 216.205.24.124 as permitted sender) client-ip=216.205.24.124;
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-537-lZULcJa1MzeGZ3T_yP85ug-1; Fri, 15 Oct 2021 12:57:35 -0400
-X-MC-Unique: lZULcJa1MzeGZ3T_yP85ug-1
-Received: by mail-wm1-f72.google.com with SMTP id k20-20020a7bc414000000b0030dcd454771so988082wmi.8
-        for <open-iscsi@googlegroups.com>; Fri, 15 Oct 2021 09:57:34 -0700 (PDT)
-X-Received: by 2002:a05:600c:350c:: with SMTP id h12mr26942406wmq.163.1634317054058;
-        Fri, 15 Oct 2021 09:57:34 -0700 (PDT)
-X-Received: by 2002:a05:600c:350c:: with SMTP id h12mr26942378wmq.163.1634317053791;
- Fri, 15 Oct 2021 09:57:33 -0700 (PDT)
+        Fri, 15 Oct 2021 10:03:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.151.124 as permitted sender) client-ip=170.10.151.124;
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-2-3uZEoW4gPY6havJXNOqvUg-1; Fri, 15 Oct 2021 13:03:26 -0400
+X-MC-Unique: 3uZEoW4gPY6havJXNOqvUg-1
+Received: by mail-wm1-f71.google.com with SMTP id k9-20020a7bc409000000b0030d978403e9so837888wmi.7
+        for <open-iscsi@googlegroups.com>; Fri, 15 Oct 2021 10:03:26 -0700 (PDT)
+X-Received: by 2002:adf:ab02:: with SMTP id q2mr15557754wrc.263.1634317405767;
+        Fri, 15 Oct 2021 10:03:25 -0700 (PDT)
+X-Received: by 2002:adf:ab02:: with SMTP id q2mr15557737wrc.263.1634317405624;
+ Fri, 15 Oct 2021 10:03:25 -0700 (PDT)
 MIME-Version: 1.0
 References: <20211015131115.12720-1-vegard.nossum@oracle.com>
  <20211015133635.GA26418@gondor.apana.org.au> <3bba3fed-b8f8-b7ce-f26f-8d1ed221144a@oracle.com>
 In-Reply-To: <3bba3fed-b8f8-b7ce-f26f-8d1ed221144a@oracle.com>
 From: Chris Leech <cleech@redhat.com>
-Date: Fri, 15 Oct 2021 09:57:22 -0700
-Message-ID: <CAPnfmXJQCEH3KpECqPoOU=73amqe0ubnx9Z36b1Ra0Yrg8_gUg@mail.gmail.com>
+Date: Fri, 15 Oct 2021 10:03:14 -0700
+Message-ID: <CAPnfmXJPQTcZmPkYVDL4feDH7_P742N1H885suQzJc6u2A9QYQ@mail.gmail.com>
 Subject: Re: [PATCH] scsi: libiscsi: select CRYPTO_HASH for ISCSI_TCP
 To: Vegard Nossum <vegard.nossum@oracle.com>
 Cc: Herbert Xu <herbert@gondor.apana.org.au>, Lee Duncan <lduncan@suse.com>, 
@@ -120,12 +120,12 @@ Cc: Herbert Xu <herbert@gondor.apana.org.au>, Lee Duncan <lduncan@suse.com>,
 	linux-kernel@vger.kernel.org
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Type: multipart/alternative; boundary="0000000000007122d805ce6717fa"
+Content-Type: text/plain; charset="UTF-8"
 X-Original-Sender: cleech@redhat.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@redhat.com header.s=mimecast20190719 header.b=ZORbdGZF;
+ header.i=@redhat.com header.s=mimecast20190719 header.b=ZB3BlE0C;
        spf=pass (google.com: domain of cleech@redhat.com designates
- 216.205.24.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+ 170.10.151.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -140,24 +140,17 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---0000000000007122d805ce6717fa
-Content-Type: text/plain; charset="UTF-8"
-
-On Fri, Oct 15, 2021 at 6:54 AM Vegard Nossum <vegard.nossum@oracle.com>
-wrote:
-
+On Fri, Oct 15, 2021 at 6:54 AM Vegard Nossum <vegard.nossum@oracle.com> wrote:
+>
 >
 > On 10/15/21 3:36 PM, Herbert Xu wrote:
 > > On Fri, Oct 15, 2021 at 03:11:15PM +0200, Vegard Nossum wrote:
-> >> Fix the following build/link error by adding a dependency on
-> CRYPTO_HASH:
+> >> Fix the following build/link error by adding a dependency on CRYPTO_HASH:
 > >>
 > >>   ld: drivers/scsi/libiscsi_tcp.o: in function `iscsi_tcp_dgst_header':
-> >>   libiscsi_tcp.c:(.text+0x237): undefined reference to
-> `crypto_ahash_digest'
+> >>   libiscsi_tcp.c:(.text+0x237): undefined reference to `crypto_ahash_digest'
 > >>   ld: drivers/scsi/libiscsi_tcp.o: in function `iscsi_tcp_segment_done':
-> >>   libiscsi_tcp.c:(.text+0x1325): undefined reference to
-> `crypto_ahash_final'
+> >>   libiscsi_tcp.c:(.text+0x1325): undefined reference to `crypto_ahash_final'
 > >>
 > >> Fixes: 5d6ac29b9ebf2 ("iscsi_tcp: Use ahash")
 > >> Cc: Herbert Xu <herbert@gondor.apana.org.au>
@@ -191,99 +184,18 @@ wrote:
 > I'm not sure what the right fix here would be -- should
 > CONFIG_SCSI_CXGB[34]_ISCSI depend on CONFIG_ISCSI_TCP..? Or should we
 > add those CRYPTO* selects in there as well?
->
 
-Are  Kconfig entries for libiscsi and libiscsi_tcp needed to handle this
-properly?  Currently they're added to the object lists with each configured
-driver that requires them.  I'm not even sure what happens if you manage to
-configure them into both obj-y and obj-m.
+(apologies for the HTML reply that got rejected by the lists, and the
+double reply to those directly addressed)
+
+Are  Kconfig entries for libiscsi and libiscsi_tcp needed to handle
+this properly?  Currently they're added to the object lists with each
+configured driver that requires them.  I'm not even sure what happens
+if you manage to configure them into both obj-y and obj-m.
 
 - Chris Leech
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAPnfmXJQCEH3KpECqPoOU%3D73amqe0ubnx9Z36b1Ra0Yrg8_gUg%40mail.gmail.com.
-
---0000000000007122d805ce6717fa
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Fri, Oct 15, 2021 at 6:54 AM Vegard No=
-ssum &lt;<a href=3D"mailto:vegard.nossum@oracle.com">vegard.nossum@oracle.c=
-om</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><br>
-On 10/15/21 3:36 PM, Herbert Xu wrote:<br>
-&gt; On Fri, Oct 15, 2021 at 03:11:15PM +0200, Vegard Nossum wrote:<br>
-&gt;&gt; Fix the following build/link error by adding a dependency on CRYPT=
-O_HASH:<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0ld: drivers/scsi/libiscsi_tcp.o: in function `iscsi_tc=
-p_dgst_header&#39;:<br>
-&gt;&gt;=C2=A0 =C2=A0libiscsi_tcp.c:(.text+0x237): undefined reference to `=
-crypto_ahash_digest&#39;<br>
-&gt;&gt;=C2=A0 =C2=A0ld: drivers/scsi/libiscsi_tcp.o: in function `iscsi_tc=
-p_segment_done&#39;:<br>
-&gt;&gt;=C2=A0 =C2=A0libiscsi_tcp.c:(.text+0x1325): undefined reference to =
-`crypto_ahash_final&#39;<br>
-&gt;&gt;<br>
-&gt;&gt; Fixes: 5d6ac29b9ebf2 (&quot;iscsi_tcp: Use ahash&quot;)<br>
-&gt;&gt; Cc: Herbert Xu &lt;<a href=3D"mailto:herbert@gondor.apana.org.au" =
-target=3D"_blank">herbert@gondor.apana.org.au</a>&gt;<br>
-&gt;&gt; Signed-off-by: Vegard Nossum &lt;<a href=3D"mailto:vegard.nossum@o=
-racle.com" target=3D"_blank">vegard.nossum@oracle.com</a>&gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt;=C2=A0 drivers/scsi/Kconfig | 1 +<br>
-&gt;&gt;=C2=A0 1 file changed, 1 insertion(+)<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git a/drivers/scsi/Kconfig b/drivers/scsi/Kconfig<br>
-&gt;&gt; index 6e3a04107bb65..09764f3c42447 100644<br>
-&gt;&gt; --- a/drivers/scsi/Kconfig<br>
-&gt;&gt; +++ b/drivers/scsi/Kconfig<br>
-&gt;&gt; @@ -290,6 +290,7 @@ config ISCSI_TCP<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 tristate &quot;iSCSI Initiator over TCP/IP&quo=
-t;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 depends on SCSI &amp;&amp; INET<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 select CRYPTO<br>
-&gt;&gt; +=C2=A0 =C2=A0 select CRYPTO_HASH<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 select CRYPTO_MD5<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 select CRYPTO_CRC32C<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 select SCSI_ISCSI_ATTRS<br>
-&gt; <br>
-&gt; CRYPTO_MD5 already selects CRYPTO_HASH so this shouldn&#39;t be needed=
-.<br>
-<br>
-You&#39;re right, my apologies.<br>
-<br>
-libiscsi_tcp.o is built for CONFIG_ISCSI_TCP, but it&#39;s _also_ built for=
-<br>
-CONFIG_SCSI_CXGB3_ISCSI and CONFIG_SCSI_CXGB4_ISCSI. I missed that when<br>
-I looked at the Makefile and wrongly assumed that CONFIG_ISCSI_TCP was<br>
-missing the select.<br>
-<br>
-I&#39;m not sure what the right fix here would be -- should<br>
-CONFIG_SCSI_CXGB[34]_ISCSI depend on CONFIG_ISCSI_TCP..? Or should we<br>
-add those CRYPTO* selects in there as well?<br></blockquote><div><br></div>=
-<div>Are=C2=A0 Kconfig entries for libiscsi and libiscsi_tcp needed to hand=
-le this properly?=C2=A0 Currently they&#39;re added to the object lists wit=
-h each configured driver that requires them.=C2=A0 I&#39;m not even sure wh=
-at happens if you manage to configure them into both obj-y and obj-m.</div>=
-<div><br></div><div>- Chris Leech</div><div><br></div></div></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAPnfmXJQCEH3KpECqPoOU%3D73amqe0ubnx9Z36b1Ra0Yrg8_gUg=
-%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.go=
-ogle.com/d/msgid/open-iscsi/CAPnfmXJQCEH3KpECqPoOU%3D73amqe0ubnx9Z36b1Ra0Yr=
-g8_gUg%40mail.gmail.com</a>.<br />
-
---0000000000007122d805ce6717fa--
-
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAPnfmXJPQTcZmPkYVDL4feDH7_P742N1H885suQzJc6u2A9QYQ%40mail.gmail.com.
