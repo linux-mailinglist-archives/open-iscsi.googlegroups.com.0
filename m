@@ -1,69 +1,68 @@
-Return-Path: <open-iscsi+bncBCJJNW4DQMPBBDEC5SGAMGQERERIZOY@googlegroups.com>
+Return-Path: <open-iscsi+bncBCV2L6ETUYNBBWGD76GAMGQEBYRRMBA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3e.google.com (mail-qv1-xf3e.google.com [IPv6:2607:f8b0:4864:20::f3e])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D13B458801
-	for <lists+open-iscsi@lfdr.de>; Mon, 22 Nov 2021 03:31:42 +0100 (CET)
-Received: by mail-qv1-xf3e.google.com with SMTP id kl17-20020a056214519100b003ba5b03606fsf15392272qvb.0
-        for <lists+open-iscsi@lfdr.de>; Sun, 21 Nov 2021 18:31:42 -0800 (PST)
+Received: from mail-qv1-xf39.google.com (mail-qv1-xf39.google.com [IPv6:2607:f8b0:4864:20::f39])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B6545E0EB
+	for <lists+open-iscsi@lfdr.de>; Thu, 25 Nov 2021 20:19:54 +0100 (CET)
+Received: by mail-qv1-xf39.google.com with SMTP id q2-20020a05621419e200b003aeeeff5417sf7718131qvc.9
+        for <lists+open-iscsi@lfdr.de>; Thu, 25 Nov 2021 11:19:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=sender:date:from:to:message-id:subject:mime-version
          :x-original-sender:reply-to:precedence:mailing-list:list-id
          :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=4w/c+e2wZWSuseAPIFU0/H/0UlFbUMMH6KASh2ueTqU=;
-        b=sMwCkQ3clkvrIV8u/dTrtk0C3hXknaRtOsYtJFAQqBLmiyJHAnHTS6f7UDUihvJr2G
-         Dd1TpAdvBb2A/c08+vpZeXBnSg9g9aMkVHsdx8LjUlPoDC3QZCbNopMMeTQTNlB2r6S5
-         MQNb+0iEMjQQ4aYko/XUFkQ8nNJsdRM830FfD4Pks31A+lYpuHQtq0rVyzqGfqbCX8YL
-         ljsJJqQ+FYDkaXUZaXfUj5KB8W73reatLV/S7ZvsCSKaQCcyjMocsRBTYFnIFXTpJxan
-         Qo0w+NqLODY8rptXqtFuoRSv8z2re52xG+gNF4cZvIhadpTYT/HkCRn+FM0BSRHjdCmP
-         Vdkw==
+        bh=rc0kFOXnf11ddQrc3jCCLXSF5wRM/F52mXfKMLvzZDo=;
+        b=kFVgYCbxIsYdoKou+4u50udPvc0TlnkZWTqWb18CQrAb4O7xAFwvxanFpceUc3aCeL
+         tgB/thxKh/iJNRMcrXdDjLJMXle0MIvr62Hxory06cISzRRWzfT6Mkk9XWKtA6bVCxmi
+         3d+n3imeaA4HH1J1bF9LAjpLQ5yJmpdwf65RjCHD87pXozIrcEKDDDLFe1qZp+knYbo3
+         7NUKYsFCm9z9ZEDft0CennyEjbIa4oqRJqQ0nDAAWkBM3bYd/mhK81q+ys2+TTfFhLcI
+         KiqZgtoe/mMyQNbJXdw6wffm77bXeDzT7GQ2p98Xf1txNR9Fj4oxZREMLCSu2RTqKFUF
+         W/CA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=date:from:to:message-id:subject:mime-version:x-original-sender
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=4w/c+e2wZWSuseAPIFU0/H/0UlFbUMMH6KASh2ueTqU=;
-        b=HkbEbzSHRqbbCf3uU1EwJDdYHS9BZCV17HIo4ukjWkygLm97Ph5kMbGGAIGZzRR4Bc
-         DTPryEvix9rl85iBAuzn9RasGMOi8+ibWVRg0mcQzPH+i08NrRroXpG8UBjYk3i25TkP
-         eAKWRzPuH2IZYDD9e59lqouIbosWAXcB1nF/XqqFPIyZpROH8mQS1BD+yvByFOdB93Wp
-         t/T4HNfeD+vA6qDpjScdaZ086RsaQpesmWDBSLkyXOW7636JWTKyFkMZ6wGMZyym1os5
-         gWAzwpkK9wqoMeMDJkNy9dsmxfWe89igaOXDWGwg6tl/4Y4UeN4mSsrExshFYGGKxZHh
-         zYiw==
+        bh=rc0kFOXnf11ddQrc3jCCLXSF5wRM/F52mXfKMLvzZDo=;
+        b=PaMWGKzkOzo+m5D62Bty3wAxOLrgaK07f+r0M5BDvp0LS69qhAKKNbX4qiigxb28rw
+         1HKpH1FdHiHtEKf+GGWwxkzmfLhc/tkF9NdWDTMoy+Oz8xV8x8eV7Db6tTVS3Rd6anSQ
+         wYnFVUwW97KWxAIgD4nyZf6PPN9XH5xkelQ5zYlvFw2AIsTzloJ2P6jXtAT1a+FcpeN4
+         gO3bSHsRWTSbbMqH0HBMq80WVQvgsZ9W9T4oXcIi7eTZ9jxZyKFoaf7rtSVHP5OnuhJv
+         BhWD46hLjLaHv95PgjcZGiaZ2VyEimv9up2Ksy8PtOsTTwdE2Rj5Alxhqt3VEZhxrST+
+         OAIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=sender:x-gm-message-state:date:from:to:message-id:subject
          :mime-version:x-original-sender:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=4w/c+e2wZWSuseAPIFU0/H/0UlFbUMMH6KASh2ueTqU=;
-        b=4qnANhy/USY/E37VW0tNA7ha1E8OCjOcYUlJ52Gg3z0xZ9/DhctoZC9E+Psckjoa87
-         7u/eDVkQ6urVIyK+6kP7DK1mq21ZYwUmWCUuutX/Udyzdhf5RVHmU2SM6/wrOpB47cTp
-         a60539fzk6UhAm0A4jCVmxGnyR7aeG7yIsUTRNQu6t+htNYRTDnCjiaGt7jMgM0SSl9M
-         cN/NqRl2YJdcwc60bkps8eLPMvwFnZTyS70gEXz/w9Regij5n0sIKJSpbNlDo1rtN4TG
-         z6CZRmFlnW3kT73U7Ccuz1zC097EeN54EZz7tpIt/KI0W4W/BJOswscEYXyDkU6tWtfU
-         wA8w==
+        bh=rc0kFOXnf11ddQrc3jCCLXSF5wRM/F52mXfKMLvzZDo=;
+        b=7MznXYRHGAsOwiHTr1Ux6q7tjF7v/V8ve2IuRqJpZ4bgiTvcKZczWTF7mdTIJTirU/
+         KiY+3vCaqq9/Lhg/yr7LqtipvWrR4dk0EQQMTeNXnvAyu6bqnsE2pVmBsWV7l6xHoxee
+         QxzQVtFrmIiZW5Uia3N/hqvsqgJJ3CEPOnzaTfWFz+6whZEZU6gekjbEhaQpKh2LcxLT
+         Z6f+s/wRRoOFJeW5WGNigH8Ix3IKkQDj1h5zCUfcWEnmD26lEoKgl8haIHDAnYajjNEa
+         +dLTnFrcRftKQAXOaQ6hjZ+R6wVKzP3yTiJQy/HPS2TEEs4gZUHTzGjUVCyLtgWo6WBy
+         pb+w==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530UbmilD83XZOqOAWMZmcuqrkVq2m4JE7jIERiK9VVugpCTZWSu
-	6fluoP4jwq82Ixe8KeREw/4=
-X-Google-Smtp-Source: ABdhPJxdEpFlhi6TlOOtZbvmyNkFhDNimaYJo6DNWy7eHuRj15YKuq9edKTpbYEkA3OpAx1KvHZV9Q==
-X-Received: by 2002:ae9:e30b:: with SMTP id v11mr46589331qkf.329.1637548300929;
-        Sun, 21 Nov 2021 18:31:40 -0800 (PST)
+X-Gm-Message-State: AOAM531Qza+c/uGvh5ArlrB0ZJDJwSpkMBGyYGbHMlTzdvZyrcxt4io1
+	7Yy4vpSwLQC3loGN3HizGJg=
+X-Google-Smtp-Source: ABdhPJxCwnwSA8dSxgXDh48DfnK7uSlsz+PZZNv3xuomTCe/jQ4u/ydBwtrMARfSPNgODFNM5XKy1Q==
+X-Received: by 2002:ac8:588c:: with SMTP id t12mr19868382qta.325.1637867993107;
+        Thu, 25 Nov 2021 11:19:53 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac8:5746:: with SMTP id 6ls3119954qtx.9.gmail; Sun, 21 Nov
- 2021 18:31:40 -0800 (PST)
-X-Received: by 2002:a05:622a:11d0:: with SMTP id n16mr27417391qtk.111.1637548300269;
-        Sun, 21 Nov 2021 18:31:40 -0800 (PST)
-Date: Sun, 21 Nov 2021 18:31:39 -0800 (PST)
-From: Alexis Oosterhoff <alexisoost@gmail.com>
+Received: by 2002:a0c:dd13:: with SMTP id u19ls1493519qvk.3.gmail; Thu, 25 Nov
+ 2021 11:19:52 -0800 (PST)
+X-Received: by 2002:a05:6214:23ca:: with SMTP id hr10mr8301250qvb.78.1637867992519;
+        Thu, 25 Nov 2021 11:19:52 -0800 (PST)
+Date: Thu, 25 Nov 2021 11:19:51 -0800 (PST)
+From: Mauricio <raubvogel@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <1b70c5d5-bb56-4f35-948b-1a2cbde569ban@googlegroups.com>
-Subject: iSCSI initiator setting max_sectors_kb=4 when target
- optimal_io_size=4096
+Message-Id: <894fa93f-3f5f-4c21-ac47-3ef64965b5f7n@googlegroups.com>
+Subject: Yet another timed out connection
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_1140_1777237875.1637548299493"
-X-Original-Sender: alexisoost@gmail.com
+	boundary="----=_Part_2630_1952718406.1637867991931"
+X-Original-Sender: raubvogel@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -77,72 +76,105 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1140_1777237875.1637548299493
+------=_Part_2630_1952718406.1637867991931
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_1141_1314410865.1637548299493"
+	boundary="----=_Part_2631_45857532.1637867991931"
 
-------=_Part_1141_1314410865.1637548299493
+------=_Part_2631_45857532.1637867991931
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+I know this has been asked many time before but I still do not know what I 
+am doing wrong. I am handing out iSCSI LUNs from a host at 
+192.168.10.18:3260 to a host called testbox (initiator). 
 
-Looking into whether this is a bug, or an expect behavior with kernel 4.18+
+[root@testbox ~]# iscsiadm -m discovery -t sendtargets -p 192.168.10.18
+192.168.10.18:3260,1 iqn.2000-01.com.synology-iSCSI:storage.01
+[fe80::211:32ff:fe15:74eb]:3260,1 iqn.2000-01.com.synology-iSCSI:storage.01
+[root@testbox ~]#
+[root@testbox ~]# fgrep address 
+/var/lib/iscsi/nodes/iqn.2000-01.com.synology-iSCSI\:storage.01/192.168.10.18\,3260\,1/default
+node.discovery_address = 192.168.10.18
+node.conn[0].address = 192.168.10.18
+[root@testbox ~]#
 
-RHEL 8.4 on AWS r5.xlarge hardware type, attaching nvme disks, observing 
-the nvme device is configuring optimal_io_size to 4KB
-i.e.
-/sys/devices/pci0000:00/0000:00:1c.0/nvme/nvme4/nvme4n1/queue/optimal_io_size 
-4096
+When I try to connect I am getting the connection timed out issue. Correct 
+me if I am wrong but it is barking at when It tries to connect using IPv6:
 
-When attaching this device remotely using Linux-IO, the initiator device is 
-using the target's 'optimal_io_size' to set the max_sectors_kb. 
-i.e.
-/sys/devices/platform/host1/session8/target1:0:0/1:0:0:0/block/sdb/queue/max_sectors_kb 
-4
+[root@testbox ~]# iscsiadm -m node --loginall all
+Logging in to [iface: default, target: 
+iqn.2000-01.com.synology-iSCSI:storage.01, portal: 192.168.10.18,3260]
+Logging in to [iface: default, target: 
+iqn.2000-01.com.synology-iSCSI:storage.01, portal: 
+fe80::211:32ff:fe15:74eb,3260]
+Login to [iface: default, target: 
+iqn.2000-01.com.synology-iSCSI:storage.01, portal: 192.168.10.18,3260] 
+successful.
+iscsiadm: Could not login to [iface: default, target: 
+iqn.2000-01.com.synology-iSCSI:storage.01, portal: 
+fe80::211:32ff:fe15:74eb,3260].
+iscsiadm: initiator reported error (8 - connection timed out)
+iscsiadm: Could not log into all portals
+[root@testbox ~]#
 
-This does not seem to be correct behavior. optimal_io_size and 
-max_sectors_kb should not be directly related.  Do not observe this 
-behavior with RHEL7.
+which sometimes seems to be what it wants to do by default:
 
-target:
- - RHEL 8.4, 4.18.0-305.12.1.el8_4.x86_64
-initiator: 
- - RHEL 8.4, 4.18.0-305.12.1.el8_4.x86_64
- - iscsi-initiator-utils-iscsiuio-6.2.1.2-1.gita8fcb37.el8.x86_64
- - iscsi-initiator-utils-6.2.1.2-1.gita8fcb37.el8.x86_64
+[root@testbox ~]# iscsiadm -m node -T 
+iqn.2000-01.com.synology-iSCSI:storage.01 -l
+Logging in to [iface: default, target: 
+iqn.2000-01.com.synology-iSCSI:storage.01, portal: 
+fe80::211:32ff:fe15:74eb,3260]
+iscsiadm: Could not login to [iface: default, target: 
+iqn.2000-01.com.synology-iSCSI:storage.01, portal: 
+fe80::211:32ff:fe15:74eb,3260].
+iscsiadm: initiator reported error (8 - connection timed out)
+iscsiadm: Could not log into all portals
+[root@testbox ~]#
 
-
-Thanks,
-
-Alexis.
+I did not really setup IPv6 in this network; is I guesstimation for the 
+source of the problem correct? 
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1b70c5d5-bb56-4f35-948b-1a2cbde569ban%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/894fa93f-3f5f-4c21-ac47-3ef64965b5f7n%40googlegroups.com.
 
-------=_Part_1141_1314410865.1637548299493
+------=_Part_2631_45857532.1637867991931
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,<div><br></div><div>Looking into whether this is a bug, or an expect beh=
-avior with kernel 4.18+</div><div><br></div><div><div>RHEL 8.4 on AWS r5.xl=
-arge hardware type, attaching nvme disks, observing the nvme device is conf=
-iguring optimal_io_size to 4KB</div><div>i.e.</div><div>/sys/devices/pci000=
-0:00/0000:00:1c.0/nvme/nvme4/nvme4n1/queue/optimal_io_size 4096</div><div><=
-br></div><div>When attaching this device remotely using Linux-IO, the initi=
-ator device is using the target's 'optimal_io_size' to set the max_sectors_=
-kb.&nbsp;</div><div>i.e.</div><div>/sys/devices/platform/host1/session8/tar=
-get1:0:0/1:0:0:0/block/sdb/queue/max_sectors_kb 4</div><div><br></div><div>=
-This does not seem to be correct behavior. optimal_io_size and max_sectors_=
-kb should not be directly related.&nbsp; Do not observe this behavior with =
-RHEL7.<br></div></div><div><br></div><div><div>target:</div><div>&nbsp;- RH=
-EL 8.4, 4.18.0-305.12.1.el8_4.x86_64</div><div>initiator:&nbsp;</div><div>&=
-nbsp;- RHEL 8.4, 4.18.0-305.12.1.el8_4.x86_64</div><div>&nbsp;- iscsi-initi=
-ator-utils-iscsiuio-6.2.1.2-1.gita8fcb37.el8.x86_64</div><div>&nbsp;- iscsi=
--initiator-utils-6.2.1.2-1.gita8fcb37.el8.x86_64</div></div><div><br></div>=
-<div><br></div><div>Thanks,</div><div><br></div><div>Alexis.</div><div><br>=
-</div>
+<div>I know this has been asked many time before but I still do not know wh=
+at I am doing wrong. I am handing out iSCSI LUNs from a host at 192.168.10.=
+18:3260 to a host called testbox (initiator).&nbsp;</div><div><br></div><di=
+v>[root@testbox ~]# iscsiadm -m discovery -t sendtargets -p 192.168.10.18</=
+div><div>192.168.10.18:3260,1 iqn.2000-01.com.synology-iSCSI:storage.01</di=
+v><div>[fe80::211:32ff:fe15:74eb]:3260,1 iqn.2000-01.com.synology-iSCSI:sto=
+rage.01</div><div>[root@testbox ~]#</div><div>[root@testbox ~]# fgrep addre=
+ss /var/lib/iscsi/nodes/iqn.2000-01.com.synology-iSCSI\:storage.01/192.168.=
+10.18\,3260\,1/default<br></div><div><div>node.discovery_address =3D 192.16=
+8.10.18</div><div>node.conn[0].address =3D 192.168.10.18</div><div>[root@te=
+stbox ~]#</div></div><div><br></div><div>When I try to connect I am getting=
+ the connection timed out issue. Correct me if I am wrong but it is barking=
+ at when It tries to connect using IPv6:</div><div><br></div><div><div>[roo=
+t@testbox ~]# iscsiadm -m node --loginall all</div><div>Logging in to [ifac=
+e: default, target: iqn.2000-01.com.synology-iSCSI:storage.01, portal: 192.=
+168.10.18,3260]</div><div>Logging in to [iface: default, target: iqn.2000-0=
+1.com.synology-iSCSI:storage.01, portal: fe80::211:32ff:fe15:74eb,3260]</di=
+v><div>Login to [iface: default, target: iqn.2000-01.com.synology-iSCSI:sto=
+rage.01, portal: 192.168.10.18,3260] successful.</div><div>iscsiadm: Could =
+not login to [iface: default, target: iqn.2000-01.com.synology-iSCSI:storag=
+e.01, portal: fe80::211:32ff:fe15:74eb,3260].</div><div>iscsiadm: initiator=
+ reported error (8 - connection timed out)</div><div>iscsiadm: Could not lo=
+g into all portals</div><div>[root@testbox ~]#</div></div><div><br></div><d=
+iv>which sometimes seems to be what it wants to do by default:</div><div><b=
+r></div><div>[root@testbox ~]# iscsiadm -m node -T iqn.2000-01.com.synology=
+-iSCSI:storage.01 -l</div><div>Logging in to [iface: default, target: iqn.2=
+000-01.com.synology-iSCSI:storage.01, portal: fe80::211:32ff:fe15:74eb,3260=
+]</div><div>iscsiadm: Could not login to [iface: default, target: iqn.2000-=
+01.com.synology-iSCSI:storage.01, portal: fe80::211:32ff:fe15:74eb,3260].</=
+div><div>iscsiadm: initiator reported error (8 - connection timed out)</div=
+><div>iscsiadm: Could not log into all portals</div><div>[root@testbox ~]#<=
+/div><div><br></div><div>I did not really setup IPv6 in this network; is I =
+guesstimation for the source of the problem correct?&nbsp;</div>
 
 <p></p>
 
@@ -153,11 +185,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/1b70c5d5-bb56-4f35-948b-1a2cbde569ban%40googlegroups.=
+om/d/msgid/open-iscsi/894fa93f-3f5f-4c21-ac47-3ef64965b5f7n%40googlegroups.=
 com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/1b70c5d5-bb56-4f35-948b-1a2cbde569ban%40googlegroups.com</a>.=
+id/open-iscsi/894fa93f-3f5f-4c21-ac47-3ef64965b5f7n%40googlegroups.com</a>.=
 <br />
 
-------=_Part_1141_1314410865.1637548299493--
+------=_Part_2631_45857532.1637867991931--
 
-------=_Part_1140_1777237875.1637548299493--
+------=_Part_2630_1952718406.1637867991931--
