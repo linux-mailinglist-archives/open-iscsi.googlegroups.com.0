@@ -1,69 +1,131 @@
-Return-Path: <open-iscsi+bncBCV2L6ETUYNBBWGD76GAMGQEBYRRMBA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDTZTRGMXIFBBSUOQGGQMGQEXIXGWEQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf39.google.com (mail-qv1-xf39.google.com [IPv6:2607:f8b0:4864:20::f39])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32B6545E0EB
-	for <lists+open-iscsi@lfdr.de>; Thu, 25 Nov 2021 20:19:54 +0100 (CET)
-Received: by mail-qv1-xf39.google.com with SMTP id q2-20020a05621419e200b003aeeeff5417sf7718131qvc.9
-        for <lists+open-iscsi@lfdr.de>; Thu, 25 Nov 2021 11:19:54 -0800 (PST)
+Received: from mail-io1-xd37.google.com (mail-io1-xd37.google.com [IPv6:2607:f8b0:4864:20::d37])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3383845E493
+	for <lists+open-iscsi@lfdr.de>; Fri, 26 Nov 2021 03:32:44 +0100 (CET)
+Received: by mail-io1-xd37.google.com with SMTP id l124-20020a6b3e82000000b005ed165a1506sf9925966ioa.5
+        for <lists+open-iscsi@lfdr.de>; Thu, 25 Nov 2021 18:32:44 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1637893963; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=Hfh5wDVhTjMRN/4Zyl+W0MrM3FTKxaMeCS5kLLhT1q/3r7l0W3PnuNp9rdPW8auEQg
+         2f9/I+Nz4BtPumoqZ4sN+FqTwlLMe907jcOKjRdk+S5fudXOmuuqh96vCbWLZ6jrroqG
+         oDiAoADA6+/9VHJ1nC55CCjpMwOLOiQM/Kq+OYQvJFzDEIw+sx4WrFD5/X0F4Pyfd+I3
+         70ohtDwBmyVR/1Ya6PFeYvCtPAvUTFNyDxSXWyxHod1FAV+vOkaA6VNNAmQyEpAcAkdq
+         yOz1yYC66q8mDpTQ1rLzbzOlU/BAKQtI4S9bKQJ250R9TbCI/xYhmVGxnvPuE6jI7Ovb
+         wKOw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:sender
+         :dkim-signature;
+        bh=Jljt758oPnjhd4gng9Htk6n9zvhUPP8cVunBQCbeuLY=;
+        b=v1ZOjcpdwfCNu3nIasprmLe3e09MUmjNJCjguMjExxUBhGxbH/4F48Hsp6m5t5RhIg
+         F7UbE24Honn5UFaxAxmORd18iDFj3iTTT2jj0pcEmpvWDgQgbFc9s6RYB+Y6V6yyVGes
+         szKbmlSWx92RKg0/towkNy0Q7lliT0a3FVKJUTzA07qbfq3/H1/9YwY8rRubmGMMQDm/
+         jrNAXa3Kl4IhA5QdoCDA4m476VlNDdjVFgOfR1I3lWo+G4Cbo2oqTmtC3U37wes5voWm
+         1UA6B2TDZ4X82qagzYA7wT3qfRjP865D68Je46x6T9P47IwX8svJFgRlYLUvefc5KcIf
+         BJgw==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=Yk1hN5JU;
+       spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=sender:date:from:to:message-id:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=rc0kFOXnf11ddQrc3jCCLXSF5wRM/F52mXfKMLvzZDo=;
-        b=kFVgYCbxIsYdoKou+4u50udPvc0TlnkZWTqWb18CQrAb4O7xAFwvxanFpceUc3aCeL
-         tgB/thxKh/iJNRMcrXdDjLJMXle0MIvr62Hxory06cISzRRWzfT6Mkk9XWKtA6bVCxmi
-         3d+n3imeaA4HH1J1bF9LAjpLQ5yJmpdwf65RjCHD87pXozIrcEKDDDLFe1qZp+knYbo3
-         7NUKYsFCm9z9ZEDft0CennyEjbIa4oqRJqQ0nDAAWkBM3bYd/mhK81q+ys2+TTfFhLcI
-         KiqZgtoe/mMyQNbJXdw6wffm77bXeDzT7GQ2p98Xf1txNR9Fj4oxZREMLCSu2RTqKFUF
-         W/CA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:message-id:subject:mime-version:x-original-sender
+        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=rc0kFOXnf11ddQrc3jCCLXSF5wRM/F52mXfKMLvzZDo=;
-        b=PaMWGKzkOzo+m5D62Bty3wAxOLrgaK07f+r0M5BDvp0LS69qhAKKNbX4qiigxb28rw
-         1HKpH1FdHiHtEKf+GGWwxkzmfLhc/tkF9NdWDTMoy+Oz8xV8x8eV7Db6tTVS3Rd6anSQ
-         wYnFVUwW97KWxAIgD4nyZf6PPN9XH5xkelQ5zYlvFw2AIsTzloJ2P6jXtAT1a+FcpeN4
-         gO3bSHsRWTSbbMqH0HBMq80WVQvgsZ9W9T4oXcIi7eTZ9jxZyKFoaf7rtSVHP5OnuhJv
-         BhWD46hLjLaHv95PgjcZGiaZ2VyEimv9up2Ksy8PtOsTTwdE2Rj5Alxhqt3VEZhxrST+
-         OAIA==
+        bh=Jljt758oPnjhd4gng9Htk6n9zvhUPP8cVunBQCbeuLY=;
+        b=s89zCFTIoWKnA+nvQ3/r6lAG5QUdgKpmG50qjzQR1OGQtAK2IY3nApOmX5PcG0EJ4m
+         1DQtlK2p1VFlEJ5OI/4qPNo0JrVBRq0lDut6d5iltrBt7pVN8292+4K6SB/FphUQBFOe
+         5dzjw+OLPFoP6PQgmHT+wsYuFwrwetVLzkGKcQgvl4bl8dwJXeHVj9bBJcFMqPWCdFb3
+         GIYk4Dn4/dYs+J0GA5XRaTWYLbPbpjofvXup6tRtIWBGCpseiVrvKgXq9lQSiIfiHThF
+         9zPKXGEquYLmJq2ozlOv0RVROj1u2p4E5nEOw8kbkhoruFoWvt7gydrWFHbs0BSQ7MDF
+         Po+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=sender:x-gm-message-state:date:from:to:message-id:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :in-reply-to:references:mime-version:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=rc0kFOXnf11ddQrc3jCCLXSF5wRM/F52mXfKMLvzZDo=;
-        b=7MznXYRHGAsOwiHTr1Ux6q7tjF7v/V8ve2IuRqJpZ4bgiTvcKZczWTF7mdTIJTirU/
-         KiY+3vCaqq9/Lhg/yr7LqtipvWrR4dk0EQQMTeNXnvAyu6bqnsE2pVmBsWV7l6xHoxee
-         QxzQVtFrmIiZW5Uia3N/hqvsqgJJ3CEPOnzaTfWFz+6whZEZU6gekjbEhaQpKh2LcxLT
-         Z6f+s/wRRoOFJeW5WGNigH8Ix3IKkQDj1h5zCUfcWEnmD26lEoKgl8haIHDAnYajjNEa
-         +dLTnFrcRftKQAXOaQ6hjZ+R6wVKzP3yTiJQy/HPS2TEEs4gZUHTzGjUVCyLtgWo6WBy
-         pb+w==
+        bh=Jljt758oPnjhd4gng9Htk6n9zvhUPP8cVunBQCbeuLY=;
+        b=sz0cuvDT9e004mRdAAIJRWamMkRVWMmN4ZaF36zf2VHN+axUBpwC5XBkunP0AfVuNL
+         jUeV86f/wKiPuR1LPjJ5pB3pj+QvlIsPsEKJyVXEgDJi7HlN/NUc9KvVBAjbb9PM3JcP
+         wlmSmZmPN5Lsby8cgsiYFjWoyxEJDT279Il0E42ev7XPg3NbclLMubTyPYJKYIofUE13
+         xbOfvCOC40clpoGUq+vjXe63sB3pfkRqn0ud9KXmRUQD4WKYQ1jzrhayI79olrEfnRLy
+         Af1TDYQwGIMge3SS7dpqE8HBQ/4VYuTHELuPdioqGJLAHdHY+sMSUozIf7HlW9w+GqOK
+         9lMw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM531Qza+c/uGvh5ArlrB0ZJDJwSpkMBGyYGbHMlTzdvZyrcxt4io1
-	7Yy4vpSwLQC3loGN3HizGJg=
-X-Google-Smtp-Source: ABdhPJxCwnwSA8dSxgXDh48DfnK7uSlsz+PZZNv3xuomTCe/jQ4u/ydBwtrMARfSPNgODFNM5XKy1Q==
-X-Received: by 2002:ac8:588c:: with SMTP id t12mr19868382qta.325.1637867993107;
-        Thu, 25 Nov 2021 11:19:53 -0800 (PST)
+X-Gm-Message-State: AOAM532ZwzJDrkrrq3cG5CzmHj3B7auuRexXkL7ASLRnH4+z+bYA0YCF
+	SVR0a55Y9ObuQutMI8mp40w=
+X-Google-Smtp-Source: ABdhPJxs+kkateWksfAaNbYAnOG2LCSFH0WG7ErN1KgrgYqDe83uDDc5m8Rbyi0Vt4TwKRabhSM3pA==
+X-Received: by 2002:a05:6602:4c:: with SMTP id z12mr30713134ioz.117.1637893962859;
+        Thu, 25 Nov 2021 18:32:42 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a0c:dd13:: with SMTP id u19ls1493519qvk.3.gmail; Thu, 25 Nov
- 2021 11:19:52 -0800 (PST)
-X-Received: by 2002:a05:6214:23ca:: with SMTP id hr10mr8301250qvb.78.1637867992519;
-        Thu, 25 Nov 2021 11:19:52 -0800 (PST)
-Date: Thu, 25 Nov 2021 11:19:51 -0800 (PST)
-From: Mauricio <raubvogel@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <894fa93f-3f5f-4c21-ac47-3ef64965b5f7n@googlegroups.com>
-Subject: Yet another timed out connection
+Received: by 2002:a05:6e02:160f:: with SMTP id t15ls661596ilu.1.gmail; Thu, 25
+ Nov 2021 18:32:42 -0800 (PST)
+X-Received: by 2002:a05:6e02:148d:: with SMTP id n13mr2910101ilk.66.1637893962320;
+        Thu, 25 Nov 2021 18:32:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1637893962; cv=none;
+        d=google.com; s=arc-20160816;
+        b=arX3ewVV0wtMUSAJKxbfv7ZLNHDILm/73OHwpOQHolEu9/DheaBsFwQg6TMMS22AV2
+         msbuJlhhYpRyFgR3u1uLNa9SmBVS9Ui78RScmg1uXTwn2A7Q3h3W2airRC9F3OYqzYqz
+         wSGo1dwBzjc26fDSJb9QWFJzI4B6uf7YPYRYRNPvguoa1BOIus0jTVQRi03pg9HZakzQ
+         DtM9wvkQVuMVeMCvw1FF1FWXO4AOCXaEiefYl35r1ccCzjbIL8lQn/YBCPhO7qrUaxhY
+         QgPW8hrLgD9fgTHzeUHS4FlAq5Mw6wS5O1ORCTcEYQ2NPZXbXlufove51RZohopRvwGd
+         e+ig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:dkim-signature;
+        bh=ZJpOYO20r54c7r9/GCNC3wMMMDCLS/+XFvngONuNe+Y=;
+        b=khkrkFfuh2qNuTRpu3v/Up72mkLASSDtRLjJ0E2koNaCTHnIsb1P4A+dkZB/pxaTJu
+         2iBqmdGtkhsJ/nzlOE0MQlKCvw315Vv8IaqWRB572L7RGsMcJVOXc9rkbCRiDZP0rF7l
+         HUoCEQ7OyLwjUt6G9Gq7RHHTgu5RP+jIkbHGHaCKj7rV7JX3PgpO9Dz6HVB+HaDrkdfg
+         TMeBHsTu/9WUA3rDvUQQckh8mo7waQUR/C3UiFBhOllXfKmDqh0rl4QpX4m1qzlJ2R8h
+         hlSYbqfLTIC9l9tLuyQloYrtf/03Z5e7GbaSjqGuI05K2PWDfI52bKp0WTojwMdqa14V
+         dB6A==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=Yk1hN5JU;
+       spf=pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) smtp.mailfrom=sashal@kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: from mail.kernel.org (mail.kernel.org. [198.145.29.99])
+        by gmr-mx.google.com with ESMTPS id s4si278602iov.0.2021.11.25.18.32.42
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 Nov 2021 18:32:42 -0800 (PST)
+Received-SPF: pass (google.com: domain of sashal@kernel.org designates 198.145.29.99 as permitted sender) client-ip=198.145.29.99;
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 871D16115B;
+	Fri, 26 Nov 2021 02:32:40 +0000 (UTC)
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Mike Christie <michael.christie@oracle.com>,
+	Lee Duncan <lduncan@suse.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Sasha Levin <sashal@kernel.org>,
+	cleech@redhat.com,
+	jejb@linux.ibm.com,
+	open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.15 22/39] scsi: iscsi: Unblock session then wake up error handler
+Date: Thu, 25 Nov 2021 21:31:39 -0500
+Message-Id: <20211126023156.441292-22-sashal@kernel.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211126023156.441292-1-sashal@kernel.org>
+References: <20211126023156.441292-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_2630_1952718406.1637867991931"
-X-Original-Sender: raubvogel@gmail.com
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-Original-Sender: sashal@kernel.org
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@kernel.org header.s=k20201202 header.b=Yk1hN5JU;       spf=pass
+ (google.com: domain of sashal@kernel.org designates 198.145.29.99 as
+ permitted sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE
+ sp=NONE dis=NONE) header.from=kernel.org
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -76,120 +138,55 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_2630_1952718406.1637867991931
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2631_45857532.1637867991931"
+From: Mike Christie <michael.christie@oracle.com>
 
-------=_Part_2631_45857532.1637867991931
-Content-Type: text/plain; charset="UTF-8"
+[ Upstream commit a0c2f8b6709a9a4af175497ca65f93804f57b248 ]
 
-I know this has been asked many time before but I still do not know what I 
-am doing wrong. I am handing out iSCSI LUNs from a host at 
-192.168.10.18:3260 to a host called testbox (initiator). 
+We can race where iscsi_session_recovery_timedout() has woken up the error
+handler thread and it's now setting the devices to offline, and
+session_recovery_timedout()'s call to scsi_target_unblock() is also trying
+to set the device's state to transport-offline. We can then get a mix of
+states.
 
-[root@testbox ~]# iscsiadm -m discovery -t sendtargets -p 192.168.10.18
-192.168.10.18:3260,1 iqn.2000-01.com.synology-iSCSI:storage.01
-[fe80::211:32ff:fe15:74eb]:3260,1 iqn.2000-01.com.synology-iSCSI:storage.01
-[root@testbox ~]#
-[root@testbox ~]# fgrep address 
-/var/lib/iscsi/nodes/iqn.2000-01.com.synology-iSCSI\:storage.01/192.168.10.18\,3260\,1/default
-node.discovery_address = 192.168.10.18
-node.conn[0].address = 192.168.10.18
-[root@testbox ~]#
+For the case where we can't relogin we want the devices to be in
+transport-offline so when we have repaired the connection
+__iscsi_unblock_session() can set the state back to running.
 
-When I try to connect I am getting the connection timed out issue. Correct 
-me if I am wrong but it is barking at when It tries to connect using IPv6:
+Set the device state then call into libiscsi to wake up the error handler.
 
-[root@testbox ~]# iscsiadm -m node --loginall all
-Logging in to [iface: default, target: 
-iqn.2000-01.com.synology-iSCSI:storage.01, portal: 192.168.10.18,3260]
-Logging in to [iface: default, target: 
-iqn.2000-01.com.synology-iSCSI:storage.01, portal: 
-fe80::211:32ff:fe15:74eb,3260]
-Login to [iface: default, target: 
-iqn.2000-01.com.synology-iSCSI:storage.01, portal: 192.168.10.18,3260] 
-successful.
-iscsiadm: Could not login to [iface: default, target: 
-iqn.2000-01.com.synology-iSCSI:storage.01, portal: 
-fe80::211:32ff:fe15:74eb,3260].
-iscsiadm: initiator reported error (8 - connection timed out)
-iscsiadm: Could not log into all portals
-[root@testbox ~]#
+Link: https://lore.kernel.org/r/20211105221048.6541-2-michael.christie@oracle.com
+Reviewed-by: Lee Duncan <lduncan@suse.com>
+Signed-off-by: Mike Christie <michael.christie@oracle.com>
+Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/scsi/scsi_transport_iscsi.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-which sometimes seems to be what it wants to do by default:
-
-[root@testbox ~]# iscsiadm -m node -T 
-iqn.2000-01.com.synology-iSCSI:storage.01 -l
-Logging in to [iface: default, target: 
-iqn.2000-01.com.synology-iSCSI:storage.01, portal: 
-fe80::211:32ff:fe15:74eb,3260]
-iscsiadm: Could not login to [iface: default, target: 
-iqn.2000-01.com.synology-iSCSI:storage.01, portal: 
-fe80::211:32ff:fe15:74eb,3260].
-iscsiadm: initiator reported error (8 - connection timed out)
-iscsiadm: Could not log into all portals
-[root@testbox ~]#
-
-I did not really setup IPv6 in this network; is I guesstimation for the 
-source of the problem correct? 
+diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+index 78343d3f93857..554b6f7842236 100644
+--- a/drivers/scsi/scsi_transport_iscsi.c
++++ b/drivers/scsi/scsi_transport_iscsi.c
+@@ -1899,12 +1899,12 @@ static void session_recovery_timedout(struct work_struct *work)
+ 	}
+ 	spin_unlock_irqrestore(&session->lock, flags);
+ 
+-	if (session->transport->session_recovery_timedout)
+-		session->transport->session_recovery_timedout(session);
+-
+ 	ISCSI_DBG_TRANS_SESSION(session, "Unblocking SCSI target\n");
+ 	scsi_target_unblock(&session->dev, SDEV_TRANSPORT_OFFLINE);
+ 	ISCSI_DBG_TRANS_SESSION(session, "Completed unblocking SCSI target\n");
++
++	if (session->transport->session_recovery_timedout)
++		session->transport->session_recovery_timedout(session);
+ }
+ 
+ static void __iscsi_unblock_session(struct work_struct *work)
+-- 
+2.33.0
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/894fa93f-3f5f-4c21-ac47-3ef64965b5f7n%40googlegroups.com.
-
-------=_Part_2631_45857532.1637867991931
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>I know this has been asked many time before but I still do not know wh=
-at I am doing wrong. I am handing out iSCSI LUNs from a host at 192.168.10.=
-18:3260 to a host called testbox (initiator).&nbsp;</div><div><br></div><di=
-v>[root@testbox ~]# iscsiadm -m discovery -t sendtargets -p 192.168.10.18</=
-div><div>192.168.10.18:3260,1 iqn.2000-01.com.synology-iSCSI:storage.01</di=
-v><div>[fe80::211:32ff:fe15:74eb]:3260,1 iqn.2000-01.com.synology-iSCSI:sto=
-rage.01</div><div>[root@testbox ~]#</div><div>[root@testbox ~]# fgrep addre=
-ss /var/lib/iscsi/nodes/iqn.2000-01.com.synology-iSCSI\:storage.01/192.168.=
-10.18\,3260\,1/default<br></div><div><div>node.discovery_address =3D 192.16=
-8.10.18</div><div>node.conn[0].address =3D 192.168.10.18</div><div>[root@te=
-stbox ~]#</div></div><div><br></div><div>When I try to connect I am getting=
- the connection timed out issue. Correct me if I am wrong but it is barking=
- at when It tries to connect using IPv6:</div><div><br></div><div><div>[roo=
-t@testbox ~]# iscsiadm -m node --loginall all</div><div>Logging in to [ifac=
-e: default, target: iqn.2000-01.com.synology-iSCSI:storage.01, portal: 192.=
-168.10.18,3260]</div><div>Logging in to [iface: default, target: iqn.2000-0=
-1.com.synology-iSCSI:storage.01, portal: fe80::211:32ff:fe15:74eb,3260]</di=
-v><div>Login to [iface: default, target: iqn.2000-01.com.synology-iSCSI:sto=
-rage.01, portal: 192.168.10.18,3260] successful.</div><div>iscsiadm: Could =
-not login to [iface: default, target: iqn.2000-01.com.synology-iSCSI:storag=
-e.01, portal: fe80::211:32ff:fe15:74eb,3260].</div><div>iscsiadm: initiator=
- reported error (8 - connection timed out)</div><div>iscsiadm: Could not lo=
-g into all portals</div><div>[root@testbox ~]#</div></div><div><br></div><d=
-iv>which sometimes seems to be what it wants to do by default:</div><div><b=
-r></div><div>[root@testbox ~]# iscsiadm -m node -T iqn.2000-01.com.synology=
--iSCSI:storage.01 -l</div><div>Logging in to [iface: default, target: iqn.2=
-000-01.com.synology-iSCSI:storage.01, portal: fe80::211:32ff:fe15:74eb,3260=
-]</div><div>iscsiadm: Could not login to [iface: default, target: iqn.2000-=
-01.com.synology-iSCSI:storage.01, portal: fe80::211:32ff:fe15:74eb,3260].</=
-div><div>iscsiadm: initiator reported error (8 - connection timed out)</div=
-><div>iscsiadm: Could not log into all portals</div><div>[root@testbox ~]#<=
-/div><div><br></div><div>I did not really setup IPv6 in this network; is I =
-guesstimation for the source of the problem correct?&nbsp;</div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/894fa93f-3f5f-4c21-ac47-3ef64965b5f7n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/894fa93f-3f5f-4c21-ac47-3ef64965b5f7n%40googlegroups.com</a>.=
-<br />
-
-------=_Part_2631_45857532.1637867991931--
-
-------=_Part_2630_1952718406.1637867991931--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20211126023156.441292-22-sashal%40kernel.org.
