@@ -1,72 +1,128 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBO5KYSGQMGQE7IGLQCA@googlegroups.com>
+Return-Path: <open-iscsi+bncBCYMVIPVXQMBBOXWYSGQMGQE62MAEBQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x837.google.com (mail-qt1-x837.google.com [IPv6:2607:f8b0:4864:20::837])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5F846DD05
-	for <lists+open-iscsi@lfdr.de>; Wed,  8 Dec 2021 21:27:40 +0100 (CET)
-Received: by mail-qt1-x837.google.com with SMTP id u14-20020a05622a198e00b002b2f35a6dcfsf5188104qtc.21
-        for <lists+open-iscsi@lfdr.de>; Wed, 08 Dec 2021 12:27:40 -0800 (PST)
+Received: from mail-ua1-x93f.google.com (mail-ua1-x93f.google.com [IPv6:2607:f8b0:4864:20::93f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFE346DEE1
+	for <lists+open-iscsi@lfdr.de>; Thu,  9 Dec 2021 00:09:48 +0100 (CET)
+Received: by mail-ua1-x93f.google.com with SMTP id y28-20020ab05e9c000000b002c9e6c618c9sf2320322uag.14
+        for <lists+open-iscsi@lfdr.de>; Wed, 08 Dec 2021 15:09:48 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1639004987; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=pPnOTwgNH3IGZgLR68I/7MwA6pQA2WZLE0h8qQS12LMWBx1l//mVQWq8kq60ZyL/0H
+         5A6lF3PsihWD52BALIOpJ1yC1UKB3twBasFCCg8gCuCyA53zRqyG2tg2hYbdAMTQHyML
+         QhyJnBrds5zkWNCi7qsCcDWqaaBwzZLqDEnwEAAxG8JG22trkMvm+J63Myl8vcNHhJjz
+         MQeIhfwYo+eQXnW0G0uOtlOJ6Retx05IaBX2QfEUxUYs1rbVJSyX66VMWeuqSoTqnezj
+         nATnq7ZGCELa/0/K6zSLplJgW6D79fpacAhFwQ4UF9kp7bPkqOQncTQz2GisnRfJAvOh
+         HkcQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
+         :from:in-reply-to:references:mime-version:sender:dkim-signature;
+        bh=yc0LpSKNncKLeYUI5MiG+jlh8cvEO9hXeSIH29Rdy5g=;
+        b=FGTTjrdprNf+y2h0JvDipL/nqWe5OI3UONtu1rvL2ySQz742GdQMtBVavRkhhNSCQP
+         EHG5f0SxOHBC4RrXfIDBugk1Ccn4efiim5L/RA/JEUkvZ7P1yrO+OPm1y3WLEjpHhJAV
+         EzCI7ELUPVooHlmKzX6b6WpJvkpGwYf14mcxALgxnl5rOQp71rPnRwezTaY0qCfUrIia
+         7z7aDsB+Seg+GCPjX9Pn1K5vPaESA8VMrzaHWYi8lm3BXKe/QiE+JvKA2X5A85DOL982
+         W+iW0rc8192t2ey0+a16l3xMSeGIVoWtTJhScW/CPtrz07nIni/OBD1+FGlNea/otOZY
+         BsCg==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b="UXIHlC/q";
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=sender:date:from:to:message-id:in-reply-to:references:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
-         :list-id:list-post:list-help:list-archive:list-subscribe
-         :list-unsubscribe;
-        bh=2b/jYfqk5gBQ16AeG/eZNBR0ja7ymuw0MpX9n2Ne2cY=;
-        b=hCsPp4A8L54WEf7c+a6PZzXZXZud3dmY5AL/p7sSJI2YIClW5IKzS972o3pFN0V6Pi
-         leBOuXy4kPeHBn7Tkbo/LsRkB6tZM6j/Zv0Dy7P2mDFRVY1tpBHvWQHSFUCvkpt2ec3x
-         nxskOZMD5aIgNOeaRFheh5K9h8Up0aahtD4azEmATsbyE/7gSucr/j4ebNZg8ECMftD/
-         pXEfY1rkqbygNs8iH8DakxUWikhM4aHlkmfoxayEjitb8c9wv1N1JABXeznj2GYMQhof
-         cXQZJGK0kYLJuVH0UrMwYy8U2LrtwAIwEEEtEJAl+EhryHFyXJr70eRnJHf5p5S7Li6n
-         yQVw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:message-id:in-reply-to:references:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=2b/jYfqk5gBQ16AeG/eZNBR0ja7ymuw0MpX9n2Ne2cY=;
-        b=PbZaZRNxGpFc6nuIVQdy5XiYcYQW2d41yRh2Mc1Oem//cNadLYymSu4Z+jEYAVTMnS
-         lzuSzoWQ90FT7SaW2Qid+Z0jbTftlbFmuoINDncj52PspYtsUwkMA1wcNCaPCNJRx+cR
-         QfG6WQMxuZt82UPv+r0Z5moptsVX9d/L8EMaJX8uiIJcU2tnZiw2379Bk8nAxFyhla52
-         3OFSpMVW2//0LNIcLOr/7AhmSKWlIrDfA0f/mPdixHyk+BGO81XqR5xUI21qsu0Q5osR
-         iE61OdeIAo0CG8W0lq565u+gdzwphe6BZJScLR8l9+ki9kJFS2LcZ/SBEYNQc159Zipd
-         QnkQ==
+        h=sender:mime-version:references:in-reply-to:from:date:message-id
+         :subject:to:x-original-sender:x-original-authentication-results
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=yc0LpSKNncKLeYUI5MiG+jlh8cvEO9hXeSIH29Rdy5g=;
+        b=qCXg76jkETUdleWJQqdflToMBlAtGChuj3dKiyBTifsXR7eY62YM2xAWNL0fODD2Fh
+         eU9zJMJtLN3t0+l2DTYYTW3g745aGLXdE7SnMWhuHzJC7zjS5vFFor9Q2sOSZFxHutsC
+         ncxNZzDLLPd+1EDDsrISSKMEoL5Pt4HfFaaUwi7Qr+7mKQBvp3IL8SU7ApCydK3aKFuP
+         j2FWz/rVdSII6BpyjRO0UXQnlyLybqDWEXbP/pUk/uUsFyzpcnaWxZlCE5KHqMCPtLv3
+         jYc+eEu3bqoTKh6K7kjK7S+taMDUUV7X7gGBe/T2aZth3RxM3bqzrTS/N5H1AEWzoOjX
+         JeJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=sender:x-gm-message-state:date:from:to:message-id:in-reply-to
-         :references:subject:mime-version:x-original-sender:reply-to
-         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
-         :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=2b/jYfqk5gBQ16AeG/eZNBR0ja7ymuw0MpX9n2Ne2cY=;
-        b=wO0+qfvjyLzQoCbRWNyZAcwK6h5Hpr3TiTr/d5udf1myu7uC4QoavamIrdTUbDU0aZ
-         nHQv/xP7WcMm4Jz6fjfDgOFb62qoJCCUtZ4IUWmytkHMxeMGOUB4TlhNm6le10PKqtBy
-         j3+JMzfVs2vgKu66+JxI1/nDh5fZ9S+U1chhNbBTLiW/Xyvo4gw5/OkTGCxPseDQqHbh
-         2OlKYlmbvFrBjlw7zEUvx1xDWuDaWcrmi26aoXSfZetDSdZctBmU47rA0syt4kb+37Nh
-         xpWWx58NmDgpj6Q/qu70jl/l8apsnm3MzOE/gfZEDzLjCsrg81XDTDTM1IabdnVh/ikI
-         r4YQ==
+        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
+         :date:message-id:subject:to:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=yc0LpSKNncKLeYUI5MiG+jlh8cvEO9hXeSIH29Rdy5g=;
+        b=Rk99kz7UvTgBJ76cWblHQ076AsNrzDRxtAhwWkHgqgew5peU/y3TcGUXGJQRWoQ6aG
+         pH7Mssoo1aEru/joXebZEkiWLC0gFlaZF8SvVvkwpC2pwdr8p/8BoOtUMeTO+3XucrIa
+         t/ykkxYdsbMrqAyLVfnuCaS7PXaFOnC8vdIwWMBWUAM8OAr6jwGqJPD8a+/2xqWMt69V
+         WhdO+3sXylsGY6n3TJ7GJBYAqc2zKLTmdO35p+9Y2z655XmBfcAvqyrnPP5XD+qIW+4C
+         b1QffBf9TKxCId3LQcbFQbRPUGq+LtJz9kcxDANY0S1kDKdmsIODQviWl7Rd8QAaRUgP
+         if7g==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM532AM4jdCUoe6vYlrfTij1fuRdmBRaTvWweRPG6hUQo0ik3jc6bM
-	AOVehBVEwnpMubFeC3JGz4g=
-X-Google-Smtp-Source: ABdhPJzhUmf0slhvW1eaC4ucNNQb+9bXlNLF455QT1BwbC3ZNr397mJDWvAN5mK4AC65nVf+NGEtZg==
-X-Received: by 2002:a05:620a:1794:: with SMTP id ay20mr9513642qkb.5.1638995259424;
-        Wed, 08 Dec 2021 12:27:39 -0800 (PST)
+X-Gm-Message-State: AOAM533mnHB9Tb+fEd+1WAZVbQ9arOrKMwhbEq3pDEek/60SIrv3Um3J
+	Gud8HkM++8E5ksdRQSljN7M=
+X-Google-Smtp-Source: ABdhPJwi5tzXP9k4FzJvue2dQBBSa6UskcDOoE4aFk/6EadDj2hijv5Vt8A7xO8fZGUVbs3ZhEr4zQ==
+X-Received: by 2002:a67:6684:: with SMTP id a126mr2260302vsc.22.1639004986986;
+        Wed, 08 Dec 2021 15:09:46 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:620a:1aa2:: with SMTP id bl34ls2354617qkb.11.gmail; Wed,
- 08 Dec 2021 12:27:39 -0800 (PST)
-X-Received: by 2002:a05:620a:244a:: with SMTP id h10mr9278942qkn.173.1638995258837;
-        Wed, 08 Dec 2021 12:27:38 -0800 (PST)
-Date: Wed, 8 Dec 2021 12:27:38 -0800 (PST)
-From: The Lee-Man <leeman.duncan@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <49efbe97-d0ce-474e-9705-ffb690208e26n@googlegroups.com>
-In-Reply-To: <1b70c5d5-bb56-4f35-948b-1a2cbde569ban@googlegroups.com>
-References: <1b70c5d5-bb56-4f35-948b-1a2cbde569ban@googlegroups.com>
-Subject: Re: iSCSI initiator setting max_sectors_kb=4 when target
- optimal_io_size=4096
+Received: by 2002:a05:6130:309:: with SMTP id ay9ls663700uab.11.gmail; Wed, 08
+ Dec 2021 15:09:46 -0800 (PST)
+X-Received: by 2002:a9f:3142:: with SMTP id n2mr12756633uab.102.1639004986380;
+        Wed, 08 Dec 2021 15:09:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1639004986; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Y0dShZCCVZhp2sZ/hk7e6N8hwndb4aJp7JH6X6s3xFZw2qEDvNxDO4LpR9NgNdijXF
+         smxfEZAHQd4uYaO6Zi+xHPIn0V7pyHUPXFpqZ6TSMQafgTFmgSSi4YhciNhBgmWuy9T4
+         wH7ezgwcfpLco4KtSMqaE6JqkADAf6091Rn/rXl2AL1Gu9Ac0BZj6sXpWCIW93zPQF0+
+         2f/e68l/gulHlOx6hmKi79J/KDW7enkXk+4ep5F3S+JaWVKATpq0+6KgxdFub9vZoLq4
+         s3X6kNWZWpjjUG62Oo++eAlZpaf14WNcNLrUloMB3CVX9Im69tBTrd+Ulu/+wfEMHUJ+
+         jtlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=f8DdgYHtGQyppLbAeaHnp5pDTzwb5x2o+iRKnhFIeTc=;
+        b=ffFFKQo6kiCLq3M+bxSLP+4hQIMjtG987a1hu1dPjAQlk8vQFlO4IXvQaLAo0nsDal
+         3IOrpbrDnNbkOGBmsXlhFuF1dCt2wWPVmFYGjw5bWw8PdtpcSGl6CTBRSHhuHlHzl8r0
+         aQK9LstoWR1jITAf7jAazeTylH5YsqmhHRoFZpbQXJXKFkBl4BVnKcuzel18lSZRhG4R
+         qaV9OFkqfxw0/R0cBunCP4pc/4gOl4k5FzTILkR7UzBaA22hkGN0iATrjdUwE5yiQjkp
+         z6RqrX+1VHzcyUO+piL0xmhMYYwtuMIugLKksdVshff2Nk8hKr323si/yPIn79sWbhvP
+         BxSg==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b="UXIHlC/q";
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.129.124])
+        by gmr-mx.google.com with ESMTPS id 140si257712vky.3.2021.12.08.15.09.46
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 08 Dec 2021 15:09:46 -0800 (PST)
+Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) client-ip=170.10.129.124;
+Received: from mail-yb1-f198.google.com (mail-yb1-f198.google.com
+ [209.85.219.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-581-c2NRlRaIPGqB5DHu0i4EKQ-1; Wed, 08 Dec 2021 18:09:43 -0500
+X-MC-Unique: c2NRlRaIPGqB5DHu0i4EKQ-1
+Received: by mail-yb1-f198.google.com with SMTP id s7-20020a5b0447000000b005fb83901511so7099495ybp.11
+        for <open-iscsi@googlegroups.com>; Wed, 08 Dec 2021 15:09:43 -0800 (PST)
+X-Received: by 2002:a25:ae87:: with SMTP id b7mr2119160ybj.497.1639004983205;
+        Wed, 08 Dec 2021 15:09:43 -0800 (PST)
+X-Received: by 2002:a25:ae87:: with SMTP id b7mr2119114ybj.497.1639004982839;
+ Wed, 08 Dec 2021 15:09:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_3202_1356672041.1638995258178"
-X-Original-Sender: leeman.duncan@gmail.com
+References: <1b70c5d5-bb56-4f35-948b-1a2cbde569ban@googlegroups.com>
+In-Reply-To: <1b70c5d5-bb56-4f35-948b-1a2cbde569ban@googlegroups.com>
+From: Chris Leech <cleech@redhat.com>
+Date: Wed, 8 Dec 2021 15:09:31 -0800
+Message-ID: <CAPnfmXLkC1tUWMS3cGiynB_-gvLSngsNwPpiyN-brQ14x9X_kg@mail.gmail.com>
+Subject: Re: iSCSI initiator setting max_sectors_kb=4 when target optimal_io_size=4096
+To: open-iscsi@googlegroups.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+X-Original-Sender: cleech@redhat.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@redhat.com header.s=mimecast20190719 header.b="UXIHlC/q";
+       spf=pass (google.com: domain of cleech@redhat.com designates
+ 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -80,41 +136,46 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_3202_1356672041.1638995258178
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_3203_246140133.1638995258178"
+Hi Alexis, I was just taking a look at the issue you opened with Red
+Hat about this.
 
-------=_Part_3203_246140133.1638995258178
-Content-Type: text/plain; charset="UTF-8"
+It appears to me that the sd driver for all SCSI disks is setting the
+max_sectors limit for the queue to the optimal transfer length when
+sanely reported.  So the SCSI disk driver is limiting to the optimal
+length at all times, while the NVMe code is reporting different
+optimal and maximum limits to the block layer.  The SCSI target code
+is just passing the block layer limits through to the initiator, so
+when exposing an NVMe namespace as an SCSI disk the smaller optimal
+transfer length gets used as a maximum limit on the SCSI initiator.
 
-Perhaps someone from RedHat can comment? I suspect this is a kernel change, 
-though.
+I'm going to ask around and see if I can't get a better understanding
+as to why the sd driver works that way and if optimal transfer length
+when reported by SCSI disks are expected to be as small as this NVMe
+device is reporting.
 
-On Sunday, November 21, 2021 at 6:31:39 PM UTC-8 alexi...@gmail.com wrote:
+I don't think this is an iSCSI specific issue in this case.
 
+- Chris
+
+On Sun, Nov 21, 2021 at 6:31 PM Alexis Oosterhoff <alexisoost@gmail.com> wrote:
+>
 > Hi,
 >
 > Looking into whether this is a bug, or an expect behavior with kernel 4.18+
 >
-> RHEL 8.4 on AWS r5.xlarge hardware type, attaching nvme disks, observing 
-> the nvme device is configuring optimal_io_size to 4KB
+> RHEL 8.4 on AWS r5.xlarge hardware type, attaching nvme disks, observing the nvme device is configuring optimal_io_size to 4KB
 > i.e.
-> /sys/devices/pci0000:00/0000:00:1c.0/nvme/nvme4/nvme4n1/queue/optimal_io_size 
-> 4096
+> /sys/devices/pci0000:00/0000:00:1c.0/nvme/nvme4/nvme4n1/queue/optimal_io_size 4096
 >
-> When attaching this device remotely using Linux-IO, the initiator device 
-> is using the target's 'optimal_io_size' to set the max_sectors_kb. 
+> When attaching this device remotely using Linux-IO, the initiator device is using the target's 'optimal_io_size' to set the max_sectors_kb.
 > i.e.
-> /sys/devices/platform/host1/session8/target1:0:0/1:0:0:0/block/sdb/queue/max_sectors_kb 
-> 4
+> /sys/devices/platform/host1/session8/target1:0:0/1:0:0:0/block/sdb/queue/max_sectors_kb 4
 >
-> This does not seem to be correct behavior. optimal_io_size and 
-> max_sectors_kb should not be directly related.  Do not observe this 
-> behavior with RHEL7.
+> This does not seem to be correct behavior. optimal_io_size and max_sectors_kb should not be directly related.  Do not observe this behavior with RHEL7.
 >
 > target:
 >  - RHEL 8.4, 4.18.0-305.12.1.el8_4.x86_64
-> initiator: 
+> initiator:
 >  - RHEL 8.4, 4.18.0-305.12.1.el8_4.x86_64
 >  - iscsi-initiator-utils-iscsiuio-6.2.1.2-1.gita8fcb37.el8.x86_64
 >  - iscsi-initiator-utils-6.2.1.2-1.gita8fcb37.el8.x86_64
@@ -124,55 +185,12 @@ On Sunday, November 21, 2021 at 6:31:39 PM UTC-8 alexi...@gmail.com wrote:
 >
 > Alexis.
 >
->
+> --
+> You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1b70c5d5-bb56-4f35-948b-1a2cbde569ban%40googlegroups.com.
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/49efbe97-d0ce-474e-9705-ffb690208e26n%40googlegroups.com.
-
-------=_Part_3203_246140133.1638995258178
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Perhaps someone from RedHat can comment? I suspect this is a kernel change,=
- though.<br><br><div class=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail=
-_attr">On Sunday, November 21, 2021 at 6:31:39 PM UTC-8 alexi...@gmail.com =
-wrote:<br/></div><blockquote class=3D"gmail_quote" style=3D"margin: 0 0 0 0=
-.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">Hi,<di=
-v><br></div><div>Looking into whether this is a bug, or an expect behavior =
-with kernel 4.18+</div><div><br></div><div><div>RHEL 8.4 on AWS r5.xlarge h=
-ardware type, attaching nvme disks, observing the nvme device is configurin=
-g optimal_io_size to 4KB</div><div>i.e.</div><div>/sys/devices/pci0000:00/0=
-000:00:1c.0/nvme/nvme4/nvme4n1/queue/optimal_io_size 4096</div><div><br></d=
-iv><div>When attaching this device remotely using Linux-IO, the initiator d=
-evice is using the target&#39;s &#39;optimal_io_size&#39; to set the max_se=
-ctors_kb.=C2=A0</div><div>i.e.</div><div>/sys/devices/platform/host1/sessio=
-n8/target1:0:0/1:0:0:0/block/sdb/queue/max_sectors_kb 4</div><div><br></div=
-><div>This does not seem to be correct behavior. optimal_io_size and max_se=
-ctors_kb should not be directly related.=C2=A0 Do not observe this behavior=
- with RHEL7.<br></div></div><div><br></div><div><div>target:</div><div>=C2=
-=A0- RHEL 8.4, 4.18.0-305.12.1.el8_4.x86_64</div><div>initiator:=C2=A0</div=
-><div>=C2=A0- RHEL 8.4, 4.18.0-305.12.1.el8_4.x86_64</div><div>=C2=A0- iscs=
-i-initiator-utils-iscsiuio-6.2.1.2-1.gita8fcb37.el8.x86_64</div><div>=C2=A0=
-- iscsi-initiator-utils-6.2.1.2-1.gita8fcb37.el8.x86_64</div></div><div><br=
-></div><div><br></div><div>Thanks,</div><div><br></div><div>Alexis.</div><d=
-iv><br></div></blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/49efbe97-d0ce-474e-9705-ffb690208e26n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/49efbe97-d0ce-474e-9705-ffb690208e26n%40googlegroups.com</a>.=
-<br />
-
-------=_Part_3203_246140133.1638995258178--
-
-------=_Part_3202_1356672041.1638995258178--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAPnfmXLkC1tUWMS3cGiynB_-gvLSngsNwPpiyN-brQ14x9X_kg%40mail.gmail.com.
