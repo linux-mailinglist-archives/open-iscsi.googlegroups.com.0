@@ -1,135 +1,208 @@
-Return-Path: <open-iscsi+bncBD7Z7UVWSMJBBIXZWOIAMGQENPNYLHY@googlegroups.com>
+Return-Path: <open-iscsi+bncBD54HHNYIIIKXLV2SADBUBBJGH22E@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ot1-x338.google.com (mail-ot1-x338.google.com [IPv6:2607:f8b0:4864:20::338])
-	by mail.lfdr.de (Postfix) with ESMTPS id C46BF4B8A17
-	for <lists+open-iscsi@lfdr.de>; Wed, 16 Feb 2022 14:31:16 +0100 (CET)
-Received: by mail-ot1-x338.google.com with SMTP id q8-20020a056830232800b005ab75f5e906sf1363459otg.18
-        for <lists+open-iscsi@lfdr.de>; Wed, 16 Feb 2022 05:31:16 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1645018275; cv=pass;
+Received: from mail-lj1-x23b.google.com (mail-lj1-x23b.google.com [IPv6:2a00:1450:4864:20::23b])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DEC64BA891
+	for <lists+open-iscsi@lfdr.de>; Thu, 17 Feb 2022 19:42:54 +0100 (CET)
+Received: by mail-lj1-x23b.google.com with SMTP id e16-20020a2ea550000000b00246029bd00bsf211651ljn.23
+        for <lists+open-iscsi@lfdr.de>; Thu, 17 Feb 2022 10:42:54 -0800 (PST)
+ARC-Seal: i=3; a=rsa-sha256; t=1645123373; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Ja9eo1iIc6OZHVVIPcsQ28axfGSW5Y3M6XvU7u/4P0WqKYerUaJBSQQlCXRDhdbcnZ
-         /MB5PjAqoPN11cyb3ilFIgB4C0SB0puEYpQDRzlSHUCNmcWwp6qOTW8OyVU0IDIUeB/m
-         oxJ07md4YBO9nGY3d6tv5iA/e9TuGmeh1Zr1zkvf7d/6RqanBILbJESCqhEq/YAthnc2
-         Xzb1VaCKWV1Ax7kCGzUL38iHjBlPNqgUhuVS4UpCtClg5mNNk4YFEaAA3CmuWMNmg6PP
-         uB5QqYysa+I+ryHHyIE4ysoEqgRWx8d/1fMrZ2VCUmug91vA/iZprGnKoL9FYvi92/1p
-         MLmQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        b=lS1oXU7GVCcuKUFZboU1T6COBBm2tdIU2KCftMG5jApywGS4/uGKKQzNN3vYqkzRyG
+         ROj59pasPapj9t4akEOUSI87RyPEasAiVSq45vsqmrKLF2JtAobwvKAN49nV5jSmHrS7
+         GXGlgjS/50sTviUZbh+p6uzk48x6B99PL4VY/GD9PT2vUm1j9/n5EO9+43xxSKw7oixz
+         1pselvquEyK7nVg8pEMvOfTpWPe3Q4CVAJro/OICXf1pBgS2ryeT+ZTHnimY4LMbwEPt
+         fHTOc/iKhO15vENYiEWgWCSR3v9E7uZdbx6Kt+5xI+/8txI7c7VfP9s/utWhhdWVqa1w
+         TvSw==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
-         :from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=k0aONONxNvujbu8O11u3n6AxqeoOlk3aD29ymG/AM+o=;
-        b=AXQZXNX7zr1WAhnJjzk6bVcr2mtwAHPpI5JS+QYKDlF7mtbSSajsinZQtlRPihW31p
-         IVz9ZnC5aj9WLChPoPQvcwFHQ9O7ZlJ+Hhj2wS/KXFmeq+j4Fc2u4nU+yQKyojrvtFST
-         n4LxkaPGslYohyzAqhp7QemeOanoI44CiM0fYmit70Z3v1/xB8uVQCvh4WHTy1z8a/+u
-         c4OEyXA4oVuquErre7rCOZ3Jtzagpkut/W/E69sCsfSdZAYlcf1TpUN0ZoF9pbOTfDyf
-         4ybhl96mU+SaPq2yGtgJRVOvbJ56+6CVGYXHNlqeILT4yf9jeFu5jBD2P/F1oQ+mCCJb
-         DrVA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=d8BrxSXw;
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::22c as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+         :list-id:mailing-list:precedence:reply-to:mime-version:subject:from
+         :to:content-language:user-agent:date:message-id:dkim-signature;
+        bh=q+uRF7D/2yyvJ7+Y9pcF286TAuMEMVCxK5JJdyXe23o=;
+        b=m73Cs3W1i/1u3UtzV79VPNylcGLk52WqKlYE+8V5sFbwRII2FFE1vFynJ6zYGOvb0+
+         3uNb8eD50uMM0ZyrWBHfTMsHIjm0sIbxB1K/sKq6qcP7vqZTNV/K9AeDXG3GKyFykHe3
+         UHfYQUlKUKV+lM4UyUp6H3mz3uvoRkvoeyZfD/HeMC/AA+eMwG/EKKsd4CFdY7Qh5zsT
+         vzDIGWK+Hlqo2ZrCXyqaPV4ogmxQ0yBuNRhP1xG6rmnsziExCMBVPwLeu8epv1Qnocku
+         bL7B53n/A8bMFEGubeiu+Gj5YNuYJqWgfOuK0+ou6uPcpHTaQSpeuFz/tZaHV7hDgzHm
+         mo7A==
+ARC-Authentication-Results: i=3; gmr-mx.google.com;
+       dkim=pass header.i=@suse.com header.s=mimecast20200619 header.b=i7qajzMf;
+       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
+       spf=pass (google.com: domain of lduncan@suse.com designates 194.104.111.102 as permitted sender) smtp.mailfrom=lduncan@suse.com;
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=suse.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:x-original-sender:x-original-authentication-results
+        h=message-id:date:user-agent:content-language:to:from:subject
+         :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=k0aONONxNvujbu8O11u3n6AxqeoOlk3aD29ymG/AM+o=;
-        b=AMZIDNq2IclnunrzBsjlQLMP6yoTOIO8Jp1Z+rLyqbmY/yVJ5T75e7MId6RexjtNOm
-         kj/ieS78BNgX1pmSp+quTsfb8JuRnacsihj0ioz3u/G6B8Wug9Ta4GCHb+JhzQsSohlr
-         GWwHTrNpgACGM2UmT3og/m5dPyhTBi5QKIbheJuAyOhKR5buDwLqaaO2pooaFGIKOI17
-         wWRG6xTX7N47X2e+DFwiAQS/Xw++sGL93Kq+K+TL8KuXIGVVc4lOGiH38vR0m/GCsWCn
-         Thbeze6A2dER5b6PMYnpvcjmAiQQYiu64fCmGbh7Wc21Euh/tkzIRpzqR+25PrQT8bWG
-         DO8g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=k0aONONxNvujbu8O11u3n6AxqeoOlk3aD29ymG/AM+o=;
-        b=dicPB/tAoHT6J21HZMnt1F3F77S1byey/bdAIvFgkKLCldOV447m7hlUziLe+qALhC
-         fMnD4cnRJ73RxGYv1z8DrWgV/jfLr/FTsJQs2M52dY0Y6t3nDsn4zX5d3bSRiUM063cD
-         ArXUqqZ2iwvuN+HL/mOxU4Dk+gWb0i177/TKveICpesO/APlA/UjTO0yrvt4DQuyCJ0Z
-         Sxo7ugXANdWiwvSQc+CDkK/OFT5I08qcwty8smiDKj/Uie3O/z3kl3TUjHDFkwSqcwZa
-         dQzOrPqGe8qeaFewvjDDcVz94OIaKRo5NYCIu4+ZgOGYgIPK5s/yXGiv0g3k0GTRAU2/
-         sXwA==
+        bh=q+uRF7D/2yyvJ7+Y9pcF286TAuMEMVCxK5JJdyXe23o=;
+        b=ia7ZmdD4NeVgsRxCdJ+LFWkLTY2Zu8Wfql7oGYGYQZdMQ8Z8/cRVgC1ZwBWYSrkStf
+         U2SE4KqD0J9ingXdw42Abukea3h3GrrTzGBJ9B4p7frpRibMl5IcY7gfKg+qrd2f8qra
+         RId6i7wZnp61DgsXabn5xZjH9d489Zaoqzhh95w5J/c3Bur6rYxkHehm3doTl/fQ/2KC
+         Bf6P5CGPxesOVVGDi7DcG7FALW+XqSL8C4AFvDZ8Irj1XAYZOped4BvUlPWEb56gUWqE
+         60JMaDwuG4WmbEDH68u4L3Oyo3X5XonoYXo19sVGgVT5nnNOyCI0BD23zHHwkHNoIes6
+         4Uqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:x-original-sender
+        h=x-gm-message-state:message-id:date:user-agent:content-language:to
+         :from:subject:mime-version:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=k0aONONxNvujbu8O11u3n6AxqeoOlk3aD29ymG/AM+o=;
-        b=U8XErY17S1bqjwH5WfptL8hnCy9w1v3Jbeomv7QjLQdmpSWdmSyxag0ysL4lIin43t
-         9hd/QJph0Cia5sMvGDTqne498TG4Ccz1qideCHR6y58mEftzWVsLHQqj4W9Z0NhACYgP
-         8ZJfVtcBmbYd1vgBHJuSjOqQXYySFKjrJHmOZGvgHVYtC/JT4cl+KfrxoF8BvENrn0Ns
-         EVicSxF/28hUSFHWT1C50HlNwcSfDYhpqCEjMtG1b85sJEsLO/4fU/wGlyY2Zlc4dzKM
-         v+Wnz8GHNvbVwA2UFde/f4SslBLszUwtU9w/i2RxDRY4WnqXxPk5rkPWUZKU3+aoOLAn
-         COWw==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530Q463Uin+KoFdX/OaSB4kj8s2KabXj2y8UQnjcJ86aehhpse28
-	JL7UdUgR+i5LcXlsQz+l56E=
-X-Google-Smtp-Source: ABdhPJyIW5qKAA1IB0NvaVlHcSguwzsYjJew3zrsUAGKB0wirFRrxPMIGZ9WmYgkzCFlUn5pOopaCg==
-X-Received: by 2002:a05:6870:5385:b0:cb:d72e:9f79 with SMTP id h5-20020a056870538500b000cbd72e9f79mr452558oan.227.1645018275407;
-        Wed, 16 Feb 2022 05:31:15 -0800 (PST)
+        bh=q+uRF7D/2yyvJ7+Y9pcF286TAuMEMVCxK5JJdyXe23o=;
+        b=oncq/ZB1IspuY5B5cd8MMXPdNKUtxn4CKncd3WQc6TSby0r3cOH38ljv6UWNNfzkW1
+         2Gm9Se2llVRuV27W7SCXhuY049Zg/03pZgoIby4d7ATkYay+vzEtRPnlEYa8JVHsU8R2
+         BckFlCr/CXF9hWik46TE5YQZpYfj571vU6TCsNVdoYasxZwKvDDaUzR552PeSml38PXf
+         qFqh/VYlsMhiBkR6CXyNpvIF+r4UOEWL/ERwsH8Jqhn8sed5XJziNl5xDpnqBIfOP9iw
+         PtV49B6AXmCrCaDBTCT5kL89+b8xX5Y1h2EEm8FHAAPGPZDl8Mt/0Zn0IzEFo5QSl5eq
+         RrVw==
+X-Gm-Message-State: AOAM533nNJL4y0rXAHBoA22bug5gC1vllq4xQLLjvYJAH6+02rh+qOfZ
+	i+GNyNxrBvlFcYhTGoN6E5Q=
+X-Google-Smtp-Source: ABdhPJwyAAs883ZHngVFF/Uo3kboI8O+IMWiMIpUibbxXA80XkAQJi0HTLB36u7gxzyRAHYLVDYEjg==
+X-Received: by 2002:a2e:9847:0:b0:245:5aa9:91ad with SMTP id e7-20020a2e9847000000b002455aa991admr3079537ljj.59.1645123373650;
+        Thu, 17 Feb 2022 10:42:53 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6870:d68e:: with SMTP id z14ls1486897oap.2.gmail; Wed,
- 16 Feb 2022 05:31:13 -0800 (PST)
-X-Received: by 2002:a05:6871:4194:b0:d0:4b5e:db49 with SMTP id lc20-20020a056871419400b000d04b5edb49mr453539oab.342.1645018273885;
-        Wed, 16 Feb 2022 05:31:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1645018273; cv=none;
+Received: by 2002:a05:651c:212a:b0:23d:d210:65e7 with SMTP id
+ a42-20020a05651c212a00b0023dd21065e7ls814693ljq.9.gmail; Thu, 17 Feb 2022
+ 10:42:50 -0800 (PST)
+X-Received: by 2002:a2e:b5cf:0:b0:246:2235:31ef with SMTP id g15-20020a2eb5cf000000b00246223531efmr350328ljn.9.1645123370539;
+        Thu, 17 Feb 2022 10:42:50 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1645123370; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Ggr4kzxidX0pAafNAYrK2EKr/Auj/CXt3zM+SZKscjtj20XXVlvuVdPk8peAJshFhG
-         fqSSuLB5+QAKlnD5LHr8L4O0qug2+khTA+8EcmMtht9svHHDwAbU8kKVzjG7LonnXj7k
-         k57Zvuc1+XbpY79hsoyDKZ0A382da2imfq2DJ1oDIruZmDgwQIH2CQ5oyz7LixP0ms9n
-         xXZbcx4C1BP43sR2F509yPFg5aBsXVYmbf+cFp4Y1PZcF9PL/dbSGL6iCFFYHpq8szLM
-         UK92PSllwZCcIDUgmQv5Q1E61hkO0wUwpyi7iE782AMVhgaSFGvrh9QTX3UdkIaeN1l/
-         1hhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=m61n5GuKTabKEsMYklGkqL8O+jG5r3G0LXVd6xCFo0U=;
-        b=b45Saz1FEbNHavs862TrBqvLXEPakUL3Z4C/9fiegPCDTqlmAwnPKJneiENB1BSKpx
-         ww0Sk+eLmQZuYQgutyKTNExvk+HoBbcaseZVnVs/V8cRG3EBd7u3BC0II6lyclJJJxy9
-         QEIJR4ZocUVaHMG/KHpKYsJpRdV4PR093vaUAiKlqcwgqKRY/xFmrO6WsR8q5n41lMI/
-         inPzNYGvPx6n7tKlPz7ZW0vWbPwtm2t6WhHDblyjBD9zyTuu6BLj6wiBGmSvlIYOKS22
-         1XpqcsyiFM+IvHTFug+kVJHAuJk5GXdWIiCWiYj2vn5xJbcJ9ISNAiscORHdv5UGjJoO
-         En6g==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=d8BrxSXw;
-       spf=pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::22c as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com. [2607:f8b0:4864:20::22c])
-        by gmr-mx.google.com with ESMTPS id w20si1769106ooc.2.2022.02.16.05.31.13
+        b=qaWd6A3cOjv0xNFSRaGdD3lMBAJJBKkSkr6Lr0usEO1hL7Tskh0yrzYAJrzoNmlA17
+         4B3BCEz9Ov7KSkEJB736PlTCwy/BAnyaAeRtw1jDJdIksTzG/M+aB2m6Q5z/a3aULuQk
+         6Kd2X6N7xFMzynxz2L4ykKdnRe7G4k3gRwA20DIU7p6I1Oi8M2waWAsQjRDCfl18U1IB
+         Ry9VUgOP7Umvx3YZD4M8LUjhK7e/H9wtd3CGQK6cFOIIbc2DPzQcoeQ55tyODwWTb9OT
+         W+MDTzI+Bk9b1HYCLWm7drr2uziW8OHTfH1doSeWeL/aGUHT+GgOMAk3LNTgn/Zhr3Uv
+         4nrQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-transfer-encoding:subject:from:to
+         :content-language:user-agent:date:message-id:dkim-signature;
+        bh=5d0LV12iCt9hzkXZZuL1llKP8YPpibwx8TVGU6XPByI=;
+        b=pBQ9H+aWHJw4rdO9zXT989EtW/vEwoQ2/FqxcWE3Qvy2dWVCzVxzgCsbYu2qOolcYV
+         C+6l9y2a1ofZMnBPVp+EXSwx+cYIqtl0x2lDEEosQm/mV6uZzeLuoKSlAa6Ilgue2wJt
+         IokPppM+i2O/b0NRsWmjjz6Hzld1uSrfDpk8aYlgqSlXiQo26gQ7sgoVvLz3/7njBzVF
+         MakOSskZ5cj+wUO9FM8wrkhZKjq4OLRPBZQA3P9uFeWJQt3A4Tm0qiu37CZgFM+y0uzj
+         L02ZhKO/S8jtLXKt24UIE7cE5FWnegxF3cUDDwigFDcXxrp3mxPuTw/EO77GgrnGQK08
+         V3Uw==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@suse.com header.s=mimecast20200619 header.b=i7qajzMf;
+       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
+       spf=pass (google.com: domain of lduncan@suse.com designates 194.104.111.102 as permitted sender) smtp.mailfrom=lduncan@suse.com;
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=suse.com
+Received: from de-smtp-delivery-102.mimecast.com (de-smtp-delivery-102.mimecast.com. [194.104.111.102])
+        by gmr-mx.google.com with ESMTPS id x19si45435ljh.2.2022.02.17.10.42.50
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Feb 2022 05:31:13 -0800 (PST)
-Received-SPF: pass (google.com: domain of don.e.williams@gmail.com designates 2607:f8b0:4864:20::22c as permitted sender) client-ip=2607:f8b0:4864:20::22c;
-Received: by mail-oi1-x22c.google.com with SMTP id s5so1007119oic.10
-        for <open-iscsi@googlegroups.com>; Wed, 16 Feb 2022 05:31:13 -0800 (PST)
-X-Received: by 2002:aca:5c46:0:b0:2d3:a858:c201 with SMTP id
- q67-20020aca5c46000000b002d3a858c201mr597291oib.278.1645018273364; Wed, 16
- Feb 2022 05:31:13 -0800 (PST)
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Feb 2022 10:42:50 -0800 (PST)
+Received-SPF: pass (google.com: domain of lduncan@suse.com designates 194.104.111.102 as permitted sender) client-ip=194.104.111.102;
+Received: from EUR02-VE1-obe.outbound.protection.outlook.com
+ (mail-ve1eur02lp2053.outbound.protection.outlook.com [104.47.6.53]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-6-ad9tmNGCPkSlk_7vz4l4wg-1; Thu, 17 Feb 2022 19:42:48 +0100
+X-MC-Unique: ad9tmNGCPkSlk_7vz4l4wg-1
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XBUF/Q9EUBo0ax+SIbAMZeUEFt+NwX4ziriwxR6EmxYF9ws0BwUWO6KfU6puyvMpKHlVk7FGs5LD4NHSzIAOS3LWwsd0f/u8Jn1o9Dqtr4aft7NUReGYw0yqu4C8ym1AUGqH49tMNZDPAP7RkkxhJ/Xur6cWX6y0TDloTTo11s3+oFqhyiyFlcI6Yx1p5+ythTFEGJq6yRYE5cSCxV+SBgGQkHuOjhmZMtPupXV154PRIhsCd79rf71J06ss59+hPzJNRRSHpp0u4G5XDnfFjs2z3PnarwHGm8vGiZgXOEVvAKQ1Q7EaaMyvwDGMM9tXGuJZ2XNF7V7tJcI1WkxZVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5d0LV12iCt9hzkXZZuL1llKP8YPpibwx8TVGU6XPByI=;
+ b=WR3FLGGqibC2ay477VVHqHx1CFt9yZPDkXd4kGBgJXQQpn3DRG4EAVc2GcZyhPFv+XT1jirN6EwYWpP1gH20eSm6+09gOKFaVU5O2DxS0VY3C3adnhmgro/UgqShF5OOo+1+S+Y4ITufVMzUDoBbC+ryKlmpmOcImzd7qU92prrWDMrnIXDxWS/MCTnbvq68ce5r/vk+z/VW9Cmns2W1C4uiazp/Z0YOzWSXVYWz4VtYL4I6J78njiSLYWs9TzX86onbvF1HFrzbp9WmCkCbTyuHiPvqFxAROaDiPm/8A79DgjpRnmcGFAS42yeBbFrLzX4sqhVRCt3RuVHv+882Yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+Received: from AM5PR04MB3089.eurprd04.prod.outlook.com (2603:10a6:206:b::28)
+ by VI1PR04MB6238.eurprd04.prod.outlook.com (2603:10a6:803:f4::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Thu, 17 Feb
+ 2022 18:42:46 +0000
+Received: from AM5PR04MB3089.eurprd04.prod.outlook.com
+ ([fe80::38e8:ef44:f684:9eed]) by AM5PR04MB3089.eurprd04.prod.outlook.com
+ ([fe80::38e8:ef44:f684:9eed%6]) with mapi id 15.20.4995.016; Thu, 17 Feb 2022
+ 18:42:46 +0000
+Message-ID: <d72a3055-5375-de38-d286-8e88fc6c9487@suse.com>
+Date: Thu, 17 Feb 2022 10:42:42 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Content-Language: en-US
+To: "open-iscsi@googlegroups.com" <open-iscsi@googlegroups.com>
+From: "'Lee Duncan' via open-iscsi" <open-iscsi@googlegroups.com>
+Subject: open-iscsi service iscsi-init can run too early, when FS is read-only
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-ClientProxiedBy: FR0P281CA0072.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:49::9) To AM5PR04MB3089.eurprd04.prod.outlook.com
+ (2603:10a6:206:b::28)
 MIME-Version: 1.0
-References: <CAOOPZo4uNCicVmoHa2za0=O1_XiBdtBvTuUzqBTeBc3FmDqEJw@mail.gmail.com>
- <CAK3e-EZbJMDHkozGiz8LnMNAZ+SoCA+QeK0kpkqM4vQ4pz86SQ@mail.gmail.com> <620CCE20020000A100047D30@gwsmtp.uni-regensburg.de>
-In-Reply-To: <620CCE20020000A100047D30@gwsmtp.uni-regensburg.de>
-From: Donald Williams <don.e.williams@gmail.com>
-Date: Wed, 16 Feb 2022 08:31:02 -0500
-Message-ID: <CAK3e-EbuwT=eMxTOGY_h9SO-RVrW2xA1sFfvQP_ijWJ1vYM3vg@mail.gmail.com>
-Subject: Re: [EXT] Re: Question about iscsi session block
-To: open-iscsi@googlegroups.com
-Content-Type: multipart/alternative; boundary="000000000000d5400105d822a942"
-X-Original-Sender: Don.E.Williams@gmail.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e6594b2a-eab2-45b2-00ee-08d9f2454a37
+X-MS-TrafficTypeDiagnostic: VI1PR04MB6238:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR04MB6238C586A194BC753530CB0EDA369@VI1PR04MB6238.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XHAk1o4yWvvfYyXXc/lb6an0D2hHUvTAWjWYNMb/zHY6z1jF6lEZdEOYj36xvOt9+6o1D8ccwx3y6PXY1wUwRldNjjI3os02fQpet2TvxSEQSTHnr8mcXGUi0csspuPA9Zste5mpvBCcx373ldC0pglJGKF4Y2Da1clqny2eBKavqEYdAdse9ZLBYYQpD4EmPi0UFqEgENaf15dEQBglckW+gfvG8oMs5uVo2EeNhVLJl8POD0fF8Me3/5krrVXJmw7Rns747MzfHyKF1jTzGVOV9FdSXurAFwntzT9UyWx5A8B6ZKARlIE8Lsnb9FWuT5Tgp7lfhSfMgwoG/XHuXMJy3Z8Sr5AzPxYNJ7CfasL9urNHtp/4Hoc7eGvXBqVZ0aJ/vgtOauJTdOBqA3MtUgK9OQhVAp8kfnoWn+ZBAtbKMa8vP/XiPi4JPQ271UfW1qVCxdswjHmixj1NLAcesGYgc4AifGbHU51DKL3LURiWzUQzT4CsNUvg9NGwpsY4iMHuviDuVM2mt3qSZU4i9bj9mEmgsS/QpB9LP2Gv33Zis85+N5E+veuV9JAodT4FfPrNUDp+eAcZkRjzgyoCFOqvdt20i0vmU56PjtMpFOtaA87LpJCP8X/RBPpTWuLIX/ryFRaW2xMaVugPjR7yLkmAvB5u8/VhwexsUx/voYgHfWwro0hVvJiRrjZ7t1wRoToRiTCCJf2o4Sd4wd5LP5OKUwrVtUxH+ZW0JK609/k=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3089.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(31696002)(66556008)(66946007)(6916009)(316002)(83380400001)(6512007)(6666004)(6486002)(508600001)(38100700002)(66476007)(8676002)(2906002)(36756003)(5660300002)(6506007)(8936002)(186003)(26005)(2616005)(31686004)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aGJDcllVeXZoMVE5T2dMN09qTVpGRGNZOWdlakVLQUE3UDNNdTI0RzZNNXV1?=
+ =?utf-8?B?M1U5RFBMQ0RnSWpWK3dmTWZpV05wMEJWeTZlYVZkRUR4bHVrTEZTTGZRaUpR?=
+ =?utf-8?B?bTZPNDFnOUprUlhjUU93cmU1WTN4VEZ1MXhxNGtsRDN1L1k5N0NpaldqTW4r?=
+ =?utf-8?B?WWEwV1dKOHAzVUQrdk5IL0RkYUtpQkYvNVlucHFHVWRqejJDcjd3WWtaaEFa?=
+ =?utf-8?B?Vzgxd3lTRTlMT3orVTc1ZTY2ZGRObUZnREQyaXFLNmg2MzRLWG91TnA1Rkhj?=
+ =?utf-8?B?S29tbUszRlUxanYwYWFUaVVld0tQaWlxQ3pRQWtyYy9aZ3JpejVua0JMek9Q?=
+ =?utf-8?B?cTMybHd5ODFSR3p2YVR6VFg0QkprTzhBTk5IQ3NhZVU3clgyZWdaY0I3QzJR?=
+ =?utf-8?B?aGg4MHY3ZUZHTVV0bkhITmhGREozdHYzVmZVejJYcVFDVFVFSDUzL3MvMHor?=
+ =?utf-8?B?Z0x2RWwwdS9SR0FMeUlGY1ZKc2ZQamxXSDMrOUhndXptYnV1bDk0QWtFM3Z6?=
+ =?utf-8?B?Ni9aakJRUEpxWG9Gb2RJT3VnY3hEZjk5WHFsUTZPL0xlUEZ3Q0RxaTJtVElw?=
+ =?utf-8?B?M2UyeEhhUytDcE8xcm5LaWRUdE5DNWJuWHVSdmJKRnFYdnkwYStoOG5od25q?=
+ =?utf-8?B?Y01PakE4a1o4dFNiSHlQeVFFeVphRFFsVEd0KzBkeUk3d205bmNOMENOdUhl?=
+ =?utf-8?B?UXYwQTFYN2R5dnFBMWZ6R1k3VDFJd1VhTUFSa1RUU1pZMWo2clltT1FtT3pV?=
+ =?utf-8?B?ZXFIaFpsTjNmRW82OW5KeFltWTBudXVOdTQ4UlRwNm9DbHRDUDBMcEVqc1RN?=
+ =?utf-8?B?S0ZjeTlCTW5HRmsxY05PdGxIQ3FwUnRSWUNUd0wvWVVaWGd4bVkzM3I2dlA2?=
+ =?utf-8?B?VFoyVW93QmV1TTY3R2drVjNFUDJrUkxWb0wrNTdkeU9vM1hXTjdneC9TRkRV?=
+ =?utf-8?B?eFBQeC9TZW1mTlZXY2hGZmZ3SHZCbi9RemRlSWlnMmZCQTJmRzljUUFrTDE5?=
+ =?utf-8?B?b3lRNzgvN0MxK0ZDNEVTaG1nWVVXM3BsdzJXeHZ0QW9OVk9YS0FBZnZzc3g5?=
+ =?utf-8?B?MkJidXV1VkFUMEttMFdEaUU2RHU1TW9taWlySVE5dnE1Z0xwd1RKVXBGdC9V?=
+ =?utf-8?B?dDdBVjdhMGlDb3dHNjNBWEZtT1B5TXFlZ0ZlZC8zTEs1VS9NbU51RXl1RUdX?=
+ =?utf-8?B?UnN3VFNFTzBWTUNESUgwUXNnY0NMb1FQOXppbjdmWWhDZTRVMXlDQ0JEQ1h5?=
+ =?utf-8?B?UHJPQzdhaXcxRU4ybjh1Q0pTZCtQL3poV2c2b0NZN3lVckVZR3YwSXZUR3dH?=
+ =?utf-8?B?OHRpQ2dTNDgyc2Z6VGtBN3U4UXJGM04vdE9pMm1WZmRCNWhNSlNBQ0ROcmZ1?=
+ =?utf-8?B?MEQyNHNOSVUvaU52ZjgvNHdKM1BhNDRwWHB3RTBJUG1vdmRCMVRHcFNIaG5O?=
+ =?utf-8?B?ZmM3VTVpdURPZnM2Y0Y3MXhvWmpLdWNBZW5GMVJvbVIzU1F4SFdtTkNXVmxN?=
+ =?utf-8?B?UE9iWXdVL1BUTVlKV0NEa0Z5RUFGaTJQbVVldUFFWmVyQ2JnVWIwb0JiZ2w3?=
+ =?utf-8?B?U1QvaS9qNmhUcS9KQUVTZDJROXhRQUlUR1VRRlZzWGlXa0M2QVVqQytkbVY3?=
+ =?utf-8?B?RkgwY1pnK0Niem16dkZKUEVqNFVxb3h6RW5PL3ByQ01uSWkxVk9Nc2ZQaDNp?=
+ =?utf-8?B?SVNud2pHdmJyeTdBckg0RjVjTVF1YWZzK3VvM1c0QjVSTm51UkpBckVnNWo5?=
+ =?utf-8?B?ckR1ckNYNTRNUkp2YXVVOWczY2pDOTErZWUwVlhzSVZUbjRSSWwrVXY5N2lV?=
+ =?utf-8?B?SjBLdmEzQ0hpV2FWbmE5cUZGM0pRYlNjdU16WkxLZVhBUkJDVmlzRSt3UnpN?=
+ =?utf-8?B?UEVFT20vVUw4aDZyWmpmdUVNOTR4ejJkMTdQM1NnRzY2U1dzdUtHa1ZlOE9m?=
+ =?utf-8?B?aWV2VnlrbGpSSFFoTTBiazdnNSs1empBSVBqbFl0MjhpcGk3d0hxTHNjWTJh?=
+ =?utf-8?B?STZIWS82SmxSZFFRRk9LRW03TUtaNndXSFBIa0dkMXFkOTk2SFA0QUlvZ1Jn?=
+ =?utf-8?B?UGZJN0g0NVpqQytYSGhoQjhWSUJkVFBqaUtlbHVUdVVhc1hLbFFuNFM3UmVK?=
+ =?utf-8?B?cVVSL0tGb2hsbXE5NHNGUlVhQU50Y0tDR092WGlpUWk3dUpMY1VXZDZ4d3lQ?=
+ =?utf-8?Q?+Yf6XbhKPOpYJ6SpEl3Icqc=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6594b2a-eab2-45b2-00ee-08d9f2454a37
+X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3089.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2022 18:42:46.2200
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nJN3/gZ/t+9T/+TIHl/+AyxZ0aPltLuIUUyBzFl13cluiyMGBIEeHZ1iy6c7H7eXpd+JxF4SYjcTBnUdwKKTCw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6238
+X-Original-Sender: lduncan@suse.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20210112 header.b=d8BrxSXw;       spf=pass
- (google.com: domain of don.e.williams@gmail.com designates
- 2607:f8b0:4864:20::22c as permitted sender) smtp.mailfrom=don.e.williams@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+ header.i=@suse.com header.s=mimecast20200619 header.b=i7qajzMf;
+       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com
+ dmarc=pass fromdomain=suse.com);       spf=pass (google.com: domain of
+ lduncan@suse.com designates 194.104.111.102 as permitted sender)
+ smtp.mailfrom=lduncan@suse.com;       dmarc=pass (p=QUARANTINE sp=NONE
+ dis=NONE) header.from=suse.com
+X-Original-From: Lee Duncan <lduncan@suse.com>
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -143,406 +216,76 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---000000000000d5400105d822a942
-Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+Hi All:
 
- Thanks. On the app side, with iSCSI SANs  I extend the disk\ timeout value
-in the OS.  To better handle any transitory network events, and controller
-failovers.
-In linux that's important to prevent filesystems like EXT4 from remounting
-RO on an error.
+There is an iscsi service that does nothing but create the 
+initiatorname.iscsi file in /etc/iscsi if it does not yet exist called 
+iscsi-init.service.
 
-  I would like to know which vendor they are using for iSCSI storage.
+For iscsi boot situations, this service can run quite early, in the 
+initrd image before the root pivot. Because of this the 
+DefaultDependencies=no line was added, so it could run earlier. But 
+because of this change, it can now run too early in the real root. The 
+problem is that it can actually try to create the initiatorname.iscsi 
+file before /etc/iscsi is writable! So it generates an error message, 
+fails to create the initiator name, and it makes the rest of iscsi 
+services fail, since they depend on iscsi-init.service.
 
-Regards,
-Don
+In order to address this, I added this line to the service file:
 
+ >
+ >  [Unit]
+ >  ...
+ >  After=root.mount
+ >
 
-On Wed, Feb 16, 2022 at 5:12 AM Ulrich Windl <
-Ulrich.Windl@rz.uni-regensburg.de> wrote:
+This was an error. I mean to wait for the root disc, not "/root". :( In 
+testing, this just happened to work on my systems because we use btrfs 
+by default for the root disc, and btrfs creates a "/root" subvolume 
+(i.e. mount point).
 
-> >>> Donald Williams <don.e.williams@gmail.com> schrieb am 15.02.2022 um
-> 17:25 in
-> Nachricht
-> <CAK3e-EZbJMDHkozGiz8LnMNAZ+SoCA+QeK0kpkqM4vQ4pz86SQ@mail.gmail.com>:
-> > Hello,
-> >    Something else to check is your MPIO configuration.  I have seen this
-> > same symptom when the linux MPIO feature "queue_if_no_path" was enabled
-> >
-> >  From the /etc/multipath.conf file showing it enabled.
-> >
-> >     failback                immediate
-> >     features                "1 queue_if_no_path"
->
-> Yes, the actual config is interesting. Especially when usind MD-RAID, you
-> typically do not want "1 queue_if_no_path", but if the app can't handle I/O
-> errors, one might want it.
-> For a FC SAN featuring ALUA we use:
-> ...
->         polling_interval 5
->         max_polling_interval 20
->         path_selector "service-time 0"
-> ...
->         path_checker "tur"
-> ...
->         fast_io_fail_tmo 5
->         dev_loss_tmo 600
->
-> The logs are helpful, too. For example (there were some paths remaining
-> all the time):
-> Cable was unplugged:
-> Feb 14 12:56:05 h16 kernel: qla2xxx [0000:41:00.0]-500b:3: LOOP DOWN
-> detected (2 7 0 0).
-> Feb 14 12:56:10 h16 multipathd[5225]: sdbi: mark as failed
-> Feb 14 12:56:10 h16 multipathd[5225]: SAP_V11-PM: remaining active paths: 7
-> Feb 14 12:56:10 h16 kernel: sd 3:0:6:3: rejecting I/O to offline device
-> Feb 14 12:56:10 h16 kernel: sd 3:0:6:14: rejecting I/O to offline device
-> Feb 14 12:56:10 h16 kernel: sd 3:0:6:15: rejecting I/O to offline device
->
-> So 5 seconds later the paths are offlined.
->
-> Cable was re-plugged:
-> Feb 14 12:56:22 h16 kernel: qla2xxx [0000:41:00.0]-500a:3: LOOP UP
-> detected (8 Gbps).
-> Feb 14 12:56:22 h16 kernel: qla2xxx [0000:41:00.0]-11a2:3: FEC=enabled
-> (data rate).
-> Feb 14 12:56:26 h16 multipathd[5225]: SAP_CJ1-PM: sdbc - tur checker
-> reports path is up
-> Feb 14 12:56:26 h16 multipathd[5225]: 67:96: reinstated
-> Feb 14 12:56:26 h16 multipathd[5225]: SAP_CJ1-PM: remaining active paths: 5
-> Feb 14 12:56:26 h16 kernel: device-mapper: multipath: 254:4: Reinstating
-> path 67:96.
-> Feb 14 12:56:26 h16 kernel: device-mapper: multipath: 254:6: Reinstating
-> path 67:112.
->
-> So 4 seconds later new paths are discovered.
->
->
-> Regards,
-> Ulrich
->
->
->
-> >
-> >  Also, in the past some versions of linux multipathd would wait for a
-> > very long time before moving all I/O to the remaining path.
-> >
-> >  Regards,
-> > Don
-> >
-> >
-> > On Tue, Feb 15, 2022 at 10:49 AM Zhengyuan Liu <
-> liuzhengyuang521@gmail.com>
-> > wrote:
-> >
-> >> Hi, all
-> >>
-> >> We have an online server which uses multipath + iscsi to attach storage
-> >> from Storage Server. There are two NICs on the server and for each it
-> >> carries about 20 iscsi sessions and for each session it includes about
-> 50
-> >>  iscsi devices (yes, there are totally about 2*20*50=2000 iscsi block
-> >> devices
-> >>  on the server). The problem is: once a NIC gets faulted, it will take
-> too
-> >> long
-> >> (nearly 80s) for multipath to switch to another good NIC link, because
-> it
-> >> needs to block all iscsi devices over that faulted NIC firstly. The
-> >> callstack is
-> >>  shown below:
-> >>
-> >>     void iscsi_block_session(struct iscsi_cls_session *session)
-> >>     {
-> >>         queue_work(iscsi_eh_timer_workq, &session->block_work);
-> >>     }
-> >>
-> >>  __iscsi_block_session() -> scsi_target_block() -> target_block() ->
-> >>   device_block() ->  scsi_internal_device_block() -> scsi_stop_queue()
-> ->
-> >>  blk_mq_quiesce_queue()>synchronize_rcu()
-> >>
-> >> For all sessions and all devices, it was processed sequentially, and we
-> >> have
-> >> traced that for each synchronize_rcu() call it takes about 80ms, so
-> >> the total cost
-> >> is about 80s (80ms * 20 * 50). It's so long that the application can't
-> >> tolerate and
-> >> may interrupt service.
-> >>
-> >> So my question is that can we optimize the procedure to reduce the time
-> >> cost on
-> >> blocking all iscsi devices?  I'm not sure if it is a good idea to
-> increase
-> >> the
-> >> workqueue's max_active of iscsi_eh_timer_workq to improve concurrency.
-> >>
-> >> Thanks in advance.
-> >>
-> >> --
-> >> You received this message because you are subscribed to the Google
-> Groups
-> >> "open-iscsi" group.
-> >> To unsubscribe from this group and stop receiving emails from it, send
-> an
-> >> email to open-iscsi+unsubscribe@googlegroups.com.
-> >> To view this discussion on the web visit
-> >>
-> >
-> https://groups.google.com/d/msgid/open-iscsi/CAOOPZo4uNCicVmoHa2za0%3DO1_XiBd
-> > tBvTuUzqBTeBc3FmDqEJw%40mail.gmail.com
-> >> .
-> >>
-> >
-> > --
-> > You received this message because you are subscribed to the Google
-> Groups
-> > "open-iscsi" group.
-> > To unsubscribe from this group and stop receiving emails from it, send
-> an
-> > email to open-iscsi+unsubscribe@googlegroups.com.
-> > To view this discussion on the web visit
-> >
-> https://groups.google.com/d/msgid/open-iscsi/CAK3e-EZbJMDHkozGiz8LnMNAZ%2BSoC
-> > A%2BQeK0kpkqM4vQ4pz86SQ%40mail.gmail.com.
->
->
->
-> --
-> You received this message because you are subscribed to the Google Groups
-> "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an
-> email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit
-> https://groups.google.com/d/msgid/open-iscsi/620CCE20020000A100047D30%40gwsmtp.uni-regensburg.de
-> .
->
+The mount point target for the root mount is actually called "-.mount". 
+But even adding this didn't fix my problem with iscsi-init running too 
+early, and it's because iscsi-init was waiting for the root disc to be 
+mounted, but it turns out it's mounted read-only for a short time, 
+before it's remounted read/write. So it was getting an error trying to 
+create the initiator name file.
+
+Long story shorter, I consulted a systemd expert, and he suggested the 
+following:
+
+> [Unit]
+> # this adds both Requires= and After=
+> RequiresMountsFor=/etc/iscsi
+> # systemd-remount-fs.service is optionally pulled in by
+> # local-fs.target, don't start it here (no Wants=) but if it's
+> # running wait for it to finish (After=)
+> After=systemd-remount-fs.service
+
+and, to keep iscsi-init.service from running before systemd-remote-fs is 
+scheduled:
+
+> [Install]
+> # just to ensure being in same transaction with
+> # systemd-remount-fs.service
+> WantedBy=systemd-remount-fs.service
+
+Testing has show this works on several different systems, but before I 
+"fix" this again, I thought I'd ask for input, in case anyone has 
+systemd insight I do not.
+
+Suggestions? If I don't hear anything I'll go with the above 
+recommendations.
+
+If I can't figure this out my next suggestion is going to be doing away 
+with this service. Once should not ever be in the situation where there 
+is no initiator name, since that should be generated when the RPM is 
+installed IMHO (which is what we do).
+-- 
+Lee Duncan
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAK3e-EbuwT%3DeMxTOGY_h9SO-RVrW2xA1sFfvQP_ijWJ1vYM3vg%40mail.gmail.com.
-
---000000000000d5400105d822a942
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello,=C2=A0<div>=C2=A0</div><div>=C2=A0Thanks. On the app=
- side, with iSCSI SANs=C2=A0 I extend the disk\ timeout value in the OS.=C2=
-=A0 To better handle any transitory network events, and controller failover=
-s.=C2=A0</div><div>In linux that&#39;s important to prevent filesystems lik=
-e EXT4 from remounting RO on an error.=C2=A0 =C2=A0</div><div><br></div><di=
-v>=C2=A0 I would like to know which vendor they are using for iSCSI storage=
-.=C2=A0=C2=A0</div><div><br></div><div>Regards,</div><div>Don</div><div>=C2=
-=A0=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Wed, Feb 16, 2022 at 5:12 AM Ulrich Windl &lt;<a href=3D=
-"mailto:Ulrich.Windl@rz.uni-regensburg.de">Ulrich.Windl@rz.uni-regensburg.d=
-e</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
->&gt;&gt;&gt; Donald Williams &lt;<a href=3D"mailto:don.e.williams@gmail.co=
-m" target=3D"_blank">don.e.williams@gmail.com</a>&gt; schrieb am 15.02.2022=
- um 17:25 in<br>
-Nachricht<br>
-&lt;<a href=3D"mailto:CAK3e-EZbJMDHkozGiz8LnMNAZ%2BSoCA%2BQeK0kpkqM4vQ4pz86=
-SQ@mail.gmail.com" target=3D"_blank">CAK3e-EZbJMDHkozGiz8LnMNAZ+SoCA+QeK0kp=
-kqM4vQ4pz86SQ@mail.gmail.com</a>&gt;:<br>
-&gt; Hello,<br>
-&gt;=C2=A0 =C2=A0 Something else to check is your MPIO configuration.=C2=A0=
- I have seen this<br>
-&gt; same symptom when the linux MPIO feature &quot;queue_if_no_path&quot; =
-was enabled<br>
-&gt; <br>
-&gt;=C2=A0 From the /etc/multipath.conf file showing it enabled.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0failback=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 immediate<br>
-&gt;=C2=A0 =C2=A0 =C2=A0features=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 &quot;1 queue_if_no_path&quot;<br>
-<br>
-Yes, the actual config is interesting. Especially when usind MD-RAID, you t=
-ypically do not want &quot;1 queue_if_no_path&quot;, but if the app can&#39=
-;t handle I/O errors, one might want it.<br>
-For a FC SAN featuring ALUA we use:<br>
-...<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 polling_interval 5<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 max_polling_interval 20<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 path_selector &quot;service-time 0&quot;<br>
-...<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 path_checker &quot;tur&quot;<br>
-...<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 fast_io_fail_tmo 5<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 dev_loss_tmo 600<br>
-<br>
-The logs are helpful, too. For example (there were some paths remaining all=
- the time):<br>
-Cable was unplugged:<br>
-Feb 14 12:56:05 h16 kernel: qla2xxx [0000:41:00.0]-500b:3: LOOP DOWN detect=
-ed (2 7 0 0).<br>
-Feb 14 12:56:10 h16 multipathd[5225]: sdbi: mark as failed<br>
-Feb 14 12:56:10 h16 multipathd[5225]: SAP_V11-PM: remaining active paths: 7=
-<br>
-Feb 14 12:56:10 h16 kernel: sd 3:0:6:3: rejecting I/O to offline device<br>
-Feb 14 12:56:10 h16 kernel: sd 3:0:6:14: rejecting I/O to offline device<br=
->
-Feb 14 12:56:10 h16 kernel: sd 3:0:6:15: rejecting I/O to offline device<br=
->
-<br>
-So 5 seconds later the paths are offlined.<br>
-<br>
-Cable was re-plugged:<br>
-Feb 14 12:56:22 h16 kernel: qla2xxx [0000:41:00.0]-500a:3: LOOP UP detected=
- (8 Gbps).<br>
-Feb 14 12:56:22 h16 kernel: qla2xxx [0000:41:00.0]-11a2:3: FEC=3Denabled (d=
-ata rate).<br>
-Feb 14 12:56:26 h16 multipathd[5225]: SAP_CJ1-PM: sdbc - tur checker report=
-s path is up<br>
-Feb 14 12:56:26 h16 multipathd[5225]: 67:96: reinstated<br>
-Feb 14 12:56:26 h16 multipathd[5225]: SAP_CJ1-PM: remaining active paths: 5=
-<br>
-Feb 14 12:56:26 h16 kernel: device-mapper: multipath: 254:4: Reinstating pa=
-th 67:96.<br>
-Feb 14 12:56:26 h16 kernel: device-mapper: multipath: 254:6: Reinstating pa=
-th 67:112.<br>
-<br>
-So 4 seconds later new paths are discovered.<br>
-<br>
-<br>
-Regards,<br>
-Ulrich<br>
-<br>
-<br>
-<br>
-&gt; <br>
-&gt;=C2=A0 Also, in the past some versions of linux multipathd would wait f=
-or a<br>
-&gt; very long time before moving all I/O to the remaining path.<br>
-&gt; <br>
-&gt;=C2=A0 Regards,<br>
-&gt; Don<br>
-&gt; <br>
-&gt; <br>
-&gt; On Tue, Feb 15, 2022 at 10:49 AM Zhengyuan Liu &lt;<a href=3D"mailto:l=
-iuzhengyuang521@gmail.com" target=3D"_blank">liuzhengyuang521@gmail.com</a>=
-&gt;<br>
-&gt; wrote:<br>
-&gt; <br>
-&gt;&gt; Hi, all<br>
-&gt;&gt;<br>
-&gt;&gt; We have an online server which uses multipath + iscsi to attach st=
-orage<br>
-&gt;&gt; from Storage Server. There are two NICs on the server and for each=
- it<br>
-&gt;&gt; carries about 20 iscsi sessions and for each session it includes a=
-bout 50<br>
-&gt;&gt;=C2=A0 iscsi devices (yes, there are totally about 2*20*50=3D2000 i=
-scsi block<br>
-&gt;&gt; devices<br>
-&gt;&gt;=C2=A0 on the server). The problem is: once a NIC gets faulted, it =
-will take too<br>
-&gt;&gt; long<br>
-&gt;&gt; (nearly 80s) for multipath to switch to another good NIC link, bec=
-ause it<br>
-&gt;&gt; needs to block all iscsi devices over that faulted NIC firstly. Th=
-e<br>
-&gt;&gt; callstack is<br>
-&gt;&gt;=C2=A0 shown below:<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0void iscsi_block_session(struct iscsi_cls_sessi=
-on *session)<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0{<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0queue_work(iscsi_eh_timer_workq, =
-&amp;session-&gt;block_work);<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 __iscsi_block_session() -&gt; scsi_target_block() -&gt; targ=
-et_block() -&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0device_block() -&gt;=C2=A0 scsi_internal_device_block(=
-) -&gt; scsi_stop_queue() -&gt;<br>
-&gt;&gt;=C2=A0 blk_mq_quiesce_queue()&gt;synchronize_rcu()<br>
-&gt;&gt;<br>
-&gt;&gt; For all sessions and all devices, it was processed sequentially, a=
-nd we<br>
-&gt;&gt; have<br>
-&gt;&gt; traced that for each synchronize_rcu() call it takes about 80ms, s=
-o<br>
-&gt;&gt; the total cost<br>
-&gt;&gt; is about 80s (80ms * 20 * 50). It&#39;s so long that the applicati=
-on can&#39;t<br>
-&gt;&gt; tolerate and<br>
-&gt;&gt; may interrupt service.<br>
-&gt;&gt;<br>
-&gt;&gt; So my question is that can we optimize the procedure to reduce the=
- time<br>
-&gt;&gt; cost on<br>
-&gt;&gt; blocking all iscsi devices?=C2=A0 I&#39;m not sure if it is a good=
- idea to increase<br>
-&gt;&gt; the<br>
-&gt;&gt; workqueue&#39;s max_active of iscsi_eh_timer_workq to improve conc=
-urrency.<br>
-&gt;&gt;<br>
-&gt;&gt; Thanks in advance.<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; You received this message because you are subscribed to the Google=
- Groups<br>
-&gt;&gt; &quot;open-iscsi&quot; group.<br>
-&gt;&gt; To unsubscribe from this group and stop receiving emails from it, =
-send an<br>
-&gt;&gt; email to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.c=
-om" target=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-&gt;&gt; To view this discussion on the web visit<br>
-&gt;&gt; <br>
-&gt; <a href=3D"https://groups.google.com/d/msgid/open-iscsi/CAOOPZo4uNCicV=
-moHa2za0%3DO1_XiBd" rel=3D"noreferrer" target=3D"_blank">https://groups.goo=
-gle.com/d/msgid/open-iscsi/CAOOPZo4uNCicVmoHa2za0%3DO1_XiBd</a> <br>
-&gt; tBvTuUzqBTeBc3FmDqEJw%<a href=3D"http://40mail.gmail.com" rel=3D"noref=
-errer" target=3D"_blank">40mail.gmail.com</a><br>
-&gt;&gt; .<br>
-&gt;&gt;<br>
-&gt; <br>
-&gt; -- <br>
-&gt; You received this message because you are subscribed to the Google Gro=
-ups <br>
-&gt; &quot;open-iscsi&quot; group.<br>
-&gt; To unsubscribe from this group and stop receiving emails from it, send=
- an <br>
-&gt; email to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.com" =
-target=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-&gt; To view this discussion on the web visit <br>
-&gt; <a href=3D"https://groups.google.com/d/msgid/open-iscsi/CAK3e-EZbJMDHk=
-ozGiz8LnMNAZ%2BSoC" rel=3D"noreferrer" target=3D"_blank">https://groups.goo=
-gle.com/d/msgid/open-iscsi/CAK3e-EZbJMDHkozGiz8LnMNAZ%2BSoC</a> <br>
-&gt; A%2BQeK0kpkqM4vQ4pz86SQ%<a href=3D"http://40mail.gmail.com" rel=3D"nor=
-eferrer" target=3D"_blank">40mail.gmail.com</a>.<br>
-<br>
-<br>
-<br>
--- <br>
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br>
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi%2Bunsubscribe@googlegroups.com" target=
-=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/620CCE20020000A100047D30%40gwsmtp.uni-regensburg.de" =
-rel=3D"noreferrer" target=3D"_blank">https://groups.google.com/d/msgid/open=
--iscsi/620CCE20020000A100047D30%40gwsmtp.uni-regensburg.de</a>.<br>
-</blockquote></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAK3e-EbuwT%3DeMxTOGY_h9SO-RVrW2xA1sFfvQP_ijWJ1vYM3vg=
-%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.go=
-ogle.com/d/msgid/open-iscsi/CAK3e-EbuwT%3DeMxTOGY_h9SO-RVrW2xA1sFfvQP_ijWJ1=
-vYM3vg%40mail.gmail.com</a>.<br />
-
---000000000000d5400105d822a942--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/d72a3055-5375-de38-d286-8e88fc6c9487%40suse.com.
