@@ -1,139 +1,128 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBB7ERUKIQMGQEILK3HCA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBDWEUKIQMGQE4POSRZA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc37.google.com (mail-oo1-xc37.google.com [IPv6:2607:f8b0:4864:20::c37])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121A44D2D97
-	for <lists+open-iscsi@lfdr.de>; Wed,  9 Mar 2022 12:01:19 +0100 (CET)
-Received: by mail-oo1-xc37.google.com with SMTP id n14-20020a4a848e000000b00320fa3f046csf1476241oog.23
-        for <lists+open-iscsi@lfdr.de>; Wed, 09 Mar 2022 03:01:19 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1646823678; cv=pass;
+Received: from mail-ua1-x937.google.com (mail-ua1-x937.google.com [IPv6:2607:f8b0:4864:20::937])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC6874D2F5E
+	for <lists+open-iscsi@lfdr.de>; Wed,  9 Mar 2022 13:48:16 +0100 (CET)
+Received: by mail-ua1-x937.google.com with SMTP id az30-20020a056130039e00b0034b80e5e4a6sf1071307uab.16
+        for <lists+open-iscsi@lfdr.de>; Wed, 09 Mar 2022 04:48:16 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1646830096; cv=pass;
         d=google.com; s=arc-20160816;
-        b=jAixdcHz0yZ+hULgx8EmMBaM/+rJe2c+DO5V5VsEB828Zh7OolLSLfmLE1s4Qq16BE
-         gyMVfH237hnz2kPlUrGAVGedRrcJ3n6VCPjfmS43RO93isp7QxCpNIq83HsJLM3LPphr
-         BEDxPS2wGecmz3iKlTu0o7teN9UD4c4CybiDjvO2uIblb354Upjzk61jjQX4CiGLer14
-         g69VqY1lp8oOVnFpiecc6Y7an2kJrfPR8mjAichaMeLb0B2nZA4pgLWLDpgQhamC2sqt
-         HS1tAQsM0GRZtFX4w1vyQC5h6K4bi41OTQd+j6l9XnsQKDyiluqQ5RRfe7SV7L1cBYkC
-         Tv/g==
+        b=Q+1vn6AHjJ6jRxDaNH8Ll1rqXwPVEOO2PwdcPiXbKV+Ubb6DjMwwS6FgQYf9pLkjtZ
+         q6Loa06cSIPbqh3hgefRyg+8dCymC4vm+dfLDADvEco7R5RhQj7bcUiMFpG393Oy3a5l
+         JJpPKltIMp4E08LtTo6L+76CrNM/qBfAS8F6oM5Jrix1MuQhRfiHoC+oI7YNz8pcg0rA
+         o0wBH0v6smdqMRELCKbauZk2qttx/xUpFabytfzlflv/bONqnkPz6Jrdp3RVCORpeic2
+         ftG7pxvfwLxgJTyURRz/oGUUjYs13+/HEEwDB/sbAzjw87z118iGtSrPsy9LWFZwxMTZ
+         jZuQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-language
-         :in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:dkim-signature;
-        bh=0+fmQnu8K3O3g7pJcJGgOs5YEXV3O2a/vh73jeqsThw=;
-        b=BRzC0QzppCZuSWrZMKztwMZn3NeSrq2+CSxb92dULj2sGP+oRBPRlNaQOz8+Z6SsfI
-         9B2cbBuQQ+niVFnWksRbMpxQvV87VQfGwMcWNdNkNPdF7DXkVYMRayiT6JhK2bh16cC9
-         5hUC8q9yG9mquykOZd1cIjPA3d8uIpkDPUScV9X7hygmB8Km7kM2O3BHlbORw/+LInit
-         eBH/exhFVE73nWp5Hugn4tnATOHI4gVxM7tMSbthIk2S/9ilId15cmqXRqTEay6fkaJe
-         Odfw6o57n8RxuflwAsQjwjRr1UXzkeEmsDsX9OcGOo/SiNUeJuU2NL0ER8Rvwxl9Aadu
-         GAAQ==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:dkim-signature;
+        bh=kEV2MufoCrK997aD9o6AAOyVIHQZl1yZ3vr/m1xezLY=;
+        b=dEuxpx0aBo/e/9RTm/3Gw00CL/lhol/weypO+LPgjC/dloQADwDwkAFF6L+1y5WLV2
+         H3aM2EydhazPHCxitiyUVJsH2pBRhBPn1noiN5PDrgWyEPlEQKqJZilfWtYDg4apm8aO
+         TgV7MP6LeK8FnQrFawjeDlLMI9h+71T5UM0wyBPVDBwT7j48GNUYaSdJ71RcP6DWNVfp
+         90HzIfvlJw/xUN1CNXt3r8JQUgxjfgTiZbonv/RmmuGIWYa+3OGlf5tC7BXDHYmxB9hd
+         /2RybFvE3+jXeiIw5QZDKpHOFWs+g9XgbCsbhYO23UyHq4llFmz2tfsc3yfMqQzbZN7c
+         YgsA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
        dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:x-original-sender
+        h=from:to:cc:subject:date:message-id:mime-version:x-original-sender
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:list-post:list-help:list-archive:list-subscribe
          :list-unsubscribe;
-        bh=0+fmQnu8K3O3g7pJcJGgOs5YEXV3O2a/vh73jeqsThw=;
-        b=Jwm7So1Rzp2H8NWYzvyuWWRD5lw3XSReryaUj9Z5fX2kSUPq2c4I+J/l2jSrNWpvyQ
-         CKQvviw5WIe/ilbcvWXh6qqAwripZ9uUuKTp7IrjbEDPO6t6Sb6NtgN9rpgTJViKRm61
-         DjnfZMYeAw5CUD9hDl5+QJAlwtwnr9f1PF19F7Nzrz3sCJuosTiwz3isvfM1n6PCcYHK
-         glOUYjTTmSfKPSzUh+vRYHcVKNj9sQhz8/IhPOekTuSb9AJI8D3tNZvAW754MqnCQfnr
-         hbLyZ51EgMWBSuQUaMlqMk3PID92lLUhnZZ9J3oJM6kKLYDlYNMiwDlEBWAyKq/37uQE
-         HYPQ==
+        bh=kEV2MufoCrK997aD9o6AAOyVIHQZl1yZ3vr/m1xezLY=;
+        b=HeDNSy0dy0otALQyXYhtthHqNJCUUfsMsW4++b9Ia13AUH286FOH5VywjT1fnK/1+y
+         4CjHHYcjU0IeXMkeyiKT1stIm2gPFOkppaIES3gT4+G55Nlgmv/zEmfzwVibsfn/5Pyo
+         TPJQ7eavNxCID45CzPasF7ftZF37m0GpiaGFPuC26fNMXQRG/g/PmXrDb7yMtb8tLwY1
+         m/4/MDCmib/uHu0g6ImT6oSRHrnttrTsiHN4NR4C4KCjeQWdEE4dMi98MvcokaZjEnRC
+         VbHPtUOg6TJZY+ht33NVN5Kd61qmQWzLaT7XIo6RMdAFj8fhpVHASZ0Rlc/Q918TzkQZ
+         /6hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :x-original-sender:x-original-authentication-results:reply-to
          :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
          :list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=0+fmQnu8K3O3g7pJcJGgOs5YEXV3O2a/vh73jeqsThw=;
-        b=CTf/cvxb+1QfAdB37nTW3VitU6Bm5gZwb11DEKw2yjC6hgD4Vb0jA0W6yGxX4MFWw6
-         RsBovXyrd1Gyt8e0ENTWxSqUvZrGdjyNw5aQZ9VT3Y3gUSpj/iUiQaieC99Tl53DxisQ
-         h8mNBLCUFBBRgkfXBL4prbHYn5aLF88UNNkuyyRpkPorPJnMkKu8mGpI2QQQI63ePoQP
-         kb3gWCIzDr7dislGtAXo0jIsS6hg/hFpH13mLtR+rFmImdcDodugR5RkbG77X7hIqYtp
-         Oz/+jSu9e0QbZAXVUw4VXpZ2fabJPzN8L8OYx3R1f2ZvKMiez79LWUjaVnOrIvNkEWjI
-         fUIA==
-X-Gm-Message-State: AOAM531vmR7zCCyRQXd5wrDB5J7qTPXKMOZQTH34xB8P+hpQNA2uI7Ip
-	+0+2ipdukxtGBpAq0sbY2ow=
-X-Google-Smtp-Source: ABdhPJxpH0UMIv/7mRrBf5Rg87QgQuxWha/K5ABRIS3KDu0oCMEozBzgtF/q7hj0T0XbpVEwJLYaAQ==
-X-Received: by 2002:a05:6808:169f:b0:2d7:9bbd:ae82 with SMTP id bb31-20020a056808169f00b002d79bbdae82mr5390816oib.136.1646823677968;
-        Wed, 09 Mar 2022 03:01:17 -0800 (PST)
+        bh=kEV2MufoCrK997aD9o6AAOyVIHQZl1yZ3vr/m1xezLY=;
+        b=w/yB9dIsvtbQ5AWiWuthT7MMFGdX8VQUlN6mU7kn/KQUN7JbY81uJQqFjy35gXVZwV
+         oz9fs9pLuran6c/z8W73J30BQyLnGa50cwxLJB5qUdrgPci9B/QyPP1AxKEanxmWEWw3
+         qC9OeG4+4umeqitoh/5wmRnsLKrFRBGfpRcAc5KpvwYLnZRvruTd/iOsAIlJXZNwnLCg
+         Y1Op+nOtF/aGPisUkomr0/pi3IKBS/+UougA42RFG+G0cdNCN0xqktuhZZr9wmrBqcjk
+         tM7/E4Cd5y/rUFOc1X61w99LNu6zSc79xFZ7D+nBZloc03nEaBlCNaDa3Asd1kk6NpTq
+         Br4A==
+X-Gm-Message-State: AOAM530ikvV1YwMYh3/6m4/srDoXYo696wiUo6j5mMwLxfaXW4RFGpRj
+	AdKHlmZtHT1Q9dwbL6VbHTw=
+X-Google-Smtp-Source: ABdhPJwzME9sGiKiWyU2Z6Z7TpFyqn3zX+ga4iypa88OJSIePRMCXudmtjz9CD4+97Ild/5OzqskGw==
+X-Received: by 2002:a05:6102:4405:b0:320:a07a:1c4c with SMTP id df5-20020a056102440500b00320a07a1c4cmr8079307vsb.42.1646830095804;
+        Wed, 09 Mar 2022 04:48:15 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6830:2456:b0:5af:5a9b:4f3 with SMTP id
- x22-20020a056830245600b005af5a9b04f3ls358714otr.2.gmail; Wed, 09 Mar 2022
- 03:01:16 -0800 (PST)
-X-Received: by 2002:a9d:6c93:0:b0:5b2:699a:5745 with SMTP id c19-20020a9d6c93000000b005b2699a5745mr464806otr.385.1646823676200;
-        Wed, 09 Mar 2022 03:01:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1646823676; cv=none;
+Received: by 2002:a1f:a48f:0:b0:321:b373:5b7 with SMTP id n137-20020a1fa48f000000b00321b37305b7ls175674vke.9.gmail;
+ Wed, 09 Mar 2022 04:48:14 -0800 (PST)
+X-Received: by 2002:a05:6122:134f:b0:337:d3c0:816e with SMTP id f15-20020a056122134f00b00337d3c0816emr685306vkp.5.1646830094056;
+        Wed, 09 Mar 2022 04:48:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1646830094; cv=none;
         d=google.com; s=arc-20160816;
-        b=Xhr0LM3EeJjUwa6BVEeUjXm3FlsnSYSbMKrZTBw+WcS71DwanGc67NDg46+B3KKnDy
-         drK9VhgIBzr2VD1+q+IB6r3nh34DWtOwoeTrFjUdYn/OMCSvlX1AvRovv/t7hR42hu5M
-         g1YHcy70IPXtg19hynSNOWSAHCa8XRHZA/CvS6KOk5PBlXe6XrxwMRY5Tkjbpui83WQ0
-         zY9zbtoEhr5kPhztpv/LNxXQ/ela+0Z8cZYmTibHloVzyWWc4Jt9u2Esu34QZLEnphTt
-         rhwTgYiedEqNARAsavJ3Yv0xssjjtIN2QJB4pMO/hCzyvYLUkWMOfpC1sZONugIoqfa7
-         Y8Cg==
+        b=FbZ8Cggrdd25qz6gqKP4ht9AENGZFCnklmbTh+dzfJoZ3ZcKLzc8rA1r5iA5dWvVup
+         74d+lVM+/ZiTCLWRZdmGNSJxKk/Oxv7fH5L+faf0wIw3YW2KH7R8z/08Ocj63rbFUwue
+         xmXfp22gpGdBHmlgR2gqVLWUuhXI0YDEWp7BEN3pSd84jMWNVIdrUokPBW3Iv/gMQJwR
+         y36MyDgWydUePbP3DUdK95Swg4SC8kXbVy3h3RiaKhn/Ncpt4cn0o4el5e4d4yY8vX2+
+         8Mp+vZUxzb63blq2OygPE7ameyDHZ4Q3DjN6HMvvW2h0rTtKSDr1+3am903vP/M37m8T
+         EwfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject;
-        bh=ipNCagkOMAlWDHXFXCPocywlrmfTJGQbhrv/Y9rE6jI=;
-        b=c9Z4Y+Ve1msIEqkSQNiKOQLwRBvZpnqMdMbPo7+O4t7OUdEukWNdKtPqnZw885mVb4
-         mL8DHFjxmqnypsGHGMz7OaSccssZoZlPldOJY93BPFgNH0Exh2CJtsXUM3IPhgxU4Z4L
-         fm9b2pXYMU1nslilwVSecyBTcDTIgoT4c1Zx92bN+X1GoM4TqP+9UspFprcmDtbj34pS
-         3ghws3wuT5g1UHoOhydJC2ojXaUsgzl9qxil/ZrdvQuX50W1liVAnVrSY19M9w73v6vS
-         6SXJFIFrO6tm2c6eIdFA6rklBn7eYmF2x2QKkWgaEUBCULgBkTpyzVZB/+l3/fge6ptP
-         fh3Q==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from;
+        bh=UMM8wlu840tF8IVwtqdqWIgAaYwsxGctdXrS7VCBQR8=;
+        b=AO339lrdGGaPG/oZ9MnIxny3mVDNnI8dznpf3H036KoXkPwSCTi2bCqKQjusac7iut
+         73C/6eEMgqAQwd+Cqeu1KclrFYZViET4P7AAuP1/GMdcJB5Nv+3+pTwg4pN0NirsrHbj
+         QChnYWnLhb5rdFJ16163lw/C0g7GTBaty0q5+cYLMHCmA+Z6DcP7o/+FdX40eV6WJhZ+
+         QNU57H7473BczNldXPFiVdKrS1/3NIOSpGS7DPIzlScTUM44mPEie2y1iqkMF9oybiya
+         nkAC5Z3uQUGFg8F+Hio8VfNB3U7n+OXB2oVgzqflFh6zzRwhLPDY09nsZ11FVgyxTtID
+         7/oQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
        dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com. [45.249.212.187])
-        by gmr-mx.google.com with ESMTPS id w26-20020a056830079a00b005ad081e3cbdsi118322ots.4.2022.03.09.03.01.15
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com. [45.249.212.188])
+        by gmr-mx.google.com with ESMTPS id d13-20020a1f9b0d000000b0032f06dfd587si101886vke.1.2022.03.09.04.48.13
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Mar 2022 03:01:16 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) client-ip=45.249.212.187;
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.57])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4KD8NR02BJzdZhq;
-	Wed,  9 Mar 2022 18:59:51 +0800 (CST)
+        Wed, 09 Mar 2022 04:48:14 -0800 (PST)
+Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) client-ip=45.249.212.188;
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.53])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4KDBkb3SSGzBrJk;
+	Wed,  9 Mar 2022 20:45:43 +0800 (CST)
 Received: from dggpemm500017.china.huawei.com (7.185.36.178) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Wed, 9 Mar 2022 19:01:13 +0800
-Received: from [10.174.178.220] (10.174.178.220) by
- dggpemm500017.china.huawei.com (7.185.36.178) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Wed, 9 Mar 2022 19:01:12 +0800
-Subject: Re: [PATCH v2 1/3] scsi: iscsi: Add helper functions to manage
- iscsi_cls_conn
+ 15.1.2308.21; Wed, 9 Mar 2022 20:47:38 +0800
+Received: from huawei.com (10.175.101.6) by dggpemm500017.china.huawei.com
+ (7.185.36.178) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Wed, 9 Mar
+ 2022 20:47:38 +0800
+From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
 To: Mike Christie <michael.christie@oracle.com>, Lee Duncan
 	<lduncan@suse.com>, Chris Leech <cleech@redhat.com>, "James E . J .
  Bottomley" <jejb@linux.ibm.com>, "Martin K . Petersen"
 	<martin.petersen@oracle.com>, <open-iscsi@googlegroups.com>,
 	<linux-scsi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 CC: Wu Bo <wubo40@huawei.com>, Zhiqiang Liu <liuzhiqiang26@huawei.com>,
-	<linfeilong@huawei.com>
-References: <20220309030916.2932316-1-haowenchao@huawei.com>
- <20220309030916.2932316-2-haowenchao@huawei.com>
- <8183661b-a513-9b04-b289-3707704084b2@oracle.com>
-From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
-Message-ID: <d7a0405f-f0df-1db0-e95e-562db1ef064f@huawei.com>
-Date: Wed, 9 Mar 2022 19:01:12 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.1
+	<linfeilong@huawei.com>, Wenchao Hao <haowenchao@huawei.com>
+Subject: [PATCH v3 0/3] scsi:iscsi: handle iscsi_cls_conn device with sysfs correctly
+Date: Wed, 9 Mar 2022 20:57:56 -0500
+Message-ID: <20220310015759.3296841-1-haowenchao@huawei.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <8183661b-a513-9b04-b289-3707704084b2@oracle.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Language: en-US
-X-Originating-IP: [10.174.178.220]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [10.175.101.6]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
  dggpemm500017.china.huawei.com (7.185.36.178)
 X-CFilter-Loop: Reflected
 X-Original-Sender: haowenchao@huawei.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as
+ (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as
  permitted sender) smtp.mailfrom=haowenchao@huawei.com;       dmarc=pass
  (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
 X-Original-From: Wenchao Hao <haowenchao@huawei.com>
@@ -150,138 +139,47 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 2022/3/9 1:19, Mike Christie wrote:
-> On 3/8/22 9:09 PM, Wenchao Hao wrote:
->> iscsi_alloc_conn(): alloc and initialize iscsi_cls_conn
->> iscsi_add_conn(): expose iscsi_cls_conn to userspace's via sysfs.
->> iscsi_remove_conn(): remove iscsi_cls_conn from sysfs
->> iscsi_free_conn(): free iscsi_cls_conn
->>
->> Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
->> Signed-off-by: Wu Bo <wubo40@huawei.com>
->> ---
->>   drivers/scsi/scsi_transport_iscsi.c | 107 ++++++++++++++++++++++++++++
->>   include/scsi/scsi_transport_iscsi.h |   5 ++
->>   2 files changed, 112 insertions(+)
->>
->> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
->> index 554b6f784223..8e97c6f88359 100644
->> --- a/drivers/scsi/scsi_transport_iscsi.c
->> +++ b/drivers/scsi/scsi_transport_iscsi.c
->> @@ -2340,6 +2340,113 @@ void iscsi_free_session(struct iscsi_cls_session *session)
->>   }
->>   EXPORT_SYMBOL_GPL(iscsi_free_session);
->>   
->> +/**
->> + * iscsi_alloc_conn - alloc iscsi class connection
->> + * @session: iscsi cls session
->> + * @dd_size: private driver data size
->> + * @cid: connection id
->> + *
->> + * This can be called from a LLD or iscsi_transport. The connection
->> + * is child of the session so cid must be unique for all connections
->> + * on the session.
->> + *
->> + * Since we do not support MCS, cid will normally be zero. In some cases
->> + * for software iscsi we could be trying to preallocate a connection struct
->> + * in which case there could be two connection structs and cid would be
->> + * non-zero.
-> 
-> Is that with the upstream iscsi tools or your version? I don't think the comment
-> is needed or is needed somewhere else.
-> 
-> If this happens then they will have the same sysfs/device name so when we do the
-> device_add it will spit an error about duplicate names.
-> 
-> 
->> + */
->> +struct iscsi_cls_conn *
->> +iscsi_alloc_conn(struct iscsi_cls_session *session, int dd_size, uint32_t cid)
->> +{
->> +	struct iscsi_transport *transport = session->transport;
->> +	struct iscsi_cls_conn *conn;
->> +
->> +	conn = kzalloc(sizeof(*conn) + dd_size, GFP_KERNEL);
->> +	if (!conn)
->> +		return NULL;
->> +	if (dd_size)
->> +		conn->dd_data = &conn[1];
->> +
->> +	mutex_init(&conn->ep_mutex);
->> +	INIT_LIST_HEAD(&conn->conn_list);
->> +	INIT_WORK(&conn->cleanup_work, iscsi_cleanup_conn_work_fn);
->> +	conn->transport = transport;
->> +	conn->cid = cid;
->> +	conn->state = ISCSI_CONN_DOWN;
->> +
->> +	/* this is released in the dev's release function */
->> +	if (!get_device(&session->dev))
->> +		goto free_conn;
->> +
->> +	dev_set_name(&conn->dev, "connection%d:%u", session->sid, cid);
->> +	device_initialize(&conn->dev);
->> +	conn->dev.parent = &session->dev;
->> +	conn->dev.release = iscsi_conn_release;
->> +
->> +	return conn;
->> +
->> +free_conn:
->> +	kfree(conn);
->> +	return NULL;
->> +}
->> +EXPORT_SYMBOL_GPL(iscsi_alloc_conn);
->> +
->> +/**
->> + * iscsi_add_conn - add iscsi class connection
->> + * @conn: iscsi cls connection
->> + *
->> + * this would expose iscsi_cls_conn to sysfs, so make sure the related
->> + * resources when access sysfs attributes are initialized before calling this.
->> + */
->> +int iscsi_add_conn(struct iscsi_cls_conn *conn)
->> +{
->> +	int err;
->> +	unsigned long flags;
->> +	struct iscsi_cls_session *session = iscsi_dev_to_session(conn->dev.parent);
->> +
->> +	err = device_add(&conn->dev);
->> +	if (err) {
->> +		iscsi_cls_session_printk(KERN_ERR, session,
->> +					 "could not register connection's dev\n");
->> +		put_device(&session->dev);
-> 
-> I would call iscsi_free_conn. instead of put_device.
-> 
+We found a NULL pointer dereference in iscsi_sw_tcp_conn_get_param(),
+the root reason is we did sysfs addition wrong.
 
-Sorry I noticed it but forget to remove it. Here should not call 
-put_device() or iscsi_free_conn(). If iscsi_add_conn() failed, we shoule 
-not call any put operation which might cause resource free.
+The origin implement do device setup in iscsi_create_conn() which
+bind the alloc/init and add in one function; do device teardown in
+iscsi_destroy_conn() which bind remove and free in one function.
 
->> +		return err;
->> +	}
->> +	err = transport_register_device(&conn->dev);
->> +	if (err) {
->> +		iscsi_cls_session_printk(KERN_ERR, session,
->> +					 "could not register transport's dev\n");
->> +		device_del(&conn->dev);
->> +		put_device(&session->dev);
-> 
-> 
-> Is for the get_device(&session->dev) in iscsi_alloc_conn? If so you don't need to
-> do it because when the last put is done on the conn->dev, it will call
-> iscsi_conn_release which does the put on the session when it does "put_device(parent).
-> 
-> Or did you mean to call put_device on the conn->dev?
-> 
+This implement makes it impossible to initialize resources of device
+before add it to sysfs during setup.
 
-As above, we shouldn't call put_device() here.
+So this patchset splict both the setup and teradown of iscsi_cls_conn to
+2 steps.
 
-> I would do device_el(&conn->dev) then do a goto free_conn at the bottom which
-> does iscsi_free_conn. The place above should do the goto as well.
-> 
-> 
+For setup flow, we should call iscsi_alloc_conn() and initialize some
+resources, then call iscsi_add_conn().
+
+For teradown flow, we should call iscsi_remove_conn() to remove device
+and free resources which related to iscsi_cls_conn, then call
+iscsi_put_conn() to free iscsi_cls_conn.
+
+V2 -> V3:
+  * Fix some bugs and optimization the code implement.
+
+V1 -> V2:
+  * add two more iscsi_free_conn() and iscsi_remove_conn() than V1
+  * change the teardown flow of iscsi_cls_conn
+
+Wenchao Hao (3):
+  scsi: iscsi: Add helper functions to manage iscsi_cls_conn
+  scsi:libiscsi: Add iscsi_cls_conn to sysfs after been initialized
+  scsi:libiscsi: teradown iscsi_cls_conn gracefully
+
+ drivers/scsi/libiscsi.c             | 23 +++++---
+ drivers/scsi/scsi_transport_iscsi.c | 90 +++++++++++++++--------------
+ include/scsi/scsi_transport_iscsi.h |  5 +-
+ 3 files changed, 66 insertions(+), 52 deletions(-)
+
+-- 
+2.32.0
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/d7a0405f-f0df-1db0-e95e-562db1ef064f%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20220310015759.3296841-1-haowenchao%40huawei.com.
