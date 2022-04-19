@@ -1,34 +1,34 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBBAXX7OJAMGQE5XFOYEA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDTZTRGMXIFBBA7X7OJAMGQE52WFESQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lj1-x238.google.com (mail-lj1-x238.google.com [IPv6:2a00:1450:4864:20::238])
-	by mail.lfdr.de (Postfix) with ESMTPS id C221350774B
-	for <lists+open-iscsi@lfdr.de>; Tue, 19 Apr 2022 20:12:20 +0200 (CEST)
-Received: by mail-lj1-x238.google.com with SMTP id y22-20020a2e3216000000b0024dba34425fsf2088507ljy.8
-        for <lists+open-iscsi@lfdr.de>; Tue, 19 Apr 2022 11:12:20 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1650391940; cv=pass;
+Received: from mail-pj1-x103e.google.com (mail-pj1-x103e.google.com [IPv6:2607:f8b0:4864:20::103e])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5167F50774C
+	for <lists+open-iscsi@lfdr.de>; Tue, 19 Apr 2022 20:12:23 +0200 (CEST)
+Received: by mail-pj1-x103e.google.com with SMTP id t24-20020a17090a449800b001d2d6e740c3sf1482004pjg.9
+        for <lists+open-iscsi@lfdr.de>; Tue, 19 Apr 2022 11:12:23 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1650391941; cv=pass;
         d=google.com; s=arc-20160816;
-        b=n7akz9OkuVMOXUVfqFYRheAcCys305T8RQnI2EEsV18bxXr81NNkCzjl1k1/GuIaWj
-         JSaJgeZj1AEaGX2w0mmLs7hejmvl4Ada2YCzr7RCLZ4ov5MavSqSWwPGmufy6Poa0yKW
-         q6qJlWRq0EI011jKuXCjKWxtICKUN66S6qymyTZoTZviOtXe6jlQRsr3e/lSYVpoeqKi
-         pFiaicyfZLpGZ3cMXm1bISDL9nQqEtxDJOmHg1OiZOIyf+RhMMm5Xy+DsUT8UadBKr5v
-         1kJZiyRlSDzwNedOH4FavaEY1v4wRfzXkdM/tPEBJtRHhJ3SlyjUonO2aYlBze/yGTbT
-         IGjg==
+        b=iR6TLGl77cnZrvuPaq4Gc008MNqnO+9c2LxmWTq7k8pSmRWnK6IA8GUTKv5nA99YvK
+         wUquFhnarbhLcQDWkYKcVIFpomxC6VOviPy2WJStSLKVWO41zwMjeZPnRbdhWgjXIaJa
+         AQKgBq8q0nlOJbuV2+6x+ormDDf9RxQiGmRJjXCkJ9LHT/kPt0XJvibRWgqYgah+vcJC
+         4fHpcgte/jNWBu4NB6v2cdiOGINXCnuMdzQrI2uU5mpS6DcaPJvnwh05GCsLpUk9lhiP
+         JgJh9Vx7fW2p1hJSsbmQqbvzVrLywsDKnEwozLW2BIvGjE6V4q0EwMOZuOivho0RVTvp
+         9lVw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=+NhxY5sTgqN6gAuiOLYwN5IQ34zDX035OpxivudxP6g=;
-        b=Z53dW0VfCBXuOXxMWj8ncw3ZfZKrtnW62HxKOEBZ6M4iGffpjy0jOC9zqBYrTInbtC
-         V3tcVfB1a2ydHY7IEak8SDPJaCzaaTqwPV7b3A7IlL7YP9EvmQK2A3bAFURzxpk8NkFv
-         KBhUDlNvchK/G8qg0HdARdEF2/uzmIAbHSWc2K27ScBH6cxZ1Eyo1hr/rP6Mi8hSF1rl
-         CEaSrXZ1YL7A28tY7WOADrdZDUdn24+T/hDrCFjgBkX45u7H21PIZn9Rq8ogPXQYpd/A
-         W+LDjyw/MtRBq4Z4sItUQjv1xNhhkKn5a+4XQWXg+UOr1cFIU1TNDTsFSmaeihXsGdEB
-         uoEg==
+        bh=rV3zqrwl2nWN83JH8smuwRqzmm9owDvjhtG7iRcUvTM=;
+        b=ziE7jHjeLAShsmslP75aK5plJdY/jShT+Dhwj5jIxvLNp23Mht4gCBGVhUpjxHYCBn
+         DTZ5JRTtswPbzWiO23ZP8Ie9zYPr9XsH9qa5fPpuE2zcNy4cQ7nGftGeLxAhUIkQigF8
+         hgO0GZbHUGpDfhwdMZ5JuaP/Zx5G3B6JA3GyUv+qa10yLFV6XFSGU1inXInqKoxWmoQR
+         VOVDC41ncSwg+V/xUghdBiEiZW9jI/h/o35HwIAi92l2EAXocyhMJK1z8NZVr/uFO/Pt
+         JgadlkH+ztJaN9jgAkbHZysYTmE7korsFlpwgPhK8vIplAeC4oKbJlLAg12GBDOjPShH
+         9Jwg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=EvxlHskw;
-       spf=pass (google.com: domain of sashal@kernel.org designates 2604:1380:4601:e00::1 as permitted sender) smtp.mailfrom=sashal@kernel.org;
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=GSUeLBfN;
+       spf=pass (google.com: domain of sashal@kernel.org designates 2604:1380:4641:c500::1 as permitted sender) smtp.mailfrom=sashal@kernel.org;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=+NhxY5sTgqN6gAuiOLYwN5IQ34zDX035OpxivudxP6g=;
-        b=fr/3qJtPMoP79lPDDfZxVBuKonmRAeH1JpkBozJDHN87s8RPZEvi/FdMgcLmIvwXUj
-         erKCTBJQNSd6CDpe7voCxxr+3JOcQBaXMYfR1I9ydWtiKiPGkO//eUlzupYj79vyAMme
-         7X1SgUWp49XSUmHidBf6zeNlwrzCQs/VHGLcDU6PD6tBGhLl7YiWgZROmTxfd4tbZWra
-         A4aCt3nL3GfyQd6tADJBRDocZgEbCg3tbjuUIwC/hwZQfQee8P3dzGL9d73otNPmPnQp
-         4KJr56/a6QcGGCZnTt3cXt0DQDyZPO5Hk5RwRhIjQt8DwbTGa3O8whrJIlq2H9JToFd7
-         I1CQ==
+        bh=rV3zqrwl2nWN83JH8smuwRqzmm9owDvjhtG7iRcUvTM=;
+        b=kuR+kd5KbuK/I5tqeHmGnmQYKgkQUDgcpcpUm2olzE1uF+RS9IKou6OGc7GlzLdi/3
+         kEEgTlvPqkremk89cYfqNhQSFDxbGloR8h4HRTvTa48DbXBnzVLEAzbubS4sSx2LO1ng
+         JQx8KbAdPmXFPjVoC4ax3DYPt2DfHxlk1Ot3Ts2+00rMDmkJPVrua5GwodvSJ5na/MyS
+         VqbHfEs7CU5wqyMmQUcio6HYAiwAFwKz77GB/4qy9sHUm1pQSfdU2B63EXVXLbUP1nZA
+         8pQc04eEFTwynUPTD9iE4zY60YLl2vBQDE0v5U/W6mGUz+jdivCLW86Fuu0BoojPxgg+
+         ja7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -50,60 +50,60 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=+NhxY5sTgqN6gAuiOLYwN5IQ34zDX035OpxivudxP6g=;
-        b=IqDR2RBshm6xjy4kQ+xgBf0DArzxxiQ3W0vzWJG/+0GfE1gT4O4UPCf6te14m1L2MQ
-         7+OfNqqD/RPWrKsflpkXPZ+nuLPqS7moXBjuxFTIsEIHBMkSgdYAYuZ/Eh20Qg6BCJw/
-         beJHn8cb01wjDyq3dzIGYbumxBTA5ZGfpcHz8JMV496MpI6ykwPAvT5AJYZ/4t2Zm5Vr
-         jFVhYqvTOZqSyYvvEE3WdMl6ewxjZ3t0ujjh0n3aWNj2Di84YskLxH2PiyyXsCeFYmGl
-         +KYYlZ5LhMyqR1KTxg9aar2L84LvGkgfTTYScC9skhoZp+KhDlGdTjeNM2QZSYnM6B55
-         yz/A==
+        bh=rV3zqrwl2nWN83JH8smuwRqzmm9owDvjhtG7iRcUvTM=;
+        b=2AFtbrNGzBa6KpRK2FhAv/Fj3V29B16+j0iv/ppf6nfugSAf097RO9YBS69J84xYQI
+         bgByZ/hSKEECveNqPQgUKdqwKzndnhC5wH+O3mfnvtf+zIiOaJzhIZnuoRteCL7oG2zJ
+         B4Zeiay4JmstT7zNgJO8z0znzf34kAw0b3JTtRslBqPKjR4uj0Fh9cT4QPo8ZPk8hAV5
+         1w/89pOeViJscuu70C/pOLki4AgfVcCiIAMWNqUjC3yXllKRTc0VEoYpYxYGHysjdOIR
+         b3qmR6MXKqnJlRLU6hco3U2hQRzC3r1ms+4MS18QkCpDrKNxf4vWgiokH0bloabCIVJP
+         xuGg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM530WphpNEpk/smBVn0tf/WA4Xo3YEQ6uwqPMBtVH9nf/GEDeSj6o
-	6iNb0+arh2VZHK5LW6iscp8=
-X-Google-Smtp-Source: ABdhPJzeRRp2fWe4mc+g+6zE8rexuzepBV/joLnIT/6shOPGyJZM7YcvEouvr+qgo4DVNtrDjh66BQ==
-X-Received: by 2002:ac2:5fd0:0:b0:46b:c1c5:a602 with SMTP id q16-20020ac25fd0000000b0046bc1c5a602mr12108200lfg.444.1650391940078;
+X-Gm-Message-State: AOAM533GgHrc45uORLnlyhlcCdJcdikTQodiQfuM8wmeXP3MNKX8LK2o
+	NXrEo+kLv45IbS2m4j/SBrs=
+X-Google-Smtp-Source: ABdhPJwH6CDFlbkwcB3fCnrvuZDz7w+i4UIDEtO7MgqKdng0ih0EEcyIHsEFr8DDdL+OGUtIwm6xWA==
+X-Received: by 2002:a63:f34d:0:b0:399:5abe:b2e1 with SMTP id t13-20020a63f34d000000b003995abeb2e1mr15968848pgj.451.1650391940607;
         Tue, 19 Apr 2022 11:12:20 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6512:1693:b0:448:3742:2320 with SMTP id
- bu19-20020a056512169300b0044837422320ls4385263lfb.1.gmail; Tue, 19 Apr 2022
- 11:12:17 -0700 (PDT)
-X-Received: by 2002:a05:6512:108c:b0:471:aece:a303 with SMTP id j12-20020a056512108c00b00471aecea303mr2189680lfg.509.1650391937373;
-        Tue, 19 Apr 2022 11:12:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1650391937; cv=none;
+Received: by 2002:a05:6a00:179d:b0:505:9501:adc5 with SMTP id
+ s29-20020a056a00179d00b005059501adc5ls13757694pfg.2.gmail; Tue, 19 Apr 2022
+ 11:12:18 -0700 (PDT)
+X-Received: by 2002:a63:4e62:0:b0:398:cb40:19b0 with SMTP id o34-20020a634e62000000b00398cb4019b0mr15863141pgl.445.1650391938640;
+        Tue, 19 Apr 2022 11:12:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1650391938; cv=none;
         d=google.com; s=arc-20160816;
-        b=h+OLh4TCSxiXXoRElTBnTUw06vXFNPpAMTXOXv9jGNessGmCHvbCIGYytaYt72vHZG
-         5/tf3xW3vJQeDDYO8Z3Hg4nZYyrtGZ6jmrzwNlLGdiarfcbMYCG6gL4gNXClv7ht1l8r
-         UvpEQHxjr5CwOpwpJDVvJEOC7Y+0Xm5UadPR2fjopn/lxbV/fJHIxv53ZIRPSGSGwlZO
-         hC1vTzm1WCH1tVy0lYfL7UB5xe0nm/3/zAr6Z1uV9GlZHDGFP4tlM85gGSo3FXPkhRwE
-         sRVXPibXaLNXxRrCNDVJg0zksfP/xY549k0uJ5PNVcet6xyLi64VBfGSp0TfAOff/5I3
-         Zt9Q==
+        b=y1Ov/saMAdrwH9Q2eC2zegKgiB/rmah0rZS1tmEq2vvUtmje6Q/oowH489L+N0Q9X1
+         3iPyPP6oPUSc1yvqDRun0sfRnbJ5U4CqjZSyqoSkCDpCRRUPMmPvwDQqkurtMO+WO2F7
+         0sSmZnRBgewU+BpP9I31xpzXztGUaYm6USEggMcAwJAK0ENaR/lU9E2s2EmD8nKWIbx0
+         6Bpzze1piH/rz5iYC2ZBpWm6XDxQwSD4H+hjrjI325Pq6qs+xIOW7VfK7DKILvgW5oOe
+         3AHGsyWnKW14MjkKtRSlhcIrRfMei8P7pkG2ajlWa+iL/gExg66r6Rv2xbLHAL0DSlyW
+         NQDA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=PJd0fg9u1SrKAAnQD1K3wiIhMXzNGL9VngAAEl2S7W0=;
-        b=Se5vwc2Zmu31+nVVQ60NWO/3OQqdwJbd9Hd2elXB4c3KwUhk4Mbe2tYBKcR70sO+yd
-         /1RIaGR3AYQtOvEAI2v3ugV6yItpo4YVFSjsomyDWhutSF3MD/PYGxcn0Pw3YWzLHSc9
-         VspS5Q0N4t6zl4SOb3C5CcbYNrKYW0s+DDnVnfoEJFB6ylDR29TExTMG3zmKw+zaMn1I
-         UvjWYPVdREJWVWJLSU7YqKgnm1M+YaOPuPSRZt2yix7p/qkJnXizY1WKXPYgVVSLkDye
-         L7kwoKFO+ymBpor15fXLAD7aGCSyNCL5Qbrn75R9i87J1poAevIbmZiI5ITj7XMhZj57
-         kfTA==
+        bh=mvDdTgHM+F9tqiZ1EvmuTf/9WR+eJG50FjP7+UxlHCE=;
+        b=zRwnwBgaYABy/FTJtFgIdUVSmnoPTJ7rTqGshpwWkPmj7jbJ5toOqHZDKGYGMWXOSk
+         aiGwXHqxq1E0nX+kldFoSkBcCpv5l2U15zkXpI7xupznt6k670zhHfhhq1PutSAlVnIv
+         43rQ8VdgQea0PkSrTUfGjPqHsiWR7CXYHrbEyaouyjeN9N2jo3xRnMAeTRy2StyTG9ce
+         QN4W/w7r1QoIu4qNpsQ/b4RSAgpjeINBhZ04bZ45/2b7LKhrVid5n6JsXYj66wwOKfR8
+         mRhhyg/3AszuGrz6djDDpxOIoq+apeuO6LKe4fXLnohZXbq0wi7Rrxtoy/2WXH3bIwEK
+         UJRQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=EvxlHskw;
-       spf=pass (google.com: domain of sashal@kernel.org designates 2604:1380:4601:e00::1 as permitted sender) smtp.mailfrom=sashal@kernel.org;
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=GSUeLBfN;
+       spf=pass (google.com: domain of sashal@kernel.org designates 2604:1380:4641:c500::1 as permitted sender) smtp.mailfrom=sashal@kernel.org;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from ams.source.kernel.org (ams.source.kernel.org. [2604:1380:4601:e00::1])
-        by gmr-mx.google.com with ESMTPS id q21-20020a05651c055500b0024aff6ac16esi4915ljp.0.2022.04.19.11.12.17
+Received: from dfw.source.kernel.org (dfw.source.kernel.org. [2604:1380:4641:c500::1])
+        by gmr-mx.google.com with ESMTPS id s1-20020a17090302c100b00156542d2adbsi1152620plk.13.2022.04.19.11.12.18
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 19 Apr 2022 11:12:17 -0700 (PDT)
-Received-SPF: pass (google.com: domain of sashal@kernel.org designates 2604:1380:4601:e00::1 as permitted sender) client-ip=2604:1380:4601:e00::1;
+        Tue, 19 Apr 2022 11:12:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of sashal@kernel.org designates 2604:1380:4641:c500::1 as permitted sender) client-ip=2604:1380:4641:c500::1;
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id C71B2B818EE;
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 1C41160C97;
+	Tue, 19 Apr 2022 18:12:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24C83C385AC;
 	Tue, 19 Apr 2022 18:12:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39916C385A9;
-	Tue, 19 Apr 2022 18:12:14 +0000 (UTC)
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -111,14 +111,15 @@ Cc: Mike Christie <michael.christie@oracle.com>,
 	Manish Rangankar <mrangankar@marvell.com>,
 	Lee Duncan <lduncan@suse.com>,
 	Chris Leech <cleech@redhat.com>,
+	Wu Bo <wubo40@huawei.com>,
 	"Martin K . Petersen" <martin.petersen@oracle.com>,
 	Sasha Levin <sashal@kernel.org>,
 	jejb@linux.ibm.com,
 	open-iscsi@googlegroups.com,
 	linux-scsi@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.17 23/34] scsi: iscsi: Fix offload conn cleanup when iscsid restarts
-Date: Tue, 19 Apr 2022 14:10:50 -0400
-Message-Id: <20220419181104.484667-23-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.17 24/34] scsi: iscsi: Release endpoint ID when its freed
+Date: Tue, 19 Apr 2022 14:10:51 -0400
+Message-Id: <20220419181104.484667-24-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220419181104.484667-1-sashal@kernel.org>
 References: <20220419181104.484667-1-sashal@kernel.org>
@@ -127,8 +128,8 @@ X-stable: review
 X-Patchwork-Hint: Ignore
 X-Original-Sender: sashal@kernel.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=k20201202 header.b=EvxlHskw;       spf=pass
- (google.com: domain of sashal@kernel.org designates 2604:1380:4601:e00::1 as
+ header.i=@kernel.org header.s=k20201202 header.b=GSUeLBfN;       spf=pass
+ (google.com: domain of sashal@kernel.org designates 2604:1380:4641:c500::1 as
  permitted sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE
  sp=NONE dis=NONE) header.from=kernel.org
 Reply-To: open-iscsi@googlegroups.com
@@ -147,115 +148,176 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
 
 From: Mike Christie <michael.christie@oracle.com>
 
-[ Upstream commit cbd2283aaf47fef4ded4b29124b1ef3beb515f3a ]
+[ Upstream commit 3c6ae371b8a1ffba1fc415989fd581ebf841ed0a ]
 
-When userspace restarts during boot or upgrades it won't know about the
-offload driver's endpoint and connection mappings. iscsid will start by
-cleaning up the old session by doing a stop_conn call. Later, if we are
-able to create a new connection, we clean up the old endpoint during the
-binding stage. The problem is that if we do stop_conn before doing the
-ep_disconnect call offload, drivers can still be executing I/O. We then
-might free tasks from the under the card/driver.
+We can't release the endpoint ID until all references to the endpoint have
+been dropped or it could be allocated while in use. This has us use an idr
+instead of looping over all conns to find a free ID and then free the ID
+when all references have been dropped instead of when the device is only
+deleted.
 
-This moves the ep_disconnect call to before we do the stop_conn call for
-this case. It will then work and look like a normal recovery/cleanup
-procedure from the driver's point of view.
-
-Link: https://lore.kernel.org/r/20220408001314.5014-3-michael.christie@oracle.com
+Link: https://lore.kernel.org/r/20220408001314.5014-4-michael.christie@oracle.com
 Tested-by: Manish Rangankar <mrangankar@marvell.com>
 Reviewed-by: Lee Duncan <lduncan@suse.com>
 Reviewed-by: Chris Leech <cleech@redhat.com>
+Reviewed-by: Wu Bo <wubo40@huawei.com>
 Signed-off-by: Mike Christie <michael.christie@oracle.com>
 Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/scsi/scsi_transport_iscsi.c | 48 +++++++++++++++++------------
- 1 file changed, 28 insertions(+), 20 deletions(-)
+ drivers/scsi/scsi_transport_iscsi.c | 71 ++++++++++++++---------------
+ include/scsi/scsi_transport_iscsi.h |  2 +-
+ 2 files changed, 36 insertions(+), 37 deletions(-)
 
 diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index 126f6f23bffa..03cda2da80ef 100644
+index 03cda2da80ef..e5f5ec631b55 100644
 --- a/drivers/scsi/scsi_transport_iscsi.c
 +++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -2255,6 +2255,23 @@ static void iscsi_ep_disconnect(struct iscsi_cls_conn *conn, bool is_active)
- 	ISCSI_DBG_TRANS_CONN(conn, "disconnect ep done.\n");
+@@ -86,6 +86,9 @@ struct iscsi_internal {
+ 	struct transport_container session_cont;
+ };
+ 
++static DEFINE_IDR(iscsi_ep_idr);
++static DEFINE_MUTEX(iscsi_ep_idr_mutex);
++
+ static atomic_t iscsi_session_nr; /* sysfs session id for next new session */
+ static struct workqueue_struct *iscsi_eh_timer_workq;
+ 
+@@ -169,6 +172,11 @@ struct device_attribute dev_attr_##_prefix##_##_name =	\
+ static void iscsi_endpoint_release(struct device *dev)
+ {
+ 	struct iscsi_endpoint *ep = iscsi_dev_to_endpoint(dev);
++
++	mutex_lock(&iscsi_ep_idr_mutex);
++	idr_remove(&iscsi_ep_idr, ep->id);
++	mutex_unlock(&iscsi_ep_idr_mutex);
++
+ 	kfree(ep);
  }
  
-+static void iscsi_if_disconnect_bound_ep(struct iscsi_cls_conn *conn,
-+					 struct iscsi_endpoint *ep,
-+					 bool is_active)
-+{
-+	/* Check if this was a conn error and the kernel took ownership */
-+	if (!test_bit(ISCSI_CLS_CONN_BIT_CLEANUP, &conn->flags)) {
-+		iscsi_ep_disconnect(conn, is_active);
-+	} else {
-+		ISCSI_DBG_TRANS_CONN(conn, "flush kernel conn cleanup.\n");
-+		mutex_unlock(&conn->ep_mutex);
-+
-+		flush_work(&conn->cleanup_work);
-+
-+		mutex_lock(&conn->ep_mutex);
-+	}
-+}
-+
- static int iscsi_if_stop_conn(struct iscsi_transport *transport,
- 			      struct iscsi_uevent *ev)
+@@ -181,7 +189,7 @@ static ssize_t
+ show_ep_handle(struct device *dev, struct device_attribute *attr, char *buf)
  {
-@@ -2275,6 +2292,16 @@ static int iscsi_if_stop_conn(struct iscsi_transport *transport,
- 		cancel_work_sync(&conn->cleanup_work);
- 		iscsi_stop_conn(conn, flag);
- 	} else {
-+		/*
-+		 * For offload, when iscsid is restarted it won't know about
-+		 * existing endpoints so it can't do a ep_disconnect. We clean
-+		 * it up here for userspace.
-+		 */
-+		mutex_lock(&conn->ep_mutex);
-+		if (conn->ep)
-+			iscsi_if_disconnect_bound_ep(conn, conn->ep, true);
-+		mutex_unlock(&conn->ep_mutex);
-+
- 		/*
- 		 * Figure out if it was the kernel or userspace initiating this.
- 		 */
-@@ -3003,16 +3030,7 @@ static int iscsi_if_ep_disconnect(struct iscsi_transport *transport,
- 	}
+ 	struct iscsi_endpoint *ep = iscsi_dev_to_endpoint(dev);
+-	return sysfs_emit(buf, "%llu\n", (unsigned long long) ep->id);
++	return sysfs_emit(buf, "%d\n", ep->id);
+ }
+ static ISCSI_ATTR(ep, handle, S_IRUGO, show_ep_handle, NULL);
  
- 	mutex_lock(&conn->ep_mutex);
--	/* Check if this was a conn error and the kernel took ownership */
--	if (test_bit(ISCSI_CLS_CONN_BIT_CLEANUP, &conn->flags)) {
--		ISCSI_DBG_TRANS_CONN(conn, "flush kernel conn cleanup.\n");
--		mutex_unlock(&conn->ep_mutex);
+@@ -194,48 +202,32 @@ static struct attribute_group iscsi_endpoint_group = {
+ 	.attrs = iscsi_endpoint_attrs,
+ };
+ 
+-#define ISCSI_MAX_EPID -1
 -
--		flush_work(&conn->cleanup_work);
--		goto put_ep;
+-static int iscsi_match_epid(struct device *dev, const void *data)
+-{
+-	struct iscsi_endpoint *ep = iscsi_dev_to_endpoint(dev);
+-	const uint64_t *epid = data;
+-
+-	return *epid == ep->id;
+-}
+-
+ struct iscsi_endpoint *
+ iscsi_create_endpoint(int dd_size)
+ {
+-	struct device *dev;
+ 	struct iscsi_endpoint *ep;
+-	uint64_t id;
+-	int err;
+-
+-	for (id = 1; id < ISCSI_MAX_EPID; id++) {
+-		dev = class_find_device(&iscsi_endpoint_class, NULL, &id,
+-					iscsi_match_epid);
+-		if (!dev)
+-			break;
+-		else
+-			put_device(dev);
 -	}
--
--	iscsi_ep_disconnect(conn, false);
-+	iscsi_if_disconnect_bound_ep(conn, ep, false);
- 	mutex_unlock(&conn->ep_mutex);
- put_ep:
- 	iscsi_put_endpoint(ep);
-@@ -3723,16 +3741,6 @@ static int iscsi_if_transport_conn(struct iscsi_transport *transport,
+-	if (id == ISCSI_MAX_EPID) {
+-		printk(KERN_ERR "Too many connections. Max supported %u\n",
+-		       ISCSI_MAX_EPID - 1);
+-		return NULL;
+-	}
++	int err, id;
  
- 	switch (nlh->nlmsg_type) {
- 	case ISCSI_UEVENT_BIND_CONN:
--		if (conn->ep) {
--			/*
--			 * For offload boot support where iscsid is restarted
--			 * during the pivot root stage, the ep will be intact
--			 * here when the new iscsid instance starts up and
--			 * reconnects.
--			 */
--			iscsi_ep_disconnect(conn, true);
--		}
--
- 		session = iscsi_session_lookup(ev->u.b_conn.sid);
- 		if (!session) {
- 			err = -EINVAL;
+ 	ep = kzalloc(sizeof(*ep) + dd_size, GFP_KERNEL);
+ 	if (!ep)
+ 		return NULL;
+ 
++	mutex_lock(&iscsi_ep_idr_mutex);
++	id = idr_alloc(&iscsi_ep_idr, ep, 0, -1, GFP_NOIO);
++	if (id < 0) {
++		mutex_unlock(&iscsi_ep_idr_mutex);
++		printk(KERN_ERR "Could not allocate endpoint ID. Error %d.\n",
++		       id);
++		goto free_ep;
++	}
++	mutex_unlock(&iscsi_ep_idr_mutex);
++
+ 	ep->id = id;
+ 	ep->dev.class = &iscsi_endpoint_class;
+-	dev_set_name(&ep->dev, "ep-%llu", (unsigned long long) id);
++	dev_set_name(&ep->dev, "ep-%d", id);
+ 	err = device_register(&ep->dev);
+         if (err)
+-                goto free_ep;
++		goto free_id;
+ 
+ 	err = sysfs_create_group(&ep->dev.kobj, &iscsi_endpoint_group);
+ 	if (err)
+@@ -249,6 +241,10 @@ iscsi_create_endpoint(int dd_size)
+ 	device_unregister(&ep->dev);
+ 	return NULL;
+ 
++free_id:
++	mutex_lock(&iscsi_ep_idr_mutex);
++	idr_remove(&iscsi_ep_idr, id);
++	mutex_unlock(&iscsi_ep_idr_mutex);
+ free_ep:
+ 	kfree(ep);
+ 	return NULL;
+@@ -276,14 +272,17 @@ EXPORT_SYMBOL_GPL(iscsi_put_endpoint);
+  */
+ struct iscsi_endpoint *iscsi_lookup_endpoint(u64 handle)
+ {
+-	struct device *dev;
++	struct iscsi_endpoint *ep;
+ 
+-	dev = class_find_device(&iscsi_endpoint_class, NULL, &handle,
+-				iscsi_match_epid);
+-	if (!dev)
+-		return NULL;
++	mutex_lock(&iscsi_ep_idr_mutex);
++	ep = idr_find(&iscsi_ep_idr, handle);
++	if (!ep)
++		goto unlock;
+ 
+-	return iscsi_dev_to_endpoint(dev);
++	get_device(&ep->dev);
++unlock:
++	mutex_unlock(&iscsi_ep_idr_mutex);
++	return ep;
+ }
+ EXPORT_SYMBOL_GPL(iscsi_lookup_endpoint);
+ 
+diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
+index c5d7810fd792..dde93afe56cd 100644
+--- a/include/scsi/scsi_transport_iscsi.h
++++ b/include/scsi/scsi_transport_iscsi.h
+@@ -294,7 +294,7 @@ extern void iscsi_host_for_each_session(struct Scsi_Host *shost,
+ struct iscsi_endpoint {
+ 	void *dd_data;			/* LLD private data */
+ 	struct device dev;
+-	uint64_t id;
++	int id;
+ 	struct iscsi_cls_conn *conn;
+ };
+ 
 -- 
 2.35.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20220419181104.484667-23-sashal%40kernel.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20220419181104.484667-24-sashal%40kernel.org.
