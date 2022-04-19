@@ -1,34 +1,34 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBBCPX7OJAMGQE2GFFFYI@googlegroups.com>
+Return-Path: <open-iscsi+bncBDTZTRGMXIFBBTPX7OJAMGQEWNUFXBI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pf1-x43c.google.com (mail-pf1-x43c.google.com [IPv6:2607:f8b0:4864:20::43c])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6B750774E
-	for <lists+open-iscsi@lfdr.de>; Tue, 19 Apr 2022 20:12:28 +0200 (CEST)
-Received: by mail-pf1-x43c.google.com with SMTP id i196-20020a6287cd000000b0050ab83e42c0sf207223pfe.7
-        for <lists+open-iscsi@lfdr.de>; Tue, 19 Apr 2022 11:12:28 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1650391947; cv=pass;
+Received: from mail-lj1-x240.google.com (mail-lj1-x240.google.com [IPv6:2a00:1450:4864:20::240])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51E16507758
+	for <lists+open-iscsi@lfdr.de>; Tue, 19 Apr 2022 20:13:35 +0200 (CEST)
+Received: by mail-lj1-x240.google.com with SMTP id d18-20020a2e8912000000b0024dc30cb56dsf1418003lji.15
+        for <lists+open-iscsi@lfdr.de>; Tue, 19 Apr 2022 11:13:35 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1650392015; cv=pass;
         d=google.com; s=arc-20160816;
-        b=j4OepnpnkTR0bnYQshlZ78+0u9YBYfVps1rQmXSUsCsv9u4aU1sqXeztDgmF98paLP
-         iVgMhw8pqVZhsSjqaEw/na88uu+TfzrrbAn6eC+NJGWx4f0MfK2X1yGfg/U0Np58/1gX
-         yqziw4QstdjiejdPZyeb8uxitRYMx/3lTdL0h2Za4zWchq3bYIAT3DmDur39e4KBbJvX
-         BgFgF3jHxRDp7Pjj17WN8J+xc5HsRTN/WXTpsvqcE8ONMIFV0wo4Triq0H0qwpAqoxTR
-         kLOI4VmPAVNXRRprRnVA0uSJDOOTZll5Ouj5Oewby7db4sq1Uh8KmNaijaNAkRJJaFG6
-         kYHQ==
+        b=Q8P17a3GITpRZRRcCiLKcfG25S5XbK3rL2ix0VnOO7hRh047qmH1T6DJ05s0+xpy0p
+         8cdNIVfL0skaeu4Yo3rYFSKn7dzWhnIDIhhYF0tNOVqG4kK6yMIahoFalSHFqQBYoClX
+         bbFE7X+6Q90hX3zOUCUHS8YuxbKDGAMtInvqidWEnXd0T5gDClc/mJW2G7FfDYr+HrmJ
+         ACN2URWAE29w3rkhAYar6BAjpWjQRDfxNztZmnr1RtNM/0LCDKqyy1qE9ZpxBK8IhDKr
+         A0T1BtitNKzR4xKFm7wpKcdmir9fN58gLrYZFyWAO6OMjvSpGeOlkE7ahUqQDunQNiiM
+         7nAQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=ebSaQd1X/7Q3GcMwkJ+tmjx9/whZqYKeM+SKeRzUhjY=;
-        b=qqsScfrnpBTHX6RlVJt93YnXolyFnjIe3Gn/mX7IGADCBwfBdXtrt+16x40csM8K/h
-         g3l5LVLm0v0CqwHIAI1eO7ls3R2PEjMo8g1eDJjrxW3r+Js07x4Ghl7zo/Qg805Idz5O
-         yZy1fU1yPomxeErsxF2cFWr38wFrOZhyRpsP3qhPLOC0sEXyKzZtjhbJI/unzamBN6Cg
-         MBjYMgVNfJ1K7xSKuwcaneCsKPbqmzSApDvvftEdr1iwBf41ofaUf74rL8MEp+i3Ypyd
-         rnYsqTReGSRDs9gp7ToFaIyFC1r+EkAfOBYcoGcah8pdN2x1nkOpN7QOZmOgup61t1dL
-         NpMA==
+        bh=aAu7QFTIKTnfX6Ozsbd7kVY1fhi7Bq5OngDRHfQLOv8=;
+        b=r+C/czmI0kMvH4dTlYZeH3yRfcvO6eLP+fe1C85GLQMXPEeKN0l2rMM9DzASAWMBcR
+         nGMRwNFqPWP+Z5feV/8y4Ya2tA2SQn8gPxW4y8Yt+rHlYc+xapo0461Cc8CwXIwrSHdo
+         s4XiWWtNB2keCKwUkBE/n1Z1MqjDJU0EsMA+as7hV4m0PhG20llN+ZLlXl6IlEeiJzw0
+         TV3iWwuPIAJxOf1l3Li8mshz1nTFWRtlCZZvHYkdl0yUM/NmFjf6jRLwhmLMzyToffrI
+         bHRhlwz7f1SsmNt/NramaHajmu7HvefbCjlw3F5tmSfTyz5AO5FzH3KBPEAf1fmrYJzi
+         xkxQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b="RYD/KmOr";
-       spf=pass (google.com: domain of sashal@kernel.org designates 139.178.84.217 as permitted sender) smtp.mailfrom=sashal@kernel.org;
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=rpanCawZ;
+       spf=pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=sashal@kernel.org;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=ebSaQd1X/7Q3GcMwkJ+tmjx9/whZqYKeM+SKeRzUhjY=;
-        b=nsDgViprwhlVjEtOyP3ZaaviHv9d8a2y+sMoEyB481tsQBKAGjibCrsvvDyeRNLdAq
-         1KaeLf7U7yOQZ8dDhKPfEWtTk5vn2CJgNVb/gMIpnKSyswQwvH+SKHySbmZZGAmJZcEz
-         E2p/jPWsB+bTpYh2TyI7sFcUZbE+EnOwlHogH3QJxuADj01cYvQvb7HvBnZhBYYZqBRL
-         dMliroy53NL1uaDl0AcFAVqsmxBNVkKZoIFT2RyOnY3x02W7ytctxLOF0XNASDkCOfNp
-         aV9pn5o8/9z5PqAmeaIoU9olPGtfIMMicBWPD4sfrtR3EIbzh/XnLubWOannshFxx0Ru
-         jAHg==
+        bh=aAu7QFTIKTnfX6Ozsbd7kVY1fhi7Bq5OngDRHfQLOv8=;
+        b=VChtzVV/GCAqjZmYCcvXE/xnEqfg1egwTKT/MWDST5mSDz+NauV1amPTl15KI+SHEF
+         w8b18lMNbQDC0AEVdA0S6HgPnzAMSsKGsRRL6SWFT0Zcd13PuuhLQ2YMv5wp2UwgQRBz
+         KOEUwt53P9Rz4geHQYDk96IIfJydsRU0/rVWeFf+mk+EyzLR8s1Z2/OE/tMwNDTCSg5k
+         AcfXCrDiC/gZJQccE3+XwFk2cDfwhBsjTJgYZnFDnqqrzmdOZkD93JD+y8PsOfDwT/bI
+         d3mSRLPidfMjTWR1sLXhOih1Riwm/QW1gpb3cBg2peyL9iDIg9Sfq9OOYfF8pO1rezMe
+         gwzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
@@ -50,59 +50,59 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=ebSaQd1X/7Q3GcMwkJ+tmjx9/whZqYKeM+SKeRzUhjY=;
-        b=rTMf1k4rjI4FfbHbcxEepH8hzQ2sjFH87XiPpt0HLA8ebRPEMFLuR+Q+eieWgEzhWF
-         sSsUIIBRWdtWveS9qrR2F0ca42mpU8nrWbxgSJEv4jYEQEp+FcFILoZsK5151XFMIi2P
-         IvLkryn8NzVFXkuxtzWwJntlvoR47QOMDT97a51tRD11BsS5cHcE4xBmQoeInPzPFsYZ
-         ifsOLXcozSPuOkMlu20Aw3aBjH0+rTp6+XxpvJs5ofMOPVPyMWcIxMDbceHFmH9sSZUi
-         5SHJSaEXowGEKARF4+OH+o3p102s7xIy5FIDL6Qc+gi3RLMToQwF3jqXcasZWKcrnhjR
-         lajw==
+        bh=aAu7QFTIKTnfX6Ozsbd7kVY1fhi7Bq5OngDRHfQLOv8=;
+        b=4CnB1I6rRM9PaRX/UI5zz0sT9x4kZAViYvPnZvfuJ7BFDxj3XK7OYt+Weuq0FbelcW
+         fzZRuhVLLLLYbB2yaXwc5hgu/27XlkhnVQNdYXg03kYWCBgPXjp6I5uVjQbq+1d+XCzE
+         jnQ/0nECWcfqfovdNsQQWbFigO3vl1O1zJIatBkxO/J8eiYkl4Sx0IFXsJJ6ZqEP40r+
+         /0OMZNjm8Khy+pzQTdC/c6kvQAS1aJiG+qRrqY5wKXSaeW98Pt3PBwxH43aVTyh3Bjdx
+         kAW02cvFCYtHNlVYuFVzxq2R7cXmhb4NYRkYgFhQGugUIlIC2dMDnsZfRjZLK15YuPI5
+         kvFw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM5316W16hHehxOL2G9OqlpZryHYFtVA8IvjyWqrMUlqFBbM+Oj/8O
-	qpE5KbW0CTf+y3ZVFgsMYvY=
-X-Google-Smtp-Source: ABdhPJw4f77IPHV6vg5HFqN/VsT7hNPx6jOwzTBlHA+GtCEamK+Zu1fMO1OPUlq1kPUR8zRaxZkdhg==
-X-Received: by 2002:a17:903:124a:b0:154:c7a4:9375 with SMTP id u10-20020a170903124a00b00154c7a49375mr16918778plh.0.1650391947110;
-        Tue, 19 Apr 2022 11:12:27 -0700 (PDT)
+X-Gm-Message-State: AOAM531MZSnODeTHZXcdMTqSOeFQCl62JVEarp1JszuVV6+1sbSnFklO
+	a0e0HO/W8G5LDKZ+FTslyPo=
+X-Google-Smtp-Source: ABdhPJxZ/o+NNYaovOp1/DvIz10e/IBBqZwX1AvxwA8q01jVqk+kwH+yFmtDJ0wRoYqD4xd6uqtpjw==
+X-Received: by 2002:a2e:bc28:0:b0:24d:d4b3:ed14 with SMTP id b40-20020a2ebc28000000b0024dd4b3ed14mr656583ljf.238.1650392014851;
+        Tue, 19 Apr 2022 11:13:34 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a63:2b08:0:b0:39d:a8be:b1cb with SMTP id r8-20020a632b08000000b0039da8beb1cbls10329820pgr.10.gmail;
- Tue, 19 Apr 2022 11:12:25 -0700 (PDT)
-X-Received: by 2002:a65:6b92:0:b0:39c:c97b:1b57 with SMTP id d18-20020a656b92000000b0039cc97b1b57mr16178788pgw.517.1650391945158;
-        Tue, 19 Apr 2022 11:12:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1650391945; cv=none;
+Received: by 2002:a2e:988b:0:b0:24c:8e92:3db4 with SMTP id b11-20020a2e988b000000b0024c8e923db4ls2929349ljj.4.gmail;
+ Tue, 19 Apr 2022 11:13:32 -0700 (PDT)
+X-Received: by 2002:a2e:904a:0:b0:24d:cd96:f8 with SMTP id n10-20020a2e904a000000b0024dcd9600f8mr1767154ljg.32.1650392012053;
+        Tue, 19 Apr 2022 11:13:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1650392012; cv=none;
         d=google.com; s=arc-20160816;
-        b=E1DRs/b+IsoxaCry73KlYog3MNiZ0+MVEY1+CXB+lf2bjTrtf3uo07/S6JkqoUFH8R
-         1BbSUIo0FqYNOGr5G/ee5A8y+MTSyVU/1chTc23q35KI0myj59JIpUQ+88RQXoiu39M3
-         Qgt9KzNMVfTd/viSMS5NddTwdlyfhrIPynGkOLmKL+hu8G/UrjwsVdzRVWQvEvjov29k
-         GWgLCRyR18yTnTX2rfEKm+QeuQ56/Nkb3dUp3QbZb3VsQbMDPV3FiN7x9iH2Ostl41H+
-         05007bDRpp55kXuE6b5BFhTitZf1wRKQEKVEqRQXzHMCDTPeBUnCDeMxketki469lVex
-         6AKQ==
+        b=ToYaMsAMvlrt7EV4+i+7SCCYm1Zxd3fx6zVBCH5XVx16YEhbJAyw+e4z5jEKxIBFzd
+         9YsWpy/yuDQ8K6SDb1dM8O300npeYpUHit3jRUBibS6z2eFJ8YjmhVxVnhRGc+Lyk9F8
+         kNBBaBWHC5yIcKJtWTXcgXOVxtUNlOchNb5Vw2Oe7rMxsaxYyqmbwL/maFj+6Xe17zad
+         ilHOxo3KzLFlc9zZi94OIIvqkC1FYoG15+GHMmGKC6r0WDtSnAGFwGdOAIETSctVeleA
+         9EUo7SFY4JHGtAE9qN8aHf84vTPjFIfrMnKCOVC5dPV7H3ymz967tJwYwFanh8vx5LPd
+         cN3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=5h3QN4TW8p+C2/Gsg+Lu76kki3wiMndXWR7lbr+O0qU=;
-        b=kBO/F5FDosmc9Bc/1mQ5QVTI8DnVrvnPwv72+3Yn+INvuJNi15YaEO9iDUmVvhzTrU
-         iN3698AoMykR/+44Rhbjn+Gbto52VQ7N8kYjEKjY3q3S+AxUQjNzIf40T/LcByD6bTtq
-         U8+me1xaZ2TgCkyBiry3FmZe2qRYTyI0wNBOGBFsg07xT9yTTvr+iZdalsGId1iHSQMX
-         ZsV5MFM4lMnvP2hX+zHSfEkxDkpcSwRCxG3OA4RGFS6nIucyc30bwSXZhKmeLxsKa8hU
-         gwpRmJRlMy2AjeUqdndAxO0E9ywONSe1npuCa2uEBLOTrHKyHhQNbTIhwTA05c7n/Be/
-         hWcw==
+        bh=/J7nSl2TTSfO1tqqh2MXViNugUWiOp4EonyD5kSc0Nw=;
+        b=n3/F9wY0XBdSDrS74HIi4E9CK3YFOjZJ2yY4Y29+z8gFpMg6dEEBITJGMTZJNMYtqO
+         R50AEKdFOJgs4te61Tbu6hxbE7Uy8j6aLMt1K8eduMR6GYxDtnD4chLHyZ3xa4OY+ibR
+         NQW4iAKCQ6mIm/qmH4mFRTOGEQM9v7BFqECqNxtJN9mp/5N7q0kDlqoTHFaSmkjsdccR
+         4F9YoJjDhvB1wE4LFohmcTC2KUHr5D5EFb13PiiVX7A4nEs4GFdgaRCPIqkyFZeeu3Ug
+         v9Y2EpmxGLhFzrkVYqKOLwgZbphdNQ2Bu62dsNmDkquBNDO+hvCB/RPEdiGTXY2783BR
+         HJMQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b="RYD/KmOr";
-       spf=pass (google.com: domain of sashal@kernel.org designates 139.178.84.217 as permitted sender) smtp.mailfrom=sashal@kernel.org;
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=rpanCawZ;
+       spf=pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=sashal@kernel.org;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org. [139.178.84.217])
-        by gmr-mx.google.com with ESMTPS id p4-20020a170903248400b00157192fc8c6si7419plw.0.2022.04.19.11.12.25
+Received: from ams.source.kernel.org (ams.source.kernel.org. [145.40.68.75])
+        by gmr-mx.google.com with ESMTPS id e4-20020a196744000000b0046fcfdd417asi512161lfj.4.2022.04.19.11.13.31
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 19 Apr 2022 11:12:25 -0700 (PDT)
-Received-SPF: pass (google.com: domain of sashal@kernel.org designates 139.178.84.217 as permitted sender) client-ip=139.178.84.217;
+        Tue, 19 Apr 2022 11:13:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) client-ip=145.40.68.75;
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id A850460A73;
-	Tue, 19 Apr 2022 18:12:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD5F2C385AF;
-	Tue, 19 Apr 2022 18:12:22 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id A02A8B819A4;
+	Tue, 19 Apr 2022 18:13:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21DB7C385B4;
+	Tue, 19 Apr 2022 18:13:30 +0000 (UTC)
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -115,21 +115,21 @@ Cc: Mike Christie <michael.christie@oracle.com>,
 	jejb@linux.ibm.com,
 	open-iscsi@googlegroups.com,
 	linux-scsi@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.17 26/34] scsi: iscsi: Fix NOP handling during conn recovery
-Date: Tue, 19 Apr 2022 14:10:53 -0400
-Message-Id: <20220419181104.484667-26-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 17/27] scsi: iscsi: Move iscsi_ep_disconnect()
+Date: Tue, 19 Apr 2022 14:12:32 -0400
+Message-Id: <20220419181242.485308-17-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220419181104.484667-1-sashal@kernel.org>
-References: <20220419181104.484667-1-sashal@kernel.org>
+In-Reply-To: <20220419181242.485308-1-sashal@kernel.org>
+References: <20220419181242.485308-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-Original-Sender: sashal@kernel.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=k20201202 header.b="RYD/KmOr";       spf=pass
- (google.com: domain of sashal@kernel.org designates 139.178.84.217 as
- permitted sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE
- sp=NONE dis=NONE) header.from=kernel.org
+ header.i=@kernel.org header.s=k20201202 header.b=rpanCawZ;       spf=pass
+ (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted
+ sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE sp=NONE
+ dis=NONE) header.from=kernel.org
 Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: list
@@ -146,13 +146,12 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
 
 From: Mike Christie <michael.christie@oracle.com>
 
-[ Upstream commit 44ac97109e42f87b1a34954704b81b6c8eca80c4 ]
+[ Upstream commit c34f95e98d8fb750eefd4f3fe58b4f8b5e89253b ]
 
-If a offload driver doesn't use the xmit workqueue, then when we are doing
-ep_disconnect libiscsi can still inject PDUs to the driver. This adds a
-check for if the connection is bound before trying to inject PDUs.
+This patch moves iscsi_ep_disconnect() so it can be called earlier in the
+next patch.
 
-Link: https://lore.kernel.org/r/20220408001314.5014-9-michael.christie@oracle.com
+Link: https://lore.kernel.org/r/20220408001314.5014-2-michael.christie@oracle.com
 Tested-by: Manish Rangankar <mrangankar@marvell.com>
 Reviewed-by: Lee Duncan <lduncan@suse.com>
 Reviewed-by: Chris Leech <cleech@redhat.com>
@@ -160,59 +159,69 @@ Signed-off-by: Mike Christie <michael.christie@oracle.com>
 Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/scsi/libiscsi.c | 7 ++++++-
- include/scsi/libiscsi.h | 2 +-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ drivers/scsi/scsi_transport_iscsi.c | 38 ++++++++++++++---------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
-index 073c4db79094..f228d991038a 100644
---- a/drivers/scsi/libiscsi.c
-+++ b/drivers/scsi/libiscsi.c
-@@ -678,7 +678,8 @@ __iscsi_conn_send_pdu(struct iscsi_conn *conn, struct iscsi_hdr *hdr,
- 	struct iscsi_task *task;
- 	itt_t itt;
+diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+index 554b6f784223..126f6f23bffa 100644
+--- a/drivers/scsi/scsi_transport_iscsi.c
++++ b/drivers/scsi/scsi_transport_iscsi.c
+@@ -2236,6 +2236,25 @@ static void iscsi_stop_conn(struct iscsi_cls_conn *conn, int flag)
+ 	ISCSI_DBG_TRANS_CONN(conn, "Stopping conn done.\n");
+ }
  
--	if (session->state == ISCSI_STATE_TERMINATE)
-+	if (session->state == ISCSI_STATE_TERMINATE ||
-+	    !test_bit(ISCSI_CONN_FLAG_BOUND, &conn->flags))
- 		return NULL;
- 
- 	if (opcode == ISCSI_OP_LOGIN || opcode == ISCSI_OP_TEXT) {
-@@ -2214,6 +2215,8 @@ void iscsi_conn_unbind(struct iscsi_cls_conn *cls_conn, bool is_active)
- 	iscsi_suspend_tx(conn);
- 
- 	spin_lock_bh(&session->frwd_lock);
-+	clear_bit(ISCSI_CONN_FLAG_BOUND, &conn->flags);
++static void iscsi_ep_disconnect(struct iscsi_cls_conn *conn, bool is_active)
++{
++	struct iscsi_cls_session *session = iscsi_conn_to_session(conn);
++	struct iscsi_endpoint *ep;
 +
- 	if (!is_active) {
- 		/*
- 		 * if logout timed out before userspace could even send a PDU
-@@ -3311,6 +3314,8 @@ int iscsi_conn_bind(struct iscsi_cls_session *cls_session,
- 	spin_lock_bh(&session->frwd_lock);
- 	if (is_leading)
- 		session->leadconn = conn;
++	ISCSI_DBG_TRANS_CONN(conn, "disconnect ep.\n");
++	conn->state = ISCSI_CONN_FAILED;
 +
-+	set_bit(ISCSI_CONN_FLAG_BOUND, &conn->flags);
- 	spin_unlock_bh(&session->frwd_lock);
++	if (!conn->ep || !session->transport->ep_disconnect)
++		return;
++
++	ep = conn->ep;
++	conn->ep = NULL;
++
++	session->transport->unbind_conn(conn, is_active);
++	session->transport->ep_disconnect(ep);
++	ISCSI_DBG_TRANS_CONN(conn, "disconnect ep done.\n");
++}
++
+ static int iscsi_if_stop_conn(struct iscsi_transport *transport,
+ 			      struct iscsi_uevent *ev)
+ {
+@@ -2276,25 +2295,6 @@ static int iscsi_if_stop_conn(struct iscsi_transport *transport,
+ 	return 0;
+ }
  
- 	/*
-diff --git a/include/scsi/libiscsi.h b/include/scsi/libiscsi.h
-index bdb0ae11682d..d1e282f0d6f1 100644
---- a/include/scsi/libiscsi.h
-+++ b/include/scsi/libiscsi.h
-@@ -55,7 +55,7 @@ enum {
- /* Connection flags */
- #define ISCSI_CONN_FLAG_SUSPEND_TX	BIT(0)
- #define ISCSI_CONN_FLAG_SUSPEND_RX	BIT(1)
+-static void iscsi_ep_disconnect(struct iscsi_cls_conn *conn, bool is_active)
+-{
+-	struct iscsi_cls_session *session = iscsi_conn_to_session(conn);
+-	struct iscsi_endpoint *ep;
 -
-+#define ISCSI_CONN_FLAG_BOUND		BIT(2)
- 
- #define ISCSI_ITT_MASK			0x1fff
- #define ISCSI_TOTAL_CMDS_MAX		4096
+-	ISCSI_DBG_TRANS_CONN(conn, "disconnect ep.\n");
+-	conn->state = ISCSI_CONN_FAILED;
+-
+-	if (!conn->ep || !session->transport->ep_disconnect)
+-		return;
+-
+-	ep = conn->ep;
+-	conn->ep = NULL;
+-
+-	session->transport->unbind_conn(conn, is_active);
+-	session->transport->ep_disconnect(ep);
+-	ISCSI_DBG_TRANS_CONN(conn, "disconnect ep done.\n");
+-}
+-
+ static void iscsi_cleanup_conn_work_fn(struct work_struct *work)
+ {
+ 	struct iscsi_cls_conn *conn = container_of(work, struct iscsi_cls_conn,
 -- 
 2.35.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20220419181104.484667-26-sashal%40kernel.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20220419181242.485308-17-sashal%40kernel.org.
