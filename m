@@ -1,141 +1,158 @@
-Return-Path: <open-iscsi+bncBAABBTFQRCKQMGQEPTLQFZY@googlegroups.com>
+Return-Path: <open-iscsi+bncBAABBV5QRCKQMGQENC24UJY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x837.google.com (mail-qt1-x837.google.com [IPv6:2607:f8b0:4864:20::837])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E890545162
-	for <lists+open-iscsi@lfdr.de>; Thu,  9 Jun 2022 17:57:03 +0200 (CEST)
-Received: by mail-qt1-x837.google.com with SMTP id s7-20020ac85cc7000000b00304e11cb41fsf14067377qta.4
-        for <lists+open-iscsi@lfdr.de>; Thu, 09 Jun 2022 08:57:03 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1654790222; cv=pass;
+Received: from mail-qv1-xf37.google.com (mail-qv1-xf37.google.com [IPv6:2607:f8b0:4864:20::f37])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C7A545163
+	for <lists+open-iscsi@lfdr.de>; Thu,  9 Jun 2022 17:57:13 +0200 (CEST)
+Received: by mail-qv1-xf37.google.com with SMTP id kc24-20020a056214411800b0046d93b71e48sf814297qvb.3
+        for <lists+open-iscsi@lfdr.de>; Thu, 09 Jun 2022 08:57:13 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1654790232; cv=pass;
         d=google.com; s=arc-20160816;
-        b=M6UMQm+oVwXzXYETln1dR/kGsTx8XdvuDW3PcWrzA6J9grwruprUVbzVJrT1N8A8kg
-         CUR6gnIGy9rvIHCGWu6rFQIg60Zq7kxPY0ayAD+inAJkPDGJDP0eHwwjPjs30vtL+4gG
-         IdAtHzsvP9vqgTRIF1RLdjrdxTIQCJUksZCbr0QWffesyMxrQXE4Ocm9rFYL1F2mKqOz
-         4IJ1xLrOUIMxwY76AoNoKjsFA1FTLrtGzDlYU1U1BsejmXbYMT3YoMzSApH2QiLqE/SO
-         TdCshDyP2nivl/HQHYjVJTTvl+n/yVvcelK4K+R5XD89/KpYJs6SjB0Br4EQxrPTWQck
-         ZzGA==
+        b=wFlW3/wsWtvHLq+1QQJgrOKjmCwpNPwVZT03GBOY1GyUZAPenO9/wJExDrDzNmoGlk
+         p3gZvloGfO1sbPkHOr8NSfzqBDsuaxu8rsZ0EDMYhNui9Ud1OqLv2j6NGXYwLc1dSRP1
+         l6Upi9gyeWTT6SN8+S7F//02wtsScNQhrCHwKI07nux9XCfZNGM0eH+auvtJDbIkfQbB
+         BM9K3GJE4qJ77UTGaUaRpb/iyD3BnzKYmyRv3szuILeOPS6Z34NVyIL6p0BCIj/v4yYO
+         s6C7vs2Pex3k7vfYKRVdzRIvWspULHoBzsC7G0NrKyTLiRn4aoCtCzCYGuAoCEkF0LIL
+         w8Sg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:sender:dkim-signature;
-        bh=fPk791p+UbLZJ7LSyP7mUUReUpPOlPo8iDQD4Xvm7L0=;
-        b=ugFEoJu2xheA11M1CA1ciBB0HTvPx/lrl3U7/2t9F+nCVls5mR5b8aYL6EAjPtJadf
-         EbsvNA6lXiLx8EkG/tu4TzMDAZQbRQLbJ9p6af/LQvGH73eVMWmT/ZRgdgLJmh6Ng/0B
-         7WQlT/lW9YBebPwgD3x9Vm5zIZmMJHWNBbTFPm1fOHdm3VIqUV5+vtw63xbOdXvH3Duu
-         2iYfWdyfDEPj7mfb57RevpH71ytchI0z9hvAjqp9Xh8Uv39g8Yz7Y8ZuX+ABt7HupERH
-         uCnxuiIjow2IYcyxvCFqSpYyaFfkjzQllXeZZ3WMhavij472loB8A5dfOohVRV+RJSuA
-         cqgA==
+         :list-id:mailing-list:precedence:reply-to:mime-version
+         :content-language:accept-language:in-reply-to:references:message-id
+         :date:thread-index:thread-topic:subject:cc:to:from:sender
+         :dkim-signature;
+        bh=yc7ere8CZAU6Uw9f4zO/kv+NeN4YRPo00Exxdij7oVs=;
+        b=ci6YS2byai9BNIYxyCqejs81malcy/uUL+KZt4ygnMWuVg8fWnQI6CywHnzAC6Cu5D
+         kJTHYBrm1rtJd/lY54ljSsLNIaPdM9R0zb2oFGH0XU6I8KDv2eiXfrpqSKmY6fA/A8hm
+         HXxAs1M7SyNUc/WL7oos4k9TFIHkt2+zHQvhOsgY/pE1CVBLjo56WwCkJjf8fXIT99ou
+         wa+k5ZQfndTsMEyHYDVjW/17qFPL8crMo18t6TyhapQ1p7SFUNoOxloDLGP4v/A3oCeu
+         sjIJNczWsr/JKNEHjN6esdX97mAdOpMM71weAV3B8J4jLyFvOjyYB9X0PUFhKVciEkvt
+         fPhQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@yadro.com header.s=mta-01 header.b=MhW6FQui;
+       dkim=pass header.i=@yadro.com header.s=mta-01 header.b=LRxsVnkb;
        spf=pass (google.com: domain of d.bogdanov@yadro.com designates 89.207.88.252 as permitted sender) smtp.mailfrom=d.bogdanov@yadro.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=yadro.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=fPk791p+UbLZJ7LSyP7mUUReUpPOlPo8iDQD4Xvm7L0=;
-        b=ad53NjMj/PV3z4dSXF7AxSEqGiYfVdtXm10xQmtsmMXm997rpoLyYTjLnQ1BZ4zqSm
-         8eZuVywDTSHCkhvxhVJ0jPy43cAQj4kd18yYvZWuNikaW3g1IGjbQs2pSs8eavct3v9e
-         CZdAh5yJkO14mT6qive4Ts9LN9BjuW/5JiCeoUZKfwgcs0j9R3V5k9xvtOJtQZvyNjln
-         h73VzXEXaK6cEOlxmV5NsurxW1Q6pjLNWdrdWnTnnyV7MNd6Qz1MfM0uv/VRk4BjKz6E
-         vR1xXXQGJOK+NsmvtSROB+mUKOoThr83JBqVyzA3p52R8iJq+j9LkvsL7PLu/OvTFU+t
-         z19Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=sender:from:to:cc:subject:thread-topic:thread-index:date:message-id
+         :references:in-reply-to:accept-language:content-language
          :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=fPk791p+UbLZJ7LSyP7mUUReUpPOlPo8iDQD4Xvm7L0=;
-        b=bCQ6HRcd5UoUVIgRQyRSVfklBCNvjrndYIiS+67pCOE/FdC9jQqNgjueuhhPMILn2T
-         S1cYKexFT8xAgHZz+CpVMYkxP1fGOoTAsbLPy6hmpzA/pvpam2LqsPKiRRXBC1WVoPxI
-         KrAOythMT274d64gSLLHYB9YYS/Wm0fZ5hIa+OUDUN77KjAgY8Gs/9U3me6b2+gmvbUr
-         Um5huN1ZKE1CE2L1ois7nRDFSQC/kivVSOwPBq2i4hp91fAjU6SLWnf1NaWtDD8ZL/+1
-         HEo4jx7JWGC3ePmAT76uIKlD6c6kP8bjXDJAOT+0jh7q/DK+m7ERctSlf6oFgmofyaOM
-         1ZvQ==
+        bh=yc7ere8CZAU6Uw9f4zO/kv+NeN4YRPo00Exxdij7oVs=;
+        b=L8y+/PJf7Yjha3xh+tKzk5Vog0j0NSucJZubxXQRywW7xfAn/vs+N/qMV21S0gpmgz
+         ObPec0zsH4isFzebVxUpu6W6ao7GtbxXzO4bC40mwlywmmkYnJYtiV9MF8E0uYBDkdSw
+         3mz0rdqQKAwY+O8Afmq4to4vkAk8K4lMlA+AA+KY7BD5/bKt48YwmU20jIep+rxRMJXr
+         PIUbzHxWpLvYUBz6X5pKCUy/EjlQjdBLW/TU7iAFXyrPSD3BItCSBa2n5q0JbmkzD9ed
+         ea+0hETR+P9frfxg3g746eHPGE9xd8pk3saJha+q64NQbNFtW3xmcZ1ibKpMY0DWaNly
+         eEvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=sender:x-gm-message-state:from:to:cc:subject:thread-topic
+         :thread-index:date:message-id:references:in-reply-to:accept-language
+         :content-language:mime-version:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=yc7ere8CZAU6Uw9f4zO/kv+NeN4YRPo00Exxdij7oVs=;
+        b=CX2FNVWWMJ+gVlTKMAyDD/2mHPcSScnmJtx1IDGs6JzUD0vgBImhXXQr+nZtvRTk4Z
+         jMJD4rmMXCXUL5Kwd8rOLPNy718HRnT+64DznzkxR/RyE5RI58wVUSVG1fqWO8blWfja
+         NJfGqtNUAfTQf1M7UZDMDPB1W070Onquwh07kOoj7I1ZFHhjE0Xh2G76CGRIanqOP+jU
+         q2XmC2/BYMVAwmA65OB+VWPVij/MTUPzO8nN72GZnIZK0tDxquq1oZhyE4KqA5uZcd3S
+         P3g0nINnSqU4QnsWgqAti8rLf2sJz32ANayJmQC4ogAS6Yhexggab7EnaKhm8xMKKfTR
+         pxxQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOAM531Rid3uGOuVQjkEjU26mkA+Z3FjEWjxE/82uB/11DP/TGfI6eQV
-	wehBpLZsPsGw/GjDFLk6hlY=
-X-Google-Smtp-Source: ABdhPJzK7gsBiv/pDBKaRl7C5L76QiNmGlIMm0zoQQYmhZjvK3oXxWOEOw5nJ8xMJWZIvj7FkRCbLQ==
-X-Received: by 2002:a05:622a:1107:b0:304:fd95:881f with SMTP id e7-20020a05622a110700b00304fd95881fmr10832642qty.640.1654790222123;
-        Thu, 09 Jun 2022 08:57:02 -0700 (PDT)
+X-Gm-Message-State: AOAM530l+F6mO7gnsi4s95nz64RNvqPnBZPcn+A0XBFRx92jvsSB4wrc
+	wnzCjduzvYoPFoX7uIb1gp0=
+X-Google-Smtp-Source: ABdhPJx6x6i5WkVEtyfxTN62LeiFfi8LnTsN2iLMr/Yusre3xMEhSxZjf+gA45T9C5vbfQ7HMudUxQ==
+X-Received: by 2002:a05:620a:27c2:b0:6a7:1db:a6e2 with SMTP id i2-20020a05620a27c200b006a701dba6e2mr6302512qkp.150.1654790232445;
+        Thu, 09 Jun 2022 08:57:12 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:620a:4312:b0:699:fda3:7819 with SMTP id
- u18-20020a05620a431200b00699fda37819ls7011261qko.1.gmail; Thu, 09 Jun 2022
- 08:57:00 -0700 (PDT)
-X-Received: by 2002:a05:620a:31a4:b0:6a6:d53b:409 with SMTP id bi36-20020a05620a31a400b006a6d53b0409mr10474102qkb.292.1654790220763;
-        Thu, 09 Jun 2022 08:57:00 -0700 (PDT)
-Received: by 2002:a05:620a:1331:b0:69e:c22f:fb43 with SMTP id af79cd13be357-6a6d5e3b9c0ms85a;
-        Tue, 7 Jun 2022 06:20:10 -0700 (PDT)
-X-Received: by 2002:a05:6512:110f:b0:479:8ab:74bf with SMTP id l15-20020a056512110f00b0047908ab74bfmr19418972lfg.333.1654608009962;
-        Tue, 07 Jun 2022 06:20:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1654608009; cv=none;
+Received: by 2002:a05:622a:1a19:b0:305:189:130b with SMTP id
+ f25-20020a05622a1a1900b003050189130bls3235830qtb.7.gmail; Thu, 09 Jun 2022
+ 08:57:11 -0700 (PDT)
+X-Received: by 2002:a05:622a:104c:b0:2fc:4d41:386 with SMTP id f12-20020a05622a104c00b002fc4d410386mr32641451qte.293.1654790231288;
+        Thu, 09 Jun 2022 08:57:11 -0700 (PDT)
+Received: by 2002:a37:aac3:0:b0:6a6:c4d6:384a with SMTP id af79cd13be357-6a6fee36f64ms85a;
+        Wed, 8 Jun 2022 07:16:47 -0700 (PDT)
+X-Received: by 2002:a17:906:d550:b0:704:7ba6:9854 with SMTP id cr16-20020a170906d55000b007047ba69854mr31175906ejc.579.1654697806774;
+        Wed, 08 Jun 2022 07:16:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1654697806; cv=none;
         d=google.com; s=arc-20160816;
-        b=Zim7sZoM50PxTctRCzAsURioOFsiYLRQZe8R4fYbf7X2Pt12nNmoTqXXj3miODj/Ua
-         uyOuJwm6cdw2hySZDoI1EySwVjrRRQppbMOXFJG0+Ca0aRSsndFsk6vHBl2Lum1COOer
-         b7ezhqh0haNjfMhzJuz6yi85vtVwjfRh17ujPTv7U3Xec3uqffCrOsjE3rZislr151az
-         M1LrBLvnxQpX4GuqrXwEb8uACLJHcaoYyou9qw6WGb5BfKXueZPV2P52gU+ASjtScoK6
-         YbBX7AYZJFhrdNl0hSaVkQWV/hvQ6vN5C53ci7R+skeqPS42YlzFNtndf/gUKG8UBSOt
-         23BQ==
+        b=xCk+It0G7RxvEvXxbfB8hZI2KQNzVv/t47ETnz+Hlkn+TZXdFYuK0fSnHyMQLbxaaw
+         QDWCuvaAKyteta5NocaxM551Sc4lUyZcQ+HcBaIj+JNAf0/GhlM3IIKRZo/I2MVcwXkF
+         D4i+ZYVc3eRbZHyHXxDm7ZKJ1PG5yKIn3jAy0Xfw+6fyT03cAxAJaLK6cNMkSgsxFcJ+
+         iCyYgXwS3mlZ+nBIsekW6QlQ56Dm44lemhEOwpsgGSflZrORZTYML7RyOpUc2ZLqDLpu
+         lT+Y9W6ZdMzVN26089VkFihpIzWF6YoH5g0a9JH7Pg14X1Y105MiiwNbsLC5+GHVyTmz
+         y2tg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:dkim-signature;
-        bh=erg4/ytnxDK0QRy4Ec4htD6tNzfWgR6PKj+bDhEuYZo=;
-        b=QrsyQhvDlrYcCRdZ3LE8LI9WRDW8RhnC2Gwn8VRZOP/T2r6NQKMwk7AJ5DRCzqSuwk
-         Nb4cmyl2wnvAzArVQ8gxEFNSN6HV7/tqI+YCYc2Qx8PoDpBRTuqOHN7PqAbhfJURlxtp
-         5O4x0e/ulwxP4VMHUTK6UZCIXI/VNJhBolbk3pp8Hp+9g36R+sSYBk9MvVhH142j8x8L
-         xVyb2uQtZG5Vodusd+udkKYWkuihez8lg6ENiCBUgssUFy/vAqWulcu2yx6fdi+IZdsd
-         AtRtUbbur/m2xROfvYbS3s2vRiufYO3woyrIULkRiS3kB3D1i2tzEc5nw1j5u16QlKGd
-         xJCw==
+        h=mime-version:content-transfer-encoding:content-language
+         :accept-language:in-reply-to:references:message-id:date:thread-index
+         :thread-topic:subject:cc:to:from:dkim-signature;
+        bh=RSlwQpEqCXhbZZ9ImsVUexNsLzWcERQTmbLCHIGg1/k=;
+        b=QeAdl1cRtJHBMA6Sz7pPJTDMVdA/QcCLOCkF6ibPj8/QeUMTZaiYaLk4CY8ah9SFBc
+         T8bRvhIbtB6OiN3CGTjaoelwWG8+KwROtv0mU9hQnc6AbsA8mOT8702lLQrcHPjcELnb
+         dZoY9eXAY9z6QphU2deM4XPUjj2+bBDldg+LgyhJCrEet7w9zgmGDXlzrz6AyuwGi5dO
+         G/AnXXpB/SM+8x97CZ1cDTqGEFs/98KX2r6h3AG7iWyPC/TLfCRmFFEMrrZJ5xxU6lhv
+         /uMDYKQxP0ibDHEJgsqs/QWRvMbx+XOHJ7WukJ25CUnfABwShCM+R2EZ3ipqMgPZMCVR
+         JR/Q==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@yadro.com header.s=mta-01 header.b=MhW6FQui;
+       dkim=pass header.i=@yadro.com header.s=mta-01 header.b=LRxsVnkb;
        spf=pass (google.com: domain of d.bogdanov@yadro.com designates 89.207.88.252 as permitted sender) smtp.mailfrom=d.bogdanov@yadro.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=yadro.com
 Received: from mta-01.yadro.com (mta-02.yadro.com. [89.207.88.252])
-        by gmr-mx.google.com with ESMTPS id h24-20020a05651c125800b00255954875c2si258071ljh.0.2022.06.07.06.20.09
+        by gmr-mx.google.com with ESMTPS id e41-20020a056402332900b0042b8a96e45asi841581eda.1.2022.06.08.07.16.46
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 Jun 2022 06:20:09 -0700 (PDT)
+        Wed, 08 Jun 2022 07:16:46 -0700 (PDT)
 Received-SPF: pass (google.com: domain of d.bogdanov@yadro.com designates 89.207.88.252 as permitted sender) client-ip=89.207.88.252;
 Received: from localhost (unknown [127.0.0.1])
-	by mta-01.yadro.com (Postfix) with ESMTP id A7B264242A;
-	Tue,  7 Jun 2022 13:20:09 +0000 (UTC)
+	by mta-01.yadro.com (Postfix) with ESMTP id 2DB234249F;
+	Wed,  8 Jun 2022 14:16:46 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at yadro.com
 Received: from mta-01.yadro.com ([127.0.0.1])
 	by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 4pXbYKAkb5QZ; Tue,  7 Jun 2022 16:20:04 +0300 (MSK)
+	with ESMTP id yD-QAnHORcPL; Wed,  8 Jun 2022 17:16:44 +0300 (MSK)
 Received: from T-EXCH-01.corp.yadro.com (t-exch-01.corp.yadro.com [172.17.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mta-01.yadro.com (Postfix) with ESMTPS id 191CB41BB2;
-	Tue,  7 Jun 2022 16:20:02 +0300 (MSK)
-Received: from T-EXCH-09.corp.yadro.com (172.17.11.59) by
+	by mta-01.yadro.com (Postfix) with ESMTPS id 5038D424A1;
+	Wed,  8 Jun 2022 17:16:42 +0300 (MSK)
+Received: from T-EXCH-08.corp.yadro.com (172.17.11.58) by
  T-EXCH-01.corp.yadro.com (172.17.10.101) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.669.32; Tue, 7 Jun 2022 16:20:02 +0300
-Received: from NB-591.corp.yadro.com (10.199.18.20) by
- T-EXCH-09.corp.yadro.com (172.17.11.59) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 16:20:01 +0300
-From: Dmitry Bogdanov <d.bogdanov@yadro.com>
-To: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>
-CC: <open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>,
-	<linux@yadro.com>, Dmitry Bogdanov <d.bogdanov@yadro.com>, "Konstantin
- Shelekhin" <k.shelekhin@yadro.com>
-Subject: [PATCH] scsi: iscsi: prefer xmit of DataOut before new cmd
-Date: Tue, 7 Jun 2022 16:19:53 +0300
-Message-ID: <20220607131953.11584-1-d.bogdanov@yadro.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+ 15.1.669.32; Wed, 8 Jun 2022 17:16:42 +0300
+Received: from T-EXCH-09.corp.yadro.com (172.17.11.59) by
+ T-EXCH-08.corp.yadro.com (172.17.11.58) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 8 Jun 2022 17:16:41 +0300
+Received: from T-EXCH-09.corp.yadro.com ([fe80::d9f:e165:8a50:d450]) by
+ T-EXCH-09.corp.yadro.com ([fe80::d9f:e165:8a50:d450%4]) with mapi id
+ 15.02.0986.022; Wed, 8 Jun 2022 17:16:41 +0300
+From: Dmitriy Bogdanov <d.bogdanov@yadro.com>
+To: Mike Christie <michael.christie@oracle.com>, Lee Duncan
+	<lduncan@suse.com>, Chris Leech <cleech@redhat.com>
+CC: "open-iscsi@googlegroups.com" <open-iscsi@googlegroups.com>,
+	"linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>, "linux@yadro.com"
+	<linux@yadro.com>, Konstantin Shelekhin <k.shelekhin@yadro.com>
+Subject: RE: [PATCH] scsi: iscsi: prefer xmit of DataOut before new cmd
+Thread-Topic: [PATCH] scsi: iscsi: prefer xmit of DataOut before new cmd
+Thread-Index: AQHYenFLnkgrMqHdCEim3M4HDVs6OK1D5uuAgAAC6wCAAXQf4A==
+Date: Wed, 8 Jun 2022 14:16:41 +0000
+Message-ID: <e5c2ab5b4de8428495efe85865980133@yadro.com>
+References: <20220607131953.11584-1-d.bogdanov@yadro.com>
+ <769c3acb-b515-7fd8-2450-4b6206436fde@oracle.com>
+ <6a58acb4-e29e-e8c7-d85c-fe474670dad7@oracle.com>
+In-Reply-To: <6a58acb4-e29e-e8c7-d85c-fe474670dad7@oracle.com>
+Accept-Language: ru-RU, en-US
+Content-Language: ru-RU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.199.18.20]
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.199.18.20]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-09.corp.yadro.com (172.17.11.59)
+MIME-Version: 1.0
 X-Original-Sender: d.bogdanov@yadro.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@yadro.com header.s=mta-01 header.b=MhW6FQui;       spf=pass
+ header.i=@yadro.com header.s=mta-01 header.b=LRxsVnkb;       spf=pass
  (google.com: domain of d.bogdanov@yadro.com designates 89.207.88.252 as
  permitted sender) smtp.mailfrom=d.bogdanov@yadro.com;       dmarc=pass
  (p=NONE sp=NONE dis=NONE) header.from=yadro.com
@@ -151,89 +168,68 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-In function iscsi_data_xmit (TX worker) there is walking through the
-queue of new SCSI commands that is replenished in parallell. And only
-after that queue got emptied the function will start sending pending
-DataOut PDUs. That lead to DataOut timer time out on target side and
-to connection reinstatment.
+Hi Mike,
 
-This patch swaps walking through the new commands queue and the pending
-DataOut queue. To make a preference to ongoing commands over new ones.
+>On 6/7/22 10:55 AM, Mike Christie wrote:
+>> On 6/7/22 8:19 AM, Dmitry Bogdanov wrote:
+>>> In function iscsi_data_xmit (TX worker) there is walking through the
+>>> queue of new SCSI commands that is replenished in parallell. And only
+>>> after that queue got emptied the function will start sending pending
+>>> DataOut PDUs. That lead to DataOut timer time out on target side and
+>>> to connection reinstatment.
+>>>
+>>> This patch swaps walking through the new commands queue and the pending
+>>> DataOut queue. To make a preference to ongoing commands over new ones.
+>>>
+>>
+>> ...
+>>
+>>>              task = list_entry(conn->cmdqueue.next, struct iscsi_task,
+>>> @@ -1594,28 +1616,10 @@ static int iscsi_data_xmit(struct iscsi_conn *conn)
+>>>               */
+>>>              if (!list_empty(&conn->mgmtqueue))
+>>>                      goto check_mgmt;
+>>> +            if (!list_empty(&conn->requeue))
+>>> +                    goto check_requeue;
+>>
+>>
+>>
+>> Hey, I've been posting a similar patch:
+>>
+>> https://www.spinics.net/lists/linux-scsi/msg156939.html
+>>
+>> A problem I hit is a possible pref regression so I tried to allow
+>> us to start up a burst of cmds in parallel. It's pretty simple where
+>> we allow up to a queue's worth of cmds to start. It doesn't try to
+>> check that all cmds are from the same queue or anything fancy to try
+>> and keep the code simple. Mostly just assuming users might try to bunch
+>> cmds together during submission or they might hit the queue plugging
+>> code.
+>>
+>> What do you think?
+>
+>Oh yeah, what about a modparam batch_limit? It's between 0 and cmd_per_lun.
+>0 would check after every transmission like above.
 
-Reviewed-by: Konstantin Shelekhin <k.shelekhin@yadro.com>
-Signed-off-by: Dmitry Bogdanov <d.bogdanov@yadro.com>
----
- drivers/scsi/libiscsi.c | 44 ++++++++++++++++++++++-------------------
- 1 file changed, 24 insertions(+), 20 deletions(-)
+ Did you really face with a perf regression? I could not imagine how it is
+possible.
+DataOut PDU contains a data too, so a throughput performance cannot be
+decreased by sending DataOut PDUs.
 
-diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
-index 797abf4f5399..8d78559ae94a 100644
---- a/drivers/scsi/libiscsi.c
-+++ b/drivers/scsi/libiscsi.c
-@@ -1567,6 +1567,28 @@ static int iscsi_data_xmit(struct iscsi_conn *conn)
- 			goto done;
- 	}
- 
-+check_requeue:
-+	while (!list_empty(&conn->requeue)) {
-+		/*
-+		 * we always do fastlogout - conn stop code will clean up.
-+		 */
-+		if (conn->session->state == ISCSI_STATE_LOGGING_OUT)
-+			break;
-+
-+		task = list_entry(conn->requeue.next, struct iscsi_task,
-+				  running);
-+
-+		if (iscsi_check_tmf_restrictions(task, ISCSI_OP_SCSI_DATA_OUT))
-+			break;
-+
-+		list_del_init(&task->running);
-+		rc = iscsi_xmit_task(conn, task, true);
-+		if (rc)
-+			goto done;
-+		if (!list_empty(&conn->mgmtqueue))
-+			goto check_mgmt;
-+	}
-+
- 	/* process pending command queue */
- 	while (!list_empty(&conn->cmdqueue)) {
- 		task = list_entry(conn->cmdqueue.next, struct iscsi_task,
-@@ -1594,28 +1616,10 @@ static int iscsi_data_xmit(struct iscsi_conn *conn)
- 		 */
- 		if (!list_empty(&conn->mgmtqueue))
- 			goto check_mgmt;
-+		if (!list_empty(&conn->requeue))
-+			goto check_requeue;
- 	}
- 
--	while (!list_empty(&conn->requeue)) {
--		/*
--		 * we always do fastlogout - conn stop code will clean up.
--		 */
--		if (conn->session->state == ISCSI_STATE_LOGGING_OUT)
--			break;
--
--		task = list_entry(conn->requeue.next, struct iscsi_task,
--				  running);
--
--		if (iscsi_check_tmf_restrictions(task, ISCSI_OP_SCSI_DATA_OUT))
--			break;
--
--		list_del_init(&task->running);
--		rc = iscsi_xmit_task(conn, task, true);
--		if (rc)
--			goto done;
--		if (!list_empty(&conn->mgmtqueue))
--			goto check_mgmt;
--	}
- 	spin_unlock_bh(&conn->session->frwd_lock);
- 	return -ENODATA;
- 
--- 
-2.25.1
+ The only thing is a latency performance. But that is not an easy question.
+IMHO, a system should strive to reduce a maximum value of the latency almost
+without impacting of a minimum value (prefer current commands) instead of
+to reduce a minimum value of the latency to the detriment of maximum value
+(prefer new commands).
+
+ Any preference of new commands over current ones looks like an io scheduler
+functionality, but on underlying layer, so to say a BUS layer.
+I think is a matter of future investigation/development.
+
+BR,
+ Dmitry
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20220607131953.11584-1-d.bogdanov%40yadro.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/e5c2ab5b4de8428495efe85865980133%40yadro.com.
