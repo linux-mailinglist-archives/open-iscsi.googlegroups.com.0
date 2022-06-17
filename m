@@ -1,138 +1,128 @@
-Return-Path: <open-iscsi+bncBCRKJ2M45MFBBDGXVCKQMGQE76AXQTY@googlegroups.com>
+Return-Path: <open-iscsi+bncBC6MFJWO34DBBEFOWCKQMGQE4IJBYLI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x13e.google.com (mail-lf1-x13e.google.com [IPv6:2a00:1450:4864:20::13e])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99D254D13D
-	for <lists+open-iscsi@lfdr.de>; Wed, 15 Jun 2022 20:57:18 +0200 (CEST)
-Received: by mail-lf1-x13e.google.com with SMTP id l12-20020a056512110c00b0047961681d22sf6365245lfg.9
-        for <lists+open-iscsi@lfdr.de>; Wed, 15 Jun 2022 11:57:18 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1655319438; cv=pass;
+Received: from mail-lf1-x13f.google.com (mail-lf1-x13f.google.com [IPv6:2a00:1450:4864:20::13f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5818F54F0CB
+	for <lists+open-iscsi@lfdr.de>; Fri, 17 Jun 2022 07:54:27 +0200 (CEST)
+Received: by mail-lf1-x13f.google.com with SMTP id i19-20020a056512225300b0047db7f89e9esf1842689lfu.14
+        for <lists+open-iscsi@lfdr.de>; Thu, 16 Jun 2022 22:54:27 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1655445266; cv=pass;
         d=google.com; s=arc-20160816;
-        b=abD9KFvKUzl0bfB1hqBCPrC9d2oMpYI0VBqKqIl0gCYw6vcE6PxFbaArAVWtONuxMT
-         EDOBYa6/za0Cw/SG/4aPrEmkrF88hR525u9uP+ijbEDXVh2NIC8dB+k1r8fOhDdsl6Eu
-         sc60AfJOaT4NKHD4Y+orAmHFlMG0t9AX2JR0RpOsVynMn3YNqLmv3vSlFXSRcKE4M7VB
-         B4FYvZs87sAvdaf6i7n8nvkS4E+2kyCKHPbih87O7d0yY9q3RMmAPzB9GR3tgVv1nWrT
-         5OJZ3EDjxb5N3NGERNX2nLHWMrWA7Jtp/XzPZrVEvcjTcBNCYz3uPJTJcmwd5jozPblZ
-         QbAg==
+        b=j9VrrxlEFe1VuotAAo+do1onqqlDqeDoAOieNBy/1pR4ACHmwXG+KWdBxscu5IZTDa
+         8QEgkKx43dRV6wlamlPDhzT+fBwU2fadmPFfcXjHdMuiCIRHS4IFTnHkQP6dVLdDl/nx
+         CHApoaHQ2O1WTd3M9y2Uvp29OgxYja0WAPsyDFD3AgWGKbpZOJDseob2Lt5ZCrgJTiRz
+         e4m6nV5bUt5OisReD0aFueS2j2uXfpvElua9cAb0YbMNQs3nui46mKA+8zUGHkpCq1nF
+         gafG7hYS/HjJmW1Cmmo3APlJ8eVg2q0HYq3sWmz8pHpln6OWsae4DoVrsHIbEnkXYA3f
+         k6qA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=hyhGDtYHzaswTl+3pr7ivPF8q3fA005dr2d1pPKBxTM=;
-        b=R0vPM++fwgFbWOv0TEG1vX2JiNksxHLY9fUz3uCaxqnoRVrv47I3sY/mwHwVkTwp3z
-         JbHxp83R7mN6dxnAHw1hDrOqRZAy2SwdwuruqLrhTJlFRxQQ/UPT2aw26mLnE00Z4u2V
-         b2rAB5jFiKXky2kpFSAPxtIeychYevsEXqGuay8vcEc/79YwNN8+XSh/OyUc0fz/pBqS
-         YVQQpbbSWT+Ke1ZpIIl1y3bs/XYmnsKg5YdVgbq4VVaazwwGPxNEKSuEB0SF+UW8YGej
-         UGZvV25HuADROma3UKRbFEAoxxrIkhipQpWCbuindCVV9jB8Vp7E+0RykMUpLFl0IiJy
-         Py0g==
+         :list-id:mailing-list:precedence:reply-to:content-disposition
+         :mime-version:in-reply-to:references:subject:cc:to:from:date
+         :message-id:sender:dkim-signature;
+        bh=VmlRHyGOlmWF55wzJnQRfptNoUNMp3NwOSpe1S7PglM=;
+        b=s1+P48oySW8TRdwZ6Yw0PB8LfT4sVooW1iMnyEen/UvllLXNj36cq7JiwAw+DY0fQG
+         Nc3X31KKk4CE/26P/JAP1szekV1mlx9fVUhiNI3xt0FPaz9cDhGeJ6Y+o2yfsAwluSdt
+         VUDVNesc+OE1hFWwMuBFNeGXKieJeNC6SQG7pnepWn4UeCrXiBlV2FHIuo0bEPrZNTtg
+         e7lXLYQiAMt6UPdgBvLutsE+RuDvmSlzIRJjmcUQHw8lKGTdIVBbTlhAK7HvnFkOgM3u
+         KBswUfpbAd5JerMHubyaBxvH7OYhwqlAzYeYR2+mznH2duzuDvRU1KepVP05iaVnByGM
+         Ss+w==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=gBLSouUF;
-       spf=pass (google.com: domain of ajhutchin@gmail.com designates 2a00:1450:4864:20::12b as permitted sender) smtp.mailfrom=ajhutchin@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=sender:mime-version:references:in-reply-to:from:date:message-id
-         :subject:to:cc:x-original-sender:x-original-authentication-results
-         :reply-to:precedence:mailing-list:list-id:list-post:list-help
-         :list-archive:list-subscribe:list-unsubscribe;
-        bh=hyhGDtYHzaswTl+3pr7ivPF8q3fA005dr2d1pPKBxTM=;
-        b=JwxOqhbMyImHQE3VwVNOX8AULaQD+cxUxHZndcIO8A9dvUJJNxBnjxQC4z6us76C+n
-         qrdEcNpnPUwiFSMho9o9KO1G6nL2Ew1s/oM+EeBFsIQ9TUIIjx2elyYTyM7DwNWpiP+I
-         4Aa8k/a6sFnST9tHgDdQuEbaNdKn1xMa3gWYKoR3NZ2TCjDHOzumAbWJzqjV0Bq6S8k9
-         1d4qxJXHfvrZfp53Qy5KK4Wz18MX7nQozibzpWafevE6Jv+Ikp48PMXw+ZD1uGkpgLMX
-         n0WeuxAlyv/cUlvF0prf4y/fiKP3AvePZIe2NESvR1eRZslgFYsZkcsDErpHYGcxUUKZ
-         STiQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:x-original-sender:x-original-authentication-results:reply-to
-         :precedence:mailing-list:list-id:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=hyhGDtYHzaswTl+3pr7ivPF8q3fA005dr2d1pPKBxTM=;
-        b=XCUTbX8D2av2GvWn97Wewu6VKG7xkr1/J3O0kLESryBen4SQ8tfx5gEr7C9D/aDO8H
-         HeOKmK8Xn0ZgXFKUZgdDpERgLaE8ExR5Al3Ql5R3uFomiSbhsJcc/Io8/bx5Ldsl7Rud
-         XRb5kVOoX6FzuX2NAjMC2v6x8Ps1u0wA99qKPcbbXx9HByot2Nb9MboTa3UIhokil503
-         DRSXdvuIn+SVsC9NHlHfKENVcJbjdCGZ6S1pEFE0oGhCxhqa9VcwtJQVte5jrXnua8sX
-         ftnkAEgGDogMaASGtRH3b6lrFBa7qC61JPrzU4ZqjQnnU4b2bsZkqdI4Kgq58Bk/rA0w
-         WcDg==
+        h=sender:message-id:date:from:to:cc:subject:references:in-reply-to
+         :mime-version:content-disposition:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:list-post:list-help:list-archive:list-subscribe
+         :list-unsubscribe;
+        bh=VmlRHyGOlmWF55wzJnQRfptNoUNMp3NwOSpe1S7PglM=;
+        b=AJfQWJhVGHJJQrLb8Tj009snDU0R6EaqT8L/nbiJ6/brc8J+nds/Aa5VU3VnQf/F9I
+         NMFnAhDvnSdiF6cOZKYN1NAs1ampe3dzP+p6cO3V1ywsSTBz6xQSaLzgMSoctB4AqLxP
+         VE433F5N9C9l6ZZEiZpRNWARXML1fg6o63tq8AZ6osNs9I30Tb8wgvGYI6J61IZLe+36
+         o11FZ8wMSP6jNKwK5L0RGXXBUSJfTMdoazDEnWWJvget7Jp3kbVOVeaQTyeKGibKU1mj
+         pWwzrqEgKjXGunYfwGBaWZGoKyj7Cgp0lAjXHHkjF0ylBzpKbjB67dwiVUfqCP1iydzx
+         K5Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
-         :date:message-id:subject:to:cc:x-original-sender
-         :x-original-authentication-results:reply-to:precedence:mailing-list
-         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
-         :list-subscribe:list-unsubscribe;
-        bh=hyhGDtYHzaswTl+3pr7ivPF8q3fA005dr2d1pPKBxTM=;
-        b=TjjrZRpTJLPMGTDexQ9FErTfMtdPFmC/lG4P4lzfIMPqwqAxGa5cDk9fL4UO4orTw1
-         gyXUhWocr414klwPXmhwlTq/8zZtsoNWzimEobWKgJmVpJHBfGvnSgk9Of+zuB7hYYtH
-         KIKLXp3dT+YrB569OFpFLaue9yycUtzeEJZMTx4oYIkPZkh02O5W6QX+fu0qngkHy9oA
-         0dhtV+/KQHzQevWL5tp8IFw9o/dmb0/BA1PJxSTg+Jlw5XJEwbJzPoW3vkyMlRxzbpqH
-         Y8NoiQ4oJ6nCYkHqTpsOMRxOfla4aa3jlLz7+mlSiqTgfGuW4qWYlStQNluG7qmJqaix
-         jz+w==
+        h=sender:x-gm-message-state:message-id:date:from:to:cc:subject
+         :references:in-reply-to:mime-version:content-disposition
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=VmlRHyGOlmWF55wzJnQRfptNoUNMp3NwOSpe1S7PglM=;
+        b=mkh1uxtNe5n7t0IkVfN5wmRWAV8dNyOKxewgSiw8xPUIEKOOi3mtPoiG2MCBL4Iwcz
+         4j3HGs4HC4jRLVqo5tvmqtKaW6TJvM4iwIY3RieHXr8WwN+l7pWgIDQ5cMWv2ktdu5HB
+         h/ziOTgULIbt8KOYYMYDd9ihY618WBpbogAMPPqb+Tb/x51gHIHM4YDsxwl/AcZzxT4w
+         ikw2ZqKL88HYW8kzw8AfSPkXtRDzUge1xxK1gwazGNj9cEUOZlMN5Dbw6XVK6I1uj6+Z
+         lSEXZM2ECFtp7vb16xZDW6I4HLnLySTqZmrVY3Sp+FjbSbrLvQOPDW+1uc3Xb849eibM
+         5klw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AJIora/apZ79tcXvfxyMyeiifmV3M5LTOBPrdCJKUHr2W+s9fn5OPbIo
-	jfPscNHXwQZx69uh67xtVoo=
-X-Google-Smtp-Source: AGRyM1sPmU32ojb0ykm8O7H/ok7JUuWZyO7dBvw6czQ/2AvOBhByrU2Ky6wJ7vv/pP9zzgmR7Q+jhQ==
-X-Received: by 2002:a2e:9088:0:b0:259:9146:d2d0 with SMTP id l8-20020a2e9088000000b002599146d2d0mr633785ljg.474.1655319438220;
-        Wed, 15 Jun 2022 11:57:18 -0700 (PDT)
+X-Gm-Message-State: AJIora+g/++5B6D0AWvLECmS5pTf4nrbHOiR8LuQQ3yj4f80Xyb/fWvi
+	YdMLVd8Fu2oEhLjKvROI2tA=
+X-Google-Smtp-Source: AGRyM1vZc9jR9NC0B6CYF+TG/UPEREJAUP2fgPnlclB8RbsC4vhevT1pAw32A7+M9w86R2kw7DBIRg==
+X-Received: by 2002:a05:6512:33c9:b0:47f:3f2f:5c28 with SMTP id d9-20020a05651233c900b0047f3f2f5c28mr4628421lfg.675.1655445266655;
+        Thu, 16 Jun 2022 22:54:26 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6512:1693:b0:448:3742:2320 with SMTP id
- bu19-20020a056512169300b0044837422320ls378943lfb.1.gmail; Wed, 15 Jun 2022
- 11:57:15 -0700 (PDT)
-X-Received: by 2002:ac2:4c0e:0:b0:479:168e:74ce with SMTP id t14-20020ac24c0e000000b00479168e74cemr542257lfq.54.1655319435355;
-        Wed, 15 Jun 2022 11:57:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1655319435; cv=none;
+Received: by 2002:a05:6512:2509:b0:47f:556d:cdc3 with SMTP id
+ be9-20020a056512250900b0047f556dcdc3ls208498lfb.0.gmail; Thu, 16 Jun 2022
+ 22:54:23 -0700 (PDT)
+X-Received: by 2002:a05:6512:32c1:b0:479:33ba:4680 with SMTP id f1-20020a05651232c100b0047933ba4680mr4612347lfg.535.1655445263549;
+        Thu, 16 Jun 2022 22:54:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1655445263; cv=none;
         d=google.com; s=arc-20160816;
-        b=GY6v6v7hObO5BMC4fyfpO8YQ98rCds3UpzSg742W5/2tP3kV2O7rjCdXyISJ6SDNc8
-         kOpC3MvsRMuNxKOaG5QP4LZ4Gf50olSYcr/gryNJd6Kp/Rd12wRp5czIRnY9Ae6Eu0BT
-         A7K8XcFfJ3UD9So9GBC4vTaGf2EqhAK8lhTmPDTW95DrQMGbcagnA/DhtqS1vP49fHYc
-         oJ9TTksdyekaeLTb3xBd/546VHxIQS5Pjn3bGQjXLpYlmtoioI1WUtjPf/yT5P1xad9X
-         I4i2Df6U7wXsDywK+SdIIMt4ymIGC7awwnd1DrwddA5y/2yEOwERHw9unBmKoZeVDBms
-         GcTw==
+        b=i9RWB5X9i0LGpXRoG77NqM8/n1gjuV5M3RgQ7I6ts8/WijptFZ+qFEGqA23KzVN7D5
+         FbQ9zI6gRLIWeOTky0quNBMgq6xXuh69j+ESueUp8ytJ4avoirQMiUsLgyjk3gj+MFsJ
+         fInaQd0457o6msdltPU/tQnbSjQ6FNxyQDsHKfbf7baabF8fEaFe+OQJ03ue/Hs8GVXQ
+         9c+vBQf0dnrdreFvxVrt14itmsC9mpSId06506YMvpzKF+TNG/GRslaFLOJajfsAjQYM
+         yZm2JCmFg7IRYIv6oOEbgqP38UEI2hJLSERSVQ1S2qgIxWO4AGFm4JWVc4XO1/9fPy84
+         kUSg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=IA/Nfnvsktst34eWNe42G7OMd7iCZuXBerNp7A17zbY=;
-        b=iuWe8hz6SvP7wlZzgp2733NpKoOTA7aKznS8kJv7N+2c/SoaSuf+IcuxsQ6S7mjQrd
-         WZ/BuVQYRYuWXDHIt6W+fGS5WviY01Bx4xNPdLhkEHcT71qxb1OYEYLGZZpJjo7YRQgu
-         EtKAeL1dHAUETwl6rcLvpH3sqXo14VrIvs2kdnNmf/to5Yy3qBGO+wznfnKy1eMBpwUZ
-         uDZTGTuVD6v1Dvslv2M8LqaoHduO7O/94Ex1bvetx1QxgST8RUicK+nXw1W4uj7rA0d6
-         anoBcLCW37V8QsxnNt8QbHQL02TdEpRjlEwcszjjWHyHZlR26x/rTp2bdC/PBiy3X+l/
-         CJxg==
+        h=content-disposition:content-transfer-encoding:mime-version
+         :in-reply-to:references:subject:cc:to:from:date:message-id;
+        bh=4wrdiVs+mwKDGuJCWcvQMlUtCwXQvIkgR4mEmHSfh7A=;
+        b=DmdLs7cxpT3EcibpewSgVigFJrC8n/C4aMJU/n7807m8+WSIbTKJmouF3NP67MbUUA
+         /wz9oiYRLkSQFKGA7gIb1kJdGD/pZpcdAj1AYlfb1SDNQkXe9/CVuPywMe9id3PGmuvy
+         XsDbg7aloQWkO5SedlxIkCnR4i25s5kbaGva882IzImiaT+o+JeUUT2Iu+W6sXWS9Qqn
+         C3ojSaReD6AcTOLkGVbO6mxB6itGev8HafWGRJNign2ToMKRjiCuDHyoE9fwWnbDka6T
+         Ja8ODLr42QdxF+Vy+DvaiViN9xHEWE1eg4JzWoNoe6Ed/IR5aweO1AuuYrUmgXxUuUjl
+         TqgQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=gBLSouUF;
-       spf=pass (google.com: domain of ajhutchin@gmail.com designates 2a00:1450:4864:20::12b as permitted sender) smtp.mailfrom=ajhutchin@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com. [2a00:1450:4864:20::12b])
-        by gmr-mx.google.com with ESMTPS id m24-20020a197118000000b00479071ed831si497479lfc.11.2022.06.15.11.57.15
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+Received: from mx4.uni-regensburg.de (mx4.uni-regensburg.de. [2001:638:a05:137:165:0:4:4e7a])
+        by gmr-mx.google.com with ESMTPS id g27-20020a0565123b9b00b004785b6eac92si147668lfv.7.2022.06.16.22.54.23
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 11:57:15 -0700 (PDT)
-Received-SPF: pass (google.com: domain of ajhutchin@gmail.com designates 2a00:1450:4864:20::12b as permitted sender) client-ip=2a00:1450:4864:20::12b;
-Received: by mail-lf1-x12b.google.com with SMTP id p18so20357151lfr.1
-        for <open-iscsi@googlegroups.com>; Wed, 15 Jun 2022 11:57:15 -0700 (PDT)
-X-Received: by 2002:a05:6512:340c:b0:479:7236:64b3 with SMTP id
- i12-20020a056512340c00b00479723664b3mr496763lfr.653.1655319434590; Wed, 15
- Jun 2022 11:57:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220607131953.11584-1-d.bogdanov@yadro.com> <237bed01-819a-55be-5163-274fac3b61e6@oracle.com>
-In-Reply-To: <237bed01-819a-55be-5163-274fac3b61e6@oracle.com>
-From: Adam Hutchinson <ajhutchin@gmail.com>
-Date: Wed, 15 Jun 2022 14:57:03 -0400
-Message-ID: <CAFU8FUgwMX_d85OG+qC+qTX-NpFiSVkwBtradzAmeJW-3PCmEQ@mail.gmail.com>
-Subject: Re: [PATCH] scsi: iscsi: prefer xmit of DataOut before new cmd
-To: open-iscsi@googlegroups.com
-Cc: Dmitry Bogdanov <d.bogdanov@yadro.com>, Lee Duncan <lduncan@suse.com>, 
-	Chris Leech <cleech@redhat.com>, linux-scsi@vger.kernel.org, linux@yadro.com, 
-	Konstantin Shelekhin <k.shelekhin@yadro.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 16 Jun 2022 22:54:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) client-ip=2001:638:a05:137:165:0:4:4e7a;
+Received: from mx4.uni-regensburg.de (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id 7C5B36000053
+	for <open-iscsi@googlegroups.com>; Fri, 17 Jun 2022 07:54:22 +0200 (CEST)
+Received: from gwsmtp.uni-regensburg.de (gwsmtp1.uni-regensburg.de [132.199.5.51])
+	by mx4.uni-regensburg.de (Postfix) with ESMTP id 50CB6600004E
+	for <open-iscsi@googlegroups.com>; Fri, 17 Jun 2022 07:54:22 +0200 (CEST)
+Received: from uni-regensburg-smtp1-MTA by gwsmtp.uni-regensburg.de
+	with Novell_GroupWise; Fri, 17 Jun 2022 07:54:22 +0200
+Message-Id: <62AC170C020000A10004B106@gwsmtp.uni-regensburg.de>
+X-Mailer: Novell GroupWise Internet Agent 18.4.0
+Date: Fri, 17 Jun 2022 07:54:20 +0200
+From: "Ulrich Windl" <Ulrich.Windl@rz.uni-regensburg.de>
+To: "open-iscsi" <open-iscsi@googlegroups.com>
+Cc: "Chris Leech" <cleech@redhat.com>,"Lee Duncan" <lduncan@suse.com>,
+ <linux-scsi@vger.kernel.org>, <d.bogdanov@yadro.com>,
+ <k.shelekhin@yadro.com>, <linux@yadro.com>
+Subject: Antw: [EXT] Re: [PATCH] scsi: iscsi: prefer xmit of DataOut
+ before new cmd
+References: <20220607131953.11584-1-d.bogdanov@yadro.com>
+ <237bed01-819a-55be-5163-274fac3b61e6@oracle.com>
+ <CAFU8FUgwMX_d85OG+qC+qTX-NpFiSVkwBtradzAmeJW-3PCmEQ@mail.gmail.com>
+In-Reply-To: <CAFU8FUgwMX_d85OG+qC+qTX-NpFiSVkwBtradzAmeJW-3PCmEQ@mail.gmail.com>
+Mime-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-X-Original-Sender: ajhutchin@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20210112 header.b=gBLSouUF;       spf=pass
- (google.com: domain of ajhutchin@gmail.com designates 2a00:1450:4864:20::12b
- as permitted sender) smtp.mailfrom=ajhutchin@gmail.com;       dmarc=pass
- (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Content-Disposition: inline
+X-Original-Sender: Ulrich.Windl@rz.uni-regensburg.de
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates
+ 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -146,59 +136,88 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Is there any reason not to use time as an indicator that pending R2Ts
-need to be processed?  Could R2Ts be tagged with a timestamp when
-received and only given priority over new commands if the age of the
-R2T at the head exceeds some configurable limit? This would guarantee
-R2T will eventually be serviced even if the block layer doesn't reduce
-the submission rate of new commands, it wouldn't remove the
-performance benefits of the current algorithm which gives priority to
-new commands and it would be a relatively simple solution.  A
-threshold of 0 could indicate that R2Ts should always be given
-priority over new commands. Just a thought..
+>>> Adam Hutchinson <ajhutchin@gmail.com> schrieb am 15.06.2022 um 20:57 in
+Nachricht
+<CAFU8FUgwMX_d85OG+qC+qTX-NpFiSVkwBtradzAmeJW-3PCmEQ@mail.gmail.com>:
+> Is there any reason not to use time as an indicator that pending R2Ts
+> need to be processed?  Could R2Ts be tagged with a timestamp when
+> received and only given priority over new commands if the age of the
+> R2T at the head exceeds some configurable limit? This would guarantee
+> R2T will eventually be serviced even if the block layer doesn't reduce
+> the submission rate of new commands, it wouldn't remove the
+> performance benefits of the current algorithm which gives priority to
+> new commands and it would be a relatively simple solution.  A
+> threshold of 0 could indicate that R2Ts should always be given
+> priority over new commands. Just a thought..
+
+I had similar thought comparing SCSI command scheduling with process scheduling
+real-time scheduling can cause starvation when newer requests are postponed indefinitely,
+while the classic scheduler increases the chance of longer-waiting tasks to be scheduled next.
+In any case that would require some sorting of the queue (or searching for a maximum/minimum in the requests which is equivalent).
 
 Regards,
-Adam
-
-On Wed, Jun 15, 2022 at 11:37 AM Mike Christie
-<michael.christie@oracle.com> wrote:
->
-> On 6/7/22 8:19 AM, Dmitry Bogdanov wrote:
-> > In function iscsi_data_xmit (TX worker) there is walking through the
-> > queue of new SCSI commands that is replenished in parallell. And only
-> > after that queue got emptied the function will start sending pending
-> > DataOut PDUs. That lead to DataOut timer time out on target side and
-> > to connection reinstatment.
-> >
-> > This patch swaps walking through the new commands queue and the pending
-> > DataOut queue. To make a preference to ongoing commands over new ones.
-> >
-> > Reviewed-by: Konstantin Shelekhin <k.shelekhin@yadro.com>
-> > Signed-off-by: Dmitry Bogdanov <d.bogdanov@yadro.com>
->
-> Let's do this patch. I've tried so many combos of implementations and
-> they all have different perf gains or losses with different workloads.
-> I've already been going back and forth with myself for over a year
-> (the link for my patch in the other mail was version N) and I don't
-> think a common solution is going to happen.
->
-> You patch fixes the bug, and I've found a workaround for my issue
-> where I tweak the queue depth, so I think we will be ok.
->
-> Reviewed-by: Mike Christie <michael.christie@oracle.com>
->
-> --
-> You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/237bed01-819a-55be-5163-274fac3b61e6%40oracle.com.
+Ulrich
 
 
+> 
+> Regards,
+> Adam
+> 
+> On Wed, Jun 15, 2022 at 11:37 AM Mike Christie
+> <michael.christie@oracle.com> wrote:
+>>
+>> On 6/7/22 8:19 AM, Dmitry Bogdanov wrote:
+>> > In function iscsi_data_xmit (TX worker) there is walking through the
+>> > queue of new SCSI commands that is replenished in parallell. And only
+>> > after that queue got emptied the function will start sending pending
+>> > DataOut PDUs. That lead to DataOut timer time out on target side and
+>> > to connection reinstatment.
+>> >
+>> > This patch swaps walking through the new commands queue and the pending
+>> > DataOut queue. To make a preference to ongoing commands over new ones.
+>> >
+>> > Reviewed-by: Konstantin Shelekhin <k.shelekhin@yadro.com>
+>> > Signed-off-by: Dmitry Bogdanov <d.bogdanov@yadro.com>
+>>
+>> Let's do this patch. I've tried so many combos of implementations and
+>> they all have different perf gains or losses with different workloads.
+>> I've already been going back and forth with myself for over a year
+>> (the link for my patch in the other mail was version N) and I don't
+>> think a common solution is going to happen.
+>>
+>> You patch fixes the bug, and I've found a workaround for my issue
+>> where I tweak the queue depth, so I think we will be ok.
+>>
+>> Reviewed-by: Mike Christie <michael.christie@oracle.com>
+>>
+>> --
+>> You received this message because you are subscribed to the Google Groups 
+> "open-iscsi" group.
+>> To unsubscribe from this group and stop receiving emails from it, send an 
+> email to open-iscsi+unsubscribe@googlegroups.com.
+>> To view this discussion on the web visit 
+> https://groups.google.com/d/msgid/open-iscsi/237bed01-819a-55be-5163-274fac3b 
+> 61e6%40oracle.com.
+> 
+> 
+> 
+> -- 
+> "Things turn out best for the people who make the best out of the way
+> things turn out." - Art Linkletter
+> 
+> -- 
+> You received this message because you are subscribed to the Google Groups 
+> "open-iscsi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an 
+> email to open-iscsi+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit 
+> https://groups.google.com/d/msgid/open-iscsi/CAFU8FUgwMX_d85OG%2BqC%2BqTX-NpF 
+> iSVkwBtradzAmeJW-3PCmEQ%40mail.gmail.com.
 
--- 
-"Things turn out best for the people who make the best out of the way
-things turn out." - Art Linkletter
+
+
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAFU8FUgwMX_d85OG%2BqC%2BqTX-NpFiSVkwBtradzAmeJW-3PCmEQ%40mail.gmail.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/62AC170C020000A10004B106%40gwsmtp.uni-regensburg.de.
