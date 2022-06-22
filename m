@@ -1,69 +1,145 @@
-Return-Path: <open-iscsi+bncBCEJDZGXJAINDS5QSUDBUBCD7SCOC@googlegroups.com>
+Return-Path: <open-iscsi+bncBDVIJONZ3YDRBDXUZGKQMGQESPNTELY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x740.google.com (mail-qk1-x740.google.com [IPv6:2607:f8b0:4864:20::740])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34C554F146
-	for <lists+open-iscsi@lfdr.de>; Fri, 17 Jun 2022 08:57:23 +0200 (CEST)
-Received: by mail-qk1-x740.google.com with SMTP id bs17-20020a05620a471100b006a734d3910dsf4082664qkb.22
-        for <lists+open-iscsi@lfdr.de>; Thu, 16 Jun 2022 23:57:23 -0700 (PDT)
+Received: from mail-ua1-x93b.google.com (mail-ua1-x93b.google.com [IPv6:2607:f8b0:4864:20::93b])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5136554060
+	for <lists+open-iscsi@lfdr.de>; Wed, 22 Jun 2022 04:10:24 +0200 (CEST)
+Received: by mail-ua1-x93b.google.com with SMTP id 75-20020a9f23d1000000b0036579695596sf7973021uao.7
+        for <lists+open-iscsi@lfdr.de>; Tue, 21 Jun 2022 19:10:24 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1655863823; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=Cid0XCNKc1Y7qxO+jHzZCAbSN9dkWGlCZUxa5CHa8BQ1d2+ArAf1PaX9Z/uBBIq3Yf
+         htL3n2vhjcqSt0hP8QP2fyU5CI/vvkGewkVZXY8y42bQQ9RYHIzH1AVqMTMZB5JIXHyo
+         mlah5zJ15GaxJRYecwrzJMLk14x6axTOX2GrX7C74JIV6VChKoUO0NnbLcBamLB0Fkch
+         o5A6rKqw870+dMLF1QZkybF2pMO3VsjAEYCcz9/QGEiFvgCvP8dJ1e4sh1gLdcS4Uslv
+         qgGyNrCz1Cc5Jg8ExQMVqfx+NXVyMmO6DWBKXyaxWDbTIhbSPilHLF1Ggipn09G2wfTA
+         Nd/Q==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:sender
+         :dkim-signature;
+        bh=5CP64Z/+AnjTrXe9nUkCujwLP5Fw5tRSs0JvAnBX608=;
+        b=MPGPjSC6aMN1hX8PPhnXC1xsXFOq0oGMXxWjaoK/PXfIl5R1ZU9CRxWc2hWit4EKP8
+         L50rQSfxlDqJ2bqiV4d2/GE9W549ZTGzI9f0CGqNAzrNgTuZCGrnb/4NX/kcI4hIJi29
+         gjgdhB42n5+9UMa+FWETo0mKh+xOmF+72K5OwU6xEobaGPWgrfz8BXeBEjvjPwUXL8SE
+         cqRDSRL2zbyClC8RTX7Tbs4WbuNB4pJdpRxTiP3+usCWNWFRB1FZJsNVkHgT6FKvP3az
+         0GGzWnEP+WNrUTBkPpgOSowGqsyI4/eNsApZHT06UPhFCzIM5jyEIg43tTKf9igw0O8n
+         K+Hg==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2021-07-09 header.b=BVNmBtGf;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
-        h=sender:date:from:to:message-id:subject:mime-version
-         :x-original-sender:reply-to:precedence:mailing-list:list-id
-         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
-        bh=VJqMa+drcYZbfCjkDP6H4S5VZ/CZyA5gXTFyJoM+ccM=;
-        b=e7D3NwheILWMl6Zbdz3w0ZKSS84ZDOQI3bUDYPaqLJF2Vcg3pJlv6rT/ntFIAGk/nf
-         hInV7wxlK4adpMcKQBDId+A4ndjM1qKYoKdRJ/1vkNMg3K/klmfYWk1ozPmMFP6+tb8x
-         /2RSFxkFEhSHvdBY+soZPxKnjyzKreSf2BZm1IYF6XuN2/GrwLxshQXT+PplYXP1DwXe
-         lwCkSCJrRC77sB5fWnc1lyiNMVz4yu+mnJ0J14ddkp89Y+mRh9Utv5Sx2rn9n8CcBVAY
-         AT3HPE7MgXMUEK1l45giQGXDgKukuxp7VtlHLHT2ijWxZq6MY8CCIg0MrJP5aSupgK9O
-         0W2w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:message-id:subject:mime-version:x-original-sender
+        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:x-original-sender:x-original-authentication-results
          :reply-to:precedence:mailing-list:list-id:list-post:list-help
          :list-archive:list-subscribe:list-unsubscribe;
-        bh=VJqMa+drcYZbfCjkDP6H4S5VZ/CZyA5gXTFyJoM+ccM=;
-        b=nDvOQFKOhYH71kUwSXS20LKZadFOEYv4CFJ7mpDEWYCDKH3AsQfMnZ/2ASmeZW/uAt
-         cI3SVmY4mrmKK5bvsmFkzrF7J0bvYYRHxItdmxtAFZ9+xDMu+eFewKqueJrSvDvGsGg6
-         aYwGqtc2N1vgh10p0PXEN5ZNOzjRNLEzrYyfXec2YO35joH+qiBDxH3h7HTWFyFJsUqv
-         NH8yjx1QG1OaNR4QDGmOKGdxIzebGsKDicNAmrdIVuWVBnnXJ87H4IUOfHWX/iUSbPqp
-         Ti6x4fJlXSR96lh932XuLUg8ssntwZEBmRKGFS99e4mCnQ1PMFiXKfKiCTTgC3pDC1rL
-         E+5Q==
+        bh=5CP64Z/+AnjTrXe9nUkCujwLP5Fw5tRSs0JvAnBX608=;
+        b=Q2BlFbeG+HYl+b8yw/Dm4HGuCgACYd5M4eH2B69zZqgdcVdNeNgAYR5Q5yUR0pFVxj
+         mbr1/kMVp3nQsFDdKwHzO/S+paILeGAC9hkVSNUo+r08tpl3R9Mt+82Cf5EpBolCFH5J
+         yDl7Bhck/hWVCrsC+q2UD7653TiaOgO1OmoxpJg4UujO6Gb/xmZFwS5XTlnrD8Dk9vQz
+         bbxuK3bf9Y7zxDHoPw1M1p07RnwwRi2xSwOJTXF7JeHGak7Nx2ryhPKhms9UlAFCXuU9
+         PGXoIkdFCZPci5E3K4Hs7lm9sImyNjMd7MVbG9GQg3a+o8DA32jZy0RJ5SgKFtPdliJD
+         QxRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=sender:x-gm-message-state:date:from:to:message-id:subject
-         :mime-version:x-original-sender:reply-to:precedence:mailing-list
+        h=sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :in-reply-to:references:mime-version:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
          :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
          :list-subscribe:list-unsubscribe;
-        bh=VJqMa+drcYZbfCjkDP6H4S5VZ/CZyA5gXTFyJoM+ccM=;
-        b=1OucIII0bNcUBWvZCbXeGEeHcs3XvNx6lpWRwrFgHZBUx5Zbuw/QddAffaqNyWBcR4
-         xMXzLlETIRAqX/aw8fLShFdxp1DJkUw3iVtjPYNZ4sYjCeEGQVskH5aZuZAwUmRCgiKS
-         c4+tJnhx2DtRFCXFHqsfusbNgXr0BAlk6njed/tIAT8ot6HALR+aV8TxdFYqdpQUYJaI
-         73ug7GSM72EsEoszgnJ8LCGBQLiunIrrnb++AWoFm8L/16DhE8ZILhCtERCJlM8zafhz
-         SSJcsmT7Iad0kNzpzu0a9LzZkHjn/bYyVb111mGYXSiyLly3nwn4h+wKX52xpv84C5QQ
-         N4dA==
+        bh=5CP64Z/+AnjTrXe9nUkCujwLP5Fw5tRSs0JvAnBX608=;
+        b=UWWCuYeEpqOT6A7ueyV3dYfwNtcKyP8QRO0ofW/1AI1YVNI8SWooLTf4IItBKOZbTa
+         +X4ur66DnGsD3YYpMqWVksZtmz459lOoqmaVX05zxy800jlebpHv8QoSze3GZzcn2Jex
+         oNqESqLtYvKaPDl062ZApF7wokXt7pW08Td45r+0PU/xb9vlGpJTP5v+ud8OV2c1znL/
+         aDwjaOIGgVNoEGaefzZZJ8as2ZaoKpf5Muq1OGGTmAIUUkXY5v3fqmJgSBslbljLyRyz
+         1YTB5MVZ0BiMnQuNEfJLKwRLqjic8d8P1qdpGDv5FDqyUl8XThnheskQanD3qMs3qsId
+         +uxQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AJIora+VVM0D1ZhZNhf52IooeuJwloidX87ZDimLGCmPKF5q3Ci+4Fcb
-	FQm+8dxDSeBCNTbaVT+0JcQ=
-X-Google-Smtp-Source: AGRyM1sm+ZtCEB+saAL1hBsKNDFDGs516LYEX/DAuX9VUjowFmuOhIWbDFQCrrEAJSot7eNWWkhoYA==
-X-Received: by 2002:a05:620a:27c2:b0:6a7:1db:a6e2 with SMTP id i2-20020a05620a27c200b006a701dba6e2mr6312810qkp.150.1655449042647;
-        Thu, 16 Jun 2022 23:57:22 -0700 (PDT)
+X-Gm-Message-State: AJIora93W9LV75VgebWNO+sEVEWYknpXeT4EHGs5cZ03kfNjaRFlqHfg
+	yYFX752VLiMHYpPW9Ot2m6Y=
+X-Google-Smtp-Source: AGRyM1sVngFTJ8aeIQMcn+gMupW41JN1hhMZRaPTxhCb9kUVgseF7j/Bs4cNaiHVHLj7N0UjybgP2Q==
+X-Received: by 2002:ab0:1390:0:b0:376:4e3a:98e6 with SMTP id m16-20020ab01390000000b003764e3a98e6mr519444uae.64.1655863823584;
+        Tue, 21 Jun 2022 19:10:23 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:622a:1a19:b0:305:189:130b with SMTP id
- f25-20020a05622a1a1900b003050189130bls2601829qtb.7.gmail; Thu, 16 Jun 2022
- 23:57:21 -0700 (PDT)
-X-Received: by 2002:ac8:5b84:0:b0:305:18cc:1635 with SMTP id a4-20020ac85b84000000b0030518cc1635mr7198918qta.289.1655449041148;
-        Thu, 16 Jun 2022 23:57:21 -0700 (PDT)
-Date: Thu, 16 Jun 2022 23:57:20 -0700 (PDT)
-From: can zhu <zhucan.k8s@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <35714a79-ebfe-4c78-966e-bc20add1aea0n@googlegroups.com>
-Subject: iscsi device with multipath
+Received: by 2002:a05:6102:3713:b0:34c:2462:25d8 with SMTP id
+ s19-20020a056102371300b0034c246225d8ls2932670vst.3.gmail; Tue, 21 Jun 2022
+ 19:10:21 -0700 (PDT)
+X-Received: by 2002:a05:6102:e14:b0:354:3883:f103 with SMTP id o20-20020a0561020e1400b003543883f103mr5414524vst.5.1655863821414;
+        Tue, 21 Jun 2022 19:10:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1655863821; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JCXOySCnbpE1j1zdFSM1uOop3trJ/7dZQ22oTjFyMO05jsLPsXd9WiR94RpNF17G+3
+         OrFlNqIeBEqNcfoJSVJEW0Tz/Wdpeota41SztFEzJz69unoCELSGK+C6dwDU2YCNmGC2
+         9f9RS62KD2lISOSYkl+5/zksV8fAc3kdV/dOwIhqxiRhmuRvUJSVT78Yjvt/aBBQyFLE
+         I/WXb6/5vzyK73Wtj5X+QzFITjFI7WL1ZWpkPOWK1+PbcrPGuCOB9yqy+OfyrS1g/Qvu
+         LMTPAcoyDVwbH/zx2V5nb+RsPDWka1beGn4uuAwa0B3/VeH7yMWZ34+LFhEXlMUgHg+E
+         0zOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:dkim-signature;
+        bh=sVR8nukYIxkCZX2MI2OiQeNj49Jy0f4htE/CusE+gIY=;
+        b=nxTOFKE3vgegIsP6l4yQYbq6az57jobS1gXFJnW9JGWhJgnaXSJ3FwqeYLYFHAClS2
+         svi+FTpOLZ2sqpCoj/jbDJSgNNgM/xrN1Fnz8L1fzCtGLYeKYI2pO6CL5pS/TqOyC4U3
+         OTrzKyzYsqj1n1b30RDrvL8gGr7o2Zp2kypmkuixsDwdcqGZKOcsKuofCR0epzzI1fb0
+         iiL1kS92Ibns8bwc5MjY0v+BZjzHBOaDINgLT7VwjwL3j83D1F4gqtEAz/pDq55V30Wz
+         RKjk7GjqqFvot/ot+H6ly34wdHruSsdODCItL5WAvR6gITTXnFX52HRCRLuLRwavNzO/
+         zlwg==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2021-07-09 header.b=BVNmBtGf;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com. [205.220.165.32])
+        by gmr-mx.google.com with ESMTPS id ay14-20020a056130030e00b0037f13500ccdsi785000uab.0.2022.06.21.19.10.21
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 Jun 2022 19:10:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) client-ip=205.220.165.32;
+Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25M0J83V011419;
+	Wed, 22 Jun 2022 02:10:20 GMT
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3gs6kf72tw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 22 Jun 2022 02:10:20 +0000
+Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.16.1.2/8.16.1.2) with SMTP id 25M26XEQ037980;
+	Wed, 22 Jun 2022 02:10:18 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com with ESMTP id 3gtd9usx3s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 22 Jun 2022 02:10:18 +0000
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 25M29Bio002724;
+	Wed, 22 Jun 2022 02:10:18 GMT
+Received: from ca-mkp.mkp.ca.oracle.com (ca-mkp.ca.oracle.com [10.156.108.201])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com with ESMTP id 3gtd9usx36-2;
+	Wed, 22 Jun 2022 02:10:18 +0000
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+To: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
+        Dmitry Bogdanov <d.bogdanov@yadro.com>
+Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Konstantin Shelekhin <k.shelekhin@yadro.com>,
+        open-iscsi@googlegroups.com, linux@yadro.com,
+        linux-scsi@vger.kernel.org
+Subject: Re: [PATCH] scsi: iscsi: prefer xmit of DataOut before new cmd
+Date: Tue, 21 Jun 2022 22:10:12 -0400
+Message-Id: <165586371838.21830.14886184856943048987.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.35.2
+In-Reply-To: <20220607131953.11584-1-d.bogdanov@yadro.com>
+References: <20220607131953.11584-1-d.bogdanov@yadro.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_1068_524240988.1655449040674"
-X-Original-Sender: zhucan.k8s@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-ORIG-GUID: UjP0GGweV_k-NZy3M70bUX1UemYGdtIr
+X-Proofpoint-GUID: UjP0GGweV_k-NZy3M70bUX1UemYGdtIr
+X-Original-Sender: martin.petersen@oracle.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@oracle.com header.s=corp-2021-07-09 header.b=BVNmBtGf;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates
+ 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -77,40 +153,28 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_1068_524240988.1655449040674
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1069_94143344.1655449040674"
+On Tue, 7 Jun 2022 16:19:53 +0300, Dmitry Bogdanov wrote:
 
-------=_Part_1069_94143344.1655449040674
-Content-Type: text/plain; charset="UTF-8"
+> In function iscsi_data_xmit (TX worker) there is walking through the
+> queue of new SCSI commands that is replenished in parallell. And only
+> after that queue got emptied the function will start sending pending
+> DataOut PDUs. That lead to DataOut timer time out on target side and
+> to connection reinstatment.
+> 
+> This patch swaps walking through the new commands queue and the pending
+> DataOut queue. To make a preference to ongoing commands over new ones.
+> 
+> [...]
 
-How can we repoduce the error with "Multiply-cliamed blocks"?
+Applied to 5.20/scsi-queue, thanks!
+
+[1/1] scsi: iscsi: prefer xmit of DataOut before new cmd
+      https://git.kernel.org/mkp/scsi/c/65080c51fde4
+
+-- 
+Martin K. Petersen	Oracle Linux Engineering
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/35714a79-ebfe-4c78-966e-bc20add1aea0n%40googlegroups.com.
-
-------=_Part_1069_94143344.1655449040674
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-How can we repoduce the error with "Multiply-cliamed blocks"?
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/35714a79-ebfe-4c78-966e-bc20add1aea0n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/35714a79-ebfe-4c78-966e-bc20add1aea0n%40googlegroups.com</a>.=
-<br />
-
-------=_Part_1069_94143344.1655449040674--
-
-------=_Part_1068_524240988.1655449040674--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/165586371838.21830.14886184856943048987.b4-ty%40oracle.com.
