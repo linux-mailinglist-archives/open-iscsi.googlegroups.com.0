@@ -1,130 +1,149 @@
 Return-Path: <open-iscsi+bncBAABB5MSWCLQMGQECEFQSRQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc3b.google.com (mail-oo1-xc3b.google.com [IPv6:2607:f8b0:4864:20::c3b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435ED58A01D
+Received: from mail-oi1-x239.google.com (mail-oi1-x239.google.com [IPv6:2607:f8b0:4864:20::239])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4D0958A01F
 	for <lists+open-iscsi@lfdr.de>; Thu,  4 Aug 2022 20:01:28 +0200 (CEST)
-Received: by mail-oo1-xc3b.google.com with SMTP id g30-20020a4a925e000000b0043580fcc128sf242884ooh.4
+Received: by mail-oi1-x239.google.com with SMTP id c9-20020a056808138900b00342a07994e0sf100182oiw.1
         for <lists+open-iscsi@lfdr.de>; Thu, 04 Aug 2022 11:01:28 -0700 (PDT)
 ARC-Seal: i=2; a=rsa-sha256; t=1659636087; cv=pass;
         d=google.com; s=arc-20160816;
-        b=MmyZkjcNWgQFuAC1KPzd0w1fNcUT95R5aWPbUE4iO4hENXlntjE380uxpfPX4XiRgY
-         1UgcViUtgMnXWUjtVuQkaUY8Kv6jEkhMfbgJkUaeZEsQcJV4U6b4PTX1zaG5bm0Zw9eS
-         jrLWivD7FkSiX9OTxKY76BfDJHEqZFK4MgM4c2yJKDqJQT1s0GnlEoqFt4gYQLfEbODi
-         YjyPikpYvS4WMvyzMGpw2hnakMrPQ+4XLuxqWzFnsEyu+NQret8s/sso8UgX9JuBF+v8
-         02RM+Lu5ePhIwcvmSETGpO0iU3g1bznRAH/tohf8AwnKxBApr9DRTxLjT8fhb4Jmi7+6
-         13yA==
+        b=WRCzI7mjK/eaUrTwdLrdcMgn0+ixz4e5jN38f0OD43EzXCHLTLpMgGx4THtHayku7e
+         eygl5Ln7HZZ77LPu2OuTBnJJKK+JwvQaidqCCiF+OpyQF9di+VlYLGYWHw5hOxm7v7OA
+         wA1FlzmXLeQ80fH7oa2Od7jSi3UjMDGTkkpD9tpNHtFqWCZcWxjtKNpCWQkGkKHASaPa
+         AwWh9p9BiAaDWb/z09Qyhr79r4bcmvIu9ibZcmt4GyP1STxt+eYCkVSt37uV41uZCW49
+         6wu8Z5M7CGFSBUvLxrufeKTyTcDX52cQ1FZIoaAgR3Y8ygXRcQ4ENsEtoN5F8RE5OCVM
+         zUfw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:dkim-signature;
-        bh=DqkVYD0uA3M2ZS7DIXe0J/Hd8JjgBBTL5GEl5aU1mLw=;
-        b=xhaIcX9j2q5CqQ/9D7k2+Lvi2WewnNeSkNR8IMboj7UGhtEPIaQRJuEC5N+Vn68kKx
-         DBrqLqrbV91fYVOO33q/SjFX5BYZxFc8Vl5wIePEl7J/wL7cxoT/mg6WQ9I92XVtBmc8
-         2VRLUwWt0zaqewyPcR3SkpZbEYH5anDHQJm/2lSZ9jX01WzQRxuLfQvPe4zRTQTufIue
-         8mM0f1sW3dlTyEJ+NrEunZ1GukiGz1s+L8ygGe7wkPARMn9N6u/cJbL6Hxo2TGyzK4CD
-         Bfnha8g65+daUaR0wh0NGPWn6aDwqSEQ4A/7UXwmKCo+JtB81La6unwPvnglDk8LHYpB
-         s8EQ==
+         :list-id:mailing-list:precedence:reply-to:mime-version
+         :content-language:accept-language:in-reply-to:references:message-id
+         :date:thread-index:thread-topic:subject:cc:to:from:dkim-signature;
+        bh=dgTYBdyeK5Gz6vXzpHXjYQ6xWbjroDmEqKPS6c80CCw=;
+        b=Y2MMqL9BgHzPsYuRYKNgloqOUsYEgih+C0tUSMzSOV6OggNA+HIBUjQMj5ECy6FbFz
+         wA7VUZxOUw7HfUxzGwhCpxK5fCMpODOwK00szVhuAY55PzD3EBELlLgSrnH88Cn/bWjH
+         xylYcmxaKIslO1GjAKEaO75vh8UeMx8MxqgtLusOPaWqdj41i0cea6GtDhOiBW55kjCV
+         Iz7Um/krGrLY1rAxKtV7q6fcSBUbMfr62hTOvdOPF8z36e4LvQbVg62T0qJIBjYfYan9
+         RxuRLQLkefMv1DtkR+AmRWPu94ezqBlT2WQ8J+a2Y4iDiGljJOPyk8+F3wUxlQv/zcg5
+         4Dow==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=lijinlin3@huawei.com;
+       spf=pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.188 as permitted sender) smtp.mailfrom=lijinlin3@huawei.com;
        dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=DqkVYD0uA3M2ZS7DIXe0J/Hd8JjgBBTL5GEl5aU1mLw=;
-        b=e+0KhoA6UEQlEXxBUdOSiK+cdRgGg+kfppbOog7t2k5uqGqB/yYZFBXqsD0A2jGINu
-         EvkYUFlv9CZpVWicWNXsIDxWmIbZxUoNJB0oQaT1RNLA2KBmqSd74H9AXplGgOc52yrY
-         +V+alCTFw7n6mJ4yHBki1CLrmlQxfAg1udQzIo/pezZKnjJ3WU9HdHS9pPoKB8DE0iOm
-         15gx0G8AGUOAu/hTee0OtCTgQAJE+Uo4fLTCQTRJZojVpPSxc5M8MR0O1aa4cUUrC7+H
-         Tu/MlJHlctKMw5Z04tnSlsW+aGcRql20YK/NFSqaHhhzHrZYZ5nUoxYi33Bwu5DOt9/z
-         kPTA==
+         :content-language:accept-language:in-reply-to:references:message-id
+         :date:thread-index:thread-topic:subject:cc:to:from:from:to:cc;
+        bh=dgTYBdyeK5Gz6vXzpHXjYQ6xWbjroDmEqKPS6c80CCw=;
+        b=AOddgZEUZRyYvdurQ/lHZbten13yf/dBJ3hnxWyiIpPk54hkyvZIPKVYKqw+Mhia1C
+         ikZBUcZZYifRvRCPijqkhnZXsZkFkh31DVAoQ+U5SS/3wkBlJbtRoInYYZPjRESkgedJ
+         9iwNv43QDrNi5+1bV10G6yjMvpmQ7cj457pQvUuio1Iu23FqLs3V2ySPG+26IGqZgwq6
+         p55l0JkMIbhnepo9kpTHc16Mk8Z2uhTs/GYeiCb8ipNynkClfLykdvbwOLjKVhP++p1Y
+         xrZ1DpzG42IUJG19J584QzL4+IkF0aYhwg6AOpdsvjHdBA2mLc5WOs+WRmmWaHQeAK+D
+         H7tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=DqkVYD0uA3M2ZS7DIXe0J/Hd8JjgBBTL5GEl5aU1mLw=;
-        b=QdFuP2LOWxkedprl1UceK04+MQWjtTtbl7EKzUBmcT0msKvmH7fVq9xlWhKQdRQ6pg
-         MiYeHl/+i62obQqm2AzUHY7frxfpD1F17XRkPOetlPBi7dSKrEvgpac8jLxV6wiZYj3x
-         waaKd8wCZq+0/X3OWjoTBGR/kvzMJFlPP4a1gHpdeamKqjNs04sbHrQzQrJmpzE3ow86
-         Z0v6gbWCoHsWYZIAyZBVaUNrs+eWDMO/ARLuGDNwPumSbjBcNWdV99elHn/eq03X4Xnl
-         ynu5pVgisc1A3W3ksaR2+zw7cGgEZ/wzwkP11LHRiWueeXOrNTi2d/jreW8dviuxOoHE
-         ohVA==
-X-Gm-Message-State: ACgBeo24ekcQ2jxN59G+02SVZRDZeT+ej/U1Vc+bEnB5KhKQRruqIrHK
-	TQCX+cVC/5mB/mBaJKrkUiA=
-X-Google-Smtp-Source: AA6agR54buz+Xv6FxZ6DPka0inUBOmi7EAEPlDRqA6LrvOqWp2iXRK5o5CcTMfTYBQLpYsLuHKBW2g==
-X-Received: by 2002:a05:6870:f222:b0:10b:7326:18c2 with SMTP id t34-20020a056870f22200b0010b732618c2mr4856856oao.55.1659636086976;
-        Thu, 04 Aug 2022 11:01:26 -0700 (PDT)
+         :content-language:accept-language:in-reply-to:references:message-id
+         :date:thread-index:thread-topic:subject:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=dgTYBdyeK5Gz6vXzpHXjYQ6xWbjroDmEqKPS6c80CCw=;
+        b=1vInNTuB8zf3w9D2tSyAXw0Yka64KWZXfrfW28BVwrh/t8K8ZCtgCtYdjXKKmaqWaC
+         ilXc1EJIIw3+yrAh08RT7TLzanDuqmnoepirEj1r6J2KKhZ8cKhbVltmGd8qftl0uDXL
+         TgzW/syUNSjpT5YMpThipVvPJr5BvQuIhj5+zQj+6aQyuKzeckKFbfYtRI33zXrDHWvI
+         lUsQtLxc4JQakcDFUEttnhgumVH8GmRLVGeBLw5Eox049tsSvPL3hnAb2pR6px8fOsiD
+         pWb9mATsQ5pImkNyHSL0jCfgPsPyDsN6nyfnTQEaliG6guLhzqyrjHYlemwtkdYQYAK7
+         asAg==
+X-Gm-Message-State: ACgBeo3I3cHKeJg8+iRB77izpoHJOf9f67g+GDuz/wfsVY2FkfzGcYve
+	oCmlZZw4e0NRiloucg9fSBo=
+X-Google-Smtp-Source: AA6agR6NhA5dTJx92fUvL/AejOFsiBHnXh82rZSejwUlNmPo1fLmXsrsENgYaZMer97BhkjQ0+lYXw==
+X-Received: by 2002:a05:6870:33a7:b0:f6:dd:902 with SMTP id w39-20020a05687033a700b000f600dd0902mr4666347oae.104.1659636087031;
+        Thu, 04 Aug 2022 11:01:27 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6870:8785:b0:10c:45cc:c65a with SMTP id
- r5-20020a056870878500b0010c45ccc65als905710oam.6.-pod-prod-gmail; Thu, 04 Aug
- 2022 11:01:25 -0700 (PDT)
-X-Received: by 2002:a05:6870:b28a:b0:10f:72f:6c with SMTP id c10-20020a056870b28a00b0010f072f006cmr1426074oao.148.1659636085713;
+Received: by 2002:a05:6830:1199:b0:61c:57b8:3c9c with SMTP id
+ u25-20020a056830119900b0061c57b83c9cls500523otq.8.-pod-prod-gmail; Thu, 04
+ Aug 2022 11:01:25 -0700 (PDT)
+X-Received: by 2002:a05:6830:1b68:b0:61d:2520:59dd with SMTP id d8-20020a0568301b6800b0061d252059ddmr1158720ote.217.1659636085703;
         Thu, 04 Aug 2022 11:01:25 -0700 (PDT)
-Received: by 2002:aca:b803:0:b0:337:ca0a:a326 with SMTP id 5614622812f47-33b27c391b3msb6e;
-        Tue, 2 Aug 2022 02:39:30 -0700 (PDT)
-X-Received: by 2002:a05:6808:23c6:b0:33a:af95:7ddc with SMTP id bq6-20020a05680823c600b0033aaf957ddcmr8240850oib.38.1659433169933;
-        Tue, 02 Aug 2022 02:39:29 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1659433169; cv=none;
+Received: by 2002:aca:40c6:0:b0:32b:fe3:9955 with SMTP id 5614622812f47-33b27d35dcdmsb6e;
+        Tue, 2 Aug 2022 04:23:40 -0700 (PDT)
+X-Received: by 2002:a05:6808:1d4:b0:33a:782f:b3ad with SMTP id x20-20020a05680801d400b0033a782fb3admr7812349oic.161.1659439419812;
+        Tue, 02 Aug 2022 04:23:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1659439419; cv=none;
         d=google.com; s=arc-20160816;
-        b=wUlW02eLuG7Nrp/p6N5hKrzCauWzvPCvUCm6JCzIhwxhJIWlBqFetpI5jQBDu8AL5C
-         e9eaVxhAlOR7F6hoDA+5tOXtEMS6ia79wnQJfvIikdO3xn/UyavVL2LXcLax6n2R4JAL
-         N98T0f0oHkS5YOTrgUrhiEpgudA9CTxWO0OADj/UAYigeBTgYGaSEYBC9uwLQQ/JmA6Q
-         nE+p97U/R5DZdfvW/Cdyb0GQeeLHO5i8JB93R9NsWNX1DSNfKw+hanyZ9vMrmF8Xd20q
-         IgQBNV0dzhczOOUz11XkfEUbt3tKBQtMfgH5fc+wzbof6yffW4UcQftim9Ia7bDBHEBh
-         REog==
+        b=kYLNa/bl6iJxrQl6GoxAX4aZl0Lp/l7e39j15s+ej3Gsg7tC9Y1mWU+TgP0q+c8PVu
+         EpVQoCLNztRrqupErNTG8YV2QsM+IUB6+vRzOHaoCRzhp0diOCGhBlYKYp5qV76OuXxF
+         Z05+tAwfPMt+8cep6wjtNutURNz6tSvSNYr+LPu+G2Iv+0hdE2gjda2tFS8nRyV5VwY/
+         +fDWZ+tCT4xlqpNILgssfvnV5kOcxx9zIEqXeFaXkYe42k7i07mFb6Blb85iuaEaYov8
+         O1ITa6XY0E24NTMtXisrKNOA9nF1F2UeXvkGr+1kcQOZI6mz4pwAqC9uRavf3GZm2c22
+         A4IQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from;
-        bh=LyvNpkBQCZ9beUsXEWGnQQYs+gxnttNKWMrIufmPTZ4=;
-        b=P5MrbeMaCfB0+W/2AJZYeHoWOmlKuLuwRbRkCT5cr50ya3fWXcFm/Yl/ypt4jrN6EM
-         RUxQxwfjw6HZxG6UccwtdH7KJ09CXIybwCZCifvQND+gBjT5F5SS0qSplQP2y/0HZO2J
-         6zYFmFwl9XDEIBXqZeEJqggDKN1OzrxYGUmKnKf3nhOvD6KP2kJRRku1CqOMEI64F6cj
-         WnxwYafKqyWCcTpW2MNLGT++4XM7Gb9SR9QOIdoi2zkw53OiwqV/D+tHIWyMd1c26GLc
-         sc80ZUtPO276POe2SB2ZM/qp9Qu7QP3l8dMqHzKx8e4zCfwc65qwZgqqRj6UYsNad8hb
-         vyug==
+        h=mime-version:content-transfer-encoding:content-language
+         :accept-language:in-reply-to:references:message-id:date:thread-index
+         :thread-topic:subject:cc:to:from;
+        bh=VpKhBNw7EdXpyAIY//ydLjTRdKqljRSYlCteNuk6bzs=;
+        b=CiUJeUg1H1iiezzDBFnFCrP90Sk6g0TChOuH23fqPTE4ckehYZx/IDYIONqg4nDGuj
+         Ius4FwZAaEpdN/cL7oxlf90LTrSIM13NDVasEzIKx1v7X8e2l4SLFXo+WUUDc4GMKcD5
+         gX34Y7nRA5T2d/u4tg+ao7QoZb/39XPB0x30tfOjqjiN4TjPwlSjgToZfVEAg15tObYv
+         Dx0mayAp1foS/gTMcFLZQ/XDnnKBeoHBY//SPVLWqczftel035Ql2R+ha+PgHvf9qjID
+         toLDXY3t+ZlRBfbbuwud+izelyuk3oFPoDt7nGpGhqL2DJS5lBbuibiks0Hoqn/kffWa
+         /Wlg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=lijinlin3@huawei.com;
+       spf=pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.188 as permitted sender) smtp.mailfrom=lijinlin3@huawei.com;
        dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com. [45.249.212.187])
-        by gmr-mx.google.com with ESMTPS id 71-20020a9d02cd000000b0061cae803d3asi222706otl.0.2022.08.02.02.39.29
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com. [45.249.212.188])
+        by gmr-mx.google.com with ESMTPS id t5-20020a056870600500b00108c292109esi1031378oaa.2.2022.08.02.04.23.39
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 02 Aug 2022 02:39:29 -0700 (PDT)
-Received-SPF: pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.187 as permitted sender) client-ip=45.249.212.187;
-Received: from canpemm500008.china.huawei.com (unknown [172.30.72.54])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Lxqf33rRGzmVWX;
-	Tue,  2 Aug 2022 17:37:31 +0800 (CST)
-Received: from localhost.huawei.com (10.175.124.27) by
- canpemm500008.china.huawei.com (7.192.105.151) with Microsoft SMTP Server
+        Tue, 02 Aug 2022 04:23:39 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.188 as permitted sender) client-ip=45.249.212.188;
+Received: from kwepemi100016.china.huawei.com (unknown [172.30.72.53])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Lxsvs5jP5zWfFn;
+	Tue,  2 Aug 2022 19:19:37 +0800 (CST)
+Received: from canpemm500008.china.huawei.com (7.192.105.151) by
+ kwepemi100016.china.huawei.com (7.221.188.123) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Tue, 2 Aug 2022 17:39:26 +0800
-From: "'Li Jinlin' via open-iscsi" <open-iscsi@googlegroups.com>
-To: <lduncan@suse.com>, <cleech@redhat.com>, <michael.christie@oracle.com>,
-	<jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <mark.mielke@gmail.com>
-CC: <open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linfeilong@huawei.com>,
-	<liuzhiqiang26@huawei.com>
-Subject: [PATCH] scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling getpeername()
-Date: Tue, 2 Aug 2022 18:19:39 +0800
-Message-ID: <20220802101939.3972556-1-lijinlin3@huawei.com>
-X-Mailer: git-send-email 2.27.0
-MIME-Version: 1.0
+ 15.1.2375.24; Tue, 2 Aug 2022 19:23:36 +0800
+Received: from canpemm500008.china.huawei.com ([7.192.105.151]) by
+ canpemm500008.china.huawei.com ([7.192.105.151]) with mapi id 15.01.2375.024;
+ Tue, 2 Aug 2022 19:23:36 +0800
+From: "'lijinlin (A)' via open-iscsi" <open-iscsi@googlegroups.com>
+To: "lduncan@suse.com" <lduncan@suse.com>, "cleech@redhat.com"
+	<cleech@redhat.com>, "michael.christie@oracle.com"
+	<michael.christie@oracle.com>, "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
+	"martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+	"mark.mielke@gmail.com" <mark.mielke@gmail.com>
+CC: "open-iscsi@googlegroups.com" <open-iscsi@googlegroups.com>,
+	"linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, linfeilong
+	<linfeilong@huawei.com>, "liuzhiqiang (I)" <liuzhiqiang26@huawei.com>
+Subject: RE: [PATCH] scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling
+ getpeername()
+Thread-Topic: [PATCH] scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling
+ getpeername()
+Thread-Index: AQHYplPSHTFXshUY502LyLNPnnKlQa2bdgFg
+Date: Tue, 2 Aug 2022 11:23:36 +0000
+Message-ID: <d8afc88468ab481eb325e842ad384e0e@huawei.com>
+References: <20220802101939.3972556-1-lijinlin3@huawei.com>
+In-Reply-To: <20220802101939.3972556-1-lijinlin3@huawei.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.174.179.2]
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.175.124.27]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- canpemm500008.china.huawei.com (7.192.105.151)
+MIME-Version: 1.0
 X-CFilter-Loop: Reflected
 X-Original-Sender: lijinlin3@huawei.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of lijinlin3@huawei.com designates 45.249.212.187 as
+ (google.com: domain of lijinlin3@huawei.com designates 45.249.212.188 as
  permitted sender) smtp.mailfrom=lijinlin3@huawei.com;       dmarc=pass
  (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-X-Original-From: Li Jinlin <lijinlin3@huawei.com>
+X-Original-From: "lijinlin (A)" <lijinlin3@huawei.com>
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -137,126 +156,12 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-I got a kernel NULL pointer derference report as below:
+So sorry, this patch has problem, please ignore.
 
-    BUG: kernel NULL pointer dereference, address: 0000000000000038
-    CPU: 4 PID: 1050 Comm: cat Not tainted 5.19.0 #38
-    RIP: 0010:kernel_getpeername+0xf/0x30
-    Call Trace:
-     <TASK>
-     ? iscsi_sw_tcp_conn_get_param+0x11f/0x17f
-     show_conn_ep_param_ISCSI_PARAM_CONN_ADDRESS+0x90/0xb0
-     dev_attr_show+0x1d/0x50
-     sysfs_kf_seq_show+0xad/0x120
-     kernfs_seq_show+0x2c/0x40
-     seq_read_iter+0x12e/0x4d0
-     ? aa_file_perm+0x177/0x590
-     kernfs_fop_read_iter+0x183/0x210
-     new_sync_read+0xfe/0x180
-     ? 0xffffffff81000000
-     vfs_read+0x14d/0x1a0
-     ksys_read+0x6d/0xf0
-     __x64_sys_read+0x1a/0x20
-     do_syscall_64+0x3b/0x90
-     entry_SYSCALL_64_after_hwframe+0x63/0xcd
-
-The problem scenario is:
-
-              CPU1                         CPU2
-    -------------------------    ------------------------
-    iscsi_sw_tcp_conn_get_param
-      spin_lock_bh(&frwd_lock)
-      if (!tcp_sw_conn || !tcp_sw_conn->sock)
-         spin_unlock_bh(&frwd_lock)
-         return -ENOTCONN
-
-      sock = tcp_sw_conn->sock;
-      sock_hold(sock->sk)
-      spin_unlock_bh(&frwd_lock)
-                                  iscsi_sw_tcp_release_conn
-                                    spin_lock_bh(&frwd_lock)
-                                    tcp_sw_conn->sock = NULL
-                                    spin_unlock_bh(&frwd_lock)
-                                    sockfd_put(sock)
-                                      task_work
-                                        __fput
-                                          sock_close
-                                            __sock_release
-                                              sock->sk = NULL
-                                              sock->ops = NULL
-                                              sock->file = NULL
-      kernel_getpeername
-        sock->ops->getname
-        ^^^^^^^^^
-        NULL pointer dereference of sock->ops
-
-sock_hold() and sock_put() can't ensure that sock_close() won't be
-called before calling getpeername() or getsockname(). Using fget()
-and sockfd_put() replace sock_hold() and sock_put(), and put them
-under frwd_lock protection, to ensure that the socket struct is
-preserved until after the getpeernaem() or getsockname() complete.
-
-Fixes: bcf3a2953d36 ("scsi: iscsi: iscsi_tcp: Avoid holding spinlock while calling getpeername()")
-Signed-off-by: Li Jinlin <lijinlin3@huawei.com>
----
- drivers/scsi/iscsi_tcp.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
-index 9fee70d6434a..63532dc3970d 100644
---- a/drivers/scsi/iscsi_tcp.c
-+++ b/drivers/scsi/iscsi_tcp.c
-@@ -612,8 +612,8 @@ static void iscsi_sw_tcp_release_conn(struct iscsi_conn *conn)
- 
- 	spin_lock_bh(&session->frwd_lock);
- 	tcp_sw_conn->sock = NULL;
--	spin_unlock_bh(&session->frwd_lock);
- 	sockfd_put(sock);
-+	spin_unlock_bh(&session->frwd_lock);
- }
- 
- static void iscsi_sw_tcp_conn_destroy(struct iscsi_cls_conn *cls_conn)
-@@ -756,7 +756,7 @@ static int iscsi_sw_tcp_conn_get_param(struct iscsi_cls_conn *cls_conn,
- 			return -ENOTCONN;
- 		}
- 		sock = tcp_sw_conn->sock;
--		sock_hold(sock->sk);
-+		fget(sock->file);
- 		spin_unlock_bh(&conn->session->frwd_lock);
- 
- 		if (param == ISCSI_PARAM_LOCAL_PORT)
-@@ -765,7 +765,9 @@ static int iscsi_sw_tcp_conn_get_param(struct iscsi_cls_conn *cls_conn,
- 		else
- 			rc = kernel_getpeername(sock,
- 						(struct sockaddr *)&addr);
--		sock_put(sock->sk);
-+		spin_lock_bh(&conn->session->frwd_lock);
-+		sockfd_put(sock);
-+		spin_unlock_bh(&conn->session->frwd_lock);
- 		if (rc < 0)
- 			return rc;
- 
-@@ -808,12 +810,14 @@ static int iscsi_sw_tcp_host_get_param(struct Scsi_Host *shost,
- 			spin_unlock_bh(&session->frwd_lock);
- 			return -ENOTCONN;
- 		}
--		sock_hold(sock->sk);
-+		fget(sock->file);
- 		spin_unlock_bh(&session->frwd_lock);
- 
- 		rc = kernel_getsockname(sock,
- 					(struct sockaddr *)&addr);
--		sock_put(sock->sk);
-+		spin_lock_bh(&conn->session->frwd_lock);
-+		sockfd_put(sock);
-+		spin_unlock_bh(&conn->session->frwd_lock);
- 		if (rc < 0)
- 			return rc;
- 
--- 
-2.27.0
+Thanks
+Li Jinlin
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20220802101939.3972556-1-lijinlin3%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/d8afc88468ab481eb325e842ad384e0e%40huawei.com.
