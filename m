@@ -1,142 +1,143 @@
 Return-Path: <open-iscsi+bncBAABB5MSWCLQMGQECEFQSRQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73c.google.com (mail-qk1-x73c.google.com [IPv6:2607:f8b0:4864:20::73c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2257E58A020
-	for <lists+open-iscsi@lfdr.de>; Thu,  4 Aug 2022 20:01:29 +0200 (CEST)
-Received: by mail-qk1-x73c.google.com with SMTP id u15-20020a05620a0c4f00b006b8b3f41303sf148475qki.8
-        for <lists+open-iscsi@lfdr.de>; Thu, 04 Aug 2022 11:01:29 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1659636088; cv=pass;
+Received: from mail-qt1-x83d.google.com (mail-qt1-x83d.google.com [IPv6:2607:f8b0:4864:20::83d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE1758A01E
+	for <lists+open-iscsi@lfdr.de>; Thu,  4 Aug 2022 20:01:28 +0200 (CEST)
+Received: by mail-qt1-x83d.google.com with SMTP id bl15-20020a05622a244f00b0034218498b06sf302751qtb.14
+        for <lists+open-iscsi@lfdr.de>; Thu, 04 Aug 2022 11:01:28 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1659636087; cv=pass;
         d=google.com; s=arc-20160816;
-        b=g8R6+KNayRRVQqcnBsSV2gZyPPsoHa5bl8rAkc8DwPz05lYZ1rJaleqVw6t8BXP3Ps
-         eKS3uBRPQVTno/EodozYcwkS83tHebQeylfWk9pkLRgO6lD1FNWpA4q0tuzx2KtM0a1w
-         Tutek6xdMjPZHT0Y9QrHANaEy2xuqa5vFan3nbqUrxQTciV+ehjHXsKwwpAmocBGP3qc
-         kMPAK8sO9Kx62kvC4QVv1elHSOeLw4hkOFlNZk8J8hMivL96MoKBemkpCrl/Q9M1CpaA
-         UxhtnFKHI3TNeDfzPpJ0N7h+cR2YK5uSBavKg278exWVobb71crGjX9k2vkEBbJ4lmnQ
-         OiKA==
+        b=C/nASSj0CO/tc+6mf/uRVAjulyBt+cFxVNFPmAJceLKsON5px7ndPyCT+8Zkmg9zTJ
+         bpth6n+HB2UUYGSF+5GFormkgi9Mfh5lmCERiKijg7pBieCeHlddZjXf3fERg6C/CfZ1
+         qNMOUqmJFPEinFKZu2zWH75INaDBqUptrI0iGh9EBpMyu0Bu0W4Vj9vfNdxnC7UzrccK
+         hsnZrl5xL6B40r7YwX9UbBNvuwPk+9qqhvIPLtjarnmR1FrFNOFxnDQLYEHcw4CqOwBb
+         IIBLS3YcxNZ33Wdj2RAiyL7hgHR3a7qEb7BMiCJO5QtJF8LypmYpF6SbZdaqssqT2cZY
+         /x6g==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:dkim-signature;
-        bh=nYJSAG78BCHzC8LneJCoYQKnBYCyTYBXvrmM8juB9nw=;
-        b=eDCBg+Xk5LIPJJXR2TmZ3Dp8Q7vE4dvEhwsgZRT5zQwHnAKlq8/Kg54paCV1VdrcZJ
-         PGuUvytK0udNrg0qbpEll9BMrABVt3KG4o/Z63SdJ6slkDbVjtBi4KOrSoWhXNfPe1w9
-         d/qTx9mdyOdQRCIcinrMXEP2ujdy2iRM8J18PIOVZhQ2VRy3PogvRp/yhs2X0AjAFYlp
-         /rKC3Xoe6P/BBSqfNs4FcW8qOzeJvBDHkYpfEncXFeF3RaOopPrBBPgB1MTsdUKBy3Uo
-         3B7F8qh3qXh4FGs3siZHxqgkxH7JFf/HNRLyGhBWQoJWUUilXHZWLGSAuxCox/BWyR1f
-         KTog==
+         :list-id:mailing-list:precedence:reply-to:content-language
+         :in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:dkim-signature;
+        bh=1SPbN8oqXCmaHg35ylaNvoE7KaGkN5BwtrC9QTTk/Bo=;
+        b=09ggsvXlAbj+xE8yZ0S+QVwgpVVckDiCVrwQBIqctwynqzBxdvVUIoyTfD+kvOT6jC
+         DTjIzZEXprjuAx/Ooo3smMW6LL6CTzlnYGT6Lea8SLKKoqXMzQCAOaii3xnSAuqDrHZY
+         L2pCN9VinHRufOmAx21pEqCRApu3GCtUIQR280+S0olvM/yj8oBHY60rVNfsbX09WrlF
+         kIRX0huj3y0LtXo3ZBNIhxViDwqCWRCHcrZDvUS68QA0CbN8d28QAv6T9RUhaTo25Q7L
+         O6O93oCqBSrQeTyAs3JQcd9lk0LJklaKYNsiQWKK96t7ngFdSP2g1JvYgdJZan1czXr5
+         9k5Q==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@intel.com header.s=Intel header.b=KIAcXWC2;
-       spf=pass (google.com: domain of lkp@intel.com designates 192.55.52.115 as permitted sender) smtp.mailfrom=lkp@intel.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
+       spf=pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.189 as permitted sender) smtp.mailfrom=lijinlin3@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:from:to:cc;
-        bh=nYJSAG78BCHzC8LneJCoYQKnBYCyTYBXvrmM8juB9nw=;
-        b=PBO8EgjGdoYIAlVThmM9zTdNuzhpDFGPS/Sqy00aXKmujDma3piA0vDbdaJh5Op+XI
-         6RtoD1ywzxqBqdpVtg+gxMyp8603JmddMDY+NRYYDfLiosjdmP8itYtc9zn6sOLtukp1
-         u82Zq9Yga/RNd40mfRq5WOz9C2qRFDGXtQftM+hG8/vNjOeY0pkwpYdpmLXAnuW06cqD
-         k3SDuZ46Vn1NmiWwCUft7WYVB2ycKrYyteP7W68jxWHRUj4F/2giwqbgQSbUFZQkMvNF
-         nvWceNQhCup0D6DBdu02LQT0K+oaxbjfEdCeQMMxi9fOwRLyKt8EAQhCRjLTjicIGnVm
-         pSpw==
+         :x-original-authentication-results:x-original-sender
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:from:to:cc;
+        bh=1SPbN8oqXCmaHg35ylaNvoE7KaGkN5BwtrC9QTTk/Bo=;
+        b=iHfbvPiPWi3CMO/4b0lXPeX3+k5uxjJC/WEjw8tgne/4pPVwTJD3+ieA5G6ef2DWsw
+         mB3w7/9bU2w6drE6bY5lYCICCED7gNcLKQPuMzbL1kteOMRFl2oRsbxBzLhScg5m4CGZ
+         Uh2fCQemY6ZMGrfsW+ayw8fkTB3toMJdX3IvrVcs0v7QXJpkWEmvV8EH+S8IE2nZugup
+         EFTSWwXqtzX5a2o3T1owwFTfIm7nUr16PeIvhUzQ11ZtrBEEbYKbsTXXYyzmz4hM0WRL
+         9FYwrdJsBa/DIA+T0afj9zFarKiojLcwWAk6Gq44x+mL8anSr9DQIeiq0SL+cJkiVKMY
+         r/pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:x-gm-message-state:sender:from:to:cc;
-        bh=nYJSAG78BCHzC8LneJCoYQKnBYCyTYBXvrmM8juB9nw=;
-        b=a0rNzne1NzdP3hwAlmmmt/juWi07dsbfjARbdsca8bngqgoBVamRLbaUFRZuEXhVDL
-         N1eAj8AdWREqjPdyqxiuFlt/RE3JUzWHgQSAaMS4uWIXVzKD57PyhGf1lxUEou6OaaDu
-         65oX8B4BeM+Ng6SFkxrvNRM8RUNfsbEB4/exRqUTh5eXkXegTrCeW3kEFQtGt6EOn60m
-         c3Y1LV9LuO3gliIa9eArD4PeTZ0/IuOMjVaGYJjU1C/vGm58esOs2vQWBKZWoIth7pIB
-         hOMz4qQp5E1DuFsE45Ty9QymMe/14xJx3Wo8hX0t5UdYf4w5g4IFS1eWg4e6ikr0v1cB
-         W3mw==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ACgBeo3YCcJKMnlUu/XZ/+oG27TI6dIXiW/k3HEVN87V5EwH3LrBB2Ol
-	ILFDnIjfPLY+/ejwcF+LfvE=
-X-Google-Smtp-Source: AA6agR7ESIe2/BSf7uPawGDEfr4yfhIV/SA8dVn/zeB7wYLf/FrgKq4WO0qm97VzBjH3Jvb3fWcSmQ==
-X-Received: by 2002:a05:6214:411e:b0:474:991e:37bd with SMTP id kc30-20020a056214411e00b00474991e37bdmr2543926qvb.125.1659636087613;
-        Thu, 04 Aug 2022 11:01:27 -0700 (PDT)
+         :x-original-authentication-results:x-original-sender
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:x-gm-message-state:from:to
+         :cc;
+        bh=1SPbN8oqXCmaHg35ylaNvoE7KaGkN5BwtrC9QTTk/Bo=;
+        b=H36zqFkBAQT376D1WIkSjFFE6ZDLAJaRS/7aRKGto0gU8k3JTZI5cLcDAyg9nh7t32
+         jgRO4SmletdF1GhSp3ImQGv8Tpcf7d0RLa4EdFIi9uvfCNOsPfXI03g7LOnqCBwAIECl
+         hCoHdpas26sYayn9llzOb/PkxgUmaI/aasJ6Hi91j9cHH5+2NaBUmVgWuTvyhOuykFCQ
+         gufVNx5d2DDIibHuJg2CjJ5kmlrTCCbfiZRTm+mCPoCnNEHgAuk+WOVzNvgrRW8NvhbQ
+         Y3bfSkMGoGq+4bONlV39CeNGxEeVtZW2BfMmkrreE8Ordxdcjt+8mQ3YKDJwURX36eGu
+         we/Q==
+X-Gm-Message-State: ACgBeo1UMV9fSStQIFMGvsK3lG8d6OZOZ6EpfMiDcqJaYBo7yvSgAQh+
+	x6Ev6PbcvxF5UzpTVbFv13w=
+X-Google-Smtp-Source: AA6agR6pb4h30EZ+Uk/8dBcKzwrrjShEAzzGzz49bx7p2BuYg2wWmA+qm/1PXCuAH5IAxeo/fmBmVw==
+X-Received: by 2002:a05:622a:1a0b:b0:33e:d364:13d8 with SMTP id f11-20020a05622a1a0b00b0033ed36413d8mr2629574qtb.341.1659636086904;
+        Thu, 04 Aug 2022 11:01:26 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ae9:f816:0:b0:6b2:5574:7ca3 with SMTP id x22-20020ae9f816000000b006b255747ca3ls1761702qkh.7.-pod-prod-gmail;
+Received: by 2002:a0c:ca05:0:b0:474:9b45:9854 with SMTP id c5-20020a0cca05000000b004749b459854ls1329643qvk.4.-pod-prod-gmail;
  Thu, 04 Aug 2022 11:01:25 -0700 (PDT)
-X-Received: by 2002:a05:620a:191d:b0:6b8:6538:6cad with SMTP id bj29-20020a05620a191d00b006b865386cadmr2338090qkb.307.1659636085707;
+X-Received: by 2002:a05:6214:1c87:b0:46b:c547:543d with SMTP id ib7-20020a0562141c8700b0046bc547543dmr2600108qvb.52.1659636085710;
         Thu, 04 Aug 2022 11:01:25 -0700 (PDT)
-Received: by 2002:a05:620a:29c9:b0:6af:2a2b:4ad1 with SMTP id af79cd13be357-6b8cf7cfc4ams85a;
-        Tue, 2 Aug 2022 15:11:44 -0700 (PDT)
-X-Received: by 2002:a05:6512:250b:b0:48b:2c5:fe1e with SMTP id be11-20020a056512250b00b0048b02c5fe1emr3453692lfb.598.1659478303482;
-        Tue, 02 Aug 2022 15:11:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1659478303; cv=none;
+Received: by 2002:a05:620a:2888:b0:6af:d66d:fc6a with SMTP id af79cd13be357-6b8cf7927cfms85a;
+        Wed, 3 Aug 2022 01:57:05 -0700 (PDT)
+X-Received: by 2002:a05:622a:148c:b0:31e:e643:953f with SMTP id t12-20020a05622a148c00b0031ee643953fmr21822670qtx.678.1659517025187;
+        Wed, 03 Aug 2022 01:57:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1659517025; cv=none;
         d=google.com; s=arc-20160816;
-        b=nJuTuevVCnBNBCAFLI6G+0hyJoDXK7QluHWi+uB4tJWTLVGq3oIeV+EfxGNqEQO1vT
-         ajIMm/A2cAmDGCxSAAl4wNNOl+jq0dYAPcewQM4UcNdjtgnPyMv07hbI9Q39OzIQ5hqv
-         Rz1JvigtDyBScULFhPHkxY9qWs0PMHIsSSwnun6KiOplTLY3EklpkMTHoXuy3+24+VZE
-         j6ktXrvjNIw1bHQULeBgHOh4Bwk3khLflML0ZGtcSN69ERxkmbDWsaurtrjA/ynhSdbn
-         QVOf2VC6+pd6/hj479vygKwdvURI/0kraceRhKakc8RiXmWcbGDkxlZErAd/9p9qKESQ
-         gtdg==
+        b=vjfm6Z5jrII3ZgnjN+zuU8NIBYfYgX8PJtheHAyCii/ig8h59dZuXRJxfh8XXb0+yX
+         lNQnEb6mQbh8mBnfyiU4NzYLITG/hoYiILnLJvj5p3eOuA+ubXs56qGTzXUvWvAZNxgH
+         MHtsVHChvknflxEWy6YYImyHbxFJIH9PjrQwbAQfuedSTmRN2JXBN6PG+d5nwhu5Oji0
+         f5VuUggz8jJ32BnPJBdn1uBwp65QB1+R7C7l7W+FtSUOfSFw57enEk5CxgMv7q1scT7K
+         q4edewnPSDDSatYNh1522BXfaJXw5r8mvwNX6SagjwhMgHngCJotNSudkx83cIspkBoF
+         W7Kw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:dkim-signature;
-        bh=jErLUGQPBqaw1UqV7HJLN01ReSCLbpF5fL0jQIy1w+I=;
-        b=ruFR0AN6KvDal0njpuJJc0MLUh6t3efYQ5+T63HUyv4Z6TZHIoh24MB7OASkKnLpf3
-         FHpQP0J1seZT0Eegmjcz8Gt1Hx16WfiF8Z4Qx54+Nf63g1R+tKMx5B044bGMHrPlmmmd
-         +ssBC6B6PNIIbD0ccKtRznrhSuQcuwGP2sdXJaJxTvrwaAYy5YDGjkwC4X5wEYAQtHZf
-         A3SfovU+OxKvukRSaF7NI10Qwfm67AH6ZzbJOFSV0PTlxLy0jNm5QaLeLybei2+hF5Zl
-         DIZOmSBtZbFCbgeS+z1IJlPfNNFqaxGfMfMdRl1XjjcoE4mQdE2iAWp8TF9wzBH6+Pgi
-         BUQg==
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject;
+        bh=fzfDGi0Aw0uDOtd37t/67/NYsqTkrW088eUTUHSTazo=;
+        b=gZCtlI5Bd+I9XF5nR3+ZtFsuVzS9GpOLgLMjW0Jb+wyr1xyTYbVkUU1NoUf0JZ0Vqc
+         Sq5g0dq87JLOjjxR6i0l8P2VvX6Jr5BNzbGfO1YwxKxFgxRU6xd30uT/15KCUJ+/cAhs
+         /OYgrtW3LEcuXWmTwG8YvaRu10Kzmyj/BqLQxcT72RNdFDvSm21nGVk9fivrTXZe26x0
+         xTxXuXrZhyYSAD4LRl+6/Cg2M505yhiNip9LiDBFoGRVMxA/7LY+Upyy+lW+r4MUuwpf
+         7xcTTzBt/bEmdO//l3nNbhPtXSKLPFAT3XSGnFXc30jd3HH4QG95gCmwTr2hpGmMW2iz
+         J1sw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@intel.com header.s=Intel header.b=KIAcXWC2;
-       spf=pass (google.com: domain of lkp@intel.com designates 192.55.52.115 as permitted sender) smtp.mailfrom=lkp@intel.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
-Received: from mga14.intel.com (mga14.intel.com. [192.55.52.115])
-        by gmr-mx.google.com with ESMTPS id o7-20020ac25e27000000b0048b12871da5si97397lfg.4.2022.08.02.15.11.42
+       spf=pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.189 as permitted sender) smtp.mailfrom=lijinlin3@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com. [45.249.212.189])
+        by gmr-mx.google.com with ESMTPS id m8-20020a05620a13a800b006b5fa3b62dbsi408133qki.6.2022.08.03.01.57.04
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 02 Aug 2022 15:11:43 -0700 (PDT)
-Received-SPF: pass (google.com: domain of lkp@intel.com designates 192.55.52.115 as permitted sender) client-ip=192.55.52.115;
-X-IronPort-AV: E=McAfee;i="6400,9594,10427"; a="289541085"
-X-IronPort-AV: E=Sophos;i="5.93,212,1654585200"; 
-   d="scan'208";a="289541085"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 15:11:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,212,1654585200"; 
-   d="scan'208";a="728989347"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 02 Aug 2022 15:11:36 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1oJ06y-000GVS-0r;
-	Tue, 02 Aug 2022 22:11:36 +0000
-Date: Wed, 3 Aug 2022 06:11:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Li Jinlin <lijinlin3@huawei.com>, lduncan@suse.com, cleech@redhat.com,
-	michael.christie@oracle.com, jejb@linux.ibm.com,
-	martin.petersen@oracle.com, mark.mielke@gmail.com
-Cc: kbuild-all@lists.01.org, open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linfeilong@huawei.com, liuzhiqiang26@huawei.com
+        Wed, 03 Aug 2022 01:57:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lijinlin3@huawei.com designates 45.249.212.189 as permitted sender) client-ip=45.249.212.189;
+Received: from canpemm500008.china.huawei.com (unknown [172.30.72.53])
+	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4LyQgN3vr8zTgTg;
+	Wed,  3 Aug 2022 16:55:44 +0800 (CST)
+Received: from [10.174.179.2] (10.174.179.2) by canpemm500008.china.huawei.com
+ (7.192.105.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 3 Aug
+ 2022 16:57:01 +0800
 Subject: Re: [PATCH] scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling
  getpeername()
-Message-ID: <202208030633.x2jgVRIa-lkp@intel.com>
+To: Mike Christie <michael.christie@oracle.com>, "lduncan@suse.com"
+	<lduncan@suse.com>, "cleech@redhat.com" <cleech@redhat.com>,
+	"jejb@linux.ibm.com" <jejb@linux.ibm.com>, "martin.petersen@oracle.com"
+	<martin.petersen@oracle.com>, "mark.mielke@gmail.com" <mark.mielke@gmail.com>
+CC: "open-iscsi@googlegroups.com" <open-iscsi@googlegroups.com>,
+	"linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, linfeilong
+	<linfeilong@huawei.com>, "liuzhiqiang (I)" <liuzhiqiang26@huawei.com>
 References: <20220802101939.3972556-1-lijinlin3@huawei.com>
+ <d8afc88468ab481eb325e842ad384e0e@huawei.com>
+ <f52cc786-be48-d670-6212-5ae6117d314d@oracle.com>
+From: "'Li Jinlin' via open-iscsi" <open-iscsi@googlegroups.com>
+Message-ID: <edd3f6af-98eb-2f17-2144-99daf6455be8@huawei.com>
+Date: Wed, 3 Aug 2022 16:56:44 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
+In-Reply-To: <f52cc786-be48-d670-6212-5ae6117d314d@oracle.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
-In-Reply-To: <20220802101939.3972556-1-lijinlin3@huawei.com>
-X-Original-Sender: lkp@intel.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@intel.com header.s=Intel header.b=KIAcXWC2;       spf=pass
- (google.com: domain of lkp@intel.com designates 192.55.52.115 as permitted
- sender) smtp.mailfrom=lkp@intel.com;       dmarc=pass (p=NONE sp=NONE
- dis=NONE) header.from=intel.com
+Content-Language: en-US
+X-Originating-IP: [10.174.179.2]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ canpemm500008.china.huawei.com (7.192.105.151)
+X-CFilter-Loop: Reflected
+X-Original-Sender: lijinlin3@huawei.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of lijinlin3@huawei.com designates 45.249.212.189 as
+ permitted sender) smtp.mailfrom=lijinlin3@huawei.com;       dmarc=pass
+ (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+X-Original-From: Li Jinlin <lijinlin3@huawei.com>
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -149,99 +150,74 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Hi Li,
 
-Thank you for the patch! Perhaps something to improve:
 
-[auto build test WARNING on mkp-scsi/for-next]
-[also build test WARNING on jejb-scsi/for-next linus/master v5.19 next-20220728]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 8/3/2022 12:25 AM, Mike Christie wrote:
+> On 8/2/22 6:23 AM, lijinlin (A) wrote:
+>> So sorry, this patch has problem, please ignore.
+>>
+> 
+> Was the issue the fget use?
+>> I know I gave the suggestion to do the get, but seeing it now makes
+> me think I was wrong and it's getting too messy.
+> 
+I use get_file() in local, and test the patch can fix this null-ptr-deref.
+But I got an INFO report as below, it only appears once in multiple
+tests. I'm not sure if this info report represents a possible problem
+with the patch. So I ask for ignore it.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Li-Jinlin/scsi-iscsi-iscsi_tcp-Fix-null-ptr-deref-while-calling-getpeername/20220802-173945
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mkp/scsi.git for-next
-config: loongarch-randconfig-s041-20220801 (https://download.01.org/0day-ci/archive/20220803/202208030633.x2jgVRIa-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 12.1.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-39-gce1a6720-dirty
-        # https://github.com/intel-lab-lkp/linux/commit/ccc367df3fdba07b24eeda721ca928cce50f40d2
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Li-Jinlin/scsi-iscsi-iscsi_tcp-Fix-null-ptr-deref-while-calling-getpeername/20220802-173945
-        git checkout ccc367df3fdba07b24eeda721ca928cce50f40d2
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=loongarch SHELL=/bin/bash drivers/scsi/
+    INFO: trying to register non-static key.
+    The code is fine but needs lockdep annotation, or maybe
+    you didn't initialize this object before use?
+    turning off the locking correctness validator.
+    CPU: 21 PID: 1074 Comm: cat Not tainted 5.19.0 #44
+    Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.15.0-0-g2dd4b9b3f840-prebuilt.qemu.org 04/01/2014
+    Call Trace:
+    <TASK>
+    dump_stack_lvl+0x49/0x63
+    dump_stack+0x10/0x16
+    register_lock_class+0x483/0x490
+    ? reacquire_held_locks+0xcb/0x1e0
+    ? release_sock+0x1e/0xb0
+    __lock_acquire.constprop.0+0x4e/0x530
+    ? lock_release+0x142/0x2d0
+    lock_acquire+0xc3/0x1b0
+    ? iscsi_sw_tcp_host_get_param+0xa4/0x120
+    _raw_spin_lock_bh+0x34/0x50
+    ? iscsi_sw_tcp_host_get_param+0xa4/0x120
+    iscsi_sw_tcp_host_get_param+0xa4/0x120
+    show_host_param_ISCSI_HOST_PARAM_IPADDRESS+0x56/0x70
+    dev_attr_show+0x1d/0x50
+    sysfs_kf_seq_show+0xad/0x120
+    kernfs_seq_show+0x2c/0x40
+    seq_read_iter+0x12e/0x4d0
+    ? aa_file_perm+0x177/0x5a0
+    kernfs_fop_read_iter+0x183/0x210
+    new_sync_read+0xfe/0x180
+    ? 0xffffffff81000000
+    vfs_read+0x14d/0x1a0
+    ksys_read+0x6d/0xf0
+    __x64_sys_read+0x1a/0x20
+    do_syscall_64+0x3b/0x90
+    entry_SYSCALL_64_after_hwframe+0x63/0xcd
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
 
-sparse warnings: (new ones prefixed by >>)
-   drivers/scsi/iscsi_tcp.c:798:26: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int fd @@     got struct file *file @@
-   drivers/scsi/iscsi_tcp.c:798:26: sparse:     expected unsigned int fd
-   drivers/scsi/iscsi_tcp.c:798:26: sparse:     got struct file *file
-   drivers/scsi/iscsi_tcp.c:852:26: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int fd @@     got struct file *file @@
-   drivers/scsi/iscsi_tcp.c:852:26: sparse:     expected unsigned int fd
-   drivers/scsi/iscsi_tcp.c:852:26: sparse:     got struct file *file
->> drivers/scsi/iscsi_tcp.c:798:22: sparse: sparse: non size-preserving pointer to integer cast
-   drivers/scsi/iscsi_tcp.c:852:22: sparse: sparse: non size-preserving pointer to integer cast
+> Let's just add a mutex for getting/setting the tcp_sw_conn->sock in
+> the non-io paths (io paths are flushed/locked already). Something like
+> this (patch is only compile tested):
+> 
 
-vim +798 drivers/scsi/iscsi_tcp.c
+This patch is clean, I have tested it and it is effective.
+Please push this patch to the mainline, Thanks.
 
-   777	
-   778	static int iscsi_sw_tcp_conn_get_param(struct iscsi_cls_conn *cls_conn,
-   779					       enum iscsi_param param, char *buf)
-   780	{
-   781		struct iscsi_conn *conn = cls_conn->dd_data;
-   782		struct iscsi_tcp_conn *tcp_conn = conn->dd_data;
-   783		struct iscsi_sw_tcp_conn *tcp_sw_conn = tcp_conn->dd_data;
-   784		struct sockaddr_in6 addr;
-   785		struct socket *sock;
-   786		int rc;
-   787	
-   788		switch(param) {
-   789		case ISCSI_PARAM_CONN_PORT:
-   790		case ISCSI_PARAM_CONN_ADDRESS:
-   791		case ISCSI_PARAM_LOCAL_PORT:
-   792			spin_lock_bh(&conn->session->frwd_lock);
-   793			if (!tcp_sw_conn || !tcp_sw_conn->sock) {
-   794				spin_unlock_bh(&conn->session->frwd_lock);
-   795				return -ENOTCONN;
-   796			}
-   797			sock = tcp_sw_conn->sock;
- > 798			fget(sock->file);
-   799			spin_unlock_bh(&conn->session->frwd_lock);
-   800	
-   801			if (param == ISCSI_PARAM_LOCAL_PORT)
-   802				rc = kernel_getsockname(sock,
-   803							(struct sockaddr *)&addr);
-   804			else
-   805				rc = kernel_getpeername(sock,
-   806							(struct sockaddr *)&addr);
-   807			spin_lock_bh(&conn->session->frwd_lock);
-   808			sockfd_put(sock);
-   809			spin_unlock_bh(&conn->session->frwd_lock);
-   810			if (rc < 0)
-   811				return rc;
-   812	
-   813			return iscsi_conn_get_addr_param((struct sockaddr_storage *)
-   814							 &addr, param, buf);
-   815		default:
-   816			return iscsi_conn_get_param(cls_conn, param, buf);
-   817		}
-   818	
-   819		return 0;
-   820	}
-   821	
+Jinlin
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
+> index 9fee70d6434a..c1696472965e 100644
+> --- a/drivers/scsi/iscsi_tcp.c
+> +++ b/drivers/scsi/iscsi_tcp.c
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/202208030633.x2jgVRIa-lkp%40intel.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/edd3f6af-98eb-2f17-2144-99daf6455be8%40huawei.com.
