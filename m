@@ -1,139 +1,123 @@
-Return-Path: <open-iscsi+bncBC4LXIPCY4NRBUUEYKLQMGQE5YQQDRY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDH7XCOC4UIRBE5I22LQMGQETXKJF2I@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wr1-x43c.google.com (mail-wr1-x43c.google.com [IPv6:2a00:1450:4864:20::43c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B73058C206
-	for <lists+open-iscsi@lfdr.de>; Mon,  8 Aug 2022 05:26:12 +0200 (CEST)
-Received: by mail-wr1-x43c.google.com with SMTP id c20-20020adfa314000000b0021f1757ea8asf1196306wrb.2
-        for <lists+open-iscsi@lfdr.de>; Sun, 07 Aug 2022 20:26:12 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1659929172; cv=pass;
+Received: from mail-yb1-xb40.google.com (mail-yb1-xb40.google.com [IPv6:2607:f8b0:4864:20::b40])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76697590943
+	for <lists+open-iscsi@lfdr.de>; Fri, 12 Aug 2022 01:43:18 +0200 (CEST)
+Received: by mail-yb1-xb40.google.com with SMTP id 190-20020a2503c7000000b0067d8d7f2db3sf4052060ybd.19
+        for <lists+open-iscsi@lfdr.de>; Thu, 11 Aug 2022 16:43:18 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1660261397; cv=pass;
         d=google.com; s=arc-20160816;
-        b=PHxHZIi1436nN0kjWX3kKXBCAaFQgr3XOX7aJWZmw7zAjcKBbEOALTsx4BVOegoa5y
-         Y8UIIR/WfyoEqvDPr1ySSBWznmDWIDSmS+SAVLH9qvI3FRxPDvZSkbVz/lGlu/ZfUG34
-         YTHbaWr/9kjhpPy574sVoF/DacX0vuPKMgw0FjLlGUdhYkGpLEPmdgzR+JhRPoPZS67Q
-         tQNA11FE6slqeK0Mld6s+msLJaghxgH2Astko5IKR+9Rc/shYT6F40pIuzxJCs01YnBs
-         7gvDjutyx/9dHL06Sw5aZka8nK5/QwxoGfpjrlf6qIOLPqo2vSmcLxaGO5OZmzwb6zxJ
-         mVig==
+        b=qd7y/x3IBzZ/lGbZMrgMOke2Pk9F3V+VTezYEiWkOLC5d/XxkaQ++1QtfQuvabeWuy
+         8vGJqvct+EfNXIjYlNt7TIlRwVLUF/0qYR3MThhOq28u3k0zvK6T5/RObjlc7EYNvHEQ
+         cQeICnWHfU4yB4kzRN++wUMgEaMn2COmyKX68AntV/ni7+AMAz7a+rXUR1+ZCOuXHQ5u
+         EpPxrrX0uxGD9B7fPFGycJj1n4r472KJvdPYk5grbO29Qg0RSO0XuJk3JfrTp0aIUhOY
+         lZ8QNcL11TPiYZnMu6at5CW5The38/1JtGzqpubPmX0y3rBv5a5x5XYw0hI/0bPwTyQA
+         xAmA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:dkim-signature;
-        bh=jQaeDKttOo/maXvQ9Pq2Fq+cw++P3I1c+kYKa/FVLck=;
-        b=k3UA6J5R7Ixi71LW8+7t/317Oltyp2xuOwt8sLc5aSBTHiEXm/3ZyzcLw+yZNBWa6E
-         ZBIi2y9QJpUPAUchRHd7gbQi6RIDT0DQ/daGJ7El6So6riwd2SLMOjAECiWeYmW+eYbb
-         8M1AjwJuStmubpa5STPoz+QQTpXcE3GvLJLDVIKbxhG6MuHz+wJ9/45HaoSm6zUlCO2w
-         SaD5Wlx3wcCX3Bmyp8U7OflI1HRM5TaJOT174DU6UhwrtDaLr1pcppb/GMkteGGr1uq/
-         2lLt+u4GhYbLRXb2TOPcANZjyvoJgL4fbohCULuaqCQfV/mOoNRipW1UR1tv21ul9LGH
-         xv0A==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:dkim-signature;
+        bh=iuNdfqRMrfPwkupfXjbbQe8yyD1gPp0PVK2To2P/RqA=;
+        b=m//oVQ7c1Ao3gglX7ANeOoZc01gggMH3EMaffA/de8fDfk6spElFtrUywV4+JsQUru
+         xOHBPvJEoAdMO2qV47qZLFo93jTOgDaU5iE+i6din3vcGIzxDUqJ4wn26Zp7gzA+YfRn
+         Zk+uoi2TJYgWsZtXjA9xiUGQ2TZO6/lGfiel2EAu3rzFd029lZPtfbyuLLEpTT+NwlLK
+         FjDjMPhiyxkiO9n2pzD9cO94mRho8JDnvm00LSEfQpuZS08fxNOWVW3ajqSdfk9DdjRF
+         PNTMiZQBplTjJwsUvQrusaNUN1CYI5qD/jqe+lZ8s3MmCibSuM8kSe/c23oJwW6XXmCA
+         /I6w==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@intel.com header.s=Intel header.b=gAfdxQV3;
-       spf=pass (google.com: domain of lkp@intel.com designates 192.55.52.120 as permitted sender) smtp.mailfrom=lkp@intel.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
+       dkim=pass header.i=@purestorage.com header.s=google header.b=ariJYsth;
+       spf=pass (google.com: domain of ushankar@purestorage.com designates 2607:f8b0:4864:20::1029 as permitted sender) smtp.mailfrom=ushankar@purestorage.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=purestorage.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:from:to:cc;
-        bh=jQaeDKttOo/maXvQ9Pq2Fq+cw++P3I1c+kYKa/FVLck=;
-        b=C2q7l2uwgVjPlrzJGHSYjFq7u4M41pwS/8hyc2Lxpb7NIdxSayoiDgZKFDJdTFErIs
-         E21t6NSssftZOZNOrEKsTmw9PN+Q26eRlb85UzCsv/hA2UMe4WqPpBsSVwVQOAjjmMeG
-         8Sf8RRh4ZWcp/gYDma8RQvSaCfWEfsxnOSNkZ9jcB9MIQdcSZ5YlE0XPID4GPfaPkdMf
-         T/phww9BUCJVRkzdDsPCoE9OaRXkoeELZgAZ5UoLYBZRFDZYqkx6HmHg1fwfmwojfH2e
-         Rpk/WcC46IjkeU3rWxqT/z+ZuCQgBSEKy3jPchk2+stinUpPc3dKZkYaCTS3bFvEuKXb
-         nIzQ==
+         :x-original-authentication-results:x-original-sender:mime-version
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=iuNdfqRMrfPwkupfXjbbQe8yyD1gPp0PVK2To2P/RqA=;
+        b=MaW/b6gLIxdiL3nN2VtWwo2qVye0585e3Y+WRKIuMABFxYDkbPtNlbrzgn3GPwM619
+         UmLRrNdIAEoIomaObvHnB5CZfJWhBAlIjA4zZRJOj15Xla/bDkGOVqsHDH2BZxd7G1g3
+         EQnQPoPcsI8muDSCCi76ti/EI3sCsXgAlKZTcMQaCiX69MaAmqkQXWSpbt3XIOJ64cN+
+         DJS8UYN1lWu3adKhhHVnUdoF8yi8im3teoGlVg8Gk3PD941bTZ/ymIEyEmA7FmYYvOpX
+         ++OU5UnAasf4QhUJ8rjV0WKbnXg9mj23nBw9wIpc/PMgjEQjQNH/m3jElpRRbud8jjK3
+         vF1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:x-gm-message-state:sender:from:to:cc;
-        bh=jQaeDKttOo/maXvQ9Pq2Fq+cw++P3I1c+kYKa/FVLck=;
-        b=BAsv5MD6KMQ6dLIeQRvKmVHL7A7R4jOKBek+CUJfRvfmBehnfL75dl9fPpuhYRcib2
-         Ei1UT3I8BVeGmLEovotmkwpcE6wSiFDEX5+M/9LubetJkRAGZeGEZXW/eDM23aD3bmXr
-         kRN09kfgCITTm93aLAQCfVTjtWRCzIiHduaMTqlOLUZBPI3FwLS6dCiZrq6GTbgwVbOm
-         E24xFuXLaqYJ1D4mvGrJoZHUZj3RdPPlHqmIM1/T8G9WDDdBo/QLKg7OlapFJEuEZt6D
-         /TXkNh2qP0GQP3X23tuXoIZcFE4N/UKVjKnxVXFP/LH+Z0TC61suCt3sDTQTpAgRKf9a
-         WAFw==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ACgBeo2gNRQFxwstdqU8oTGlevH3ikJ7fOpxApHM2qN8g9VJStK7Un93
-	CC04Gkx+++e+ExkyFYzxqyQ=
-X-Google-Smtp-Source: AA6agR5B+NNE6n+y8eORXAEbgwxNEEo/eGL9nA8UlBSD2K9/MCrnxBsZMBYp6HobDFBlJpjoipJATg==
-X-Received: by 2002:a05:6000:1883:b0:205:c0cb:33c6 with SMTP id a3-20020a056000188300b00205c0cb33c6mr10836106wri.39.1659929171965;
-        Sun, 07 Aug 2022 20:26:11 -0700 (PDT)
+         :x-original-authentication-results:x-original-sender:mime-version
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=iuNdfqRMrfPwkupfXjbbQe8yyD1gPp0PVK2To2P/RqA=;
+        b=UpCr3lF7S/unz+JlUfN6Pl4T1OU49xpLFwSsVWD8Lb+UhxGKvEQi6WJAfcJQ107JGT
+         zzFNgcj4FTukOXUtzTLppHe70dibdAS77R0wNejk3PAmZwYYHZ1z+/eqi5Tvl277XY0y
+         3Sy+7quyO+lm2IbaEyuyGx67dwwvLqOcdpQpaCBqX/cwKRi1MhTtTfHH2TxW27MwWIJV
+         a34a1eppde++dt3fO4xs0h7bmmJ1pZ0R9nCqTbzD6BkYi6OWykrfaCOsK96fLFA6hgsP
+         MTMIrNWzc5wBSYMAnv8kr19Ujco8LfxiOK8wfXGueCBKhtfkkE0q032GeoBGKBFFdlZu
+         koWA==
+X-Gm-Message-State: ACgBeo1ITs9k2DkpY5ohFGSMbxffI5ZDbyfyMjzbzBscQWNMnOTjW1Lo
+	sNxV/MWvProa+7rXa+2dLvU=
+X-Google-Smtp-Source: AA6agR6H8D+hYp6Zt/+qNER6jpnILxpkLqhNZnmESs6MW/XAkQ97PTFW2ym0LvdpN9Z1ba2QY3YE1g==
+X-Received: by 2002:a25:4195:0:b0:67b:73e1:82c with SMTP id o143-20020a254195000000b0067b73e1082cmr1528231yba.599.1660261397137;
+        Thu, 11 Aug 2022 16:43:17 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a1c:f004:0:b0:3a5:22da:8671 with SMTP id a4-20020a1cf004000000b003a522da8671ls1899167wmb.1.-pod-control-gmail;
- Sun, 07 Aug 2022 20:26:09 -0700 (PDT)
-X-Received: by 2002:a05:600c:3510:b0:3a3:34e7:cfc8 with SMTP id h16-20020a05600c351000b003a334e7cfc8mr16747215wmq.164.1659929169215;
-        Sun, 07 Aug 2022 20:26:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1659929169; cv=none;
+Received: by 2002:a25:c589:0:b0:672:fa20:e8f3 with SMTP id v131-20020a25c589000000b00672fa20e8f3ls1959699ybe.9.-pod-prod-gmail;
+ Thu, 11 Aug 2022 16:43:15 -0700 (PDT)
+X-Received: by 2002:a25:aa74:0:b0:677:280:4cf5 with SMTP id s107-20020a25aa74000000b0067702804cf5mr1524854ybi.400.1660261395413;
+        Thu, 11 Aug 2022 16:43:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1660261395; cv=none;
         d=google.com; s=arc-20160816;
-        b=Vba6aE7PBAD0zucDTEKqPFzalOnWOu5XF9NcJpHa8btn2WwYnS0KcQdy62GgWqOtqP
-         0pT9ASctu998RaXCARu9Elo5u0cDll7PzHIjFQp+FPXg/vUyifAn/m0X0gT3M8dErbsf
-         9QYpouUOkKzCETZi06zrOkas1j3d7FCO4aI9Z2rRn0W1Lo43Kb0B0FzB+03Fl55lTnav
-         tVsXAiMUNXj+kx2DEWh7OoYyuREBszIufr8lcmaLxl/YZm48U46WTKaLqx2ioUA2MzxL
-         ltvUZPu4nRUQ3Tfozdw+rFc8mJfKYDle4uRLUQatTWOeUbnyNbJvOd6jJ0xrqwsvW0xU
-         HMOw==
+        b=nlBX8GWHQ12xE2cG8YaYEKSBtjVb+HWB3kVcTajV8ifMf6ymXxp0wsIXG4cvtWI0H4
+         lggmdm/3t3C2eCNYCSOTbaK70nLut2nbFPBOMah7v0Tp2xP6I0kd6qmbr3HuALzSkZNQ
+         PyRwy4wsU10gyZ0h5sdmsWLU1f70dftpGaCrWz9tAvCOSWoqlF6KVukg+4OgDKharHYw
+         Ix7rHvpXz/jSAdfzxAqQLz5z2apu1rPOezcXOowbBELPDag24e2svIYZQeOzogAtc+3v
+         GpjHCWCHLIuu6/ZVh/rSwWstYbu8ziZAhcNnG7BDZwjwT9S7aR07wk8RXHD8VbIDwNqM
+         Hy+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:dkim-signature;
-        bh=ysYeiuVBCg1vZEk67ruAY7agbt2P3RaraSGMhJBizXQ=;
-        b=DpVkvW17BS49UsuQb/+O2226gmekkeIUvAFKycWovefiGrkrAqoWBkJvwtCf+garLD
-         nu+yAdkfonuCbCCg0BxoVkpe3BWZ6Tw2pODFBaeqqOJcigZs4xshXBXh2H31yUZZ3hYC
-         GSLswT6xITCKVhcYeoVbRHTRcNGiRdno/nods4JfbXi4iv5AJiXP2erEv2mqaP2t43Xb
-         Kg0Njg4sNxwJ16/tKjQ6zNLyQVkGdCzl9qnzrrngjn1hYvNEh8HWnuKcRVR1BJK9ecpb
-         WNuR9uA9vlPOIas00ivRv5+i/nLaaJF3XGwp9os2fjS+SyhAtq7EVHnJZpzwkJphVYtf
-         rLNQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:dkim-signature;
+        bh=C/qebmxkyw9eP11TJEWDD1xPFEKBmqJvPhTqcZ/Npjo=;
+        b=CJzZPXBic4LIbAc7PK6c+nazI98cl5X+uYiQLJoAnpyULg0mkv5lLQMVZm7zoZU0U+
+         9fjEqJx3/4hoCsHHIXPFbNyGaGfCp47DZiC1XXvnwi7iEnkCFZnArFYFLjHH4YODCbw+
+         4plSgxul1ZCwf4T+yMmhhgHnbFTpekBgc6XNdLQXenqikl+rfH7+yhpwqAW+c0f5L26Z
+         ZKC7w7yWlniQTGNfu+CYUrq+GdsvqNQrLctaeppNoVG15XU1AeyPd8HawIRQyJ0ecXvc
+         Fxwb3W/EFWxZ6mjqfFjB4tRz3RtnsruW3DqugGNz87RFYeFdSzNgTbgVzd8ql//TOZqZ
+         2wgg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@intel.com header.s=Intel header.b=gAfdxQV3;
-       spf=pass (google.com: domain of lkp@intel.com designates 192.55.52.120 as permitted sender) smtp.mailfrom=lkp@intel.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
-Received: from mga04.intel.com (mga04.intel.com. [192.55.52.120])
-        by gmr-mx.google.com with ESMTPS id k186-20020a1ca1c3000000b003a51215aaf3si306060wme.3.2022.08.07.20.26.08
+       dkim=pass header.i=@purestorage.com header.s=google header.b=ariJYsth;
+       spf=pass (google.com: domain of ushankar@purestorage.com designates 2607:f8b0:4864:20::1029 as permitted sender) smtp.mailfrom=ushankar@purestorage.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=purestorage.com
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com. [2607:f8b0:4864:20::1029])
+        by gmr-mx.google.com with ESMTPS id bf12-20020a05690c028c00b0032e923f3f95si53729ywb.2.2022.08.11.16.43.15
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 07 Aug 2022 20:26:09 -0700 (PDT)
-Received-SPF: pass (google.com: domain of lkp@intel.com designates 192.55.52.120 as permitted sender) client-ip=192.55.52.120;
-X-IronPort-AV: E=McAfee;i="6400,9594,10432"; a="289250415"
-X-IronPort-AV: E=Sophos;i="5.93,221,1654585200"; 
-   d="scan'208";a="289250415"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2022 20:26:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,221,1654585200"; 
-   d="scan'208";a="931870261"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 07 Aug 2022 20:26:04 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1oKtP1-000Lqj-1H;
-	Mon, 08 Aug 2022 03:26:03 +0000
-Date: Mon, 8 Aug 2022 11:25:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Li Jinlin <lijinlin3@huawei.com>, lduncan@suse.com, cleech@redhat.com,
-	michael.christie@oracle.com, jejb@linux.ibm.com,
-	martin.petersen@oracle.com, mark.mielke@gmail.com
-Cc: kbuild-all@lists.01.org, open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linfeilong@huawei.com, liuzhiqiang26@huawei.com
-Subject: Re: [PATCH] scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling
- getpeername()
-Message-ID: <202208081109.mO6WgY4E-lkp@intel.com>
-References: <20220802101939.3972556-1-lijinlin3@huawei.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Aug 2022 16:43:15 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ushankar@purestorage.com designates 2607:f8b0:4864:20::1029 as permitted sender) client-ip=2607:f8b0:4864:20::1029;
+Received: by mail-pj1-x1029.google.com with SMTP id h21-20020a17090aa89500b001f31a61b91dso6806949pjq.4
+        for <open-iscsi@googlegroups.com>; Thu, 11 Aug 2022 16:43:15 -0700 (PDT)
+X-Received: by 2002:a17:902:e549:b0:16d:d024:2de2 with SMTP id n9-20020a170902e54900b0016dd0242de2mr1408804plf.66.1660261394202;
+        Thu, 11 Aug 2022 16:43:14 -0700 (PDT)
+Received: from localhost ([2620:125:9007:640:7:70:36:0])
+        by smtp.gmail.com with ESMTPSA id l7-20020a170903120700b001709e3c750dsm225377plh.194.2022.08.11.16.43.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Aug 2022 16:43:13 -0700 (PDT)
+From: "'Uday Shankar' via open-iscsi" <open-iscsi@googlegroups.com>
+To: open-iscsi@googlegroups.com
+Cc: Uday Shankar <ushankar@purestorage.com>
+Subject: [PATCH] recovery: remove onlining of devices via sysfs
+Date: Thu, 11 Aug 2022 17:40:30 -0600
+Message-Id: <20220811234028.3848279-1-ushankar@purestorage.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
-In-Reply-To: <20220802101939.3972556-1-lijinlin3@huawei.com>
-X-Original-Sender: lkp@intel.com
+X-Original-Sender: ushankar@purestorage.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@intel.com header.s=Intel header.b=gAfdxQV3;       spf=pass
- (google.com: domain of lkp@intel.com designates 192.55.52.120 as permitted
- sender) smtp.mailfrom=lkp@intel.com;       dmarc=pass (p=NONE sp=NONE
- dis=NONE) header.from=intel.com
+ header.i=@purestorage.com header.s=google header.b=ariJYsth;       spf=pass
+ (google.com: domain of ushankar@purestorage.com designates
+ 2607:f8b0:4864:20::1029 as permitted sender) smtp.mailfrom=ushankar@purestorage.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=purestorage.com
+X-Original-From: Uday Shankar <ushankar@purestorage.com>
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -146,97 +130,59 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Hi Li,
+In setup_full_feature_phase, iscsid calls into the kernel via
+start_conn, then sets all the relevant device states to "running" via
+session_online_devs. This second step is redundant since start_conn will
+set the device states to running. Moreover, it can cause tasks to hang
+forever: between start_conn and session_online_devs, the kernel could
+detect another conn error and block the session again, which quiesces
+the device queues. Setting the device state to "running" via sysfs kicks
+off a rescan, and if the device queue is quiesced, the rescan will hang.
+The iscsid kernel stacktrace looks like the following:
 
-Thank you for the patch! Perhaps something to improve:
+[<0>] blk_execute_rq+0x11c/0x170
+[<0>] __scsi_execute+0x108/0x270
+[<0>] scsi_vpd_inquiry+0x6d/0xc0
+[<0>] scsi_get_vpd_size+0x33/0x70
+[<0>] scsi_get_vpd_buf+0x25/0xb0
+[<0>] scsi_attach_vpd+0x33/0x1a0
+[<0>] scsi_rescan_device+0x2a/0x90
+[<0>] store_state_field+0x1b0/0x250
+[<0>] kernfs_fop_write_iter+0x130/0x1c0
+[<0>] new_sync_write+0x10c/0x190
+[<0>] vfs_write+0x218/0x2a0
+[<0>] ksys_write+0x59/0xd0
+[<0>] do_syscall_64+0x3a/0x80
+[<0>] entry_SYSCALL_64_after_hwframe+0x46/0xb0
 
-[auto build test WARNING on mkp-scsi/for-next]
-[also build test WARNING on jejb-scsi/for-next linus/master v5.19]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Since iscsid is responsible for recovery from the second conn error but
+it is stuck, the relevant device queues will remain quiesced forever.
+Tasks attempting I/O on these queues will thus also get stuck.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Li-Jinlin/scsi-iscsi-iscsi_tcp-Fix-null-ptr-deref-while-calling-getpeername/20220802-173945
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mkp/scsi.git for-next
-config: powerpc-randconfig-s051-20220801 (https://download.01.org/0day-ci/archive/20220808/202208081109.mO6WgY4E-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 12.1.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-39-gce1a6720-dirty
-        # https://github.com/intel-lab-lkp/linux/commit/ccc367df3fdba07b24eeda721ca928cce50f40d2
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Li-Jinlin/scsi-iscsi-iscsi_tcp-Fix-null-ptr-deref-while-calling-getpeername/20220802-173945
-        git checkout ccc367df3fdba07b24eeda721ca928cce50f40d2
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/scsi/
+For these two reasons, remove the call to session_online_devs in
+setup_full_feature_phase.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Uday Shankar <ushankar@purestorage.com>
+---
+ usr/initiator.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/scsi/iscsi_tcp.c:798:26: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int fd @@     got struct file *file @@
-   drivers/scsi/iscsi_tcp.c:798:26: sparse:     expected unsigned int fd
-   drivers/scsi/iscsi_tcp.c:798:26: sparse:     got struct file *file
-   drivers/scsi/iscsi_tcp.c:852:26: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int fd @@     got struct file *file @@
-   drivers/scsi/iscsi_tcp.c:852:26: sparse:     expected unsigned int fd
-   drivers/scsi/iscsi_tcp.c:852:26: sparse:     got struct file *file
-
-vim +798 drivers/scsi/iscsi_tcp.c
-
-   777	
-   778	static int iscsi_sw_tcp_conn_get_param(struct iscsi_cls_conn *cls_conn,
-   779					       enum iscsi_param param, char *buf)
-   780	{
-   781		struct iscsi_conn *conn = cls_conn->dd_data;
-   782		struct iscsi_tcp_conn *tcp_conn = conn->dd_data;
-   783		struct iscsi_sw_tcp_conn *tcp_sw_conn = tcp_conn->dd_data;
-   784		struct sockaddr_in6 addr;
-   785		struct socket *sock;
-   786		int rc;
-   787	
-   788		switch(param) {
-   789		case ISCSI_PARAM_CONN_PORT:
-   790		case ISCSI_PARAM_CONN_ADDRESS:
-   791		case ISCSI_PARAM_LOCAL_PORT:
-   792			spin_lock_bh(&conn->session->frwd_lock);
-   793			if (!tcp_sw_conn || !tcp_sw_conn->sock) {
-   794				spin_unlock_bh(&conn->session->frwd_lock);
-   795				return -ENOTCONN;
-   796			}
-   797			sock = tcp_sw_conn->sock;
- > 798			fget(sock->file);
-   799			spin_unlock_bh(&conn->session->frwd_lock);
-   800	
-   801			if (param == ISCSI_PARAM_LOCAL_PORT)
-   802				rc = kernel_getsockname(sock,
-   803							(struct sockaddr *)&addr);
-   804			else
-   805				rc = kernel_getpeername(sock,
-   806							(struct sockaddr *)&addr);
-   807			spin_lock_bh(&conn->session->frwd_lock);
-   808			sockfd_put(sock);
-   809			spin_unlock_bh(&conn->session->frwd_lock);
-   810			if (rc < 0)
-   811				return rc;
-   812	
-   813			return iscsi_conn_get_addr_param((struct sockaddr_storage *)
-   814							 &addr, param, buf);
-   815		default:
-   816			return iscsi_conn_get_param(cls_conn, param, buf);
-   817		}
-   818	
-   819		return 0;
-   820	}
-   821	
-
+diff --git a/usr/initiator.c b/usr/initiator.c
+index 56bf38b..6cbdcba 100644
+--- a/usr/initiator.c
++++ b/usr/initiator.c
+@@ -1068,7 +1068,6 @@ setup_full_feature_phase(iscsi_conn_t *conn)
+ 	} else {
+ 		session->notify_qtask = NULL;
+ 
+-		session_online_devs(session->hostno, session->id);
+ 		mgmt_ipc_write_rsp(c->qtask, ISCSI_SUCCESS);
+ 		log_warning("connection%d:%d is operational after recovery "
+ 			    "(%d attempts)", session->id, conn->id,
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.25.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/202208081109.mO6WgY4E-lkp%40intel.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20220811234028.3848279-1-ushankar%40purestorage.com.
