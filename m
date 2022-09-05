@@ -1,68 +1,70 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBEOFXKMAMGQELHBDRQI@googlegroups.com>
+Return-Path: <open-iscsi+bncBCE5XHGSXEHBBHEN26MAMGQE4LPFJCI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x737.google.com (mail-qk1-x737.google.com [IPv6:2607:f8b0:4864:20::737])
-	by mail.lfdr.de (Postfix) with ESMTPS id 881C45A7200
-	for <lists+open-iscsi@lfdr.de>; Wed, 31 Aug 2022 01:51:47 +0200 (CEST)
-Received: by mail-qk1-x737.google.com with SMTP id h20-20020a05620a245400b006bb0c6074basf10392202qkn.6
-        for <lists+open-iscsi@lfdr.de>; Tue, 30 Aug 2022 16:51:47 -0700 (PDT)
+Received: from mail-qv1-xf3e.google.com (mail-qv1-xf3e.google.com [IPv6:2607:f8b0:4864:20::f3e])
+	by mail.lfdr.de (Postfix) with ESMTPS id E75175ACF30
+	for <lists+open-iscsi@lfdr.de>; Mon,  5 Sep 2022 11:51:26 +0200 (CEST)
+Received: by mail-qv1-xf3e.google.com with SMTP id db3-20020a056214170300b00496c0aabfc9sf5583346qvb.16
+        for <lists+open-iscsi@lfdr.de>; Mon, 05 Sep 2022 02:51:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:x-original-sender
-         :mime-version:subject:message-id:to:from:date:sender:from:to:cc;
-        bh=GnzpTJYLYjgfJzFWL2are7oYWJtHkB84Nvbb6hJrLKc=;
-        b=tvwH9uuSl9NELjZskarobexGm2LbRuwWNHH0KFXkVif8vpDp1CL72H5CPo/3jsD96C
-         1HMNiUAJS11/qH/X2bKbfTTOCXuWxfvnjGJVzHLaKDBgi+2BeRCXLLSDMhSll5eTiyZ/
-         21sxEMm0prz4xVimgVeHvk7NHcnwBzfRjhwg7L+XsMaQHboNWw3u/dieYPk/iKzMRohE
-         YoUYzQeEhZB7wKGGlZS/cec0wAj3aNQBujzC2ovUPIDHA/8Ctop0QjYN9vk1Xd1PZPif
-         rIe4U8cDgHKMX5xLGkVXn0rJoYsrywC2JurNIMOkNRPJriwWXp740AWYyHfR6bGy5qMt
-         GGhA==
+         :mime-version:subject:message-id:to:from:date:sender:from:to:cc
+         :subject:date;
+        bh=qrMcbdL/ssCbnn3eGwcYj04WZxY50h5tBkSa+vgqyhA=;
+        b=tX/3/sAn9HGCbXWu73ti/Mqqeo8DsSTRNgopwqVGshSditRwwUhvfwjnyCCYUrfY4T
+         6QdBJK1OgS1KEdsNGYn8vFXbs6/fXYXiKGiilZo/aVQE05ibakiPSnIBuSz4olFCeNSA
+         RgJ7Cwi0jFBmmEoxjbPfsEwofinpOSyJ3BOr1U8OebeInoU2FepMs7bpx+rAtaxuAUD5
+         Yb/8ZduymqUNdCoIvvEmMYEScNzPQjZK8H1DgO5TGNemt/tkz12AyqtPbsb//rU4aBSn
+         jg4VeYspGoIBPcpZZ6Rw2GOMhxfBlCbErgefCs6lswY1Zxl0PagRIh20rSqolPadp8B7
+         HsLQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:x-original-sender
-         :mime-version:subject:message-id:to:from:date:from:to:cc;
-        bh=GnzpTJYLYjgfJzFWL2are7oYWJtHkB84Nvbb6hJrLKc=;
-        b=c9vfneO5X2qZMGVHAUiO0AizMZH/cxZBY/vsLTElQ880+jr8LKws5cp/GpBZU0otag
-         eeeDhU19QykhP9UeVcU27huBD9uAQUM6DSPtRbI2+6pDP7WbJzPFSPlYaMny9WnoARua
-         +6cRj9KYpVxb8EY42MK4MmtQ7bExM7YWfbJLSNdRQroU/R5JWAHdt4pnT0DesGQ3GCUs
-         lXuQW4YGks3vvqH6XMzQu9mDOuD15Ya0flMhWmTxWtRsPl8aE5ytFRTfPDa+46FFUePP
-         af/4ksh89rJ6LNV5sbBM0R6QEuDDxsj/KAPNRieZAapzEoZzsLvdyPTEAAlwBMIPVGLe
-         zCJw==
+         :mime-version:subject:message-id:to:from:date:from:to:cc:subject
+         :date;
+        bh=qrMcbdL/ssCbnn3eGwcYj04WZxY50h5tBkSa+vgqyhA=;
+        b=MNwxl5DboMqlCX6YHCmfKnYLCsOjm+uMi8CI2O+3VKz71sWOW4AHJkG/XBXe1k9Zup
+         /Jfzsvc51q+iBc5IsSn7jcdUIFLlCV6pHPcad3xGxLSqricqLDUjuf3tnpI2RIkt/gui
+         9kOgMWbPn2iIu912TGkObFpb6vnGJXou7fpneBUZKs+8BMPUYKDlFj7EC+2JunBNvsSq
+         t+AVye+6W2MfNhFv74d3KI1KibpGWGVJN1HinGGAa6tGeT0uUJnwja9hjqAtLYbv0xgP
+         Rh7cPlFQOFBf0Has5+Ibd8VVC2HgrYUjbM+8YhAbT9WGIaqZ/tE8FIzwdTga4x7BziJz
+         NxTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-sender:mime-version:subject:message-id:to:from:date
-         :x-gm-message-state:sender:from:to:cc;
-        bh=GnzpTJYLYjgfJzFWL2are7oYWJtHkB84Nvbb6hJrLKc=;
-        b=wOoDNlIWduxd7pHLnEsdcQXrV6YpcuMotOYRTut8TGOIEMMx214dhtIdalMfvYOIrl
-         dK4tusaq9alTyNgHwrXAUDkl/yKTf/ZOjQiN4ARDQurpABiQodA+xo4s6M3KSl8ii0Gn
-         TZ0J3l93R3RDXUoRsxmr8TRgiZb7P2SEKD33dKty8xRcEzzboB0QQu/mEmsXfY1eByEZ
-         32pVKAf3dpxNWBpiCUNIPvmDF6gkJRM3SPLgrS6oMWHBlvm8KPZJuF+rkTvSatx1Ie+l
-         D+8wPxoYjw4VDxFLxTsYPpBbVSeLRwi93fHTHWiQqa2LtRrrkAgmrDpe6Ktk7leSH+RC
-         nfzw==
+         :x-gm-message-state:sender:from:to:cc:subject:date;
+        bh=qrMcbdL/ssCbnn3eGwcYj04WZxY50h5tBkSa+vgqyhA=;
+        b=Oaj6myDdtvkcjo/HSdAa1urReW6l2IQHyyrQwVLtBDVcMUQaxpbUc/uhwfuE0X7NjP
+         ayzfQeG+7xz7ptGxhXsOCbmOEhzODwohH+gX3hcVTy9X+eRw10gt34GH6zmCB+xpvzIL
+         nZ71k/w2V9hwEAYAdXvhMag3RwxRaBC6v95UGLnF7OkzYqtYhN0RSQ1d/cv1z+t9NDy1
+         CP7NsI9i0JxwMJDsIE6ZN3KFLPkEWEmTElbO/zh/yTLgR7twANcZncFTzAgOiRhDcWGj
+         dw0eJ4gBcSNQnstfEqdqcWMEbpVv57gViMJ0mJX39ICow8NX6HizTW4zSzGCgk/bmThS
+         D51w==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ACgBeo3icvzi9yxDi+Odl4e8nkyXx5GYcS6GodqnVx7KpPBSyKplqiEv
-	Xga7YEDpPEDS/hfq4wuBv+4=
-X-Google-Smtp-Source: AA6agR4s1K6LVtiiR5I7eGFhQX2QMUAh1faOwTW2KXgP1VATITlH7uyys5XCwdouq5BH2O1UAQnJyA==
-X-Received: by 2002:a05:620a:1a0c:b0:6bb:a292:bf92 with SMTP id bk12-20020a05620a1a0c00b006bba292bf92mr14427828qkb.90.1661903506339;
-        Tue, 30 Aug 2022 16:51:46 -0700 (PDT)
+X-Gm-Message-State: ACgBeo3hL/YFwfMJ5tHH8Ca0+vWkM7PkhFK9Wm81ovq32CjM+wdoGb84
+	Im3sRtrH7XfI0W5MUx4nKX0=
+X-Google-Smtp-Source: AA6agR5FADwqT92RywJdYxxOKB7riZe4WO0+XX8T6V9gzO4nL+G3tMNLL+92udDrD0ZgBCW2PJqHig==
+X-Received: by 2002:a05:622a:1207:b0:343:4a8:7580 with SMTP id y7-20020a05622a120700b0034304a87580mr37618480qtx.601.1662371485619;
+        Mon, 05 Sep 2022 02:51:25 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ae9:f81a:0:b0:6bb:2e5:9ab3 with SMTP id x26-20020ae9f81a000000b006bb02e59ab3ls7029443qkh.3.-pod-prod-gmail;
- Tue, 30 Aug 2022 16:51:44 -0700 (PDT)
-X-Received: by 2002:a05:620a:d95:b0:6b8:619a:67e1 with SMTP id q21-20020a05620a0d9500b006b8619a67e1mr14125036qkl.630.1661903504563;
-        Tue, 30 Aug 2022 16:51:44 -0700 (PDT)
-Date: Tue, 30 Aug 2022 16:51:43 -0700 (PDT)
-From: The Lee-Man <leeman.duncan@gmail.com>
+Received: by 2002:ae9:e70d:0:b0:6b9:57ca:5d1 with SMTP id m13-20020ae9e70d000000b006b957ca05d1ls7509397qka.0.-pod-prod-gmail;
+ Mon, 05 Sep 2022 02:51:24 -0700 (PDT)
+X-Received: by 2002:a05:620a:2588:b0:6c9:2daa:9c6d with SMTP id x8-20020a05620a258800b006c92daa9c6dmr374849qko.630.1662371484056;
+        Mon, 05 Sep 2022 02:51:24 -0700 (PDT)
+Date: Mon, 5 Sep 2022 02:51:23 -0700 (PDT)
+From: Gabor Opanszki <opanszkigabor@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <8d5e3b93-2ce2-4a34-a58f-606d68915034n@googlegroups.com>
-Subject: Using meson to build open-iscsi/iscsiuio
+Message-Id: <caf8c916-df39-444a-ba01-6fc2204bb9den@googlegroups.com>
+Subject: FCoE target with LIO
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_5148_867642506.1661903503967"
-X-Original-Sender: leeman.duncan@gmail.com
+	boundary="----=_Part_4190_1436711629.1662371483560"
+X-Original-Sender: opanszkigabor@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -76,81 +78,52 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_5148_867642506.1661903503967
+------=_Part_4190_1436711629.1662371483560
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_5149_1267961934.1661903503967"
+	boundary="----=_Part_4191_1694667384.1662371483561"
 
-------=_Part_5149_1267961934.1661903503967
+------=_Part_4191_1694667384.1662371483561
 Content-Type: text/plain; charset="UTF-8"
 
+Hi dear Members.
 
-Hi All:
+I want to create a 10G FCoE target with LIO software, the topology is 
+simple.
+I would like to export Luns over fcoe target. 
 
-I am planning on converting open-iscsi to use meson for building instead of 
-'make'. This would convert iscsiuio as well, which currently uses 
-autoconf/autotools.
+The fabric will be FCoE.
+Luns are local block devices attached throught SAS raid controller.
+Could someone share any of deploymant guides to this scenario?
 
-It looks like the resulting systems is functionally equivalent (i.e. it 
-builds the same stuff), and it's faster and a bit smaller. And easier to 
-understand and use!
+I tried deploy this environment to my lab. i used HP server with Intel x520 
+DA2 converged hba adapter, with no success. 
 
-I have the changes in a branch of open-iscsi: 'use-meson-v1', i.e.:
+i found old discussions about target_core, tcm_fc, rtslib.  None of them 
+helped to me.
 
-    open-iscsi github sources use-meson-v1 branch 
-<https://github.com/open-iscsi/open-iscsi/tree/use-meson-v1>
-
-I would really appreciate other eyes looking at this and trying it out.
-
-Anyone interested? If so, let me know.
-
-The README isn't updated yet (in this branch) to explain how to build 
-things, so let me know if you want the secret sauce.  It's something like 
-(from the top level):
-
-sh$ rm -rf builddir
-sh$ meson buildir
-sh$ ninja --verbose -C builddir
-
-to build, and
-
-sh$ ninja --verbose install
-
-to install
-
-You'll need to install meson and ninja.
-
-Let the hacking begin!
--- 
-Lee D
+i will be happy if i could get deployment guide or help from anyone.
+Thanks,
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/8d5e3b93-2ce2-4a34-a58f-606d68915034n%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/caf8c916-df39-444a-ba01-6fc2204bb9den%40googlegroups.com.
 
-------=_Part_5149_1267961934.1661903503967
+------=_Part_4191_1694667384.1662371483561
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<br><div>Hi All:</div><div><br></div><div>I am planning on converting open-=
-iscsi to use meson for building instead of 'make'. This would convert iscsi=
-uio as well, which currently uses autoconf/autotools.</div><div><br></div><=
-div>It looks like the resulting systems is functionally equivalent (i.e. it=
- builds the same stuff), and it's faster and a bit smaller. And easier to u=
-nderstand and use!</div><div><br></div><div>I have the changes in a branch =
-of open-iscsi: 'use-meson-v1', i.e.:<br></div><div><br></div><div>&nbsp;&nb=
-sp;&nbsp; <a href=3D"https://github.com/open-iscsi/open-iscsi/tree/use-meso=
-n-v1">open-iscsi github sources use-meson-v1 branch</a></div><div><br></div=
-><div>I would really appreciate other eyes looking at this and trying it ou=
-t.</div><div><br></div><div>Anyone interested? If so, let me know.</div><di=
-v><br></div><div>The README isn't updated yet (in this branch) to explain h=
-ow to build things, so let me know if you want the secret sauce.&nbsp; It's=
- something like (from the top level):</div><div><br></div><div>sh$ rm -rf b=
-uilddir</div><div>sh$ meson buildir</div><div>sh$ ninja --verbose -C buildd=
-ir</div><div><br></div><div>to build, and</div><div><br></div><div>sh$ ninj=
-a --verbose install</div><div><br></div><div>to install</div><div><br></div=
-><div>You'll need to install meson and ninja.</div><div><br></div><div>Let =
-the hacking begin!</div><div>-- <br></div><div>Lee D<br></div>
+Hi dear Members.<div><br></div><div>I want to create a 10G FCoE target with=
+ LIO software, the topology is simple.<br><div>I would like to export Luns =
+over fcoe target.&nbsp;</div><div><br></div><div>The fabric will be FCoE.</=
+div><div>Luns are local block devices attached throught SAS raid controller=
+.</div><div>Could someone share any of deploymant guides to this scenario?<=
+/div><div><br></div><div>I tried deploy this environment to my lab. i used =
+HP server with Intel x520 DA2 converged hba adapter, with no success.&nbsp;=
+</div><div><br></div><div>i found old discussions about target_core, tcm_fc=
+, rtslib. &nbsp;None of them helped to me.</div><div><br></div><div>i will =
+be happy if i could get deployment guide or help from anyone.</div><div>Tha=
+nks,</div><div><br></div></div>
 
 <p></p>
 
@@ -161,11 +134,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/8d5e3b93-2ce2-4a34-a58f-606d68915034n%40googlegroups.=
+om/d/msgid/open-iscsi/caf8c916-df39-444a-ba01-6fc2204bb9den%40googlegroups.=
 com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/8d5e3b93-2ce2-4a34-a58f-606d68915034n%40googlegroups.com</a>.=
+id/open-iscsi/caf8c916-df39-444a-ba01-6fc2204bb9den%40googlegroups.com</a>.=
 <br />
 
-------=_Part_5149_1267961934.1661903503967--
+------=_Part_4191_1694667384.1662371483561--
 
-------=_Part_5148_867642506.1661903503967--
+------=_Part_4190_1436711629.1662371483560--
