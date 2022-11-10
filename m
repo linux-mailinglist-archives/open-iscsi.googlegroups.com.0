@@ -1,34 +1,34 @@
-Return-Path: <open-iscsi+bncBCUJ7YGL3QFBBRXHWKNQMGQENLQOJQQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBCUJ7YGL3QFBB64DWONQMGQEHDSHH6Q@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wm1-x33c.google.com (mail-wm1-x33c.google.com [IPv6:2a00:1450:4864:20::33c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42CC5623D3B
-	for <lists+open-iscsi@lfdr.de>; Thu, 10 Nov 2022 09:18:17 +0100 (CET)
-Received: by mail-wm1-x33c.google.com with SMTP id 186-20020a1c02c3000000b003cfab28cbe0sf2292487wmc.9
-        for <lists+open-iscsi@lfdr.de>; Thu, 10 Nov 2022 00:18:17 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1668068296; cv=pass;
+Received: from mail-qk1-x739.google.com (mail-qk1-x739.google.com [IPv6:2607:f8b0:4864:20::739])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A16623E6F
+	for <lists+open-iscsi@lfdr.de>; Thu, 10 Nov 2022 10:18:53 +0100 (CET)
+Received: by mail-qk1-x739.google.com with SMTP id bi42-20020a05620a31aa00b006faaa1664b9sf1372276qkb.8
+        for <lists+open-iscsi@lfdr.de>; Thu, 10 Nov 2022 01:18:53 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1668071932; cv=pass;
         d=google.com; s=arc-20160816;
-        b=I1kYcPed6D+ycjLFCIZkC12ZIKz4Oq/gBMvjMXtwq4H0nYAjaH05+bRLHYzXa5S8pa
-         IpeF8sm8e3FpAM0o3FeiCtjwFR97FyCvuZnICRD6K2s1RkhPltd2NnlnRCJ2N/QHRAuu
-         Mm29k0YSKQKSwgFi8a9wNZqWWmec7FJEvDHRFJaEfKBzJg7X+ks/SRvEKKb5fL/0m1+q
-         4LJgjuAZFyHqWV6QbOIbWHpfvJtSxzgzF1uNrBFiLgIgEO5thzrJpi1O4OeHqD/rSdKi
-         1B3nfEasqAXlI3S09OyaPgMcgHbC4B3ltdjHTVIIGfrKWtdQe9JKblTU3t2Ly1QVXm/h
-         Z9WQ==
+        b=uzgYbiRxNfJqzkjwslOnQ0yU3dkQ72tzO1oRQcLMPtx2szaF4ODtsmPN8WGvPySmUd
+         hMKD++hFVccMrBZFqlmnKOtNQL+blgoeHtA3d7fuNNOH1BwignJA+gR/9Bw86PzHIJY8
+         3rmsrAXJDX2B57hZxHl5Qq0t+aCxJ1DycyBsmv4nZITddnG4bBUPWKmAlWXhz7T8+tGP
+         XfTHuTp7DobQC3TFRDT916i1lXYHe/B9jqSEWK4ybMvG5nJT3ZKOgWfT0jT/Ims8AqYV
+         MjFs/2slvxk/DIOuRo7BjvEZajUkoVU23RKnTteIcN7Gf2ZFVljegt4ShFgUCRU/y0Qm
+         XiAg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:in-reply-to
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:sender:dkim-signature;
-        bh=EkDzhQNyRyeSpKQCmrukQZSWtxWy0gQ9X+vXS3x5E8U=;
-        b=PKW4V3fRy8n/lK762nFAdVknMMDf5eapMl6T1xFFo6dAtDDKl7wqsTerwS0RcZrbGk
-         m2olWjT3yrfTUQRA8Vr8ozVLBRlcgLfX46H7Co8jJ+24pGf7ZAGIWRaPeuZs+y7XnAw+
-         I+cK3iTyf7aWHhuPjEdBdUT0K9u73qSlOV4dv2OPfuto1lCNv8K2w70EPmAmZ7L4/iGE
-         ZFo3EBCdc8Z7hV5POUsWhrmF29WDvASDkJq28I6bg5ygaXsP1jjs5f8DbeT+Rfz8MuHo
-         gNyCSIwfc+U3dYD0BrjEf0B0DszB02NS/zJFfWu9s5X27OEmN8rKZe0eoeGFYjczs5iT
-         3Tsw==
+        bh=30PlMtLPhSvC24ji9mucQNRoyaPGQRPegfSIBf1BwTk=;
+        b=XKeNZ5LoG2/xc8YGJqKB/1AzYB8OGB0LRImIuwEQEL/PSgi56i1x9Jm9k3BJ3sje8f
+         SWfmBmWDg9c6OiJxhla+VeNKuKa7Xah0r9X7RgRFh6F15AJcKnM0IQsFDlrKHm7QHMf/
+         1hU2C9Xa4fsYJOxy39G5hNYif4LqsJuitrViPRe3VNqYUoTWiST1eYjjt2NfZqRzWr2Z
+         gjwUJIi0ubGOz+iGvPbW8oFdCTDO5EHbv6jTwJ5WBVnQLfUKrKuHdDBEDbiUPP+PcEJr
+         cfy7Dgpo9WlvaKkHYKtoBemrT3rUOmEbepStA7zCmuDdHPArlLWwrC222VpqDkvVI4Xk
+         C0Uw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=reMJtpYw;
-       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=ZsuUDlkJ;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 2604:1380:4641:c500::1 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
@@ -37,13 +37,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:x-original-sender:in-reply-to
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=EkDzhQNyRyeSpKQCmrukQZSWtxWy0gQ9X+vXS3x5E8U=;
-        b=fRe7laeM+mUtpkkBgR0ATrs29OY8ZNL4Yt2JUURf+Pb6+s5RK7KoTNZW8PYpvkR5LC
-         HwfaqOtzAieE03+fZcAGpUhtFFJxvsD5YyJvqCMpQk8wrNuBHnvBnlWEWbK2iFa2PHGu
-         6xKma3G4VR0iiLXMH57EIk5avRMiwK7PET7L6S4QuGvgTzk4uG6xsz0Fr3kjftbQffO3
-         ep3H50M2ZCSaYT2N4XLtPjBtdAphhFGfl+ZzBsoR9iIKPPck98UAeFy1x1t4X7/3y+tP
-         XxSWbEQI41j6rEn4omLuVHDz8ZeJ0BW1MCZ5kin9b/bPZmbhpP7z5RSMtCcX7tU5lsgy
-         hjJg==
+        bh=30PlMtLPhSvC24ji9mucQNRoyaPGQRPegfSIBf1BwTk=;
+        b=KsQfvexDRh2k6XiySp56TVxGAHAsqgbWpMXZo9DYUMT86QWqzHB07Nk4Y/fqY7p/Qm
+         7PRxg1JxYhRefmStYARrbqeEOrTlPG8qpl4yTDovLN+kTUQMUmXBUyf9Z6qMLFPHQFBR
+         s474+7KFnO3ZhuQoEtm/4zS5mnOEitB5nZShdxkrECx8Vo1/Dfb7Koy0bRsCYpGDgly9
+         p50l6PIXpuLpWlaVgHuNrfhnSJN2qna1ML++3BjAW/f7GPrlxZ+eEi1UQu2ld6bolihc
+         3lZEWsVuHpCzC/dXl1nXqfc4W+4F/FJhNgblpRDZSmeBQtUIUiE7kEc0T0CABm0m6zPb
+         hj2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
@@ -52,60 +52,60 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:x-gm-message-state:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EkDzhQNyRyeSpKQCmrukQZSWtxWy0gQ9X+vXS3x5E8U=;
-        b=eycJhDa5VqDEH6cwMNlgic97YeJbHpVG4q474QhDTb+fyV8Vs2hpYuxICcNrOBkNG+
-         O6+N1VUfBpQY87tsVzpX7J+XP1A/d3cbIJWALpt4RFOzFo+QxdT1fXuwzPgcpj0EOX3d
-         tke/uWVMa5CepJpiAgoVoxqpbr4hSJW7XyENv0x1TiM+2ROBg6mwuwPBbVDN1lG1gI49
-         9gb6eR9a7+mT7Cd7u63yEL853CaDBegzkG4ybazSmDVwund9dlfEB4jfwmAFg6s8PaNl
-         FfTnXVjPNZcX/Ef1ASCfOl9f0RygmDDAA0muaoXqUhnGsR+lbuf08+ieHKnUACNnHRho
-         0sHg==
+        bh=30PlMtLPhSvC24ji9mucQNRoyaPGQRPegfSIBf1BwTk=;
+        b=6XXPEeWdy7Fx3FZE2zVd5y7JOOeeKOU8dgjqnJeQAns9LJ6/gEugppJY9zVVkHBeuD
+         yuPTLRFiiVsSB+Pn4nQogwpz/GnIdQEE3m87pul6Sc1A+hPEcPBwpuAwzOmIdiUf05zR
+         Yh1Gn+hbOFN0NA3hcgLCYLgSaOmQx2D/UxSdmUJC89eEUrzCJlb+ks4/tnsUTuskNTNC
+         8CvPUjZ/CrZrHgJ/tieF0AM2ZxUOOXexo9eZmCiDN59S5X2qknCtnua/fz7VHRqQucAD
+         uun943sWvOCmUsKZJQDh8GYBQw6cB1gpk2sysLCvVQo0rukyNRMvGZ9qhykFUW94ToxQ
+         bofw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ACrzQf3bKXe3Ee+nf7k9Su89TcrMrErPjD79dTAQ5l95AGvVkLk7S7Rv
-	yf8qGqGcWnRmsB1khQP+bJE=
-X-Google-Smtp-Source: AMsMyM5Fo6xpTc1qEfcVJ14kxjoY5Y7i5NFctwKU8RUXY4TbTpW6mhJ37BX8Ir9qd6NGatt1G/HRjw==
-X-Received: by 2002:a05:6000:12d1:b0:236:9d32:b99f with SMTP id l17-20020a05600012d100b002369d32b99fmr41243116wrx.567.1668068296568;
-        Thu, 10 Nov 2022 00:18:16 -0800 (PST)
+X-Gm-Message-State: ACrzQf1B9Y1AlIM9zfOEFneHWWJiOrmLBSDFn6ZGWG2Z/j3YX/qkV9p8
+	Q02dH4WcSj0lDTycfb55mqA=
+X-Google-Smtp-Source: AMsMyM4MgqLCbwA5sqI2qyrro9DfBpQmowNqq/Ue2hACJkeabnsw1b35ZgNmHQF5IxabmO5rlN8XMA==
+X-Received: by 2002:a05:620a:cc2:b0:6fa:2175:5fa7 with SMTP id b2-20020a05620a0cc200b006fa21755fa7mr43216011qkj.0.1668071932268;
+        Thu, 10 Nov 2022 01:18:52 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:adf:d231:0:b0:228:ddd7:f40e with SMTP id k17-20020adfd231000000b00228ddd7f40els1922598wrh.3.-pod-prod-gmail;
- Thu, 10 Nov 2022 00:18:14 -0800 (PST)
-X-Received: by 2002:a5d:53c9:0:b0:236:69fd:d4cc with SMTP id a9-20020a5d53c9000000b0023669fdd4ccmr41478262wrw.618.1668068293909;
-        Thu, 10 Nov 2022 00:18:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1668068293; cv=none;
+Received: by 2002:a0c:b45d:0:b0:4b1:b8f0:d1a8 with SMTP id e29-20020a0cb45d000000b004b1b8f0d1a8ls761782qvf.10.-pod-prod-gmail;
+ Thu, 10 Nov 2022 01:18:50 -0800 (PST)
+X-Received: by 2002:a05:6214:258c:b0:4c2:f34f:a5f7 with SMTP id fq12-20020a056214258c00b004c2f34fa5f7mr27600167qvb.62.1668071930760;
+        Thu, 10 Nov 2022 01:18:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1668071930; cv=none;
         d=google.com; s=arc-20160816;
-        b=DvR8i6+7bLokn/Z7dBKNyfeQXh3Itn1Mbph4+ZeeTRmMnOgb2zLqS7hkjHinbFhTPl
-         Z/J8TZoLNZUt2TVTdyUMznUalKHdYG5NRbAv3WOAvq5WtObXaiNKq2k8rCZaO9moJUdh
-         bllT1P+ieQkOVfwTI5TV1fk1fAVDtdeuoePvE4NpABl6ABDw2OR8q3Cr3DOdNUYJie2+
-         GmPdyfLXhevBaB3A+bo/UfNfmMS7wKu8pCc5LoBtlPEJAZW8ZcVwI5Ar66msnWJJgOVa
-         tn2KKVlVwD35mV2hQOHKNhABTsjC3BcB3TcUk1N9taNVO1dTYoz4yYBLFfYL8aAKrAqZ
-         5OSA==
+        b=IClzSXaCicz9HMA9NO0esEI+ZkK6sk+qZGVTV+jDe3Zw/qFqvrXn3lRYU0EVy1C/JD
+         i/Sd+bIJwhbBdKVRp5QH34g26hL4qPDybOWxe2fs2QxZ7Zbh6xrgD55oUGQxqUsOGAbW
+         gqC4wiFToddRXZRQxL7CyXJF8DopoOzrUSUlKsEY41xoobYNESHX/vObeKf46WW4b5x7
+         155itZ8mQDG7bmz8ADGQSo5LT7I3tJpXKtY9TQE03C4CntW7Wz3p/nYZewkh/ek1HUVU
+         AJ3ETJVxVDBoP+RO8kTSwVqJnjSjjvufI2LPcWoDB2U7Xvvg9K1hvN6+bzPPHBD/oZK+
+         UjBg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:dkim-signature;
-        bh=4amzUOd65JOTpO3abbtS/Wu1zXQGN5ekJciNVpJwvtw=;
-        b=HY1tge/ld+n5idOpiBVaJSR0cMUOdzuaKQx75A9kKBfMiB2XEuTzqBtKCrI0US3r8P
-         N/bdLq6xAyjs7jybMAt0O/y3RnzlfU631qVbdYkBCQdoGdxnANdyjzefCLsrodCzI5te
-         fHSVJxCnVskD9o4Iz3qTbeXK18GbXw3fOUm+RUggTosubFOIs0aiaFWqXTTElYeKm0dw
-         xY8AfEJnPatjXnMIxg7xXHDDvfqV9aO5R5/l7AvQ/l8Co+bqeG692imqFKPnyN7Pj7cy
-         q4Y/a8Q7MKod0SccqGl4o2NZ4iLJBp98sFIKWcsxNue6CxbD/qQWhLA/BMJvp8TpgymY
-         Tzpg==
+        bh=FDVy1KFe2LohQOl5PAOTqY9Mzb6AHW9bz2tzrFY/P/8=;
+        b=upw6Hz98UhOR/Qi/rYDzqMEc2f1NDNGYga+QsFkUDBU0sTAdFPO4gawy07Y29nmE4R
+         SEuEYb7WSF8wcpOKylt+4vZ0VQ7swHYc2JWO+y+SU1MR+DxugkFSrtYD3LB4BJ9lLbUh
+         QsEWIV6TA+zyMBS1Z3XnwHjo3RaiFv8eOwJN2PI9J+50LVjSpgT3LXWOX+hHS8IgNJI0
+         pS5vLnzOf0lpiAFPdU03DDU+OZXDmc13vU0SqXTUOBM3+iGfrlUblOR36iF/ntrL8v9M
+         hWx6Ni2BKkZMwDFaVukFMdKHhQApyf1JIjICgxQe5Qo+nX0L+P5qowmrBjolnGvB5nZu
+         EHPQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=reMJtpYw;
-       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=ZsuUDlkJ;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 2604:1380:4641:c500::1 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
-Received: from ams.source.kernel.org (ams.source.kernel.org. [145.40.68.75])
-        by gmr-mx.google.com with ESMTPS id d14-20020a05600c34ce00b003c6c0197f3dsi163332wmq.2.2022.11.10.00.18.13
+Received: from dfw.source.kernel.org (dfw.source.kernel.org. [2604:1380:4641:c500::1])
+        by gmr-mx.google.com with ESMTPS id g28-20020ac8775c000000b003a576c4e4aesi658004qtu.1.2022.11.10.01.18.50
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 10 Nov 2022 00:18:13 -0800 (PST)
-Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 145.40.68.75 as permitted sender) client-ip=145.40.68.75;
+        Thu, 10 Nov 2022 01:18:50 -0800 (PST)
+Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 2604:1380:4641:c500::1 as permitted sender) client-ip=2604:1380:4641:c500::1;
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 899A7B820F4;
-	Thu, 10 Nov 2022 08:18:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB91C433C1;
-	Thu, 10 Nov 2022 08:18:10 +0000 (UTC)
-Date: Thu, 10 Nov 2022 09:18:08 +0100
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 45D6160ADE;
+	Thu, 10 Nov 2022 09:18:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 343FEC433D6;
+	Thu, 10 Nov 2022 09:18:49 +0000 (UTC)
+Date: Thu, 10 Nov 2022 10:18:46 +0100
 From: Greg KH <gregkh@linuxfoundation.org>
 To: Yang Yingliang <yangyingliang@huawei.com>
 Cc: open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
@@ -113,18 +113,20 @@ Cc: open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
 	michael.christie@oracle.com, jejb@linux.ibm.com,
 	martin.petersen@oracle.com, rafael@kernel.org
 Subject: Re: [PATCH] drivers: base: transport_class: fix possible memory leak
-Message-ID: <Y2yzwB0IuaVS3AVq@kroah.com>
+Message-ID: <Y2zB9ndClm2EfReK@kroah.com>
 References: <20221110034809.17258-1-yangyingliang@huawei.com>
+ <Y2yzwB0IuaVS3AVq@kroah.com>
+ <d509e930-779b-866e-9b1f-d58db6abfc43@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Disposition: inline
-In-Reply-To: <20221110034809.17258-1-yangyingliang@huawei.com>
+In-Reply-To: <d509e930-779b-866e-9b1f-d58db6abfc43@huawei.com>
 X-Original-Sender: gregkh@linuxfoundation.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@linuxfoundation.org header.s=korg header.b=reMJtpYw;       spf=pass
- (google.com: domain of gregkh@linuxfoundation.org designates 145.40.68.75 as
- permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;       dmarc=pass
- (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+ header.i=@linuxfoundation.org header.s=korg header.b=ZsuUDlkJ;       spf=pass
+ (google.com: domain of gregkh@linuxfoundation.org designates
+ 2604:1380:4641:c500::1 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -138,40 +140,53 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Thu, Nov 10, 2022 at 11:48:09AM +0800, Yang Yingliang wrote:
-> Current some drivers(like iscsi) call transport_register_device()
-> failed, they don't call transport_destroy_device() to release the
-> memory allocated in transport_setup_device(), because they don't
-> know what was done, it should be internal thing to release the
-> resource in register function. So fix this leak by calling destroy
-> function inside register function.
+On Thu, Nov 10, 2022 at 04:44:16PM +0800, Yang Yingliang wrote:
+> Hi Greg,
 > 
-> Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
-> Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
-> ---
->  include/linux/transport_class.h | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+> On 2022/11/10 16:18, Greg KH wrote:
+> > On Thu, Nov 10, 2022 at 11:48:09AM +0800, Yang Yingliang wrote:
+> > > Current some drivers(like iscsi) call transport_register_device()
+> > > failed, they don't call transport_destroy_device() to release the
+> > > memory allocated in transport_setup_device(), because they don't
+> > > know what was done, it should be internal thing to release the
+> > > resource in register function. So fix this leak by calling destroy
+> > > function inside register function.
+> > > 
+> > > Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
+> > > Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+> > > ---
+> > >   include/linux/transport_class.h | 9 ++++++++-
+> > >   1 file changed, 8 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/include/linux/transport_class.h b/include/linux/transport_class.h
+> > > index 63076fb835e3..f4835250bbfc 100644
+> > > --- a/include/linux/transport_class.h
+> > > +++ b/include/linux/transport_class.h
+> > > @@ -70,8 +70,15 @@ void transport_destroy_device(struct device *);
+> > >   static inline int
+> > >   transport_register_device(struct device *dev)
+> > >   {
+> > > +	int ret;
+> > > +
+> > >   	transport_setup_device(dev);
+> > > -	return transport_add_device(dev);
+> > > +	ret = transport_add_device(dev);
+> > > +	if (ret) {
+> > > +		transport_destroy_device(dev);
+> > > +	}
+> > Please use scripts/checkpatch.pl on your patches before sending them out
+> Sure, of course. :)
+> > so you don't get grumpy maintainers asking you to use
+> > scripts/checkpatch.pl on your patches :)
+> I sent a fix patch to iscsi system earlier:
+> https://patchwork.kernel.org/project/linux-scsi/patch/20221109092421.3111613-1-yangyingliang@huawei.com/
 > 
-> diff --git a/include/linux/transport_class.h b/include/linux/transport_class.h
-> index 63076fb835e3..f4835250bbfc 100644
-> --- a/include/linux/transport_class.h
-> +++ b/include/linux/transport_class.h
-> @@ -70,8 +70,15 @@ void transport_destroy_device(struct device *);
->  static inline int
->  transport_register_device(struct device *dev)
->  {
-> +	int ret;
-> +
->  	transport_setup_device(dev);
-> -	return transport_add_device(dev);
-> +	ret = transport_add_device(dev);
-> +	if (ret) {
-> +		transport_destroy_device(dev);
-> +	}
+> Mike give his point in the mail, so I send a new patch keep iscsi
+> maintainers Cced.
 
-Please use scripts/checkpatch.pl on your patches before sending them out
-so you don't get grumpy maintainers asking you to use
-scripts/checkpatch.pl on your patches :)
+That's fine, but the code you wrote here should look different as it
+does not follow our coding style rules.  That is the point I was trying
+to make.
 
 thanks,
 
@@ -180,4 +195,4 @@ greg k-h
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/Y2yzwB0IuaVS3AVq%40kroah.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/Y2zB9ndClm2EfReK%40kroah.com.
