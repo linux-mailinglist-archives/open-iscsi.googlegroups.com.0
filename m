@@ -1,136 +1,136 @@
-Return-Path: <open-iscsi+bncBAABBNOE2SNQMGQEGJU22NY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDA4XKVK6ECBBNOE2SNQMGQEKCKRPHA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x839.google.com (mail-qt1-x839.google.com [IPv6:2607:f8b0:4864:20::839])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF9E62C6BB
+Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD2D562C6BC
 	for <lists+open-iscsi@lfdr.de>; Wed, 16 Nov 2022 18:47:35 +0100 (CET)
-Received: by mail-qt1-x839.google.com with SMTP id s14-20020a05622a1a8e00b00397eacd9c1asf13711300qtc.21
+Received: by mail-qk1-x73a.google.com with SMTP id h8-20020a05620a284800b006b5c98f09fbsf18199567qkp.21
         for <lists+open-iscsi@lfdr.de>; Wed, 16 Nov 2022 09:47:35 -0800 (PST)
 ARC-Seal: i=2; a=rsa-sha256; t=1668620854; cv=pass;
         d=google.com; s=arc-20160816;
-        b=hKvZ1JU759xhVSiodVJE7YfytsrGaScbbhUCYXZsL4wjeOk5/AbZEWj20N8fWhsH1p
-         V8X9OOnteQ+jENYYMPoPJdP3m4gSrAZ6mwDoJUfpvy46JKVux5WUXI5Io/NONNLCiIZ9
-         uT/LOL0S424OXKJP+GkrQoFrQFnuxbIfOaPrkInyX8mhGIOCGlBHy7z3jGffnk4ke6vz
-         HhJ8JUz1M1sGLzNr9DGECdNgEmLgQNQjG9RkOtPPi6friRTBL6w7dDHHVNhM45c8Tp/a
-         TrQS+lt+VpC97HPhR0HkfOczuZkUn6w448tP4TYxX/nEvwhg0Kp0VgjXLHjOZ/4rHfKu
-         +16w==
+        b=j6p29mNNeS93X/YAzYzBZBln3FfSSRS1iVg8ix2UkJoShwThmi8BS1SpW/Kz+VAyvG
+         iyzFEbdZp3+W1f3QA+3b90gpzG89U8fc7mqNqZVFO4ciBdCyhYQcPKfhmBjYBmCtaiWm
+         jm+QIwTabimCeqsJKwCEe8czOR7EJe5SQFAa4VFrH1PyXa3K4gnp8gNAVZcDUOH28R0e
+         H/1Fq6cjLGECfkXbH64LGtNkLaCXBwDZWIje0jZpRE96kizGroeTEFOlYU+9H+An7/pS
+         ox7UtuCn+zCyRjyBIoa03CVulShCBTE+9D8gPxUeL2X+8U/HjrFrMtCZ1lTkv+eAmxFU
+         kpDw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:dkim-signature;
-        bh=ShlxjonX4UU2hTK41WbP9jimHpd8T8cQGu402RD9kKc=;
-        b=vvWD8zxL87x9iU0QDCbpIkpQ7pSga/rJVz9wr5V+4fwo7+kN9+9Odec8R60h5qZ7Sc
-         ZICPRcfwCLTwaftn7TFTzyLtff/Yh0NoszXOfdXUizAkcRHP5mgVVDaJGG7XK1MxkFaX
-         4g6jbBfjbmfcrUvs6eLYX2KOtTunzCH6aMRJDH7hzm/6arGjsLP1JXh1YOs2iy6O3YML
-         qwal7qrYXq1pqKXGvW+9J1RZYTwpd17Xxg6FGL74dg8MHYw/ZeMpXmTwAXzuhDuTL8FV
-         nVmiIcKk4+qiiw6s3Mr/hhtABEVtHPLvpWQhtzFIO+VKMmpt0YsVFeZZdVOLFiiw5nvX
-         pTvw==
+         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
+         :from:mime-version:sender:dkim-signature:dkim-signature;
+        bh=uxa4rDF4SafcBy37CMmq4Q29IiB8dQWH8YPqmi8/HKA=;
+        b=aYeDFy69RNQ65x/VQ6XFkmQsqp9LW8lHo9BLTqGczvVr4MbbOdswLkU+0EzcZWbedM
+         Ox0bG3tRFo3VvML9cnDxgHfruJYJnlze1def4CrUg0EyQMTlPytStCQhE6CWq+K3jVyt
+         gS9Re4AP3ispvtsYKS9kULQXJmcEaR8pPnOepyMrc1XzAVPe2Cog2+JU/vugo9Q19mLC
+         aV/z75fNaNYzPR6JnFt3awrm8MqHW417X2+VaoEqmef1hGFv6h7ndywD7kbpHTxALl9E
+         +wDDfoO9UOsyGXmKw9ItReOukE1n1IilyRH1NWB8dZHHmFOviEqzR/oZpMLSAjqbRuRa
+         Ih8Q==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of yangyingliang@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=yangyingliang@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=SPADowM0;
+       spf=pass (google.com: domain of topsyharm022@gmail.com designates 2607:f8b0:4864:20::932 as permitted sender) smtp.mailfrom=topsyharm022@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :x-original-authentication-results:x-original-sender:to:subject
+         :message-id:date:from:mime-version:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ShlxjonX4UU2hTK41WbP9jimHpd8T8cQGu402RD9kKc=;
-        b=JI2ZMsSMz/RsWtaAk/hNoHyzRg4XpwVt8HQeWfXPitnBS54Ddh6p4GeLMikXIxGM7H
-         aiEDctDerFZzR0cyIz2PlqF6UsdOj1lREwyCOK0HAW5opPmFHUgtdo1oC05cn2XY8J7A
-         Rab5/WiQ25dS3rRc/mGxfV6NOlKTO4Lke5eePA4pDc92J70g9XBnffEQHTbr3zyiXDxD
-         0EKIS8C4TuI60wYOnHpQLN5qN+DVRx2ZnPXg774cG8CRpcphSfj3GfSqwI620ebhUSD1
-         oAgrlu/Y+lTAd0+upoG5YHQVX7NzId0qA4yno+7TLLAOkDXujbvXKIkISFGFEbVmClJ6
-         aQqg==
+        bh=uxa4rDF4SafcBy37CMmq4Q29IiB8dQWH8YPqmi8/HKA=;
+        b=pzf2CE0u/XvYZWp/0M7QkMceVgfcNwTR4J9IDMyx8NqBCNT9ZC593zS04gbOeRU/e5
+         aLYroyNfk/CPUiC3Ba80QS+9LtfLisPgK7OjFc3EbyTx1VlGAKAOfF3V+PQfgv6MG1i7
+         wkuWnBrML7nT+bqeefT4vKH0zPehhh3tgsbgXpyTvG7He0BkuMSFewT/etTCnR7uTD9r
+         41y4tqB/uQgK6rzeQVwogCMZUiVVZKZTL3INasdr9HSaYqiiynF1cRT3Tfls3UkFmPsW
+         /bmUvHQMBus2BVRZkPhDlwxHi/MEKc6PTxcPxUFTzeKCANY8ENDsmOwJ2D3ra5YrD4iX
+         v9sQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to
+         :x-original-authentication-results:x-original-sender:to:subject
+         :message-id:date:from:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uxa4rDF4SafcBy37CMmq4Q29IiB8dQWH8YPqmi8/HKA=;
+        b=Ge3OV+ssIPFh5I4XxBCIV/SAQ41ImskGfgNt+c4I/Tc2hpuVhxI9zmNMTtKRrkjzzq
+         5k9UXLqzFa7HOe3A+JaKqwRmr/YeI/QOnezWvufbb/UDJMgxCK62KQ4cq2BqESHQC2x2
+         C3IP8VhlMd3EAzPP0qUrv/diGwZUCeYHGs0/ycxjhLtrS5RTfpGHJcGA+v+06QfTJB76
+         bAutjlsjoAAqvQ7uzS0AFzv6DYGG7GyknOR7feWUHj0hgvXocf54MWX5IAqjNUaQilBa
+         pyAsTTAXEy/fTJ3x2NxG5C3GoGoYmJZVoNqIW6lMSudEngR6wgrUH6LB/66IiQ8X98Ww
+         d+5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ShlxjonX4UU2hTK41WbP9jimHpd8T8cQGu402RD9kKc=;
-        b=Ido3G1mQqnt9XcieKJ91dIQPt9mc1BnZPUTgwQOobs7GNh/dImMHbOgovHKiyAbD/m
-         DltgbYhijf0+SlUUEVCWdcRcHuzqnGjrbYg2xW+xL8BFnH2v7tjukU7rsStYry6lReCd
-         dMhK+qeugQhB0Y0BRiMnQoqU5NyP2VwYV3uEHSVtoMHhRJMZu9jt1IIF7wh0b6t+Ab2t
-         JBxr1sw4iVKWo/i7qWzIPJKoASjXQ/OdKW518FJHasU1jNU7FetW+u7BsoqsHO+uqeWE
-         7RNlt/DW/DSV53lrEWQVhwW9UXN4hidwbViW5vAaDHyxMdf3RVUsuJY7qpV7507KStoJ
-         ufiw==
-X-Gm-Message-State: ANoB5pmQNQXfb10hpzAq6xvBgwQybLm+nPkLzdWaF9ovYc5YVeKdVOIE
-	xJQD8Fy9fQKBiJvVehOsw6o=
-X-Google-Smtp-Source: AA0mqf7DR89e+z0yLViEDvuqoJH6vwp4svvKlF+XKw3V2PqhxS0tJJF7W0UX50fiKY9yLIhob7DTug==
-X-Received: by 2002:a05:620a:349:b0:6fa:1f01:4b9f with SMTP id t9-20020a05620a034900b006fa1f014b9fmr20085630qkm.548.1668620854562;
+         :x-original-authentication-results:x-original-sender:to:subject
+         :message-id:date:from:mime-version:x-gm-message-state:sender:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=uxa4rDF4SafcBy37CMmq4Q29IiB8dQWH8YPqmi8/HKA=;
+        b=vRXJgBdQhY0iHDF7txa0qclGIyYXSAisi0eDF1VTVpf0mLphHLuwu6QectSGAWKDgV
+         j6xQKlGWveTlNIeAZRtkW+NZPGRaVWmxjVAP6Ub1Uys1qENFH+5peXp3QmIC4FhDg9Yj
+         YRFDcjyK4v/LkZGQUC1vtxIUTSjoYySqVo1x9GmPBGWt2b/v/7kUZ4JBnJHliguya+CE
+         ngKdh1Juqnqz4kzEgwjMSn9tybHSn0AVE0ko28DEtu1rvKprzte+vRkjfQnh1ugkCkqj
+         dhejH5YvS2O61mcA8IHhh5w49YizRow2+swScrOT+L/75awicREu4neGZVaqqNnOfwLN
+         /oag==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: ANoB5pmJIeL7sTNit0nCRDfZ/zUzyVw/E5Gr2CZx7st4L1BXlU5/HBFa
+	NFlY2EGuPAFyzoDwY1ub4Vs=
+X-Google-Smtp-Source: AA0mqf79VL0V/pEw8fJivw6r10HDktn31XZo1/7Ww+m8DqILiGGxn6LimS/xwfl7S1Djtzv+jsv00A==
+X-Received: by 2002:ad4:42ca:0:b0:4c6:67f8:426d with SMTP id f10-20020ad442ca000000b004c667f8426dmr5687307qvr.0.1668620854636;
         Wed, 16 Nov 2022 09:47:34 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:620a:382:b0:6fa:b07:9e97 with SMTP id
- q2-20020a05620a038200b006fa0b079e97ls11799663qkm.7.-pod-prod-gmail; Wed, 16
- Nov 2022 09:47:33 -0800 (PST)
-X-Received: by 2002:a05:620a:110d:b0:6ee:bbea:1ebb with SMTP id o13-20020a05620a110d00b006eebbea1ebbmr20803439qkk.638.1668620853296;
+Received: by 2002:a0c:f003:0:b0:4bb:d57b:e27c with SMTP id z3-20020a0cf003000000b004bbd57be27cls8453631qvk.4.-pod-prod-gmail;
+ Wed, 16 Nov 2022 09:47:33 -0800 (PST)
+X-Received: by 2002:a05:6214:17c3:b0:4bb:9658:d4d0 with SMTP id cu3-20020a05621417c300b004bb9658d4d0mr22247972qvb.37.1668620853292;
         Wed, 16 Nov 2022 09:47:33 -0800 (PST)
-Received: by 2002:a05:620a:448a:b0:6a6:b240:ff45 with SMTP id af79cd13be357-6fb1b21a9ddms85a;
-        Thu, 10 Nov 2022 02:24:37 -0800 (PST)
-X-Received: by 2002:a05:6214:21a8:b0:4bc:5c9:30a9 with SMTP id t8-20020a05621421a800b004bc05c930a9mr50169368qvc.79.1668075876862;
-        Thu, 10 Nov 2022 02:24:36 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1668075876; cv=none;
+Received: by 2002:a05:620a:3715:b0:6fb:3884:e10a with SMTP id af79cd13be357-6fb3884e396ms85a;
+        Fri, 11 Nov 2022 02:23:40 -0800 (PST)
+X-Received: by 2002:a67:d51c:0:b0:3a9:fda6:8a5f with SMTP id l28-20020a67d51c000000b003a9fda68a5fmr416945vsj.60.1668162220095;
+        Fri, 11 Nov 2022 02:23:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1668162220; cv=none;
         d=google.com; s=arc-20160816;
-        b=mrUBiitRki5dbE5vaYEZO7u4YhkWKiCgzzxddKoIJ0QpvmqXMxKWVNBzfCo/ei8gFe
-         IKadUpM3PGLOdTFPjRiPoJ7kFfZ+BWJOkFNNwOzn6qT7jwSyVtC3ewxh/MVwcKjVq6/5
-         /Lx4eYeV0FJw7PIKC07pL8UaD9Ea0R3p2dHiW38PUd0z9ZqyueASfFVDrXxeWdxgbRT4
-         0xqVsuCyo0wybjwxZNeDQpJHWoPHWaY7W3le2re5bAG341LLjzOPpxvwSKraGv+xWfaQ
-         V2evsmoHZMD66Otu+ibWtwrKELAiEDShuT1zoXH6W+AAJLefbQI/8w/AUCOEeACLsbKy
-         MCcA==
+        b=aFcxsJdShzIaItCgjxz3GAYHnyfwovyl8CqXNSLu6k4vVOYJAR2vaGU3wOPuhz5R0C
+         mLR2fEZ5BZIqE+iPuGDYBUwFDXZzuwLE8th7e4APeQ0i0UbExI3HtLeQNtGjHjjEAvgf
+         9M0BcUjnbLt4isvHoA8kGK+NV5zPFkJ0TyxExozG4kSIRkB/2Owlf7B/2U5xxtg2fHEY
+         6fEbNUwwUCz/ryip7GV9YzmMnH/JpQJjk0UUaZlzshpL+miM18Q5QLyi9iHN8+iKnSwr
+         wdaWB+ZcD5+BFujTng+Tq/KGr4U9jdj2FA+A4W+Lod02cPK5FF8snK0JrzVzXxNkxJwV
+         U43A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from;
-        bh=KJFAYdBHgMgENF8/CyT7phwpwzj9GbIYE9WJDCG9gdc=;
-        b=Pp3icToCUObf86mVdU8NDUpq/kkh5si5gREimKYrVwL5TOXWc8XmmCf8vv3xXv/u4q
-         LRZUO6WNmQh9czKdbz/wWEncfxHWrRgIkEq+e9zv9SXiphXMG4tTVf7YH7oGjqxeKe7q
-         ykTDxgQoEXVTGNdZO2GjxAK/G7VFlEV4ZVhU0yGLJosPsgFLEN8EL45NELDa3/Li88A3
-         DYmCJf5Wsu7myFimMG51689w5QmGtf0FFwZWszIb0YVj6kZpGk6U1wWPGqB7fbVYmph0
-         oeqaFjTh2/oaMOQxklkDJhqVeUg2vFm1I6UBIzn2fP90TKpO5mzWeN3DRHt1ez0B/jU/
-         Jp3w==
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=yhAoyMbG56Usd8vlAftNpiJvdzJmrFbMjNd3Ahok5E0=;
+        b=VTwH2an/nWea6cqMTEqh0ANxx0hS+3dyPq58Kef4iwlHxsidwPWR4c5JA8BEhyOOv9
+         f14f67a9ETkeYQudydpIvZQ6vmjuV3MASYfrHY/z/K8XpRdDr/vHlMcTgYF/IT0tIgMa
+         HwJF0+4m5WIMVpPKU8OIn6GKPZOyQql2Dfuu5Xe+nzMbG6c51Jeus1XFM0jL+nXehdM5
+         6SvM/5MQNesmGimQ+gJ84vlQB7lYfsMZd3SZUfxFqmnMigjws+7zHcShG1XoKwLvaeFA
+         pOywJ4MC0UA4PFo5e0guYLr7bUS8g02C5iIi+0PWvnP5/UBVW7FxOCkDp6ISzrtLNBqC
+         sbmg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of yangyingliang@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=yangyingliang@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com. [45.249.212.187])
-        by gmr-mx.google.com with ESMTPS id y12-20020ac87c8c000000b003a50aea46d7si784867qtv.3.2022.11.10.02.24.36
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=SPADowM0;
+       spf=pass (google.com: domain of topsyharm022@gmail.com designates 2607:f8b0:4864:20::932 as permitted sender) smtp.mailfrom=topsyharm022@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com. [2607:f8b0:4864:20::932])
+        by gmr-mx.google.com with ESMTPS id ay6-20020a056130030600b00414ee53149csi383298uab.1.2022.11.11.02.23.40
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 10 Nov 2022 02:24:36 -0800 (PST)
-Received-SPF: pass (google.com: domain of yangyingliang@huawei.com designates 45.249.212.187 as permitted sender) client-ip=45.249.212.187;
-Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.56])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4N7Hsv63zFzpSsn;
-	Thu, 10 Nov 2022 18:20:51 +0800 (CST)
-Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
- dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 10 Nov 2022 18:24:33 +0800
-Received: from huawei.com (10.175.103.91) by dggpemm500007.china.huawei.com
- (7.185.36.183) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 10 Nov
- 2022 18:24:32 +0800
-From: "'Yang Yingliang' via open-iscsi" <open-iscsi@googlegroups.com>
-To: <open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <lduncan@suse.com>, <cleech@redhat.com>, <michael.christie@oracle.com>,
-	<jejb@linux.ibm.com>, <martin.petersen@oracle.com>,
-	<gregkh@linuxfoundation.org>, <rafael@kernel.org>, <yangyingliang@huawei.com>
-Subject: [PATCH v2] drivers: base: transport_class: fix possible memory leak
-Date: Thu, 10 Nov 2022 18:23:07 +0800
-Message-ID: <20221110102307.3492557-1-yangyingliang@huawei.com>
-X-Mailer: git-send-email 2.25.1
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 02:23:40 -0800 (PST)
+Received-SPF: pass (google.com: domain of topsyharm022@gmail.com designates 2607:f8b0:4864:20::932 as permitted sender) client-ip=2607:f8b0:4864:20::932;
+Received: by mail-ua1-x932.google.com with SMTP id i16so1232012uak.1
+        for <open-iscsi@googlegroups.com>; Fri, 11 Nov 2022 02:23:40 -0800 (PST)
+X-Received: by 2002:a9f:35f3:0:b0:40c:2306:5a2 with SMTP id
+ u48-20020a9f35f3000000b0040c230605a2mr362891uad.78.1668162219710; Fri, 11 Nov
+ 2022 02:23:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.175.103.91]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggpemm500007.china.huawei.com (7.185.36.183)
-X-CFilter-Loop: Reflected
-X-Original-Sender: yangyingliang@huawei.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of yangyingliang@huawei.com designates 45.249.212.187 as
- permitted sender) smtp.mailfrom=yangyingliang@huawei.com;       dmarc=pass
- (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-X-Original-From: Yang Yingliang <yangyingliang@huawei.com>
+From: "Mrs. Aisha Al-Qaddafi" <ahishagadafi8@gmail.com>
+Date: Fri, 11 Nov 2022 02:23:24 -0800
+Message-ID: <CAFLRYaVPS6Wx5D+TUns=60xTbb6XWy8=0niHtoF8cd5ZNDF53Q@mail.gmail.com>
+Subject: Dear Friend
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="000000000000889fcf05ed2f4838"
+X-Original-Sender: ahishagadafi8@gmail.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@gmail.com header.s=20210112 header.b=SPADowM0;       spf=pass
+ (google.com: domain of topsyharm022@gmail.com designates 2607:f8b0:4864:20::932
+ as permitted sender) smtp.mailfrom=topsyharm022@gmail.com;       dmarc=pass
+ (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -143,46 +143,69 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Current some drivers(like iscsi) call transport_register_device()
-failed, they don't call transport_destroy_device() to release the
-memory allocated in transport_setup_device(), because they don't
-know what was done, it should be internal thing to release the
-resource in register function. So fix this leak by calling destroy
-function inside register function.
+--000000000000889fcf05ed2f4838
+Content-Type: text/plain; charset="UTF-8"
 
-Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
-Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
----
-v1 -> v2:
-  fix code style.
----
- include/linux/transport_class.h | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Greetings
 
-diff --git a/include/linux/transport_class.h b/include/linux/transport_class.h
-index 63076fb835e3..2efc271a96fa 100644
---- a/include/linux/transport_class.h
-+++ b/include/linux/transport_class.h
-@@ -70,8 +70,14 @@ void transport_destroy_device(struct device *);
- static inline int
- transport_register_device(struct device *dev)
- {
-+	int ret;
-+
- 	transport_setup_device(dev);
--	return transport_add_device(dev);
-+	ret = transport_add_device(dev);
-+	if (ret)
-+		transport_destroy_device(dev);
-+
-+	return ret;
- }
- 
- static inline void
--- 
-2.25.1
+I came across your e-mail contact prior to a private search while in need
+of your assistance. I am Aisha Al-Qaddafi, the only daughter to Former
+President of Libya Col. Muammar Al-Qaddafi. Am a Widow with Children.
+
+I have investment funds worth Twenty Seven Million Five Hundred Thousand
+United State Dollar ($27.500.000.00 ) and i need a trusted investment
+Manager/Partner because of my current refugee status, however, I am
+interested in you for investment project assistance in your country, may be
+from there, we can build business relationship in the nearest future.
+
+I am willing to negotiate an investment/business profit sharing ratio with
+you based on the future investment earning profits.
+
+If you are willing to handle this project on my behalf, kindly reply
+urgently to enable me to provide you more information about the investment
+funds.
+
+Your Urgent Reply Will Be Appreciated
+
+Best Regards
+Aisha Al-Qaddafi
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20221110102307.3492557-1-yangyingliang%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAFLRYaVPS6Wx5D%2BTUns%3D60xTbb6XWy8%3D0niHtoF8cd5ZNDF53Q%40mail.gmail.com.
+
+--000000000000889fcf05ed2f4838
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Greetings <br><br>I came across your e-mail contact prior =
+to a private search while in need of your assistance. I am Aisha Al-Qaddafi=
+, the only daughter to Former President of Libya Col. Muammar Al-Qaddafi. A=
+m a Widow with Children.<br><br>I have investment funds worth Twenty Seven =
+Million Five Hundred Thousand United State Dollar ($27.500.000.00 ) and i n=
+eed a trusted investment Manager/Partner because of my current refugee stat=
+us, however, I am interested in you for investment project assistance in yo=
+ur country, may be from there, we can build business relationship in the ne=
+arest future.<br><br>I am willing to negotiate an investment/business profi=
+t sharing ratio with you based on the future investment earning profits.<br=
+><br>If you are willing to handle this project on my behalf, kindly reply u=
+rgently to enable me to provide you more information about the investment f=
+unds.<br><br>Your Urgent Reply Will Be Appreciated<br><br>Best Regards<br>A=
+isha Al-Qaddafi<br></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/CAFLRYaVPS6Wx5D%2BTUns%3D60xTbb6XWy8%3D0niHtoF8cd5ZND=
+F53Q%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://group=
+s.google.com/d/msgid/open-iscsi/CAFLRYaVPS6Wx5D%2BTUns%3D60xTbb6XWy8%3D0niH=
+toF8cd5ZNDF53Q%40mail.gmail.com</a>.<br />
+
+--000000000000889fcf05ed2f4838--
