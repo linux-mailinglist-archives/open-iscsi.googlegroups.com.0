@@ -1,140 +1,157 @@
-Return-Path: <open-iscsi+bncBDA4XKVK6ECBBNOE2SNQMGQEKCKRPHA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDVIJONZ3YDRBXH23GNQMGQEOV3J7IQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2D562C6BC
-	for <lists+open-iscsi@lfdr.de>; Wed, 16 Nov 2022 18:47:35 +0100 (CET)
-Received: by mail-qk1-x73a.google.com with SMTP id h8-20020a05620a284800b006b5c98f09fbsf18199567qkp.21
-        for <lists+open-iscsi@lfdr.de>; Wed, 16 Nov 2022 09:47:35 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1668620854; cv=pass;
+Received: from mail-il1-x13b.google.com (mail-il1-x13b.google.com [IPv6:2607:f8b0:4864:20::13b])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C36A62E423
+	for <lists+open-iscsi@lfdr.de>; Thu, 17 Nov 2022 19:28:47 +0100 (CET)
+Received: by mail-il1-x13b.google.com with SMTP id i26-20020a056e021d1a00b003025434c04esf1739417ila.13
+        for <lists+open-iscsi@lfdr.de>; Thu, 17 Nov 2022 10:28:47 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1668709726; cv=pass;
         d=google.com; s=arc-20160816;
-        b=j6p29mNNeS93X/YAzYzBZBln3FfSSRS1iVg8ix2UkJoShwThmi8BS1SpW/Kz+VAyvG
-         iyzFEbdZp3+W1f3QA+3b90gpzG89U8fc7mqNqZVFO4ciBdCyhYQcPKfhmBjYBmCtaiWm
-         jm+QIwTabimCeqsJKwCEe8czOR7EJe5SQFAa4VFrH1PyXa3K4gnp8gNAVZcDUOH28R0e
-         H/1Fq6cjLGECfkXbH64LGtNkLaCXBwDZWIje0jZpRE96kizGroeTEFOlYU+9H+An7/pS
-         ox7UtuCn+zCyRjyBIoa03CVulShCBTE+9D8gPxUeL2X+8U/HjrFrMtCZ1lTkv+eAmxFU
-         kpDw==
+        b=IDdd/yant36VlYXnHODpWzVGzXAhL/wr/h2Ovp4qmNaSodD8rqw9bZ9V38z1xFSpZ4
+         92MNy8jpgcglQ7SIYRr3flAds4v/k0rw7MlE9A5O4n8T0dzBk2+mzdYIRdtOeEtCbNOX
+         H0mvOkobnlZf1IXQkVSayIXSBv7xMkwoEDBpWbW1ZIJ8BvzioYJBp+Fxcl6GCy+FYkW5
+         f8VuGInbVUGkMDCEijhuWVgiLQoWF0QoJXIvBMHCPYbcYK68x3/L5cNlP18iGrDGmePC
+         i+GAQxnbCyvtBhtKgbA0tXUXAXZe0TpHSa7SpN3CStS409sWZTgpf82T7/p1Y+2RmyOp
+         gJDw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
-         :from:mime-version:sender:dkim-signature:dkim-signature;
-        bh=uxa4rDF4SafcBy37CMmq4Q29IiB8dQWH8YPqmi8/HKA=;
-        b=aYeDFy69RNQ65x/VQ6XFkmQsqp9LW8lHo9BLTqGczvVr4MbbOdswLkU+0EzcZWbedM
-         Ox0bG3tRFo3VvML9cnDxgHfruJYJnlze1def4CrUg0EyQMTlPytStCQhE6CWq+K3jVyt
-         gS9Re4AP3ispvtsYKS9kULQXJmcEaR8pPnOepyMrc1XzAVPe2Cog2+JU/vugo9Q19mLC
-         aV/z75fNaNYzPR6JnFt3awrm8MqHW417X2+VaoEqmef1hGFv6h7ndywD7kbpHTxALl9E
-         +wDDfoO9UOsyGXmKw9ItReOukE1n1IilyRH1NWB8dZHHmFOviEqzR/oZpMLSAjqbRuRa
-         Ih8Q==
+         :list-id:mailing-list:precedence:reply-to:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:sender
+         :dkim-signature;
+        bh=z/VQPhsjznwK6oIr+lpZqgmTYkyO/oYVVcEeMk4qwN0=;
+        b=ZsGpDqfOdyR4XgIRZfSuJWiKBcAuspn/2lPNs1gIcL560sz20ReqZqgDujTy59AXoX
+         2scqclLDT3++bJD12Q2KN51CjQ2JgZnM9BsgXhBhdQmJPvDhyauR5In8KIkjCMf70Esu
+         aSZ6aKSE51W28FStsodyVks62gggmjriv4Sl7ZsRiDDWkk9o/WAvUfWt52v6S6ytqnj6
+         MpNAlpxz+DL2YlzVaJutELtCxVEhq2U5K3Kf15WNmHjZeO/A4Ap4zCoNxJlVASyd17eR
+         aYrW431jFiekHk+/19g+O8F+hDUBS4i3yNwFR/Px0vSj4sBuudZEkc4BuYIsnrShGiJJ
+         iP2w==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=SPADowM0;
-       spf=pass (google.com: domain of topsyharm022@gmail.com designates 2607:f8b0:4864:20::932 as permitted sender) smtp.mailfrom=topsyharm022@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+       dkim=pass header.i=@oracle.com header.s=corp-2022-7-12 header.b=KiTJWHjA;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:to:subject
-         :message-id:date:from:mime-version:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uxa4rDF4SafcBy37CMmq4Q29IiB8dQWH8YPqmi8/HKA=;
-        b=pzf2CE0u/XvYZWp/0M7QkMceVgfcNwTR4J9IDMyx8NqBCNT9ZC593zS04gbOeRU/e5
-         aLYroyNfk/CPUiC3Ba80QS+9LtfLisPgK7OjFc3EbyTx1VlGAKAOfF3V+PQfgv6MG1i7
-         wkuWnBrML7nT+bqeefT4vKH0zPehhh3tgsbgXpyTvG7He0BkuMSFewT/etTCnR7uTD9r
-         41y4tqB/uQgK6rzeQVwogCMZUiVVZKZTL3INasdr9HSaYqiiynF1cRT3Tfls3UkFmPsW
-         /bmUvHQMBus2BVRZkPhDlwxHi/MEKc6PTxcPxUFTzeKCANY8ENDsmOwJ2D3ra5YrD4iX
-         v9sQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:to:subject
-         :message-id:date:from:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uxa4rDF4SafcBy37CMmq4Q29IiB8dQWH8YPqmi8/HKA=;
-        b=Ge3OV+ssIPFh5I4XxBCIV/SAQ41ImskGfgNt+c4I/Tc2hpuVhxI9zmNMTtKRrkjzzq
-         5k9UXLqzFa7HOe3A+JaKqwRmr/YeI/QOnezWvufbb/UDJMgxCK62KQ4cq2BqESHQC2x2
-         C3IP8VhlMd3EAzPP0qUrv/diGwZUCeYHGs0/ycxjhLtrS5RTfpGHJcGA+v+06QfTJB76
-         bAutjlsjoAAqvQ7uzS0AFzv6DYGG7GyknOR7feWUHj0hgvXocf54MWX5IAqjNUaQilBa
-         pyAsTTAXEy/fTJ3x2NxG5C3GoGoYmJZVoNqIW6lMSudEngR6wgrUH6LB/66IiQ8X98Ww
-         d+5A==
+         :x-original-authentication-results:x-original-sender:mime-version
+         :references:in-reply-to:message-id:date:subject:cc:to:from:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z/VQPhsjznwK6oIr+lpZqgmTYkyO/oYVVcEeMk4qwN0=;
+        b=OaufsQ8d416jY8lxIcCDeyn1PAzVnv2XTg3u5dNP+fiAHSbSK1KZbKaDhiXglRoIPj
+         az+G9Hf7azO+bcqQqhWIhYT2/wOax3KGlYsXzG9sJiSa00Q8bo0tIPrfm8yj+gmX7wod
+         cjQk0qMaRsNK1k/1CoA0NJYITatdwFbzkDsEZ5hWOoSSSpLtu9j9FPHpA/9R3H3a07xx
+         kxkYLEE/XFxe/Hq8plm30Q16N8JnXze3ZFAuHfITMP82DRMlIQN2M+pzpS+0knsH2x0c
+         ZSrs7o3UOTAvzylBE8o6K8l/b4cI0bDAbIkRFy+WwZQfvB4OIJfK7D/JsXKuSembbO1k
+         Mplw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:to:subject
-         :message-id:date:from:mime-version:x-gm-message-state:sender:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uxa4rDF4SafcBy37CMmq4Q29IiB8dQWH8YPqmi8/HKA=;
-        b=vRXJgBdQhY0iHDF7txa0qclGIyYXSAisi0eDF1VTVpf0mLphHLuwu6QectSGAWKDgV
-         j6xQKlGWveTlNIeAZRtkW+NZPGRaVWmxjVAP6Ub1Uys1qENFH+5peXp3QmIC4FhDg9Yj
-         YRFDcjyK4v/LkZGQUC1vtxIUTSjoYySqVo1x9GmPBGWt2b/v/7kUZ4JBnJHliguya+CE
-         ngKdh1Juqnqz4kzEgwjMSn9tybHSn0AVE0ko28DEtu1rvKprzte+vRkjfQnh1ugkCkqj
-         dhejH5YvS2O61mcA8IHhh5w49YizRow2+swScrOT+L/75awicREu4neGZVaqqNnOfwLN
-         /oag==
+         :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
+         :x-original-authentication-results:x-original-sender:mime-version
+         :references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z/VQPhsjznwK6oIr+lpZqgmTYkyO/oYVVcEeMk4qwN0=;
+        b=bw3rshlNdAMxtA0+Q2RJbSQTVVPk+nqLfTHmRXtt9D/88hV+StcgP4FG/pdjEaF5cJ
+         ZPbmFj9oiXB2zLA4muEuq0WPyt+5FjE44XcQpIvYtmzM6//BezYeWblzuyoGllGZHq4P
+         v9TJWnIJJxI78Cu8RkC+PuU1ZOEGRk9sBA0sgCDff5ay+cQS30I7rFE3S07Fb6SqWbkZ
+         AFcTbD6yRL61PZZEs/+8JSnLuHQm+t6Z3eLyiwZfEVBAFxv8pNiTOehhbnJtSJLZc9N2
+         E4OMyDEIWu1mVwc1uIBWw3zVN3vt9Og+OXVk/s5kV3S+zPMjUwkBfezYbLJe/eabLcP+
+         WKVg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANoB5pmJIeL7sTNit0nCRDfZ/zUzyVw/E5Gr2CZx7st4L1BXlU5/HBFa
-	NFlY2EGuPAFyzoDwY1ub4Vs=
-X-Google-Smtp-Source: AA0mqf79VL0V/pEw8fJivw6r10HDktn31XZo1/7Ww+m8DqILiGGxn6LimS/xwfl7S1Djtzv+jsv00A==
-X-Received: by 2002:ad4:42ca:0:b0:4c6:67f8:426d with SMTP id f10-20020ad442ca000000b004c667f8426dmr5687307qvr.0.1668620854636;
-        Wed, 16 Nov 2022 09:47:34 -0800 (PST)
+X-Gm-Message-State: ANoB5plOxL0+8XHF292r4ZtIVEwpwd15uFPYSrZe/+zUNyjzVUOXBGc5
+	zvwTilCZPzY1+fkKiqYZ4UI=
+X-Google-Smtp-Source: AA0mqf71AOx+nGFw+UDccnzEpgVrizxlBTLT0eI+FuXtzuTkkafndjte9FBEdXDTpe7FsCqHcK/jfA==
+X-Received: by 2002:a92:c0c7:0:b0:300:d39b:4d03 with SMTP id t7-20020a92c0c7000000b00300d39b4d03mr1842336ilf.137.1668709726135;
+        Thu, 17 Nov 2022 10:28:46 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a0c:f003:0:b0:4bb:d57b:e27c with SMTP id z3-20020a0cf003000000b004bbd57be27cls8453631qvk.4.-pod-prod-gmail;
- Wed, 16 Nov 2022 09:47:33 -0800 (PST)
-X-Received: by 2002:a05:6214:17c3:b0:4bb:9658:d4d0 with SMTP id cu3-20020a05621417c300b004bb9658d4d0mr22247972qvb.37.1668620853292;
-        Wed, 16 Nov 2022 09:47:33 -0800 (PST)
-Received: by 2002:a05:620a:3715:b0:6fb:3884:e10a with SMTP id af79cd13be357-6fb3884e396ms85a;
-        Fri, 11 Nov 2022 02:23:40 -0800 (PST)
-X-Received: by 2002:a67:d51c:0:b0:3a9:fda6:8a5f with SMTP id l28-20020a67d51c000000b003a9fda68a5fmr416945vsj.60.1668162220095;
-        Fri, 11 Nov 2022 02:23:40 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1668162220; cv=none;
+Received: by 2002:a6b:b713:0:b0:6bc:6044:840e with SMTP id h19-20020a6bb713000000b006bc6044840els309305iof.0.-pod-prod-gmail;
+ Thu, 17 Nov 2022 10:28:43 -0800 (PST)
+X-Received: by 2002:a5e:9405:0:b0:6a1:48d3:149e with SMTP id q5-20020a5e9405000000b006a148d3149emr1981393ioj.136.1668709722976;
+        Thu, 17 Nov 2022 10:28:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1668709722; cv=none;
         d=google.com; s=arc-20160816;
-        b=aFcxsJdShzIaItCgjxz3GAYHnyfwovyl8CqXNSLu6k4vVOYJAR2vaGU3wOPuhz5R0C
-         mLR2fEZ5BZIqE+iPuGDYBUwFDXZzuwLE8th7e4APeQ0i0UbExI3HtLeQNtGjHjjEAvgf
-         9M0BcUjnbLt4isvHoA8kGK+NV5zPFkJ0TyxExozG4kSIRkB/2Owlf7B/2U5xxtg2fHEY
-         6fEbNUwwUCz/ryip7GV9YzmMnH/JpQJjk0UUaZlzshpL+miM18Q5QLyi9iHN8+iKnSwr
-         wdaWB+ZcD5+BFujTng+Tq/KGr4U9jdj2FA+A4W+Lod02cPK5FF8snK0JrzVzXxNkxJwV
-         U43A==
+        b=WFNBQHGHrVDclE9o6wsNwpj//zDiklGNKzBYtHg6etThHtFwVRbu5tECpFoYaKDz5O
+         kxc5VyLzX1wlaFxJ0DpooGAkYAl0JBodYJKqDdmfvlVW7vEIzmczheVlez6a+E/KaLqp
+         RfqE+wNWE4bN9q5gYqM9zqvLGqeAjmWSvTYfVEHEvgeeYGLVdd9GowDuI3KBgd3PtlVP
+         BX014UGHj552BW9aR7gEo6SgZyQBo+8Rmu4AAZFIfr+caGhMqXNfZTtVZKds2ebJ0j4e
+         I5BKi/ajOvCXbzHn2KzAbLremYAJUf346AwCrRNPWVAmt5omC4FiiN6k1AIR0M+HERGy
+         AEIw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=yhAoyMbG56Usd8vlAftNpiJvdzJmrFbMjNd3Ahok5E0=;
-        b=VTwH2an/nWea6cqMTEqh0ANxx0hS+3dyPq58Kef4iwlHxsidwPWR4c5JA8BEhyOOv9
-         f14f67a9ETkeYQudydpIvZQ6vmjuV3MASYfrHY/z/K8XpRdDr/vHlMcTgYF/IT0tIgMa
-         HwJF0+4m5WIMVpPKU8OIn6GKPZOyQql2Dfuu5Xe+nzMbG6c51Jeus1XFM0jL+nXehdM5
-         6SvM/5MQNesmGimQ+gJ84vlQB7lYfsMZd3SZUfxFqmnMigjws+7zHcShG1XoKwLvaeFA
-         pOywJ4MC0UA4PFo5e0guYLr7bUS8g02C5iIi+0PWvnP5/UBVW7FxOCkDp6ISzrtLNBqC
-         sbmg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:dkim-signature;
+        bh=kDCnt0JWtMFLRcavd3UttqPpu8I7mE4yCGzQz1II49U=;
+        b=errZStwaN++OO1gxg1TEmDARD2mgJKEyJkULFMJV4eNYZbM6t8PbBhj0aXrGpNu4DM
+         zcSf6MalEinOZQ29F4flv3TnBtR+QtA4RDlCBy3DEL1QnSUZFWApB6HLyFHyqqbSIHt8
+         tVjHx3ibxeAQpsKyVICbDckhEhfFBpcNJuf87cCa+uHFi4t1O4q0JgydSZuvdDiy6klG
+         IRwPUSoqfBvJdfRA+xG0goBNyPSSVqR5qZwuXj9lyf7voPYxnPzHvPAx6WNw/df2IGDz
+         bu5fgQBPRmZjPWmIdv4hzWhcwL3JvNVM6Z01ryOafEY2PdP4O15fEU9pr82dD7Ga2YNH
+         TZpg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=SPADowM0;
-       spf=pass (google.com: domain of topsyharm022@gmail.com designates 2607:f8b0:4864:20::932 as permitted sender) smtp.mailfrom=topsyharm022@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com. [2607:f8b0:4864:20::932])
-        by gmr-mx.google.com with ESMTPS id ay6-20020a056130030600b00414ee53149csi383298uab.1.2022.11.11.02.23.40
+       dkim=pass header.i=@oracle.com header.s=corp-2022-7-12 header.b=KiTJWHjA;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com. [205.220.165.32])
+        by gmr-mx.google.com with ESMTPS id i1-20020a02ca01000000b003750f38186bsi78110jak.1.2022.11.17.10.28.42
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 02:23:40 -0800 (PST)
-Received-SPF: pass (google.com: domain of topsyharm022@gmail.com designates 2607:f8b0:4864:20::932 as permitted sender) client-ip=2607:f8b0:4864:20::932;
-Received: by mail-ua1-x932.google.com with SMTP id i16so1232012uak.1
-        for <open-iscsi@googlegroups.com>; Fri, 11 Nov 2022 02:23:40 -0800 (PST)
-X-Received: by 2002:a9f:35f3:0:b0:40c:2306:5a2 with SMTP id
- u48-20020a9f35f3000000b0040c230605a2mr362891uad.78.1668162219710; Fri, 11 Nov
- 2022 02:23:39 -0800 (PST)
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Nov 2022 10:28:42 -0800 (PST)
+Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) client-ip=205.220.165.32;
+Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AHIPXQE014158;
+	Thu, 17 Nov 2022 18:28:41 GMT
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3kv3jst0mb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 17 Nov 2022 18:28:41 +0000
+Received: from pps.filterd (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5) with ESMTP id 2AHHFlNg008684;
+	Thu, 17 Nov 2022 18:28:39 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3kt1xft5rw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 17 Nov 2022 18:28:39 +0000
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2AHISanw025586;
+	Thu, 17 Nov 2022 18:28:39 GMT
+Received: from ca-mkp.mkp.ca.oracle.com (ca-mkp.ca.oracle.com [10.156.108.201])
+	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 3kt1xft5pj-5;
+	Thu, 17 Nov 2022 18:28:39 +0000
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+To: jejb@linux.ibm.com, michael.christie@oracle.com,
+        Zhou Guanghui <zhouguanghui1@huawei.com>, lduncan@suse.com,
+        cleech@redhat.com
+Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com
+Subject: Re: [PATCH v2] scsi: iscsi: fix possible memory leak when device_register failed
+Date: Thu, 17 Nov 2022 13:28:35 -0500
+Message-Id: <166870940541.1572108.9806675424150133794.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20221110033729.1555-1-zhouguanghui1@huawei.com>
+References: <20221110033729.1555-1-zhouguanghui1@huawei.com>
 MIME-Version: 1.0
-From: "Mrs. Aisha Al-Qaddafi" <ahishagadafi8@gmail.com>
-Date: Fri, 11 Nov 2022 02:23:24 -0800
-Message-ID: <CAFLRYaVPS6Wx5D+TUns=60xTbb6XWy8=0niHtoF8cd5ZNDF53Q@mail.gmail.com>
-Subject: Dear Friend
-To: undisclosed-recipients:;
-Content-Type: multipart/alternative; boundary="000000000000889fcf05ed2f4838"
-X-Original-Sender: ahishagadafi8@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-17_06,2022-11-17_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=923 bulkscore=0 mlxscore=0
+ phishscore=0 suspectscore=0 spamscore=0 adultscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211170133
+X-Proofpoint-ORIG-GUID: n2GK2G4JFAVLxdI2xOQneRjpXrWYW8ln
+X-Proofpoint-GUID: n2GK2G4JFAVLxdI2xOQneRjpXrWYW8ln
+X-Original-Sender: martin.petersen@oracle.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20210112 header.b=SPADowM0;       spf=pass
- (google.com: domain of topsyharm022@gmail.com designates 2607:f8b0:4864:20::932
- as permitted sender) smtp.mailfrom=topsyharm022@gmail.com;       dmarc=pass
- (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+ header.i=@oracle.com header.s=corp-2022-7-12 header.b=KiTJWHjA;
+       spf=pass (google.com: domain of martin.petersen@oracle.com designates
+ 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -143,69 +160,29 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---000000000000889fcf05ed2f4838
-Content-Type: text/plain; charset="UTF-8"
+On Thu, 10 Nov 2022 03:37:29 +0000, Zhou Guanghui wrote:
 
-Greetings
+> If device_register() returns error, the name allocated by the
+> dev_set_name() need be freed. As described in the comment of
+> device_register(), we should use put_device() to give up the
+> reference in the error path.
+> 
+> Fix this by calling put_device(), the name will be freed in the
+> kobject_cleanup(), and this patch modified resources will be
+> released by calling the corresponding callback function in the
+> device_release().
+> 
+> [...]
 
-I came across your e-mail contact prior to a private search while in need
-of your assistance. I am Aisha Al-Qaddafi, the only daughter to Former
-President of Libya Col. Muammar Al-Qaddafi. Am a Widow with Children.
+Applied to 6.1/scsi-fixes, thanks!
 
-I have investment funds worth Twenty Seven Million Five Hundred Thousand
-United State Dollar ($27.500.000.00 ) and i need a trusted investment
-Manager/Partner because of my current refugee status, however, I am
-interested in you for investment project assistance in your country, may be
-from there, we can build business relationship in the nearest future.
+[1/1] scsi: iscsi: fix possible memory leak when device_register failed
+      https://git.kernel.org/mkp/scsi/c/f014165faa7b
 
-I am willing to negotiate an investment/business profit sharing ratio with
-you based on the future investment earning profits.
-
-If you are willing to handle this project on my behalf, kindly reply
-urgently to enable me to provide you more information about the investment
-funds.
-
-Your Urgent Reply Will Be Appreciated
-
-Best Regards
-Aisha Al-Qaddafi
+-- 
+Martin K. Petersen	Oracle Linux Engineering
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAFLRYaVPS6Wx5D%2BTUns%3D60xTbb6XWy8%3D0niHtoF8cd5ZNDF53Q%40mail.gmail.com.
-
---000000000000889fcf05ed2f4838
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Greetings <br><br>I came across your e-mail contact prior =
-to a private search while in need of your assistance. I am Aisha Al-Qaddafi=
-, the only daughter to Former President of Libya Col. Muammar Al-Qaddafi. A=
-m a Widow with Children.<br><br>I have investment funds worth Twenty Seven =
-Million Five Hundred Thousand United State Dollar ($27.500.000.00 ) and i n=
-eed a trusted investment Manager/Partner because of my current refugee stat=
-us, however, I am interested in you for investment project assistance in yo=
-ur country, may be from there, we can build business relationship in the ne=
-arest future.<br><br>I am willing to negotiate an investment/business profi=
-t sharing ratio with you based on the future investment earning profits.<br=
-><br>If you are willing to handle this project on my behalf, kindly reply u=
-rgently to enable me to provide you more information about the investment f=
-unds.<br><br>Your Urgent Reply Will Be Appreciated<br><br>Best Regards<br>A=
-isha Al-Qaddafi<br></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/CAFLRYaVPS6Wx5D%2BTUns%3D60xTbb6XWy8%3D0niHtoF8cd5ZND=
-F53Q%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://group=
-s.google.com/d/msgid/open-iscsi/CAFLRYaVPS6Wx5D%2BTUns%3D60xTbb6XWy8%3D0niH=
-toF8cd5ZNDF53Q%40mail.gmail.com</a>.<br />
-
---000000000000889fcf05ed2f4838--
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/166870940541.1572108.9806675424150133794.b4-ty%40oracle.com.
