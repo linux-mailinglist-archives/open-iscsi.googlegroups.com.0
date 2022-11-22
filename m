@@ -1,143 +1,144 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBB44N6SNQMGQE64D5N7Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBMUV6SNQMGQEMPASNRQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x140.google.com (mail-lf1-x140.google.com [IPv6:2a00:1450:4864:20::140])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF50634270
-	for <lists+open-iscsi@lfdr.de>; Tue, 22 Nov 2022 18:29:26 +0100 (CET)
-Received: by mail-lf1-x140.google.com with SMTP id s1-20020a197701000000b004a2aebd8b14sf5830938lfc.21
-        for <lists+open-iscsi@lfdr.de>; Tue, 22 Nov 2022 09:29:26 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1669138166; cv=pass;
+Received: from mail-ed1-x538.google.com (mail-ed1-x538.google.com [IPv6:2a00:1450:4864:20::538])
+	by mail.lfdr.de (Postfix) with ESMTPS id 854416342CD
+	for <lists+open-iscsi@lfdr.de>; Tue, 22 Nov 2022 18:45:24 +0100 (CET)
+Received: by mail-ed1-x538.google.com with SMTP id r12-20020a05640251cc00b00463699c95aesf9249936edd.18
+        for <lists+open-iscsi@lfdr.de>; Tue, 22 Nov 2022 09:45:24 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1669139124; cv=pass;
         d=google.com; s=arc-20160816;
-        b=i6m1A1fd/XDmCdDaLfr6kv2CHFs+UHCPhMhTonJwaTewJ7+Q20dbGRQMmUqJ0tMlTR
-         kd+Gze4dqV8C00A8zE7VHEfmtLI38eW2F6PokRxd6DawE+euNhXtzcW7mjU7BVYHqUpj
-         8UGOZBB7kkNggVG7xEdbmvmZMd0fwnmYcJR/5ZwXObPRuTmlkzVeBSj7sO84JCoY4HIW
-         OjGlV4bDxNd0BeThiifFt+AuPiWP1YGT9HfPl5k+IvHQwW8+hHxXFetZaa9BYebEtDH0
-         djmEY4Hp6AA7ExSSa7oZcq81aGvGi93py7PF4Nty/eGd6gIEpXoXqL4n/kG4+9xSghDS
-         60ew==
+        b=nSlR3NoMoHzpz+DoyLofpuukh04Tk5W2w71qxLG5UTVrp1I8mPrZC+25/xQX3w5PGX
+         GIrl8Xp95xCBDye+KaMZvKaPoxXUspxoj8EnAzNbqlpXFPyA9Fp9llBxuVRVAOrUSYhW
+         BSfPpW3I/AsTCHuDSbOK1J/GC2rl2MJVUOj6yU6ktHIKzGaUe+pTFSwzDLL3C2R4MXzl
+         295Rv8clQoDjp8+kmM17bduZjgWjetpc2qHg0FUbUxhTU/w1BwKJNuXGdlOIC6Pr4tUS
+         MrgviesiU61rOBZuhw+GVNJ4E9eyjjh8y4pXeSz6eVf3btWYOgenTtxLDZ9xUzyD4r3y
+         MTGg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=s0zGRfvUkrThpwojiWQqXT04IG1SGfm2Xc7NaD7Ob7s=;
-        b=oFZ7hz84OUHgd7oJYRQ/Ss4SEfqmwskzJ5TQiW79Ug2fAZLHsIlkM6GgVROuCkMtv4
-         z0Flx5TVPAwwMW7lXNxeuaWUxmqMExGH82+n6ohGJNpeWccwwOsQzgrVyYiFEMV9NVzG
-         cQ8jE89pGHsG2Z1vRoEwt6cNN2OhT9CiyDIr5PcM7gG6Pm/CXQhloYiDoEk2DL95auXK
-         X6Kil084n/ARIGpVn/TcCavb9fd9wcmeiMwK+bJYI32i3bE+4q546M0ezNabNT+Z1FMZ
-         9D0eCChnWbkmuc0NfZmz1blbzfqog+KW3rZzGfK+5HrDq0ToI7WUORqMdF42aKFod3Gy
-         4Fxw==
+         :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
+         :cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:sender:dkim-signature:dkim-signature;
+        bh=uN5qJu4Z8UJn6OCQIYqBJfu53sEm+Lkqeme8o+McJFM=;
+        b=ECkEikdHlPxpe5HupiRXNdZB3yEXBRHT4WjtIO171nUSqJ9vMYnlX4Eug42Zhi3HC6
+         013wDcCpL6w+OCzZRnPTgS4Azi4vQPdwno+bGUWdIB1C6rZd8e3iuQEGFcZb7hFOeEu2
+         J35JOVq212S5z74MyJIC7OahE4lSB1tSDs1904ff1A41/QrQSJorQ+e4g9bpnQV00215
+         xUEwNVKs+Tl0mq+MiOwxa0jwL63K6bgMX6tlqAAnMKKZCWpGV0MELm52WWFCoUThj0xt
+         Vz0JvzqEUAuGb3ZEBr6hxSlfwVBBAe2E/syoKafEaF5OHgZVNAQiTVgDvLVnbp5BkEll
+         MmyA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=W69sl1td;
-       spf=pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::62c as permitted sender) smtp.mailfrom=haowenchao22@gmail.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=pIuZMaX2;
+       spf=pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::530 as permitted sender) smtp.mailfrom=haowenchao22@gmail.com;
        dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:cc:to:subject
-         :message-id:date:from:in-reply-to:references:mime-version:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s0zGRfvUkrThpwojiWQqXT04IG1SGfm2Xc7NaD7Ob7s=;
-        b=qOL39iJIpYGNAt9dYGOcFpPSWlPDulWVDm1GEokqTulM7vVZPMrOiv5Pu1ktQmULOc
-         ekVJT+LOs5GyWpiPOGAav1VW3TGCrYh+qaM7k3+31sT5Raf+X1m0UY/cCsRtZaLSO5ic
-         lnAbcKEsuuy5X0w5Rk3Ha1+bG5x9qlDqoz2RUj6epNC7M1Lf1y3I03msJiYGCtsmhtV2
-         v3T+GydQA7bc/T3ajsMJExLqWZU9mHnhadbmkOFLjQUXHMAZ4tMVak03/WYl83CzUoCZ
-         YfWTVjvYLKb1+NRuuZNEyLAoWtOSEUbxifH9J7it1/Bgr8vlJXssIDFmKlc8JshGqB8W
-         1kqg==
+         :x-original-authentication-results:x-original-sender
+         :content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uN5qJu4Z8UJn6OCQIYqBJfu53sEm+Lkqeme8o+McJFM=;
+        b=YqsPEeg3a+LWdnx7XF64YPfjyOBYbc6nzIuBRrvIvB+NQle+pUdXogEmu1KhwiQu/+
+         ecFY5WoVcenmXfZVgZkHuit4YKdT6eQ7KOPi6hAsuS9rf4sk8HdqV+uB0DlAD03freYH
+         AbfBZOdsM+xXFwH0OFfelfSuJUaDRfdEKbSJIGZ9oXX5QHClp482U2zw/lixEUbv4q0T
+         5ZO5VFRgsI/94kP4oZrj+GHiCT3IdoVs/0nV7c8ffK91J0SZl9VNxGR81HfmLCfOZBF9
+         Gwhblk5PUdFW2OppeLpsq7UQqNHdGJmcc9C9quEEEVgVOw4ksmp++2IAfs+87QJfF+k+
+         fS4w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:cc:to:subject
-         :message-id:date:from:in-reply-to:references:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s0zGRfvUkrThpwojiWQqXT04IG1SGfm2Xc7NaD7Ob7s=;
-        b=kPChZQnkGdfoudf+div4KWhjHQNmjHtDFr6/Vea0Yw1BqV7JjlQlARSY8DKx6dZyfh
-         i0LIKCmeAdHUctPD/7LGL5sBvWmZgeDC3L2ELLL7U8s/gfa52gUw6dJ6qDAuPVhPIv0v
-         LJXhT7JIjK7DT8b9K//9i/stnzHOAR+uSvxSzip/KzQ8fqD2zKH0qM6GX7P5ghj0pcNk
-         hTO1OM1XANJTzQ0gtRq+U5SQ/WVY674qzoKPKUVsByWFDXk2ob0K/svsLMoMljrKexsM
-         Vx/NXBTfSuGU3pGWsG0ZZBslfX3aNXiUxnI6eYSDzgPpYblhoplpIp49O6oSNhsTRleA
-         8kpQ==
+         :x-original-authentication-results:x-original-sender
+         :content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uN5qJu4Z8UJn6OCQIYqBJfu53sEm+Lkqeme8o+McJFM=;
+        b=P8bZTb5mui4/ZBmzH3XFK3jIy2h0Q1BR721KmFccF3J9KXCJHkyXzCFA+gf0FJwIQH
+         mCz+e4NSEdrtN96XC/mH2ljoXvtzuIBiFY8qeycw+MmgvgIuFT/1/YaaYi0K6IvpC5ob
+         BPWc1o7Fg8p74SC3fXICFcpzW+g80c8ffyMxmOnSnSt/n4qsAdgUlT10nsRIo6ekuet4
+         T+eqhF5IBSTQffU9ixR85dUqCEim6jhLtb1ES3jbyAMgGtLaUSSdi2kr/soAhjQV5D+g
+         knsy0Jb1yu0mLOQmdpjLABsD6tJqEJZmqJI6ctRoqQTB8XbJHr/AoRuT7gr+tLg72cSJ
+         m6Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:cc:to:subject
-         :message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s0zGRfvUkrThpwojiWQqXT04IG1SGfm2Xc7NaD7Ob7s=;
-        b=zFTVG9Cwtc/d9/8GjZDIqj/TdKA3CWn2nC/yL1hLLr0ccD37AW4LK/yCDZqbYMcbWi
-         PGWS0vBUohuLd+8isXRHehoeb9IYVZ92M3cnELpFfcTXjMd2cvCHH6uChyYbHa1YoLag
-         k92ff7PmHT2cJSrH03DZqvXzbuI5f5TlBpiNyZqckqy2xIzW2U3RWoeF4Z2z+c3StxJO
-         GFtMYdXmG99BJynbdmZBgEj9sKZMwxJxiD699IsvaPfP/MJCWQRLM4X7oIpT+HyVZnvn
-         DUMuU0/rzT3/6zJ2sd4h2OouUaCtB/lgXGcFSQzoCY7Ro6A4ywLoogL0Cud46r84nS8z
-         hZUA==
+         :x-original-authentication-results:x-original-sender
+         :content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:sender:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=uN5qJu4Z8UJn6OCQIYqBJfu53sEm+Lkqeme8o+McJFM=;
+        b=dfn17WJXuU5O3fjUk3rP0Qghgon72PhnHlsHYYLdx3IrHOfVSKS80OwNOZTNYwT0RI
+         4VkqsnqybFUNBnbrPZDzBmL88QOE8UTphqPb7cKs8Bfs92+PicDENI5xg6jnRZsDawz9
+         hQY/j572NEhiotwCgUYMkVgPeO4ktN319q+e0oBlFInLBJVXuwVF4qYjcS+d0ALsKyJn
+         GcHFexqvEt8PEY6XtYep/V8du3AaWWjgxvUlCAutU7oEm/iLNT1HUQlzVODP74AGsEaj
+         sV4z9zXUjJ5805DN7bi/+d9HzVCAKXmf70LcHhB08ciCczn3ppyzhwykUMHywSF1sw46
+         +VYw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANoB5pk1lqmDKcJy0Xwe5pqI/Y+fu6Exa+1mCcOXAomRY9SWFTflois/
-	o46wmQp8Ztd1wCgsDRipLRU=
-X-Google-Smtp-Source: AA0mqf4tajZbRuXhLp0YavQ26P3p1p/knFNUauAxacw12iA1E4FFK3YNz7GgtCF0v42ntog++bE/jg==
-X-Received: by 2002:a05:651c:1308:b0:26b:de20:ba89 with SMTP id u8-20020a05651c130800b0026bde20ba89mr7690380lja.254.1669138165962;
-        Tue, 22 Nov 2022 09:29:25 -0800 (PST)
+X-Gm-Message-State: ANoB5pkhDgCSKHxXWCBdfEhE9S4o86PrGy2Xpn0eYbLgu9RgwGR3nih7
+	4V8MfR5BQ0Au97q9qVJ53bs=
+X-Google-Smtp-Source: AA0mqf5NEk35t6FzvpAbnOFKD5C+mE5aes1fmcvhVliL+d4ghUUI4JSRgyKmlSDm41hUkmtqibbz+g==
+X-Received: by 2002:a17:906:a397:b0:7ae:5381:bd02 with SMTP id k23-20020a170906a39700b007ae5381bd02mr20028375ejz.286.1669139124115;
+        Tue, 22 Nov 2022 09:45:24 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a2e:a54a:0:b0:26e:76e9:3567 with SMTP id e10-20020a2ea54a000000b0026e76e93567ls2568210ljn.11.-pod-prod-gmail;
- Tue, 22 Nov 2022 09:29:23 -0800 (PST)
-X-Received: by 2002:a2e:c52:0:b0:277:9bf:9411 with SMTP id o18-20020a2e0c52000000b0027709bf9411mr1844376ljd.504.1669138162982;
-        Tue, 22 Nov 2022 09:29:22 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669138162; cv=none;
+Received: by 2002:a17:906:1452:b0:7b2:77f0:9d5 with SMTP id
+ q18-20020a170906145200b007b277f009d5ls8317185ejc.5.-pod-prod-gmail; Tue, 22
+ Nov 2022 09:45:21 -0800 (PST)
+X-Received: by 2002:a17:906:4a8d:b0:78d:a4ca:32df with SMTP id x13-20020a1709064a8d00b0078da4ca32dfmr19888174eju.686.1669139121517;
+        Tue, 22 Nov 2022 09:45:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669139121; cv=none;
         d=google.com; s=arc-20160816;
-        b=fgU4OJCIT4aRYtK+L2/TQ3Q2QdWGaV3wR1GaYLiCI9/D++aWwnw2pH6QmrHSJcsRlG
-         TOqoflhABCTmuSO+FX3GZfDg48wQpMdyDrQB7UqN8aoH7Na9jBSWpxbrGw7dqEOF7k7n
-         +X2Y7Ao4hd6wXdRfAusN9ZVmoj1XEpitIGqUoI5fhFSI7pW+FxOSbr1AG0H8eQrh/IGA
-         uueDivQ3Cn5b26jnRj2tYj6AgghCqTMLgxXTgt1NWgLgxG/K10QjfogOmowE0CwT5AcC
-         p2YYqGljM8IgD4KbBAj1LqokiLBpjhNoIoTrbbz7olfflxymrylvKG8mVbvO0oPvtgP0
-         Ewzw==
+        b=zhhO5rcAMOgcWHfl0h836Ztjk7Jc3Zr1Oj3kgLZi9WGvTKN3dUuduFf/3MrSIyNrgV
+         XMvlNE3q/IYSxpm/ZG4Zb6xP3TdUez3jNUo1I8LyZGgohw1yI+8pzRSwdhRmaOqde+n5
+         FjGHbCwGvJegaDhnlgrV7XvJIrtByZjFsbTfJe9EzHYYVchLszbt6P9Mbe+Kl9MJ5OdN
+         eAzCr1yMcTGX6POc1O885DT8KwHavHmrzhFHIjcLonur8Fh6pSipSsUAGgdaBjS4Vj9c
+         SI4P+I/VaBnDKCCL8iTrE0amJsgkyIANU2FFN3e6mnEm600ynwuNZ0ALrhhHXbbchE0Z
+         dFjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=g60GIv7bqoFLDqB4xsxYyMezGWJmQQ9+7qMuSM+/H/0=;
-        b=MvT8XmoPYR2RR01bQRA0GllM1yYS6I14HnzqmsDplgcAYHtGJb+trNc0FXZ3Mk5H6k
-         n68Y/u3DLHx8RddakqY0eeiYGqCDIXUAK2PCQKoGQu+WD25vUvKh0l7RHWZnCMfl5bKE
-         ZeFuTB5mZwdjAcliw2MI/58Q2jzliJpcZU0CODT+JLoMN7bvgdLapxCSkZgXOG8OQgNM
-         qzTTV9swgE9N5/7FH9Oin2/7r5z7SU2p83o/4mc/6cmVrjekkpLDtXE1XMyjvjvZZLOV
-         N07LyKxgHkk2Vle+BOkKwPNaXdVMUTbAck01PE/263DGKr7SOYPXlr9GCUeDG1MP7Wt/
-         oJlw==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=1kvyvrTAV03KH98x7yl5DC5qgb1BxRhc/RtXT1WiA70=;
+        b=GDbbaPQbgfICgAnclY/mZADW6RuOo6ihkxJR4jIsWmTt/LWQ5VjlOWI9c/P3aX10Wf
+         zmmZu6ORqzHQ5GOnaP2TBjACSnT6aBTq6/JknKtvRZSpuATx/PhXQpsl8IhMJgJS0/aq
+         HFBAAHYWn7K86k+B3vSPKU07Y251piG62nADtvWmM6lv6OMisYRKOfIdj5Jc1ZW6IEG2
+         4LN1uv2xgzMKu+hhPLEspMsQ0+6nvQFftNubWlHTykwJHlg/bBmdvIIMF1CaULx/Q9WU
+         U6ic/OLBEhrethMewGxHslBMRZmsffMNucu9HmJJgvWIz/APMZ/0KP5csyAdV+AtIIZp
+         8uyA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=W69sl1td;
-       spf=pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::62c as permitted sender) smtp.mailfrom=haowenchao22@gmail.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=pIuZMaX2;
+       spf=pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::530 as permitted sender) smtp.mailfrom=haowenchao22@gmail.com;
        dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com. [2a00:1450:4864:20::62c])
-        by gmr-mx.google.com with ESMTPS id f16-20020a05651c02d000b0027760dd5b20si576916ljo.3.2022.11.22.09.29.22
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com. [2a00:1450:4864:20::530])
+        by gmr-mx.google.com with ESMTPS id dy17-20020a05640231f100b004621a13c733si524664edb.1.2022.11.22.09.45.21
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 09:29:22 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::62c as permitted sender) client-ip=2a00:1450:4864:20::62c;
-Received: by mail-ej1-x62c.google.com with SMTP id kt23so37362415ejc.7
-        for <open-iscsi@googlegroups.com>; Tue, 22 Nov 2022 09:29:22 -0800 (PST)
-X-Received: by 2002:a17:906:44a:b0:7ae:e67c:6c4c with SMTP id
- e10-20020a170906044a00b007aee67c6c4cmr19861350eja.375.1669138162627; Tue, 22
- Nov 2022 09:29:22 -0800 (PST)
+        Tue, 22 Nov 2022 09:45:21 -0800 (PST)
+Received-SPF: pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::530 as permitted sender) client-ip=2a00:1450:4864:20::530;
+Received: by mail-ed1-x530.google.com with SMTP id z20so20168007edc.13
+        for <open-iscsi@googlegroups.com>; Tue, 22 Nov 2022 09:45:21 -0800 (PST)
+X-Received: by 2002:a05:6402:4a:b0:461:aa10:cb0c with SMTP id
+ f10-20020a056402004a00b00461aa10cb0cmr22258618edu.383.1669139121338; Tue, 22
+ Nov 2022 09:45:21 -0800 (PST)
 MIME-Version: 1.0
-References: <20221108014414.3510940-1-haowenchao@huawei.com>
- <ad54a5dc-b18f-e0e6-4391-1214e5729562@oracle.com> <89692b2b-90f7-e8e8-fa77-f14dbe996b72@huawei.com>
- <418c7f6f-0bc3-45bb-2abf-e866df6f4b62@oracle.com>
-In-Reply-To: <418c7f6f-0bc3-45bb-2abf-e866df6f4b62@oracle.com>
+References: <20221122213040.4128105-1-haowenchao@huawei.com> <11003745-2b2d-30cf-bf87-798f5175ae09@oracle.com>
+In-Reply-To: <11003745-2b2d-30cf-bf87-798f5175ae09@oracle.com>
 From: Wenchao Hao <haowenchao22@gmail.com>
-Date: Wed, 23 Nov 2022 01:29:10 +0800
-Message-ID: <CAOptpSO6=sUPUwgj1og8088djiNA=Bw9um0p024L=0Gb=-ja5w@mail.gmail.com>
-Subject: Re: [PATCH v6] scsi:iscsi: Fix multiple iscsi session unbind event
- sent to userspace
+Date: Wed, 23 Nov 2022 01:45:08 +0800
+Message-ID: <CAOptpSO23ex6p=AOvjC1h1xc1ZxznLt211hufVrrS8NDVbHjrw@mail.gmail.com>
+Subject: Re: [PATCH] scsi:iscsi: Record session's startup mode in kernel
 To: Mike Christie <michael.christie@oracle.com>
 Cc: Wenchao Hao <haowenchao@huawei.com>, Lee Duncan <lduncan@suse.com>, 
-	Chris Leech <cleech@redhat.com>, "Martin K . Petersen" <martin.petersen@oracle.com>, 
-	"James E . J . Bottomley" <jejb@linux.ibm.com>, open-iscsi@googlegroups.com, 
+	Chris Leech <cleech@redhat.com>, "James E . J . Bottomley" <jejb@linux.ibm.com>, 
+	"Martin K . Petersen" <martin.petersen@oracle.com>, open-iscsi@googlegroups.com, 
 	linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linfeilong@huawei.com
+	liuzhiqiang26@huawei.com, linfeilong@huawei.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Original-Sender: haowenchao22@gmail.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20210112 header.b=W69sl1td;       spf=pass
- (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::62c
+ header.i=@gmail.com header.s=20210112 header.b=pIuZMaX2;       spf=pass
+ (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::530
  as permitted sender) smtp.mailfrom=haowenchao22@gmail.com;       dmarc=pass
  (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 Reply-To: open-iscsi@googlegroups.com
@@ -153,44 +154,55 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Wed, Nov 23, 2022 at 1:04 AM Mike Christie
+On Wed, Nov 23, 2022 at 1:27 AM Mike Christie
 <michael.christie@oracle.com> wrote:
 >
-> On 11/21/22 8:17 AM, Wenchao Hao wrote:
-> > And the function looks like following after change:
+> On 11/22/22 3:30 PM, Wenchao Hao wrote:
+> > There are 3 iscsi session's startup mode which are onboot, manual and
+> > automatic. We can boot from iSCSI disks with help of dracut's service
+> > in initrd, which would set node's startup mode to onboot, then create
+> > iSCSI sessions.
 > >
-> > static void __iscsi_unbind_session(struct work_struct *work)
-> > {
-> >       struct iscsi_cls_session *session =
-> >                       container_of(work, struct iscsi_cls_session,
-> >                                    unbind_work);
-> >       struct Scsi_Host *shost = iscsi_session_to_shost(session);
-> >       struct iscsi_cls_host *ihost = shost->shost_data;
-> >       unsigned long flags;
-> >       unsigned int target_id;
+> > While the configure of onboot mode is recorded in file of initrd stage
+> > and would be lost when switch to rootfs. Even if we update the startup
+> > mode to onboot by hand after switch to rootfs, it is possible that the
+> > configure would be covered by another discovery command.
 > >
-> >       ISCSI_DBG_TRANS_SESSION(session, "Unbinding session\n");
-> >
-> >       /* Prevent new scans and make sure scanning is not in progress */
-> >       mutex_lock(&ihost->mutex);
-> >       spin_lock_irqsave(&session->lock, flags);
-> >       if (session->target_state != ISCSI_SESSION_TARGET_SCANNED) {
+> > root would be mounted on iSCSI disks when boot from iSCSI disks, if the
+> > sessions is logged out, the related disks would be removed, which would
+> > cause the whole system halt.
 >
-> What was the reason for not checking for ALLOCATED and freeing the ida
-> in that case?
+> The userspace tools check for this already don't they? Running iscsiadm
+> on the root disk returns a failure and message about it being in use.
 >
 
-target_state would be in "ALLOCATED" state if iscsid died after add
-session successfully.
-When iscsid restarted, if the session's target_state is "ALLOCATED",
-it should scan
-the session and the target_state would switch to "SCANNED".
+It seems we did not check.
 
-So I think we would not call in __iscsi_unbind_session() with
-session's target_state
-is ALLOCATED.
+> Userspace can check the session's disks and see if they are mounted and
+> what they are being used for.
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAOptpSO6%3DsUPUwgj1og8088djiNA%3DBw9um0p024L%3D0Gb%3D-ja5w%40mail.gmail.com.
+It's hard to check if iSCSI disk is in used. If iSCSI disk is used to
+build multipath device mapper,
+, and lvm is built on these dm devices, the root is mounted on these
+lvm devices, like following:
+
+sde                                       8:64   0   60G  0 disk
+=E2=94=94=E2=94=80360014051a174917ce514486bca53b324 253:4    0   60G  0 mpa=
+th
+  =E2=94=9C=E2=94=80lvm-root                     253:0    0 38.3G  0 lvm   =
+/
+  =E2=94=9C=E2=94=80lvm-swap                   253:1    0  2.1G  0 lvm   [S=
+WAP]
+  =E2=94=94=E2=94=80lvm-home                  253:2    0 18.7G  0 lvm   /ho=
+me
+
+It's too coupling to check these dm devices.
+
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/CAOptpSO23ex6p%3DAOvjC1h1xc1ZxznLt211hufVrrS8NDVbHjrw%40mail.gma=
+il.com.
