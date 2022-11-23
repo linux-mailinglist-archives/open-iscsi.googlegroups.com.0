@@ -1,139 +1,148 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBB55K7CNQMGQE6V37FFI@googlegroups.com>
+Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBHWZ7CNQMGQEGCNI7PQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wm1-x33b.google.com (mail-wm1-x33b.google.com [IPv6:2a00:1450:4864:20::33b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA04635D4E
-	for <lists+open-iscsi@lfdr.de>; Wed, 23 Nov 2022 13:43:37 +0100 (CET)
-Received: by mail-wm1-x33b.google.com with SMTP id ay19-20020a05600c1e1300b003cf758f1617sf1007213wmb.5
-        for <lists+open-iscsi@lfdr.de>; Wed, 23 Nov 2022 04:43:37 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1669207416; cv=pass;
+Received: from mail-qk1-x738.google.com (mail-qk1-x738.google.com [IPv6:2607:f8b0:4864:20::738])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67EEE63618A
+	for <lists+open-iscsi@lfdr.de>; Wed, 23 Nov 2022 15:22:27 +0100 (CET)
+Received: by mail-qk1-x738.google.com with SMTP id bj1-20020a05620a190100b006fa12a05188sf22507910qkb.4
+        for <lists+open-iscsi@lfdr.de>; Wed, 23 Nov 2022 06:22:27 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1669213345; cv=pass;
         d=google.com; s=arc-20160816;
-        b=q+0rnHs0Hs+4/kjkSFoD0brmBhBhX4gxWazer1vJxUdxSMGrmegLobJrLw0pFLXFLk
-         X4G/u6U8HZYNTAqu0BoVAAUtL6iU2rOBMmaytQDASY2iAQ+XcnTW0vVXsEPbnSZ3kDHP
-         IroYrJmp3+MVt6BAyDj5Df5vt+UEhfvpNiGZ8NeCV+LlBQJUTSwFr9d2dYBs2wlkgNdi
-         e4rtCit7F9AcscxDq9EjyiJkXG74Wvywyyz4lHi5/gcJju9qqD0m6iqhi9oET/GCrAOq
-         QKv20S6+m1b2ggswbRdKF6qaxlR8ux8wnHowZECHBWcjgREQLoEgvJi0kWdzDGZAWy88
-         C7nQ==
+        b=zEMU88yPRuClMWrzE8scpSR7VYK89cDrWfSKXcj3EC5nOdflUeYqe5aL3m1TPNJzIq
+         RpDY6HZTuYk3IyECsuhS5D0d/3LosqJ+xOu3g40p1fLemhMRI4Gt/3H/K+7MMnDE9hbp
+         6wqiLMIhZoKsjXGsRU54THPFNGtMS3HVWtjCFZZpzgvxPdrRPNjSQoNj9mQXmoPw5Bi9
+         nAtO7909dTiswc+9zYeAih31q4bzOiMpYZm2aOHBfFFVthAXJu/ODI1/cEK+u6qGgnqL
+         Vm6meU53eOWwGRMm7b7Rt/HEnvknfVH2fmJSi+FC5Gko1gupbinr4nGMU7Kq7At9jUuh
+         QW/Q==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:sender
-         :dkim-signature;
-        bh=w6NGgUMTc8v1MFTUK8HvaA6VJ4Rvjxgdkw8r9J8N2WE=;
-        b=pBWl9SjVCV54G6PS1lfy/QOJ7pvHf7rN6xJ4Ug1D7KCIhCga11Lv76MMwTSciGpjB/
-         IuzmRbCpgx4rCvLQ716CXB62qgWL+Yl+YMNbv4xrHePGg+93Hp73gBBL6pdUsOPatOZM
-         4h1pRXCQW/Ep8B38fpPmwpkGhY3MWORZ5cN88VfkNCUTR+lw9YbcqaWluBGo3oKGESzu
-         ggetYX9/z8cePGB6q3xemAz2v2BJP4YqG+CxBSDMgB2A/LxgO8nY+0QiJQzTftpGUV3C
-         +VYUyXJnPITRx44/tPxPNQf2Qauenc9l9Ghp13ZXLPY+v3P9pIf5N+SnIYjA9dZcOJCt
-         7XPQ==
+         :list-id:mailing-list:precedence:reply-to:in-reply-to:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:dkim-signature;
+        bh=O4/mTo1+FCtox5oKXjHo+i5PbzG9Eq9NPuYmmLcAfVA=;
+        b=1KYsmiEc3RF/Jj1dkDcymWnRv/pj7zqHUqUWzlWa9ot0bPRuwZbX6ZYh5kgOIVD/iq
+         Bsj2r46MIprCY/31fADrIaxwQ0b/Lk+bbGSEYGqH5vkleDR9sBJEMMdnSVN3WIH2RHEq
+         1Rlaglvk4Wr0rHpI4Vj8uTLYwOPQASLjXQUztzlqTbs7+XdE33NNOA5YNTTm/3L2QKGB
+         q/p8RczRlgwga8dsAw3Jg4LqTW+Fj32NCjhIfnnjREiPXg0SXO0zbl0yvRDQj7gR5Lkm
+         p2OYEm2R8SHR27R3yf4hIdzjsVqXHeFhERZ1sbget0VANEWwELLe7gNuqXp5Mf7NILNZ
+         YWXQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=VxzwcrkP;
-       spf=pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w6NGgUMTc8v1MFTUK8HvaA6VJ4Rvjxgdkw8r9J8N2WE=;
-        b=pLtVcophZT44cxXGX7OTOdGL+Vnww943POT5YgnnZ1sQjT8tnjZ1qNpDDJWMn53WsE
-         jC1lsZ2RQRC4dkvOx0W7Q5GIItZHn8dbMzjHEjCYhvhiHCDwFbLHau6HAux3XSX4LLM1
-         wDD0NHu96I5vOsn7mFm3R3xdH4t5mDxFcTBK/E8kvcJXTz8DDG0HqRrQdNeBauBKR4zA
-         n70p+ze9Kzp+s4Ug0NC0AB+9Ux3PNgIWwRlBHMufyFPQkx6U1TeYCkLOz57nYazKx3ub
-         US5hOJfxSH5+cY7Ijc8oyxu/EPObpebo2VpK7F35NEKSqfbu5/macycXP5pphyJ2fOIR
-         Q6LA==
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :from:references:cc:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O4/mTo1+FCtox5oKXjHo+i5PbzG9Eq9NPuYmmLcAfVA=;
+        b=L0VN8MCHWV/KZcICTyF78ScBpNSBjTp9jRMcE5Py0P87MaTvtMg5pmZt+D1+LD++LQ
+         ueDEAD22LOD0UOtINdlXoqrTylubvwr+hf64XXZCpb7ki41rlYskV95itXyobSTEXqh5
+         C3McvmdAmx5DnrJK6h5DocBIfr5jFDbWt8jU/C36/OW0LQXTntR2Zzr16y3t573iXb3N
+         XzzAQCEApbOAV5B2XHeMKXjL009dWj7lbOB7sZith9f0+eeIct9L7FvGkLvygG5Ow+HJ
+         2GmaZ4wucBIWvYCBNWSISt/rHBSVYZXQoIsXlozFCCt6exk5g4t/FlydXv4G858/qEBf
+         iLPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w6NGgUMTc8v1MFTUK8HvaA6VJ4Rvjxgdkw8r9J8N2WE=;
-        b=07OkiZaLRZh0HQZdlO6d9FkJ9ri7s65KA5D1BYoHQhb60oVGAd9im/FlCNN88hz5/3
-         KLf9Fxe9dAByN4Zm5IU2l+n/iKmnzMdNQI4Ov6bMMxXf5qL2FQXHGPa8mZmoaAAf3H/z
-         jOsA4Bj8O7weSVvTkdf1jXK9Lh5pmZPuDczzRinq5GMpz3UR0KNqpZAC+e+fc2YwEbry
-         uFXf26c4bWs3mo8vLQtgYdxKJwtGdFAgGIybFpBnJ76x5OSE5IOF5tsPUAWhqD+A4Fdj
-         n1JgI+OHhpxN4wkXqzIHyvVSmfBAielJSwUNAXp6t0AVNZ/g+lHIQMN+u5+Z4MYED4Bh
-         YrlQ==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANoB5pmQoCxDyyQVgunmaYOVCPjgsseVsLm2qczvfopdkI+C2XQY8WZt
-	8n5gqTGJzErWN4mktDtf5Ps=
-X-Google-Smtp-Source: AA0mqf6TQFn0fsNuU5NrRGWEGeH83cjwUY7rXSu1ZRTkQXDtnQwxDuTc175mjvtbhfio3cvwN4AGuA==
-X-Received: by 2002:adf:c64e:0:b0:236:78cd:f3d2 with SMTP id u14-20020adfc64e000000b0023678cdf3d2mr17741004wrg.719.1669207416635;
-        Wed, 23 Nov 2022 04:43:36 -0800 (PST)
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :from:references:cc:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=O4/mTo1+FCtox5oKXjHo+i5PbzG9Eq9NPuYmmLcAfVA=;
+        b=PB6ziYW5y4Tnh0zHPP2+UUk8VRTH9gbw60wunlKxlrhI+V94w7VMvizFHpYoPCn8ab
+         mgagHdqWwsd7q7ebvwz4Yh8czKti7hsVNEpHDna5zLusSzvjRfnv0NOMe97nFm2P+DfJ
+         3cmlciu1LLcLHNiYFuPMPY09bQh6UnLTHU3KXFwzBFYLzezlyzaAkh0sOIaRLtxOSA1l
+         hoz3Kie/BPHwO+H7NloUhX2kCvJeKOpnWTDvjfiw41KeCj1gQhTIZCqPe9JmSlmlELJr
+         UHBajmU6FJcJ/dDJpbRrGknUo1NHP6jht5fwDi0WUMxHMRz5eg940GGWW6iSTCvP9FYL
+         /5rA==
+X-Gm-Message-State: ANoB5pn+118/qVLUDyEEjwu7+e1VqePy0XGZkZPPQWpRdvh2g5oUghrQ
+	+QKDIC4NK+IEJ0BJEZ4PKLc=
+X-Google-Smtp-Source: AA0mqf7tbV01ADam60u9pg7mj5cWRlvZoZcegXUpcT0DJty3fb6gkeyyiFH829egcJ2er+/PtqFWMg==
+X-Received: by 2002:ac8:5308:0:b0:3a5:2fd3:7d8d with SMTP id t8-20020ac85308000000b003a52fd37d8dmr26148149qtn.427.1669213344148;
+        Wed, 23 Nov 2022 06:22:24 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a7b:ce11:0:b0:3c6:efd6:9cd8 with SMTP id m17-20020a7bce11000000b003c6efd69cd8ls1031336wmc.0.-pod-control-gmail;
- Wed, 23 Nov 2022 04:43:34 -0800 (PST)
-X-Received: by 2002:a05:600c:220d:b0:3cf:633f:c570 with SMTP id z13-20020a05600c220d00b003cf633fc570mr11143221wml.110.1669207414066;
-        Wed, 23 Nov 2022 04:43:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669207414; cv=none;
+Received: by 2002:a05:620a:13fc:b0:6ee:d08f:aa7 with SMTP id
+ h28-20020a05620a13fc00b006eed08f0aa7ls12180103qkl.0.-pod-prod-gmail; Wed, 23
+ Nov 2022 06:22:22 -0800 (PST)
+X-Received: by 2002:a05:620a:488a:b0:6f1:187c:8f79 with SMTP id ea10-20020a05620a488a00b006f1187c8f79mr24735485qkb.593.1669213342288;
+        Wed, 23 Nov 2022 06:22:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669213342; cv=none;
         d=google.com; s=arc-20160816;
-        b=REul21XHKdgl5I1Qgs+xDveLMjq9nsoktPl5z48ULlBu9GDb3TzP0gmz/4zVGTqaCQ
-         SAmNvAciBs2JuwX+RKN30nEOoA7JyS2hWpAYEsUljaXyZEZQchtfDpbvIdxf2JBDEjiv
-         YLm4grOILtbGBB2pi6oltbkVYLfq+x9F3fNeKt9Mn6XoCBbfyoMrkSnggzqEYC7Czb58
-         0HJw1Wx9Yke0q7ESfCGEkni6/6xRqlw3VEnruGDCgmHpitbGIFfiTV4mYZ/r8cQtVQov
-         9lczuUpncZlxRw5MOMT0oawdLeHSisEtFUcAG2M/XVndS4+8srbC4uMMoWK6gLF94c53
-         mz8Q==
+        b=WPRcrGLREYXT+0dZjZ88UrvjeIdkeP/9lKVn9Rh3Vsu8yhfNFz1N9LIZMiCC68mufu
+         nkoPRDv+P1VZsIq82qUlMhMJ1+0Ta143Bzg/3B5wQ/fYezaJJyXSHnfJBzv4BxavFzrl
+         8je+gjGKZf+DUMHzbAGn+ei0iQiMlzPXAosI9kJ1xeZrK7dKaRc7kH3GZyXTNt8jmltP
+         1QgITOko3JJ1mJX8v6vq9YZ/OIPRTjNOv3jfy28PwEY9za416s6OBaTvRWKBQcuIubh1
+         0NAJPlPhX1amDEak2sZuezcrrTSWaw48eWPvBXDNyBbW42QeMaZJS/YLeohXqXlD8P1s
+         xFDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=7lHWgusmJ2ldEGzD+o1fW3mgTDnywxtwc/zgQQjGCco=;
-        b=A+coAzmWpdCketWScwHCPSR25Akpws1cJK+kGlMthHP9NqGmpqgqeAygLqnZyxvz/K
-         rfoM9yGruyFtS9hxa5snod+YokSKrrJ6mkMLVERZZ2DE7ysmnAystNN3l3bIyzz6pIH+
-         l7Pvlqvwu8xisVVZ/+INFc28n1g2xtIMjid1GL/FzJinvQKRjoLIbnliFdBWsJzGSUuq
-         II+A2yIzEUJtJBzShijvloC7YwawwQUixJiLpla4wEEFXNpnbspVl0M20Xpbq/xWbbHb
-         QjJChkbuMrdVcxQllq6aQ/zoE3GS7824owkAg1T0Ft1mkJAwP7HLrHiuI15Hmz9jleJz
-         8Q7Q==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id;
+        bh=itczqEKeYfeU1zyI2jwORcTIaxoeI6mAebA98Q+wgm4=;
+        b=PaUBWq7Va8i+o/XEX9Jwu4ZZHpbnP1m/L+AR5tI3h5+fceOTWUb/LS6GWxMjm11lzW
+         dyn9yF63SeS4NLg8mBEsJ2b2NL4QLpUR1s5VjezMsSANaYKobeiYdYVhnxvhM/VBbpxg
+         vOk/t+/JLnd+4VLIXMM8VITqaV5aPyjnj4tbtfwJp1w0sLnpWsq+QsVucqfqPDuXHzx0
+         bEMD4VMmBjlSlNvschMWfZj85E35E8hLKVPRRlHRqcXQ/ctePAokOipMv9CycGxfy4+u
+         AtCO57HGWDwryfxpzV8KvneNdQBZU3RcHRRPz8BznGO8c/3hrQz1XrnCq8+IN8nOstS1
+         JR0Q==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=VxzwcrkP;
-       spf=pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from ams.source.kernel.org (ams.source.kernel.org. [145.40.68.75])
-        by gmr-mx.google.com with ESMTPS id z3-20020a7bc7c3000000b003cf1536d24dsi78000wmk.0.2022.11.23.04.43.34
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com. [45.249.212.188])
+        by gmr-mx.google.com with ESMTPS id r13-20020ac85e8d000000b003a4f2725cd1si816353qtx.4.2022.11.23.06.22.21
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 23 Nov 2022 04:43:34 -0800 (PST)
-Received-SPF: pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) client-ip=145.40.68.75;
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id C5585B81F5F;
-	Wed, 23 Nov 2022 12:43:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6752AC433D6;
-	Wed, 23 Nov 2022 12:43:31 +0000 (UTC)
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Zhou Guanghui <zhouguanghui1@huawei.com>,
-	Mike Christie <michael.christie@oracle.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Sasha Levin <sashal@kernel.org>,
-	lduncan@suse.com,
-	cleech@redhat.com,
-	jejb@linux.ibm.com,
-	open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 28/31] scsi: iscsi: Fix possible memory leak when device_register() failed
-Date: Wed, 23 Nov 2022 07:42:29 -0500
-Message-Id: <20221123124234.265396-28-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221123124234.265396-1-sashal@kernel.org>
-References: <20221123124234.265396-1-sashal@kernel.org>
+        Wed, 23 Nov 2022 06:22:22 -0800 (PST)
+Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) client-ip=45.249.212.188;
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.55])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4NHNbD276FzHw6Z;
+	Wed, 23 Nov 2022 22:21:12 +0800 (CST)
+Received: from dggpemm500017.china.huawei.com (7.185.36.178) by
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 23 Nov 2022 22:21:49 +0800
+Received: from [10.174.178.220] (10.174.178.220) by
+ dggpemm500017.china.huawei.com (7.185.36.178) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 23 Nov 2022 22:21:48 +0800
+Message-ID: <3a2ba8f0-3a86-36cf-cafd-969298594830@huawei.com>
+Date: Wed, 23 Nov 2022 22:21:47 +0800
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-Original-Sender: sashal@kernel.org
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=k20201202 header.b=VxzwcrkP;       spf=pass
- (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted
- sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE sp=NONE
- dis=NONE) header.from=kernel.org
-Reply-To: open-iscsi@googlegroups.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v6] scsi:iscsi: Fix multiple iscsi session unbind event
+ sent to userspace
+Content-Language: en-US
+To: Mike Christie <michael.christie@oracle.com>, Wenchao Hao
+	<haowenchao22@gmail.com>
+CC: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>, "Martin K
+ . Petersen" <martin.petersen@oracle.com>, "James E . J . Bottomley"
+	<jejb@linux.ibm.com>, <open-iscsi@googlegroups.com>,
+	<linux-scsi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linfeilong@huawei.com>
+References: <20221108014414.3510940-1-haowenchao@huawei.com>
+ <ad54a5dc-b18f-e0e6-4391-1214e5729562@oracle.com>
+ <89692b2b-90f7-e8e8-fa77-f14dbe996b72@huawei.com>
+ <418c7f6f-0bc3-45bb-2abf-e866df6f4b62@oracle.com>
+ <CAOptpSO6=sUPUwgj1og8088djiNA=Bw9um0p024L=0Gb=-ja5w@mail.gmail.com>
+ <856ccad2-19a4-32b4-b41f-5a230a55ee30@oracle.com>
+From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
+In-Reply-To: <856ccad2-19a4-32b4-b41f-5a230a55ee30@oracle.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [10.174.178.220]
+X-ClientProxiedBy: dggpeml500005.china.huawei.com (7.185.36.59) To
+ dggpemm500017.china.huawei.com (7.185.36.178)
+X-CFilter-Loop: Reflected
+X-Original-Sender: haowenchao@huawei.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as
+ permitted sender) smtp.mailfrom=haowenchao@huawei.com;       dmarc=pass
+ (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+X-Original-From: Wenchao Hao <haowenchao@huawei.com>
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -146,138 +155,159 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-From: Zhou Guanghui <zhouguanghui1@huawei.com>
+On 2022/11/23 2:15, Mike Christie wrote:
+> On 11/22/22 11:29 AM, Wenchao Hao wrote:
+>> On Wed, Nov 23, 2022 at 1:04 AM Mike Christie
+>> <michael.christie@oracle.com> wrote:
+>>>
+>>> On 11/21/22 8:17 AM, Wenchao Hao wrote:
+>>>> And the function looks like following after change:
+>>>>
+>>>> static void __iscsi_unbind_session(struct work_struct *work)
+>>>> {
+>>>>       struct iscsi_cls_session *session =
+>>>>                       container_of(work, struct iscsi_cls_session,
+>>>>                                    unbind_work);
+>>>>       struct Scsi_Host *shost = iscsi_session_to_shost(session);
+>>>>       struct iscsi_cls_host *ihost = shost->shost_data;
+>>>>       unsigned long flags;
+>>>>       unsigned int target_id;
+>>>>
+>>>>       ISCSI_DBG_TRANS_SESSION(session, "Unbinding session\n");
+>>>>
+>>>>       /* Prevent new scans and make sure scanning is not in progress */
+>>>>       mutex_lock(&ihost->mutex);
+>>>>       spin_lock_irqsave(&session->lock, flags);
+>>>>       if (session->target_state != ISCSI_SESSION_TARGET_SCANNED) {
+>>>
+>>> What was the reason for not checking for ALLOCATED and freeing the ida
+>>> in that case?
+>>>
+>>
+>> target_state would be in "ALLOCATED" state if iscsid died after add
+>> session successfully.
+>> When iscsid restarted, if the session's target_state is "ALLOCATED",
+>> it should scan
+>> the session and the target_state would switch to "SCANNED".
+>>
+>> So I think we would not call in __iscsi_unbind_session() with
+>> session's target_state
+>> is ALLOCATED.
+> 
+> Makes sense for the normal case.
+> 
+> The only issue is when __iscsi_unbind_session is called via
+> iscsi_remove_session for the cases where userspace didn't do
+> the  UNBIND event. Some tools don't do unbind or open-iscsi
+> sometimes doesn't if the session is down. We will leak the ida,
+> so you need some code to handle that.
+> 
+> .
 
-[ Upstream commit f014165faa7b953b81dcbf18835936e5f8d01f2a ]
+Sorry, I did not take this condition in consideration. I would change
+the __iscsi_unbind_session as following:
 
-If device_register() returns error, the name allocated by the
-dev_set_name() need be freed. As described in the comment of
-device_register(), we should use put_device() to give up the reference in
-the error path.
-
-Fix this by calling put_device(), the name will be freed in the
-kobject_cleanup(), and this patch modified resources will be released by
-calling the corresponding callback function in the device_release().
-
-Signed-off-by: Zhou Guanghui <zhouguanghui1@huawei.com>
-Link: https://lore.kernel.org/r/20221110033729.1555-1-zhouguanghui1@huawei.com
-Reviewed-by: Mike Christie <michael.christie@oracle.com>
-Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/scsi/scsi_transport_iscsi.c | 31 +++++++++++++++--------------
- 1 file changed, 16 insertions(+), 15 deletions(-)
+1. do not check if target_id is ISCSI_MAX_TARGET
+2. define remove_target and default set to true, if target_state is ALLOCATED, then set
+   it to false and continue the unbind flow; else if target_state not SCANNED, just return.
+3. set target_state to ISCSI_SESSION_TARGET_UNBOUND after is sent to avoid potential race condition.
 
 diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index f46ae5391758..cc39cbef9d7f 100644
+index cd3db9684e52..9264c75ad9ea 100644
 --- a/drivers/scsi/scsi_transport_iscsi.c
 +++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -232,7 +232,7 @@ iscsi_create_endpoint(int dd_size)
- 	dev_set_name(&ep->dev, "ep-%d", id);
- 	err = device_register(&ep->dev);
-         if (err)
--		goto free_id;
-+		goto put_dev;
+@@ -1960,31 +1960,40 @@ static void __iscsi_unbind_session(struct work_struct *work)
+        struct iscsi_cls_host *ihost = shost->shost_data;
+        unsigned long flags;
+        unsigned int target_id;
++       bool remove_target = true;
  
- 	err = sysfs_create_group(&ep->dev.kobj, &iscsi_endpoint_group);
- 	if (err)
-@@ -246,10 +246,12 @@ iscsi_create_endpoint(int dd_size)
- 	device_unregister(&ep->dev);
- 	return NULL;
+        ISCSI_DBG_TRANS_SESSION(session, "Unbinding session\n");
  
--free_id:
-+put_dev:
- 	mutex_lock(&iscsi_ep_idr_mutex);
- 	idr_remove(&iscsi_ep_idr, id);
- 	mutex_unlock(&iscsi_ep_idr_mutex);
-+	put_device(&ep->dev);
-+	return NULL;
- free_ep:
- 	kfree(ep);
- 	return NULL;
-@@ -767,7 +769,7 @@ iscsi_create_iface(struct Scsi_Host *shost, struct iscsi_transport *transport,
+        /* Prevent new scans and make sure scanning is not in progress */
+        mutex_lock(&ihost->mutex);
+        spin_lock_irqsave(&session->lock, flags);
+-       if (session->target_id == ISCSI_MAX_TARGET) {
++       if (session->target_state == ISCSI_SESSION_TARGET_ALLOCATED) {
++               remove_target = false;
++       } else if (session->target_state != ISCSI_SESSION_TARGET_SCANNED) {
+                spin_unlock_irqrestore(&session->lock, flags);
+                mutex_unlock(&ihost->mutex);
+-               goto unbind_session_exit;
++               ISCSI_DBG_TRANS_SESSION(session, "Skipping target unbinding: Session is unbound/unbinding.\n");
++               return;
+        }
  
- 	err = device_register(&iface->dev);
- 	if (err)
--		goto free_iface;
-+		goto put_dev;
++       session->target_state = ISCSI_SESSION_TARGET_UNBINDING;
+        target_id = session->target_id;
+        session->target_id = ISCSI_MAX_TARGET;
+        spin_unlock_irqrestore(&session->lock, flags);
+        mutex_unlock(&ihost->mutex);
  
- 	err = sysfs_create_group(&iface->dev.kobj, &iscsi_iface_group);
- 	if (err)
-@@ -781,9 +783,8 @@ iscsi_create_iface(struct Scsi_Host *shost, struct iscsi_transport *transport,
- 	device_unregister(&iface->dev);
- 	return NULL;
+-       scsi_remove_target(&session->dev);
++       if (remove_target)
++               scsi_remove_target(&session->dev);
  
--free_iface:
--	put_device(iface->dev.parent);
--	kfree(iface);
-+put_dev:
-+	put_device(&iface->dev);
- 	return NULL;
+        if (session->ida_used)
+                ida_free(&iscsi_sess_ida, target_id);
+ 
+-unbind_session_exit:
+        iscsi_session_event(session, ISCSI_KEVENT_UNBIND_SESSION);
+        ISCSI_DBG_TRANS_SESSION(session, "Completed target removal\n");
++
++       spin_lock_irqsave(&session->lock, flags);
++       session->target_state = ISCSI_SESSION_TARGET_UNBOUND;
++       spin_unlock_irqrestore(&session->lock, flags);
  }
- EXPORT_SYMBOL_GPL(iscsi_create_iface);
-@@ -1252,15 +1253,15 @@ iscsi_create_flashnode_sess(struct Scsi_Host *shost, int index,
- 
- 	err = device_register(&fnode_sess->dev);
- 	if (err)
--		goto free_fnode_sess;
-+		goto put_dev;
- 
- 	if (dd_size)
- 		fnode_sess->dd_data = &fnode_sess[1];
- 
- 	return fnode_sess;
- 
--free_fnode_sess:
--	kfree(fnode_sess);
-+put_dev:
-+	put_device(&fnode_sess->dev);
- 	return NULL;
- }
- EXPORT_SYMBOL_GPL(iscsi_create_flashnode_sess);
-@@ -1300,15 +1301,15 @@ iscsi_create_flashnode_conn(struct Scsi_Host *shost,
- 
- 	err = device_register(&fnode_conn->dev);
- 	if (err)
--		goto free_fnode_conn;
-+		goto put_dev;
- 
- 	if (dd_size)
- 		fnode_conn->dd_data = &fnode_conn[1];
- 
- 	return fnode_conn;
- 
--free_fnode_conn:
--	kfree(fnode_conn);
-+put_dev:
-+	put_device(&fnode_conn->dev);
- 	return NULL;
- }
- EXPORT_SYMBOL_GPL(iscsi_create_flashnode_conn);
-@@ -4838,7 +4839,7 @@ iscsi_register_transport(struct iscsi_transport *tt)
- 	dev_set_name(&priv->dev, "%s", tt->name);
- 	err = device_register(&priv->dev);
- 	if (err)
--		goto free_priv;
-+		goto put_dev;
- 
- 	err = sysfs_create_group(&priv->dev.kobj, &iscsi_transport_group);
- 	if (err)
-@@ -4873,8 +4874,8 @@ iscsi_register_transport(struct iscsi_transport *tt)
- unregister_dev:
- 	device_unregister(&priv->dev);
- 	return NULL;
--free_priv:
--	kfree(priv);
-+put_dev:
-+	put_device(&priv->dev);
- 	return NULL;
- }
- EXPORT_SYMBOL_GPL(iscsi_register_transport);
--- 
-2.35.1
+
+And the function would be:
+
+static void __iscsi_unbind_session(struct work_struct *work)
+{
+	struct iscsi_cls_session *session =
+			container_of(work, struct iscsi_cls_session,
+				     unbind_work);
+	struct Scsi_Host *shost = iscsi_session_to_shost(session);
+	struct iscsi_cls_host *ihost = shost->shost_data;
+	unsigned long flags;
+	unsigned int target_id;
+	bool remove_target = true;
+
+	ISCSI_DBG_TRANS_SESSION(session, "Unbinding session\n");
+
+	/* Prevent new scans and make sure scanning is not in progress */
+	mutex_lock(&ihost->mutex);
+	spin_lock_irqsave(&session->lock, flags);
+	if (session->target_state == ISCSI_SESSION_TARGET_ALLOCATED) {
+		remove_target = false;
+	} else if (session->target_state != ISCSI_SESSION_TARGET_SCANNED) {
+		spin_unlock_irqrestore(&session->lock, flags);
+		mutex_unlock(&ihost->mutex);
+		ISCSI_DBG_TRANS_SESSION(session, "Skipping target unbinding: Session is unbound/unbinding.\n");
+		return;
+	}
+
+	session->target_state = ISCSI_SESSION_TARGET_UNBINDING;
+	target_id = session->target_id;
+	session->target_id = ISCSI_MAX_TARGET;
+	spin_unlock_irqrestore(&session->lock, flags);
+	mutex_unlock(&ihost->mutex);
+
+	if (remove_target)
+		scsi_remove_target(&session->dev);
+
+	if (session->ida_used)
+		ida_free(&iscsi_sess_ida, target_id);
+
+	iscsi_session_event(session, ISCSI_KEVENT_UNBIND_SESSION);
+	ISCSI_DBG_TRANS_SESSION(session, "Completed target removal\n");
+
+	spin_lock_irqsave(&session->lock, flags);
+	session->target_state = ISCSI_SESSION_TARGET_UNBOUND;
+	spin_unlock_irqrestore(&session->lock, flags);
+}
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20221123124234.265396-28-sashal%40kernel.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/3a2ba8f0-3a86-36cf-cafd-969298594830%40huawei.com.
