@@ -1,214 +1,266 @@
-Return-Path: <open-iscsi+bncBD54HHNYIIIKVHPZTMDBUBCIQ3DPE@googlegroups.com>
+Return-Path: <open-iscsi+bncBCHM7NWZ3UFBBLFN7GNQMGQEA4JVIRA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ed1-x53d.google.com (mail-ed1-x53d.google.com [IPv6:2a00:1450:4864:20::53d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07B2D636625
-	for <lists+open-iscsi@lfdr.de>; Wed, 23 Nov 2022 17:47:41 +0100 (CET)
-Received: by mail-ed1-x53d.google.com with SMTP id l18-20020a056402255200b004633509768bsf10648267edb.12
-        for <lists+open-iscsi@lfdr.de>; Wed, 23 Nov 2022 08:47:41 -0800 (PST)
-ARC-Seal: i=3; a=rsa-sha256; t=1669222060; cv=pass;
+Received: from mail-ua1-x937.google.com (mail-ua1-x937.google.com [IPv6:2607:f8b0:4864:20::937])
+	by mail.lfdr.de (Postfix) with ESMTPS id 038C16366E3
+	for <lists+open-iscsi@lfdr.de>; Wed, 23 Nov 2022 18:21:51 +0100 (CET)
+Received: by mail-ua1-x937.google.com with SMTP id w30-20020ab055de000000b00418d1543d9fsf3422228uaa.18
+        for <lists+open-iscsi@lfdr.de>; Wed, 23 Nov 2022 09:21:50 -0800 (PST)
+ARC-Seal: i=3; a=rsa-sha256; t=1669224110; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Tu7qmpRiuwruo5qeTrDoGYxbzFsnw/3mjU2i8ni41OfHimaEWB2j5rjTOs4vK0ZvjW
-         vwL93XTxX9MoMjeF/dxY/OepdLWNM7zGFcZ6LWXql5xZD5zPO+pbzDEjmKUA65PkigUN
-         Qje21AQ/3+GuIIV/zkPhqd/iAFEXB0JGXf3CgyCJ7a0rvakT9hSCih7A32DThh6PA06w
-         3ayQdBJnRj2h/NwhdRuVshjPD+C+PZUSMr7oPahShzYGJMoozZ0gIcbfvB7XQWNNS5hk
-         Spxx7ndESRjMzQSAf4julT1UzYITSnh7OqiKQqO+9rDrIkGPfBz6U6VJ5f4TSBCnaggS
-         EadA==
+        b=yOvkCpA8qUm+XQx9z01ZW5OXoLEfCYty3c/UkKSKmbn6eTRWzcyaSRyJUsZxqnghzu
+         WxQ1sciqYqtcfkCB+PDNNv21HJ0OTsG0qwLe6OMCWewfyuvHPjnl+jIQXqSpv8tKSiPd
+         wO7pQfanM7SrPocU8j8SEPDEW5k1WbssF7KrhpSzJ6yLJU9Zs2MxYmhIKg3v7hAbXtmj
+         uLpHyVO0QgmWSHwlWrMf/DUs928srhch+Qwq77LWjeyp5iqHR6UYAiCxs6Y4pzrHZsCO
+         ncwBbDs9qDQomY0hN2CiO0zq1Y6PjdA2W2t8s1tyT1ItTCzKOS/KA6+/vUDryg5BpOSE
+         bA8g==
 ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version
-         :content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:date:message-id:dkim-signature;
-        bh=apHZ6tzl58wqyk0Enck/7wMxokxOFgYypO21MZW3LPA=;
-        b=eH8Q1h4oyZxbNdYJu5y0e2DcO1Kxg1afoeTkUqQIPTCgbJb+9DonZ2P29k8TILqiei
-         wTUCQvZPfTkI4jf69RQRKTcPOgF/KY64syL35cAcCvhp83IAd1eovHwJHg2DyATw3Zh9
-         bBZTGWIzbkUGvzzTxwY0KpY4NO3tyXh911sXS2Da9rcGH3Dz9tcAaAULFpbRWqw2QHaF
-         QYx8N6+VUoQ/UAUeEZWlIhqJszlqkAPLheDZ3n7ZuFuc19TzeL9BHCPPCTyA+EyFhLh5
-         bBeRDRS+J0fsVqmeDEFaRhTTSNNkco22hOGBdUD+axawz7KainVmR7CtRYdcjCQcntLK
-         3IAg==
+         :list-id:mailing-list:precedence:reply-to:mime-version:in-reply-to
+         :from:content-language:references:cc:to:subject:user-agent:date
+         :message-id:sender:dkim-signature;
+        bh=nRdjNsHNGb868Fo/3UsAi/3wz+J5/Q6eopIOAA+ymnA=;
+        b=0MDPfR/x9leo/m7GZBqtAFe6Guj9p0cGFXRGiLlewMse+O3pqWfnePpZVNwBIer6/K
+         MnDZ9R3hxjDFPhe4RHrutcemP0d6arJ0h5HGuc8dKkDLYikz0twL9/4H0iUCjJ6UEmzH
+         rwIDplUEpz+KkgT65aiMJtU0rsZUzryyvEcTpoFlmaQ7E2HvcqscOdr5toL6/QE3zEkr
+         QCKYhCmsiHYD8g8cBGzwBuHSGuBH21Old69mlC0cqS1Rwk45QDYSrl6RxE9Ncj53zpt6
+         q3tHXB0jRAko5NMvnH8oRboLxmpOqcHfpVlPZOs9aNVaVd450IfVGUNAXI5oYAg6Aiog
+         kPgA==
 ARC-Authentication-Results: i=3; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=selector1 header.b=sdNaPWBz;
-       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
-       spf=pass (google.com: domain of lduncan@suse.com designates 2a01:111:f400:7d00::60e as permitted sender) smtp.mailfrom=LDuncan@suse.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
+       dkim=pass header.i=@oracle.com header.s=corp-2022-7-12 header.b=MKiz8qGu;
+       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=g4YcjoC3;
+       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
+       spf=pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
-         :content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=apHZ6tzl58wqyk0Enck/7wMxokxOFgYypO21MZW3LPA=;
-        b=YbAQcA14EEJ1kjuSQdr5RhSDrOhKhTKhnCn9euynt+aPwIUQmBlqiHcJGFEroVPKMr
-         EUQIzaxyMhI86/GW8OyD8ICZIJt4MrdLpG4fM+TSDma0nIfZGqliJqpQKQ4w/Z3C9lUs
-         SzcsgixW1MOSSbI0SJgl9ENVhD7K04CUlv0t9fuUSvTvZPkUEuO/QNuJQ/2Bi9T8ztPr
-         Qpk1XdwU54t/AXXTMGpoIJEPvAx53X87p4BLZkczXVh/XqGoFh9usb9Juk5240GTrvpO
-         4p42BGwZi8nEP66BRrUvnVSjSA/M+c3bDcI+Q+2waSHm89u1koaNRwiKttL0hm0yePsK
-         k9uQ==
+         :in-reply-to:from:content-language:references:cc:to:subject
+         :user-agent:date:message-id:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nRdjNsHNGb868Fo/3UsAi/3wz+J5/Q6eopIOAA+ymnA=;
+        b=feMP5G6HsEoPWfOqk9g2QNtRyihpPYT+loqydzGVqwBIIzThaA4P4UPiOhfzsNQVgv
+         5j0ix401T8I+rVafLjpQY9DSp8QmiDrFmmTBIYDEvK24L9OxKYfiJAIvkkmIYItnMXiG
+         jDfbqIaBSKpLQyCS8oHzHChlfn9Ehk+c4ecJsV+oCHL7AiqI/9qs10K7GwlTZQIwJGMF
+         RNhjzm4wtKTkauqiEktk000NpSUhkMeyhHv5h64XPfHjmYue/Pd5ITrueFDhsmG5epcw
+         GhUNkjoL8Ng49EmsQRF1mqmGK46RJK3XG00KsxonbDuwuk6yWvAY35JBsdWtwxmkN4n/
+         uHHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
-         :content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=apHZ6tzl58wqyk0Enck/7wMxokxOFgYypO21MZW3LPA=;
-        b=xTTU7N4Vh8fTPXvyLFfb0FzCdN1r5mNL/yGivS3Eyo9ppZ8Ds0mMDbmVqdp4G5NCUh
-         23IfThpNNQ1rjrme4GiaiIWoavkYKv0Zz6Q88CwbcdcIJQpmpwHnq/ynYB9efr9oTRHH
-         SAiwkaJhv/FyEq2qkrb4wK8dfKCcTecWDGQNxKVhuhxBZ5dXmBlusf0WFL9pjDBRP3Zc
-         shAfkeWZPqXtzfF6jgdcKDBRpyfFpA1NEkAGEnPzOk8DKzFlgdfXvyl7NrVoNIClVwpv
-         GeAo9fEZj2XNTMFKjL7kH4OuvMJu89evQMh6nq99ys77+jDR1UwXFm0oScgnYY85s2fl
-         dm7w==
-X-Gm-Message-State: ANoB5pl74cMzcxEKnRh4KZlvmUB0w4Y4jTIiomLnf15qvYAMkr+//3k1
-	BkiS161O1R4uEB1LXquwKyw=
-X-Google-Smtp-Source: AA0mqf5XOj1xs8A8KLlqf26SE+tMREiEvfA28mXE9HO9ZQphMhpKJe7+ndmypb/Jxx5MqN6+Ydeyeg==
-X-Received: by 2002:a17:906:6ce:b0:78e:11ea:852e with SMTP id v14-20020a17090606ce00b0078e11ea852emr9972190ejb.183.1669222060415;
-        Wed, 23 Nov 2022 08:47:40 -0800 (PST)
+         :in-reply-to:from:content-language:references:cc:to:subject
+         :user-agent:date:message-id:x-gm-message-state:sender:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nRdjNsHNGb868Fo/3UsAi/3wz+J5/Q6eopIOAA+ymnA=;
+        b=ow8etcqw360U9fNdBxAP4zMEPxTQUeAcHXJ6FlI8uoq0IIfEXVljfcZ+g6i0f3v0Qh
+         cTxWST8Jwo0HPChdX0SVH75lSpP5hARo1kESiDFRUpBa2mRV0MKPTx0Z1UYKkyzwADyU
+         POGbzVenKYwGkb63x7NOkqUTm8cqQv0G0j+MhdIEQTUcAxlyNNOii4YkHpSjQqKMzFrS
+         yjb24d2rus/vNGmJrjdoMe4bFAjechX4yZT/pSxoxwG3JVQG09oSBO/vliCv7v29s+Cl
+         mO36KPRPtGvvvOPXMQ6rZ48DtC+ZnSQhGaj1ABPR1bxFdPNwdRY6KMGi/AB1QhMRUobX
+         1iPw==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: ANoB5pmwecaKGRYwhCfAk7NCFyo8sStR6t5MWHQxwQsxXYdItIr+bm/0
+	wjvMUlhGGujj3yNxZDiV7ys=
+X-Google-Smtp-Source: AA0mqf4iAfo5vxbrcuK+r95MU+iItb/6De1EZ49+51S6BdLiVJdvH7gCi1jfJzYYjPAscZKz/2WcoQ==
+X-Received: by 2002:a67:c50c:0:b0:3b0:6c3b:a8a5 with SMTP id e12-20020a67c50c000000b003b06c3ba8a5mr4255008vsk.87.1669224109910;
+        Wed, 23 Nov 2022 09:21:49 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:906:7e1a:b0:7ad:934f:14b9 with SMTP id
- e26-20020a1709067e1a00b007ad934f14b9ls9863851ejr.9.-pod-prod-gmail; Wed, 23
- Nov 2022 08:47:37 -0800 (PST)
-X-Received: by 2002:a17:906:6d8e:b0:7ad:a2e9:a48c with SMTP id h14-20020a1709066d8e00b007ada2e9a48cmr12877039ejt.77.1669222057616;
-        Wed, 23 Nov 2022 08:47:37 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1669222057; cv=pass;
+Received: by 2002:a67:c40d:0:b0:3af:c73:b1b2 with SMTP id c13-20020a67c40d000000b003af0c73b1b2ls3969870vsk.5.-pod-prod-gmail;
+ Wed, 23 Nov 2022 09:21:48 -0800 (PST)
+X-Received: by 2002:a05:6102:1524:b0:3b0:5dd0:95a with SMTP id f36-20020a056102152400b003b05dd0095amr5296229vsv.59.1669224108138;
+        Wed, 23 Nov 2022 09:21:48 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1669224108; cv=pass;
         d=google.com; s=arc-20160816;
-        b=JovXpMQfREdNExedJkJO5VYCxWldSnMa9RZ75nELwxADZofKexVqIrnn4UidWxYtQz
-         VuwUFEkhlf49sRjljWbjKba0yWob24HUnPoVKR68E9zQlAnYDwjNqBfyBKvllcLsLKx9
-         ogWJx3l8sE0QqQwAORVQSGnt3CD+eOPmij/IkyhQ4mLnG+PqQNL85wKmfkUKWYGdFVF3
-         JCxjDvxZwRzKFKICT2f0JlHJU8HRu5EbuUpGHyy8Mrwn2ExzMenTIrkhd16rZKCCSmA6
-         5hX9SQF0B2QtLGjQqKXNhu6c2L1HAqO2oYm/5XUEjeZGx9r+I4TRKoKlPXcJTI6PM30Q
-         B6Wg==
+        b=xEYwdsiWDcYRmYi63OkINukFv38XsgykCwPZywkKM5kUFRWF2eGo9E1TFdB0D9GoAB
+         hlE6avDrPryqyoc4WCbx9MbTZFJQM6Qz4YL58lief1JtyHOeWDnnGzuGXTM2pbK80FIL
+         2kufDi1EovxPYxU21v1hw+ijgQrVE/meyeLfjtaGOFylP/pDBFhRX5578ZrICBDqwBmm
+         +YDtWOaiWT4HNw5iBDaXlnRYuAWno0nK6UEoRlPwDgpD460a1Y00pRz47zZZxu1VKLuC
+         y2sCiyw2pLQWYsNvWUbR1eBo432J54GBzs2PkBrNvjwr+fWvjROScvt756bbHNwdy2/6
+         cnrg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:content-transfer-encoding:in-reply-to:from:references
-         :cc:to:content-language:subject:user-agent:date:message-id
-         :dkim-signature;
-        bh=T8RtdiLgsFVmJWJGZa1D3Gx4oywDP3r8yvkBVtR50bo=;
-        b=PuV2FShT5NNOVT4TNP+SfjiG36vOXhXEfvZc0+aCmubiCBZxPaL6+CxJBvm28UXjLK
-         KNI+pAazkGzcyYZF4YRHWveDYx09zcDvT2NeVTVeUQ+x18rVQz2YI5+JypTx1erd4nrG
-         gXymyYnz1x5fTm+4MvSw6tDgjL7b+HXH1RbGTVbE/OO90v4Fw4WMlDhJ6ZcUkgrVauf1
-         MLHjIl6wqlYGFkcSymZjDXmFZCkBHyh+ZlvXdwWzPghAE1V3jax38K0z3Zkd3AbC016p
-         /uIKJFeh8N+6k5CVTUsVzAo26Qe82RIoxAi7z7aLm//hz0cfwrg+fr4eMHxq9fWzRBNl
-         9/IQ==
+        h=mime-version:content-transfer-encoding:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:date
+         :message-id:dkim-signature:dkim-signature;
+        bh=MrtkaH+I68DBQhNwxzWxVQuJSh109ttdTaRDqL4CfH8=;
+        b=FdSG1nfKLfg4oVS7srEaTO1FTE9Iz3fUXhMEmy2T6pcvHbrGhhtbewM1DlE+N83PTP
+         0KDIPqELORgGYiHS9vIxRB2VRvOBphFAkX8E12knVcXFB+78D+UO8K0Ut4Nm0zwHpSRw
+         kpYQghqNe8ElL4OlraHRCDJ98jkzl3HU+Px2EkvQ9v0p46OL1QAv6+kQh09XLAtNq6rh
+         z1r/VjRsnZDIDtlZFPx59R2kpmTJOSe7JJGJ9tzc688nerb34L4g2vAIzt5VxiCX1cwz
+         CfEh4TZ+DNxZIqFuRp5Xhto+FFrbv1vO0h3AAsb2M/IzvnSJxVcMN7qM+hF+kpu90CpM
+         zyBg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=selector1 header.b=sdNaPWBz;
-       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
-       spf=pass (google.com: domain of lduncan@suse.com designates 2a01:111:f400:7d00::60e as permitted sender) smtp.mailfrom=LDuncan@suse.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2060e.outbound.protection.outlook.com. [2a01:111:f400:7d00::60e])
-        by gmr-mx.google.com with ESMTPS id dy17-20020a05640231f100b004621a13c733si610665edb.1.2022.11.23.08.47.37
+       dkim=pass header.i=@oracle.com header.s=corp-2022-7-12 header.b=MKiz8qGu;
+       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=g4YcjoC3;
+       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
+       spf=pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com. [205.220.177.32])
+        by gmr-mx.google.com with ESMTPS id ay3-20020a056130030300b00418e1741f27si644711uab.0.2022.11.23.09.21.48
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 23 Nov 2022 08:47:37 -0800 (PST)
-Received-SPF: pass (google.com: domain of lduncan@suse.com designates 2a01:111:f400:7d00::60e as permitted sender) client-ip=2a01:111:f400:7d00::60e;
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 23 Nov 2022 09:21:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) client-ip=205.220.177.32;
+Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ANGsDgl025969;
+	Wed, 23 Nov 2022 17:21:47 GMT
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3kxrfb456x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 23 Nov 2022 17:21:47 +0000
+Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5) with ESMTP id 2ANH40s2010749;
+	Wed, 23 Nov 2022 17:21:47 GMT
+Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11lp2174.outbound.protection.outlook.com [104.47.56.174])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3kxnkde7gb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 23 Nov 2022 17:21:46 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T/N2dkWCH23xhSj1cFv5MgoMmnEgdF+fzcRWnoO6nK5SKaFwzZ/TTWLvSOM7kUxgfTz2yaaImVtNZFD4uhU2QMzJNsxJ9P1YQ1CYK6EQ5fXoy+N1FYoxwd4eiy7kpFaDtTJePMVOyqvLogP+XFIiNGMw0KfcwmGbIDrbOKaSxn58Zc1QzGHJPcFFBtQ5X+OOywA8R4pfc/NHBkIfn/UejBWnO6gsXdZktMm/pNXiQ+LZV6Rpy20cJibV8J7liM/mzcvkMo5fndvaBDJBBiHAZoPsacFrPnHutUf9HBcDyln+GLWJtDUymdO0Uf45n947J6kiZAQlAyPAofv1pp3z6A==
+ b=MfwFLb6rgr0WYKRUvA7qRY3TM5RnZ5WiWfK/y5wwbOn00gnytOWnLntVlOVM8gXakz6vLnQCQI+OETWIJNCEJOo3l5d+ZQPYPjTih/ChzponCVaSwBMgFv+H2ikkr+r6z7S+qSyC2Nve+vjqb2JvomFp/jFsJBCPZdKXJr2wbqcvZSBUhS7y/WI4EjUnJoArAO1SpsnKfiAvwaPb120GD6fhUQYIfFN6Xu5Mx/BUfinwiZkSCTZevuS/rdmuQng1thG02UNfK5P8/MUVbYgAJyd5jiyMwwPOFcnYlKBkQYulC35L/PYNGaKOkS/s/8ld7od5ZBamxrNGsjWiSV7RYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T8RtdiLgsFVmJWJGZa1D3Gx4oywDP3r8yvkBVtR50bo=;
- b=FNhVx93myyye5yJV6RQNHPcuBVidgVU5Th3x3Mf5GYoQ/ehp2piwM2OdQOkDHTpjml1IHd+Kb9rWMVv0blrFqFKKZ8+XDiAh2rmxWctH4xRF0Zb9jrAhvojDyz/jUphAc9YC9qgsJuPqWxhiMH2GePMIseGceGDC/P4wqO/aiIYFYeYgrWt9eXpXrkzDUz3QKKO84CzylvtCJ3NdJRjX7j9RgmuwjXS4+WrEx/StH3I/Hce79QWyak1Y8OUIM0p02IJQfTghBFB84oa75GjepnXqf5vMk5/9yasYeOG/ESwytjZ9PfuIoSB3vs+gWTE22rhKuEqHwHre4bd1heuLFw==
+ bh=MrtkaH+I68DBQhNwxzWxVQuJSh109ttdTaRDqL4CfH8=;
+ b=JGRygWIbz1qd2SOuFsv9B3r4knB33IoQZhPqIVbLIoE9Fx6DYbxV5IQKUE4Q9ZSTW3/9U1wlANFKAPiUVADlQUpNPBNWr9VzuTzXYWvZ3W1ZcY/5L89kkgRLHgdAi+5V8wMTFOV5AkiUTjHOTTz5oHx42B3K9A1PVijGoxCsLoXxL1YavOXdPikhqgcmxfrtPbAR+jEp+APgZckBUJ/BHi8cZxPB5ge38U4LZ7sWrWVJLLeTVY/e9q2UKccAQgQyWTCI6fr8KkJWN0hQtszElePz3b4mCxcfDlIXLYS044HbhBTO4GngGa2nfjDjWuIAzuBERRKgN4/9nHnofkpWmw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
- dkim=pass header.d=suse.com; arc=none
-Received: from AM5PR04MB3089.eurprd04.prod.outlook.com (2603:10a6:206:b::28)
- by AS8PR04MB8417.eurprd04.prod.outlook.com (2603:10a6:20b:3f9::18) with
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+Received: from DM5PR10MB1466.namprd10.prod.outlook.com (2603:10b6:3:b::7) by
+ IA1PR10MB6195.namprd10.prod.outlook.com (2603:10b6:208:3a5::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9; Wed, 23 Nov
- 2022 16:47:36 +0000
-Received: from AM5PR04MB3089.eurprd04.prod.outlook.com
- ([fe80::88c9:1477:70d9:86e9]) by AM5PR04MB3089.eurprd04.prod.outlook.com
- ([fe80::88c9:1477:70d9:86e9%5]) with mapi id 15.20.5834.015; Wed, 23 Nov 2022
- 16:47:36 +0000
-Message-ID: <0f7258d5-ff8e-fa4e-ab8e-5125c42a6d07@suse.com>
-Date: Wed, 23 Nov 2022 08:47:30 -0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.15; Wed, 23 Nov
+ 2022 17:21:44 +0000
+Received: from DM5PR10MB1466.namprd10.prod.outlook.com
+ ([fe80::19f7:e081:85b4:c5df]) by DM5PR10MB1466.namprd10.prod.outlook.com
+ ([fe80::19f7:e081:85b4:c5df%7]) with mapi id 15.20.5834.015; Wed, 23 Nov 2022
+ 17:21:44 +0000
+Message-ID: <717da158-5a7e-b478-61d3-3753b0b00e01@oracle.com>
+Date: Wed, 23 Nov 2022 11:21:42 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
 Subject: Re: [PATCH] scsi:iscsi: Record session's startup mode in kernel
-Content-Language: en-US
-To: Wenchao Hao <haowenchao@huawei.com>, Chris Leech <cleech@redhat.com>,
- Mike Christie <michael.christie@oracle.com>,
- "James E . J . Bottomley" <jejb@linux.ibm.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
+To: Wenchao Hao <haowenchao@huawei.com>, Lee Duncan <lduncan@suse.com>,
+        Chris Leech <cleech@redhat.com>,
+        "James E . J . Bottomley"
+ <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org, liuzhiqiang26@huawei.com,
- linfeilong@huawei.com
+        linfeilong@huawei.com
 References: <20221122213040.4128105-1-haowenchao@huawei.com>
  <4d21f806-6653-5457-918c-563a3032d128@suse.com>
  <00f11c61-a53f-c48a-017f-4c06055ea708@huawei.com>
-From: "'Lee Duncan' via open-iscsi" <open-iscsi@googlegroups.com>
+Content-Language: en-US
+From: Mike Christie <michael.christie@oracle.com>
 In-Reply-To: <00f11c61-a53f-c48a-017f-4c06055ea708@huawei.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: FR2P281CA0148.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:98::6) To AM5PR04MB3089.eurprd04.prod.outlook.com
- (2603:10a6:206:b::28)
+Content-Type: text/plain; charset="UTF-8"
+X-ClientProxiedBy: CH0PR04CA0003.namprd04.prod.outlook.com
+ (2603:10b6:610:76::8) To DM5PR10MB1466.namprd10.prod.outlook.com
+ (2603:10b6:3:b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM5PR04MB3089:EE_|AS8PR04MB8417:EE_
-X-MS-Office365-Filtering-Correlation-Id: 248a2808-95d4-4a45-b1f7-08dacd726cd4
+X-MS-TrafficTypeDiagnostic: DM5PR10MB1466:EE_|IA1PR10MB6195:EE_
+X-MS-Office365-Filtering-Correlation-Id: 911408c5-64bb-4f08-bc80-08dacd77318f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4C5eqpWU5TWBIbv3lgwthoYcg9e/AKdxCLpbtFP4+dCdWBouR9H136P8mdTyyFbGOay8zHqTQZ/tpN9JQNnkHYrzIaCFK52Gq/cvNrZzEJGeURHEbSSo4dUL+Nfw60aMNqL0ZfbcUd6yI6bQUI5cjCXs55MNxVwnxxiDB+GhAPdS2aSWNfBxCBLgCmGE9tKrarPyPXSNd9pXxRinc7U27MQDzVhS26zWOZLQjtFG6NovZwqGSHtjCb72JkNlNFOEaCc6BXKAY/WbgLoVu7vKHAC1XxKt0nSCAljjsplvJ0QN7lZUW8PIhRsmefAm3sNFcklbijyKt4EzjWK3J6XEPhQ+8sgMu+rBxOTUSRyDpyylLhhf7uveNhnacT5yw1kOon+0ZkOz/UByg8o99uffij+zH5gjBlkQFA3i1yTk3xUOJ1iIJxrE+WYug3gq3uKrYOFui1XOXFQNLA9x36vvu2jF7w+9wT271/cD4nlQyk0plnqUrSm7MMvVp0xuROjFJO7KKm+dnzpG+ika5vHB2nIsjD48zp5CXjAGn7HHYamQoe8FBlgI/neZowOc1clY3xVhB8UrDAE0a9DjRp2N0b2Qw2PgmGKk/gn+uMJ1dCDEJNAZ9WQVDOLgDphyCkBrcV5ZlOUSothhKb3eWJZ0Kn2ueW7sMBAwTLVfychSn0dDBXi6or/jep90+WqqBlPigYfzIGgJbKr/F6e5ttWFKOXvID8DQaEJSLopps9zpYs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3089.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(366004)(136003)(346002)(396003)(39860400002)(376002)(451199015)(31686004)(6666004)(6486002)(478600001)(2906002)(6512007)(66476007)(66556008)(2616005)(41300700001)(8676002)(53546011)(186003)(316002)(36756003)(110136005)(6506007)(7416002)(4326008)(5660300002)(83380400001)(31696002)(86362001)(38100700002)(26005)(8936002)(66946007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: t/wUVSIs89zm9uyoWfzgpmIbXDJQVhG7IIvHuzNrBWsStXt9W1CqATrzRa9H6UhHVnLqsRojXTQsUWrFfH+62gR6trA0yybOUkCXLsdBjPcL8tpOxMQQeOChTT6P3BmgJS41zz8H5+AqFuLAfBDLdjQR1AxWF/St2bmA3VoB9ULqt5bMH//zM7ugPBg/kb5eAJNggY1Vtw+3yxiHS43mhAE32k2LTiRdl8xrBOPQVpFVkDyC9HucriFoF9yGDycqBwDDLbJZ4BPpZVCz3+N2b81LUFDdY2PrXU48ZrWNTTYEDQYReUwaybjRfs1hGwdEj0HwhGes65ikJOzdCp3RhWja8uS571QxkfMGqhyoZnqRKt1XCLH0XlzXbj2A5CK1rulFBRUsH/2Mw9wGRBKj6VhgWa3KI305yUEFBvh1N289DhN/ei3VJtXL/wVbvtpKj9urcsYdmjZv89NwwN/dYsMADbSP/gcGabfIC5rTdK+m+bQrgake5Tyd5tAaiAtbG55xRQJYr457UDfhUgYaA1kbUh1uZxQH3M7Asp6aumlvJG1zCqtr3d+Vc2O5ZZDMlZcNnLkopm/mapxDAOktFE/GLeCzBk7dEJDcwq9l9Y1EeT8ttbXzPXDCB/X0pdt25ZumbFWqM5NEgDZGItgdIa84p4Aw/Dnstb5m8W/pqMOfjO2VzOJYjiQL4S86iWF4eQmAsu2FMWz0nQFyUhkVel48JF55PiYop9Mg2bBei3U=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR10MB1466.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(136003)(396003)(376002)(346002)(366004)(39860400002)(451199015)(36756003)(6512007)(6486002)(6506007)(53546011)(26005)(478600001)(41300700001)(66476007)(4326008)(31696002)(86362001)(8676002)(66556008)(8936002)(110136005)(66946007)(5660300002)(316002)(2616005)(186003)(31686004)(83380400001)(38100700002)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NmRJQ2FMcTJFV1pScjFRNDMySE1iMDFaWThCUEtOZHFxb2ZIMXBpQVlWeDU1?=
- =?utf-8?B?aUF5TzRyaXg4Ukt0alZINWp6dFN0MTZWMGRRYXVSZ09OWmtKenZLZDNubTJn?=
- =?utf-8?B?b2JCeXNRb2NEKzEzMzdBbkVYS1hwOUxXSzNlQUVpM0NKT3FoWE5VeUFHWURp?=
- =?utf-8?B?OXNnSHZFeUxRWW42NWhBUDVRdHYzdldkWlZEQmdOWWJLSXJ1ZW1wdS8wemh0?=
- =?utf-8?B?R0Zod1JsS3lZTUpaWi81cjhGeDE2bVoyTjdDRnFKaFJZbkhFL3llNk5vRVcy?=
- =?utf-8?B?N2VZUnBxcTZ0VjFOa21JZFYvdjM2Vm1YSG45bERoSkp4ZXBvZjdDMVk2WWxm?=
- =?utf-8?B?T21pMEQxWFlYN0grY2t3MmtPUlFMWk4rV2ZDeWdJQ283VWJUOVF2ZDVjc0x3?=
- =?utf-8?B?MUp3UndEL1Z4dVZhUi9MVGlwdHN5VHRDVURET3F3SDBYYmdnMmRPa2pLVkdR?=
- =?utf-8?B?WGZNOTZveGFPZ0txcDBQUm8yVXh0a2w4RXpvNU5maENTU3RBWUhLdVFENkM4?=
- =?utf-8?B?dkhiQ1ZXdGk0aDcyRWJxMWRpZVU3R1hSUWFGRkJnR3htcFNKWm15aXFHMnRE?=
- =?utf-8?B?SW0xYnV5Tm9RZm9lQm1nVWJBbldKMWsyUmZBZlVLeHQ5YUUwdGVLSTBobi9z?=
- =?utf-8?B?K1ozYW40ZkVoVWNDTFhRN3ZvOTg2QmxmMkUvYTdUUThjVkNFWi9RSDFBRVFQ?=
- =?utf-8?B?ejhJd0dwanovcFhhRzNSSWYwUmFwNmlKd2tmZkZMamtXdjFjenZSYjV2TkU2?=
- =?utf-8?B?ZllZUlFJMEhDQ3VKbkgwQ2RVSE01TGFKYUU0U2Z5aEhJdjJoNzZ6Z1N6enYz?=
- =?utf-8?B?ZGZzNzJDNk91VHlidEhZVk1sNEc1YWZRUE43bHZibEhWWk5DcUZKclVZN2pE?=
- =?utf-8?B?NzJITFI2aHFlYXhodmNpVDR0aG1Qb2did2FDRHY0TEt5aXFIQnBJSmNBSHRh?=
- =?utf-8?B?N1pySHVrTkEwZ1BEa0o0Y1B2QnFNRUVUd2xIbVVGSkgyM1Y5bHMyOS84T1U2?=
- =?utf-8?B?dEpjU2poYVlPSzZ2akVYQ1NqVWwxaFVScjcrbUNneVRGcmVsTE9Kajcyek5l?=
- =?utf-8?B?WVVtZmNLU0ZwOVM5MWVsd2JQNlRpeUU5b1QwOFVaa3pDTjA2ckwvYkdWOEpL?=
- =?utf-8?B?SURYNnF2ZmJRR0tYU0lkUW1SaENFNmJONXFNUEhNeit0YkZ2MUhyeUZWamNY?=
- =?utf-8?B?T3FsSzVPMXBGUE9xY3E5eFdmVndiSi92dWhWVXB0SmJLRlBxK3NCN2hPSDJB?=
- =?utf-8?B?Z0h5K0Q5WEM1VlNmWnNkZnk5OGVRUE81M1EyK2t4aWdyWk1iNHhJMUI2UTJM?=
- =?utf-8?B?bFRld0FKYUtTclJEM3N6Y2FScGFuTkRVMys4YlRhTkZKZVRleWxPaHc4NW5p?=
- =?utf-8?B?V1ppYkhRbkY5eWNkMjhvU0loczN2KzdnVzZkN3E3eURZVnlYNmRDaGlQYWdJ?=
- =?utf-8?B?UmpIMFhLNmd4MTF3L1hVdEttVTRyQWh2Sk82cEFKMXZvL2NWMFk4UkRKcEtv?=
- =?utf-8?B?SWJFVHJtUElDVHM1Nkp0TkkySktoTldOamFIUTVMb2RIWkpjWm80OWJWUnRa?=
- =?utf-8?B?WFVpVmZ6Uy9ML1czTkVHek9uVUpmVitzMlJZQjVMb2FtN0NhRDNPQk5kSmFu?=
- =?utf-8?B?eGFpMGp1Y1d6WVF6b3VST0ZrUFhSME9zRnhMUyt6OC9CbURIUG4yRVFvTDFX?=
- =?utf-8?B?TnVXMGFGaGNaMzR3VGUzbWZ1Tmt6QnVDRGhweXdpSEN0b1haa1NvUi85SnhE?=
- =?utf-8?B?VWlxM09icnhOcEpWWEpXcy95VHd5Z052N2ZPTThTMXA3V2ZwV0czUURHalBR?=
- =?utf-8?B?eUp1ZGtwd0ROai81MFM4ZXM2N2pIMkFYL015TkdGOTQ0WmtBMWFHbFMvNG4x?=
- =?utf-8?B?NnA3STQzbmhTQnZqb2d6VzU1a242Mll0NlBFOUNGMnNicHNkMGl2aGQyNFFS?=
- =?utf-8?B?dzRRMnpIcUF5SHlVMDdJeHozeGlxMTMrVXA0TmdIaVRGK0dQNEdYNVc0RG11?=
- =?utf-8?B?ckhnNktuSnBMZzhNcVVuN0NhQWFJLzhQZDErYjllSWRSTkhmSFdDTmlpb25K?=
- =?utf-8?B?MlA3Wm9iNGw4WlB0OGlCT1ZsUzRhZm1nV3FtbmhPNUJvMVNMdmE0Yk1OTmlj?=
- =?utf-8?Q?ihMWTqx1xt9ITW1N4eZORx3qf?=
-X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 248a2808-95d4-4a45-b1f7-08dacd726cd4
-X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3089.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2dhMVc0WXFVWVpKRFluSGNIa2ppbmhDQ3B3bWhqMFJpUmFTR01la05nTWNu?=
+ =?utf-8?B?N2N2WktuWlB4aFlqb25NNnA0M1V2aGtjaHVvcnJubjNqUG56bVgxTStocHk1?=
+ =?utf-8?B?OVYwdFpHYkNzWHdVbUE3RDhBWThrUlIvTmd1UTRhUGd6SHhQT29YMjVlMDVH?=
+ =?utf-8?B?U1FqWk8yc1NETUp2eDdZazRxUFYxdTJBRnZnbEp2MlFXTHV5ZWZhUHlwK1po?=
+ =?utf-8?B?bFZrMEZYNTdNREVxU3MvOCtkUk92ODRNcHhxcEdiS25GOWRRY1hlVGxJaVo2?=
+ =?utf-8?B?REpjNGF4b1YySU16cm54MDVPUTBxMEIyUU1EOUpiVDBFN2FJRm9uRDh0VEZL?=
+ =?utf-8?B?aFNuN3dXaXNYWDZOKzhtUDhNcGpuU1BzbVBwUFFFRTIyY0NkWktPRXY2aU11?=
+ =?utf-8?B?TFF4V3BrWmZkNUQ2bHJIRkppbHJHZEh2Y3p0enhST2ZtejBhMzgwbnpFT2FX?=
+ =?utf-8?B?Z1dIOXMvMHV1QzVLZ1BYdUNORXN6ZGhXOUoxamhZeGNZTTVvNjh4TGpQdEtH?=
+ =?utf-8?B?cVRoUnRVVm1XTjcxV21HYWVXNzhGSTlBdnF3OXJteE9Kb0NGTUJoQlh6bERi?=
+ =?utf-8?B?Q3loeEMyODIwVDVyMllnbFUxT0hmTVJrWm9BN2xjQXRYTHRPV3E5WHBISkND?=
+ =?utf-8?B?aGtNZDAyRHowWEY4dVBtQlpaUWlHbGxkUzYrQmVhdlg5WjdlWFN1SlRubENl?=
+ =?utf-8?B?TzIrTWVHMlV3S3JkRE14eHowUEhpQ29FK2pTdUtGZnl1QjdOVTh6SXFvVEdm?=
+ =?utf-8?B?WEkvMUU0ZEJGcWVzRGhnRjVDVzltUVZFc3lza203TmxoVVQyMkZvY24zTTNU?=
+ =?utf-8?B?TDlkbWltUkdCeVFNT2xKWWpjSlJnZzcrR3pCYjQ2cGh3V21vV29vN1JvU1k0?=
+ =?utf-8?B?V0Q5MUpxak9PcFBlbW5qcUJWU21JTEN5MVEvTmdSOUpnenRveTY5dzROVkFp?=
+ =?utf-8?B?MGQzcGY0Ymg0VHdlcEZENUxoa05nSVNSOTdHOW5mRkIvS1ZWYnU3bFM4SzRa?=
+ =?utf-8?B?QWY4UGR4aXRPdTgzdlJ0QktsOHFzaEQ1VWpwalBEb0ZXRG5XMDBqNVVzd1VY?=
+ =?utf-8?B?SWkweWFtVGJQN3JNbU5lVkxhN1NyWU44ZVMvUWtGVkxVcjJCQjc2cHY4SEh6?=
+ =?utf-8?B?UVJtMzZsc3VEeWREMTFTc2tKN09hWlVvbEdlYTkrcXdIdW9mTEx2RjVMaVRa?=
+ =?utf-8?B?aFdxd3Yzc0JweklxYmdPcHpXTVg3RjliZEYxTUVJeTFuTitDNWs1SVpPVVJH?=
+ =?utf-8?B?RkxHN0thVVdxNTZRaHp4ZCtpRndEZ21QakwzaDl4MEdOSVZVZFVuemp1dzI2?=
+ =?utf-8?B?VXI1clJmLzlZYjIzTFVMQzd5bHg4NUtzTTZIV3M5RERKRVhjK0tEcWJTTzU4?=
+ =?utf-8?B?WVd2eFM4ZjFHTGJtQlptL1JpdlRMVUlvZnhsSWNCSUZ0bEt3ZzVUcU5PdGFt?=
+ =?utf-8?B?cnNycDdnRytzdDYyVDJDWUROczl6L0Y2RlQxNldBcTBQV1E0bUxPNEtWenhD?=
+ =?utf-8?B?eC9QL1ZTVTFvT0ZsUHBKQzVhdnN5NkdMV2lNS0FNVEhOckp0b3N0OFBDL2FX?=
+ =?utf-8?B?VXVFQ2RDZ2U1TmY1eHZyWC9peWhxUFdHd0FXWlVqWEFkWFRvQ2dETW0xSnlt?=
+ =?utf-8?B?eW1YVllZWVhvS3UrT2tvWi9pZ3lXOUdmTVhyMlN1Z0Z3dy9zOEh6QUk3a211?=
+ =?utf-8?B?UmxrenRCSnBZeUxNZzJubEFrdWE4djhaYnMxQlpiSDQ0S0lhbFpqVC9Lb1JD?=
+ =?utf-8?B?Y1VPelZERWh6d1ZpamtOeVJKVjMvUlRkZUs1UCtOOGFKS2dtcFZETlFaQWdj?=
+ =?utf-8?B?MG5OWEJ4YVdKdXFOU0FJRkZVT0RoWSthdXltbnJWazBPWVFRN1I2WG82OVJS?=
+ =?utf-8?B?bEFTMFpRdFI4L2NHT3NIMUhQQTIwb3ZNbWJ2Kzk2N2pFZkNxMXJGRkZpNmFa?=
+ =?utf-8?B?aU1uSEdHRUQ4bzNVbU5vN002NXhlUWgvR3FaV09sUzZoUkhvTVl0dFk2UFRU?=
+ =?utf-8?B?RkdNZDVZVTRDQWdUeGNXakZuSGNDSkkrRHA1SnhvQkVBTlpmc2pGN0hXTlFX?=
+ =?utf-8?B?RUsyUVRDbE40NDV4YjhPQit5Y05nM0l6MW4xN01kTkdzQ29sa0tGSXhVQmpM?=
+ =?utf-8?B?aksxZ3BWNUJUbWpLRXd1R2trL3R4SkdTQzl4STg3TkxFeVFIVW9TTGhsL0I0?=
+ =?utf-8?B?cXc9PQ==?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?utf-8?B?YnNMZTlLMTRrSFJTMWZWcXdzVW9tT3oreVcxUEhrd2pRZ2daMWg0ZDBiZk9R?=
+ =?utf-8?B?Y2JiYy90cWliQ1QzbUlVeHgxanl0c09ROWdXbm1OSkV1eTNtMkNidy80dENQ?=
+ =?utf-8?B?eTZvbi84SWJKZmNvYWgzSFA3UjRXeE8vNVVFSU9zU2JuWXRZckptSTZRNDQ4?=
+ =?utf-8?B?dXJVL29mS280MEQ3LzdqNmdZZnJtbmNKanU5dXlERm5SNFBrcDRzN3ZWRnd1?=
+ =?utf-8?B?OHJ2RnI3OGFSaW82M0grVDhKeFlWdllaNDVkYmdoS3pVQ1RmdnVTeGZFUisr?=
+ =?utf-8?B?Q3pybldIVWNMUG9CVGVOOWFsZ3VhR2l4OHBQMTVGbVVkMzVaNVJkcW04aHdK?=
+ =?utf-8?B?a1dhNXBZd0dqdFgveUVMM3RLc1YrR0VPdit1T1dUVGp5QzhJR0x4eUM5TDR6?=
+ =?utf-8?B?Zjc4by8zSGFZcHRvUHVPbFZNaDRGVjBkemwvSFo0NEdCZlpwK2dodm5XUlNC?=
+ =?utf-8?B?bnJjRXNtdW5JTXA1RSswdmtXeHVZWTBPUzRqckVjZG51N3hXbnN0aVJaOG0v?=
+ =?utf-8?B?TVNKaUpmcytNU1hCTjJqSjZDNW96eTlsY24xS1dJUDQ2cXJsdFpJK1l4VjRs?=
+ =?utf-8?B?R3FCWDlTaUJCSCtMYzBSSDN1V2tkQ1czTGxjRkVhWmZQb3VjRnlXYXIwVmNZ?=
+ =?utf-8?B?TkNsdFJQUU1jV0c2VXd2ZExNbzZwWDJPY21ISXMyR0FWVFdzcW52VGNneW5p?=
+ =?utf-8?B?SExHZSs5d1JUdUJteUIwN2ZNTHQwSElqdS80eXRsa1lEWm94YTdsdWo5OVo0?=
+ =?utf-8?B?WnYwdzVVbmgydStXZlY4elBHTi9OSW1Vb081ZVZsQmwzbFBXZFp2MmQ1NGVp?=
+ =?utf-8?B?eVJVT2xGS21LOXJwanIyVlFFekZvanRYbU1wMHNOT1c3UjJGMkQ2WEo2UEhh?=
+ =?utf-8?B?eTYxcFBrWHJyNXZpUU41YTNWSSsvZHRMYStMVkFzM21pTmN0M2FNM3ZkOEFN?=
+ =?utf-8?B?NGlRaXM1djFWWG1VdnRJN1VtKzhUQ0JsbUl3NG5Jb29NNFU3L2FwMkdhdVZD?=
+ =?utf-8?B?bW82RFl5dEEvMWJtbW9hSUpacUV4WmlwRE9iYUQxYldEbVdPNWFJVjZxNkJS?=
+ =?utf-8?B?alc4R2hYaDd2bFRBV0RKS0NaOFMvbjRSTkI5eGxkUk5yL3BOeFJCVVd5V1Vn?=
+ =?utf-8?B?TldWbWpTQjlya1lRRy85akk5d000VGh3NncxeHFjRGEyRGhCMTc0WWJNTFU2?=
+ =?utf-8?B?aGJ3RUVwdTA2VWJjUGNnS2owZDQ0VVBVQStsNVB3dG9YTzUyWjlMTlFVaTdp?=
+ =?utf-8?B?ZnpyMWNqUFFIampiT1d0VTF2VnlGOCtqTVNnQmlMa3JNY0U5V1NkSUpSK3hq?=
+ =?utf-8?B?NnByYnRNZEpDMUpPZ0JDTUdaOFJPalRBdW4rUHovYmJXZThXbXo3aVpjejBE?=
+ =?utf-8?B?UUwyVUVGaURIeHc9PQ==?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 911408c5-64bb-4f08-bc80-08dacd77318f
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR10MB1466.namprd10.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2022 16:47:36.3440
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2022 17:21:44.4058
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dZlfF4HHL114aUyxla/DEUjxJ87usxV0Op15Mjox0qBNK7on8AGmmqBUolQrsvzirNDvb39zL3TL7X6elyKNig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8417
-X-Original-Sender: lduncan@suse.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: a8GEeE6jjPVh4GMTZzllELB9OJWbQdWJN7XYSwy2dUD0T8l7PSMDoxg9R6HL9EBUDutTDtn/C8VuMa7poI0VIptd0fSk+3pPKbcr9wERXnA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB6195
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-23_10,2022-11-23_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 bulkscore=0 phishscore=0
+ adultscore=0 suspectscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211230128
+X-Proofpoint-GUID: AwM4Aa-K3NFyPwh0RWBr84bw3pi37BF8
+X-Proofpoint-ORIG-GUID: AwM4Aa-K3NFyPwh0RWBr84bw3pi37BF8
+X-Original-Sender: michael.christie@oracle.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@suse.com header.s=selector1 header.b=sdNaPWBz;       arc=pass (i=1
- spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass
- fromdomain=suse.com);       spf=pass (google.com: domain of lduncan@suse.com
- designates 2a01:111:f400:7d00::60e as permitted sender) smtp.mailfrom=LDuncan@suse.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
-X-Original-From: Lee Duncan <lduncan@suse.com>
+ header.i=@oracle.com header.s=corp-2022-7-12 header.b=MKiz8qGu;
+       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com
+ header.b=g4YcjoC3;       arc=pass (i=1 spf=pass spfdomain=oracle.com
+ dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
+       spf=pass (google.com: domain of michael.christie@oracle.com designates
+ 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -222,340 +274,27 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 11/22/22 20:41, Wenchao Hao wrote:
-> On 2022/11/23 4:00, Lee Duncan wrote:
->> On 11/22/22 13:30, Wenchao Hao wrote:
->>> There are 3 iscsi session's startup mode which are onboot, manual and
->>> automatic. We can boot from iSCSI disks with help of dracut's service
->>> in initrd, which would set node's startup mode to onboot, then create
->>> iSCSI sessions.
->>>
->>> While the configure of onboot mode is recorded in file of initrd stage
->>> and would be lost when switch to rootfs. Even if we update the startup
->>> mode to onboot by hand after switch to rootfs, it is possible that the
->>> configure would be covered by another discovery command.
->>>
->>> root would be mounted on iSCSI disks when boot from iSCSI disks, if the
->>> sessions is logged out, the related disks would be removed, which would
->>> cause the whole system halt.
->>>
->>> So we need record session's start up mode in kernel and check this
->>> mode before logout this session.
->>>
->>> Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
->>> ---
->>>  =C2=A0 drivers/infiniband/ulp/iser/iscsi_iser.c | 1 +
->>>  =C2=A0 drivers/scsi/be2iscsi/be_iscsi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 1 +
->>>  =C2=A0 drivers/scsi/bnx2i/bnx2i_iscsi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 1 +
->>>  =C2=A0 drivers/scsi/cxgbi/libcxgbi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->>>  =C2=A0 drivers/scsi/iscsi_tcp.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->>>  =C2=A0 drivers/scsi/libiscsi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 5 +++++
->>>  =C2=A0 drivers/scsi/qedi/qedi_iscsi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->>>  =C2=A0 drivers/scsi/qla4xxx/ql4_os.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->>>  =C2=A0 drivers/scsi/scsi_transport_iscsi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 4 ++++
->>>  =C2=A0 include/scsi/iscsi_if.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->>>  =C2=A0 include/scsi/libiscsi.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->>>  =C2=A0 11 files changed, 18 insertions(+)
->>>
->>> diff --git a/drivers/infiniband/ulp/iser/iscsi_iser.c b/drivers/infinib=
-and/ulp/iser/iscsi_iser.c
->>> index 620ae5b2d80d..778c023673ea 100644
->>> --- a/drivers/infiniband/ulp/iser/iscsi_iser.c
->>> +++ b/drivers/infiniband/ulp/iser/iscsi_iser.c
->>> @@ -947,6 +947,7 @@ static umode_t iser_attr_is_visible(int param_type,=
- int param)
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_IFACE_NAME:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_INITIATOR_NAME:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_DISCOVERY_SESS:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_START=
-UP:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return S_IRUGO;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return 0;
->>> diff --git a/drivers/scsi/be2iscsi/be_iscsi.c b/drivers/scsi/be2iscsi/b=
-e_iscsi.c
->>> index 8aeaddc93b16..a21a4d9ab8b8 100644
->>> --- a/drivers/scsi/be2iscsi/be_iscsi.c
->>> +++ b/drivers/scsi/be2iscsi/be_iscsi.c
->>> @@ -1401,6 +1401,7 @@ umode_t beiscsi_attr_is_visible(int param_type, i=
-nt param)
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_LU_RESET_TMO:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_IFACE_NAME:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_INITIATOR_NAME:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_START=
-UP:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return S_IRUGO;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return 0;
->>> diff --git a/drivers/scsi/bnx2i/bnx2i_iscsi.c b/drivers/scsi/bnx2i/bnx2=
-i_iscsi.c
->>> index a3c800e04a2e..d1fb06d8a92e 100644
->>> --- a/drivers/scsi/bnx2i/bnx2i_iscsi.c
->>> +++ b/drivers/scsi/bnx2i/bnx2i_iscsi.c
->>> @@ -2237,6 +2237,7 @@ static umode_t bnx2i_attr_is_visible(int param_ty=
-pe, int param)
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_BOOT_ROOT:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_BOOT_NIC:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_BOOT_TARGET:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_START=
-UP:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return S_IRUGO;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return 0;
->>> diff --git a/drivers/scsi/cxgbi/libcxgbi.c b/drivers/scsi/cxgbi/libcxgb=
-i.c
->>> index af281e271f88..111b2ac78964 100644
->>> --- a/drivers/scsi/cxgbi/libcxgbi.c
->>> +++ b/drivers/scsi/cxgbi/libcxgbi.c
->>> @@ -3063,6 +3063,7 @@ umode_t cxgbi_attr_is_visible(int param_type, int=
- param)
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_TGT_RESET_TMO:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_IFACE_NAME:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_INITIATOR_NAME:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_START=
-UP:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return S_IRUGO;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return 0;
->>> diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
->>> index 5fb1f364e815..47a73fb3e4b0 100644
->>> --- a/drivers/scsi/iscsi_tcp.c
->>> +++ b/drivers/scsi/iscsi_tcp.c
->>> @@ -1036,6 +1036,7 @@ static umode_t iscsi_sw_tcp_attr_is_visible(int p=
-aram_type, int param)
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_TGT_RESET_TMO:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_IFACE_NAME:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_INITIATOR_NAME:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_START=
-UP:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return S_IRUGO;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return 0;
->>> diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
->>> index d95f4bcdeb2e..1f2b0a9a029e 100644
->>> --- a/drivers/scsi/libiscsi.c
->>> +++ b/drivers/scsi/libiscsi.c
->>> @@ -3576,6 +3576,8 @@ int iscsi_set_param(struct iscsi_cls_conn *cls_co=
-nn,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_LOCAL_IPADDR:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return iscsi_sw=
-itch_str_param(&conn->local_ipaddr, buf);
->>> +=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_STARTUP:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return iscsi_switch_str_par=
-am(&session->node_startup, buf);
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -ENOSYS;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->>> @@ -3712,6 +3714,9 @@ int iscsi_session_get_param(struct iscsi_cls_sess=
-ion *cls_session,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 len =3D sysfs_emit(buf, "\n");
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
->>> +=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_STARTUP:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 len =3D sysfs_emit(buf, "%s=
-\n", session->node_startup);
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -ENOSYS;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->>> diff --git a/drivers/scsi/qedi/qedi_iscsi.c b/drivers/scsi/qedi/qedi_is=
-csi.c
->>> index 31ec429104e2..b947a5bca380 100644
->>> --- a/drivers/scsi/qedi/qedi_iscsi.c
->>> +++ b/drivers/scsi/qedi/qedi_iscsi.c
->>> @@ -1437,6 +1437,7 @@ static umode_t qedi_attr_is_visible(int param_typ=
-e, int param)
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_BOOT_ROOT:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_BOOT_NIC:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_BOOT_TARGET:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_START=
-UP:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return 0444;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return 0;
->>> diff --git a/drivers/scsi/qla4xxx/ql4_os.c b/drivers/scsi/qla4xxx/ql4_o=
-s.c
->>> index 9e849f6b0d0f..1cb7c6dbe9d3 100644
->>> --- a/drivers/scsi/qla4xxx/ql4_os.c
->>> +++ b/drivers/scsi/qla4xxx/ql4_os.c
->>> @@ -468,6 +468,7 @@ static umode_t qla4_attr_is_visible(int param_type,=
- int param)
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_DISCOVERY_PARENT_IDX:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_DISCOVERY_PARENT_TYPE:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARA=
-M_LOCAL_IPADDR:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case ISCSI_PARAM_NODE_START=
-UP:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return S_IRUGO;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 return 0;
->>> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_tr=
-ansport_iscsi.c
->>> index c3fe5ecfee59..39c14d2a8aad 100644
->>> --- a/drivers/scsi/scsi_transport_iscsi.c
->>> +++ b/drivers/scsi/scsi_transport_iscsi.c
->>> @@ -4367,6 +4367,7 @@ iscsi_session_attr(tsid, ISCSI_PARAM_TSID, 0);
->>>  =C2=A0 iscsi_session_attr(def_taskmgmt_tmo, ISCSI_PARAM_DEF_TASKMGMT_T=
-MO, 0);
->>>  =C2=A0 iscsi_session_attr(discovery_parent_idx, ISCSI_PARAM_DISCOVERY_=
-PARENT_IDX, 0);
->>>  =C2=A0 iscsi_session_attr(discovery_parent_type, ISCSI_PARAM_DISCOVERY=
-_PARENT_TYPE, 0);
->>> +iscsi_session_attr(node_startup, ISCSI_PARAM_NODE_STARTUP, 0);
->>>  =C2=A0 =C2=A0 static ssize_t
->>>  =C2=A0 show_priv_session_state(struct device *dev, struct device_attri=
-bute *attr,
->>> @@ -4488,6 +4489,7 @@ static struct attribute *iscsi_session_attrs[] =
-=3D {
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &dev_attr_sess_def_taskmgmt_tmo.attr,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &dev_attr_sess_discovery_parent_idx.att=
-r,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &dev_attr_sess_discovery_parent_type.at=
-tr,
->>> +=C2=A0=C2=A0=C2=A0 &dev_attr_sess_node_startup.attr,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 NULL,
->>>  =C2=A0 };
->>>  =C2=A0 @@ -4587,6 +4589,8 @@ static umode_t iscsi_session_attr_is_visi=
-ble(struct kobject *kobj,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return S_IRUGO;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else if (attr =3D=3D &dev_attr_priv_ses=
-s_target_id.attr)
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return S_IRUGO;
->>> +=C2=A0=C2=A0=C2=A0 else if (attr =3D=3D &dev_attr_sess_node_startup.at=
-tr)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 param =3D ISCSI_PARAM_NODE_=
-STARTUP;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else {
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WARN_ONCE(1, "I=
-nvalid session attr");
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
->>> diff --git a/include/scsi/iscsi_if.h b/include/scsi/iscsi_if.h
->>> index 5225a23f2d0e..e46e69c1fd02 100644
->>> --- a/include/scsi/iscsi_if.h
->>> +++ b/include/scsi/iscsi_if.h
->>> @@ -610,6 +610,7 @@ enum iscsi_param {
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ISCSI_PARAM_DISCOVERY_PARENT_IDX,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ISCSI_PARAM_DISCOVERY_PARENT_TYPE,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ISCSI_PARAM_LOCAL_IPADDR,
->>> +=C2=A0=C2=A0=C2=A0 ISCSI_PARAM_NODE_STARTUP,
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* must always be last */
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ISCSI_PARAM_MAX,
->>>  =C2=A0 };
->>> diff --git a/include/scsi/libiscsi.h b/include/scsi/libiscsi.h
->>> index 654cc3918c94..af4ccdcc1140 100644
->>> --- a/include/scsi/libiscsi.h
->>> +++ b/include/scsi/libiscsi.h
->>> @@ -327,6 +327,7 @@ struct iscsi_session {
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 char=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *boot_target;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 char=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *portal_type;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 char=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *discovery_parent_type;
->>> +=C2=A0=C2=A0=C2=A0 char=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 *node_startup;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint16_t=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 discovery_parent_idx;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint16_t=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 def_taskmgmt_tmo;
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint16_t=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 tsid;
->>
->> The iscsiadm/iscsid tools refuse to logout of an ONBOOT session.
->>
->=20
-> Sorry I did not highlight the key points. The root reason we need to reco=
-rd
-> node_startup mode in kernel is userspace's node_startup mode is unreliabl=
-e in
+On 11/22/22 10:41 PM, Wenchao Hao wrote:
+> Sorry I did not highlight the key points. The root reason we need to record
+> node_startup mode in kernel is userspace's node_startup mode is unreliable in
 > some scenarios:
->=20
-> 1. iscsi node and session is created in initrd, the configure files of th=
-ese
->     nodes would be lost after we switch to rootfs
-
-That is not my experience. When I boot from iscsi root, after the system=20
-is running, if I tell the iscsiadm to logout of the root iscsi target it=20
-refuses. I will test again to verify.
-
-> 2. someone do iscsiadm -m discovery but did not specify the operation mod=
-e,
->     the iscsi node's node_startup would be updated to which specified in =
-iscsid.conf
-
-The default on iscsiadm discovery mode is to replace the info on a=20
-discovered target, but there are other modes. And they don't effect the=20
-current (root) session.
-
+> 
+> 1. iscsi node and session is created in initrd, the configure files of these
+>    nodes would be lost after we switch to rootfs
+> 2. someone do iscsiadm -m discovery but did not specify the operation mode,
+>    the iscsi node's node_startup would be updated to which specified in iscsid.conf
 > 3. someone do iscsiadm -m node -o update to update nodes' configure
-
-Again, does not effect the currently-running session, and can be=20
-considered shooting oneself in the foot.
-
->=20
-> What's more, it seems "iscsiadm/iscsid" only refuse to logout of an ONBOO=
-T
-> session when logout is specificed by "--logoutall". We still can logout a=
-n
+> 
+> What's more, it seems "iscsiadm/iscsid" only refuse to logout of an ONBOOT
+> session when logout is specificed by "--logoutall". We still can logout an
 > ONBOOT session with "iscsiadm -m node -u comamnd".
 
-Again, I don't believe that's correct. I will test it.
+logout_by_startup does go by the startup setting, but I think you missed the
+session_in_use related code. It checks the mounts and holders already. Just
+change it for whatever you need. I think your lvm use case should be covered
+by the holder check. If not, add it.
 
->=20
-> Based on these analysis, I think we should record the node_startup mode i=
-n kernel
-> and check in userspace to avoid logout ONBOOT sessions.
-
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/0f7258d5-ff8e-fa4e-ab8e-5125c42a6d07%40suse.com.
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/717da158-5a7e-b478-61d3-3753b0b00e01%40oracle.com.
