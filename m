@@ -1,128 +1,65 @@
-Return-Path: <open-iscsi+bncBC6MFJWO34DBBDME7WNQMGQERNV634Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBDU472NQMGQE3MSKDBI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lj1-x23c.google.com (mail-lj1-x23c.google.com [IPv6:2a00:1450:4864:20::23c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0B26375E5
-	for <lists+open-iscsi@lfdr.de>; Thu, 24 Nov 2022 11:06:08 +0100 (CET)
-Received: by mail-lj1-x23c.google.com with SMTP id s17-20020a2e98d1000000b002771cfb868esf347316ljj.5
-        for <lists+open-iscsi@lfdr.de>; Thu, 24 Nov 2022 02:06:08 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1669284368; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=ajcaKmEJPGz6H/73BYaqkTISf0H83cZtwIX/4lkWFPKjFMxo6ClMOtHnzxVXEvi3Ba
-         V0IAMBMVlHxDQelfH2u9KFUzhfS2CLi7aeYuhEW95fWWbRwHHGhetj2x9E66BV1nNKDh
-         22A2cKSeIQnliz3PitvXeTLEVTJqZggbNKCraVKTrXMrAIiZ6EDEqswigWp0T1XJA7PC
-         7fGIkt1Oran6B+Yt2DiWaks6F1zqebc71ngE9DyjOivI5v7tih4PqlAJm2IE5QJ+xUIw
-         ximmLd2bwrjGnALjyogm7x+pyV7WBCa/pn+3JEMeSyfeoNTCGWjjxgataDiaQasFiKk2
-         lMxA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-disposition
-         :mime-version:in-reply-to:references:subject:to:from:date:message-id
-         :sender:dkim-signature;
-        bh=U21U8Ffaru8+E+X8MHEuCLi5kz4tKtXu55oTfqnLEqw=;
-        b=psnuKDVVgPurqe80/DaxAudXAvclrIQ6n48iNmy17c00AqGmnRbUukB/zYOL11vliz
-         T0rrSvzGwPWQNPiIDosqzvJ2zuofw5FxLr9vEt9crwI1EDsFBVGTrpOle9JqoIUC0Q+A
-         +ZAKSLiVVEiJsW2fFxWXvYBPy9ySXfVGTSl4x9B4bY/J0Er0djmxrnlxaeww/Snxki4L
-         quOgsfK262tuM4yMLdZMa7GS4AQBVrttmE4eAohJPYuDMap12LXViqfNRFYo6C300Ohg
-         xRXD+Ld+g5FIxV7uDxe7ixskkB+1ZFSI0Xf5rg26sRpd8pHKTV6DbcwGI9YzGnmXahvO
-         HApw==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 194.94.157.147 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+Received: from mail-qk1-x73a.google.com (mail-qk1-x73a.google.com [IPv6:2607:f8b0:4864:20::73a])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1690F637D07
+	for <lists+open-iscsi@lfdr.de>; Thu, 24 Nov 2022 16:30:25 +0100 (CET)
+Received: by mail-qk1-x73a.google.com with SMTP id bl21-20020a05620a1a9500b006fa35db066asf2362135qkb.19
+        for <lists+open-iscsi@lfdr.de>; Thu, 24 Nov 2022 07:30:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-disposition:mime-version:in-reply-to:references:subject:to
-         :from:date:message-id:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U21U8Ffaru8+E+X8MHEuCLi5kz4tKtXu55oTfqnLEqw=;
-        b=oHZCoJhN/7RRAunUgVf+I9BWLnXXpLuxoR4LdOqrbxghL/20sAHhoC1n5EV73V4U49
-         yQO/kYp6fIKeceULlGIaDlLxZVtd887wTHWu1WrY/xfvFNPt2sTXryo6OetyzGEAtSmy
-         D39qk4rU3M8OC1y3fKXZ/a4Qrp+IG+Wv+IyEZXR3q1qsgWVsWF4YfwjsedoHOum7T5GH
-         qcElKyaOQ8rYOH4CTa0q07uIdzmudIQuHtJVeb2uf3+GavgoBaPhlUrmMBr5+l4JNxgV
-         vhmsuBOBJ8p5P2TVVF87UvjpL90PCfyLD4kwXdRiq/UIHRJu9evsrCzI+xLfSM05FV1R
-         oB1w==
+         :list-id:mailing-list:precedence:reply-to:x-original-sender
+         :mime-version:subject:references:in-reply-to:message-id:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U5HijPYsWchT7vZHpFZCqcSVMy/hUFqbS7x2mnYKd3U=;
+        b=SH91hxXPj7WtFuX+xUlBD+LqA2BEHbIdgP+mUt+OpCZAbt7cC0hqFmtSYCqujGM6hU
+         nqxrTje4glAMWnavyOkOzV69OhCTXLFhqcMd85sC2nHMKJ5eWQb/xKBRUSXYPQODNLg8
+         oU591Km7RG2ofacGxQW9d9pE6Oiu1yO5Yequh/qcPcCtFPBDaWHLQjBivptvJEBtdlI4
+         HxSAutSFINLY+hF7ks7DwZ23GoltL6iTUWy7bUBeB9FXksEn7yOnpIMCjYIBKIxfMu4D
+         8Ho2Ok4lQ/MwIYNMiyOihuv/KaHu23ifDSOb0F2qNsj9jtwxfq5+9dPnK/XYYt/+S3Dt
+         wDqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-disposition:mime-version:in-reply-to:references:subject:to
-         :from:date:message-id:x-gm-message-state:sender:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=U21U8Ffaru8+E+X8MHEuCLi5kz4tKtXu55oTfqnLEqw=;
-        b=2zkDPgtGlEhR8TrrvzGsEDMOXZDa9rVwcia8cq34qUW0cue7uA2Dpb1WiAYJUlU8LE
-         61et1dI+qeObOco8nROsh4gqG1rawd1xSsSQ4awuzpHW9stz3t7RvD7+/bgFuyaEpdoW
-         u0Lx5Ql4K8oQe7zuJXDbZRYV158f/Enotl3IlPgDAhKGu+bHRRNqC4h9EIkYRvXmL/yX
-         vSo13cOOOJn9XT+QSOsynVPp0V17wiriPHkZJ1MFgaX1ojrVnLhvbvEYev8UHhTt0oEH
-         pEfhqGvneaHyyna3uRIkwVv2lEqUCgZ82CQkBx/TDKDTY3e2OTQTkRTuwAW7oFektUcO
-         Q5AA==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANoB5plfH9pOa/4NNiOfTHuXhI8lgRoJjzQmKXakeu0tb19cDFTFc44n
-	wl35g+kQWKCK7K9J5cTqWos=
-X-Google-Smtp-Source: AA0mqf4bkGrw5fpXufZAVlE/qwM+ASXMwTHGle4sUHkMRBlkmSTZ4oYb7rn+O37lVbboKT2Ba9goUw==
-X-Received: by 2002:a05:651c:238e:b0:277:781a:c55d with SMTP id bk14-20020a05651c238e00b00277781ac55dmr4529087ljb.317.1669284367808;
-        Thu, 24 Nov 2022 02:06:07 -0800 (PST)
+         :x-original-sender:mime-version:subject:references:in-reply-to
+         :message-id:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U5HijPYsWchT7vZHpFZCqcSVMy/hUFqbS7x2mnYKd3U=;
+        b=WGYXQNGcVycMMo3nrv2YuaiJDv8Sli1XV8x/F+tKrZmIqt1Os2FnRiF+bypmrLO1sv
+         YhrFt70Z0XKwB462vgou9IMy4lcYBzqhWmAkPQ/bnV37bq2H/gzupb7bw3nTzhC+Uh4+
+         02q3ZpW3vZiJGLCxUt85CTZiA63vhG/VTUvhSWnjGPg1NiyrhoisibW9hcWm/YvHavpp
+         2n9PAdazdJOd+P6GAl+AQ/EGOuhbkvYcPTCnwZlt5wc2/xXiBwTOSBWhOiPiUstnTEYp
+         cXcnqgaty1KXdfREe9jGJgGBTWLHYMDymjqKAUt7igGpw3zi7gObqqfJ6CcQxkK18WHI
+         bpZg==
+X-Gm-Message-State: ANoB5pmc8dPFx1vv2WEmhPLuK4SmVB4bw+QJveyahpzuMl0qyPLg6+pV
+	8MdX0M5GL79fK1MqfYhe0ng=
+X-Google-Smtp-Source: AA0mqf41SUN1C8OXvHciloituX/cIj+MMAZ9wUyZv4B2zVtRQO28kBRIOPUUIpNkq/ccoC6EVHmhlA==
+X-Received: by 2002:a05:622a:4d94:b0:3a5:fb6c:d96a with SMTP id ff20-20020a05622a4d9400b003a5fb6cd96amr31554965qtb.185.1669303823810;
+        Thu, 24 Nov 2022 07:30:23 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6512:2024:b0:48b:2227:7787 with SMTP id
- s4-20020a056512202400b0048b22277787ls858420lfs.3.-pod-prod-gmail; Thu, 24 Nov
- 2022 02:06:04 -0800 (PST)
-X-Received: by 2002:ac2:4c27:0:b0:4a2:4df9:4cab with SMTP id u7-20020ac24c27000000b004a24df94cabmr10966039lfq.56.1669284364408;
-        Thu, 24 Nov 2022 02:06:04 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669284364; cv=none;
-        d=google.com; s=arc-20160816;
-        b=j3d5XUTuON5OAEv6fvkIQMRZx6gKbKVveFoNtw8oEz1grIeuhQxlYWQMrLvZCUgYYP
-         WVKR0WL6a1DvQQea3DFNOjqKdPhLOKoGQibirls3IFXkcfW6OxAoOjqjnf38n/liKQCW
-         PgjDhAwbk5JqhKY6uXrfZ7vfyI51XVxjp9uDib2O6baQk7ro9gCyN8itTh9kFpw5Kfw/
-         Lx3jBM/PyE+dZ9eBYq8CBMTFcbQeBT46PJkucvCD9e/9p7SCXniU0upgqYCcgam2GzvQ
-         N/k7d1Fw+e6baSxNYDs0YyQ1/ksfsXvEZahA+VG45nx12NZ640AhUutqkgwWiQINXn0I
-         kJ4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-disposition:content-transfer-encoding:mime-version
-         :in-reply-to:references:subject:to:from:date:message-id;
-        bh=kyzz0xBtf85OBb3Z+urkdUnH5EdsPx3E6l4k0kowYRk=;
-        b=u9+tEvT19V7DCK6FyOTXM597m5VM5YkP2mrX9RdxfbCDpLZss40/LJZaqoKjBQGAAf
-         LL7KwyUmujA2Ldw8faGqE2B4t7duntQXzdHl7fp+e77LFvmPnjlGDvxDxeUupN7DNtV6
-         732tmfDmXR6pOr5cxBok6UwKqo8njTYi4o4NHeXSZojfT7F8hotRbIx3eY7sRfwU6/7v
-         xDGcANDsecyOpJaLJ0wJDT43xVkTVFZtebBZpaVEVzYSJJOl2zBRpp8RnY08YDaXltM/
-         pEEicG/63t3CL72UX3fQmKJmEUR52iw+s2OYfS9shSERS2JsX07Yy4gYFNgGI2I7ogSi
-         dtuw==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 194.94.157.147 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
-Received: from mx2.uni-regensburg.de (mx2.uni-regensburg.de. [194.94.157.147])
-        by gmr-mx.google.com with ESMTPS id k13-20020ac257cd000000b004b069b33a43si23405lfo.3.2022.11.24.02.06.04
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 24 Nov 2022 02:06:04 -0800 (PST)
-Received-SPF: pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 194.94.157.147 as permitted sender) client-ip=194.94.157.147;
-Received: from mx2.uni-regensburg.de (localhost [127.0.0.1])
-	by localhost (Postfix) with SMTP id 14E006000055
-	for <open-iscsi@googlegroups.com>; Thu, 24 Nov 2022 11:06:03 +0100 (CET)
-Received: from gwsmtp.uni-regensburg.de (gwsmtp1.uni-regensburg.de [132.199.5.51])
-	by mx2.uni-regensburg.de (Postfix) with ESMTP id EF489600004D
-	for <open-iscsi@googlegroups.com>; Thu, 24 Nov 2022 11:06:02 +0100 (CET)
-Received: from uni-regensburg-smtp1-MTA by gwsmtp.uni-regensburg.de
-	with Novell_GroupWise; Thu, 24 Nov 2022 11:06:03 +0100
-Message-Id: <637F4209020000A10004FF7D@gwsmtp.uni-regensburg.de>
-X-Mailer: Novell GroupWise Internet Agent 18.4.1
-Date: Thu, 24 Nov 2022 11:06:01 +0100
-From: "Ulrich Windl" <Ulrich.Windl@rz.uni-regensburg.de>
-To: "open-iscsi" <open-iscsi@googlegroups.com>,<haowenchao@huawei.com>
-Subject: Antw: [EXT] Re: [PATCH] scsi:iscsi: Record session's startup
- mode in kernel
+Received: by 2002:a0c:e44c:0:b0:4a7:a1d5:c30f with SMTP id d12-20020a0ce44c000000b004a7a1d5c30fls906339qvm.8.-pod-prod-gmail;
+ Thu, 24 Nov 2022 07:30:22 -0800 (PST)
+X-Received: by 2002:a05:6214:370b:b0:4c6:84ce:2740 with SMTP id np11-20020a056214370b00b004c684ce2740mr15556630qvb.7.1669303821839;
+        Thu, 24 Nov 2022 07:30:21 -0800 (PST)
+Date: Thu, 24 Nov 2022 07:30:20 -0800 (PST)
+From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <2d0439ba-7fb7-47ef-b52c-a866dc0c86e1n@googlegroups.com>
+In-Reply-To: <637F4209020000A10004FF7D@gwsmtp.uni-regensburg.de>
 References: <20221122213040.4128105-1-haowenchao@huawei.com>
  <4d21f806-6653-5457-918c-563a3032d128@suse.com>
  <00f11c61-a53f-c48a-017f-4c06055ea708@huawei.com>
  <0f7258d5-ff8e-fa4e-ab8e-5125c42a6d07@suse.com>
-In-Reply-To: <0f7258d5-ff8e-fa4e-ab8e-5125c42a6d07@suse.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
-X-Original-Sender: Ulrich.Windl@rz.uni-regensburg.de
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates
- 194.94.157.147 as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+ <637F4209020000A10004FF7D@gwsmtp.uni-regensburg.de>
+Subject: Re: [EXT] Re: [PATCH] scsi:iscsi: Record session's startup mode in
+ kernel
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_4906_2100839721.1669303820678"
+X-Original-Sender: haowenchao@huawei.com
+X-Original-From: Wenchao Hao <haowenchao@huawei.com>
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -136,23 +73,95 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
->>> "'Lee Duncan' via open-iscsi" <open-iscsi@googlegroups.com> schrieb am
-23.11.2022 um 17:47 in Nachricht
-<0f7258d5-ff8e-fa4e-ab8e-5125c42a6d07@suse.com>:
-> On 11/22/22 20:41, Wenchao Hao wrote:
+------=_Part_4906_2100839721.1669303820678
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_4907_917703110.1669303820678"
 
-...
-> Again, I don't believe that's correct. I will test it.
-...
-Maybe a session capture (via serial line or so) to show real facts would be helpful for the discussion.
-Personally I think that information the kernel needs to continue working (e.g. the mount table) should be in the kernel.
-Maybe user-land tools can manage the info there (in the kernel, via API), but the primary source should be the kernel.
+------=_Part_4907_917703110.1669303820678
+Content-Type: text/plain; charset="UTF-8"
 
-Regards,
-Ulrich
+On Thursday, November 24, 2022 at 6:06:09 PM UTC+8 Uli wrote:
 
+> >>> "'Lee Duncan' via open-iscsi" <open-...@googlegroups.com> schrieb am 
+> 23.11.2022 um 17:47 in Nachricht 
+> <0f7258d5-ff8e-fa4e...@suse.com>: 
+> > On 11/22/22 20:41, Wenchao Hao wrote: 
+>
+> ... 
+> > Again, I don't believe that's correct. I will test it. 
+> ... 
+> Maybe a session capture (via serial line or so) to show real facts would 
+> be helpful for the discussion.
+
+
+Sorry, I can not understand this, could you describe more detail?
+ 
+
+>
+> Personally I think that information the kernel needs to continue working 
+> (e.g. the mount table) should be in the kernel. 
+> Maybe user-land tools can manage the info there (in the kernel, via API), 
+> but the primary source should be the kernel. 
+>
+> Regards, 
+> Ulrich 
+>
+>
+>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/637F4209020000A10004FF7D%40gwsmtp.uni-regensburg.de.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/2d0439ba-7fb7-47ef-b52c-a866dc0c86e1n%40googlegroups.com.
+
+------=_Part_4907_917703110.1669303820678
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr">On Thursd=
+ay, November 24, 2022 at 6:06:09 PM UTC+8 Uli wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin: 0 0 0 0.8ex; border-left: 1px solid r=
+gb(204, 204, 204); padding-left: 1ex;">&gt;&gt;&gt; "'Lee Duncan' via open-=
+iscsi" &lt;<a href=3D"" data-email-masked=3D"" rel=3D"nofollow">open-...@go=
+oglegroups.com</a>&gt; schrieb am
+<br>23.11.2022 um 17:47 in Nachricht
+<br>&lt;<a href=3D"" data-email-masked=3D"" rel=3D"nofollow">0f7258d5-ff8e-=
+fa4e...@suse.com</a>&gt;:
+<br>&gt; On 11/22/22 20:41, Wenchao Hao wrote:
+<br>
+<br>...
+<br>&gt; Again, I don't believe that's correct. I will test it.
+<br>...
+<br>Maybe a session capture (via serial line or so) to show real facts woul=
+d be helpful for the discussion.</blockquote><div><br></div><div>Sorry, I c=
+an not understand this, could you describe more detail?</div><div>&nbsp;</d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin: 0 0 0 0.8ex; border-l=
+eft: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
+<br>Personally I think that information the kernel needs to continue workin=
+g (e.g. the mount table) should be in the kernel.
+<br>Maybe user-land tools can manage the info there (in the kernel, via API=
+), but the primary source should be the kernel.
+<br>
+<br>Regards,
+<br>Ulrich
+<br>
+<br>
+<br></blockquote></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/2d0439ba-7fb7-47ef-b52c-a866dc0c86e1n%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/2d0439ba-7fb7-47ef-b52c-a866dc0c86e1n%40googlegroups.com</a>.=
+<br />
+
+------=_Part_4907_917703110.1669303820678--
+
+------=_Part_4906_2100839721.1669303820678--
