@@ -1,133 +1,73 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBD6YQKOAMGQEYDOKD3Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBB37YQOOAMGQE3ASR5XA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-io1-xd37.google.com (mail-io1-xd37.google.com [IPv6:2607:f8b0:4864:20::d37])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33BC6638912
-	for <lists+open-iscsi@lfdr.de>; Fri, 25 Nov 2022 12:50:42 +0100 (CET)
-Received: by mail-io1-xd37.google.com with SMTP id c23-20020a6b4e17000000b006db1063fc9asf1959197iob.14
-        for <lists+open-iscsi@lfdr.de>; Fri, 25 Nov 2022 03:50:42 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1669377040; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=BpY9HOmX2nOgZemhPAAMsfN2E+RjciqGM+QZDs2pX2fgOldkE2X65rrl4pFkFm2pT4
-         H+tCvRHeSZvhmmtClOdVEBAzee4wxKR2UCe0WUM5gtiLp0VWtV0WvLSunqqyKn/b//h4
-         t7l5gt9Q5VOuyihvZN2a4FIbGrMzRsih9mPlLcZj7gXInnu1GlkA1uvnt5tZ7H8YSgws
-         HggJOdgXIlTrZYpuxKMbtYwfL30k4ATi3CoChs3rXLC9V3WIzIbRupmhgbz964Np0UgE
-         8suIBMjTWBjgApSUKYARTqG0/enr5g+S0cjbI+bRE4ZoD9pgi3LUUE5VrEAhI2xtY2UF
-         otdA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:dkim-signature;
-        bh=8/MEJZcs7RbaeIfwfS7KpE5xuG3ryAPM/ylTjSyRugI=;
-        b=lUH7lDHg8ypvLfmQZvb9bVOcq6aB0WMQcA7evVxMW9i+cqOzjzQq7khOAdiBZ+D/d7
-         6JGPHXtKEz8StF3Vtbuzoi6RcCnWqr7uvleGdEtUSHScnE/4RjnM/S9GHGw9dQbBOkd5
-         +2GDkg+c8kU3ZeqNQ+niGJehVvln/6fMnARdDRYgfPNqJjnxsIObUdHMDeAyZ9PzW7gS
-         PaKv9tfA1youkfR000W8egYIGr9064XSE2XE1h6CIa3VnL6XBZhe9cXiUfhPjzfabC+D
-         VTbR50BjJIr7BZlxZiM5OX63Hy6P+GCZU3kSIk8V6SnAUGUDznf9oQEJdExfWjMy+66M
-         pXVg==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+Received: from mail-qk1-x738.google.com (mail-qk1-x738.google.com [IPv6:2607:f8b0:4864:20::738])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CB80638F28
+	for <lists+open-iscsi@lfdr.de>; Fri, 25 Nov 2022 18:33:38 +0100 (CET)
+Received: by mail-qk1-x738.google.com with SMTP id bq13-20020a05620a468d00b006fa5a75759asf6082894qkb.13
+        for <lists+open-iscsi@lfdr.de>; Fri, 25 Nov 2022 09:33:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8/MEJZcs7RbaeIfwfS7KpE5xuG3ryAPM/ylTjSyRugI=;
-        b=slGCGQ8V6k4DA9njNPaiufJRP1ASOrnx4RrHWSlcIYrYlcRLi6GEQXbEOBSn1qb+hn
-         RXG0LhfwHAc2FbZjhuUsX/kiCTpuG0WqxRDgKidNWUbOR2Ip9U3zziM74Fq80yOQmAc/
-         jhEUxjY4Vb6obwsFmTvdy0QBI78ZbkX6AsHTAFJSc4bBWej7TL2UUKJ+c1ef49k57HVa
-         cJcOAhlkwH5VHCcuoU6t/JNaQ5ryVpEKJhXOxLELqXc9MhQkdTRB5eA0Xa92e3FMdy9F
-         WQrB1/Qe20LNyF1aYVh7R0rGNi5/TU1Cm9/d0796Vcoz1PFK/0TK4Mq+WeFXSAZ5r4l4
-         rXQQ==
+         :list-id:mailing-list:precedence:reply-to:x-original-sender
+         :mime-version:subject:references:in-reply-to:message-id:to:from:date
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=zCiqfNfD4BayuT9f2PwsMK3W9Dfc8P3EC8tWXBfRmHc=;
+        b=CcnNylFIC5RKEorCNqOMqd5bB7pSKgxZ0nvOMAYnkwRy5nOH8PjSzq4OggOvCY3/qP
+         efMmdh/m2a8y3zNxgmul4Ra8N89sw7DT//2L1si+VzJ5jEccQgYcMqo9MTVTHFHtDLxK
+         84Rt9i2hbWYow2cjsF+JqckB7wl2xrzp94yS5jV72rOqoaKLMEnWNcy9rUdokuxntPQR
+         wEzs7DI7nC36+v5OEbSxxSVgNruUsKxX6KPeRFeOlS+D7eVFK9/yaDTDBJyxX6NtawE5
+         jHeYVpKvrF0IdZaRUmnATtYkVRiP4RYhtTMak2+IF/SRiMxtTjAIXUeTpVgtyCYTqehJ
+         gHVw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:x-original-sender
+         :mime-version:subject:references:in-reply-to:message-id:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zCiqfNfD4BayuT9f2PwsMK3W9Dfc8P3EC8tWXBfRmHc=;
+        b=Du3TXdDVKnywi/ZUN2tgkOe0rUvDel29yeiDv9R6sCk0qcY5RLqX+rlGsU4oUrLT68
+         VsU/KqyLfmQQPSht+nVpF8u3uLrATOtqFR69PP3oWd15xQOQWjJF9iOZERq5KjpADE19
+         mc7QfFpGWTBhECAwMSS4xwehnrcBxdgNzCsOnNAgu7dOpw8uN/waK0HWDmXsIk79VQ22
+         lqqHCcTebxXqlnhtssE6PBAdxW+3hn8fOizZ8AKTDojh07Eqm9NTX5ruQbEcDHTsL0LI
+         Kn37T41HcxMBkvfYWt/rFvubDh6RsueH/eysHz9Q/970AKW9q6UlQs1q9hU9fWnTb8pY
+         AtcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :x-original-sender:mime-version:subject:references:in-reply-to
+         :message-id:to:from:date:x-gm-message-state:sender:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8/MEJZcs7RbaeIfwfS7KpE5xuG3ryAPM/ylTjSyRugI=;
-        b=ju6A32R6E06W61kHpGKngxa03qzqN7CPBOvNJb9ejhns8IZ/bIm6dLpQX0kvz2K5gR
-         V2v8cCVQpg5cNpSS+aR6Jgb8hikinByOz1tTcO/gecIKPa081FV0MTMIfymq9Ge8mCGd
-         G7Uxp8Zs96YpJdlPrZDTMxhdrey0JtmMCcOMjEHyykc1d49iCmOC/kUA5ftsnqFxyPgB
-         pEr2037it7DPzCBoQes55w+byBenTBb0AxlDmUpPyIJGa3SjQgu7nfRNvh2K1ARzllYy
-         oyawYBWSjXCMmx4WbpDE8ulzRBjvi/py8n0JMAb/xzDuWhnv/HqCsPkMumCOj1Hrg6Vj
-         +8Tw==
-X-Gm-Message-State: ANoB5pkUswqEpRW9G6f33snASHS8QNFOfBq6FyxNSLhXTRnSasbiKAq6
-	hy7sExDZyMv6e2xWsVnoFTs=
-X-Google-Smtp-Source: AA0mqf6QAh1YKNMppMfetOaJpnqBivGT1Orr/D2kG9DC4otp6xvpOpItISW2SxraPvzsX9PUfZN4bw==
-X-Received: by 2002:a05:6e02:106d:b0:302:a6df:80a with SMTP id q13-20020a056e02106d00b00302a6df080amr7399587ilj.197.1669377040456;
-        Fri, 25 Nov 2022 03:50:40 -0800 (PST)
+        bh=zCiqfNfD4BayuT9f2PwsMK3W9Dfc8P3EC8tWXBfRmHc=;
+        b=TJITi98Zvc+/wjNeFlIGaSpovKDoo+fZ2AcOo96xW35VN5twyU2UdqXSuwdk+brk8u
+         MTdGOEwKLmnMI+YqYiyWz4+5VsKcKOJtr1xh81fQ64y57IQVOWFHZa25gFQKds9pDcY3
+         hQGUXa2Jf/SnXj+zVI60U+ah9e1FlRVj6uq97CrZIeUQG7iBNn484JnM7OFbcbynq9By
+         aixjJWuQNYNn4fT22zo1Q6DJmmg20/FiKM5Nh9kkJ6U+1cTgoEhZUjFQ80WB7Og1FGRX
+         Mb6jQ+OpsZK5i8sQbWpT7Asq4u1b7FmzsVEzGiUsQcY8y+yvh0YU38ZI9RVXq0TaFOxl
+         pNpw==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: ANoB5pkHkNG13bAXl5k3dGTviaT+p8gGoMPhBQ8Qrgp3EhIxfRFbOKF3
+	GPq5cELjAIaXHj1LFNiw7KA=
+X-Google-Smtp-Source: AA0mqf4ocSEA5xkBHcO6ydBWbn80Ee8Ng2KSLK2KKoH31R9oFzG6BIP5bb5MH0NlmNy9e3UOiEsO6w==
+X-Received: by 2002:a05:622a:1a15:b0:35b:ae82:5e33 with SMTP id f21-20020a05622a1a1500b0035bae825e33mr36663648qtb.328.1669397617255;
+        Fri, 25 Nov 2022 09:33:37 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6602:24cc:b0:6b9:8f81:ab3b with SMTP id
- h12-20020a05660224cc00b006b98f81ab3bls387990ioe.7.-pod-prod-gmail; Fri, 25
- Nov 2022 03:50:39 -0800 (PST)
-X-Received: by 2002:a05:6602:180b:b0:6de:ef1:845 with SMTP id t11-20020a056602180b00b006de0ef10845mr7174619ioh.98.1669377039141;
-        Fri, 25 Nov 2022 03:50:39 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669377039; cv=none;
-        d=google.com; s=arc-20160816;
-        b=alvHcViWUilHLtO314xmCRVwqiXMM5WDx1L4sj8eamZfWn+XLHs6kvBhS8kI7l1Mwy
-         c3cx52ZLPbe0zPARE1CgrxGbad6u4hMtUcx+2mT57ZrxSDmRX/z2/MB0qqGAX1a2WsL4
-         WglbXgcsXDSx5AFv3/8Y7Wu4jufZRGFpp59LyITTI0p+j3xC5akmAiUvlHxT67Ww/PsH
-         73eU5Kow385nzY5saAhrXl2YX7b4XUvnnDXLoclfkJ/nf3agexjnyy8oKTqffEHQfh8s
-         HgeY3CEnCVbpHCpWoHolNvjT/gQRJCI6lTT4HvE4lRyicWIxAjmFmGS+gIdqZBPgG9pa
-         VWGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from;
-        bh=9X+5llySmLtkeSgIWDOqpnAuIPn4w0JYWjraxlPX33M=;
-        b=jbbZsAjf8cPlG6NiT8h1fnWprFKLlDNd5d+l9K24gHLVe/J4mU8/vNZ0lMIJ11uZR2
-         GSCot+RLXKY6+sYF/yKJqYr6iVKVKb0XkLmFdx/hPyRbHb4wKl7qMIVI5kuAngbZVUBh
-         wOKOW4/FRBxRO8vLqmm0UNydL6jO19FDEd05e2mdhlsBAJ5rffFA39YBZ5ugriKA7w1D
-         D5YnEZM93yAPF1v0ELEJs+WAk9Mb99kdvXNFIJgLXOFTAy8uTiHKgSYLtQ0iwUFlopre
-         b/8yri7mPBZtt/WamNvMkfMaqkea1OtWTtUqn9HrE1ciu/nvvTkRPxL30uN8u0QrxCIe
-         4gTA==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com. [45.249.212.188])
-        by gmr-mx.google.com with ESMTPS id w17-20020a92c891000000b00300c4b978d7si197644ilo.2.2022.11.25.03.50.38
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 25 Nov 2022 03:50:38 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as permitted sender) client-ip=45.249.212.188;
-Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.53])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4NJY7B6WlMzHv3k;
-	Fri, 25 Nov 2022 19:49:26 +0800 (CST)
-Received: from dggpemm500017.china.huawei.com (7.185.36.178) by
- dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 25 Nov 2022 19:50:05 +0800
-Received: from build.huawei.com (10.175.101.6) by
- dggpemm500017.china.huawei.com (7.185.36.178) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 25 Nov 2022 19:50:04 +0800
-From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
-To: Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>, "Mike
- Christie" <michael.christie@oracle.com>, "James E . J . Bottomley"
-	<jejb@linux.ibm.com>, "Martin K . Petersen" <martin.petersen@oracle.com>,
-	<open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <liuzhiqiang26@huawei.com>,
-	<linfeilong@huawei.com>, Wenchao Hao <haowenchao@huawei.com>
-Subject: [PATCH v7] scsi:iscsi: Fix multiple iscsi session unbind event sent to userspace
-Date: Sat, 26 Nov 2022 09:07:52 +0800
-Message-ID: <20221126010752.231917-1-haowenchao@huawei.com>
-X-Mailer: git-send-email 2.32.0
+Received: by 2002:ae9:c30b:0:b0:6f7:ed97:3d4d with SMTP id n11-20020ae9c30b000000b006f7ed973d4dls3050252qkg.11.-pod-prod-gmail;
+ Fri, 25 Nov 2022 09:33:35 -0800 (PST)
+X-Received: by 2002:a37:458:0:b0:6fa:1e1e:7103 with SMTP id 85-20020a370458000000b006fa1e1e7103mr34898809qke.358.1669397615337;
+        Fri, 25 Nov 2022 09:33:35 -0800 (PST)
+Date: Fri, 25 Nov 2022 09:33:34 -0800 (PST)
+From: The Lee-Man <leeman.duncan@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <9d24cea1-f8a8-43e9-9982-c9e6df0cf770n@googlegroups.com>
+In-Reply-To: <40a902fb-4a0d-4644-a8c8-e70d7c3b69d7n@googlegroups.com>
+References: <40a902fb-4a0d-4644-a8c8-e70d7c3b69d7n@googlegroups.com>
+Subject: Re: iscsiadm error "Could not load transport iser"
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.175.101.6]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- dggpemm500017.china.huawei.com (7.185.36.178)
-X-CFilter-Loop: Reflected
-X-Original-Sender: haowenchao@huawei.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao@huawei.com designates 45.249.212.188 as
- permitted sender) smtp.mailfrom=haowenchao@huawei.com;       dmarc=pass
- (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-X-Original-From: Wenchao Hao <haowenchao@huawei.com>
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_7018_482948283.1669397614519"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -141,213 +81,216 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-I found an issue that kernel would send ISCSI_KEVENT_UNBIND_SESSION
-for multiple times which should be fixed.
+------=_Part_7018_482948283.1669397614519
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_7019_445443060.1669397614519"
 
-This patch introduce target_state in iscsi_cls_session to make
-sure session would send only one ISCSI_KEVENT_UNBIND_SESSION.
+------=_Part_7019_445443060.1669397614519
+Content-Type: text/plain; charset="UTF-8"
 
-But this would break issue fixed in commit 13e60d3ba287 ("scsi: iscsi:
-Report unbind session event when the target has been removed"). The issue
-is iscsid died for any reason after it send unbind session to kernel, once
-iscsid restart again, it loss kernel's ISCSI_KEVENT_UNBIND_SESSION event.
+The iser transport is only supported for some cards. It's normally an 
+infiniband transport.
 
-Now kernel think iscsi_cls_session has already sent an
-ISCSI_KEVENT_UNBIND_SESSION event and would not send it any more. Which
-would cause userspace unable to logout. Actually the session is in
-invalid state(it's target_id is INVALID), iscsid should not sync this
-session in it's restart.
+Do you have a CNA card (and infrastructure) that supports iser?
 
-So we need to check session's target state during iscsid restart,
-if session is in unbound state, do not sync this session and perform
-session teardown. It's reasonable because once a session is unbound, we
-can not recover it any more(mainly because it's target id is INVALID)
+On Tuesday, November 22, 2022 at 11:28:47 PM UTC-8 Luis Navarro wrote:
 
-V7:
-- Define target state to string map and refer this map directly
-- Cleanup __iscsi_unbind_session, drop check for session's
-  target_id == ISCSI_MAX_TARGET since it can be handled by target_state
-
-V6:
-- Set target state to ALLOCATED in iscsi_add_session
-- Rename state BOUND to SCANNED
-- Make iscsi_session_target_state_name() more efficient
-
-V5:
-- Add ISCSI_SESSION_TARGET_ALLOCATED to indicate the session's
-  target has been allocated but not scanned yet. We should
-  sync this session and scan this session when iscsid restarted.
-
-V4:
-- Move debug print out of spinlock critical section
-
-V3:
-- Make target bind state to a state kind rather than a bool.
-
-V2:
-- Using target_unbound rather than state to indicate session has been
-  unbound
-
-Signed-off-by: Wenchao Hao <haowenchao@huawei.com>
----
- drivers/scsi/scsi_transport_iscsi.c | 47 ++++++++++++++++++++++++++---
- include/scsi/scsi_transport_iscsi.h |  9 ++++++
- 2 files changed, 51 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index cd3db9684e52..812578c20fe5 100644
---- a/drivers/scsi/scsi_transport_iscsi.c
-+++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -1676,6 +1676,13 @@ static const char *iscsi_session_state_name(int state)
- 	return name;
- }
- 
-+static char *iscsi_session_target_state_name[] = {
-+	[ISCSI_SESSION_TARGET_UNBOUND]   = "UNBOUND",
-+	[ISCSI_SESSION_TARGET_ALLOCATED] = "ALLOCATED",
-+	[ISCSI_SESSION_TARGET_SCANNED]   = "SCANNED",
-+	[ISCSI_SESSION_TARGET_UNBINDING] = "UNBINDING",
-+};
-+
- int iscsi_session_chkready(struct iscsi_cls_session *session)
- {
- 	int err;
-@@ -1785,9 +1792,13 @@ static int iscsi_user_scan_session(struct device *dev, void *data)
- 		if ((scan_data->channel == SCAN_WILD_CARD ||
- 		     scan_data->channel == 0) &&
- 		    (scan_data->id == SCAN_WILD_CARD ||
--		     scan_data->id == id))
-+		     scan_data->id == id)) {
- 			scsi_scan_target(&session->dev, 0, id,
- 					 scan_data->lun, scan_data->rescan);
-+			spin_lock_irqsave(&session->lock, flags);
-+			session->target_state = ISCSI_SESSION_TARGET_SCANNED;
-+			spin_unlock_irqrestore(&session->lock, flags);
-+		}
- 	}
- 
- user_scan_exit:
-@@ -1960,31 +1971,41 @@ static void __iscsi_unbind_session(struct work_struct *work)
- 	struct iscsi_cls_host *ihost = shost->shost_data;
- 	unsigned long flags;
- 	unsigned int target_id;
-+	bool remove_target = true;
- 
- 	ISCSI_DBG_TRANS_SESSION(session, "Unbinding session\n");
- 
- 	/* Prevent new scans and make sure scanning is not in progress */
- 	mutex_lock(&ihost->mutex);
- 	spin_lock_irqsave(&session->lock, flags);
--	if (session->target_id == ISCSI_MAX_TARGET) {
-+	if (session->target_state == ISCSI_SESSION_TARGET_ALLOCATED) {
-+		remove_target = false;
-+	} else if (session->target_state != ISCSI_SESSION_TARGET_SCANNED) {
- 		spin_unlock_irqrestore(&session->lock, flags);
- 		mutex_unlock(&ihost->mutex);
--		goto unbind_session_exit;
-+		ISCSI_DBG_TRANS_SESSION(session,
-+			"Skipping target unbinding: Session is unbound/unbinding.\n");
-+		return;
- 	}
- 
-+	session->target_state = ISCSI_SESSION_TARGET_UNBINDING;
- 	target_id = session->target_id;
- 	session->target_id = ISCSI_MAX_TARGET;
- 	spin_unlock_irqrestore(&session->lock, flags);
- 	mutex_unlock(&ihost->mutex);
- 
--	scsi_remove_target(&session->dev);
-+	if (remove_target)
-+		scsi_remove_target(&session->dev);
- 
- 	if (session->ida_used)
- 		ida_free(&iscsi_sess_ida, target_id);
- 
--unbind_session_exit:
- 	iscsi_session_event(session, ISCSI_KEVENT_UNBIND_SESSION);
- 	ISCSI_DBG_TRANS_SESSION(session, "Completed target removal\n");
-+
-+	spin_lock_irqsave(&session->lock, flags);
-+	session->target_state = ISCSI_SESSION_TARGET_UNBOUND;
-+	spin_unlock_irqrestore(&session->lock, flags);
- }
- 
- static void __iscsi_destroy_session(struct work_struct *work)
-@@ -2061,6 +2082,9 @@ int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
- 		session->ida_used = true;
- 	} else
- 		session->target_id = target_id;
-+	spin_lock_irqsave(&session->lock, flags);
-+	session->target_state = ISCSI_SESSION_TARGET_ALLOCATED;
-+	spin_unlock_irqrestore(&session->lock, flags);
- 
- 	dev_set_name(&session->dev, "session%u", session->sid);
- 	err = device_add(&session->dev);
-@@ -4368,6 +4392,16 @@ iscsi_session_attr(def_taskmgmt_tmo, ISCSI_PARAM_DEF_TASKMGMT_TMO, 0);
- iscsi_session_attr(discovery_parent_idx, ISCSI_PARAM_DISCOVERY_PARENT_IDX, 0);
- iscsi_session_attr(discovery_parent_type, ISCSI_PARAM_DISCOVERY_PARENT_TYPE, 0);
- 
-+static ssize_t
-+show_priv_session_target_state(struct device *dev, struct device_attribute *attr,
-+			char *buf)
-+{
-+	struct iscsi_cls_session *session = iscsi_dev_to_session(dev->parent);
-+	return sysfs_emit(buf, "%s\n",
-+			iscsi_session_target_state_name[session->target_state]);
-+}
-+static ISCSI_CLASS_ATTR(priv_sess, target_state, S_IRUGO,
-+			show_priv_session_target_state, NULL);
- static ssize_t
- show_priv_session_state(struct device *dev, struct device_attribute *attr,
- 			char *buf)
-@@ -4470,6 +4504,7 @@ static struct attribute *iscsi_session_attrs[] = {
- 	&dev_attr_sess_boot_target.attr,
- 	&dev_attr_priv_sess_recovery_tmo.attr,
- 	&dev_attr_priv_sess_state.attr,
-+	&dev_attr_priv_sess_target_state.attr,
- 	&dev_attr_priv_sess_creator.attr,
- 	&dev_attr_sess_chap_out_idx.attr,
- 	&dev_attr_sess_chap_in_idx.attr,
-@@ -4583,6 +4618,8 @@ static umode_t iscsi_session_attr_is_visible(struct kobject *kobj,
- 		return S_IRUGO | S_IWUSR;
- 	else if (attr == &dev_attr_priv_sess_state.attr)
- 		return S_IRUGO;
-+	else if (attr == &dev_attr_priv_sess_target_state.attr)
-+		return S_IRUGO;
- 	else if (attr == &dev_attr_priv_sess_creator.attr)
- 		return S_IRUGO;
- 	else if (attr == &dev_attr_priv_sess_target_id.attr)
-diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
-index cab52b0f11d0..34c03707fb6e 100644
---- a/include/scsi/scsi_transport_iscsi.h
-+++ b/include/scsi/scsi_transport_iscsi.h
-@@ -236,6 +236,14 @@ enum {
- 	ISCSI_SESSION_FREE,
- };
- 
-+enum {
-+	ISCSI_SESSION_TARGET_UNBOUND,
-+	ISCSI_SESSION_TARGET_ALLOCATED,
-+	ISCSI_SESSION_TARGET_SCANNED,
-+	ISCSI_SESSION_TARGET_UNBINDING,
-+	ISCSI_SESSION_TARGET_MAX,
-+};
-+
- #define ISCSI_MAX_TARGET -1
- 
- struct iscsi_cls_session {
-@@ -264,6 +272,7 @@ struct iscsi_cls_session {
- 	 */
- 	pid_t creator;
- 	int state;
-+	int target_state;			/* session target bind state */
- 	int sid;				/* session id */
- 	void *dd_data;				/* LLD private data */
- 	struct device dev;	/* sysfs transport/container device */
--- 
-2.35.3
+> Hi all,
+>
+> I'm trying to test a new Ubuntu 22.04.1 LIO iSCSI target with iscsiadm 
+> 2.1.5 (installed via "apt").  iscsiadm works fine over "tcp" transport but 
+> always fails over the "iser" transport with the following error:
+>
+> iscsiadm: Could not load transport iser.Dropping interface iface0.
+>
+> Here are the commands I ran:
+>
+> $ sudo iscsiadm -m iface -I iface0 --op=new
+> $ sudo iscsiadm -m iface -I iface0 -o update -n iface.transport_name -v 
+> iser
+> $ sudo iscsiadm -m discovery -t st -p 192.168.25.5:3260 -I iface0 -d 8
+> iscsiadm: Max file limits 1024 1048576
+> iscsiadm: updating defaults from '/etc/iscsi/iscsid.conf'
+> iscsiadm: updated 'discovery.sendtargets.iscsi.MaxRecvDataSegmentLength', 
+> '32768' => '32768'
+> iscsiadm: updated 'node.startup', 'manual' => 'manual'
+> iscsiadm: updated 'node.leading_login', 'No' => 'No'
+> iscsiadm: updated 'node.session.timeo.replacement_timeout', '120' => '120'
+> iscsiadm: updated 'node.conn[0].timeo.login_timeout', '30' => '15'
+> iscsiadm: updated 'node.conn[0].timeo.logout_timeout', '15' => '15'
+> iscsiadm: updated 'node.conn[0].timeo.noop_out_interval', '5' => '5'
+> iscsiadm: updated 'node.conn[0].timeo.noop_out_timeout', '5' => '5'
+> iscsiadm: updated 'node.session.err_timeo.abort_timeout', '15' => '15'
+> iscsiadm: updated 'node.session.err_timeo.lu_reset_timeout', '30' => '30'
+> iscsiadm: updated 'node.session.err_timeo.tgt_reset_timeout', '30' => '30'
+> iscsiadm: updated 'node.session.initial_login_retry_max', '4' => '8'
+> iscsiadm: updated 'node.session.cmds_max', '128' => '128'
+> iscsiadm: updated 'node.session.queue_depth', '32' => '32'
+> iscsiadm: updated 'node.session.xmit_thread_priority', '-20' => '-20'
+> iscsiadm: updated 'node.session.iscsi.InitialR2T', 'No' => 'No'
+> iscsiadm: updated 'node.session.iscsi.ImmediateData', 'Yes' => 'Yes'
+> iscsiadm: updated 'node.session.iscsi.FirstBurstLength', '262144' => 
+> '262144'
+> iscsiadm: updated 'node.session.iscsi.MaxBurstLength', '16776192' => 
+> '16776192'
+> iscsiadm: updated 'node.conn[0].iscsi.MaxRecvDataSegmentLength', '262144' 
+> => '262144'
+> iscsiadm: updated 'node.conn[0].iscsi.MaxXmitDataSegmentLength', '0' => '0'
+> iscsiadm: updated 'node.session.nr_sessions', '1' => '1'
+> iscsiadm: updated 'node.session.reopen_max', '0' => '0'
+> iscsiadm: updated 'node.session.iscsi.FastAbort', 'Yes' => 'Yes'
+> iscsiadm: updated 'node.session.scan', 'auto' => 'auto'
+> iscsiadm: looking for iface conf /etc/iscsi/ifaces/iface0
+> iscsiadm: updated 'iface.iscsi_ifacename', 'iface0' => 'iface0'
+> iscsiadm: updated 'iface.prefix_len', '0' => '0'
+> iscsiadm: updated 'iface.transport_name', '' => 'iser'
+> iscsiadm: updated 'iface.vlan_id', '0' => '0'
+> iscsiadm: updated 'iface.vlan_priority', '0' => '0'
+> iscsiadm: updated 'iface.iface_num', '0' => '0'
+> iscsiadm: updated 'iface.mtu', '0' => '0'
+> iscsiadm: updated 'iface.port', '0' => '0'
+> iscsiadm: updated 'iface.tos', '0' => '0'
+> iscsiadm: updated 'iface.ttl', '0' => '0'
+> iscsiadm: updated 'iface.tcp_wsf', '0' => '0'
+> iscsiadm: updated 'iface.tcp_timer_scale', '0' => '0'
+> iscsiadm: updated 'iface.def_task_mgmt_timeout', '0' => '0'
+> iscsiadm: updated 'iface.erl', '0' => '0'
+> iscsiadm: updated 'iface.max_receive_data_len', '0' => '0'
+> iscsiadm: updated 'iface.first_burst_len', '0' => '0'
+> iscsiadm: updated 'iface.max_outstanding_r2t', '0' => '0'
+> iscsiadm: updated 'iface.max_burst_len', '0' => '0'
+> iscsiadm: in read_transports
+> iscsiadm: Adding new transport tcp
+> iscsiadm: Matched transport tcp
+> iscsiadm: sysfs_attr_get_value: open '/class/iscsi_transport/tcp'/'handle'
+> iscsiadm: sysfs_attr_get_value: open '/class/iscsi_transport/tcp'/'caps'
+> iscsiadm: in read_transports
+> iscsiadm: Updating transport tcp
+> iscsiadm: sysfs_attr_get_value: open '/class/iscsi_transport/tcp'/'handle'
+> iscsiadm: sysfs_attr_get_value: open '/class/iscsi_transport/tcp'/'caps'
+> iscsiadm: Could not load transport iser.Dropping interface iface0.
+>
+> Looking at the /sys/class/iscsi_transport and 
+> /sys/devices/virtual/iscsi_transport directories on the client system, I 
+> only see "tcp".  Should I also be seeing "iser"?  Is there an extra package 
+> I need to install or step I need to take to get "iser" devices under the 
+> "iscsi_transport" directory?
+>
+> Thanks!
+> Luis
+>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20221126010752.231917-1-haowenchao%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/9d24cea1-f8a8-43e9-9982-c9e6df0cf770n%40googlegroups.com.
+
+------=_Part_7019_445443060.1669397614519
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>The iser transport is only supported for some cards. It's normally an =
+infiniband transport.</div><div><br></div><div>Do you have a CNA card (and =
+infrastructure) that supports iser?<br></div><br><div class=3D"gmail_quote"=
+><div dir=3D"auto" class=3D"gmail_attr">On Tuesday, November 22, 2022 at 11=
+:28:47 PM UTC-8 Luis Navarro wrote:<br/></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin: 0 0 0 0.8ex; border-left: 1px solid rgb(204, 204, 204=
+); padding-left: 1ex;">Hi all,<br><br>I&#39;m trying to test a new Ubuntu 2=
+2.04.1 LIO iSCSI target with iscsiadm 2.1.5 (installed via &quot;apt&quot;)=
+. =C2=A0iscsiadm works fine over &quot;tcp&quot; transport but always fails=
+ over the &quot;iser&quot; transport with the following error:<br><br>iscsi=
+adm: Could not load transport iser.Dropping interface iface0.<br><br>Here a=
+re the commands I ran:<br><br>$ sudo iscsiadm -m iface -I iface0 --op=3Dnew=
+<br>$ sudo iscsiadm -m iface -I iface0 -o update -n iface.transport_name -v=
+ iser<br>$ sudo iscsiadm -m discovery -t st -p <a href=3D"http://192.168.25=
+.5:3260" target=3D"_blank" rel=3D"nofollow" data-saferedirecturl=3D"https:/=
+/www.google.com/url?hl=3Den&amp;q=3Dhttp://192.168.25.5:3260&amp;source=3Dg=
+mail&amp;ust=3D1669483705321000&amp;usg=3DAOvVaw0uC09YQoz2gX27MJtub-aC">192=
+.168.25.5:3260</a> -I iface0 -d 8<br>iscsiadm: Max file limits 1024 1048576=
+<br>iscsiadm: updating defaults from &#39;/etc/iscsi/iscsid.conf&#39;<br>is=
+csiadm: updated &#39;discovery.sendtargets.iscsi.MaxRecvDataSegmentLength&#=
+39;, &#39;32768&#39; =3D&gt; &#39;32768&#39;<br>iscsiadm: updated &#39;node=
+.startup&#39;, &#39;manual&#39; =3D&gt; &#39;manual&#39;<br>iscsiadm: updat=
+ed &#39;node.leading_login&#39;, &#39;No&#39; =3D&gt; &#39;No&#39;<br>iscsi=
+adm: updated &#39;node.session.timeo.replacement_timeout&#39;, &#39;120&#39=
+; =3D&gt; &#39;120&#39;<br>iscsiadm: updated &#39;node.conn[0].timeo.login_=
+timeout&#39;, &#39;30&#39; =3D&gt; &#39;15&#39;<br>iscsiadm: updated &#39;n=
+ode.conn[0].timeo.logout_timeout&#39;, &#39;15&#39; =3D&gt; &#39;15&#39;<br=
+>iscsiadm: updated &#39;node.conn[0].timeo.noop_out_interval&#39;, &#39;5&#=
+39; =3D&gt; &#39;5&#39;<br>iscsiadm: updated &#39;node.conn[0].timeo.noop_o=
+ut_timeout&#39;, &#39;5&#39; =3D&gt; &#39;5&#39;<br>iscsiadm: updated &#39;=
+node.session.err_timeo.abort_timeout&#39;, &#39;15&#39; =3D&gt; &#39;15&#39=
+;<br>iscsiadm: updated &#39;node.session.err_timeo.lu_reset_timeout&#39;, &=
+#39;30&#39; =3D&gt; &#39;30&#39;<br>iscsiadm: updated &#39;node.session.err=
+_timeo.tgt_reset_timeout&#39;, &#39;30&#39; =3D&gt; &#39;30&#39;<br>iscsiad=
+m: updated &#39;node.session.initial_login_retry_max&#39;, &#39;4&#39; =3D&=
+gt; &#39;8&#39;<br>iscsiadm: updated &#39;node.session.cmds_max&#39;, &#39;=
+128&#39; =3D&gt; &#39;128&#39;<br>iscsiadm: updated &#39;node.session.queue=
+_depth&#39;, &#39;32&#39; =3D&gt; &#39;32&#39;<br>iscsiadm: updated &#39;no=
+de.session.xmit_thread_priority&#39;, &#39;-20&#39; =3D&gt; &#39;-20&#39;<b=
+r>iscsiadm: updated &#39;node.session.iscsi.InitialR2T&#39;, &#39;No&#39; =
+=3D&gt; &#39;No&#39;<br>iscsiadm: updated &#39;node.session.iscsi.Immediate=
+Data&#39;, &#39;Yes&#39; =3D&gt; &#39;Yes&#39;<br>iscsiadm: updated &#39;no=
+de.session.iscsi.FirstBurstLength&#39;, &#39;262144&#39; =3D&gt; &#39;26214=
+4&#39;<br>iscsiadm: updated &#39;node.session.iscsi.MaxBurstLength&#39;, &#=
+39;16776192&#39; =3D&gt; &#39;16776192&#39;<br>iscsiadm: updated &#39;node.=
+conn[0].iscsi.MaxRecvDataSegmentLength&#39;, &#39;262144&#39; =3D&gt; &#39;=
+262144&#39;<br>iscsiadm: updated &#39;node.conn[0].iscsi.MaxXmitDataSegment=
+Length&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>iscsiadm: updated &#39;node=
+.session.nr_sessions&#39;, &#39;1&#39; =3D&gt; &#39;1&#39;<br>iscsiadm: upd=
+ated &#39;node.session.reopen_max&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>=
+iscsiadm: updated &#39;node.session.iscsi.FastAbort&#39;, &#39;Yes&#39; =3D=
+&gt; &#39;Yes&#39;<br>iscsiadm: updated &#39;node.session.scan&#39;, &#39;a=
+uto&#39; =3D&gt; &#39;auto&#39;<br>iscsiadm: looking for iface conf /etc/is=
+csi/ifaces/iface0<br>iscsiadm: updated &#39;iface.iscsi_ifacename&#39;, &#3=
+9;iface0&#39; =3D&gt; &#39;iface0&#39;<br>iscsiadm: updated &#39;iface.pref=
+ix_len&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>iscsiadm: updated &#39;ifac=
+e.transport_name&#39;, &#39;&#39; =3D&gt; &#39;iser&#39;<br>iscsiadm: updat=
+ed &#39;iface.vlan_id&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>iscsiadm: up=
+dated &#39;iface.vlan_priority&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>isc=
+siadm: updated &#39;iface.iface_num&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<b=
+r>iscsiadm: updated &#39;iface.mtu&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br=
+>iscsiadm: updated &#39;iface.port&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br=
+>iscsiadm: updated &#39;iface.tos&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>=
+iscsiadm: updated &#39;iface.ttl&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>i=
+scsiadm: updated &#39;iface.tcp_wsf&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<b=
+r>iscsiadm: updated &#39;iface.tcp_timer_scale&#39;, &#39;0&#39; =3D&gt; &#=
+39;0&#39;<br>iscsiadm: updated &#39;iface.def_task_mgmt_timeout&#39;, &#39;=
+0&#39; =3D&gt; &#39;0&#39;<br>iscsiadm: updated &#39;iface.erl&#39;, &#39;0=
+&#39; =3D&gt; &#39;0&#39;<br>iscsiadm: updated &#39;iface.max_receive_data_=
+len&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>iscsiadm: updated &#39;iface.f=
+irst_burst_len&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>iscsiadm: updated &=
+#39;iface.max_outstanding_r2t&#39;, &#39;0&#39; =3D&gt; &#39;0&#39;<br>iscs=
+iadm: updated &#39;iface.max_burst_len&#39;, &#39;0&#39; =3D&gt; &#39;0&#39=
+;<br>iscsiadm: in read_transports<br>iscsiadm: Adding new transport tcp<br>=
+iscsiadm: Matched transport tcp<br>iscsiadm: sysfs_attr_get_value: open &#3=
+9;/class/iscsi_transport/tcp&#39;/&#39;handle&#39;<br>iscsiadm: sysfs_attr_=
+get_value: open &#39;/class/iscsi_transport/tcp&#39;/&#39;caps&#39;<br>iscs=
+iadm: in read_transports<br>iscsiadm: Updating transport tcp<br>iscsiadm: s=
+ysfs_attr_get_value: open &#39;/class/iscsi_transport/tcp&#39;/&#39;handle&=
+#39;<br>iscsiadm: sysfs_attr_get_value: open &#39;/class/iscsi_transport/tc=
+p&#39;/&#39;caps&#39;<br>iscsiadm: Could not load transport iser.Dropping i=
+nterface iface0.<br><br>Looking at the /sys/class/iscsi_transport and /sys/=
+devices/virtual/iscsi_transport directories on the client system, I only se=
+e &quot;tcp&quot;. =C2=A0Should I also be seeing &quot;iser&quot;? =C2=A0Is=
+ there an extra package I need to install or step I need to take to get &qu=
+ot;iser&quot; devices under the &quot;iscsi_transport&quot; directory?<br><=
+br>Thanks!<br>Luis<br></blockquote></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/9d24cea1-f8a8-43e9-9982-c9e6df0cf770n%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/9d24cea1-f8a8-43e9-9982-c9e6df0cf770n%40googlegroups.com</a>.=
+<br />
+
+------=_Part_7019_445443060.1669397614519--
+
+------=_Part_7018_482948283.1669397614519--
