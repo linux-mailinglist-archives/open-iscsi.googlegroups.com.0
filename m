@@ -1,173 +1,162 @@
-Return-Path: <open-iscsi+bncBD2Y5LOX3EDRBZXD46OAMGQEFYFJNEA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDBZNDGJ54FBBA7E46OAMGQEKUDF3OA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ot1-x33f.google.com (mail-ot1-x33f.google.com [IPv6:2607:f8b0:4864:20::33f])
-	by mail.lfdr.de (Postfix) with ESMTPS id 129ED64CD69
-	for <lists+open-iscsi@lfdr.de>; Wed, 14 Dec 2022 16:55:21 +0100 (CET)
-Received: by mail-ot1-x33f.google.com with SMTP id ca5-20020a056830610500b0066ea21701cesf1884410otb.7
-        for <lists+open-iscsi@lfdr.de>; Wed, 14 Dec 2022 07:55:21 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1671033319; cv=pass;
+Received: from mail-qt1-x83e.google.com (mail-qt1-x83e.google.com [IPv6:2607:f8b0:4864:20::83e])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1DA64CD6F
+	for <lists+open-iscsi@lfdr.de>; Wed, 14 Dec 2022 16:55:50 +0100 (CET)
+Received: by mail-qt1-x83e.google.com with SMTP id z2-20020ac86b82000000b003a804255e47sf2649002qts.7
+        for <lists+open-iscsi@lfdr.de>; Wed, 14 Dec 2022 07:55:50 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1671033349; cv=pass;
         d=google.com; s=arc-20160816;
-        b=A6FmhpCwNlExsdAVIrJ12Hc5dCPTn/dZaoyx+SsbjODCNGuEr03uUmDACrOnisFpmn
-         guxn6N6U1sy9o9LHG981wgj0bWLjNspBeIK0W5yH+kNT6lYhkaQddyP12VZiWBduRjkC
-         p9mGiJxrk2CJp0Dwio34558buBk233M8PY2krJJ1J+8gtmU/30TmfzW68KbaUMV5pcNZ
-         Rku4HXFv7RfEtFUfMaP5h9N/FtU1Q+zrgrJQPAy3DXX7N3adpg4CsNjn9ofPYl/QCk6w
-         l8qxjJ7OlGbQtDulooRGJR+pJhfV6JNWSeUXgDH57K7OMTEVblcRA4MtVGL5jCgkm9iv
-         6rKw==
+        b=y2bYsAtNuENOjDg91ZKAvlSb0rIFL0aHEDZn/+uN3HhkEnR8JpiK1WAcAo4XerfWrf
+         mDc0rRG0MlpfdOZSr1roLJ2fSkBF4VHSKVUYydaQEuZY0q8/4uqu7h/H5qxBS/NNTJGD
+         IWppRRPqIAGfNpXqSj1BEx7a/1M9DCKbEP9v7tH1qXXq9Jck7GQPIKeuNh+glGmznpSm
+         4pwV9Imc7Hoa4030N7bXgXRLL6H9baUd7elztri/jJ036DZFI6u23rTzUkNeISnUKcTR
+         ib2jnw36r51rMDNmN87LJQ4Hiafff8t47i+NYvOawDfQbmKfx2uKoq4K6V9mU3RfXTjk
+         c/9w==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
-         :mime-version:user-agent:references:in-reply-to:date:cc:to:from
-         :subject:message-id:sender:dkim-signature;
-        bh=OxOAPaEfEVNOm3REKaEdlnX7o7kaMR30L17TAqkm14w=;
-        b=0mSYGVSNeepM90qdZvt67BNzoQFwKingFH53/gZaB4JDHKjXxw9mj9hELaX7IOtBDX
-         bSB8rLsjQvC5y5gRFEchVskuJWcn4BcEIZlfTUMz43JXdVB4ym5fNe3vinWF7lScy7Qg
-         LBm7UirQRtK2IsyU7BwKhfWuL5AaRDn3yVDsVzBvJ7W25JIKN3XGBxmJblWwb25UGCuY
-         +hR7zlRv2pHOfG6XpGSpGfrbgT0f815R9ctCSZiQVuDOLeGPKj0qRYmJibUeQsQe23pS
-         YikWiXfWyfABbU+mKWNpJ5nvvxwqLwR7Es0rLctT+lW9cKCdTyGccyKcSG9V9w15XmvT
-         JNLQ==
+         :list-id:mailing-list:precedence:reply-to:mime-version:references
+         :in-reply-to:message-id:subject:cc:to:from:date:sender
+         :dkim-signature;
+        bh=U8vW62eQpt7T6zxkrsxr9MWoxmjLvfkPZjjhgALkeOE=;
+        b=k3/odJw62PMSYM0lghziGC91XKt3fPmHt5T2+HFhKKlvNCKipk1keNnx0hVF2RunQ3
+         popxYWydmtYi9Z5Rd2ZviBFbH+U+1aTAYWzMkfmzJ/BCuhvshlHWbfFzWfV6zw6gqpMA
+         tbZB5q2PIvN1+tRNqGnDiQLnSN2N1wAUoZ/fDHa7Q2BpGTRSDPNUFG9eVC7csEa+o5Ic
+         lwAMDvV6m4eQ8gCwQUZvkruAmy73rMAbbj4k9811liCjO8sD0GA4BfeSSxDRWQojXbPr
+         77edrpB9gFEl9tNWSIoF1M2A3SPq1F0QfQR0AmScYsYIEEG+qE+xX4sBqsepYeYvC7FD
+         1jQg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=Y5p+PndB;
-       spf=pass (google.com: domain of pabeni@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=pabeni@redhat.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=lP5pQ24T;
+       spf=pass (google.com: domain of kuba@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=kuba@kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-transfer-encoding:mime-version:user-agent:references
-         :in-reply-to:date:cc:to:from:subject:message-id:sender:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OxOAPaEfEVNOm3REKaEdlnX7o7kaMR30L17TAqkm14w=;
-        b=LSj1GAWIRFAMsV7rTBM/cq5efcoQeM8fA1zrz/2pjQjCG+JyNKwFGerMsTlWZOpLRQ
-         OKSAFr/aJb/N3yhTXA8WsQwS7zsSp83v3W+m0Gr3TvQxO1IcF1g1hQy1OX6je3WpxxvC
-         WltDxi74H1Ytm86l1g2Hw/FQxcvUwog4liyOAaRSjZ2gXZhjDsKJSJYEu33sBGSF5/uz
-         82KzfBPY9x0OybjwWSGGxyj9KU0SzaqldTOP0RQVYZ0qpqPCJkrjnT+qJHMADP1MhO5u
-         0dyz35koH31ZBZ7i85a48a6Fwpfm7f1UnBDmEzdd2FnkxK3J8WBPg13W+KxqvbaNbc8k
-         mpBw==
+         :x-original-authentication-results:x-original-sender:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U8vW62eQpt7T6zxkrsxr9MWoxmjLvfkPZjjhgALkeOE=;
+        b=JJ37dJtpe45/WYFWtRIBpABUuAnptcYU6mW50PYYSEVK3FMiMqaKzoLICfhCpMNTff
+         ZxzicDicdfc8aszA4VV+5EfgmCznpktfOg3ngRECh9v+d9QdW7p4qAe0POv0s03D02e2
+         8n51xid9fbF71NKl9ZLoTuCsgmoeLJoPnpkrCLNdNtmo/eFMw+XgdykFqC505DePIT1f
+         cv7VOSIvgns+iornXKeBWVslBeF2OliGYAk5UCVzEaYt8GVc0D/Xih57GPtWwDV8wzVA
+         mWy/V1U32gu326W73A3CvdKWotocGcG08dWqkdVzXirJyJN2zZZpGedj1JD1RjInNiXW
+         R/3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-transfer-encoding:mime-version:user-agent:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=OxOAPaEfEVNOm3REKaEdlnX7o7kaMR30L17TAqkm14w=;
-        b=eIMr7CMbBIBbj0qkMlYY9UzWdFkoXG6O/Sn7MSAbngMy8PPPoL5XrgJ5bEX4QgiWCl
-         gT4oO2b6FE4lJW6GXI01EgYaN4wR8nWDrEMokqkmn1Z20JS9f5TtsU2D5RzO84HGeuVb
-         j3lUx4VteWwcQrM/CeX9pBjyFm1wlcv6Xpu2y5dYXAKs9sjQwrQrrC9i3SQU6c739IdQ
-         fELXPjroAXWniwv7Q2WBb7wy054ox9wHqGY0AR5QFVSfacF64jeJOF8bPZUuxMDQGXgr
-         hpJwky0TyhGnHrRVJV2Pjm8qLQHUWBlksNdt7Qg+Ds65ALPMy2GapvhYmVOJ1FbVnRR1
-         CitA==
+         :x-original-authentication-results:x-original-sender:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U8vW62eQpt7T6zxkrsxr9MWoxmjLvfkPZjjhgALkeOE=;
+        b=MSeTEZ9IuqOXZ3np7qvfkQf9UQa88ozXSFNE3BMOw90tK7JrSZfJTIOruUx12XqQgo
+         7gDoPBpX9L/gvoKwVLpmEeW/1HgG2oRvidP1dH3K6zR3oQZKGtfYDU0EYBKzUHOQmfSC
+         uU5fisVYiLl4bcCjk5ww0NQRWO5oX2fQe4DxADrVcwymZsbR0KTnVIYsIbPV7/7vAA28
+         Jk0J0c6WaOasXuofZH8qVzdGEdj4eqmhl2dLFwBCzvU5a/Q6JZpjrthaobTA0s9MDsTZ
+         YLOVjy4UH+5NiD3lTYm0c72uUA8ul2xalYaOYnGqquvXv35Bc0L6UjoLNh6GiROE2reR
+         1Wyg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANoB5plXbKXqJO2YwFNIvAtgFRH1300u1NuFK+0dPIpzmtBzw2W98d66
-	4z6SioTwURjYScCee0+83s8=
-X-Google-Smtp-Source: AA0mqf45398lXeKTm+kfORY3FmvV186BbUIpHPa2h9yfj2qorxO0B9RyRvNQSFY7bye0gwuyYbeUHA==
-X-Received: by 2002:a9d:7a53:0:b0:672:89a:834b with SMTP id z19-20020a9d7a53000000b00672089a834bmr197722otm.80.1671033319693;
-        Wed, 14 Dec 2022 07:55:19 -0800 (PST)
+X-Gm-Message-State: ANoB5pnxC0rBhQ34Wr+rOjRLXIl1XZZX5QBN6iGd2wflbxLmwhTWds0O
+	LFrAvJeegntpXxMtJ0WWfXE=
+X-Google-Smtp-Source: AA0mqf6pt3G29J5ZC8zrAHV9C4dhgLWapqx2hGwxkzU9y8KH1tAE3DgFo3TEww5swzCC84bf2CCkfg==
+X-Received: by 2002:a05:622a:1b14:b0:3a5:ff6e:d446 with SMTP id bb20-20020a05622a1b1400b003a5ff6ed446mr87153548qtb.5.1671033348993;
+        Wed, 14 Dec 2022 07:55:48 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6870:7885:b0:143:86b4:f098 with SMTP id
- hc5-20020a056870788500b0014386b4f098ls6756859oab.11.-pod-prod-gmail; Wed, 14
- Dec 2022 07:55:18 -0800 (PST)
-X-Received: by 2002:a05:6871:4104:b0:142:6396:5ca with SMTP id la4-20020a056871410400b00142639605camr209500oab.241.1671033318419;
-        Wed, 14 Dec 2022 07:55:18 -0800 (PST)
-Received: by 2002:aca:a8cd:0:b0:35e:1421:fde0 with SMTP id 5614622812f47-35e551dd171msb6e;
-        Fri, 9 Dec 2022 04:37:20 -0800 (PST)
-X-Received: by 2002:a92:d5c7:0:b0:302:364f:68f4 with SMTP id d7-20020a92d5c7000000b00302364f68f4mr2682342ilq.17.1670589440515;
-        Fri, 09 Dec 2022 04:37:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1670589440; cv=none;
+Received: by 2002:a05:622a:5a13:b0:3a8:7fb:e9f1 with SMTP id
+ fy19-20020a05622a5a1300b003a807fbe9f1ls10267915qtb.3.-pod-prod-gmail; Wed, 14
+ Dec 2022 07:55:47 -0800 (PST)
+X-Received: by 2002:ac8:715a:0:b0:3a7:fb76:2ffb with SMTP id h26-20020ac8715a000000b003a7fb762ffbmr2205958qtp.491.1671033347582;
+        Wed, 14 Dec 2022 07:55:47 -0800 (PST)
+Received: by 2002:a05:620a:29d1:b0:6ee:e13b:85df with SMTP id af79cd13be357-6ff5761c59cms85a;
+        Fri, 9 Dec 2022 08:11:07 -0800 (PST)
+X-Received: by 2002:adf:ea4b:0:b0:242:8404:6b66 with SMTP id j11-20020adfea4b000000b0024284046b66mr4165208wrn.1.1670602266582;
+        Fri, 09 Dec 2022 08:11:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670602266; cv=none;
         d=google.com; s=arc-20160816;
-        b=oWw6y5xXOComTomIH4oUwoO444frmrJCbyhcsIX8PkrsyBpwbigOR+VWYzAOu6BV0H
-         mfZzBrtA9reFwcgKS2OmeHVW5iooFbxHARl3c7VNZbnf365wNoDTWVsYx73ffcuSnOMQ
-         Tt6Wbwbu70M/UQH/O443hSsk4ZwMtlA5INPaPt/dVnXb0Ukf+nK61W0bIQvDn0f9laBv
-         X6ptWH++AdOYwM8RFivhniHEIMizx23UY2DLddVwoa1RkGxL4ZeO9iA3vjTLdUjCk2mH
-         YIwOeqPPm9W/rEYJs8CUS2tq5tD6EyAPHZW9+HLbnNyR/b0yxsCVUGUOPVqR+Wpu6psW
-         58mw==
+        b=Jtim54eudOtX/nl2hzQjh6FKezJ8m0UhqlmRL/tKeMuMJtm7OJ7dTz/ZUkxdAl4Xat
+         5ovQtM06gIqA1Q6Y2HDZNbZ5A3YjaX1A9N7K/m3cxlVlTdU+Pz9b22gOoLFSNHouYPlp
+         3mxzt+13eaz8oA7P5DXw16SqC0a6tM0Q892j/mzJR6+WMAfODKPs4pP/rvIoGkIqKRbM
+         SRZz+YQjM/K0fuBmnFz/RY8bGkBPnwf7rmoy4WNGkVQ03JKD/vEvb/4suv/78985hKlc
+         ZVBKu04amzNbTQMKb+nA5nNH3VXg1aHYaZlXq1hLYQPYxabJQwkqE9Ir4iu/Rzk/x43L
+         Y1bQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:user-agent:references
-         :in-reply-to:date:cc:to:from:subject:message-id:dkim-signature;
-        bh=kKcc7XQPg0UZn1AHNfQ4N2d5zF9JzBW3g3hPGFAB4Kc=;
-        b=1IwvaSdNyRuoKY8tJOtWKtjg0KfxDTuZ/nZbRVFX233WNcgiPpwkEjGT+mtu6mjQsh
-         dDvA4xTBCHO9DPZJoYjraYxG7hWWcTpV4hIxYKJU2gCfzamYpGeN737syRKCTDvBI4hG
-         iHHNMrdQe0l/0wVR3Sq1Dbl57olXjNy7cVkKF4v7+sYwPlEXQQmjS4XjaRAFokHTwv4D
-         l0N+wsN8KRwIsYAKWVlH+ieBvxs5UmUf4FyQ8aMwNEsqpNT8l5k+cdhw4uqDoUvnAwHa
-         8h4/kJf8teSbR5zbv3lS43nVtZcMwT1ONsuOIDRemc4u0mU6tdJ6P8+799DzaEifiSU6
-         ZRjA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:dkim-signature;
+        bh=OclmnU1jYcdMFqciE3c6RyUB6hgvanpdH2l220bFhz4=;
+        b=C8j7ETMPCPbtEYx3Q/UH0XFP1V9/AZM4hlFymVg9gqRFfHhYuEdjFLkDE5AFe5Mr7w
+         H3uL9QJbSVF1vlcoNOqZ/GrEvbt9zJShssmBkmVihmznvwV/pym6BKfQNqiFziByZzKY
+         L0ylp1Vm7aARIWtJbpD2Hok503YHhVOuaMYqT5o9Urh7efYgN6wS4KFHZvtpclrgINnD
+         Id3xvS/AkLl77DWeJ13R/FotXyn2g1mhdnYMM1lifrS40d3M/j4KTinxPqXgIVCKawdh
+         VzDDwQBr1CMX4KVcNstoLBImELMVDSZsms2Sa8HBWZ4OBIX0iqFfzewgnUVXFqfXfnlc
+         zbPw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=Y5p+PndB;
-       spf=pass (google.com: domain of pabeni@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=pabeni@redhat.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.133.124])
-        by gmr-mx.google.com with ESMTPS id w14-20020a05663800ce00b0038a5b827993si81991jao.2.2022.12.09.04.37.20
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=lP5pQ24T;
+       spf=pass (google.com: domain of kuba@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=kuba@kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: from ams.source.kernel.org (ams.source.kernel.org. [145.40.68.75])
+        by gmr-mx.google.com with ESMTPS id bj15-20020a0560001e0f00b002367b2e748esi99750wrb.5.2022.12.09.08.11.06
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 04:37:20 -0800 (PST)
-Received-SPF: pass (google.com: domain of pabeni@redhat.com designates 170.10.133.124 as permitted sender) client-ip=170.10.133.124;
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-54-FHZu83eNNWKEXjxWkYuQ_w-1; Fri, 09 Dec 2022 07:37:14 -0500
-X-MC-Unique: FHZu83eNNWKEXjxWkYuQ_w-1
-Received: by mail-wm1-f69.google.com with SMTP id r129-20020a1c4487000000b003d153a83d27so1529854wma.0
-        for <open-iscsi@googlegroups.com>; Fri, 09 Dec 2022 04:37:13 -0800 (PST)
-X-Received: by 2002:a05:600c:4fd0:b0:3d1:c0a1:4804 with SMTP id o16-20020a05600c4fd000b003d1c0a14804mr4752735wmq.17.1670589432835;
-        Fri, 09 Dec 2022 04:37:12 -0800 (PST)
-X-Received: by 2002:a05:600c:4fd0:b0:3d1:c0a1:4804 with SMTP id o16-20020a05600c4fd000b003d1c0a14804mr4752714wmq.17.1670589432518;
-        Fri, 09 Dec 2022 04:37:12 -0800 (PST)
-Received: from gerbillo.redhat.com (146-241-106-22.dyn.eolo.it. [146.241.106.22])
-        by smtp.gmail.com with ESMTPSA id j10-20020a05600c1c0a00b003b49bd61b19sm9284355wms.15.2022.12.09.04.37.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 04:37:11 -0800 (PST)
-Message-ID: <d220402a232e204676d9100d6fe4c2ae08f753ee.camel@redhat.com>
-Subject: Re: [PATCH v1 2/3] Treewide: Stop corrupting socket's task_frag
-From: Paolo Abeni <pabeni@redhat.com>
-To: Benjamin Coddington <bcodding@redhat.com>, netdev@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, Philipp Reisner
- <philipp.reisner@linbit.com>,  Lars Ellenberg <lars.ellenberg@linbit.com>,
- Christoph =?ISO-8859-1?Q?B=F6hmwalder?= <christoph.boehmwalder@linbit.com>,
- Jens Axboe <axboe@kernel.dk>, Josef Bacik <josef@toxicpanda.com>, Keith
- Busch <kbusch@kernel.org>, Christoph Hellwig <hch@lst.de>, Sagi Grimberg
- <sagi@grimberg.me>, Lee Duncan <lduncan@suse.com>,  Chris Leech
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Dec 2022 08:11:06 -0800 (PST)
+Received-SPF: pass (google.com: domain of kuba@kernel.org designates 145.40.68.75 as permitted sender) client-ip=145.40.68.75;
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 45F48B8289C;
+	Fri,  9 Dec 2022 16:11:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B20FEC433EF;
+	Fri,  9 Dec 2022 16:11:02 +0000 (UTC)
+Date: Fri, 9 Dec 2022 08:11:01 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Benjamin Coddington <bcodding@redhat.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Philipp Reisner <philipp.reisner@linbit.com>,
+ Lars Ellenberg <lars.ellenberg@linbit.com>, Christoph =?UTF-8?B?QsO2aG13?=
+ =?UTF-8?B?YWxkZXI=?= <christoph.boehmwalder@linbit.com>, Jens Axboe
+ <axboe@kernel.dk>, Josef Bacik <josef@toxicpanda.com>, Keith Busch
+ <kbusch@kernel.org>, Christoph Hellwig <hch@lst.de>, Sagi Grimberg
+ <sagi@grimberg.me>, Lee Duncan <lduncan@suse.com>, Chris Leech
  <cleech@redhat.com>, Mike Christie <michael.christie@oracle.com>, "James
  E.J. Bottomley" <jejb@linux.ibm.com>, "Martin K. Petersen"
- <martin.petersen@oracle.com>,  Valentina Manea
+ <martin.petersen@oracle.com>, Valentina Manea
  <valentina.manea.m@gmail.com>, Shuah Khan <shuah@kernel.org>, Greg
  Kroah-Hartman <gregkh@linuxfoundation.org>, David Howells
  <dhowells@redhat.com>, Marc Dionne <marc.dionne@auristor.com>, Steve French
  <sfrench@samba.org>, Christine Caulfield <ccaulfie@redhat.com>, David
- Teigland <teigland@redhat.com>, Mark Fasheh <mark@fasheh.com>,  Joel Becker
+ Teigland <teigland@redhat.com>, Mark Fasheh <mark@fasheh.com>, Joel Becker
  <jlbec@evilplan.org>, Joseph Qi <joseph.qi@linux.alibaba.com>, Eric Van
  Hensbergen <ericvh@gmail.com>, Latchesar Ionkov <lucho@ionkov.net>,
  Dominique Martinet <asmadeus@codewreck.org>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Ilya Dryomov <idryomov@gmail.com>, Xiubo Li
- <xiubli@redhat.com>, Trond Myklebust <trond.myklebust@hammerspace.com>,
- Anna Schumaker <anna@kernel.org>, Chuck Lever <chuck.lever@oracle.com>,
- Jeff Layton <jlayton@kernel.org>, drbd-dev@lists.linbit.com, 
- linux-block@vger.kernel.org, nbd@other.debian.org, 
- linux-nvme@lists.infradead.org, open-iscsi@googlegroups.com, 
- linux-scsi@vger.kernel.org, linux-usb@vger.kernel.org, 
- linux-afs@lists.infradead.org, linux-cifs@vger.kernel.org, 
- samba-technical@lists.samba.org, cluster-devel@redhat.com, 
- ocfs2-devel@oss.oracle.com, v9fs-developer@lists.sourceforge.net, 
- ceph-devel@vger.kernel.org, linux-nfs@vger.kernel.org
-Date: Fri, 09 Dec 2022 13:37:08 +0100
-In-Reply-To: <c2ec184226acd21a191ccc1aa46a1d7e43ca7104.1669036433.git.bcodding@redhat.com>
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Ilya Dryomov
+ <idryomov@gmail.com>, Xiubo Li <xiubli@redhat.com>, Trond Myklebust
+ <trond.myklebust@hammerspace.com>, Anna Schumaker <anna@kernel.org>, Chuck
+ Lever <chuck.lever@oracle.com>, Jeff Layton <jlayton@kernel.org>,
+ drbd-dev@lists.linbit.com, linux-block@vger.kernel.org,
+ nbd@other.debian.org, linux-nvme@lists.infradead.org,
+ open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-afs@lists.infradead.org,
+ linux-cifs@vger.kernel.org, samba-technical@lists.samba.org,
+ cluster-devel@redhat.com, ocfs2-devel@oss.oracle.com,
+ v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ linux-nfs@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] Treewide: Stop corrupting socket's task_frag
+Message-ID: <20221209081101.7500478c@kernel.org>
+In-Reply-To: <d220402a232e204676d9100d6fe4c2ae08f753ee.camel@redhat.com>
 References: <cover.1669036433.git.bcodding@redhat.com>
-	 <c2ec184226acd21a191ccc1aa46a1d7e43ca7104.1669036433.git.bcodding@redhat.com>
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+	<c2ec184226acd21a191ccc1aa46a1d7e43ca7104.1669036433.git.bcodding@redhat.com>
+	<d220402a232e204676d9100d6fe4c2ae08f753ee.camel@redhat.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Original-Sender: pabeni@redhat.com
+X-Original-Sender: kuba@kernel.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@redhat.com header.s=mimecast20190719 header.b=Y5p+PndB;
-       spf=pass (google.com: domain of pabeni@redhat.com designates
- 170.10.133.124 as permitted sender) smtp.mailfrom=pabeni@redhat.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+ header.i=@kernel.org header.s=k20201202 header.b=lP5pQ24T;       spf=pass
+ (google.com: domain of kuba@kernel.org designates 145.40.68.75 as permitted
+ sender) smtp.mailfrom=kuba@kernel.org;       dmarc=pass (p=NONE sp=NONE
+ dis=NONE) header.from=kernel.org
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -180,99 +169,16 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Mon, 2022-11-21 at 08:35 -0500, Benjamin Coddington wrote:
-> Since moving to memalloc_nofs_save/restore, SUNRPC has stopped setting th=
-e
-> GFP_NOIO flag on sk_allocation which the networking system uses to decide
-> when it is safe to use current->task_frag.  The results of this are
-> unexpected corruption in task_frag when SUNRPC is involved in memory
-> reclaim.
->=20
-> The corruption can be seen in crashes, but the root cause is often
-> difficult to ascertain as a crashing machine's stack trace will have no
-> evidence of being near NFS or SUNRPC code.  I believe this problem to
-> be much more pervasive than reports to the community may indicate.
->=20
-> Fix this by having kernel users of sockets that may corrupt task_frag due
-> to reclaim set sk_use_task_frag =3D false.  Preemptively correcting this
-> situation for users that still set sk_allocation allows them to convert t=
-o
-> memalloc_nofs_save/restore without the same unexpected corruptions that a=
-re
-> sure to follow, unlikely to show up in testing, and difficult to bisect.
->=20
-> CC: Philipp Reisner <philipp.reisner@linbit.com>
-> CC: Lars Ellenberg <lars.ellenberg@linbit.com>
-> CC: "Christoph B=C3=B6hmwalder" <christoph.boehmwalder@linbit.com>
-> CC: Jens Axboe <axboe@kernel.dk>
-> CC: Josef Bacik <josef@toxicpanda.com>
-> CC: Keith Busch <kbusch@kernel.org>
-> CC: Christoph Hellwig <hch@lst.de>
-> CC: Sagi Grimberg <sagi@grimberg.me>
-> CC: Lee Duncan <lduncan@suse.com>
-> CC: Chris Leech <cleech@redhat.com>
-> CC: Mike Christie <michael.christie@oracle.com>
-> CC: "James E.J. Bottomley" <jejb@linux.ibm.com>
-> CC: "Martin K. Petersen" <martin.petersen@oracle.com>
-> CC: Valentina Manea <valentina.manea.m@gmail.com>
-> CC: Shuah Khan <shuah@kernel.org>
-> CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> CC: David Howells <dhowells@redhat.com>
-> CC: Marc Dionne <marc.dionne@auristor.com>
-> CC: Steve French <sfrench@samba.org>
-> CC: Christine Caulfield <ccaulfie@redhat.com>
-> CC: David Teigland <teigland@redhat.com>
-> CC: Mark Fasheh <mark@fasheh.com>
-> CC: Joel Becker <jlbec@evilplan.org>
-> CC: Joseph Qi <joseph.qi@linux.alibaba.com>
-> CC: Eric Van Hensbergen <ericvh@gmail.com>
-> CC: Latchesar Ionkov <lucho@ionkov.net>
-> CC: Dominique Martinet <asmadeus@codewreck.org>
-> CC: "David S. Miller" <davem@davemloft.net>
-> CC: Eric Dumazet <edumazet@google.com>
-> CC: Jakub Kicinski <kuba@kernel.org>
-> CC: Paolo Abeni <pabeni@redhat.com>
-> CC: Ilya Dryomov <idryomov@gmail.com>
-> CC: Xiubo Li <xiubli@redhat.com>
-> CC: Chuck Lever <chuck.lever@oracle.com>
-> CC: Jeff Layton <jlayton@kernel.org>
-> CC: Trond Myklebust <trond.myklebust@hammerspace.com>
-> CC: Anna Schumaker <anna@kernel.org>
-> CC: drbd-dev@lists.linbit.com
-> CC: linux-block@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> CC: nbd@other.debian.org
-> CC: linux-nvme@lists.infradead.org
-> CC: open-iscsi@googlegroups.com
-> CC: linux-scsi@vger.kernel.org
-> CC: linux-usb@vger.kernel.org
-> CC: linux-afs@lists.infradead.org
-> CC: linux-cifs@vger.kernel.org
-> CC: samba-technical@lists.samba.org
-> CC: cluster-devel@redhat.com
-> CC: ocfs2-devel@oss.oracle.com
-> CC: v9fs-developer@lists.sourceforge.net
-> CC: netdev@vger.kernel.org
-> CC: ceph-devel@vger.kernel.org
-> CC: linux-nfs@vger.kernel.org
->=20
-> Suggested-by: Guillaume Nault <gnault@redhat.com>
-> Signed-off-by: Benjamin Coddington <bcodding@redhat.com>
+On Fri, 09 Dec 2022 13:37:08 +0100 Paolo Abeni wrote:
+> I think this is the most feasible way out of the existing issue, and I
+> think this patchset should go via the networking tree, targeting the
+> Linux 6.2.
 
-I think this is the most feasible way out of the existing issue, and I
-think this patchset should go via the networking tree, targeting the
-Linux 6.2.
+FWIW some fields had been moved so this will not longer apply cleanly,
+see b534dc46c8ae016. But I think we can apply it to net since the merge
+window is upon us? Just a heads up.
 
-If someone has disagreement with the above, please speak!=20
-
-Thanks,
-
-Paolo
-
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/d220402a232e204676d9100d6fe4c2ae08f753ee.camel%40redhat.com.
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20221209081101.7500478c%40kernel.org.
