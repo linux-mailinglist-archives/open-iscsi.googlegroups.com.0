@@ -1,142 +1,68 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBHGU26OAMGQEVHBZ74A@googlegroups.com>
+Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBGW526OAMGQENAWU6MA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lj1-x23b.google.com (mail-lj1-x23b.google.com [IPv6:2a00:1450:4864:20::23b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9726494AD
-	for <lists+open-iscsi@lfdr.de>; Sun, 11 Dec 2022 15:33:03 +0100 (CET)
-Received: by mail-lj1-x23b.google.com with SMTP id m4-20020a2ea584000000b0027a02705679sf2236745ljp.4
-        for <lists+open-iscsi@lfdr.de>; Sun, 11 Dec 2022 06:33:03 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1670769182; cv=pass;
-        d=google.com; s=arc-20160816;
-        b=vF8HCtvl0+XddmsXSZi4hs5eXwNjhXzDv/TDW/nDT9HZRnfzlNj1owu7t3j7Z5BWbV
-         kT3N0+Z8CKKANPR6c+1W3Jt1exD75IRJxuoe6VSvB4o33epJhceDqrHs4gyI6bAPf47Y
-         AfsiyESY+XnC5i95f3AoMk5jdzslVUuR7D5cMlBquP+XGJK2kP9jZ/YQ3DflOJqkDuS0
-         4mElLcJcRZlVwETIWII63ivbCKpeAaLhmwYemf7r3ctephtgiX1iDhyTQYx1f+BRxwLG
-         c/Q6w+2HGrq+sWpAkjvDKWV6LmHq64Qw5/vJaf4NgszgTle4a0YEdVgDjXZacLoN/3hC
-         eZvQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:sender:dkim-signature
-         :dkim-signature;
-        bh=xu3dir888O9DHU0/v9yKMsiqp3VXvDISwNOodfBo4n0=;
-        b=yJoR9lGdCiUxEY2tb6ZFfOaEm1AE8QePAg6WpWSyGXgDxwtKo8Hy4SsehdiraoCM/T
-         JbrCqXFMSmBgaLmJFoIoePDXfl1EgEZiUpwtHsh2VwNewopIE9oHZQJUtQOhVdDs08nc
-         +1wwPTsQmZgyQcH2jWASBhrRjdDEAdv/r5Ot8zxp805gsswNbd7jMnIH4tGmPv51COjr
-         /Pk/3JMslc9vWEb0zaX38hhZANnrvAS/DthzSVZq674m/6I1n3SvCIAxp78sT9/igW1Y
-         U11/sVUB17hbApRo1KwGmKsxnrMLybmGBrfFo4rH10x5UuN2WPfDF+cVZv69OV45QhWT
-         wCSA==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=jPUk5MmJ;
-       spf=pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::62b as permitted sender) smtp.mailfrom=haowenchao22@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from mail-qk1-x73b.google.com (mail-qk1-x73b.google.com [IPv6:2607:f8b0:4864:20::73b])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3B66494BC
+	for <lists+open-iscsi@lfdr.de>; Sun, 11 Dec 2022 15:52:13 +0100 (CET)
+Received: by mail-qk1-x73b.google.com with SMTP id de43-20020a05620a372b00b006fae7e5117fsf11153571qkb.6
+        for <lists+open-iscsi@lfdr.de>; Sun, 11 Dec 2022 06:52:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:cc:to:subject
-         :message-id:date:from:in-reply-to:references:mime-version:sender
+         :list-id:mailing-list:precedence:reply-to:x-original-sender
+         :mime-version:subject:references:in-reply-to:message-id:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xu3dir888O9DHU0/v9yKMsiqp3VXvDISwNOodfBo4n0=;
-        b=dUj63DsJj0lLm5dty+/EVxNA2W3bgxxPQ7+UHzlCXvReVbQudn96oif8/Xusp6+CzV
-         47Py+rdeMAKNgA49tzt0T+Wj3Nb1jvfx5DX3Ni12J/PBZJ5skNAynP6qnLS1E+mkU6+K
-         GPMa/ZvU1RiNkXv7dz0hAnkx83/WlJSSjhRS+IPvv5SIhmV3q5c/u0xnyqUT2HX+0fqf
-         zYucQf68sDiQ+g4lxs6Lx5uN5JeZSxy6UtJJfETdEEKY6J2IH3JfNc6HrSrh+EQoOb8n
-         4D+ECCKSUdp463+bIR4ymhEC2X3Z5LWt1f1A6fInPmo6R6zODe7G4f7wWO8ysYyobNaJ
-         qfGA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:cc:to:subject
-         :message-id:date:from:in-reply-to:references:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xu3dir888O9DHU0/v9yKMsiqp3VXvDISwNOodfBo4n0=;
-        b=aPBXDKABUXRC6+WmMML/80jFulJbDbdbVPsnEkfj1T6lDb+Ujz5xuggTkOtHlU6j9u
-         bN8cFvpCDgbAf2vclxQxlA6YiPDoMBvt5gR7kIUVudVO5KqmAS9JWui/B4kLu5LiKOpl
-         ncAkzkwfqH2gj8l6M3woGyUsjq1RG4hYHD4AbgcqEjSLwiMCZchLMmt6Hf9/bv/HfRza
-         cWXUOi3/GI2wrN1Vu8wCFKq7KrIrbsgXQNE8ZqGxYH4SQGwBhK5tqQXjJtKjhtBWCE8a
-         KfchBXhcZSiaFKHgPR4aN4lXsvT6BW+LOwyLIHcSJ17L3bhm9lKTKBPcCmBETOZ5iw9v
-         FAag==
+        bh=jJ5wYextkeedXWobeaK/Vc5o3limBmBOSJ+4AVLiFfM=;
+        b=jwXBnj+n0zRK/RirrhOr7G0bgmzAdMqBPWwhFjFtK3CGi6dVJTRAg0ny72IYU3XpUb
+         ToFmuv0U9Plo8kiuZ9X6DPjoyznfV10JUcoel4NKUpY04be6Av3pxTjK7Xq43GzjvJ+U
+         fEPznxIr0jVQa+08DsaH9bnycfH6Pc6ohnZb+UETZ+l4vjawnCFa6FW7quF5bSp9BEGb
+         wnus1w2yyLJ/5Pead7FSSt9dqNwW3hUokpE9qIy5wh9RYAiIq9w//Y4dqODs9Xgnpwa/
+         9WgzkH4/4hCDkqDVho/u5EbOhhKyMVzLeg+jbQ4qQxkl9Y5TZfcIlzdegNLGUMBDsn9O
+         w8TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:cc:to:subject
-         :message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xu3dir888O9DHU0/v9yKMsiqp3VXvDISwNOodfBo4n0=;
-        b=ncLdL+ELFZpNpO3xLXUMzpGxf597gt1O3e3GeQqhsQH1WfKQWvm1tiY/kQJ+aG3MOR
-         CfvbRp18TPpuWETdcp3o+EWVR1W2JDftVT7XQ5+DNNdOgVql+g5R8zUzAQP5N27hiPun
-         y/iKPVt4ziJtf7efFgnAfbD5kvzrknkD3p/JYAyPVRNx4N/rHoBExwmeasEES91/Dld3
-         qVL2rS1YHlWSzuAfb4CW6/ji6IsX6YPlskMxjv3r5jrlGG6DCDXK+yJo6I5wNE4nx3X4
-         Gv5qjmjAbSoeaRBlD7j9TNUvfZhYr3/mJOTa/aFOPpKBnFrLA+5Ufzh/i2abEEt3MjnS
-         Emjg==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANoB5pm9H2h26122Bj5Fj05wfLhp5uGGcwZonL8z61XNXcDe5BNn3+t5
-	Ox+7pJOjpJvcafADQuuruFg=
-X-Google-Smtp-Source: AA0mqf5ve92d6z8qKSjgTdjXp+cX976SnM0OeG52/a+ojX5O+Ee2pvHFZ8fz41Sf9s4AWt1noMtMGA==
-X-Received: by 2002:a2e:81cd:0:b0:27b:4754:80e8 with SMTP id s13-20020a2e81cd000000b0027b475480e8mr260273ljg.366.1670769182784;
-        Sun, 11 Dec 2022 06:33:02 -0800 (PST)
+         :x-original-sender:mime-version:subject:references:in-reply-to
+         :message-id:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jJ5wYextkeedXWobeaK/Vc5o3limBmBOSJ+4AVLiFfM=;
+        b=0h9hSlw5FHv6+oP6v1OQN89ZkPWtboituiyUxt/1banMcFmyrtTDbzxQ/4CHIgS/Kb
+         P/Qdll/9oMxTOGRfFl4/5+nLnpdssyKKl/5PxwZzHiCoqk2ErVeWyHtduYMM4saWYDOZ
+         ASYzkhzMS2z8iTpZhOGPRoSJebVRK0wq/qJXejnrvvFerg6qJYDxSQsH23cENlVPq4gM
+         4aU2QirJ+k2crFqbIS81cLSlEYAVYmzPIwSylw0U5Cdnx7ofbLHpvB0Zfyi1hFj6NTbY
+         pRGTReJ3IUiiAnVegPhsdgo5gAdP46GKxdHBCQauDJmTeobJXxudbGROX/AFndbfQcTS
+         8BLA==
+X-Gm-Message-State: ANoB5pmYcxP5Y1gXpw9EI88+MPpkPSadr5fmWhjNjdOHN231cgCcq6Jl
+	rTfeh6ndBRCPltN29psKSJA=
+X-Google-Smtp-Source: AA0mqf7N7UM4aml4eOjXyDhODzvzIu4iZCI2FLwK1aq/9hidpRsxLSYzvzR1VuDWWbRHZZm84vAG8Q==
+X-Received: by 2002:a05:6214:4212:b0:4b4:b38e:781d with SMTP id nd18-20020a056214421200b004b4b38e781dmr70050924qvb.104.1670770331409;
+        Sun, 11 Dec 2022 06:52:11 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6512:2012:b0:4a2:3951:eac8 with SMTP id
- a18-20020a056512201200b004a23951eac8ls5239520lfb.0.-pod-prod-gmail; Sun, 11
- Dec 2022 06:32:59 -0800 (PST)
-X-Received: by 2002:a05:6512:b8d:b0:4b5:a9ca:9725 with SMTP id b13-20020a0565120b8d00b004b5a9ca9725mr4112338lfv.28.1670769179828;
-        Sun, 11 Dec 2022 06:32:59 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1670769179; cv=none;
-        d=google.com; s=arc-20160816;
-        b=oIYNiE4yXeXi9Pg4n23vTx7CeSEMT1OUNJESpLFH1rO1/uHTQQ/KoTaImEOStADQAa
-         HN5hXOdoxesF4nB2Ni4OAShdHbBOuTSq/4r8FemNp9wo1vV972urrz8DgQT5n3gDlnRV
-         L6U8adBlhwkHxA5BtBGeR5LwYYCM62aR5+mtrMvy77wGMgjbMp01MVoQrp/KZxV7PoyH
-         x8Z5n4LolBKYq3n2Px7d2uEX0MPsnSjAS4FdrhFBT9DZLID7WhxbfqcQx3bCf2vMf2qZ
-         bsNYcaoEOlkFZInQxhKE/SaySU//7X4bGIsA8RtZnfjhXmZBy73wAOxoqexrdATyMTH3
-         cK3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=4WqUoVsa+BZHuhTAxrHNAL1fk+hhKzh6lmfruqRjY0A=;
-        b=jfH0JRb0jl985acgnpzBzQjOeb17bIoa7Eync/3YG+DcHhbnWwvw+8dYi7rlFYDuRd
-         9UUeXNTFOaMfF+Y2aGkvwzbyP758pgk/t7z0sosxaM5JAUnS1p+sp6eZkx3RV2bBnGnh
-         Elg+Ow/Q/rPBp0o3KuDxKdQsqa8rscw5e3SS8w+CvppxCvZ7Bk7c61eJMamTLgnfMi06
-         4aBdySi96V4JmShphWGWNuCpo2IC6qeSaOzhWjbbM5NjUBLPnugfRHsJ82hNX7UIMPRA
-         vSo3niQZeNgxDOaMSeez3RpHox52ih2ZUyiDnq/MnIc8vzqvqmrLfgjsKBfdcnkfO7h1
-         VaOQ==
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=jPUk5MmJ;
-       spf=pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::62b as permitted sender) smtp.mailfrom=haowenchao22@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com. [2a00:1450:4864:20::62b])
-        by gmr-mx.google.com with ESMTPS id g2-20020a056512118200b0048b38f379d7si391733lfr.0.2022.12.11.06.32.59
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Dec 2022 06:32:59 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::62b as permitted sender) client-ip=2a00:1450:4864:20::62b;
-Received: by mail-ej1-x62b.google.com with SMTP id ud5so22084993ejc.4
-        for <open-iscsi@googlegroups.com>; Sun, 11 Dec 2022 06:32:59 -0800 (PST)
-X-Received: by 2002:a17:906:3604:b0:78d:99a0:7cf6 with SMTP id
- q4-20020a170906360400b0078d99a07cf6mr79046763ejb.56.1670769179467; Sun, 11
- Dec 2022 06:32:59 -0800 (PST)
+Received: by 2002:a0c:e38e:0:b0:4c7:4896:f2c9 with SMTP id a14-20020a0ce38e000000b004c74896f2c9ls6920523qvl.8.-pod-prod-gmail;
+ Sun, 11 Dec 2022 06:52:09 -0800 (PST)
+X-Received: by 2002:a0c:ed45:0:b0:4c7:9a42:7c08 with SMTP id v5-20020a0ced45000000b004c79a427c08mr4115867qvq.44.1670770329591;
+        Sun, 11 Dec 2022 06:52:09 -0800 (PST)
+Date: Sun, 11 Dec 2022 06:52:08 -0800 (PST)
+From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <d0588551-af9f-4795-b697-33917f80d12cn@googlegroups.com>
+In-Reply-To: <CAOptpSP1L4EAVcHJ5xEDF+iZTziOVt=E7KGefj+3Vj9-fN-a-A@mail.gmail.com>
+References: <20221122213040.4128105-1-haowenchao@huawei.com>
+ <4d21f806-6653-5457-918c-563a3032d128@suse.com>
+ <00f11c61-a53f-c48a-017f-4c06055ea708@huawei.com>
+ <0f7258d5-ff8e-fa4e-ab8e-5125c42a6d07@suse.com>
+ <CAOptpSO=BEGWFkzT2umFXnWSyn24XR5nHc-mnTvsVb6PAn=4xA@mail.gmail.com>
+ <057b6774-646d-5970-4743-20e249856688@suse.com>
+ <CAOptpSMzQC0ur7oWFRD0fzie7eENxh6JK+c0JE+oLhCiypQBRA@mail.gmail.com>
+ <181bdb6a-fbaf-1e18-9d08-4bbabf467321@suse.com>
+ <CAOptpSP1L4EAVcHJ5xEDF+iZTziOVt=E7KGefj+3Vj9-fN-a-A@mail.gmail.com>
+Subject: Re: [PATCH] scsi:iscsi: Record session's startup mode in kernel
 MIME-Version: 1.0
-References: <20221209082247.6330-1-dinghui@sangfor.com.cn> <ae9ee90e-e890-e054-6cf9-8acadd6012b9@oracle.com>
-In-Reply-To: <ae9ee90e-e890-e054-6cf9-8acadd6012b9@oracle.com>
-From: Wenchao Hao <haowenchao22@gmail.com>
-Date: Sun, 11 Dec 2022 22:32:46 +0800
-Message-ID: <CAOptpSO-TMhqR35RW4Sssm29NA=8rJ6-9TgjTVpGKpYOeS_8sA@mail.gmail.com>
-Subject: Re: [PATCH] scsi: iscsi_tcp: Fix UAF when access shost attr during
- session logout
-To: Mike Christie <michael.christie@oracle.com>
-Cc: Ding Hui <dinghui@sangfor.com.cn>, lduncan@suse.com, cleech@redhat.com, 
-	jejb@linux.ibm.com, martin.petersen@oracle.com, open-iscsi@googlegroups.com, 
-	linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Original-Sender: haowenchao22@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20210112 header.b=jPUk5MmJ;       spf=pass
- (google.com: domain of haowenchao22@gmail.com designates 2a00:1450:4864:20::62b
- as permitted sender) smtp.mailfrom=haowenchao22@gmail.com;       dmarc=pass
- (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_7258_1615872942.1670770328655"
+X-Original-Sender: haowenchao@huawei.com
+X-Original-From: Wenchao Hao <haowenchao@huawei.com>
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -150,124 +76,305 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Sun, Dec 11, 2022 at 6:07 AM Mike Christie
-<michael.christie@oracle.com> wrote:
->
-> On 12/9/22 2:22 AM, Ding Hui wrote:
-> > During iscsi session logout, if another task accessing shost ipaddress
-> > attr at this time, we can get a KASAN UAF report like this:
-> >
-> > [  276.941685] ==================================================================
-> > [  276.942144] BUG: KASAN: use-after-free in _raw_spin_lock_bh+0x78/0xe0
-> > [  276.942535] Write of size 4 at addr ffff8881053b45b8 by task cat/4088
-> > [  276.943511] CPU: 2 PID: 4088 Comm: cat Tainted: G            E      6.1.0-rc8+ #3
-> > [  276.943997] Hardware name: VMware, Inc. VMware Virtual Platform/440BX Desktop Reference Platform, BIOS 6.00 11/12/2020
-> > [  276.944470] Call Trace:
-> > [  276.944943]  <TASK>
-> > [  276.945397]  dump_stack_lvl+0x34/0x48
-> > [  276.945887]  print_address_description.constprop.0+0x86/0x1e7
-> > [  276.946421]  print_report+0x36/0x4f
-> > [  276.947358]  kasan_report+0xad/0x130
-> > [  276.948234]  kasan_check_range+0x35/0x1c0
-> > [  276.948674]  _raw_spin_lock_bh+0x78/0xe0
-> > [  276.949989]  iscsi_sw_tcp_host_get_param+0xad/0x2e0 [iscsi_tcp]
-> > [  276.951765]  show_host_param_ISCSI_HOST_PARAM_IPADDRESS+0xe9/0x130 [scsi_transport_iscsi]
-> > [  276.952185]  dev_attr_show+0x3f/0x80
-> > [  276.953005]  sysfs_kf_seq_show+0x1fb/0x3e0
-> > [  276.953401]  seq_read_iter+0x402/0x1020
-> > [  276.954260]  vfs_read+0x532/0x7b0
-> > [  276.955113]  ksys_read+0xed/0x1c0
-> > [  276.955952]  do_syscall_64+0x38/0x90
-> > [  276.956347]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> > [  276.956769] RIP: 0033:0x7f5d3a679222
-> > [  276.957161] Code: c0 e9 b2 fe ff ff 50 48 8d 3d 32 c0 0b 00 e8 a5 fe 01 00 0f 1f 44 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 0f 05 <48> 3d 00 f0 ff ff 77 56 c3 0f 1f 44 00 00 48 83 ec 28 48 89 54 24
-> > [  276.958009] RSP: 002b:00007ffc864d16a8 EFLAGS: 00000246 ORIG_RAX: 0000000000000000
-> > [  276.958431] RAX: ffffffffffffffda RBX: 0000000000020000 RCX: 00007f5d3a679222
-> > [  276.958857] RDX: 0000000000020000 RSI: 00007f5d3a4fe000 RDI: 0000000000000003
-> > [  276.959281] RBP: 00007f5d3a4fe000 R08: 00000000ffffffff R09: 0000000000000000
-> > [  276.959682] R10: 0000000000000022 R11: 0000000000000246 R12: 0000000000020000
-> > [  276.960126] R13: 0000000000000003 R14: 0000000000000000 R15: 0000557a26dada58
-> > [  276.960536]  </TASK>
-> > [  276.961357] Allocated by task 2209:
-> > [  276.961756]  kasan_save_stack+0x1e/0x40
-> > [  276.962170]  kasan_set_track+0x21/0x30
-> > [  276.962557]  __kasan_kmalloc+0x7e/0x90
-> > [  276.962923]  __kmalloc+0x5b/0x140
-> > [  276.963308]  iscsi_alloc_session+0x28/0x840 [scsi_transport_iscsi]
-> > [  276.963712]  iscsi_session_setup+0xda/0xba0 [libiscsi]
-> > [  276.964078]  iscsi_sw_tcp_session_create+0x1fd/0x330 [iscsi_tcp]
-> > [  276.964431]  iscsi_if_create_session.isra.0+0x50/0x260 [scsi_transport_iscsi]
-> > [  276.964793]  iscsi_if_recv_msg+0xc5a/0x2660 [scsi_transport_iscsi]
-> > [  276.965153]  iscsi_if_rx+0x198/0x4b0 [scsi_transport_iscsi]
-> > [  276.965546]  netlink_unicast+0x4d5/0x7b0
-> > [  276.965905]  netlink_sendmsg+0x78d/0xc30
-> > [  276.966236]  sock_sendmsg+0xe5/0x120
-> > [  276.966576]  ____sys_sendmsg+0x5fe/0x860
-> > [  276.966923]  ___sys_sendmsg+0xe0/0x170
-> > [  276.967300]  __sys_sendmsg+0xc8/0x170
-> > [  276.967666]  do_syscall_64+0x38/0x90
-> > [  276.968028]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> > [  276.968773] Freed by task 2209:
-> > [  276.969111]  kasan_save_stack+0x1e/0x40
-> > [  276.969449]  kasan_set_track+0x21/0x30
-> > [  276.969789]  kasan_save_free_info+0x2a/0x50
-> > [  276.970146]  __kasan_slab_free+0x106/0x190
-> > [  276.970470]  __kmem_cache_free+0x133/0x270
-> > [  276.970816]  device_release+0x98/0x210
-> > [  276.971145]  kobject_cleanup+0x101/0x360
-> > [  276.971462]  iscsi_session_teardown+0x3fb/0x530 [libiscsi]
-> > [  276.971775]  iscsi_sw_tcp_session_destroy+0xd8/0x130 [iscsi_tcp]
-> > [  276.972143]  iscsi_if_recv_msg+0x1bf1/0x2660 [scsi_transport_iscsi]
-> > [  276.972485]  iscsi_if_rx+0x198/0x4b0 [scsi_transport_iscsi]
-> > [  276.972808]  netlink_unicast+0x4d5/0x7b0
-> > [  276.973201]  netlink_sendmsg+0x78d/0xc30
-> > [  276.973544]  sock_sendmsg+0xe5/0x120
-> > [  276.973864]  ____sys_sendmsg+0x5fe/0x860
-> > [  276.974248]  ___sys_sendmsg+0xe0/0x170
-> > [  276.974583]  __sys_sendmsg+0xc8/0x170
-> > [  276.974891]  do_syscall_64+0x38/0x90
-> > [  276.975216]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> >
-> > We can easily reproduce by two tasks:
-> > 1. while :; do iscsiadm -m node --login; iscsiadm -m node --logout; done
-> > 2. while :; do cat /sys/devices/platform/host*/iscsi_host/host*/ipaddress; done
-> >
-> >             iscsid                |        cat
-> > ----------------------------------+-------------------------------------------------
-> > |- iscsi_sw_tcp_session_destroy   |
-> >   |- iscsi_session_teardown       |
-> >     |- device_release             |
-> >       |- iscsi_session_release    |  |- dev_attr_show
-> >         |- kfree                  |    |- show_host_param_ISCSI_HOST_PARAM_IPADDRESS
-> >                                   |      |- iscsi_sw_tcp_host_get_param
-> >                                   |        |- r/w tcp_sw_host->session (UAF)
-> >   |- iscsi_host_remove            |
-> >   |- iscsi_host_free              |
-> >
-> > Since shost hold a pointer to session which is belong to cls_session by its
-> > priv tcp_sw_host, so we should get a ref of cls_session, and after
-> > iscsi_host_remove() the sysfs is cleared, then we can drop the ref.
-> >
->
-> Nice bug report and thanks for the patch. I think though we should just
-> split the removal from the freeing. The removal will wait on users
-> accessing sysfs files for us, so once they return we know we can just
-> free things.
->
-> Something like this:
->
->
+------=_Part_7258_1615872942.1670770328655
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_7259_1296686265.1670770328655"
 
-Hi, dinghui and Mike, I submitted patches to fix this issue one year
-ago. But I missed Mike's
-reply because I was new to the community, so the patches did not keep on.
+------=_Part_7259_1296686265.1670770328655
+Content-Type: text/plain; charset="UTF-8"
 
-https://lore.kernel.org/linux-scsi/20210407012450.97754-1-haowenchao@huawei.com/
+On Wednesday, December 7, 2022 at 1:01:23 AM UTC+8 Wenchao Hao wrote:
 
-Because of my negligence, this bug has been discovered so far, and I
-apologize for this.
+> On Tue, Dec 6, 2022 at 1:13 AM Lee Duncan <ldu...@suse.com> wrote: 
+> > 
+> > On 12/4/22 05:02, Wenchao Hao wrote: 
+> > > On Thu, Dec 1, 2022 at 3:53 AM Lee Duncan <ldu...@suse.com> wrote: 
+> > >> 
+> > ... 
+> > >> 
+> > >> Let me start by saying I agree with you now, that there *is* an 
+> issue. 
+> > >> But your test was flawed. 
+> > >> 
+> > >> After you log into a target, changing the Node database does nothing. 
+> > >> The node database is only referenced with you login using it, e.g. 
+> > >> "iscsiadm -m node ... -l". 
+> > >> 
+> > >> But even if you logged out and then back into the target, thereby 
+> using 
+> > >> the updated Node DB entries, it would not have worked. 
+> > >> 
+> > >> For one thing, "iscsiadm -m session -u" just logs out of all 
+> sessions, 
+> > >> as far as I can see, based on testing and code inspection. So that is 
+> a 
+> > >> problem. 
+> > >> 
+> > >> Note that the iscsi.service systemd service file on SLES does "not" 
+> do 
+> > >> that. It instead logs of of "manual" and "automatic" session, but 
+> only 
+> > >> ones that are listed in the Node database. 
+> > >> 
+> > >> And as you pointed out, any knowledge iscsid has of existing sessions 
+> is 
+> > >> lost if the daemmon dies or is stopped, then restarted. At that 
+> point, 
+> > >> the only knowledge is has about each session is what it finds in 
+> sysfs. 
+> > >> 
+> > >> I have done some testing with your new kernel change that adds a 
+> > >> "node_startup" sysfs string attribute to session data. I modified 
+> > >> open-iscsi to pass in the node startup value, and that's a good 
+> start. 
+> > >> The next step is adding a "startup" value in the session structure, 
+> > >> filling it in from sysfs (or current state), and refusing to logout 
+> out 
+> > >> of sesions that have this set to "onboot", which all sounds fairly 
+> > >> simple. I also want to test with "iscsiadm -m fw -l", which is what I 
+> > >> believe is used when booting from software iscsi (i.e. iBFT). 
+> > >> 
+> > >> Have you already worked on the open-iscsi side of this? No reason for 
+> > >> duplicate development. 
+> > >> 
+> > >> -- 
+> > >> Lee Duncan 
+> > >> 
+> > > 
+> > > Sorry I missed this message, I have modified open-iscsi to work 
+> > > with this sysfs interface. But I think we do not need this any more 
+> > > because the safe logout can avoid disks being removed. 
+> > > 
+> > > Checking holders and if disk is mounted before logout seems enough, 
+> > > so ignore this discussion. 
+> > > 
+> > > Thank you very much for your reply. 
+> > 
+> > I have some philosophical issues with using safe_logout. 
+> > 
+> > It is off by default, which implies to me that it has overhead. If I'm 
+> > doing a lot of iscsi session start/stops, I don't want the overhead. 
+> > Otherwise, why not just use it all the time. 
+> > 
+> > Also, it only checks for mounts. What about if some process has the 
+> > device open but isn't using it for a filesystem? 
+> > 
+> > And since it has overhead, I'd rather just use it on root iscsi volumes. 
+> > I have not had a single problem report from folks that have ended a 
+> > session by accident that is mounted on. Since ending your root volume 
+> > iscsi session is fatal, I _would_ like to proactively avoid that 
+> > possibility. So I want to only set this attribute on iscsi root volumes, 
+> > which means it'd have to be a per-node (or per-session) attribute, not a 
+> > global one. 
+> > 
+> > Lastly, I can imagine a time when I want to override safe_logout, say if 
+> > some process is stuck. So it'd be nice to have a "--force" option to end 
+> > a session even if safe_logout is set. 
+> > 
+> > But as I said, these objections are philosophical/theoretical. 
+> > 
+> > And for the record, I like the idea of tracking the "start mode" of 
+> > sessions. Right now, if I list the iscsi sessions, I can't tell which 
+> > ones where started from firmware, which were started in the initrd, and 
+> > which were just manually started. So tracking (and being able to 
+> > display) the startup mode would only be a good thing IMHO. 
+> > -- 
+> > Lee D 
+> > 
+> >
+
+
+My previous reply was in a mess format, here is the formatted one: 
+
+The original purpose of my patch is to record session's startup_mode
+in the kernel, so iscsiadm/iscsid can refer to it before logout session,
+this can fix both the two issues.
+
+While the safe_logout mode can solve the first issue in another way by
+checking if iscsi disk is in used. But we did not enable safe_logout as
+default and it can not cover the sense when iscsi disks in not mounted
+nor used by multipath or lvm.
+
+The safe_logout mode can not address the issue which iscsiadm/iscsid
+can overwrite session's startup_mode.
+
+Firstly, we need to come to one same conclusion that if it is a bug to
+be fixed, then discuss how to fix it.
+
+If we treat this issue as a bug, we have two ways to fix it:
+
+1. Recording session's startup_mode in kernel is a way to fix it
+2. Checking if session has been created for this node before updating
+the node's configure file is another way. But we must be strict our
+users would not edit the configure files by hand.
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAOptpSO-TMhqR35RW4Sssm29NA%3D8rJ6-9TgjTVpGKpYOeS_8sA%40mail.gmail.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/d0588551-af9f-4795-b697-33917f80d12cn%40googlegroups.com.
+
+------=_Part_7259_1296686265.1670770328655
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"gmail_quote"><div dir=3D"auto" class=3D"gmail_attr">On Wednes=
+day, December 7, 2022 at 1:01:23 AM UTC+8 Wenchao Hao wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin: 0 0 0 0.8ex; border-left: 1px=
+ solid rgb(204, 204, 204); padding-left: 1ex;">On Tue, Dec 6, 2022 at 1:13 =
+AM Lee Duncan &lt;<a href=3D"" data-email-masked=3D"" rel=3D"nofollow">ldu.=
+..@suse.com</a>&gt; wrote:
+<br>&gt;
+<br>&gt; On 12/4/22 05:02, Wenchao Hao wrote:
+<br>&gt; &gt; On Thu, Dec 1, 2022 at 3:53 AM Lee Duncan &lt;<a href=3D"" da=
+ta-email-masked=3D"" rel=3D"nofollow">ldu...@suse.com</a>&gt; wrote:
+<br>&gt; &gt;&gt;
+<br>&gt; ...
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; Let me start by saying I agree with you now, that there *=
+is* an issue.
+<br>&gt; &gt;&gt; But your test was flawed.
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; After you log into a target, changing the Node database d=
+oes nothing.
+<br>&gt; &gt;&gt; The node database is only referenced with you login using=
+ it, e.g.
+<br>&gt; &gt;&gt; "iscsiadm -m node ... -l".
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; But even if you logged out and then back into the target,=
+ thereby using
+<br>&gt; &gt;&gt; the updated Node DB entries, it would not have worked.
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; For one thing, "iscsiadm -m session -u" just logs out of =
+all sessions,
+<br>&gt; &gt;&gt; as far as I can see, based on testing and code inspection=
+. So that is a
+<br>&gt; &gt;&gt; problem.
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; Note that the iscsi.service systemd service file on SLES =
+does "not" do
+<br>&gt; &gt;&gt; that. It instead logs of of "manual" and "automatic" sess=
+ion, but only
+<br>&gt; &gt;&gt; ones that are listed in the Node database.
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; And as you pointed out, any knowledge iscsid has of exist=
+ing sessions is
+<br>&gt; &gt;&gt; lost if the daemmon dies or is stopped, then restarted. A=
+t that point,
+<br>&gt; &gt;&gt; the only knowledge is has about each session is what it f=
+inds in sysfs.
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; I have done some testing with your new kernel change that=
+ adds a
+<br>&gt; &gt;&gt; "node_startup" sysfs string attribute to session data. I =
+modified
+<br>&gt; &gt;&gt; open-iscsi to pass in the node startup value, and that's =
+a good start.
+<br>&gt; &gt;&gt; The next step is adding a "startup" value in the session =
+structure,
+<br>&gt; &gt;&gt; filling it in from sysfs (or current state), and refusing=
+ to logout out
+<br>&gt; &gt;&gt; of sesions that have this set to "onboot", which all soun=
+ds fairly
+<br>&gt; &gt;&gt; simple. I also want to test with "iscsiadm -m fw -l", whi=
+ch is what I
+<br>&gt; &gt;&gt; believe is used when booting from software iscsi (i.e. iB=
+FT).
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; Have you already worked on the open-iscsi side of this? N=
+o reason for
+<br>&gt; &gt;&gt; duplicate development.
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;&gt; --
+<br>&gt; &gt;&gt; Lee Duncan
+<br>&gt; &gt;&gt;
+<br>&gt; &gt;
+<br>&gt; &gt; Sorry I missed this message, I have modified open-iscsi to wo=
+rk
+<br>&gt; &gt; with this sysfs interface. But I think we do not need this an=
+y more
+<br>&gt; &gt; because the safe logout can avoid disks being removed.
+<br>&gt; &gt;
+<br>&gt; &gt; Checking holders and if disk is mounted before logout seems e=
+nough,
+<br>&gt; &gt; so ignore this discussion.
+<br>&gt; &gt;
+<br>&gt; &gt; Thank you very much for your reply.
+<br>&gt;
+<br>&gt; I have some philosophical issues with using safe_logout.
+<br>&gt;
+<br>&gt; It is off by default, which implies to me that it has overhead. If=
+ I'm
+<br>&gt; doing a lot of iscsi session start/stops, I don't want the overhea=
+d.
+<br>&gt; Otherwise, why not just use it all the time.
+<br>&gt;
+<br>&gt; Also, it only checks for mounts. What about if some process has th=
+e
+<br>&gt; device open but isn't using it for a filesystem?
+<br>&gt;
+<br>&gt; And since it has overhead, I'd rather just use it on root iscsi vo=
+lumes.
+<br>&gt; I have not had a single problem report from folks that have ended =
+a
+<br>&gt; session by accident that is mounted on. Since ending your root vol=
+ume
+<br>&gt; iscsi session is fatal, I _would_ like to proactively avoid that
+<br>&gt; possibility. So I want to only set this attribute on iscsi root vo=
+lumes,
+<br>&gt; which means it'd have to be a per-node (or per-session) attribute,=
+ not a
+<br>&gt; global one.
+<br>&gt;
+<br>&gt; Lastly, I can imagine a time when I want to override safe_logout, =
+say if
+<br>&gt; some process is stuck. So it'd be nice to have a "--force" option =
+to end
+<br>&gt; a session even if safe_logout is set.
+<br>&gt;
+<br>&gt; But as I said, these objections are philosophical/theoretical.
+<br>&gt;
+<br>&gt; And for the record, I like the idea of tracking the "start mode" o=
+f
+<br>&gt; sessions. Right now, if I list the iscsi sessions, I can't tell wh=
+ich
+<br>&gt; ones where started from firmware, which were started in the initrd=
+, and
+<br>&gt; which were just manually started. So tracking (and being able to
+<br>&gt; display) the startup mode would only be a good thing IMHO.
+<br>&gt; --
+<br>&gt; Lee D
+<br>&gt;
+<br>&gt;</blockquote><div><br></div><div>My previous reply was in a mess fo=
+rmat, here is the formatted one: <br><br>The original purpose of my patch i=
+s to record session's startup_mode<br>in the kernel, so iscsiadm/iscsid can=
+ refer to it before logout session,<br>this can fix both the two issues.<br=
+><br>While the safe_logout mode can solve the first issue in another way by=
+<br>checking if iscsi disk is in used. But we did not enable safe_logout as=
+<br>default and it can not cover the sense when iscsi disks in not mounted<=
+br>nor used by multipath or lvm.<br><br>The safe_logout mode can not addres=
+s the issue which iscsiadm/iscsid<br>can overwrite session's startup_mode.<=
+br><br>Firstly, we need to come to one same conclusion that if it is a bug =
+to<br>be fixed, then discuss how to fix it.<br><br>If we treat this issue a=
+s a bug, we have two ways to fix it:<br><br>1. Recording session's startup_=
+mode in kernel is a way to fix it<br>2. Checking if session has been create=
+d for this node before updating<br>the node's configure file is another way=
+. But we must be strict our<br>users would not edit the configure files by =
+hand.</div></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/d0588551-af9f-4795-b697-33917f80d12cn%40googlegroups.=
+com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
+id/open-iscsi/d0588551-af9f-4795-b697-33917f80d12cn%40googlegroups.com</a>.=
+<br />
+
+------=_Part_7259_1296686265.1670770328655--
+
+------=_Part_7258_1615872942.1670770328655--
