@@ -1,127 +1,132 @@
-Return-Path: <open-iscsi+bncBCK2XL5R4APRB3EO5OOAMGQEC4HLI7Y@googlegroups.com>
+Return-Path: <open-iscsi+bncBC6MFJWO34DBBSNL5OOAMGQEF756ZTA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yb1-xb37.google.com (mail-yb1-xb37.google.com [IPv6:2607:f8b0:4864:20::b37])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB13364D6FA
-	for <lists+open-iscsi@lfdr.de>; Thu, 15 Dec 2022 08:06:22 +0100 (CET)
-Received: by mail-yb1-xb37.google.com with SMTP id z17-20020a25e311000000b00719e04e59e1sf2704921ybd.10
-        for <lists+open-iscsi@lfdr.de>; Wed, 14 Dec 2022 23:06:22 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1671087981; cv=pass;
+Received: from mail-lj1-x23d.google.com (mail-lj1-x23d.google.com [IPv6:2a00:1450:4864:20::23d])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7DAA64D783
+	for <lists+open-iscsi@lfdr.de>; Thu, 15 Dec 2022 09:07:39 +0100 (CET)
+Received: by mail-lj1-x23d.google.com with SMTP id m4-20020a2ea584000000b0027a02705679sf2423953ljp.4
+        for <lists+open-iscsi@lfdr.de>; Thu, 15 Dec 2022 00:07:39 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1671091659; cv=pass;
         d=google.com; s=arc-20160816;
-        b=nwc6aLKspqtViNdECywpVd2s1KCV34j58J+LrT6aOBhDWuCpa5ITswnLC/lJrFF/tn
-         qdRWDP/9FI5dVFBbISKCc4HM6ro5JwpNHsOQAC/0/Vg7M/50VtIayucLwGK0AfAxBptU
-         +rQRiMlurD01KGlzjVkwGEn17PLViDawLQ8ZSrj42CpaGYjl4C44D0EXJMC8awkIZWwk
-         ICzhssEaQGgsoOAY1oa8UL+KwhI2YndmCts/bO7DNKGehCfuo4E3W0HI8H+UtmBc58E4
-         v1Mq0QRuHOnPYUvbTSHYInAg/EQOV7Ajdyqr/KN31RL3oiRyahmeqN3ZDgsfsd6/7E/G
-         eO9A==
+        b=NZEamGLtbHBKL/e9wuQq+PgnIo7TPyFRsJtrwvz7afxfO7TrQ7TPMSHDfZbH03m/rc
+         Q7ZeK/eZqoAqTT1PHx2vZGJO8OWxepzKtOXz5uWoL5t/WamrUW8+UOrHIu1Ew/8Dl2r9
+         Ht2ZRxuQPzhYPGNphpXJvePhD2Jf+aUM/fW9O3o6MiW9LHiWjCwWdsMrjVeoHcvDiaUB
+         QWTkkqQmxnr3Xjvkttm4i7K9S+VXFiB2/jmlLN2yY23rPIFiB17OXiKK3VmjDZfqKKRv
+         XbHLCwnc0EbG5+b79FwKBUIoyLHhJv6e179By4Df6BRhk4v2oTjFOzl+YmKlf63Dn+Ds
+         lo0g==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:dkim-signature;
-        bh=oJaF4D/2qh/KDzY8QmiNSwWXUJHqcfNe46DXUbrEkgw=;
-        b=GDLaNTzT8tEstqQN68CdKu9fn2vG9qiaBy/u1RTweV9THWItMFezMykHfm1kjILl1o
-         iaM5d3+iEqHdBt1SENf4lhW5U4SjQgazpUIVp+7xyy/u+TYJhHX4evsGiAduoUl3Q6DD
-         u6z56vyM74tl+Ev8nWgvq4WdDVfQJFa8vZy9giib0r5cpiG9AKA5nSZSwNJmYCQESXlO
-         BFHKWyEIP28Yak2ciLCcJF2fEpBO6g0EZahATR9S5kYK5WgM2w5eaQWCZS50YpPU1SVe
-         TijOrAPoHKAVLj8N6Xnk4eU2cjkQii21NomjPLIKYXg18nGyYCe++QQNVEyF6+inthuC
-         gAXA==
+         :list-id:mailing-list:precedence:reply-to:content-disposition
+         :mime-version:in-reply-to:references:subject:cc:to:from:date
+         :message-id:sender:dkim-signature;
+        bh=ki7LuvsniyTdqmFc70X9DemwPouIuWyH08YFetyTdjE=;
+        b=IpwZeDp7sqQTi7o8FMWMy5jlNdLmJOUIppddouGuWFSWLDQy1P7dHEdjJuLFqQv99P
+         IF9xki1f8L63dNn/6+8/m7Gmd/3MgnS/h38L+ROrKaMFDKHZq8HnLrkeeJDD+3jL0h8N
+         YZ64oB7Mije5XFqiy2TwUZI/JShIagUHZBfiHQYFsqEWfSCGCuV2AqAc7nmhCK4weU4f
+         GXqMMyshx1zBfFe1PuZRqIHjeaOefwKA3AMrw+T2hUy7KLzuvgtkVVcxybM4wPl/m78p
+         ilTkqzGOrJpyIL04pq3RPQ72pR9SmVGUzY78/Ly5tANZ0RuTVplWwkM30FOZF0E8LPsI
+         kW2w==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=ESzkO2WQ;
-       spf=none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) smtp.mailfrom=BATV+2550d39826730817a127+7053+infradead.org+hch@bombadil.srs.infradead.org
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=oJaF4D/2qh/KDzY8QmiNSwWXUJHqcfNe46DXUbrEkgw=;
-        b=L2/itIPIsbLFJna5zKCNDfTHdwRk1Q5nhLPq3ni+ASKsvDn0tn5hg3X955gxahmNeT
-         6iSIC7j+L6oDVMpWjX9TiSVQWjQWVgi0uddCwyNauOWe+ALJmkwsXhT50mW4ZCk2JNcb
-         HTrdo5EWsMjTZT0FQ+ZQc3KNhi5nTDTTOejgIYBeNciL9w/KfyksFAQJK8D4na2RmH99
-         m0ZS03A3JoPboI1v0P6rk2vd/Q1spXBW41CsSthFRpVvBrEwXWtVBCrd096MuLIo5Yeu
-         eMbbRDetqQQwYgX4WKHnSA1y36Tve912acLOsXns1YQE+GiW94Neul9CLRuHS/zTRpnV
-         /oVA==
+         :x-original-authentication-results:x-original-sender
+         :content-disposition:mime-version:in-reply-to:references:subject:cc
+         :to:from:date:message-id:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ki7LuvsniyTdqmFc70X9DemwPouIuWyH08YFetyTdjE=;
+        b=iC3lTWRZmsdtWzUnWRnqmJUvrFGbMBXKanSkumD3QyoAg/9pKviDBIaiEtJ5r9uNXz
+         MtZhSDoFqnILu8vdbE5DjBZuV4wQY49m4O7p0HqQyELbFo/SANJNCh/2jaGUozWkaBXH
+         kfmmIXTS+YyDk7EDrI3gCLTpLUUPrXGvB7oavg1OlatiJ1b5sXTYkk3b8tEjq+A54us+
+         weGkD4q+16vOnyQpxrZhnHpgnqDMPhI7MV0z0ZQ/AkltkrEYR9Ipntw6Me0bon4eJC51
+         C4GI24j5oGr6dYknQHGCJo6ObEArFzSt2gBs/f3eHYlVWzkhhGpu6g/HMV2ooukzjqRu
+         ZEYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:x-gm-message-state:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oJaF4D/2qh/KDzY8QmiNSwWXUJHqcfNe46DXUbrEkgw=;
-        b=itQqlLEs015aKr5VuAY47Da7MYUJEbrqfbFTGIk7paTUfB+lj3gOrsVJaM8cuYY7Rx
-         RQagdqs0I7+ZOGGiaAUt6n22foAf48xyozi0s/aouohkVB7RHl6L+e+s/lklkuCcEduq
-         yZJ4u8QmA7XWuKfBCmmkvmj9xMBYlWmZn6g3UE2a89i5YgAja1fh5oKgqZb01/I3qK53
-         GVJMm1NjHZHEANnjQYaWXHUFFmZvRVppL1nOW8XvUh1dJm8+/aHPZuZRPsdLt1fH+UUT
-         TKjZLmo6b7qj7Sps8jcp0IuDb8te86jBiZMWOAgC4XfN8j0zx+OP0aM003sA9Jj7Wf4K
-         T7oQ==
+         :x-original-authentication-results:x-original-sender
+         :content-disposition:mime-version:in-reply-to:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:sender:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ki7LuvsniyTdqmFc70X9DemwPouIuWyH08YFetyTdjE=;
+        b=beqI1nxA1pn+A1x0kSlswO1q2YNc2ELWvy/23sZhyBp2E0N72OPjEFzzmYQNH9Kx2s
+         ryZ/qNW3FJisTWOcD6bqIY4lrdu4yI0OJfxYlx4eeW9Dv/rqfHjWRu7nKSQnoC5EuDsO
+         zqiuDccofEoc69qSE7GHxHyI1ieeHyZQTAqGgtzeyKZhYoWYax3PQlbVH5VN1ckLeJtA
+         2ZbN2AEqO/zsjLa5+mOBIFZ86rJJIsS8nYJQfG4zU5WwDcQf246n8b87EMFnU9xk3nqG
+         dEw/p9YOWe+57/sHyMqftUzhEQdNs8/y9ptSJo8js/34WJj9clr6ju3bLk02zMfsVIcP
+         uMJA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANoB5pnrCS+ozO/NMcaeNWVXF72/tNIxblQ9C4ySZbKpGOLGX7dMqHcd
-	AHWAYVZKqciPRsXPATs0ow8=
-X-Google-Smtp-Source: AA0mqf7WhOLVLbJZxzqpXqWUlVrch7gnqxCk7D8lXSnpSe5SgbzRPeWSLuirWsDmVfGcH6K68v5b0w==
-X-Received: by 2002:a5b:6d0:0:b0:6dd:702f:c995 with SMTP id r16-20020a5b06d0000000b006dd702fc995mr92620289ybq.204.1671087981570;
-        Wed, 14 Dec 2022 23:06:21 -0800 (PST)
+X-Gm-Message-State: ANoB5pkgnsi33fhR3xO7SCiMwSCqQEf/ukYoYtqaSApfpDPbczCnOPsc
+	PCswqI9KyCh+X0MOsk1l408=
+X-Google-Smtp-Source: AA0mqf4cI4jyd4HsA2SB7PtHQ95exKUPCUqZHxdx3jFcfYsqevvNByBGjnqtXYwfu1yiMI1mQO0g6w==
+X-Received: by 2002:a05:651c:1c7:b0:27a:267b:f33f with SMTP id d7-20020a05651c01c700b0027a267bf33fmr1706478ljn.260.1671091659015;
+        Thu, 15 Dec 2022 00:07:39 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a81:1e51:0:b0:373:6b5d:4369 with SMTP id e78-20020a811e51000000b003736b5d4369ls13333022ywe.6.-pod-prod-gmail;
- Wed, 14 Dec 2022 23:06:19 -0800 (PST)
-X-Received: by 2002:a81:7995:0:b0:3c4:960d:155a with SMTP id u143-20020a817995000000b003c4960d155amr5987582ywc.40.1671087979615;
-        Wed, 14 Dec 2022 23:06:19 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1671087979; cv=none;
+Received: by 2002:a05:6512:2012:b0:4a2:3951:eac8 with SMTP id
+ a18-20020a056512201200b004a23951eac8ls1906712lfb.0.-pod-prod-gmail; Thu, 15
+ Dec 2022 00:07:36 -0800 (PST)
+X-Received: by 2002:ac2:4346:0:b0:4a4:68b7:ded7 with SMTP id o6-20020ac24346000000b004a468b7ded7mr6762663lfl.51.1671091656155;
+        Thu, 15 Dec 2022 00:07:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671091656; cv=none;
         d=google.com; s=arc-20160816;
-        b=hb3DDEV2zCfCsfFtuhqFh3W7Eagd1OrCyd+X9KlDMyX924HRtlyvZ3fW8OpDMnDQ3v
-         VZ/RBmXaw1vJDsezSpDnkxiallHEWpEB1e+f67rMrmh4gQalCsWvxDZVqVvRrbq3yRRJ
-         L46/GxIELpyfJrQ7kbW935sd4GJp5Pd3LyEoBD6HYLMXb7WnoRSTnHrL5KhChe/b4wzr
-         Y2JMkWC8W3TqNlv7Hcr1YyNW/+i4sPdHFqzYifpFajpuKR5CT+w3DZvMYBX8lAEyYthH
-         94VQpGrG5FDSTqAOSjdEqPuhdxmJAt7/PL/WoI4dzbrvBF/c/SSoJ3oiy+qKT/ZQq2g6
-         4Lvg==
+        b=vPMGn2qiePozhnJfBl+cRDVMO78SXsXj1RKa4A9UCcygQpv3tXB1M2J2xt3x8e12Bv
+         Tai9PF8eIIOa+B1C0Wne4Iq3M8zR/zo7CM6zMz3485Xccm9Lp+4BegXlnPKyWYLNXQC2
+         uPreppZdZ6BGcyb4WUMQwDLMIgUpju0wOSy6Zhey5a4R0WrwXTVpM7vSfrCUbjJLcTTt
+         0OQpQy6P33/GtO1iaqGDdXxV7x0B7LEG09CEWR6ia96wk4f/JKT6ipJZBb+XMcLYlrFY
+         K4ltR8LtvKxOJX3m7VZxRO52cwPcTacsSM1Rl6pl1zoeRB8R7AoMeXEqPSjg8uVH+iYV
+         Z8TQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:dkim-signature;
-        bh=pJM1bQVht4KEa8PGX0/1qnwZOWHWJSoGpR3/A3VryPg=;
-        b=ZBk47TfFJgCRgSuGijOrHyxkk5fGc/d0jFfU1Ho5H9wt4rxSTHwHAYTbV+T2Xk5by1
-         YSVxgLry9DXNdFvsccgAMn3CP4Z0bdG58o52P6akDcD4XTfVsqFOZ8hNhneW1ZCXZMh5
-         kQDdszim+Esx7TOA3HgSyQIQ4CV2Ge73AxDEyDvpb1zZL22cuKjDKxJOD9JKmK35jeUR
-         GnEz5qveipV6T1zkU/5cQSLTPq+JQ/EYxz6m5OLU9Cz76YBE2nunvR9fQqiw8fge3wnh
-         Cj4sDYE1a073L3eJvyq5gx6GMq6T+iWlBkKXb0EiwKcjZxnIEmmlYF4lKPJ1FbBShQNa
-         ijLQ==
+        h=content-disposition:content-transfer-encoding:mime-version
+         :in-reply-to:references:subject:cc:to:from:date:message-id;
+        bh=meZNLv75KM5iVjoOgfYamiO7EczxVmW/02fpTbAj/C8=;
+        b=YPrkM9TsrT4grktJ9oJIz3T72NP9etZ3ore5EhoWXSp6djOcHlTb85TabbUN/ijRND
+         lUShtD5vQzQglYarLHYYWYgf5b+Y5TtUX4N4aOsLHs5AqA7G7eA46wCMKT9E3pEiuhd/
+         bRP0/5tM+nuEtZIzRdW1eTUm+EVvY+ttqino1cVPP0aR2KHvH5ynz4W27UFmI+G+0Nl1
+         fY1aIRUDJkqseoIwr3Erc7yQt7xHfjt9jUZ5tnMGxTO1Jjm+PQDj+h79TD98WJkpWEil
+         XC30PfuWXmaq0dQZEY294GNqLsIPk1MEEq2KcykFgGPyL49b/DO1+1Ttlzx+uRdcA0og
+         kCkg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=ESzkO2WQ;
-       spf=none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) smtp.mailfrom=BATV+2550d39826730817a127+7053+infradead.org+hch@bombadil.srs.infradead.org
-Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:3::133])
-        by gmr-mx.google.com with ESMTPS id p140-20020a0de692000000b003e0d1cdbb77si129148ywe.3.2022.12.14.23.06.19
+       spf=pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
+Received: from mx4.uni-regensburg.de (mx4.uni-regensburg.de. [2001:638:a05:137:165:0:4:4e7a])
+        by gmr-mx.google.com with ESMTPS id a10-20020a056512200a00b004b49cc7bf6asi406307lfb.9.2022.12.15.00.07.36
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 23:06:19 -0800 (PST)
-Received-SPF: none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) client-ip=2607:7c80:54:3::133;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p5iJj-00742L-1i; Thu, 15 Dec 2022 07:06:07 +0000
-Date: Wed, 14 Dec 2022 23:06:07 -0800
-From: Christoph Hellwig <hch@infradead.org>
-To: Wenchao Hao <haowenchao@huawei.com>
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-	Mike Christie <michael.christie@oracle.com>,
-	"James E . J . Bottomley" <jejb@linux.ibm.com>,
-	Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
-	open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, liuzhiqiang26@huawei.com,
-	linfeilong@huawei.com
-Subject: Re: [PATCH 0/2] scsi:donot skip lun if inquiry returns PQ=1 for all
- hosts
-Message-ID: <Y5rHX95Vvl1aLhbp@infradead.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 15 Dec 2022 00:07:36 -0800 (PST)
+Received-SPF: pass (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates 2001:638:a05:137:165:0:4:4e7a as permitted sender) client-ip=2001:638:a05:137:165:0:4:4e7a;
+Received: from mx4.uni-regensburg.de (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id E0E556000051
+	for <open-iscsi@googlegroups.com>; Thu, 15 Dec 2022 09:07:34 +0100 (CET)
+Received: from gwsmtp.uni-regensburg.de (gwsmtp1.uni-regensburg.de [132.199.5.51])
+	by mx4.uni-regensburg.de (Postfix) with ESMTP id CACF9600004E
+	for <open-iscsi@googlegroups.com>; Thu, 15 Dec 2022 09:07:30 +0100 (CET)
+Received: from uni-regensburg-smtp1-MTA by gwsmtp.uni-regensburg.de
+	with Novell_GroupWise; Thu, 15 Dec 2022 09:07:31 +0100
+Message-Id: <639AD5C0020000A100050749@gwsmtp.uni-regensburg.de>
+X-Mailer: Novell GroupWise Internet Agent 18.4.2
+Date: Thu, 15 Dec 2022 09:07:28 +0100
+From: "Ulrich Windl" <Ulrich.Windl@rz.uni-regensburg.de>
+To: <haowenchao@huawei.com>
+Cc: "open-iscsi" <open-iscsi@googlegroups.com>,
+ <linfeilong@huawei.com>,<liuzhiqiang26@huawei.com>,
+ <jejb@linux.ibm.com>, <martin.petersen@oracle.com>,
+ <michael.christie@oracle.com>, "Chris Leech" <cleech@redhat.com>,
+ "Lee Duncan" <lduncan@suse.com>, <linux-kernel@vger.kernel.org>,
+ <linux-scsi@vger.kernel.org>
+Subject: Antw: [EXT] Re: [PATCH 0/2] scsi:donot skip lun if inquiry
+ returns PQ=1 for all hosts
 References: <20221214070846.1808300-1-haowenchao@huawei.com>
-MIME-Version: 1.0
+ <Y5rHX95Vvl1aLhbp@infradead.org>
+In-Reply-To: <Y5rHX95Vvl1aLhbp@infradead.org>
+Mime-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Disposition: inline
-In-Reply-To: <20221214070846.1808300-1-haowenchao@huawei.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Original-Sender: hch@infradead.org
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@infradead.org header.s=bombadil.20210309 header.b=ESzkO2WQ;
-       spf=none (google.com: bombadil.srs.infradead.org does not designate
- permitted sender hosts) smtp.mailfrom=BATV+2550d39826730817a127+7053+infradead.org+hch@bombadil.srs.infradead.org
+X-Original-Sender: Ulrich.Windl@rz.uni-regensburg.de
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of ulrich.windl@rz.uni-regensburg.de designates
+ 2001:638:a05:137:165:0:4:4e7a as permitted sender) smtp.mailfrom=Ulrich.Windl@rz.uni-regensburg.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -135,16 +140,33 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Wed, Dec 14, 2022 at 03:08:44PM +0800, Wenchao Hao wrote:
-> When iSCSI initiator logged in target, the target attached none valid
-> lun but lun0. lun0 is not an valid disk, while it would response
-> inquiry command with PQ=1 and other general scsi commands like probe lun.
-> The others luns of target is added/removed dynamicly.
+>>> Christoph Hellwig <hch@infradead.org> schrieb am 15.12.2022 um 08:06 in
+Nachricht <Y5rHX95Vvl1aLhbp@infradead.org>:
+> On Wed, Dec 14, 2022 at 03:08:44PM +0800, Wenchao Hao wrote:
+>> When iSCSI initiator logged in target, the target attached none valid
+>> lun but lun0. lun0 is not an valid disk, while it would response
+>> inquiry command with PQ=1 and other general scsi commands like probe lun.
+>> The others luns of target is added/removed dynamicly.
+> 
+> I can't find any special casing of LUN0 in RFC7144, can you clarify
+> where you think that treats LUN0 any differently than other transports?
 
-I can't find any special casing of LUN0 in RFC7144, can you clarify
-where you think that treats LUN0 any differently than other transports?
+Actusally I have no idea, but as a user of FC SAN systems I can remember a case when a storage system had to present a dummy LUN0 to enable hosts to find other LUNs (while LUN0 was never actually used). Maybe the client code was imperfect, I don't know.
+
+> 
+> -- 
+> You received this message because you are subscribed to the Google Groups 
+> "open-iscsi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an 
+> email to open-iscsi+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit 
+> https://groups.google.com/d/msgid/open-iscsi/Y5rHX95Vvl1aLhbp%40infradead.org 
+> .
+
+
+
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/Y5rHX95Vvl1aLhbp%40infradead.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/639AD5C0020000A100050749%40gwsmtp.uni-regensburg.de.
