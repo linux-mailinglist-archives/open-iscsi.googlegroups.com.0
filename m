@@ -1,33 +1,33 @@
-Return-Path: <open-iscsi+bncBCK2XL5R4APRBHFU6COAMGQEOE2GXYA@googlegroups.com>
+Return-Path: <open-iscsi+bncBCK2XL5R4APRBBNV6COAMGQERV3KDNA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qk1-x73f.google.com (mail-qk1-x73f.google.com [IPv6:2607:f8b0:4864:20::73f])
-	by mail.lfdr.de (Postfix) with ESMTPS id CACEE64E79A
-	for <lists+open-iscsi@lfdr.de>; Fri, 16 Dec 2022 08:11:26 +0100 (CET)
-Received: by mail-qk1-x73f.google.com with SMTP id bi42-20020a05620a31aa00b006faaa1664b9sf1182261qkb.8
-        for <lists+open-iscsi@lfdr.de>; Thu, 15 Dec 2022 23:11:26 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1671174685; cv=pass;
+Received: from mail-yw1-x1140.google.com (mail-yw1-x1140.google.com [IPv6:2607:f8b0:4864:20::1140])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3563F64E79B
+	for <lists+open-iscsi@lfdr.de>; Fri, 16 Dec 2022 08:13:12 +0100 (CET)
+Received: by mail-yw1-x1140.google.com with SMTP id 00721157ae682-349423f04dbsf19629467b3.13
+        for <lists+open-iscsi@lfdr.de>; Thu, 15 Dec 2022 23:13:12 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1671174790; cv=pass;
         d=google.com; s=arc-20160816;
-        b=b6uILg2Amyh4S/fpFxnBiwn7cLJWzoEnOkQnloSRqGXLlzHO7iqJ/6G79EWimGin/4
-         zoxHXeRf1oy4XJA5tKZyHC8XN1gmflUWJQBrpMbDrIWxisc9oWI62EsESfryzYYAatmb
-         dzTuKHBOQIm1aNzIYJo1BsR+CLuTeXS92Tr+EEYN9IZlavI2ck2AibRETlvQxvTQo33p
-         LsxnBG/cFy2iPY77ZKzu8DPzwzbFan01pTmWC5E7QjidKIA5VkSIddlABbFUmlVdvVkS
-         Ph0Tp7onrrMTDxsTSzo4IX2xwaL4/IE3ov5t5awFOO5ue4jpYYm2gcxOmDN8BFy1BDur
-         N28Q==
+        b=XotNb2aNrqHqPLM2AoK7QbGtFNbRSqT9hUxbFcACjbLdqmT8VxASpzy+BvRyL6/wRb
+         j7GQwvRHlDKQamoxdVuqA0uqg3Apy0j5PpJtJX8nTcQMHr+EaWDMUgRCdxK5U3GIApdP
+         X0Bt3B9wI3zHZRf0ZFpFZevFkfJs2l+LnjihB2TgariyQSQ9HBC+gXC/+7/nHTLxYQPx
+         k4h3gKutUIqReeRwqR3V/5pdGVVcYaQ52GiWkzkjGCPnkuMUSuQXu+79DIVtQgWbt4nX
+         2rDtb0c7jpS7YlOurn8JkrsQpHJscgkdCGwszJ9ZnYQoku4dd6aZkRjfelaDxFjh0IWD
+         6XUQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:in-reply-to
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:sender:dkim-signature;
-        bh=0KI9xy4UzsTLAgOvIr6GONTYER/3vWYOb4Dx0UiIgaA=;
-        b=vGr0gYg1JNCBVYhv1KjC+21pypfT0jXRQ956NiKOv41mIlpc6hKelSi33qPEdw7hvT
-         d6sHUwlGBt8JQbWmgRE7IHuLziJeAv+GpY95yAl8ukL9p95D9/XIbDpoeeC1Lp1kf87c
-         aswmDorxA/YE5FM6gOeg8i5jAoX9c5ExSf+B0mVTaYt8D8H6IUR26aR7ZqQGZpYLwqfR
-         9LlRAW55IG2ESWa4OMhugIUqWjlD6X389MYKB6bE76LL+jIaQzPZFoGdmJzge6HVTJep
-         luhuwQpVo/4fl5RPuW+c8SEz6Euqr6nqKypfbUcHrGTrDgzzhFS8BqJ0dco9PsanWM6L
-         AFMg==
+        bh=k0mPYARguNIN069IJdxN14NMHDi1OS9AzdqSPCuXs6w=;
+        b=SMK9J1VOWIvSDIgy6bbX1l7WOjy/k1hK3vnBHKpHY73elupqk54E0WzmT5BnpEV6mc
+         tMijVc0qg3hlie7fnUqlNLah3Ksae3nP+68hw2iafwbHLYQLzUbvnzUS9lLr19Vnzn+a
+         99pyEIX4GxdYvHB8DhBggkIc4NtOWybPvAuX9383h8IqZCV2/ZaWsZyIfFz0P+9aVn4T
+         I7lYqerXZVhJxgUqHRVT4CVS6GxmmZNGzxYC9+KEfO1tqw3Hw874HJfKwDdt/tpzIdR0
+         bdxp7uLz47yfEc/A2Hrm/+yNkM1Tcvb6YbHewgEiq8ZXz9KSB2ya1rwHd3GK2/deKgrA
+         9XYg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=m0+OLoWt;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=b7yHcHD4;
        spf=none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) smtp.mailfrom=BATV+296c1fbe19c453695b58+7054+infradead.org+hch@bombadil.srs.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:x-original-sender:in-reply-to
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=0KI9xy4UzsTLAgOvIr6GONTYER/3vWYOb4Dx0UiIgaA=;
-        b=Jv7UK7w7Bq/BLYdowVvx8mGUyePonF0DSnL6NRjU0PWtGWrSOTRIMihvstWlWQrNub
-         Mlr2hJnB8JKtFmYfIsmZP2l4GhnSyXm1WOWpJg6G0FtTb46fzvierPe+n15Pueb7rHAc
-         xZVTFBq/8nt5pRt4Go45PD0TzOu+FC2BSU+bvytuMdpNeX3/gv2iOR96tkdIoRdWBpTP
-         9/nB74DoN1aFw3ARTHqgxDX2DaDQ2+PyY2m4IbsFqX0tXwYbCNDVgQmms3FZpCx8YgzH
-         pHpAya3ZmlQhxfYFY61mOa4Dq0qWklffpnVcQuIA0clXSR+zAS+flNDkDOtTCzXwgLxp
-         j7xQ==
+        bh=k0mPYARguNIN069IJdxN14NMHDi1OS9AzdqSPCuXs6w=;
+        b=FB8ES5nBd/CR0fRwZOohpSw5thc80AmGwPlaobxqx6hVg0DwZeD6eg79hS8Q2rszeS
+         OlZgogBwUtzuFJl+VzhLLXNp0Ju6aSXi1Cv7PBMVhpLJneFO0E3J/1GBhZiIibY+pZ0v
+         ryyPIrB94GJQirM/aAjEWL8MLE8RUfph+6kNYzTc8HOKJmN8KCnmpQr7amq+MoTMtyzz
+         H6ODF1K/QB7HQq7WszwO8ot9ftkXG+6zCU4VJhXhol/HCRXZi6o+n3zPP6daFlh6SoHr
+         4wLdtdMnOas9Z+siKZcwg3IfASLSw/qDmXRZ4WMMmpZ3OAM5cYD0/iXDlQcOZBasu5Fu
+         3C9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
@@ -51,76 +51,78 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:x-gm-message-state:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0KI9xy4UzsTLAgOvIr6GONTYER/3vWYOb4Dx0UiIgaA=;
-        b=vW88zavg87mL6VozMEegwdkiuOKPqz6+mRb8mtvsj6P3Bv1SYhQFwErt9AbS0hwCrg
-         /sjeAApyLNCINwr9EXnGaxB3+XCXupMdjk0qacpQD5Vc8ZoG7wRpaay3GwQAdE3eYV/X
-         zs1Jp+oSMV90QTW+mDtC+oJQkrA79KcGT0U1mJ71nNR0SJjgkYn1MO2Y12ZKFlG4W9r1
-         jbh5osAjAYCCbu8HpuJXUPbmKPyf90a6BxscFubrcyMFhiR2BuprX75MUOCUY9WQZ9cw
-         3/dw8SMZZYEmdmc1fV9DWC94xkQULyMIEuq6y+4S7M2vaUPay/S3hMnnB0xR5mTG41Lk
-         zxyA==
+        bh=k0mPYARguNIN069IJdxN14NMHDi1OS9AzdqSPCuXs6w=;
+        b=zDnqfbdu70QgrC8GtiImwQvN6+8/tmp4VIUhyASov2pXRhzLQUPkTwHWrlRMk1vPSr
+         HxxT7GJ7hnfvW9YaTODiOm2c+NsYB+cJeyndFHpwmwVY3cf0uKYrj7uuPNdRme3Sn7VC
+         PcaoPUwH1i85Vu8UEUiahF6TJ9rkCGPnktn0WGrY+WSCZRpeYQfjMYZ5eNQOxxu/QEuZ
+         xquzy+wEr2NZ/hzVBVntHz1yOOAH4Q4rVB/ctsBgQ5jztHqY4ZOPadMNzvnavACADeq3
+         jD6nDrRhXvQvGAWXMIoaYhysEw2Cr22IyAdJrYrqwslA6RHMENNOYJJwpeSA++dY4hLs
+         JnuA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ANoB5pn12r1Trr8H4gs4UjxUXibfUKWKR5C8pmESMWnbO2BQc68LOIbK
-	bw3jghfTzWWYUNWFwvnj/tY=
-X-Google-Smtp-Source: AA0mqf7cFeSIIOc0kBY+WL03hXRQXfBcmyHfy7pkIYP0T3WI5ptt3xjBuhCjP/SaaGoBbQSsrRu7rg==
-X-Received: by 2002:a0c:be90:0:b0:4bb:5ac4:1268 with SMTP id n16-20020a0cbe90000000b004bb5ac41268mr73281637qvi.24.1671174685570;
-        Thu, 15 Dec 2022 23:11:25 -0800 (PST)
+X-Gm-Message-State: ANoB5pnflovZpmUGiWCyrTRmJuu3S6UszTBvR80eo1IXgZkRkDBO9/gV
+	+cdhMt3U+2tUafl43jJp8+o=
+X-Google-Smtp-Source: AA0mqf5Urowz5r3Eolo7xZ2TOWghKBOdMYJi0vJtlX+gJHJijTiCoRa4J/gGWFrdurCb+HmdFaq/IA==
+X-Received: by 2002:a25:ba92:0:b0:6d3:66bb:786b with SMTP id s18-20020a25ba92000000b006d366bb786bmr99466944ybg.459.1671174790675;
+        Thu, 15 Dec 2022 23:13:10 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:622a:2512:b0:3a6:a289:7393 with SMTP id
- cm18-20020a05622a251200b003a6a2897393ls1307890qtb.11.-pod-prod-gmail; Thu, 15
- Dec 2022 23:11:24 -0800 (PST)
-X-Received: by 2002:ac8:5ed5:0:b0:3a7:e809:1fe3 with SMTP id s21-20020ac85ed5000000b003a7e8091fe3mr39251599qtx.49.1671174684234;
-        Thu, 15 Dec 2022 23:11:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1671174684; cv=none;
+Received: by 2002:a25:b319:0:b0:6f1:cfad:b7bb with SMTP id l25-20020a25b319000000b006f1cfadb7bbls1042768ybj.7.-pod-prod-gmail;
+ Thu, 15 Dec 2022 23:13:08 -0800 (PST)
+X-Received: by 2002:a25:e08f:0:b0:6f0:6106:c551 with SMTP id x137-20020a25e08f000000b006f06106c551mr41501916ybg.17.1671174788821;
+        Thu, 15 Dec 2022 23:13:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671174788; cv=none;
         d=google.com; s=arc-20160816;
-        b=qCCnB55HMp2zADuGwLtoJJ+nAOQcY3OylR3CKdhf/60EpWhP4o1Ehf7wqc/Jc1qQUl
-         oRDW06a9lhrBtZrOZqbGMYEnr4eq4cJNX4IqImXG2PgHVRrVwU+2jc5yI6adll76LhhQ
-         4O+aSGf9xIwj5UfZRROKuyQn4hlHdu6sljXC/TSpM70pJz8N+THCRNKgOYY2T5xga9S8
-         wvVBfoiLrbA3qzcAvjcjHZDCbZ8YLI692BeL0suIEN1CpKMVOR/4yRgovNcZ5uiOY7Pf
-         BNq39VzpAILm3vLK7NU4kozveCCv75hJx/PiE0u0AH7GL5TKgchIj9+Bn7L9rQT919op
-         R8PA==
+        b=xKUThI2gzLL11mVhE7VO63OtPME/CaZM8l8yCYDxOTnZiyEqeMGstClLc4v1NEVOgM
+         9ktT0sIkq+rWXBtv8YN43LcHb8jdfyRbn3fgyVJ3NsUr4y+jIR8b8I3bQo8zRl5QBjzT
+         RlXVOkZpbcFD5CDzl+RUurWUvRoH1QOHz+QlUpQa9CKxGTusBirWl3N2pdCkNigrOtRQ
+         OXVfc8s8zivixaNdQSXxkp4CNVE09apZGT5yM0xbnCLbD+QaNr1oQSXEpIJREibuaPWA
+         otT9YEgIiCXX6W19G7MlNzl0//H98nvNCGwj0Uhp1oAy1Wxd83kvm3sj+VSRsU9lsmu+
+         I85A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:dkim-signature;
-        bh=rbdP76tLSLd0zXbJ7Ayy7yAOCBynRgWdD+HyAwvTvH4=;
-        b=VrKhxIw3ROc9MmkG4Rkf3mzwHINJ6kKi9WULPi5kwK/OE8vEHbKeJNKNIW6VOYSoRe
-         cJ8UQBqi/cnSd5+Z7kD5/TW4DGTTRP+e2Af0iYlBR+0snjJtf3+icqMRzGXjpGoKmKvQ
-         sJKa19cbPRyRNz6V5UzHsJszxueKoN58NY2IEvJuPVtWicAT4mIy3rrYDyWoQjFUbi6o
-         nGiXrE3InEw9oB0OhnpiIjPjNVZz/z0IUe4EbMzDRizkh8rhP/qnfiv3AY2nRTQnLHAA
-         pS8NDfCx53Ch60Q4tV07tdmlLckQ5cVp09Q1PIqJ2ntuM6WY0qH479gZyJHjlQ2t4pUE
-         VjzA==
+        bh=vqRMSpD1eVYXTGaFFnMc2dvCJYloydrqlHDvsUDDbr0=;
+        b=gpXkquy5HMx7wI3cmv7b4g9qHFbRykKdRmlpajD/Xm83FMjB50FxdFYElQ5493/sYI
+         PzIpuWaHfZaud6BwVM0iUYNmBqsdPc3No8fZ3OltKAjjl0fsVwTypm0UxRCTiETAucC6
+         cgI1+4Ww3BBjt1wme5pIDpiLjz41qcDxy+FY/ql8rFPOLxP6Tj8E1Gesm9044LAyXzkQ
+         Vu/qLZhLVlIC951PIClds4OaSOPlpREJoIETP4hrFHHb2LYcriQSpMzWU8OOKGtTP2Nr
+         AH8bqXdaERo0bhgH+KYJXbVWPHJ81jbYmnJWsLqa4WEt/4MBJlFcSxurgGovgTpvVs4z
+         Trqg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=m0+OLoWt;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=b7yHcHD4;
        spf=none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) smtp.mailfrom=BATV+296c1fbe19c453695b58+7054+infradead.org+hch@bombadil.srs.infradead.org
 Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:3::133])
-        by gmr-mx.google.com with ESMTPS id l25-20020ac84cd9000000b003a7fa08057asi69456qtv.1.2022.12.15.23.11.24
+        by gmr-mx.google.com with ESMTPS id o132-20020a25d78a000000b006d3034c7baesi122561ybg.3.2022.12.15.23.13.08
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Dec 2022 23:11:24 -0800 (PST)
+        Thu, 15 Dec 2022 23:13:08 -0800 (PST)
 Received-SPF: none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) client-ip=2607:7c80:54:3::133;
 Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p64sD-00DKqT-10; Fri, 16 Dec 2022 07:11:13 +0000
-Date: Thu, 15 Dec 2022 23:11:13 -0800
+	id 1p64tu-00DL2R-5w; Fri, 16 Dec 2022 07:12:58 +0000
+Date: Thu, 15 Dec 2022 23:12:58 -0800
 From: Christoph Hellwig <hch@infradead.org>
-To: Ulrich Windl <Ulrich.Windl@rz.uni-regensburg.de>
-Cc: haowenchao@huawei.com, open-iscsi <open-iscsi@googlegroups.com>,
-	linfeilong@huawei.com, liuzhiqiang26@huawei.com, jejb@linux.ibm.com,
-	martin.petersen@oracle.com, michael.christie@oracle.com,
-	Chris Leech <cleech@redhat.com>, Lee Duncan <lduncan@suse.com>,
-	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: Antw: [EXT] Re: [PATCH 0/2] scsi:donot skip lun if inquiry
- returns PQ=1 for all hosts
-Message-ID: <Y5waEc0iqfGkkN7f@infradead.org>
+To: Wenchao Hao <haowenchao@huawei.com>
+Cc: Christoph Hellwig <hch@infradead.org>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Mike Christie <michael.christie@oracle.com>,
+	"James E . J . Bottomley" <jejb@linux.ibm.com>,
+	Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
+	open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, liuzhiqiang26@huawei.com,
+	linfeilong@huawei.com
+Subject: Re: [PATCH 0/2] scsi:donot skip lun if inquiry returns PQ=1 for all
+ hosts
+Message-ID: <Y5waet8RoXKQHDR7@infradead.org>
 References: <20221214070846.1808300-1-haowenchao@huawei.com>
  <Y5rHX95Vvl1aLhbp@infradead.org>
- <639AD5C0020000A100050749@gwsmtp.uni-regensburg.de>
+ <57c12317-c229-8cbe-b3d2-d799ea5f554c@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Disposition: inline
-In-Reply-To: <639AD5C0020000A100050749@gwsmtp.uni-regensburg.de>
+In-Reply-To: <57c12317-c229-8cbe-b3d2-d799ea5f554c@huawei.com>
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Original-Sender: hch@infradead.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@infradead.org header.s=bombadil.20210309 header.b=m0+OLoWt;
+ header.i=@infradead.org header.s=bombadil.20210309 header.b=b7yHcHD4;
        spf=none (google.com: bombadil.srs.infradead.org does not designate
  permitted sender hosts) smtp.mailfrom=BATV+296c1fbe19c453695b58+7054+infradead.org+hch@bombadil.srs.infradead.org
 Reply-To: open-iscsi@googlegroups.com
@@ -136,15 +138,18 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Thu, Dec 15, 2022 at 09:07:28AM +0100, Ulrich Windl wrote:
-> Actusally I have no idea, but as a user of FC SAN systems I can remember a case when a storage system had to present a dummy LUN0 to enable hosts to find other LUNs (while LUN0 was never actually used). Maybe the client code was imperfect, I don't know.
+On Thu, Dec 15, 2022 at 05:09:31PM +0800, Wenchao Hao wrote:
+> In my opinion, if the addressed lun still response the
+> inquiry and other commands, we should not skip it,
+> maybe let the scsi drivers like sd/st/sg to determine
+> how to handle this lun accordint to the PQ value.
+> 
+> As discussed in following mail, another drivers would
+> be broken too.
 
-Ignoring some of the well known LU bits that never really became
-practically relevant, lun0 is needed to use the REPORT_LUNS command
-to scane for the other logical units.  But unless the PQ says it
-actually is a valid logic unit, we never add a sdev for it.
+So why do you force a specific behavior for iSCSI?
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/Y5waEc0iqfGkkN7f%40infradead.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/Y5waet8RoXKQHDR7%40infradead.org.
