@@ -1,138 +1,128 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBT6I5OOAMGQENDXDQJI@googlegroups.com>
+Return-Path: <open-iscsi+bncBCK2XL5R4APRBHFU6COAMGQEOE2GXYA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-vs1-xe40.google.com (mail-vs1-xe40.google.com [IPv6:2607:f8b0:4864:20::e40])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E9B64D84A
-	for <lists+open-iscsi@lfdr.de>; Thu, 15 Dec 2022 10:09:38 +0100 (CET)
-Received: by mail-vs1-xe40.google.com with SMTP id 4-20020a671704000000b003af7639515asf576532vsx.8
-        for <lists+open-iscsi@lfdr.de>; Thu, 15 Dec 2022 01:09:38 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1671095377; cv=pass;
+Received: from mail-qk1-x73f.google.com (mail-qk1-x73f.google.com [IPv6:2607:f8b0:4864:20::73f])
+	by mail.lfdr.de (Postfix) with ESMTPS id CACEE64E79A
+	for <lists+open-iscsi@lfdr.de>; Fri, 16 Dec 2022 08:11:26 +0100 (CET)
+Received: by mail-qk1-x73f.google.com with SMTP id bi42-20020a05620a31aa00b006faaa1664b9sf1182261qkb.8
+        for <lists+open-iscsi@lfdr.de>; Thu, 15 Dec 2022 23:11:26 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1671174685; cv=pass;
         d=google.com; s=arc-20160816;
-        b=X5WFTUpCot5Efmz6vk1kR6kJrj+lrTp42jcJwMUhi3RU9waw4PRuhuy0Qok0Rsp1nQ
-         zP5rA5RqwCKm/mlYrfgeyZIxQbWehlJrd4LiFMuGFwGQ3wFELGrkSdHqtIQ1ctvS7Xkt
-         i/PkUBv9W0Ev/weurpTactawxiGluZL4AyxENZlnKgLEA+QplQw1IEFqXdeg1yg4eOCf
-         yb9hGfb8Sqnj8KLSlVMnTOlM3MhoSRpC+u0CtYzegEabaUIGzuqnJusbgZc2kqvvN69H
-         kEOgfeYkTlkC5L7fS+yZSiI4raDGUKg3JMt7K6G0nNtxhdhdFyNfFcG+a8c0b9EpGI8O
-         xTgg==
+        b=b6uILg2Amyh4S/fpFxnBiwn7cLJWzoEnOkQnloSRqGXLlzHO7iqJ/6G79EWimGin/4
+         zoxHXeRf1oy4XJA5tKZyHC8XN1gmflUWJQBrpMbDrIWxisc9oWI62EsESfryzYYAatmb
+         dzTuKHBOQIm1aNzIYJo1BsR+CLuTeXS92Tr+EEYN9IZlavI2ck2AibRETlvQxvTQo33p
+         LsxnBG/cFy2iPY77ZKzu8DPzwzbFan01pTmWC5E7QjidKIA5VkSIddlABbFUmlVdvVkS
+         Ph0Tp7onrrMTDxsTSzo4IX2xwaL4/IE3ov5t5awFOO5ue4jpYYm2gcxOmDN8BFy1BDur
+         N28Q==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:in-reply-to:from
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:dkim-signature;
-        bh=Yef4MXPKBGE2RHrZsE++ddeLJzYxx3kQ4xS4TdYUXFQ=;
-        b=qQMQ/AMsEJXTmbYfKssojBEZpFS5JuHt72A/JNTSiVnUIiL0J1ZULvMh9t1w9vyWmc
-         HTZYWT6rIFsBf0ufv+kbQe7SiuSsADkHbRRIFbRYEg4UjlDMfuYSxfG6UA6bLdkgxh5q
-         QkK/goLf3Ipmtq5LraqQJiTHwvV8O64FvUHKjlUeypWyidD+6FQOeZxNWo2hvbz1vTVV
-         DbxyzQ4CXzk3PL673ypQL87j7ByrXv8epAeYH1dxLKuGy/wYbZKBjq8LjRiYWSrHfEhu
-         6o4XYE1WZOa6Wr+5K5vtruAL40rZ2MZ2I+wsba9cEiraiHiOGQcf4kQ3Agd8a60wPFCq
-         agQg==
+         :list-id:mailing-list:precedence:reply-to:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:sender:dkim-signature;
+        bh=0KI9xy4UzsTLAgOvIr6GONTYER/3vWYOb4Dx0UiIgaA=;
+        b=vGr0gYg1JNCBVYhv1KjC+21pypfT0jXRQ956NiKOv41mIlpc6hKelSi33qPEdw7hvT
+         d6sHUwlGBt8JQbWmgRE7IHuLziJeAv+GpY95yAl8ukL9p95D9/XIbDpoeeC1Lp1kf87c
+         aswmDorxA/YE5FM6gOeg8i5jAoX9c5ExSf+B0mVTaYt8D8H6IUR26aR7ZqQGZpYLwqfR
+         9LlRAW55IG2ESWa4OMhugIUqWjlD6X389MYKB6bE76LL+jIaQzPZFoGdmJzge6HVTJep
+         luhuwQpVo/4fl5RPuW+c8SEz6Euqr6nqKypfbUcHrGTrDgzzhFS8BqJ0dco9PsanWM6L
+         AFMg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=m0+OLoWt;
+       spf=none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) smtp.mailfrom=BATV+296c1fbe19c453695b58+7054+infradead.org+hch@bombadil.srs.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:in-reply-to
-         :from:references:cc:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Yef4MXPKBGE2RHrZsE++ddeLJzYxx3kQ4xS4TdYUXFQ=;
-        b=G2Smob5ms5sDwcXaG2Na0wIJZ1u3sLHRSlomZt201O9gDapLiY2gAnx8xEhfUsKDZF
-         sdv5JY1YOURDpgH2h/0q1UMepm0B1HgUxYjeHlLLVZ9vE5gqwaJRRpLWfYdRLj2ioOex
-         GA9h9kdRvO3x1F+WZz9xg3gp7KaQcC6s3tgTmjKYZm+Mlv2teCRaFY1kqohgOFFjI6C8
-         5QClixmcPHo/3bJD1vm77zzjG+z8GIJ1FtlpDvfwGTkJRPt1ftmo9ToXkbYW2Rp7/P96
-         T3A/BBvEqBBUvqqM+upp4XmqnLXYgX6RgDmME8MR6leldrQ/6ZhydZVtIOGduxAa/vGy
-         eOjA==
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=0KI9xy4UzsTLAgOvIr6GONTYER/3vWYOb4Dx0UiIgaA=;
+        b=Jv7UK7w7Bq/BLYdowVvx8mGUyePonF0DSnL6NRjU0PWtGWrSOTRIMihvstWlWQrNub
+         Mlr2hJnB8JKtFmYfIsmZP2l4GhnSyXm1WOWpJg6G0FtTb46fzvierPe+n15Pueb7rHAc
+         xZVTFBq/8nt5pRt4Go45PD0TzOu+FC2BSU+bvytuMdpNeX3/gv2iOR96tkdIoRdWBpTP
+         9/nB74DoN1aFw3ARTHqgxDX2DaDQ2+PyY2m4IbsFqX0tXwYbCNDVgQmms3FZpCx8YgzH
+         pHpAya3ZmlQhxfYFY61mOa4Dq0qWklffpnVcQuIA0clXSR+zAS+flNDkDOtTCzXwgLxp
+         j7xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:in-reply-to
-         :from:references:cc:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Yef4MXPKBGE2RHrZsE++ddeLJzYxx3kQ4xS4TdYUXFQ=;
-        b=g2Wt0z0eoOCH3kHvlQWAou+voso1pOrm5ZhymM3NAlLCShp1H6H6Q/1XymGKASFRAY
-         nP80kK6Vs0U7DiM3p35Dz4t16LOX6J7cT3dFiL9q5Jm0bSjXDmoPL8cXo+Y44pm2NHJv
-         Xolj+fHet7/KU/GhvDLfCCemq/gt/X2vKcCuCza1NQMvWtYZdNszkTFgY8YAA2yQg2si
-         cg1/hz+YlAi5btPMHY7am8imtwbKG+3ML8WKzN/tjY/H7wEzq4lt0lbm5e5N7DGMebQT
-         +ik53bZBRyaVl/Uksmo+yWxEfuulZvmHd99UYKOMadOQYNpixhEvL4BrYxMW+ldC7MBk
-         hM9Q==
-X-Gm-Message-State: ANoB5plOnHw4R9mukGcjlY5Nuzu3+KYsVldbIVzNBgR5rfA3venengOj
-	CehC2fe3dgLX68gpu4+rgVk=
-X-Google-Smtp-Source: AA0mqf42hMy83LuE/dtIp69QKsYOhrPuSJxmN7xLD8WVW9xzupjCvyGCkjXmwmFf3cLaJCirSx98VQ==
-X-Received: by 2002:a67:ef90:0:b0:3b1:1274:32c with SMTP id r16-20020a67ef90000000b003b11274032cmr18750309vsp.68.1671095377424;
-        Thu, 15 Dec 2022 01:09:37 -0800 (PST)
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:x-gm-message-state:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0KI9xy4UzsTLAgOvIr6GONTYER/3vWYOb4Dx0UiIgaA=;
+        b=vW88zavg87mL6VozMEegwdkiuOKPqz6+mRb8mtvsj6P3Bv1SYhQFwErt9AbS0hwCrg
+         /sjeAApyLNCINwr9EXnGaxB3+XCXupMdjk0qacpQD5Vc8ZoG7wRpaay3GwQAdE3eYV/X
+         zs1Jp+oSMV90QTW+mDtC+oJQkrA79KcGT0U1mJ71nNR0SJjgkYn1MO2Y12ZKFlG4W9r1
+         jbh5osAjAYCCbu8HpuJXUPbmKPyf90a6BxscFubrcyMFhiR2BuprX75MUOCUY9WQZ9cw
+         3/dw8SMZZYEmdmc1fV9DWC94xkQULyMIEuq6y+4S7M2vaUPay/S3hMnnB0xR5mTG41Lk
+         zxyA==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: ANoB5pn12r1Trr8H4gs4UjxUXibfUKWKR5C8pmESMWnbO2BQc68LOIbK
+	bw3jghfTzWWYUNWFwvnj/tY=
+X-Google-Smtp-Source: AA0mqf7cFeSIIOc0kBY+WL03hXRQXfBcmyHfy7pkIYP0T3WI5ptt3xjBuhCjP/SaaGoBbQSsrRu7rg==
+X-Received: by 2002:a0c:be90:0:b0:4bb:5ac4:1268 with SMTP id n16-20020a0cbe90000000b004bb5ac41268mr73281637qvi.24.1671174685570;
+        Thu, 15 Dec 2022 23:11:25 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a1f:2410:0:b0:3bd:614b:5218 with SMTP id k16-20020a1f2410000000b003bd614b5218ls3562573vkk.5.-pod-prod-gmail;
- Thu, 15 Dec 2022 01:09:35 -0800 (PST)
-X-Received: by 2002:ac5:cc49:0:b0:3c6:d4a8:d9cf with SMTP id l9-20020ac5cc49000000b003c6d4a8d9cfmr133307vkm.13.1671095375343;
-        Thu, 15 Dec 2022 01:09:35 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1671095375; cv=none;
+Received: by 2002:a05:622a:2512:b0:3a6:a289:7393 with SMTP id
+ cm18-20020a05622a251200b003a6a2897393ls1307890qtb.11.-pod-prod-gmail; Thu, 15
+ Dec 2022 23:11:24 -0800 (PST)
+X-Received: by 2002:ac8:5ed5:0:b0:3a7:e809:1fe3 with SMTP id s21-20020ac85ed5000000b003a7e8091fe3mr39251599qtx.49.1671174684234;
+        Thu, 15 Dec 2022 23:11:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671174684; cv=none;
         d=google.com; s=arc-20160816;
-        b=wXPzwiSVjmuuCra7rs4B9oEYiUeQi1KvcgWj/6irwqU/PH0OG43ipqb7BhGfqB8xbJ
-         52qcbi9qAnPA3kZvd3m0YRyhVUk0nnM2NY883MW5BQrMdZjWDo3jLbwHG2eyB5hpLDeK
-         exM0f0RwWRRi+BcI1E05mMIh/Dn/O+lM/31DCqN7Lwrvga9VEullTp+HeFmvUVnMth9V
-         xnSzoY1XfhJO2+BKd4SZgQ1yBB3iU+fLUfHuAnDJLDz7oHLiAEKp3wqlNAWHutDANvPF
-         M234XXDQlErnAJ5H6tehWZUOS5uo8CLHWaE5wEJrzvSefWdfwerWbIFPgUJPy0cfkCrh
-         VoAQ==
+        b=qCCnB55HMp2zADuGwLtoJJ+nAOQcY3OylR3CKdhf/60EpWhP4o1Ehf7wqc/Jc1qQUl
+         oRDW06a9lhrBtZrOZqbGMYEnr4eq4cJNX4IqImXG2PgHVRrVwU+2jc5yI6adll76LhhQ
+         4O+aSGf9xIwj5UfZRROKuyQn4hlHdu6sljXC/TSpM70pJz8N+THCRNKgOYY2T5xga9S8
+         wvVBfoiLrbA3qzcAvjcjHZDCbZ8YLI692BeL0suIEN1CpKMVOR/4yRgovNcZ5uiOY7Pf
+         BNq39VzpAILm3vLK7NU4kozveCCv75hJx/PiE0u0AH7GL5TKgchIj9+Bn7L9rQT919op
+         R8PA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id;
-        bh=GdYdn2zvt/obQzvde83xQWjO0GifY2s9fm41GhV70oQ=;
-        b=eZvioFNKjsOGJYg4Ygexqx2zyshNe2yFNNBYYXvozqQeLEC/wtYYq9ZS7Ex9Mx+IMk
-         T+h1Zo7nNnUbX46/wCpVkEcTdwOA9rZ9iq8muoNGv9qO9H8jQP3VZYumvd5rp3k6Afsx
-         yHmQ+lenYzR4zJTjFLNnqS6qjcTIzB7/bmdPpQWPm4TdjNhEN3TA7Ofl2ZrS522H7LcU
-         g/nqm9VUj9eb7krL5T0DDqeejdW4q/5ZNlE6LZMe0Ur14c5TMmBXY5UZNLazb87XkXx5
-         xNSyW97Fkc4iJDpjL1aNWKRojKuHfEt34CFD5VgKkLL08RkcZVTp8vEDFo2T3jHsWJeX
-         jgbQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:dkim-signature;
+        bh=rbdP76tLSLd0zXbJ7Ayy7yAOCBynRgWdD+HyAwvTvH4=;
+        b=VrKhxIw3ROc9MmkG4Rkf3mzwHINJ6kKi9WULPi5kwK/OE8vEHbKeJNKNIW6VOYSoRe
+         cJ8UQBqi/cnSd5+Z7kD5/TW4DGTTRP+e2Af0iYlBR+0snjJtf3+icqMRzGXjpGoKmKvQ
+         sJKa19cbPRyRNz6V5UzHsJszxueKoN58NY2IEvJuPVtWicAT4mIy3rrYDyWoQjFUbi6o
+         nGiXrE3InEw9oB0OhnpiIjPjNVZz/z0IUe4EbMzDRizkh8rhP/qnfiv3AY2nRTQnLHAA
+         pS8NDfCx53Ch60Q4tV07tdmlLckQ5cVp09Q1PIqJ2ntuM6WY0qH479gZyJHjlQ2t4pUE
+         VjzA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com. [45.249.212.187])
-        by gmr-mx.google.com with ESMTPS id ay12-20020a056130030c00b00418e1741f27si644585uab.0.2022.12.15.01.09.35
+       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=m0+OLoWt;
+       spf=none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) smtp.mailfrom=BATV+296c1fbe19c453695b58+7054+infradead.org+hch@bombadil.srs.infradead.org
+Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:3::133])
+        by gmr-mx.google.com with ESMTPS id l25-20020ac84cd9000000b003a7fa08057asi69456qtv.1.2022.12.15.23.11.24
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 15 Dec 2022 01:09:35 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) client-ip=45.249.212.187;
-Received: from dggpemm500017.china.huawei.com (unknown [172.30.72.57])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4NXmcJ17bmzmWbT;
-	Thu, 15 Dec 2022 17:08:32 +0800 (CST)
-Received: from [10.174.178.220] (10.174.178.220) by
- dggpemm500017.china.huawei.com (7.185.36.178) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Thu, 15 Dec 2022 17:09:31 +0800
-Message-ID: <57c12317-c229-8cbe-b3d2-d799ea5f554c@huawei.com>
-Date: Thu, 15 Dec 2022 17:09:31 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 0/2] scsi:donot skip lun if inquiry returns PQ=1 for all
- hosts
-Content-Language: en-US
-To: Christoph Hellwig <hch@infradead.org>
-CC: "Martin K . Petersen" <martin.petersen@oracle.com>, Mike Christie
-	<michael.christie@oracle.com>, "James E . J . Bottomley"
-	<jejb@linux.ibm.com>, Lee Duncan <lduncan@suse.com>, Chris Leech
-	<cleech@redhat.com>, <open-iscsi@googlegroups.com>,
-	<linux-scsi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<liuzhiqiang26@huawei.com>, <linfeilong@huawei.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Dec 2022 23:11:24 -0800 (PST)
+Received-SPF: none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) client-ip=2607:7c80:54:3::133;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1p64sD-00DKqT-10; Fri, 16 Dec 2022 07:11:13 +0000
+Date: Thu, 15 Dec 2022 23:11:13 -0800
+From: Christoph Hellwig <hch@infradead.org>
+To: Ulrich Windl <Ulrich.Windl@rz.uni-regensburg.de>
+Cc: haowenchao@huawei.com, open-iscsi <open-iscsi@googlegroups.com>,
+	linfeilong@huawei.com, liuzhiqiang26@huawei.com, jejb@linux.ibm.com,
+	martin.petersen@oracle.com, michael.christie@oracle.com,
+	Chris Leech <cleech@redhat.com>, Lee Duncan <lduncan@suse.com>,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: Antw: [EXT] Re: [PATCH 0/2] scsi:donot skip lun if inquiry
+ returns PQ=1 for all hosts
+Message-ID: <Y5waEc0iqfGkkN7f@infradead.org>
 References: <20221214070846.1808300-1-haowenchao@huawei.com>
  <Y5rHX95Vvl1aLhbp@infradead.org>
-From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
-In-Reply-To: <Y5rHX95Vvl1aLhbp@infradead.org>
+ <639AD5C0020000A100050749@gwsmtp.uni-regensburg.de>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.174.178.220]
-X-ClientProxiedBy: dggpeml100019.china.huawei.com (7.185.36.175) To
- dggpemm500017.china.huawei.com (7.185.36.178)
-X-CFilter-Loop: Reflected
-X-Original-Sender: haowenchao@huawei.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as
- permitted sender) smtp.mailfrom=haowenchao@huawei.com;       dmarc=pass
- (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-X-Original-From: Wenchao Hao <haowenchao@huawei.com>
+Content-Disposition: inline
+In-Reply-To: <639AD5C0020000A100050749@gwsmtp.uni-regensburg.de>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Original-Sender: hch@infradead.org
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@infradead.org header.s=bombadil.20210309 header.b=m0+OLoWt;
+       spf=none (google.com: bombadil.srs.infradead.org does not designate
+ permitted sender hosts) smtp.mailfrom=BATV+296c1fbe19c453695b58+7054+infradead.org+hch@bombadil.srs.infradead.org
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -146,34 +136,15 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
+On Thu, Dec 15, 2022 at 09:07:28AM +0100, Ulrich Windl wrote:
+> Actusally I have no idea, but as a user of FC SAN systems I can remember a case when a storage system had to present a dummy LUN0 to enable hosts to find other LUNs (while LUN0 was never actually used). Maybe the client code was imperfect, I don't know.
 
-On 2022/12/15 15:06, Christoph Hellwig wrote:
-> On Wed, Dec 14, 2022 at 03:08:44PM +0800, Wenchao Hao wrote:
->> When iSCSI initiator logged in target, the target attached none valid
->> lun but lun0. lun0 is not an valid disk, while it would response
->> inquiry command with PQ=1 and other general scsi commands like probe lun.
->> The others luns of target is added/removed dynamicly.
-> 
-> I can't find any special casing of LUN0 in RFC7144, can you clarify
-> where you think that treats LUN0 any differently than other transports?
-> .
-This is not described in RFC7144. The sense described above
-aims to tell that a dummy lun is useful.
-
-In my opinion, if the addressed lun still response the
-inquiry and other commands, we should not skip it,
-maybe let the scsi drivers like sd/st/sg to determine
-how to handle this lun accordint to the PQ value.
-
-As discussed in following mail, another drivers would
-be broken too.
-
-https://lore.kernel.org/linux-scsi/CA+PODjqrRzyJnOKoabMOV4EPByNnL1LgTi+QAKENP3NwUq5YCw@mail.gmail.com/
-
-The key point of my patch is to add one way to map
-dummy lun to an sg device. 
+Ignoring some of the well known LU bits that never really became
+practically relevant, lun0 is needed to use the REPORT_LUNS command
+to scane for the other logical units.  But unless the PQ says it
+actually is a valid logic unit, we never add a sdev for it.
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/57c12317-c229-8cbe-b3d2-d799ea5f554c%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/Y5waEc0iqfGkkN7f%40infradead.org.
