@@ -1,33 +1,33 @@
-Return-Path: <open-iscsi+bncBDRZ7N5GYAFBBDMFWCOQMGQENVWZTDA@googlegroups.com>
+Return-Path: <open-iscsi+bncBDRZ7N5GYAFBB6U3WCOQMGQETXZF5JA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pl1-x639.google.com (mail-pl1-x639.google.com [IPv6:2607:f8b0:4864:20::639])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAD75657445
-	for <lists+open-iscsi@lfdr.de>; Wed, 28 Dec 2022 09:47:12 +0100 (CET)
-Received: by mail-pl1-x639.google.com with SMTP id p12-20020a170902e74c00b0019254f41f6asf11076426plf.3
-        for <lists+open-iscsi@lfdr.de>; Wed, 28 Dec 2022 00:47:12 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1672217231; cv=pass;
+Received: from mail-oa1-x3d.google.com (mail-oa1-x3d.google.com [IPv6:2001:4860:4864:20::3d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C5F86574B3
+	for <lists+open-iscsi@lfdr.de>; Wed, 28 Dec 2022 10:35:57 +0100 (CET)
+Received: by mail-oa1-x3d.google.com with SMTP id 586e51a60fabf-14c90f25682sf7390878fac.10
+        for <lists+open-iscsi@lfdr.de>; Wed, 28 Dec 2022 01:35:57 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1672220156; cv=pass;
         d=google.com; s=arc-20160816;
-        b=HsVjNEz73hl4Spba89v1Z9uLuEVR/tBtghWlhJMF5Udq16VNPD5q+QkOe46nhk64zZ
-         8aF2csllblfKDLn0B2pv+NxI0SJ3gibnOqvYW4uLCHrUnGG5/owWczcNJEF5NxwOmv+V
-         5PMUVG6llZZBsyxSLLr8hGUAOToNWYlPb33eGaNcY9FoX1nWNAXqPW2sb1GMpIuqu0tp
-         Jd8khOokUIYLt45qPqX5LPnW38yozU2f6BA1i98Ti+2rphFJd3/63oV9W/Tyum7wjsfo
-         T8/P3twKNAjmdYLb2skanwCXvX2r9NvhaEO8DBBwhnE6zgw1JZtTuUyIhqygOWgB52sc
-         bLhQ==
+        b=lvfo9gGNMoYZDdho6K+ASU1lsQYSH4gGQvekhk/Mhf0E51MAOvwSTaAYWfH4aTO6v+
+         1sSiN3nQ70QUPQc95V86MG1iQBz+4oIJsjIZok9CqPe3ENIIbNWiiERRhrGfNf3fPMap
+         My2BWnST2wfCPUG8h2rqXIe/ptIb/xvNiVAVGhRTzE7p8qTYgvHJvZJC5DoLBlah6IeX
+         OkxKgBP0/o9XRP/wf2/92vLK6mif2h7BDbVvFCrbTxgJyzCEf5ILSNINiehNTqSbLx9B
+         NGUw5e7WmU0thUHAe5PAxqV1V0Yzqcy3x8hmP9QfXs45/o57HLfDGZtJS+x+xQIyP3K5
+         Rn8g==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:in-reply-to:from
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:dkim-signature;
-        bh=J8JxAsb091M7WFDsGbcK9vY+KaCHXMxfO3DcTSxz+24=;
-        b=OWefjx6YcklAodxF0OgLK6643Tps5qqZx0Djq7spVoieu68jytMh8xbvvCrwOdL6d8
-         LlYlrIcWPBIAVh6SiWAaVn33+qPGx3E+YFKTAfXE9zmCeFxpfbt7guNHXiE6mJt/cq6L
-         mYGv0m/kOlBu+zw4rhcMmWUma0aFYU79Lxcqn6OQfTyHUjX9FBrA4xoza2s54qmyDKDZ
-         rPq2O6+2ijKOesVQBxknmJdUp8tAteYjjOE5nB62H7h/0ezOOEg2PWxnAo4cmPdOmarc
-         eX1Ti5ONUxZDutBOVzFtzOK8c2Qt5l53x9x2nX8vI+3Xg0wPTGc2xOjEPJqNHrVXsfWv
-         oKVA==
+        bh=2OVv29n0SvVvKMQUQfmwdX3M8EwKukkhmqdTE3tcVbk=;
+        b=z3BYxXR8BK4LhdZl/GDsoXDGIE+dDnZ7KuuXDUxkdnNg1so73O1NALb+5JeYGvemD2
+         4Zu+2dNVT6U8rFhR0hRJVPu6yd7HDa6g7uKyE12EMh5i/qrdakKBFLryWGQtga9mPkaG
+         EvguI7wJATY8ni0KUPJTf0Ndn6qSVbVWs6pwtjNShFA1TP5JyvMb5a0qjfYsfJcjbEAg
+         SqhuLPUQCz08AbcI5MiEVkO2dk8JHRgH1jzFgjvuOXfSYuw9ABFQlO40LeFeEtqBmLJU
+         d8D6KYy0NVXf/SahV43EvQT8O+gYLdjX4XYAe6Wg/L/5hTnxeAhhYNm77+cm2pZ9+EnP
+         u0Pw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.189 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
        dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
@@ -37,13 +37,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :from:references:cc:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=J8JxAsb091M7WFDsGbcK9vY+KaCHXMxfO3DcTSxz+24=;
-        b=bOR+Luu75Hhjs8AV1buY9INfXUQb+A3Hx1ssF5T5BsFo8OZ5i1pmL8xzkx1PYi+mQF
-         KbioM9QDzDEL+4BReSBeeDUOilaumovYAjCYUfP+cXrX4R6xrSqFWMuGu9eWFXHfeXDV
-         SrjpohHatOOCyy0BEUtm+e9xs0hzoUPK75xphnhinKacUNKvfQL/D0soJGbJzbJQZMZE
-         QcRGr75ZQRQ24yIsQVMkvKjPm4blYUkJfCSD722SwnAROjwGbnKzPi+1xnR1dLfwXqU4
-         LuQaJX+i3TNUpzpYj4ETVk8/Zgp7G/t+X9NipMfUwcgOHEJ2qKA1CKtRaf5WULjov5hM
-         1q5w==
+        bh=2OVv29n0SvVvKMQUQfmwdX3M8EwKukkhmqdTE3tcVbk=;
+        b=NXRthfNnf5NLcFmDcVJR//aHZYSFphHKNiUA/4KpkUlR5OcPZ+XJzrTvVk6J4bFZ2N
+         Vn2ZDh5uJa0Xhv077eDNzY18MjHZsXLzrJriAFA/w37NSNb/VAskhe53/F7BynKHH2lo
+         E5LItrU44cKbl3AocrLDpRXm8fX4WesepdGvQyyVIP8IQrGs0UdOoP3xnpx2eubUc+4R
+         waxTWdLCZKQP3uV5MNoh2LSnkdBOVGWDVv2Raw6U+XOBTr/02V/x0hDLlqnVeq4kewi1
+         cRamZTBlA+hzz09Lvx7hp8B9PiwwuTDRWPk0gKrR0J86eIqXypF5x950OePnQnZBYxwb
+         YHWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
@@ -52,85 +52,91 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :from:references:cc:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=J8JxAsb091M7WFDsGbcK9vY+KaCHXMxfO3DcTSxz+24=;
-        b=orxIpLj2DqD9vDj/5gfEmP8JUSUkIntWGPDqp1L0h5udYmvyPF3OP1NvLkQ4ICQZ+X
-         uKnidgBgS4nV3so5rFhPZJIlZi9OTmG2KwPcD8XEefJdYaVnPbi/zHhr0j6qWd7+bAR/
-         ZhRsU/mIcZo1fv5Y0/iylPrcOV3RJMSF6dy4iGjJhsNQcUVb2qpu1toNMzykhDrei6FJ
-         3Gb8Qnirkf/9hGNRInL3bA6g14I0HkmM5ynQpDHSJW+QvrBqeVRWAFcLhviK26kof7YV
-         dO9Tpp7ZbrD0AplPo1sBVv0bgcHmDU2suqbshIsxg5TGGQhgwEhJ6KGcN6N7WBgkC0rs
-         0sWw==
-X-Gm-Message-State: AFqh2kopefckdPEmJzfAmttceYv+lYyWMhF47Pi0s73dyN+dlX2UBubv
-	DsbfbVfy2B7xPetlRJSEI/E=
-X-Google-Smtp-Source: AMrXdXsXVOqABQDRxWDbZTkUcpUDVtKh3rNjvtRyzqSC/ecpYHbqbjeU7XTz3da2oNO3KDvBKtAOLw==
-X-Received: by 2002:a62:e115:0:b0:577:5b2:5ec0 with SMTP id q21-20020a62e115000000b0057705b25ec0mr1552699pfh.28.1672217230621;
-        Wed, 28 Dec 2022 00:47:10 -0800 (PST)
+        bh=2OVv29n0SvVvKMQUQfmwdX3M8EwKukkhmqdTE3tcVbk=;
+        b=Snq9f1SvNZFnlBTXynNx2M08QIpiwyPQ/IN5LKxiMUTGNz+vF1Ejm8SKbPdEiXGvGJ
+         pNhOFgf9+/qWz4RNNQJvxJOSY0tX3qpfpiKc/ydqXbCks7f+xegNn/+lqKb9jgxsvWat
+         a7eGK6mILM2N9H6R7UDCeRXYm67c9FE2Cjxy43+p2ajUbKD6s9lSnD9zVBkbP7meh3Mx
+         nMhbNTQzr5JG/CEVdjoqfZRcUA2RG35vjvLKJ9sCZNQ5iuOXvy1QJNA8l8r0GStIR4ms
+         Ldn/J3u3S8e689P7jpvNIGwUfEw0bzD3rk/wP8df15UE2AlDfeXaDxSOHbpFppEIkvyV
+         8LPA==
+X-Gm-Message-State: AFqh2kpT2a++Coab+qkfOdk1z/NhtAhzVdMWEYeEIipGJgxX+D+VYcNa
+	uL85ASSr9aRkOCdc+dH1NHY=
+X-Google-Smtp-Source: AMrXdXtXIzYQ3JCturw1ruOz+nZXZrKM0NkNUzjMIEZG3+z0zm73t/GL8DJJVoLdp27D1JEu/TjTqA==
+X-Received: by 2002:a05:6870:1b87:b0:13b:9a14:8f1d with SMTP id hm7-20020a0568701b8700b0013b9a148f1dmr1309957oab.248.1672220156076;
+        Wed, 28 Dec 2022 01:35:56 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:90a:a893:b0:219:4318:f24e with SMTP id
- h19-20020a17090aa89300b002194318f24els18300650pjq.0.-pod-control-gmail; Wed,
- 28 Dec 2022 00:47:08 -0800 (PST)
-X-Received: by 2002:a17:902:a406:b0:18c:1bc5:bd58 with SMTP id p6-20020a170902a40600b0018c1bc5bd58mr27332561plq.9.1672217228734;
-        Wed, 28 Dec 2022 00:47:08 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1672217228; cv=none;
+Received: by 2002:a05:6830:2a8d:b0:66d:a9f3:4e75 with SMTP id
+ s13-20020a0568302a8d00b0066da9f34e75ls2522458otu.9.-pod-prod-gmail; Wed, 28
+ Dec 2022 01:35:54 -0800 (PST)
+X-Received: by 2002:a9d:17ac:0:b0:66e:a35c:c051 with SMTP id j41-20020a9d17ac000000b0066ea35cc051mr12369960otj.35.1672220154422;
+        Wed, 28 Dec 2022 01:35:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1672220154; cv=none;
         d=google.com; s=arc-20160816;
-        b=lCXPPoqMZpPXaM+56Z4zwpO92mirE+Y+bRYeoVUR6rnq0fNfj4hsrb4HFUY2Dzp9uN
-         aEARTcGvp+32vvb0cr8MZuJbra8xreduIyYGcQWIEW9Up+/qSdPxaECnHA8JLj7VrIkU
-         9W2hn0jGIqaOySMcEaVMslTprHDsJ8EJt7dpc/aWQ6JXJEwR+t4XmpcTlK0diNdzP4j0
-         wy940voc4amgZ0vLVJ3jNV0AfOig8LNWi+ibC46TQ1y2mfB08Pksg6i/2duC658Fxm+k
-         fLHRSA30iBrXYq5u9qQPQxmz4gOyj/XRPcy3bqVinQxDCiyIgNM52HOMiYm3OWFXfGN+
-         XLzg==
+        b=ZbIfH8tS7jeSEmVq2YWSCKOK5Hit40c5V6NoyCCfrbistVp9zsk4T9Gi0zAP9aevUQ
+         AuhcDkTk7S/D07JXBAA506/zEapgm97cy5xSZFWufaq3MR0MR+LZHHijyMEqarEMT0Ji
+         mdPGAC8aHHz4aKqq/WELMvgxW7qaNBli7WFnEBvFWg+LPz3bTABJJMlaWsLdkNcTUcY5
+         LZHXjhDGiRo7jjuLc/9hnenjBxnCKV79SVS3GeITJT4O/OyVDfwHYXTaCobdLxEyRQ2A
+         apYZalbfmPsSZ9xNWs2pQuBYXi6qlwWx7M6zpuMkwGBglYG/sqlBfJp6hg6EIH6duQP2
+         ko1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id;
-        bh=Y+LrQr5/kiJEDeo3OLcsSZF/6ytY7ipaKdd40Dhj5RM=;
-        b=TuWp78Tn1hcwKoWXXpF+hyX0gYmq+foAarYuyWhbqWlzW854EpA1e2A2LzT6pW33Cp
-         okxdKQ/ouNbl/Z4730fHk+rT2x+O3/3b+ehyaJ3iKXNG/GOxncR1SsXPVKj5IJbB0Jrp
-         ygPJ0G0Yv2Pm6J0KeJCetJM5/lVpeOuNdMlf2CB1wpFJF3j4Vw5OZH/m3L/L3yJ0Z/2L
-         ZqcUI85nZtTwhIYyU6AGNHINl5cyskwchVe11lP5lE+1QXfyD9aUzHn0kq+RFUOj7039
-         0R2hw9YDquWZyraRLrcArBat11oxvF9U6h+U9wk9JvoUdL8Jridn/VXEfcUPvqAXmNPC
-         c5Sg==
+        bh=IIlL1kc36eTo4fs2Moi1Q1HvDebaZFchLX5mHY8gJ3s=;
+        b=MM4ZUjGnQ2oG2CO/81jzL+lp7RRf3ztJSa3TJ8NW3kky+vUP3L/59rLI2nJzU+/kae
+         3PonIHooctTKD9JvT35UqOTnhUl1AYT/NzV8f/kBuhje2XxFBJGvIiVUpX4ayD6ADbna
+         Ztj3XvGSAU/NRJQbUgkTOCE1VK731F/l7J6tHS7RtoiD9tnFm4WJ5Ero/r1UZPddmjiI
+         4X2TTgkPBxozJ/PL/ISWnmcEBXL8f7unfYpoycUfUQ05aF/yzH0vyuL7tMRy90duNEc/
+         jpr8+q1BxeuKeJK4zw19cDe30fSvW+6q2A2UhGhzDExxRJ6RepInIVGjhDMP+XqQKTBV
+         RNew==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
+       spf=pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.189 as permitted sender) smtp.mailfrom=haowenchao@huawei.com;
        dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com. [45.249.212.187])
-        by gmr-mx.google.com with ESMTPS id a14-20020a170902ecce00b0018712ccd6e0si1087782plh.2.2022.12.28.00.47.08
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com. [45.249.212.189])
+        by gmr-mx.google.com with ESMTPS id y83-20020aca3256000000b0035c06b99516si1630307oiy.3.2022.12.28.01.35.54
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 28 Dec 2022 00:47:08 -0800 (PST)
-Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as permitted sender) client-ip=45.249.212.187;
+        Wed, 28 Dec 2022 01:35:54 -0800 (PST)
+Received-SPF: pass (google.com: domain of haowenchao@huawei.com designates 45.249.212.189 as permitted sender) client-ip=45.249.212.189;
 Received: from dggpemm500017.china.huawei.com (unknown [172.30.72.57])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4NhlTx3DyRzmWts;
-	Wed, 28 Dec 2022 16:45:41 +0800 (CST)
+	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4NhmWM3whyz9t29;
+	Wed, 28 Dec 2022 17:31:59 +0800 (CST)
 Received: from [10.174.178.220] (10.174.178.220) by
  dggpemm500017.china.huawei.com (7.185.36.178) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 28 Dec 2022 16:46:52 +0800
-Message-ID: <2002bec1-27af-5b4f-7bea-fca62506ca59@huawei.com>
-Date: Wed, 28 Dec 2022 16:46:51 +0800
+ 15.1.2375.34; Wed, 28 Dec 2022 17:35:51 +0800
+Message-ID: <25b89f97-0cac-7611-c20f-3140565219c4@huawei.com>
+Date: Wed, 28 Dec 2022 17:35:51 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.0
-Subject: Re: [PATCH 1/2] scsi:core:Add sysfs interface to control if skip lun
- with PQ=1
+Subject: Re: [PATCH 0/2] scsi:donot skip lun if inquiry returns PQ=1 for all
+ hosts
 Content-Language: en-US
-To: Mike Christie <michael.christie@oracle.com>, "Martin K . Petersen"
-	<martin.petersen@oracle.com>, "James E . J . Bottomley" <jejb@linux.ibm.com>,
-	Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
-	<open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <liuzhiqiang26@huawei.com>,
-	<linfeilong@huawei.com>
+To: Christoph Hellwig <hch@infradead.org>
+CC: "Martin K . Petersen" <martin.petersen@oracle.com>, Mike Christie
+	<michael.christie@oracle.com>, "James E . J . Bottomley"
+	<jejb@linux.ibm.com>, Lee Duncan <lduncan@suse.com>, Chris Leech
+	<cleech@redhat.com>, "open-iscsi@googlegroups.com"
+	<open-iscsi@googlegroups.com>, "linux-scsi@vger.kernel.org"
+	<linux-scsi@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "liuzhiqiang (I)" <liuzhiqiang26@huawei.com>,
+	linfeilong <linfeilong@huawei.com>, Andrey Melnikov <temnota.am@gmail.com>
 References: <20221214070846.1808300-1-haowenchao@huawei.com>
- <20221214070846.1808300-2-haowenchao@huawei.com>
- <536981a8-76a3-54b9-a70c-a86994c027dd@oracle.com>
+ <Y5rHX95Vvl1aLhbp@infradead.org>
+ <57c12317-c229-8cbe-b3d2-d799ea5f554c@huawei.com>
+ <Y5waet8RoXKQHDR7@infradead.org>
+ <5129c84b-38e5-8be4-6411-fcc003776d70@huawei.com>
+ <Y6XPRfgLSUShN+mY@infradead.org>
 From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
-In-Reply-To: <536981a8-76a3-54b9-a70c-a86994c027dd@oracle.com>
+In-Reply-To: <Y6XPRfgLSUShN+mY@infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Originating-IP: [10.174.178.220]
-X-ClientProxiedBy: dggpeml500013.china.huawei.com (7.185.36.41) To
+X-ClientProxiedBy: dggpeml500003.china.huawei.com (7.185.36.200) To
  dggpemm500017.china.huawei.com (7.185.36.178)
 X-CFilter-Loop: Reflected
 X-Original-Sender: haowenchao@huawei.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao@huawei.com designates 45.249.212.187 as
+ (google.com: domain of haowenchao@huawei.com designates 45.249.212.189 as
  permitted sender) smtp.mailfrom=haowenchao@huawei.com;       dmarc=pass
  (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
 X-Original-From: Wenchao Hao <haowenchao@huawei.com>
@@ -147,135 +153,45 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 2022/12/19 5:37, Mike Christie wrote:
-> On 12/14/22 1:08 AM, Wenchao Hao wrote:
->>
->> When iSCSI initiator logged in target, the target attached none valid
->> lun but lun0. lun0 is not an valid disk, while it would response
->> inquiry command with PQ=1 and other general scsi commands like probe lun.
->> The others luns of target is added/removed dynamicly.
->>
->> We want the lun0 to be mapped to an sg device in initiator, so we can
->> probe luns of target based on lun0.
+On 2022/12/23 23:54, Christoph Hellwig wrote:
+> On Fri, Dec 16, 2022 at 07:41:26PM +0800, Wenchao Hao wrote:
+>> For nothing, I want the iscsi_tcp transport do not skip PQ=1 default
+>> as what it did before commit 948e922fc4461 ("scsi: core: map PQ=1,
+>> PDT=other values to SCSI_SCAN_TARGET_PRESENT").
 > 
-> What do you want to do exactly? Is the idea with your patch we would create
-> an sg device, then in userpsace you would do some scan related commands. If
-> you find devices then you use sysfs to have scsi-ml scan/add a specific device
-> like
+> Well, that commit was very much intentional and is now three an a half
+> years old, so we've not just going to partially revert it on a
+> per-transport basis when it is in no way transport related.
 > 
-> echo 5 0 0 8 > host5/scan
-> 
-> ?
-> 
-> It's not really clear to me why you need the sg device, and can't just do?
-> 
-> echo - - - > .../hostN/scan
->
-We do not directly echo - - - > .../hostN/scan. Instead, we use rescan-scsi-bus.sh
-defined in sg3_utils to scan luns. If no sg device mapped to this host, the default
-scan operations could not recognize luns.
-
-We can simulate this with scsi_debug by following steps:
-
-1. build scsi debug with following changes;
-
-diff --git a/drivers/scsi/scsi_debug.c b/drivers/scsi/scsi_debug.c
-index 8553277effb3..36dcdd2c3fe4 100644
---- a/drivers/scsi/scsi_debug.c
-+++ b/drivers/scsi/scsi_debug.c
-@@ -836,6 +836,7 @@ static int dif_errors;
- static bool sdeb_zbc_in_use;   /* true for host-aware and host-managed disks */
- static int sdeb_zbc_zone_cap_mb;
- static int sdeb_zbc_zone_size_mb;
-+static int sdeb_pq_type;
- static int sdeb_zbc_max_open = DEF_ZBC_MAX_OPEN_ZONES;
- static int sdeb_zbc_nr_conv = DEF_ZBC_NR_CONV_ZONES;
- 
-@@ -1583,6 +1584,7 @@ static int resp_inquiry(struct scsi_cmnd *scp, struct sdebug_dev_info *devip)
-        u32 alloc_len, n;
-        int ret;
-        bool have_wlun, is_disk, is_zbc, is_disk_zbc;
-+       struct scsi_device *sdev = scp->device;
- 
-        alloc_len = get_unaligned_be16(cmd + 3);
-        arr = kzalloc(SDEBUG_MAX_INQ_ARR_SZ, GFP_ATOMIC);
-@@ -1598,7 +1600,11 @@ static int resp_inquiry(struct scsi_cmnd *scp, struct sdebug_dev_info *devip)
-                pq_pdt = 0x7f;  /* not present, PQ=3, PDT=0x1f */
-        else
-                pq_pdt = (sdebug_ptype & 0x1f);
--       arr[0] = pq_pdt;
-+       if (sdev->lun == 0) {
-+               arr[0] = pq_pdt | (sdeb_pq_type << 5);
-+       } else {
-+               arr[0] = pq_pdt;
-+       }
-        if (0x2 & cmd[1]) {  /* CMDDT bit set */
-                mk_sense_invalid_fld(scp, SDEB_IN_CDB, 1, 1);
-                kfree(arr);
-@@ -5883,6 +5889,7 @@ module_param_named(zone_cap_mb, sdeb_zbc_zone_cap_mb, int, S_IRUGO);
- module_param_named(zone_max_open, sdeb_zbc_max_open, int, S_IRUGO);
- module_param_named(zone_nr_conv, sdeb_zbc_nr_conv, int, S_IRUGO);
- module_param_named(zone_size_mb, sdeb_zbc_zone_size_mb, int, S_IRUGO);
-+module_param_named(pq_type, sdeb_pq_type, int, S_IRUGO);
- 
- MODULE_AUTHOR("Eric Youngdale + Douglas Gilbert");
- MODULE_DESCRIPTION("SCSI debug adapter driver");
-@@ -7825,6 +7832,7 @@ static int sdebug_driver_probe(struct device *dev)
-                error = -ENODEV;
-                return error;
-        }
-+       //hpnt->no_skip_pq1 = 1;
-        if (submit_queues > nr_cpu_ids) {
-                pr_warn("%s: trim submit_queues (was %d) to nr_cpu_ids=%u\n",
-                        my_name, submit_queues, nr_cpu_ids);
-
-2. insmod scsi_debug with modparam max_luns=4 pq_type=1, we would get following scsi devices
-
-# lsscsi -g
-[0:0:0:1]    disk    Linux    scsi_debug       0191  /dev/sda   /dev/sg0 
-[0:0:0:2]    disk    Linux    scsi_debug       0191  /dev/sdb   /dev/sg1 
-[0:0:0:3]    disk    Linux    scsi_debug       0191  /dev/sdc   /dev/sg2 
-
-3. remove the scsi_debug disks
-
-echo 1 > /sys/block/sda/device/delete
-echo 1 > /sys/block/sdb/device/delete
-echo 1 > /sys/block/sdc/device/delete
-
-4. scan with rescan-scsi-bus.sh would failed to discovery luns.
-
-# rescan-scsi-bus.sh 
-Scanning SCSI subsystem for new devices
-Scanning host 0 for  SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
-0 new or changed device(s) found.          
-0 remapped or resized device(s) found.
-0 device(s) removed.
-
-Did not add the luns. If do not comment the line hpnt->no_skip_pq1 = 1 in
-scsi_debug.c, the scan operations would found these luns succeed.
-
-> ? Do you only want to add specific devices like you are doing some sort of
-> LUN masking on the initiator side?
-> 
-> Is the issue that you need the sg device there, so you can detect when a device
-> is no longer present on the target and then you will have userspace remove the
-> device via the sysfs delete file?
+> If you can come up with a good enough rationale we could do the
+> sysfs override, but so far the reason mostly seems to be "I want"
+> and not anctual explanation of why it is useful.
 > .
 
-Yes, this is one scenarios. luns on the target are removed or added dynamically,
-the only fixed one is LUN0 which response PQ=1.
 
-If luns are removed from target after been added by initiator, we could know which
-one should be removed from initiator via LUN0.
+Sorry, I did not describe in detail.
 
-We can think LUN0 with PQ=1 is a dummy lun, which is fixed and can tell luns info on
-the target.
+Here is the reason of my patches.
 
-According to the SPC, PQ=1 means the addressed logical unit having the
-indicated device type is not accessible, it does not mean the addressed
-logical unit is invalid. So I think we still can map this lun to an sg device.
+1. The SPC did not tell PQ=1 means the addressed lun is invalid explicitly.
+2. scsi_bus_match() would prevent luns with PQ=1 be handled by any scsi
+   drivers, so the only influence if we do not skip luns with PQ=1 is we
+   would add an scsi_device and an sg device.
+
+The reason I force a specific behavior for iSCSI:
+
+1. This issue is occurred with iSCSI, it means there are scenarios where
+   targets would return PQ=1 for an valid LUN which should not be skipped.
+2. The changes for iSCSI could be tested
+
+I did not change other transports' behavior is because I do not know if PQ=1
+would be returned, and I do not have the related environment. If other
+transports like adaptec raid also needs these changes, they can override
+the default value by other patches.
+
+Thanks.
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/2002bec1-27af-5b4f-7bea-fca62506ca59%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/25b89f97-0cac-7611-c20f-3140565219c4%40huawei.com.
