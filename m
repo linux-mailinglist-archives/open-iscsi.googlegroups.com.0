@@ -1,205 +1,132 @@
-Return-Path: <open-iscsi+bncBD54HHNYIIIKH3MPT4DBUBEOZ2DKQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBCYMVIPVXQMBB272R6PQMGQEIBNUETQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wm1-x33b.google.com (mail-wm1-x33b.google.com [IPv6:2a00:1450:4864:20::33b])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE13568F7EF
-	for <lists+open-iscsi@lfdr.de>; Wed,  8 Feb 2023 20:23:16 +0100 (CET)
-Received: by mail-wm1-x33b.google.com with SMTP id d18-20020a05600c34d200b003df901ab982sf9356249wmq.4
-        for <lists+open-iscsi@lfdr.de>; Wed, 08 Feb 2023 11:23:16 -0800 (PST)
-ARC-Seal: i=3; a=rsa-sha256; t=1675884196; cv=pass;
+Received: from mail-oo1-xc3e.google.com (mail-oo1-xc3e.google.com [IPv6:2607:f8b0:4864:20::c3e])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BCBB68F860
+	for <lists+open-iscsi@lfdr.de>; Wed,  8 Feb 2023 20:52:14 +0100 (CET)
+Received: by mail-oo1-xc3e.google.com with SMTP id 68-20020a4a1547000000b005170f10fc55sf7440oon.10
+        for <lists+open-iscsi@lfdr.de>; Wed, 08 Feb 2023 11:52:14 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1675885933; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Kv3IbP0/QWlDtuPSM2yBJG8gbmR1DsHr0d8+NFOrOeA8TQGWDPr9q+kKiYH5JlZ6jT
-         vrdjsGntG7SBL67pt7sE5aG/vEt6ZElWHZ4zv6EX7xGcwtFygWJQnjx4OZqml+IRCVE1
-         sfDX9b6TNw6Ftsa/7yUYSjTVF+nKEkXRi54foEecGkKMWCm3Vpd/2iUhcBqgeaSqfRRi
-         pMNHYDgYG0rSQtX71Vko9j3fuVdjtlkr+hgSvZ/SQeodmpHRCsEk0CGU4zuq4qZlQYIZ
-         q8AOyX6bk2lPbleluuPDMi0SaoOcknX+y7+adHceSLv5rFC73VR7Y8mmb8gyRu9eMJSn
-         b5Og==
-ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        b=AowHJfFxxpX7EJfCllW1sAc06OYOr25/8N36pgU2ClI6X24ur7ICw2n/eePkp0FWdF
+         Z7LbC5lnXDUhFTuidTI34LdDEm1S2ofa2t8sDjBFVym2E0ypufY7KcMcX753sef5ylVj
+         UgZC1PYCm+JJsjfKfMqAjddqeVDRMKr+BTwt3CBSp01A2XfsrDKhLxHVwqVqXd8+ewHP
+         R3dIR8CxP3w4orZIPjy/vOiuW9kdxJKOFkJkWIbolEiNMvJ0c2ObXj4SgSqILvjc69N5
+         LjP/SSgJMFvOjToVm4TIbygUj79GTU5xA6xS2ozdQ+8Y7TlQx1erRkZjNyUK4EfgP7oM
+         qLTQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:in-reply-to
-         :from:references:to:content-language:subject:user-agent:date
-         :message-id:dkim-signature;
-        bh=W8w9OegGQ1Kvhpqf/IlA53Pu+4WqZx6RTLUTZvS5wds=;
-        b=Lglnp7jkG+RrGjUzxvzZ1kY8Us/5XxZwkK1bwrIpgU25fOzBa9XPFSM9UF3dgpFXZ0
-         CEVmxs5cUx3o/jw9Izd2Ag0AsigPJV8xuUH09D+HEB+L4Sv+L4QDlfRHMCxGdUmWsWn2
-         rdYiAYkFOo4G2uE6Ee3YSnP7Hygl6+ynNNoCEpW7q++PUhLdQiCa2+jeuQ6hwx3EpppI
-         JxeM+xaz1DE6glBn5mH7V5WOEcNpbIRd2OFUxlCLYFPhoUNDbSybQ4aSNzZw9//TyFIq
-         J962wJHLgFZ/wpN7kdhpSDsXUV1u/bxB1Ti9H1rLZNFFHVGWCIfeqwcz8/P5j1UaUphQ
-         +d0Q==
-ARC-Authentication-Results: i=3; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=selector1 header.b="08o6S/Xn";
-       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
-       spf=pass (google.com: domain of lduncan@suse.com designates 2a01:111:f400:fe0c::62b as permitted sender) smtp.mailfrom=LDuncan@suse.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
+         :list-id:mailing-list:precedence:reply-to:to:subject:message-id:date
+         :from:in-reply-to:references:mime-version:sender:dkim-signature;
+        bh=Z40D+R1SZO9gj5a7k0HzegArL7WKeI3RG6uK2aS2qAY=;
+        b=QhSXYUPfSB1zrP7310iXvIsP/TP0VU5Q6zzofgcIYCMte5im5k4ItPstrxT0SmxK/7
+         VWUyMG3CaeU92NMvv5MxbojJS8GNXiaju0zpov6t9csP5vzWSpViKLuZBU9x14mB2e4d
+         CBIh2+KHpF/Ewj8X+1KuJgZ7yFtuo/vtcF0ClZ0Hi/ZPKCqAwQF/dJ4WwT+U6yVVmvEb
+         ZwgLJHc13+YPOBiptN280AyvUZqW1uoUV4KXY9KqyWQaNARkC17MNX0E0Fwd+QcM3O5H
+         nHxM8G4UVA6nYSPSlud7OvFOBng03Y/w2MuRoISySFMrC7PzaDrB4jGeyD2ZzSjqxL+J
+         7jig==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b="MQ8aRTo/";
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :in-reply-to:from:references:to:content-language:subject:user-agent
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=W8w9OegGQ1Kvhpqf/IlA53Pu+4WqZx6RTLUTZvS5wds=;
-        b=iM7iOwa0KEW7fW6x+bG5oS7XbvpKki+hURGyLRkrRW20HDKQr9DzIbpILI3kbscDEy
-         dGFlJQe4EdpyL19pNJKiFCUhr9W+NBIWAxovNqP0BS1319mJfPG4806B35ABNHzwOvZv
-         RyVWw8rUBYHHOKdMRzcDnKPteg49QJC2NECWhOXO6iGXwgZaiGGTggHluONFpkIkyI35
-         IV1M5AHzaPsXJNxW3xZxwX6mVJSCfgljsuqsdi3OLwGy9ASvwpU9uiicKTxRkuL0drdX
-         m0o5gfA3M0qz/XpNv0QGGXSozXUmgtxc2L2wpa9iwqBZNFf+F1MRTqHHUaWbB5RdIjoU
-         B0zw==
+         :x-original-authentication-results:x-original-sender:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z40D+R1SZO9gj5a7k0HzegArL7WKeI3RG6uK2aS2qAY=;
+        b=KBXOVjfyq0vnfwPimdEgTQvcVPU7prVIQ9SIWGKlQ9fbp5tvzBOMl333U2LezeyqdD
+         8XcUdlKNj3qo5y5qwRzKnxTpDLG/Z90YA1kR8nTCiH49qk8Yeybo2Ov5nodTHioWF5FY
+         czurih8y1BEeMVO0dGUeNt7SGuveURVXXA1EWBkfUNraJNKebg8aY/RrncWlrAiwKa3R
+         K/4LzuLJnOS6YUD0kpZYOtL/NTdXIqVIWUQBf12gYqUd8YSIcsHzCWlrSXWJGEaaa+j3
+         CV+q2nDuINDyl8ef61HSCHcid/hOADb4E0bl6V7Ppd06LRLtX8jiJoc9j5WL8bf+IvA1
+         qVxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :in-reply-to:from:references:to:content-language:subject:user-agent
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W8w9OegGQ1Kvhpqf/IlA53Pu+4WqZx6RTLUTZvS5wds=;
-        b=N1mc/LVMM+/BJ1RopCLjiwLVAe1Vb3WdUYKGBEM27tXRUFYW0mhaE0dWzjFNHX9vIJ
-         FYQCvoMBc/ewEK6VJoFRATuv/CXQt8EuRoqZP9uICrTM1lZhuZUiiNmMWg8rEDKTvrps
-         pqK2A2yq1V2fc21sfpPvsUIoC+2UmX2JaLZfpKX7LixYrgKPOOVgNllfJZp9cZNinZ5W
-         g56PgfTsEJOehAMtrCPJYyu/yDwfzlQzkvGNH1Oqg4bDc0zEuqIeDpQgcMXWr5jwnClM
-         nF52E1D6jFrlJETtXZrb6Ja+ZEmh2hbOm/574x6K2ka1PJVzg4jDHnvjRLNrhddiwkgy
-         b08Q==
-X-Gm-Message-State: AO0yUKWWtMsYsMA+k3haPo+jFcl4z2o3nvzAsiY47J3pPrdsm9kQVbIO
-	yI8XBzw/ny1AlqtH3Omse7k=
-X-Google-Smtp-Source: AK7set/GXmlrs/IEKUVXyqsTpefq6xik/s+F71LFjigwM3mdd4/DG4hZp3TKiQKMX+tsz+T+IByeug==
-X-Received: by 2002:a1c:f409:0:b0:3df:db25:9a8d with SMTP id z9-20020a1cf409000000b003dfdb259a8dmr351198wma.191.1675884196500;
-        Wed, 08 Feb 2023 11:23:16 -0800 (PST)
+         :x-original-authentication-results:x-original-sender:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z40D+R1SZO9gj5a7k0HzegArL7WKeI3RG6uK2aS2qAY=;
+        b=KmvBUT9DP3lJILQ0zxrUiZmS5Oq48TZI0rcyR79QocazDQQm6cbovEqHtJORzxp6t5
+         XrxMiNK/IbN/VEZSEzHkRqDjKaQuiZOy5ZhoKSj2SCdW9AP1nAsg19ofvTjPyIRX8aVd
+         GFtrlbErxe2MvEFcFZVyXgCPdl1UDHsEAlZiWaIjq/uCOLFqQzTKKeeQq/Ygtovuqj1W
+         H8j+1MZXYui7gqWKtetsj+6Gi/I2nwni15+L77sdArmZCOIPUpvm6JTzHtO6e88mcUpQ
+         QRIekFHaJfVQr9qohjhXJwAuTGAY3hRDZcSdRrVom3/MKhXiwAU9f1L2xEK32MtCGWvv
+         j9AQ==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: AO0yUKU4MKsWUwatct9XOiK2YrpWZXquOHxoNFWLn2tBY2s7/xdCMORz
+	Iy0hVG8/KTk5plN3EsQIEuQ=
+X-Google-Smtp-Source: AK7set+IPxApaYBgSy6zozP1pzgt2e7YTiBF272hdn1A/BwO/biq4w8szNbFe/Esgw+TmGpvk0PlYg==
+X-Received: by 2002:a05:6870:80ce:b0:16a:9ca5:72fc with SMTP id r14-20020a05687080ce00b0016a9ca572fcmr246350oab.39.1675885933011;
+        Wed, 08 Feb 2023 11:52:13 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a5d:6f0a:0:b0:2bf:ccef:53a6 with SMTP id ay10-20020a5d6f0a000000b002bfccef53a6ls865665wrb.0.-pod-prod-gmail;
- Wed, 08 Feb 2023 11:23:14 -0800 (PST)
-X-Received: by 2002:adf:d081:0:b0:2c3:e4f5:18a with SMTP id y1-20020adfd081000000b002c3e4f5018amr8153578wrh.33.1675884193980;
-        Wed, 08 Feb 2023 11:23:13 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1675884193; cv=pass;
+Received: by 2002:a05:6870:5814:b0:150:5959:52ad with SMTP id
+ r20-20020a056870581400b00150595952adls8694oap.3.-pod-prod-gmail; Wed, 08 Feb
+ 2023 11:52:11 -0800 (PST)
+X-Received: by 2002:a05:6870:700f:b0:163:9196:83bd with SMTP id u15-20020a056870700f00b00163919683bdmr4397830oae.37.1675885931336;
+        Wed, 08 Feb 2023 11:52:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675885931; cv=none;
         d=google.com; s=arc-20160816;
-        b=0UoQMb9roP+G+lhHs48OJyzJlLygkmQtqubiItIkq5vMBHN+PB/73OXY3WJG4rsHUY
-         6y7eAdxJG1A9W5QgnRFU8vTAX0p091PYhRSnWGk++CMoE5tTFsN961vF8TAkt1akaPg1
-         SWYvJfH6AKbmqfA5hEUqa0E9O8YRtfneOqVZdKHrg+Tcw1o33om8rqsj95cirShs1Hk5
-         u+I6zKwkFnmQu1SxNaPGzNylERB8eaqWzucSSzafiiiS1nvc8QHbHeQzQXx8guh95lTJ
-         6RqAs6/RyA8hWu/VlTLcOtB9t3jRGtrE5zqqVXDodivT7I6psyBFoM8WItlj3t+RBTut
-         GNfQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:content-transfer-encoding:in-reply-to:from:references
-         :to:content-language:subject:user-agent:date:message-id
+        b=HEx5N/miAhazgnzCPfpRZ/yIz1L97kBn0uBw2+xFrYJjHerCv7lJgj0vS8iqNosOUj
+         k8WUnADnUkCg1SRE9QcZdkYEa7aejzLl0wyaa2x3PnLSKJHQP1IbO2P0UcM5Whuzn92z
+         CdnSUBdOns2NIGqKaPtHHJ0yedYwzU7OWUFcuqLW/vDeASIyU8YGwae7FmZQvOyQ3Wih
+         4SryJDB4dB8wtsuhShO48XmUK0bqd61/tKBK1KY7ORaSxjb/5bP1bJskbgWJx/54vGi6
+         +fRROttKlTg3hRn3UPUUTFjLsfTQC1AMCTFVIzJp8Pl7XXj93s9rq7EFeXR0vIIlNU41
+         zRJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :dkim-signature;
-        bh=x3Wh+GpLZfyuo0dqBa0I7D9wEIDKdyod0XNd7GNA3Q0=;
-        b=Shb1620IAgEQN2rNPBz9CiON3EMRrM0ywBghoPugOSOQK19qgJVXVI6kUnZdAwHhqK
-         KbUkg8XkBCBnoFoGOhNkH94a5MBnqqCitD99h06S20fIB8O5YXT+Jsu6DzvW/o4mq2TX
-         ALi9/hMqOhycBQxX2IDhqY9tTnQ+9ZKMl+gjZjcRAayg+XEnlkFVLgzaYIbePGN3EB2I
-         hnbaFul2kPhxBNEvia+PC19iDiOJLvmplOpULolwaRAoaNe8O7eFvZhwCf/uHwthtnbS
-         B72pv4hGS54GCU/LAn+YLuORja4JuODEG/0b6YDMt1cR03hh7Q0nQwHFTxzrqpywjqmY
-         3KYg==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@suse.com header.s=selector1 header.b="08o6S/Xn";
-       arc=pass (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass fromdomain=suse.com);
-       spf=pass (google.com: domain of lduncan@suse.com designates 2a01:111:f400:fe0c::62b as permitted sender) smtp.mailfrom=LDuncan@suse.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on062b.outbound.protection.outlook.com. [2a01:111:f400:fe0c::62b])
-        by gmr-mx.google.com with ESMTPS id bg10-20020a05600c3c8a00b003db0d2c3d6esi168771wmb.0.2023.02.08.11.23.13
+        bh=V8BEn8Yu1/PsAK9jjwlAyXqu0bO9nF4/qnNv6DwG5MM=;
+        b=C/KINnuLVRwkTBVujqmBLBv5mFoGU3SNZXQqpSY05YaQOs3OayefbYZ9Zbe8wA7Bd+
+         abVo3neFCsbFauKFc6eykvwYJuDQv6nU4bwIe5shYwg/sJkQgwjRZkial8fSXoPzynut
+         waFkX+V84K+GANtKYmItBHy4bUbN1cT59iRhir+U4wPJMEDvGKwWatvvuiSz5EpJVtG2
+         HphkjPu5TFEU1eTdQbFi/sqFVilxtWji9usvVcMKDh1T9NLvDFX0/kG2Ee1x8AE2GkvL
+         NHRcSN3GMJ1Oytj14A6id7TT3wir1hfczFvk0t462oo/7yzONkTA1jSJL9nWYR+T5UAv
+         5Apg==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b="MQ8aRTo/";
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.129.124])
+        by gmr-mx.google.com with ESMTPS id en21-20020a056870079500b001627c709dc3si1034208oab.3.2023.02.08.11.52.11
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 08 Feb 2023 11:23:13 -0800 (PST)
-Received-SPF: pass (google.com: domain of lduncan@suse.com designates 2a01:111:f400:fe0c::62b as permitted sender) client-ip=2a01:111:f400:fe0c::62b;
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oGP0Ho1EGPKZmt/5Yl42kzllmQHItuw4Seycq+P7/AQI5voPmg0A/d4Pe0NLyqxBbcTEvx9BjHkdWKYXiSKi0GPHjBU/YBHdMSGbUv+OOlCfCudGKGl9lCX+XEKAyXszZ7sm5L65XM+YAI1JMmyzy+S8pZ7IJh4yNvBHj8CpeJKsFgyzhK6TRoOtUb6WNlKjAfXSFE2pDND5hvrqvUQaDPAru0JRxgVboKN9rnI7djmpO6sHmlJP7ZUam8yi+PtcZpo8fKkk/XlVc8uNl2DENCcklLcmq2JstuAf4HqTmjEjwaSiw/04akXW0N46og4MjfGX1lc+3IdvzZ3AYpEwvw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x3Wh+GpLZfyuo0dqBa0I7D9wEIDKdyod0XNd7GNA3Q0=;
- b=AOIMosozXCPH0RXZb1hNZHz8fLBhRjYkKrYx27YtPZnFOn0Cah7c6ZDpjCe8J7ZCiW5DZv1VhbH2dPyedQr3uMfm5AGMiyVWQpEHUgzvR7ZrCPmdnTS52Lsk9fklxBj6AUXd0Jl3bW8cGJWjNs8l/mBTGPAk0vy1IF/5bH4n2XJcFTpF7OqmLEWBfqYt0B3rrpJ4aE+zG3+41jmD6RZnuOr4HgnCCtNmR7029V+zhVyBnySNVqTSADZQ7sa3zUrrxRU5r9snwzmxAuWwhcu7Rs4h48udV1pThZ8UxTLa6bAzrKykaSqcth5qY6IsgcMzDAY5BIW1hjkw1m5w6qqlmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
- dkim=pass header.d=suse.com; arc=none
-Received: from AM5PR04MB3089.eurprd04.prod.outlook.com (2603:10a6:206:b::28)
- by PA4PR04MB7693.eurprd04.prod.outlook.com (2603:10a6:102:e0::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.34; Wed, 8 Feb
- 2023 19:23:12 +0000
-Received: from AM5PR04MB3089.eurprd04.prod.outlook.com
- ([fe80::9a12:6b0f:b2d:661f]) by AM5PR04MB3089.eurprd04.prod.outlook.com
- ([fe80::9a12:6b0f:b2d:661f%7]) with mapi id 15.20.6086.017; Wed, 8 Feb 2023
- 19:23:12 +0000
-Message-ID: <f911472c-c4a1-27ee-8671-037f330096f0@suse.com>
-Date: Wed, 8 Feb 2023 11:23:07 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [RFC 0/9] Make iscsid-kernel communications namespace-aware
- (resent)
-Content-Language: en-US
-To: Lee Duncan <leeman.duncan@gmail.com>, linux-scsi@vger.kernel.org,
- open-iscsi@googlegroups.com, netdev@vger.kernel.org
-References: <cover.1675876731.git.lduncan@suse.com>
-From: "'Lee Duncan' via open-iscsi" <open-iscsi@googlegroups.com>
-In-Reply-To: <cover.1675876731.git.lduncan@suse.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-X-ClientProxiedBy: FR2P281CA0097.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9c::12) To AM5PR04MB3089.eurprd04.prod.outlook.com
- (2603:10a6:206:b::28)
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Feb 2023 11:52:11 -0800 (PST)
+Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) client-ip=170.10.129.124;
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com
+ [209.85.167.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-631-L6Q84dj6MuSJGkeuSdjQxw-1; Wed, 08 Feb 2023 14:52:08 -0500
+X-MC-Unique: L6Q84dj6MuSJGkeuSdjQxw-1
+Received: by mail-lf1-f70.google.com with SMTP id i13-20020a056512340d00b004b8825890a1so13319lfr.1
+        for <open-iscsi@googlegroups.com>; Wed, 08 Feb 2023 11:52:07 -0800 (PST)
+X-Received: by 2002:a19:c219:0:b0:497:9810:acfc with SMTP id l25-20020a19c219000000b004979810acfcmr1644919lfc.50.1675885926195;
+        Wed, 08 Feb 2023 11:52:06 -0800 (PST)
+X-Received: by 2002:a19:c219:0:b0:497:9810:acfc with SMTP id
+ l25-20020a19c219000000b004979810acfcmr1644914lfc.50.1675885925897; Wed, 08
+ Feb 2023 11:52:05 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM5PR04MB3089:EE_|PA4PR04MB7693:EE_
-X-MS-Office365-Filtering-Correlation-Id: e76a8a72-2522-4ecf-afcc-08db0a09eb17
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bRuiOdlnjDSk1ZjU8VlWKQcMJS2WRHICQxAZYXYQVSGvghgKbHPWuE0zAHCQP6ICUGSasfoW89iKIt29V5EADdGgW8tkt2/rVah4dUE9Dj8CZqgN924OsD0i665PDi8n+hGO5Mk4+EgFDyWiQmpKDte4kcTHtgaKF83pwGea4vwu3KFp1pfgIE3kTkEsEsM3aneuAZ1Zy3a47n8QRUnqMriuX57dY7ygt/fjGw7vGxR0heXGq/vyFEHY9afIKqEELO8+LaBlUcJ+OrLmtsQN4Flt5tAVzcXPYn1h1zP1zbI90SytvReYeQJ5DULoR4uM+JCND0gpInTgvEE6rj34MXvoOFSsca06IxHV0CxcwWEv2MdPQ2kTV7okCLwqGBxiSwSWc/eoDvhMhMVgowRqVvJxKgQRDC8BHcKTcTJMzvG3uF0S7CZQTiVIkEwFjwj3Cp7fOmOIl8z8MYNw4UZeW82T1w7ZmMhUPnYgy8802T/+TCOKEkQCMutLXNEDcutcMLimZ/DN7EI3Dvs3iyr27DqMBRZw5NXm0JZVM/gg7JvMUXOep1iwr2CXk8hwrO4odZxx3BFU8VBIc7U7JeUu3Jlh7mkpsbJeu9+i7Cd7aNegJZgy/WWoSf+ROtzFCiaOujboO/ShVqs579UZ2UMo5mTtFcuBFNBTbABXhKbz5toaysDYLrIBlzVEPwST2sTQdM+ehmvHf8eACD5GzOWsgTKooCu/CQJpXCN5pmcumqc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3089.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(396003)(136003)(39860400002)(366004)(376002)(451199018)(6506007)(86362001)(5660300002)(53546011)(66556008)(26005)(6512007)(31686004)(186003)(8936002)(6666004)(2906002)(66946007)(66476007)(8676002)(66899018)(38100700002)(41300700001)(316002)(2616005)(31696002)(478600001)(6486002)(36756003)(83380400001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ajJQNjExOEVMdW9RYlhlT1NWL2YwOHhBQnZ2WDEzL3lGcmxjdEJueEFVeFlv?=
- =?utf-8?B?WkdHVmlpQ0ZROFBhdnF6M0poY01qZkdaM2J5dyttV2tlQzFWZkVSaVJOMXFK?=
- =?utf-8?B?NThoWEtOaGtaeThTanFHOThHRXlBQmRua1UxZmdkbkd6a2h1SUM4TnByWWFQ?=
- =?utf-8?B?OG95UVBkSGRxbC9oRFUwcmh4T01qVkNqL0NQNEtYRXV4aGt6Szl1VHF1R0RM?=
- =?utf-8?B?cEFrd0VIYUNWbDVXTGM5SFk3QjFRc2RFMDdESzZERDhrRVFiZmRvREpXSU0w?=
- =?utf-8?B?UzlPYmJSajNkZGxsR0ZVdm9zdW91QzNIT3E1SzlmdHFqTEVqYW8ya0ZHZldp?=
- =?utf-8?B?ZFpnS0tTZTZ5MHVDRnFaSFdtbitTM25DcjU0cGtnS1F0cEVxSmpIZUFwL29i?=
- =?utf-8?B?SHpnWEQvaFVwT0dpM0tjWmVxN3dGWGsyK25OWVRSaDJ0cVdSYW9ubjlZMFJM?=
- =?utf-8?B?VTNISjNtOVAweFA4MWlCbjA5cFBqcmIvVDhZak0xTERHRTBiZmlqMHYrRmVM?=
- =?utf-8?B?ejV6TVF6Q284OUJLc2dnN2JVM0V3cmIrRmVoWksvNXdzOFBKd3MybVhQNHRw?=
- =?utf-8?B?SWlUdzRmcm1Pd0RPYXdXVmFJNTNNMnhtNjRGSGE1Vy9XbWxyczNFUXJzWGgv?=
- =?utf-8?B?cGszZFcxNU9YSS9oUnB0cS9KcXRvUkFaS0tDNnkyMFRJQXp6UXJjSFQ0c29P?=
- =?utf-8?B?clRvaXNkTnhDeEVicHdIVCs2YU5paStEVnNNNWlLdWxRaS9jc3RyVlJLVUYr?=
- =?utf-8?B?U2hFYm9SSnRROGNjZ250WXRaS3NRZk85aGdQNDRWdGRLeFQvUjZ0M2RKaXpV?=
- =?utf-8?B?MjlaWDQ1UGVPZ0oyQzQrVURiZmF5SnR2cDNad0NPelB0RjJlcytSWWZDc1Bj?=
- =?utf-8?B?ZWhISnAxc1hGZXhXQTI2WGcwSHpLL0FVdE5rZUkyYTQwNm1XUUEza3UvV21u?=
- =?utf-8?B?WE1tY0xvditwMEozSFRqV0FIbzA2Q0dmTnhJckpiOGhqbjliN1ZnT09ubG5J?=
- =?utf-8?B?ZStheDFkRkpKL1RFeXdqYzVrcUNKeEgrZ3FnSGxmZHdEUmtpZU1WWVhocGhk?=
- =?utf-8?B?L0ttUHdjOWNaUGhzY25UcEV4ZzZTYmVBNzk2Z0c1MzBGRUZZVnV6ZWJWUGZ4?=
- =?utf-8?B?bTNZaTRIenNuRTlRTllLeVhOZlEvT1ExV1NYMWtseENDdjNqc2YrbVVIaHFo?=
- =?utf-8?B?c0FZV0xNK2d3dlY1czBGWTJ6NllWMmVSa1VwRVFOZkxCOEovRlVEanNxMENF?=
- =?utf-8?B?UGdtelc4QUNES1hWUzZhclBDZTZQUkRhRzU5YVErRGZ0d0NPMDF6bWt2dExZ?=
- =?utf-8?B?OU9vMkRnTFdHZ25vc3BjWG1IU3FPaFVtUk5HUm9sbkw3SjJra2lpZy85eVNz?=
- =?utf-8?B?c1d2cCtvdndycXc3elBHUWtkUVc2a3M0ZTNBZHQ4a1lPaitRck9VVWxUMzcw?=
- =?utf-8?B?M2hHNTVmb0ZKcURNM2FMREk4TXRQUjkrRlk2OUlrME5YbXRzNTNqbkFRd2dZ?=
- =?utf-8?B?QzZqUVoxdm95Z1NKSGl1cW5yRWZUdEJMVmJINmZVMjhsTExpYVNpTEVBRUxH?=
- =?utf-8?B?a0FnRElEQTNFQzNLTDYrdk9pbFRsOVh4dytxeUI1eVFQSUlXMmtOYlFKSHdW?=
- =?utf-8?B?NUk0MmphcFBoaTR1WFBDWEFOSUlJenIwS25SQ25pSFpJYkw3U2E3RFljem5O?=
- =?utf-8?B?WHk3cllNV0swT3NFaEdKSHVaQ3kvTlRYaDMrck1MSTNPcjQrWVF4MFRjR2g2?=
- =?utf-8?B?ckd5UWtkdVRPWjdnNWdPc2VROUZHVjY4K21haHB3ZkpUVGJSWEh0NzBmL2Js?=
- =?utf-8?B?UHpOMlNiakRFTFQ0K2FDbUtSOVp4REt4M05JbmZ4Ly9YNFJaYUxDNkZid3Qr?=
- =?utf-8?B?R1UyTzAySnpwOUVZdStWZ3NNRHBxMzdsWElPald3Zk9GYVptYW8xY0VjaUR6?=
- =?utf-8?B?S3VBd2hGd1p0K09BcUgrRzZNVVB5Q1YxUXFuT3BUYW9ZTENlVDZzT2NnUCt0?=
- =?utf-8?B?NlBBYkgwbSt5ZllNcnR4U3NCeTVzcjN3dXVzTjU4OC9wMlRvZTh3Z1Fmdnk1?=
- =?utf-8?B?OGlBTnNaT01RaWJWUXpGSlpONTJodm8vVXVIOGZjT01ia2ZSNDVkZGdkUTlq?=
- =?utf-8?Q?OUKJlrO+hsLq2pKIZzuJKpE4p?=
-X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e76a8a72-2522-4ecf-afcc-08db0a09eb17
-X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3089.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 19:23:11.9801
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RyNAqGLjSCtFvrZecrCSqV0K8VRiBp1Zj2X7biLZqM6PTJWYHJ47XOpRGo88UNRgUrf5+Xzx6VywoT2UklnheQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7693
-X-Original-Sender: lduncan@suse.com
+References: <cover.1675876731.git.lduncan@suse.com> <9ff09a3d-1a75-436a-bbc3-0f154285cfa3n@googlegroups.com>
+In-Reply-To: <9ff09a3d-1a75-436a-bbc3-0f154285cfa3n@googlegroups.com>
+From: Chris Leech <cleech@redhat.com>
+Date: Wed, 8 Feb 2023 11:51:54 -0800
+Message-ID: <CAPnfmXKK5yfB8gy5eaKOW6GsxqH4AHUy8ABtv19KrkTXB=sdiQ@mail.gmail.com>
+Subject: Re: [RFC 0/9] Make iscsid-kernel communications namespace-aware
+To: open-iscsi@googlegroups.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: multipart/alternative; boundary="0000000000004c322705f43599bc"
+X-Original-Sender: cleech@redhat.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@suse.com header.s=selector1 header.b="08o6S/Xn";       arc=pass
- (i=1 spf=pass spfdomain=suse.com dkim=pass dkdomain=suse.com dmarc=pass
- fromdomain=suse.com);       spf=pass (google.com: domain of lduncan@suse.com
- designates 2a01:111:f400:fe0c::62b as permitted sender) smtp.mailfrom=LDuncan@suse.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
-X-Original-From: Lee Duncan <lduncan@suse.com>
+ header.i=@redhat.com header.s=mimecast20190719 header.b="MQ8aRTo/";
+       spf=pass (google.com: domain of cleech@redhat.com designates
+ 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -213,76 +140,239 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-[Resent to include all mailing lists]
+--0000000000004c322705f43599bc
+Content-Type: text/plain; charset="UTF-8"
 
-I wanted to mention some issues I've discovered as part of testing this:
+On Wed, Feb 8, 2023 at 11:17 AM The Lee-Man <leeman.duncan@gmail.com> wrote:
 
-- Currently, only some sysfs entries are going to be different
-   per namespace
-- This means that the Configuration and Initiator Name are going to
-   be common to all running daemons (this is /etc/iscsi)
-- This also means that the Node database (and discovery DB,
-   and interface DB) are common to all running daemons
+> I wanted to mention some issues I've discovered as part of testing this:
+>
+>    - Currently, only some sysfs entries are going to be different per
+>    namespace
+>
+>
+Anything that's directly related to the iSCSI host, session, connection,
+etc. should be filtered, I think.  SCSI mid-layer objects and block devices
+are not.  That seemed the cleanest break for being able to isolate the
+control plane to a network namespace, which is the isolation that I've seen
+asked for.
 
-I'm really not sure all running daemons should have the same initiator 
-name. If we think of them as separate initiators, then this seems wrong.
 
-Sharing the Node database may not be a good idea, either. This assumes 
-that nodes discovered (and saved) from one namespace can actually be 
-reached from other namespaces, but this may not be true. Having the Node 
-DB and initiatorname shared means the different iscsid instances must 
-cooperate with each other, else their requests can collide. Also, I can 
-imagine situations where different daemons may want to set different 
-configuration values. Currently they cannot.
+>
+>    - This means that the Configuration and Initiator Name are going to be
+>    common to all running daemons (this is /etc/iscsi)
+>    - This also means that the Node database (and discovery DB, and
+>    interface DB) are common to all running daemons
+>
+> These changes were about making the kernel to iscsid interfaces namespace
+aware, so that iscsid could be containerized.  If you were to do that,
+wouldn't you give iscsid a separate filesystem view with different
+configuration and record database space?  I think you're right that there
+are other resources that shouldn't be shared between multiple instances of
+iscsid, and maybe protecting against some of that misconfiguration needs to
+happen in Open-iSCSI.
 
-On 2/8/23 09:40, Lee Duncan wrote:
-> From: Lee Duncan <lduncan@suse.com>
-> 
-> This is a request for comment on a set of patches that
-> modify the kernel iSCSI initiator communications so that
-> they are namespace-aware. The goal is to allow multiple
-> iSCSI daemon (iscsid) to run at once as long as they
-> are in separate namespaces, and so that iscsid can
-> run in containers.
-> 
-> Comments and suggestions are more than welcome. I do not
-> expect that this code is production-ready yet, and
-> networking isn't my strongest suit (yet).
-> 
-> These patches were originally posted in 2015 by Chris
-> Leech. There were some issues at the time about how
-> to handle namespaces going away. I hope to address
-> any issues raised with this patchset and then
-> to merge these changes upstream to address working
-> in working in containers.
-> 
-> My contribution thus far has been to update these patches
-> to work with the current upstream kernel.
-> 
-> Chris Leech/Lee Duncan (9):
->    iscsi: create per-net iscsi netlink kernel sockets
->    iscsi: associate endpoints with a host
->    iscsi: sysfs filtering by network namespace
->    iscsi: make all iSCSI netlink multicast namespace aware
->    iscsi: set netns for iscsi_tcp hosts
->    iscsi: check net namespace for all iscsi lookup
->    iscsi: convert flashnode devices from bus to class
->    iscsi: rename iscsi_bus_flash_* to iscsi_flash_*
->    iscsi: filter flashnode sysfs by net namespace
-> 
->   drivers/infiniband/ulp/iser/iscsi_iser.c |   7 +-
->   drivers/scsi/be2iscsi/be_iscsi.c         |   6 +-
->   drivers/scsi/bnx2i/bnx2i_iscsi.c         |   6 +-
->   drivers/scsi/cxgbi/libcxgbi.c            |   6 +-
->   drivers/scsi/iscsi_tcp.c                 |   7 +
->   drivers/scsi/qedi/qedi_iscsi.c           |   6 +-
->   drivers/scsi/qla4xxx/ql4_os.c            |  64 +--
->   drivers/scsi/scsi_transport_iscsi.c      | 625 ++++++++++++++++-------
->   include/scsi/scsi_transport_iscsi.h      |  63 ++-
->   9 files changed, 537 insertions(+), 253 deletions(-)
-> 
+- Chris
+
+
+> I'm really not sure all running daemons should have the same initiator
+> name. If we think of them as separate initiators, then this seems wrong.
+>
+> Sharing the Node database may not be a good idea, either. This assumes
+> that nodes discovered (and saved) from one namespace can actually be
+> reached from other namespaces, but this may not be true. Having the Node DB
+> and initiatorname shared means the different iscsid instances must
+> cooperate with each other, else their requests can collide. Also, I can
+> imagine situations where different daemons may want to set different
+> configuration values. Currently they cannot.
+>
+> On Wednesday, February 8, 2023 at 9:41:02 AM UTC-8 The Lee-Man wrote:
+>
+>> From: Lee Duncan <ldu...@suse.com>
+>>
+>> This is a request for comment on a set of patches that
+>> modify the kernel iSCSI initiator communications so that
+>> they are namespace-aware. The goal is to allow multiple
+>> iSCSI daemon (iscsid) to run at once as long as they
+>> are in separate namespaces, and so that iscsid can
+>> run in containers.
+>>
+>> Comments and suggestions are more than welcome. I do not
+>> expect that this code is production-ready yet, and
+>> networking isn't my strongest suit (yet).
+>>
+>> These patches were originally posted in 2015 by Chris
+>> Leech. There were some issues at the time about how
+>> to handle namespaces going away. I hope to address
+>> any issues raised with this patchset and then
+>> to merge these changes upstream to address working
+>> in working in containers.
+>>
+>> My contribution thus far has been to update these patches
+>> to work with the current upstream kernel.
+>>
+>> Chris Leech/Lee Duncan (9):
+>> iscsi: create per-net iscsi netlink kernel sockets
+>> iscsi: associate endpoints with a host
+>> iscsi: sysfs filtering by network namespace
+>> iscsi: make all iSCSI netlink multicast namespace aware
+>> iscsi: set netns for iscsi_tcp hosts
+>> iscsi: check net namespace for all iscsi lookup
+>> iscsi: convert flashnode devices from bus to class
+>> iscsi: rename iscsi_bus_flash_* to iscsi_flash_*
+>> iscsi: filter flashnode sysfs by net namespace
+>>
+>> drivers/infiniband/ulp/iser/iscsi_iser.c | 7 +-
+>> drivers/scsi/be2iscsi/be_iscsi.c | 6 +-
+>> drivers/scsi/bnx2i/bnx2i_iscsi.c | 6 +-
+>> drivers/scsi/cxgbi/libcxgbi.c | 6 +-
+>> drivers/scsi/iscsi_tcp.c | 7 +
+>> drivers/scsi/qedi/qedi_iscsi.c | 6 +-
+>> drivers/scsi/qla4xxx/ql4_os.c | 64 +--
+>> drivers/scsi/scsi_transport_iscsi.c | 625 ++++++++++++++++-------
+>> include/scsi/scsi_transport_iscsi.h | 63 ++-
+>> 9 files changed, 537 insertions(+), 253 deletions(-)
+>>
+>> --
+>> 2.39.1
+>>
+>> --
+> You received this message because you are subscribed to the Google Groups
+> "open-iscsi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an
+> email to open-iscsi+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit
+> https://groups.google.com/d/msgid/open-iscsi/9ff09a3d-1a75-436a-bbc3-0f154285cfa3n%40googlegroups.com
+> <https://groups.google.com/d/msgid/open-iscsi/9ff09a3d-1a75-436a-bbc3-0f154285cfa3n%40googlegroups.com?utm_medium=email&utm_source=footer>
+> .
+>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/f911472c-c4a1-27ee-8671-037f330096f0%40suse.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/CAPnfmXKK5yfB8gy5eaKOW6GsxqH4AHUy8ABtv19KrkTXB%3DsdiQ%40mail.gmail.com.
+
+--0000000000004c322705f43599bc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Wed, Feb 8, 2023 at 11:17 AM The Lee-M=
+an &lt;<a href=3D"mailto:leeman.duncan@gmail.com">leeman.duncan@gmail.com</=
+a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div>I wanted to mention some issues I&#39;ve disc=
+overed as part of testing this:</div><div><ul><li>Currently, only some sysf=
+s entries are going to be different per namespace</li></ul></div></blockquo=
+te><div><br></div><div>Anything that&#39;s directly related to the iSCSI ho=
+st, session, connection, etc. should be filtered, I think.=C2=A0 SCSI mid-l=
+ayer objects and block devices are not.=C2=A0 That seemed the cleanest=C2=
+=A0break for being able to isolate the control plane to a network namespace=
+, which is the isolation that I&#39;ve seen asked for.</div><div>=C2=A0</di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex"><div><ul><li>This means=
+ that the Configuration and Initiator Name are going to be common to all ru=
+nning daemons (this is /etc/iscsi)</li><li>This also means that the Node da=
+tabase (and discovery DB, and interface DB) are common to all running daemo=
+ns</li></ul></div></blockquote><div>These changes were about making the ker=
+nel to iscsid interfaces namespace aware, so that iscsid could be container=
+ized.=C2=A0 If you were to do that, wouldn&#39;t you give iscsid a separate=
+ filesystem view with different configuration and record database space?=C2=
+=A0 I think you&#39;re right that there are other resources that shouldn&#3=
+9;t be shared between multiple instances of iscsid, and maybe protecting ag=
+ainst some of that misconfiguration needs to happen in Open-iSCSI.</div><di=
+v><br></div><div>- Chris</div><div>=C2=A0</div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div><div>I&#39;m really not sure all running daemons=
+ should have the same initiator name. If we think of them as separate initi=
+ators, then this seems wrong.</div><div><br></div><div>Sharing the Node dat=
+abase may not be a good idea, either. This assumes that nodes discovered (a=
+nd saved) from one namespace can actually be reached from other namespaces,=
+ but this may not be true. Having the Node DB and initiatorname shared mean=
+s the different iscsid instances must cooperate with each other, else their=
+ requests can collide. Also, I can imagine situations where different daemo=
+ns may want to set different configuration values. Currently they cannot.<b=
+r></div></div><br><div class=3D"gmail_quote"><div dir=3D"auto" class=3D"gma=
+il_attr">On Wednesday, February 8, 2023 at 9:41:02 AM UTC-8 The Lee-Man wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">From: Lee Du=
+ncan &lt;<a rel=3D"nofollow">ldu...@suse.com</a>&gt;
+<br>
+<br>This is a request for comment on a set of patches that
+<br>modify the kernel iSCSI initiator communications so that
+<br>they are namespace-aware. The goal is to allow multiple
+<br>iSCSI daemon (iscsid) to run at once as long as they
+<br>are in separate namespaces, and so that iscsid can
+<br>run in containers.
+<br>
+<br>Comments and suggestions are more than welcome. I do not
+<br>expect that this code is production-ready yet, and
+<br>networking isn&#39;t my strongest suit (yet).
+<br>
+<br>These patches were originally posted in 2015 by Chris
+<br>Leech. There were some issues at the time about how
+<br>to handle namespaces going away. I hope to address
+<br>any issues raised with this patchset and then
+<br>to merge these changes upstream to address working
+<br>in working in containers.
+<br>
+<br>My contribution thus far has been to update these patches
+<br>to work with the current upstream kernel.
+<br>
+<br>Chris Leech/Lee Duncan (9):
+<br>  iscsi: create per-net iscsi netlink kernel sockets
+<br>  iscsi: associate endpoints with a host
+<br>  iscsi: sysfs filtering by network namespace
+<br>  iscsi: make all iSCSI netlink multicast namespace aware
+<br>  iscsi: set netns for iscsi_tcp hosts
+<br>  iscsi: check net namespace for all iscsi lookup
+<br>  iscsi: convert flashnode devices from bus to class
+<br>  iscsi: rename iscsi_bus_flash_* to iscsi_flash_*
+<br>  iscsi: filter flashnode sysfs by net namespace
+<br>
+<br> drivers/infiniband/ulp/iser/iscsi_iser.c |   7 +-
+<br> drivers/scsi/be2iscsi/be_iscsi.c         |   6 +-
+<br> drivers/scsi/bnx2i/bnx2i_iscsi.c         |   6 +-
+<br> drivers/scsi/cxgbi/libcxgbi.c            |   6 +-
+<br> drivers/scsi/iscsi_tcp.c                 |   7 +
+<br> drivers/scsi/qedi/qedi_iscsi.c           |   6 +-
+<br> drivers/scsi/qla4xxx/ql4_os.c            |  64 +--
+<br> drivers/scsi/scsi_transport_iscsi.c      | 625 ++++++++++++++++-------
+<br> include/scsi/scsi_transport_iscsi.h      |  63 ++-
+<br> 9 files changed, 537 insertions(+), 253 deletions(-)
+<br>
+<br>--=20
+<br>2.39.1
+<br>
+<br></blockquote></div>
+
+<p></p>
+
+-- <br>
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br>
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com" target=
+=3D"_blank">open-iscsi+unsubscribe@googlegroups.com</a>.<br>
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/9ff09a3d-1a75-436a-bbc3-0f154285cfa3n%40googlegroups.=
+com?utm_medium=3Demail&amp;utm_source=3Dfooter" target=3D"_blank">https://g=
+roups.google.com/d/msgid/open-iscsi/9ff09a3d-1a75-436a-bbc3-0f154285cfa3n%4=
+0googlegroups.com</a>.<br>
+</blockquote></div></div>
+
+<p></p>
+
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion on the web visit <a href=3D"https://groups.google.c=
+om/d/msgid/open-iscsi/CAPnfmXKK5yfB8gy5eaKOW6GsxqH4AHUy8ABtv19KrkTXB%3DsdiQ=
+%40mail.gmail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.go=
+ogle.com/d/msgid/open-iscsi/CAPnfmXKK5yfB8gy5eaKOW6GsxqH4AHUy8ABtv19KrkTXB%=
+3DsdiQ%40mail.gmail.com</a>.<br />
+
+--0000000000004c322705f43599bc--
+
