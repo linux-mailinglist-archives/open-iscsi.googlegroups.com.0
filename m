@@ -1,137 +1,123 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBBTW24SPAMGQEDGMQF3Y@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBLF5R6PQMGQEWMU4HJA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lj1-x23a.google.com (mail-lj1-x23a.google.com [IPv6:2a00:1450:4864:20::23a])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF8F468305C
-	for <lists+open-iscsi@lfdr.de>; Tue, 31 Jan 2023 16:01:36 +0100 (CET)
-Received: by mail-lj1-x23a.google.com with SMTP id bx20-20020a05651c199400b002905fdb439esf1433012ljb.23
-        for <lists+open-iscsi@lfdr.de>; Tue, 31 Jan 2023 07:01:36 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1675177296; cv=pass;
+Received: from mail-ed1-x537.google.com (mail-ed1-x537.google.com [IPv6:2a00:1450:4864:20::537])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD09268F5C3
+	for <lists+open-iscsi@lfdr.de>; Wed,  8 Feb 2023 18:41:02 +0100 (CET)
+Received: by mail-ed1-x537.google.com with SMTP id g25-20020aa7c859000000b004a3fe4cbb0csf12792272edt.17
+        for <lists+open-iscsi@lfdr.de>; Wed, 08 Feb 2023 09:41:02 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1675878062; cv=pass;
         d=google.com; s=arc-20160816;
-        b=qaAVO7YvWNS4qMH7fO4pdedvVjQecseCy0/pdF9HY8r6P4ntG2pvXtcVKtsGh2dIsD
-         N6Uz5DhE2q7//bysMuvxLrjKEbysrvkhOpgo3zokcTEcSblA9BLckq8nZbvCYHCqyPd5
-         92MUofYyvcyqoiRFPPfO0eblyj2ecVoI2r7uH6VN8P0lHlwmVUXLAlEpPMaf4TSjvUSZ
-         PVBc6Wrr0d3fXO2D0D6N6grWURkmeDytlu5WndByVH8OkkWgz+gBlTjwzaqCsxzlLCMR
-         J4AmR79EhQsKhc4AqKGLVChySXRkileuaV27iaRwq9Uv19RHW54KuyV4IGMJjvkX7+Ri
-         8KZQ==
+        b=zv5kBldQ4SuAsSIjSlTdn+QbGoLxQ8y4hR7GRBntwnSVLobvM7nlVNUdbIpnCEQiTD
+         x5eMR5dvxpbN+JuFh7pfMQX3twERzy+5qqIJEiOQFYju6MdJ/dI9j+Xpdu3X8qy1THqC
+         g93WojXD1nWIGDKUdPzE7yV310Jj2wNPp71LNhEW1sMmt0Z3ppAKZrELmq9l2HqUK4eQ
+         thVwntbvNt4ouwP9L+ooOCsRLKfdmiUpEc5qXgnFZ+w6cS+uHdmfTVQQzimuHBq26q12
+         55hjtfBJKJe2+WMBi0efV+omGWrITLkNqSa9jAIujTellk4jt399DJeY6reTYaUw1nol
+         2lFg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:sender
-         :dkim-signature;
-        bh=VLUaxvrjgFz6HBLfWm/uezrW3dqPBxJoVPzJ+hzT12Y=;
-        b=YKQU5h6uvtUOWFaf+Zhjy7aSGOaIR1Jao1E0XGtl8xCovVcOjftGVJuDAUQHyuseCX
-         ngbBSdtNhCT+ZHP6wMBagHhMMvcam/Waq4FJHqRgbcA6x0SUdaxOE9jZ37j1X7iWWmS6
-         5sW/q4dAv/nuousztFxyZ0u91D4Z5mR4iEgBdczvjjzXc1z04Xi/tm/ItYeEIg4EuQGv
-         7nFbfFOB0m5j9JmMNQ0alqEbda1aCLXFkvMrkCArvF8FH4xvqK6mJpRDSUOWERY0QulR
-         V6u7Iyxs1nPgRvV5Yxlbhed1IkKKtZGzflGtEb6mSzt/CWO3uoS81HLKiiEcERzoTTtg
-         pdPg==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=7MNDPfAODo2CbmrzsxPDtNKkfKTk2DZmNod24EoJYuI=;
+        b=FgfXsE3KoBbBlfsvkZEuLT2Vlsj/0Setbfsbqr4wiSNzd8yCXSvQlUy2alrlvzGfZA
+         4zLXC2x1oIPb5sNvufaj0iUP8bUx5TSrZFu42AEQTVKHf7KlBfO1rPWrh7U+d7z4T5Vi
+         bJL6yEwxjFcZUumMKDi8xMpzlJlaIbW1StQhxmrW5LwJLnX7fy/5GKCB44qx3vrjca8L
+         ojbWgVwmT8a47uCX4WnkkDKPsJUC2YrasEBF50SVMFU1uN3rY7JzAIQaalJqFaHX3OJt
+         XfxMNFIlrN4zKAnV+Zn7zIY1oV4gam6mGM8P+faNLNWZ+joc4Z28z3mV3JHRLDgo0tj+
+         9PQQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=mthMomAg;
-       spf=pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+       spf=pass (google.com: domain of lduncan@suse.de designates 195.135.220.28 as permitted sender) smtp.mailfrom=lduncan@suse.de;
+       dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VLUaxvrjgFz6HBLfWm/uezrW3dqPBxJoVPzJ+hzT12Y=;
-        b=UHjsxVrkTS5w16513Sf9HCG1Fjf4+sWgOIR7fHiR+uNu3dQ0O6TJQwNKPcSQss8x1D
-         WErirm3KDdUt3uObUBhB7T8cQmpghRTi4cwThiDjwwCk9azBkCPflRah6WXTtL5OXxeV
-         pA+PCbCDkdMd51A4BtTFlbyYZweY+jpToUoEs/XCz7QQxYeGvuDnP7ErUaYmp0qiYJ/h
-         igpGcYdt4+EROgBqzcEpJwhF94WjBlhM298Lai0o1TZbhyiR1rnnDUmst321BiCwmf3x
-         UysQVXhcMNlSWZqWxQtAwe2P/V+OgshvXJv643Ss4Dmg4XxrUh0pSnt+yssOEKhx3EQw
-         ugyg==
+         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7MNDPfAODo2CbmrzsxPDtNKkfKTk2DZmNod24EoJYuI=;
+        b=DRG3cH9c5wLvJWWYfPpaH/X9mifLRTC97EzOlL0oRVNEphyaFDoHajZa7MhwJjD5kc
+         KeytyX7dSQy68kTM89hQqiZoJjMzmuSH5bFnXr/0H4/w935bYbw9dHURpjjqz/AqaH0K
+         vtrdg6HJ5R231q5H7+u8pAzONT6mAkLO3oDaV2V0KZJ3kp0wBIwWksNEmi2+DH8LZsxB
+         fWDxoK+bZ6fiNLz3L9jl6J9sTpy7pq/K0rePOIraO1yhvdo96DoiRTayd3FysaCdWLxQ
+         wIZvlxPojp2RvuA3lDoF0C2RAZ2Ds78hQpqT7LYGkAp2nIpyCaWe8+oJ9DJxewsZX5Zv
+         8/kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VLUaxvrjgFz6HBLfWm/uezrW3dqPBxJoVPzJ+hzT12Y=;
-        b=7QzVroi1AgMyuyXaW/j957YrgNjC7rKMtr+JNtiLBzDI481LvelG6mK4BRTDJLgwLE
-         4/kgnsyvKTIpfrhDDl+PillyJtpsPxbNCUaVUOu6/HqTphP5RJG/wMhRLW7t9oEZJhIY
-         lysgiYmrVlSa58o1995YPDVSgb0/17T7R4rXrNnyGHP2/I1DEVXmZprxCeuE62iRTVnm
-         yi2OBzS/OEjy0xqa09W/PDuzKPkhEGp0u5vYRYtT+X7DtjmxrPYcr5FXrK5TIi9qrsiL
-         8rAoiI0ueWwCBs5+c3k1eK5qcZ4ZfHQb7eBnL4zh820qdWWcbthrniTavnyANXftka81
-         uthQ==
+         :message-id:date:subject:cc:to:from:x-gm-message-state:sender:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=7MNDPfAODo2CbmrzsxPDtNKkfKTk2DZmNod24EoJYuI=;
+        b=5J8soZKlMAoEeCq5XtwSerV4QcqhCcM4aev3aIUNu+K9T6xkiz2/jDdhOyViu7zhpC
+         l2J1MWs234xTYH+lRiwHZncQKaVqLH2o+5+hUcEMKmBRyZKAfYx0T3+pnY7t9v+0JEbB
+         x04TcV9cRlMBM5DsZUDejU6gLxWI7mt/a5bR7n43UQe0C1eqHjhaPrP2Co67+zqYDZwl
+         uu4CLqlTX1jWU3Q2uO1/D/N5Kd+mpi9lDJs+xi3AhThFPEnDmLFj/Tgdps+mrZKV1R8v
+         zWhyKtwyV6pdX/i2igfPQaLaAI7KDAWmIzvVk13uQ89qKy4LAm9fuL3ovK4W2qb8Gxdc
+         hOqg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AO0yUKXCpig9HfTTZosvYYTvfS2wgbDnYWWRyAvuA9mGQSJ88RD3LkZX
-	1tukaLn8RTIf1oGDv21eRnM=
-X-Google-Smtp-Source: AK7set91+3TirMWsQJsGvKa2U1+97hRliivwEvj07SmxCvd2h6/B78r24xPq+VbrPC//jJsfaSfQ8Q==
-X-Received: by 2002:a05:651c:1203:b0:290:641c:2202 with SMTP id i3-20020a05651c120300b00290641c2202mr1104696lja.148.1675177296197;
-        Tue, 31 Jan 2023 07:01:36 -0800 (PST)
+X-Gm-Message-State: AO0yUKVTFlDEdRsLodzCj7tEZC1c/Xem9z172vxMRJm0W7U6cXrSsbl5
+	ZoxR0pGQCe+8JD3SO3ObV/o=
+X-Google-Smtp-Source: AK7set8hAleVCdfyFgVJ0jVACAAq3yBpO/pvTa1QqqdLWFSMlO06WfvLqTYQf+CchfuhK7/uyQWb9Q==
+X-Received: by 2002:a17:906:a219:b0:8ae:ee7c:924b with SMTP id r25-20020a170906a21900b008aeee7c924bmr433666ejy.235.1675878062311;
+        Wed, 08 Feb 2023 09:41:02 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a2e:b603:0:b0:28b:d53d:2e29 with SMTP id r3-20020a2eb603000000b0028bd53d2e29ls2169777ljn.2.-pod-prod-gmail;
- Tue, 31 Jan 2023 07:01:33 -0800 (PST)
-X-Received: by 2002:a2e:b5cb:0:b0:28e:da11:6191 with SMTP id g11-20020a2eb5cb000000b0028eda116191mr930162ljn.22.1675177293109;
-        Tue, 31 Jan 2023 07:01:33 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1675177293; cv=none;
+Received: by 2002:a17:907:9d17:b0:84d:1543:d10e with SMTP id
+ kt23-20020a1709079d1700b0084d1543d10els12688617ejc.1.-pod-prod-gmail; Wed, 08
+ Feb 2023 09:40:59 -0800 (PST)
+X-Received: by 2002:a17:907:d89:b0:890:4731:d1bc with SMTP id go9-20020a1709070d8900b008904731d1bcmr10873334ejc.38.1675878059585;
+        Wed, 08 Feb 2023 09:40:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675878059; cv=none;
         d=google.com; s=arc-20160816;
-        b=RUOUKN580DHLzk48iG+eYjl9HFCB6nrjfhQ0l6Z8RuSKqLt41s03H70qMBfvOONXVF
-         eMZmfBHGCJcttwU/Q9TDdlbe4sBYrKBMfBuxnOm4elh+XKJi3SlYA0u0BFQIwA+u9IsJ
-         Cra7fCTBtXFq7fwz8fmrG2D5UNiga2OiE71oCwppsAOAZmVgMYX4YeOMDlIj9vKJim5t
-         +Dx3f9Jx1doUw7CsBYlzw5XyyfFlbroiSCImFwqv5KJ3W5OgQjdTNV4Ril3byLMNrAVb
-         gVg6+ybZkdKcpeo6YZPzf9rwbJjtXcLcqKo1NBu3E3OvBWgJe6AJjzbI7j3LTEKr+KBr
-         KlMQ==
+        b=eIKqbidhoNLkiWE25WEQ/VSSUN3iXwvWTVt1IxihLWWsSmZ6hfsXgt3nq5hjnptxDS
+         WmjLF2kSUkdq/e2ly0gUS1BtNqZWJs8aBQP6tyYsjSbVB9UTjwkOxx/pbbrGMPjYuOSX
+         4Z3fcDhGWWuXHl+Nm1Ov6ac5NQsSW6Nu9hBgVC57qkP9lxsrhg3P8gv83AmFUSilsrFT
+         mGNZ946gpqSkS88qNDFvh+Ll/ALVIEl2GMeD2QhSTqxKz7F1SR6mpExHNKVEgn6cnKKI
+         3TeyGoSGMv6BlIS8D8Jnu6yaQCKta5gVI0pj53Ywp8tm9jddYUYWBB7C6r6+Geds88Vs
+         3bEQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=6scS6s1NNgOVTxw32mNesf07nQ/kouKnBiAIMq/gDRA=;
-        b=wo7XOIscJiiAMug/7sPGj5Xdx0kM9VePiC+juwso0F6KMMJuL7EoHdvNMNy38Dr7rZ
-         0Og4nybqXobim6S8bh299kAzhvRkHD+iU8cvUGNuGFLMRxuPpGDUPqnY+LPWrZxcNl9S
-         WxgqGmP5XGKT1yCIRe0VVwZtAf+AjHuoGTTl/nJDA+KnT4YAtpvnNBF0lN1tPL+QBR/G
-         rl7D9b54XBv6CMpS5x4ZzZpWmu7Cf+CqYARef6FT8OVewGIF4OLSMqCozXScrcH/Ip+D
-         833k5w98da2yZjzgWLGrb4YwAh6uI3WsQmCP6QIGpWUGfDKeRf+5iMupCjwxdkA/k//c
-         y4Cw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from;
+        bh=1ydODWA6s+ta238i6X7gk8JsMeQxSh+JHPJ2O/Wk104=;
+        b=dwrxkH/1xHyUWRHQr10kicmCpLAOFq82XsL1pUg7YezUlLKuhEGFqwJdmJgVBRk3I/
+         Yd4Ymo9oo50KZ4oPCHdYdqRp/CwlcEHrl8kY50RvHY0xLo8SC8yY+kK+FQYNzsR5waxw
+         S6tdEySfI0QkLPgRTcAbBbbClk/J0i0yoS46462lN9CZDSgJQS5DoLYuSH9JNRLjAQ7n
+         85S0yNYygJsc+kKIoXC4p1pzEPcqge27cg48eGgJ0adA3ExknB4KAHlnEqRrcqMWo0hJ
+         +G4g8z9XOTpPJehXwUCrdAXODulFDgyzmvqwBXaOG81avkYkrJhCBf2uCYjlAtT+9i0W
+         BcLA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=mthMomAg;
-       spf=pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
-Received: from ams.source.kernel.org (ams.source.kernel.org. [145.40.68.75])
-        by gmr-mx.google.com with ESMTPS id h13-20020a2e530d000000b00286e157db47si741093ljb.6.2023.01.31.07.01.32
+       spf=pass (google.com: domain of lduncan@suse.de designates 195.135.220.28 as permitted sender) smtp.mailfrom=lduncan@suse.de;
+       dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from smtp-out1.suse.de (smtp-out1.suse.de. [195.135.220.28])
+        by gmr-mx.google.com with ESMTPS id sb25-20020a1709076d9900b0088d43b316aasi654724ejc.0.2023.02.08.09.40.59
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 31 Jan 2023 07:01:32 -0800 (PST)
-Received-SPF: pass (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted sender) client-ip=145.40.68.75;
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id A6E3BB81D24;
-	Tue, 31 Jan 2023 15:01:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C58C433D2;
-	Tue, 31 Jan 2023 15:01:29 +0000 (UTC)
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Mike Christie <michael.christie@oracle.com>,
-	Lee Duncan <lduncan@suse.com>,
-	Ding Hui <dinghui@sangfor.com.cn>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Sasha Levin <sashal@kernel.org>,
-	cleech@redhat.com,
-	jejb@linux.ibm.com,
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 09:40:59 -0800 (PST)
+Received-SPF: pass (google.com: domain of lduncan@suse.de designates 195.135.220.28 as permitted sender) client-ip=195.135.220.28;
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+	by smtp-out1.suse.de (Postfix) with ESMTP id 3ABD72233E;
+	Wed,  8 Feb 2023 17:40:59 +0000 (UTC)
+Received: from localhost (unknown [10.163.24.10])
+	by relay2.suse.de (Postfix) with ESMTP id F3C822C141;
+	Wed,  8 Feb 2023 17:40:58 +0000 (UTC)
+Received: by localhost (Postfix, from userid 1000)
+	id 1C9BFCA184; Wed,  8 Feb 2023 09:40:57 -0800 (PST)
+From: Lee Duncan <leeman.duncan@gmail.com>
+To: linux-scsi@vger.kernel.org,
 	open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 2/3] scsi: iscsi_tcp: Fix UAF during login when accessing the shost ipaddress
-Date: Tue, 31 Jan 2023 10:01:25 -0500
-Message-Id: <20230131150126.1250471-2-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230131150126.1250471-1-sashal@kernel.org>
-References: <20230131150126.1250471-1-sashal@kernel.org>
+	netdev@vger.kernel.org
+Cc: Lee Duncan <lduncan@suse.com>
+Subject: [RFC 0/9] Make iscsid-kernel communications namespace-aware
+Date: Wed,  8 Feb 2023 09:40:48 -0800
+Message-Id: <cover.1675876731.git.lduncan@suse.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-Original-Sender: sashal@kernel.org
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=k20201202 header.b=mthMomAg;       spf=pass
- (google.com: domain of sashal@kernel.org designates 145.40.68.75 as permitted
- sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass (p=NONE sp=NONE
- dis=NONE) header.from=kernel.org
+X-Original-Sender: leeman.duncan@gmail.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of lduncan@suse.de designates 195.135.220.28 as permitted
+ sender) smtp.mailfrom=lduncan@suse.de;       dmarc=fail (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: list
@@ -146,70 +132,55 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-From: Mike Christie <michael.christie@oracle.com>
+From: Lee Duncan <lduncan@suse.com>
 
-[ Upstream commit f484a794e4ee2a9ce61f52a78e810ac45f3fe3b3 ]
+This is a request for comment on a set of patches that
+modify the kernel iSCSI initiator communications so that
+they are namespace-aware. The goal is to allow multiple
+iSCSI daemon (iscsid) to run at once as long as they
+are in separate namespaces, and so that iscsid can
+run in containers.
 
-If during iscsi_sw_tcp_session_create() iscsi_tcp_r2tpool_alloc() fails,
-userspace could be accessing the host's ipaddress attr. If we then free the
-session via iscsi_session_teardown() while userspace is still accessing the
-session we will hit a use after free bug.
+Comments and suggestions are more than welcome. I do not
+expect that this code is production-ready yet, and
+networking isn't my strongest suit (yet).
 
-Set the tcp_sw_host->session after we have completed session creation and
-can no longer fail.
+These patches were originally posted in 2015 by Chris
+Leech. There were some issues at the time about how
+to handle namespaces going away. I hope to address
+any issues raised with this patchset and then
+to merge these changes upstream to address working
+in working in containers.
 
-Link: https://lore.kernel.org/r/20230117193937.21244-3-michael.christie@oracle.com
-Signed-off-by: Mike Christie <michael.christie@oracle.com>
-Reviewed-by: Lee Duncan <lduncan@suse.com>
-Acked-by: Ding Hui <dinghui@sangfor.com.cn>
-Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/scsi/iscsi_tcp.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+My contribution thus far has been to update these patches
+to work with the current upstream kernel.
 
-diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
-index e3ca16043f9a..9161fe8fba88 100644
---- a/drivers/scsi/iscsi_tcp.c
-+++ b/drivers/scsi/iscsi_tcp.c
-@@ -773,7 +773,7 @@ static int iscsi_sw_tcp_host_get_param(struct Scsi_Host *shost,
- 				       enum iscsi_host_param param, char *buf)
- {
- 	struct iscsi_sw_tcp_host *tcp_sw_host = iscsi_host_priv(shost);
--	struct iscsi_session *session = tcp_sw_host->session;
-+	struct iscsi_session *session;
- 	struct iscsi_conn *conn;
- 	struct iscsi_tcp_conn *tcp_conn;
- 	struct iscsi_sw_tcp_conn *tcp_sw_conn;
-@@ -782,6 +782,7 @@ static int iscsi_sw_tcp_host_get_param(struct Scsi_Host *shost,
- 
- 	switch (param) {
- 	case ISCSI_HOST_PARAM_IPADDRESS:
-+		session = tcp_sw_host->session;
- 		if (!session)
- 			return -ENOTCONN;
- 
-@@ -870,12 +871,14 @@ iscsi_sw_tcp_session_create(struct iscsi_endpoint *ep, uint16_t cmds_max,
- 	if (!cls_session)
- 		goto remove_host;
- 	session = cls_session->dd_data;
--	tcp_sw_host = iscsi_host_priv(shost);
--	tcp_sw_host->session = session;
- 
- 	shost->can_queue = session->scsi_cmds_max;
- 	if (iscsi_tcp_r2tpool_alloc(session))
- 		goto remove_session;
-+
-+	/* We are now fully setup so expose the session to sysfs. */
-+	tcp_sw_host = iscsi_host_priv(shost);
-+	tcp_sw_host->session = session;
- 	return cls_session;
- 
- remove_session:
+Chris Leech/Lee Duncan (9):
+  iscsi: create per-net iscsi netlink kernel sockets
+  iscsi: associate endpoints with a host
+  iscsi: sysfs filtering by network namespace
+  iscsi: make all iSCSI netlink multicast namespace aware
+  iscsi: set netns for iscsi_tcp hosts
+  iscsi: check net namespace for all iscsi lookup
+  iscsi: convert flashnode devices from bus to class
+  iscsi: rename iscsi_bus_flash_* to iscsi_flash_*
+  iscsi: filter flashnode sysfs by net namespace
+
+ drivers/infiniband/ulp/iser/iscsi_iser.c |   7 +-
+ drivers/scsi/be2iscsi/be_iscsi.c         |   6 +-
+ drivers/scsi/bnx2i/bnx2i_iscsi.c         |   6 +-
+ drivers/scsi/cxgbi/libcxgbi.c            |   6 +-
+ drivers/scsi/iscsi_tcp.c                 |   7 +
+ drivers/scsi/qedi/qedi_iscsi.c           |   6 +-
+ drivers/scsi/qla4xxx/ql4_os.c            |  64 +--
+ drivers/scsi/scsi_transport_iscsi.c      | 625 ++++++++++++++++-------
+ include/scsi/scsi_transport_iscsi.h      |  63 ++-
+ 9 files changed, 537 insertions(+), 253 deletions(-)
+
 -- 
-2.39.0
+2.39.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230131150126.1250471-2-sashal%40kernel.org.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/cover.1675876731.git.lduncan%40suse.com.
