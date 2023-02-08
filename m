@@ -1,33 +1,33 @@
 Return-Path: <open-iscsi+bncBC755V5RXMKBBLF5R6PQMGQEWMU4HJA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wm1-x339.google.com (mail-wm1-x339.google.com [IPv6:2a00:1450:4864:20::339])
-	by mail.lfdr.de (Postfix) with ESMTPS id 765E568F5C6
+Received: from mail-wr1-x440.google.com (mail-wr1-x440.google.com [IPv6:2a00:1450:4864:20::440])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D60B68F5CA
 	for <lists+open-iscsi@lfdr.de>; Wed,  8 Feb 2023 18:41:04 +0100 (CET)
-Received: by mail-wm1-x339.google.com with SMTP id l38-20020a05600c1d2600b003ddff4b9a40sf1382283wms.9
+Received: by mail-wr1-x440.google.com with SMTP id g15-20020adfd1ef000000b002c3daec14f3sf2490386wrd.3
         for <lists+open-iscsi@lfdr.de>; Wed, 08 Feb 2023 09:41:04 -0800 (PST)
 ARC-Seal: i=2; a=rsa-sha256; t=1675878064; cv=pass;
         d=google.com; s=arc-20160816;
-        b=yMag4l7kGlLxxBLExNMyqGQ26Vf+t2pc01vMq4ithKFXnn44cxWzWWpO+wrDNIbMzm
-         mvPkRvZ20JloovaOBCCk2NSBUQd6PoCBiRp/iSaKcrosz6viIslsSW8xPgFBsgpbeCzl
-         duFD2Qf43DpLVTACCL05R81BLZIzoA4TjmNyPN5lEPzEJ6i9Kmk23hOxGi2o5t3HSWoD
-         SZWimBtO/FRW2dExVlMIO9ubcUhTWZuexUG85d2VShe7CV46nxybleW0yOfisOuxbFC1
-         bdPExF+e8H9fddRO7R04ZCicTHLwyrRWkMdaRF/O/aqkxAeR+TV4Yrq+HUX0Ppg1SUNQ
-         HRvw==
+        b=y4eXLtZP3G+eFez6w6RSlC02iZbg+b6MP+D84zQh0+tAKVJC2bFz8ovXqfPqLW6AaJ
+         8cAZLALu8QXuxoV961QOgXGAZYMh2Lh+eUfKnv1VdKaUVVUlHrQPpOWAEHqdKhIrFz+m
+         yUnRNahfQc2g6g8ug5iMNViLDygYkYYqJpkNccM78yPH+ySDXSPFLl2VCYlqFP9SYi6o
+         KFxd2UHcJiIXIxdJvjzcrwEbHtqvnqEumjplJddnzJHxGN4lvYZLnNQqgLQOSOXU6mt2
+         SldFj+a00YWixJMxPrxF1r08S5QlSf+TWM0LuJSr55jcJ+V6Bh1HyeOPGVxKy9aQE2py
+         RLXw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=MkySmnb1eq4CxIft9b5CpFL6Tfs1o7EQy3okkxc6ZzQ=;
-        b=yY5c/mPpYbfi8HHrSxNRR1/Av1AZ16m3Yj0a2TI8i0iodcnC0dzbY1a/9Z+t62LDRV
-         GD8XHllaOxixlauo2fTmWgxZtCWl87S2gQKBCdMu2jq3GoMYOw1EQYpqmKKfidGvdkY3
-         xooW9vlgPOBccHImr/HhMkrgIx946arLcd8c832Osx5nWDThByTHuVcMRzyouP2jH3nN
-         8TrrV0vC/rN83czJoBgJSh+eOp0H7PKlVkCz94hmXDjD3cTTdhyPZ737/hA35e0cLFmx
-         eAncv9PHTkHw8AJBQjJTUc1kSu7ESuyKIzi++jqsTLJAnsIfl61cHe3h03oQzc/HZDSg
-         6V+w==
+        bh=MVMS0IzLG8+CmBYUtDdTjVOl+G5zGnB9Rxq+RW2MzjE=;
+        b=HB7hSPnpjv2AWDRhEopecxjQQKlGS4ZJpCW5frCiZ+OJtJ+PXFeUki8a9NVpWt6+71
+         FrDRkNkJyk1kTD+q1L6Reacg3ogg/sBN4FnsVpD1oW1ngTyzZ6kEtEFsH6dqB1ZTsokL
+         qDvQO//Afw+4q/1+uUNVCwRO7PeztxTblze1VatxbEZyeOGy3KAlo0mGy2LegN3+XkJR
+         JaTqAKdWnOQTCdLU63xhNw56NgW28Q1Q9c2JIDXfkpuL2tkoBx55dYsPGYTPCaTveSxK
+         w8wFRsA0OOWIbNzc4ioVnhwnC8M12vm0JYE4ptEV/LSDE/rbWlpT5E4RgphG0GVYaq25
+         kzHQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of lduncan@suse.de designates 2001:67c:2178:6::1d as permitted sender) smtp.mailfrom=lduncan@suse.de;
+       spf=pass (google.com: domain of lduncan@suse.de designates 195.135.220.29 as permitted sender) smtp.mailfrom=lduncan@suse.de;
        dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :x-original-authentication-results:x-original-sender:mime-version
          :references:in-reply-to:message-id:date:subject:cc:to:from:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MkySmnb1eq4CxIft9b5CpFL6Tfs1o7EQy3okkxc6ZzQ=;
-        b=tzGPZ3j7heqW807QjkxNepsVuWcDCISnhhOa9f13eC5dOKK/yhaiRiioUrW2ebz4BI
-         9CUbPqo97tcj5VN/ByEzT8EGpuBubdwcj99YEJX366g+ZU8n3RwXWVIFpJR8PwsDhlNV
-         WUucrBvC+Gcsdqi9WaJUamcf0StaEc6oGZk36tkVoT2eMi8TJ+UioNbq3avB3kqefjgr
-         5tHwS825SiYa/pJ+VMTKHcIHl2dikIkVC4LPHqbGVj4NCTMbxU4j0vWEiKQNUQzQaYUV
-         lzmcuiXEaGXWXsOD0LMolgoLrcCDj6qIF4GnHC2F0vgIfeuNTly9LBlTa3oA3AnMoww6
-         SvUw==
+        bh=MVMS0IzLG8+CmBYUtDdTjVOl+G5zGnB9Rxq+RW2MzjE=;
+        b=HE/7nSy1EDQek4EqgyQJISFlqoOZr3iSGp8KxuOvCFyqx1Z7R7khhb0KZMfnQ8KGRZ
+         /q4WJ2jXWUVP+7hwkxNxbqH5WeweCHyMNANEz/OK4LzPzjD7jQXxb3Qkjbz2TWqUnZZD
+         qg9MjDlSPGMqtKtsxG+l1LviRNR2kEWQqGscTQRqWaHOcH17kg1KeGkO43UgbJ/nI9T/
+         rRiF2GPTooz3YjiLDvxtTqqNGGK0sGXbyQm4otBR7ZOSQf4RP6bqcqVN9LUhsSCuSJq+
+         NkCK/lPIb3R9TC1FPiXSXhNNOANOTULm3bpEMwkp+ZEMcQAXKaVTYg5fG64ByZa8XYNn
+         NXjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
@@ -51,78 +51,78 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :references:in-reply-to:message-id:date:subject:cc:to:from
          :x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MkySmnb1eq4CxIft9b5CpFL6Tfs1o7EQy3okkxc6ZzQ=;
-        b=ky7t6av3gJWQE8oMThtGZ8UjHaZrRY+MHG04WI8IVUZj+oMqQOEqK7b6L95PksAoNw
-         CZAnSOIlxrHJlhcmkVgSqWXREQQGT/MIGVCtIJt7rZvy3CFBjSDwFoYGJSITYrhtLRJR
-         kV5QyTVCMiL6RV1VyWjR/aoVD6jfHKGg/ld+4fL63fZPAW1p89jJ3uC86Hsj7vkFjOkf
-         8FOtn9TOc1kV7LrlZe+H+xbD4A440OhCXjhkZ7btcOErxPI1Dbn+P8UOK8TlVvaHiqVd
-         fsc45hgeLWWtBpYatLn3mEm5+Fu538YmAX4NTBYAzIF9oGhk+Ydowh09XM+oFsa3yfgd
-         +bcg==
+        bh=MVMS0IzLG8+CmBYUtDdTjVOl+G5zGnB9Rxq+RW2MzjE=;
+        b=vnx/14qrDu/VKzIZHCet1m/T0HAiSWK6+ilO4VLryvbT1oQCEQT0zDjSb1PB3C+coS
+         oihOFwW5kf+pkmt4YtNF8g3ycn2SVNunMRb38PgZPYAqZPQdsXjPAvgn54ahOUyYPWAJ
+         FJ42GRKGCjRUAJy5GIUQrJgHzI+28NIFoJm6WJvOSDkBJy8dOR8ifFa+CSHBhzxJyxvy
+         wZS58U8pvnYQNAQVrnVNanbSRYHP6IyHRsKEdCiHOej5kKaH7b6xq8q4o3Y7dgExOYRj
+         vYqlugEb64IL2re9NVyiBnF2oKXy1na8lh+JzNR5XVIKX4++/P8hZ4Ph346GJzYful3Z
+         qfEw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AO0yUKUw/uvKXA58+iQOgrwJRBMOMuf4//yJDZYlb9NBe3y46aZ14wXm
-	oe+gcPXDpb8nZ70MOnqMu+Q=
-X-Google-Smtp-Source: AK7set+eAIoA1OTL0A0sRYguE0TMMOp0H8rU9sa1WUNFbT51gH6UK6gx4i0MU4VBZrZNR3r6v9vWew==
-X-Received: by 2002:a05:600c:1d05:b0:3df:4bc8:edfb with SMTP id l5-20020a05600c1d0500b003df4bc8edfbmr280547wms.168.1675878062119;
+X-Gm-Message-State: AO0yUKVtxRquc4MIC0PIw0ByPviexmYcasHxKAtXdMhsHcYKBvurLcCa
+	k0qDMaggJRqtKA+Pu4wrAck=
+X-Google-Smtp-Source: AK7set8qNl+zzwXZTBpAarlNkYyCwY/QUKwetqxdpJmAvH8brdkmYe9SKrOxu2V7FIyoUt8FfQ/tug==
+X-Received: by 2002:a1c:f216:0:b0:3df:e474:2a95 with SMTP id s22-20020a1cf216000000b003dfe4742a95mr319998wmc.117.1675878062113;
         Wed, 08 Feb 2023 09:41:02 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a5d:5b19:0:b0:2bf:ae0c:669b with SMTP id bx25-20020a5d5b19000000b002bfae0c669bls488351wrb.2.-pod-prod-gmail;
- Wed, 08 Feb 2023 09:40:59 -0800 (PST)
-X-Received: by 2002:a05:6000:1d1:b0:2c3:ba99:44bc with SMTP id t17-20020a05600001d100b002c3ba9944bcmr7741935wrx.68.1675878059527;
+Received: by 2002:a05:600c:3ca6:b0:3cd:d7d0:14b6 with SMTP id
+ bg38-20020a05600c3ca600b003cdd7d014b6ls1445870wmb.1.-pod-control-gmail; Wed,
+ 08 Feb 2023 09:40:59 -0800 (PST)
+X-Received: by 2002:a05:600c:4d0a:b0:3dc:50c1:5fd4 with SMTP id u10-20020a05600c4d0a00b003dc50c15fd4mr9871946wmp.15.1675878059542;
         Wed, 08 Feb 2023 09:40:59 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; t=1675878059; cv=none;
         d=google.com; s=arc-20160816;
-        b=ag6Jodx6iaMev4yUgCqjIVrELhOztXDyw93Sn6h9my3Env3yl2LlfzopDZoBzr0Dka
-         JnHa7HaNOpYDh9hGTjjxmzAl3zE+JTKNExykSrAyrth1IDKEaMsn40ghc+Drbe7aBHus
-         TB8d8d0enJof5WS/HbgVLu1TzpLFwqrFjE1Dli+nkXZ3ssSYLFH2zXdmA0GR4gH0ckyN
-         SNOiUbCFhdYgUUwkPlWCNKOrxhrduMYOjJ8d9Eo09SOAuZkxk3yVGJDPXTNqZDPH/THN
-         QliSz00bZXceSZq+IQIHaNwPPLFB8N1+09eVFtdRMixWFV/NVwOs3C4UXtWv9bWL+zvZ
-         cYqA==
+        b=SYV8E4G/+aKeKKba5nq+xQ5UAnWiZ7mO0iyY358v3BzOOy4FSVYAT0iOazU6NoqWet
+         jGynRv7ENHwlW6tHzTkj1SkO2NO7rPhMSZUwX/eKE4bZ/CAZ+gw0ax3mH52oX6YFMpBp
+         bgGBOR0WOIkOpxXSB52hrF7iYVsANEzXG3idc6+/YtiQRvqtc54YpIa54FK98aNcoywr
+         X4A/udpCXJxxFzucPp+dxMH0S0uG7FSQRl16ZYMY5hecP70dcjtVHxGxpYIUMspvTy96
+         D6OFa/+xcY1XMTySbB0c+z1R0PIA9dRFvTsro/tL5HLk/TMyPqQ/EP+ggNv4m/FrLzkF
+         77qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from;
-        bh=3c1iZgMc8bClcdhY0+qWdJSjs8Dvyd94N+1hBiktlD0=;
-        b=zalXT+gvcS88qgxADm1v/gkENj98G7jZ0hS0qtKl83AoB9KJDZuwEhXhrAGPBPd0Bo
-         ljrMgrpqN65MioaJThzFY0DFZGKETqxRu2IRCcSmz9eg9ndrifVeNJM0qoxnOraKOmt3
-         zCNCEmzsvzESezbmTG+pUPhFH0RQ6AGVQUONpyGhK76g1yRzTCRfek1Lu9beHFIsajdd
-         JDdUYgg6r0ZciNHQ77YksmvBi93WKkOG9i8LXCEGPy/B1AKsPGJjNwuKk1K00BUGFwyD
-         aAt/vmuNhTyxNwx8D5aSESt87LhISoF0WUY+6P8R71U45Qa3nFTKtiUeftgB7mXWr2cB
-         23yQ==
+        bh=hC+fPqrKqP1Dsw6O3hy+9Oh5Iz6cVmD8YstgzNQzlEg=;
+        b=biZUtO6XBlEo1PEecTowaen94Zf+ZELBDaTaRtrZFgofrN5qfZHj8ZHviE1zhLdibt
+         M/mHzu1aR0sjCBVFvVABJRCBUDdoQGt2vgvcsGEmIiGnfAEwQlzP5VYfDN23bZnwpvu1
+         pQhTGGYtXeTL+DB7b+NvoEj16aD1B87xo8safXGpK4ViWXhSL66owQNhHPnegofJtG9K
+         3VxvKr5vn2K+xSI3LgF0m5Ot7Kw8tMozCdbGLXeazDYL2fHN3zzMqlYwhKFDMtWYFpDN
+         IryyZT2zGiNr1Hx3mJ6X+jPTszNeGCwTtri9/VsP8T5/5yvD0zIc3a7jn4hMBzvqrKv4
+         ooeg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of lduncan@suse.de designates 2001:67c:2178:6::1d as permitted sender) smtp.mailfrom=lduncan@suse.de;
+       spf=pass (google.com: domain of lduncan@suse.de designates 195.135.220.29 as permitted sender) smtp.mailfrom=lduncan@suse.de;
        dmarc=fail (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
-Received: from smtp-out2.suse.de (smtp-out2.suse.de. [2001:67c:2178:6::1d])
-        by gmr-mx.google.com with ESMTPS id bg31-20020a05600c3c9f00b003d9c73c820asi329922wmb.3.2023.02.08.09.40.59
+Received: from smtp-out2.suse.de (smtp-out2.suse.de. [195.135.220.29])
+        by gmr-mx.google.com with ESMTPS id bg10-20020a05600c3c8a00b003db0d2c3d6esi149468wmb.0.2023.02.08.09.40.59
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 08 Feb 2023 09:40:59 -0800 (PST)
-Received-SPF: pass (google.com: domain of lduncan@suse.de designates 2001:67c:2178:6::1d as permitted sender) client-ip=2001:67c:2178:6::1d;
+Received-SPF: pass (google.com: domain of lduncan@suse.de designates 195.135.220.29 as permitted sender) client-ip=195.135.220.29;
 Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-	by smtp-out2.suse.de (Postfix) with ESMTP id 4CBA21FF2F;
+	by smtp-out2.suse.de (Postfix) with ESMTP id 5350C1FF38;
 	Wed,  8 Feb 2023 17:40:59 +0000 (UTC)
 Received: from localhost (unknown [10.163.24.10])
-	by relay2.suse.de (Postfix) with ESMTP id 0D1182C145;
+	by relay2.suse.de (Postfix) with ESMTP id 17E782C146;
 	Wed,  8 Feb 2023 17:40:59 +0000 (UTC)
 Received: by localhost (Postfix, from userid 1000)
-	id 2C8B2CA18A; Wed,  8 Feb 2023 09:40:57 -0800 (PST)
+	id 31E4ACA18C; Wed,  8 Feb 2023 09:40:57 -0800 (PST)
 From: Lee Duncan <leeman.duncan@gmail.com>
 To: linux-scsi@vger.kernel.org,
 	open-iscsi@googlegroups.com,
 	netdev@vger.kernel.org
 Cc: Lee Duncan <lduncan@suse.com>,
-	Chris Leech <cleech@redhat.com>,
-	Lee Duncan <lduncan@gmail.com>
-Subject: [RFC PATCH 3/9] iscsi: sysfs filtering by network namespace
-Date: Wed,  8 Feb 2023 09:40:51 -0800
-Message-Id: <1ce0ef45c40b6873f2889bbcdc1a74d7fc04e370.1675876734.git.lduncan@suse.com>
+	Chris Leech <cleech@redhat.com>
+Subject: [RFC PATCH 4/9] iscsi: make all iSCSI netlink multicast namespace aware
+Date: Wed,  8 Feb 2023 09:40:52 -0800
+Message-Id: <587c492ffafb3090ec9e28b7d247fcc7e2141251.1675876734.git.lduncan@suse.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <cover.1675876731.git.lduncan@suse.com>
 References: <cover.1675876731.git.lduncan@suse.com>
 MIME-Version: 1.0
 X-Original-Sender: leeman.duncan@gmail.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of lduncan@suse.de designates 2001:67c:2178:6::1d as
- permitted sender) smtp.mailfrom=lduncan@suse.de;       dmarc=fail (p=NONE
- sp=QUARANTINE dis=NONE) header.from=gmail.com
+ (google.com: domain of lduncan@suse.de designates 195.135.220.29 as permitted
+ sender) smtp.mailfrom=lduncan@suse.de;       dmarc=fail (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: list
@@ -139,199 +139,340 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
 
 From: Lee Duncan <lduncan@suse.com>
 
-This makes the iscsi_host, iscsi_session, iscsi_connection, iscsi_iface,
-and iscsi_endpoint transport class devices only visible in sysfs under a
-matching network namespace.  The network namespace for all of these
-objects is tracked in the iscsi_cls_host structure.
+Make use of the per-net netlink sockets. Responses are sent back on the
+same socket/namespace the request was received on.  Async events are
+reported on the socket/namespace stored in the iscsi_cls_host associated
+with the event.
 
 Signed-off-by: Chris Leech <cleech@redhat.com>
-Signed-off-by: Lee Duncan <lduncan@gmail.com>
+Signed-off-by: Lee Duncan <lduncan@suse.com>
 ---
- drivers/scsi/scsi_transport_iscsi.c | 124 ++++++++++++++++++++++++----
- include/scsi/scsi_transport_iscsi.h |   1 +
- 2 files changed, 110 insertions(+), 15 deletions(-)
+ drivers/scsi/scsi_transport_iscsi.c | 92 +++++++++++++++++++----------
+ 1 file changed, 60 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index 86bafdb862a5..2e2b291bce41 100644
+index 2e2b291bce41..230b43d34c5f 100644
 --- a/drivers/scsi/scsi_transport_iscsi.c
 +++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -181,9 +181,31 @@ static void iscsi_endpoint_release(struct device *dev)
- 	kfree(ep);
+@@ -2653,8 +2653,8 @@ iscsi_if_transport_lookup(struct iscsi_transport *tt)
  }
  
-+static struct net *iscsi_host_net(struct iscsi_cls_host *ihost)
-+{
-+	return ihost->netns;
-+}
-+
-+static struct net *iscsi_endpoint_net(struct iscsi_endpoint *ep)
-+{
-+	struct Scsi_Host *shost = iscsi_endpoint_to_shost(ep);
-+	struct iscsi_cls_host *ihost = shost->shost_data;
-+
-+	return iscsi_host_net(ihost);
-+}
-+
-+static const void *iscsi_endpoint_namespace(const struct device *dev)
-+{
-+	struct iscsi_endpoint *ep = iscsi_dev_to_endpoint(dev);
-+
-+	return iscsi_endpoint_net(ep);
-+}
-+
- static struct class iscsi_endpoint_class = {
- 	.name = "iscsi_endpoint",
- 	.dev_release = iscsi_endpoint_release,
-+	.ns_type = &net_ns_type_operations,
-+	.namespace = iscsi_endpoint_namespace,
- };
- 
- static ssize_t
-@@ -308,10 +330,26 @@ static void iscsi_iface_release(struct device *dev)
- 	put_device(parent);
- }
- 
-+static struct net *iscsi_iface_net(struct iscsi_iface *iface)
-+{
-+	struct Scsi_Host *shost = iscsi_iface_to_shost(iface);
-+	struct iscsi_cls_host *ihost = shost->shost_data;
-+
-+	return iscsi_host_net(ihost);
-+}
-+
-+static const void *iscsi_iface_namespace(const struct device *dev)
-+{
-+	struct iscsi_iface *iface = iscsi_dev_to_iface(dev);
-+
-+	return iscsi_iface_net(iface);
-+}
- 
- static struct class iscsi_iface_class = {
- 	.name = "iscsi_iface",
- 	.dev_release = iscsi_iface_release,
-+	.ns_type = &net_ns_type_operations,
-+	.namespace = iscsi_iface_namespace,
- };
- 
- #define ISCSI_IFACE_ATTR(_prefix, _name, _mode, _show, _store)	\
-@@ -1565,6 +1603,7 @@ static int iscsi_setup_host(struct transport_container *tc, struct device *dev,
- 
- 	memset(ihost, 0, sizeof(*ihost));
- 	mutex_init(&ihost->mutex);
-+	ihost->netns = &init_net;
- 
- 	iscsi_bsg_host_add(shost, ihost);
- 	/* ignore any bsg add error - we just can't do sgio */
-@@ -1582,23 +1621,78 @@ static int iscsi_remove_host(struct transport_container *tc,
- 	return 0;
- }
- 
--static DECLARE_TRANSPORT_CLASS(iscsi_host_class,
--			       "iscsi_host",
--			       iscsi_setup_host,
--			       iscsi_remove_host,
--			       NULL);
-+#define DECLARE_TRANSPORT_CLASS_NS(cls, nm, su, rm, cfg, ns, nslookup)	\
-+struct transport_class cls = {						\
-+	.class = {							\
-+		.name = nm,						\
-+		.ns_type = ns,						\
-+		.namespace = nslookup,					\
-+	},								\
-+	.setup = su,							\
-+	.remove = rm,							\
-+	.configure = cfg,						\
-+}
-+
-+static const void *iscsi_host_namespace(const struct device *dev)
-+{
-+	struct Scsi_Host *shost = transport_class_to_shost(dev);
-+	struct iscsi_cls_host *ihost = shost->shost_data;
-+
-+	return iscsi_host_net(ihost);
-+}
-+
-+static DECLARE_TRANSPORT_CLASS_NS(iscsi_host_class,
-+				  "iscsi_host",
-+				  iscsi_setup_host,
-+				  iscsi_remove_host,
-+				  NULL,
-+				  &net_ns_type_operations,
-+				  iscsi_host_namespace);
- 
--static DECLARE_TRANSPORT_CLASS(iscsi_session_class,
--			       "iscsi_session",
--			       NULL,
--			       NULL,
--			       NULL);
-+static struct net *iscsi_sess_net(struct iscsi_cls_session *cls_session)
-+{
-+	struct Scsi_Host *shost = iscsi_session_to_shost(cls_session);
-+	struct iscsi_cls_host *ihost = shost->shost_data;
-+
-+	return iscsi_host_net(ihost);
-+}
-+
-+static const void *iscsi_sess_namespace(const struct device *dev)
-+{
-+	struct iscsi_cls_session *cls_session = transport_class_to_session(dev);
-+
-+	return iscsi_sess_net(cls_session);
-+}
-+
-+static DECLARE_TRANSPORT_CLASS_NS(iscsi_session_class,
-+				  "iscsi_session",
-+				  NULL,
-+				  NULL,
-+				  NULL,
-+				  &net_ns_type_operations,
-+				  iscsi_sess_namespace);
-+
-+static struct net *iscsi_conn_net(struct iscsi_cls_conn *cls_conn)
-+{
-+	struct iscsi_cls_session *cls_session = iscsi_conn_to_session(cls_conn);
-+
-+	return iscsi_sess_net(cls_session);
-+}
-+
-+static const void *iscsi_conn_namespace(const struct device *dev)
-+{
-+	struct iscsi_cls_conn *cls_conn = transport_class_to_conn(dev);
-+
-+	return iscsi_conn_net(cls_conn);
-+}
- 
--static DECLARE_TRANSPORT_CLASS(iscsi_connection_class,
--			       "iscsi_connection",
--			       NULL,
--			       NULL,
--			       NULL);
-+static DECLARE_TRANSPORT_CLASS_NS(iscsi_connection_class,
-+				  "iscsi_connection",
-+				  NULL,
-+				  NULL,
-+				  NULL,
-+				  &net_ns_type_operations,
-+				  iscsi_conn_namespace);
- 
- struct iscsi_net {
+ static int
+-iscsi_multicast_netns(struct net *net, struct sk_buff *skb,
+-		      uint32_t group, gfp_t gfp)
++iscsi_multicast_skb(struct net *net, struct sk_buff *skb,
++		    uint32_t group, gfp_t gfp)
+ {
  	struct sock *nls;
-diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
-index 268ccaac1c05..af0c5a15f316 100644
---- a/include/scsi/scsi_transport_iscsi.h
-+++ b/include/scsi/scsi_transport_iscsi.h
-@@ -298,6 +298,7 @@ struct iscsi_cls_host {
- 	struct request_queue *bsg_q;
- 	uint32_t port_speed;
- 	uint32_t port_state;
-+	struct net *netns;
- };
+ 	struct iscsi_net *isn;
+@@ -2665,17 +2665,10 @@ iscsi_multicast_netns(struct net *net, struct sk_buff *skb,
+ }
  
- #define iscsi_job_to_shost(_job) \
+ static int
+-iscsi_multicast_skb(struct sk_buff *skb, uint32_t group, gfp_t gfp)
+-{
+-	return iscsi_multicast_netns(&init_net, skb, group, gfp);
+-}
+-
+-static int
+-iscsi_unicast_skb(struct sk_buff *skb, u32 portid)
++iscsi_unicast_skb(struct net *net, struct sk_buff *skb, u32 portid)
+ {
+ 	struct sock *nls;
+ 	struct iscsi_net *isn;
+-	struct net *net = &init_net;
+ 
+ 	isn = net_generic(net, iscsi_net_id);
+ 	nls = isn->nls;
+@@ -2690,6 +2683,7 @@ int iscsi_recv_pdu(struct iscsi_cls_conn *conn, struct iscsi_hdr *hdr,
+ 	struct iscsi_uevent *ev;
+ 	char *pdu;
+ 	struct iscsi_internal *priv;
++	struct net *net;
+ 	int len = nlmsg_total_size(sizeof(*ev) + sizeof(struct iscsi_hdr) +
+ 				   data_size);
+ 
+@@ -2716,7 +2710,8 @@ int iscsi_recv_pdu(struct iscsi_cls_conn *conn, struct iscsi_hdr *hdr,
+ 	memcpy(pdu, hdr, sizeof(struct iscsi_hdr));
+ 	memcpy(pdu + sizeof(struct iscsi_hdr), data, data_size);
+ 
+-	return iscsi_multicast_skb(skb, ISCSI_NL_GRP_ISCSID, GFP_ATOMIC);
++	net = iscsi_conn_net(conn);
++	return iscsi_multicast_skb(net, skb, ISCSI_NL_GRP_ISCSID, GFP_ATOMIC);
+ }
+ EXPORT_SYMBOL_GPL(iscsi_recv_pdu);
+ 
+@@ -2727,6 +2722,7 @@ int iscsi_offload_mesg(struct Scsi_Host *shost,
+ 	struct nlmsghdr	*nlh;
+ 	struct sk_buff *skb;
+ 	struct iscsi_uevent *ev;
++	struct net *net;
+ 	int len = nlmsg_total_size(sizeof(*ev) + data_size);
+ 
+ 	skb = alloc_skb(len, GFP_ATOMIC);
+@@ -2751,7 +2747,8 @@ int iscsi_offload_mesg(struct Scsi_Host *shost,
+ 
+ 	memcpy((char *)ev + sizeof(*ev), data, data_size);
+ 
+-	return iscsi_multicast_skb(skb, ISCSI_NL_GRP_UIP, GFP_ATOMIC);
++	net = iscsi_host_net(shost->shost_data);
++	return iscsi_multicast_skb(net, skb, ISCSI_NL_GRP_UIP, GFP_ATOMIC);
+ }
+ EXPORT_SYMBOL_GPL(iscsi_offload_mesg);
+ 
+@@ -2761,6 +2758,7 @@ void iscsi_conn_error_event(struct iscsi_cls_conn *conn, enum iscsi_err error)
+ 	struct sk_buff	*skb;
+ 	struct iscsi_uevent *ev;
+ 	struct iscsi_internal *priv;
++	struct net *net;
+ 	int len = nlmsg_total_size(sizeof(*ev));
+ 	unsigned long flags;
+ 	int state;
+@@ -2808,7 +2806,8 @@ void iscsi_conn_error_event(struct iscsi_cls_conn *conn, enum iscsi_err error)
+ 	ev->r.connerror.cid = conn->cid;
+ 	ev->r.connerror.sid = iscsi_conn_get_sid(conn);
+ 
+-	iscsi_multicast_skb(skb, ISCSI_NL_GRP_ISCSID, GFP_ATOMIC);
++	net = iscsi_conn_net(conn);
++	iscsi_multicast_skb(net, skb, ISCSI_NL_GRP_ISCSID, GFP_ATOMIC);
+ 
+ 	iscsi_cls_conn_printk(KERN_INFO, conn, "detected conn error (%d)\n",
+ 			      error);
+@@ -2822,6 +2821,7 @@ void iscsi_conn_login_event(struct iscsi_cls_conn *conn,
+ 	struct sk_buff  *skb;
+ 	struct iscsi_uevent *ev;
+ 	struct iscsi_internal *priv;
++	struct net *net;
+ 	int len = nlmsg_total_size(sizeof(*ev));
+ 
+ 	priv = iscsi_if_transport_lookup(conn->transport);
+@@ -2842,7 +2842,9 @@ void iscsi_conn_login_event(struct iscsi_cls_conn *conn,
+ 	ev->r.conn_login.state = state;
+ 	ev->r.conn_login.cid = conn->cid;
+ 	ev->r.conn_login.sid = iscsi_conn_get_sid(conn);
+-	iscsi_multicast_skb(skb, ISCSI_NL_GRP_ISCSID, GFP_ATOMIC);
++
++	net = iscsi_conn_net(conn);
++	iscsi_multicast_skb(net, skb, ISCSI_NL_GRP_ISCSID, GFP_ATOMIC);
+ 
+ 	iscsi_cls_conn_printk(KERN_INFO, conn, "detected conn login (%d)\n",
+ 			      state);
+@@ -2853,11 +2855,17 @@ void iscsi_post_host_event(uint32_t host_no, struct iscsi_transport *transport,
+ 			   enum iscsi_host_event_code code, uint32_t data_size,
+ 			   uint8_t *data)
+ {
++	struct Scsi_Host *shost;
++	struct net *net;
+ 	struct nlmsghdr *nlh;
+ 	struct sk_buff *skb;
+ 	struct iscsi_uevent *ev;
+ 	int len = nlmsg_total_size(sizeof(*ev) + data_size);
+ 
++	shost = scsi_host_lookup(host_no);
++	if (!shost)
++		return;
++
+ 	skb = alloc_skb(len, GFP_NOIO);
+ 	if (!skb) {
+ 		printk(KERN_ERR "gracefully ignored host event (%d):%d OOM\n",
+@@ -2876,7 +2884,9 @@ void iscsi_post_host_event(uint32_t host_no, struct iscsi_transport *transport,
+ 	if (data_size)
+ 		memcpy((char *)ev + sizeof(*ev), data, data_size);
+ 
+-	iscsi_multicast_skb(skb, ISCSI_NL_GRP_ISCSID, GFP_NOIO);
++	net = iscsi_host_net(shost->shost_data);
++	scsi_host_put(shost);
++	iscsi_multicast_skb(net, skb, ISCSI_NL_GRP_ISCSID, GFP_NOIO);
+ }
+ EXPORT_SYMBOL_GPL(iscsi_post_host_event);
+ 
+@@ -2884,11 +2894,17 @@ void iscsi_ping_comp_event(uint32_t host_no, struct iscsi_transport *transport,
+ 			   uint32_t status, uint32_t pid, uint32_t data_size,
+ 			   uint8_t *data)
+ {
++	struct Scsi_Host *shost;
++	struct net *net;
+ 	struct nlmsghdr *nlh;
+ 	struct sk_buff *skb;
+ 	struct iscsi_uevent *ev;
+ 	int len = nlmsg_total_size(sizeof(*ev) + data_size);
+ 
++	shost = scsi_host_lookup(host_no);
++	if (!shost)
++		return;
++
+ 	skb = alloc_skb(len, GFP_NOIO);
+ 	if (!skb) {
+ 		printk(KERN_ERR "gracefully ignored ping comp: OOM\n");
+@@ -2905,12 +2921,15 @@ void iscsi_ping_comp_event(uint32_t host_no, struct iscsi_transport *transport,
+ 	ev->r.ping_comp.data_size = data_size;
+ 	memcpy((char *)ev + sizeof(*ev), data, data_size);
+ 
+-	iscsi_multicast_skb(skb, ISCSI_NL_GRP_ISCSID, GFP_NOIO);
++	net = iscsi_host_net(shost->shost_data);
++	scsi_host_put(shost);
++	iscsi_multicast_skb(net, skb, ISCSI_NL_GRP_ISCSID, GFP_NOIO);
+ }
+ EXPORT_SYMBOL_GPL(iscsi_ping_comp_event);
+ 
+ static int
+-iscsi_if_send_reply(u32 portid, int type, void *payload, int size)
++iscsi_if_send_reply(struct net *net, u32 portid, int type,
++		    void *payload, int size)
+ {
+ 	struct sk_buff	*skb;
+ 	struct nlmsghdr	*nlh;
+@@ -2924,11 +2943,11 @@ iscsi_if_send_reply(u32 portid, int type, void *payload, int size)
+ 
+ 	nlh = __nlmsg_put(skb, 0, 0, type, (len - sizeof(*nlh)), 0);
+ 	memcpy(nlmsg_data(nlh), payload, size);
+-	return iscsi_unicast_skb(skb, portid);
++	return iscsi_unicast_skb(net, skb, portid);
+ }
+ 
+ static int
+-iscsi_if_get_stats(struct iscsi_transport *transport, struct nlmsghdr *nlh)
++iscsi_if_get_stats(struct net *net, struct iscsi_transport *transport, struct nlmsghdr *nlh)
+ {
+ 	struct iscsi_uevent *ev = nlmsg_data(nlh);
+ 	struct iscsi_stats *stats;
+@@ -2985,7 +3004,7 @@ iscsi_if_get_stats(struct iscsi_transport *transport, struct nlmsghdr *nlh)
+ 		skb_trim(skbstat, NLMSG_ALIGN(actual_size));
+ 		nlhstat->nlmsg_len = actual_size;
+ 
+-		err = iscsi_multicast_skb(skbstat, ISCSI_NL_GRP_ISCSID,
++		err = iscsi_multicast_skb(net, skbstat, ISCSI_NL_GRP_ISCSID,
+ 					  GFP_ATOMIC);
+ 	} while (err < 0 && err != -ECONNREFUSED);
+ 
+@@ -3005,6 +3024,7 @@ int iscsi_session_event(struct iscsi_cls_session *session,
+ 	struct iscsi_uevent *ev;
+ 	struct sk_buff  *skb;
+ 	struct nlmsghdr *nlh;
++	struct net *net;
+ 	int rc, len = nlmsg_total_size(sizeof(*ev));
+ 
+ 	priv = iscsi_if_transport_lookup(session->transport);
+@@ -3049,7 +3069,8 @@ int iscsi_session_event(struct iscsi_cls_session *session,
+ 	 * this will occur if the daemon is not up, so we just warn
+ 	 * the user and when the daemon is restarted it will handle it
+ 	 */
+-	rc = iscsi_multicast_skb(skb, ISCSI_NL_GRP_ISCSID, GFP_KERNEL);
++	net = iscsi_sess_net(session);
++	rc = iscsi_multicast_skb(net, skb, ISCSI_NL_GRP_ISCSID, GFP_KERNEL);
+ 	if (rc == -ESRCH)
+ 		iscsi_cls_session_printk(KERN_ERR, session,
+ 					 "Cannot notify userspace of session "
+@@ -3412,7 +3433,8 @@ iscsi_send_ping(struct iscsi_transport *transport, struct iscsi_uevent *ev)
+ }
+ 
+ static int
+-iscsi_get_chap(struct iscsi_transport *transport, struct nlmsghdr *nlh)
++iscsi_get_chap(struct net *net, struct iscsi_transport *transport,
++	       struct nlmsghdr *nlh)
+ {
+ 	struct iscsi_uevent *ev = nlmsg_data(nlh);
+ 	struct Scsi_Host *shost = NULL;
+@@ -3471,7 +3493,7 @@ iscsi_get_chap(struct iscsi_transport *transport, struct nlmsghdr *nlh)
+ 		skb_trim(skbchap, NLMSG_ALIGN(actual_size));
+ 		nlhchap->nlmsg_len = actual_size;
+ 
+-		err = iscsi_multicast_skb(skbchap, ISCSI_NL_GRP_ISCSID,
++		err = iscsi_multicast_skb(net, skbchap, ISCSI_NL_GRP_ISCSID,
+ 					  GFP_KERNEL);
+ 	} while (err < 0 && err != -ECONNREFUSED);
+ 
+@@ -3818,7 +3840,8 @@ static int iscsi_logout_flashnode_sid(struct iscsi_transport *transport,
+ }
+ 
+ static int
+-iscsi_get_host_stats(struct iscsi_transport *transport, struct nlmsghdr *nlh)
++iscsi_get_host_stats(struct net *net, struct iscsi_transport *transport,
++		     struct nlmsghdr *nlh)
+ {
+ 	struct iscsi_uevent *ev = nlmsg_data(nlh);
+ 	struct Scsi_Host *shost = NULL;
+@@ -3878,8 +3901,8 @@ iscsi_get_host_stats(struct iscsi_transport *transport, struct nlmsghdr *nlh)
+ 		skb_trim(skbhost_stats, NLMSG_ALIGN(actual_size));
+ 		nlhhost_stats->nlmsg_len = actual_size;
+ 
+-		err = iscsi_multicast_skb(skbhost_stats, ISCSI_NL_GRP_ISCSID,
+-					  GFP_KERNEL);
++		err = iscsi_multicast_skb(net, skbhost_stats,
++					  ISCSI_NL_GRP_ISCSID, GFP_KERNEL);
+ 	} while (err < 0 && err != -ECONNREFUSED);
+ 
+ exit_host_stats:
+@@ -4001,7 +4024,8 @@ static int iscsi_if_transport_conn(struct iscsi_transport *transport,
+ }
+ 
+ static int
+-iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
++iscsi_if_recv_msg(struct net *net, struct sk_buff *skb,
++		  struct nlmsghdr *nlh, uint32_t *group)
+ {
+ 	int err = 0;
+ 	u32 portid;
+@@ -4096,7 +4120,7 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
+ 		err = iscsi_if_transport_conn(transport, nlh);
+ 		break;
+ 	case ISCSI_UEVENT_GET_STATS:
+-		err = iscsi_if_get_stats(transport, nlh);
++		err = iscsi_if_get_stats(net, transport, nlh);
+ 		break;
+ 	case ISCSI_UEVENT_TRANSPORT_EP_CONNECT:
+ 	case ISCSI_UEVENT_TRANSPORT_EP_POLL:
+@@ -4121,7 +4145,7 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
+ 		err = iscsi_send_ping(transport, ev);
+ 		break;
+ 	case ISCSI_UEVENT_GET_CHAP:
+-		err = iscsi_get_chap(transport, nlh);
++		err = iscsi_get_chap(net, transport, nlh);
+ 		break;
+ 	case ISCSI_UEVENT_DELETE_CHAP:
+ 		err = iscsi_delete_chap(transport, ev);
+@@ -4152,7 +4176,7 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
+ 				     nlmsg_attrlen(nlh, sizeof(*ev)));
+ 		break;
+ 	case ISCSI_UEVENT_GET_HOST_STATS:
+-		err = iscsi_get_host_stats(transport, nlh);
++		err = iscsi_get_host_stats(net, transport, nlh);
+ 		break;
+ 	default:
+ 		err = -ENOSYS;
+@@ -4170,6 +4194,8 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
+ static void
+ iscsi_if_rx(struct sk_buff *skb)
+ {
++	struct sock *sk = skb->sk;
++	struct net *net = sock_net(sk);
+ 	u32 portid = NETLINK_CB(skb).portid;
+ 
+ 	mutex_lock(&rx_queue_mutex);
+@@ -4192,7 +4218,7 @@ iscsi_if_rx(struct sk_buff *skb)
+ 		if (rlen > skb->len)
+ 			rlen = skb->len;
+ 
+-		err = iscsi_if_recv_msg(skb, nlh, &group);
++		err = iscsi_if_recv_msg(net, skb, nlh, &group);
+ 		if (err) {
+ 			ev->type = ISCSI_KEVENT_IF_ERROR;
+ 			ev->iferror = err;
+@@ -4208,7 +4234,9 @@ iscsi_if_rx(struct sk_buff *skb)
+ 				break;
+ 			if (ev->type == ISCSI_UEVENT_GET_CHAP && !err)
+ 				break;
+-			err = iscsi_if_send_reply(portid, nlh->nlmsg_type,
++			if (ev->type == ISCSI_UEVENT_GET_HOST_STATS && !err)
++				break;
++			err = iscsi_if_send_reply(net, portid, nlh->nlmsg_type,
+ 						  ev, sizeof(*ev));
+ 			if (err == -EAGAIN && --retries < 0) {
+ 				printk(KERN_WARNING "Send reply failed, error %d\n", err);
 -- 
 2.39.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/1ce0ef45c40b6873f2889bbcdc1a74d7fc04e370.1675876734.git.lduncan%40suse.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/587c492ffafb3090ec9e28b7d247fcc7e2141251.1675876734.git.lduncan%40suse.com.
