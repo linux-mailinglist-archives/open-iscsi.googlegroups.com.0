@@ -1,73 +1,144 @@
-Return-Path: <open-iscsi+bncBCTJ72WV6UHBBO6HTGPQMGQEAQDSZSA@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBB7XNUSPQMGQEBHBHBOA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3c.google.com (mail-qv1-xf3c.google.com [IPv6:2607:f8b0:4864:20::f3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F6B969223D
-	for <lists+open-iscsi@lfdr.de>; Fri, 10 Feb 2023 16:33:20 +0100 (CET)
-Received: by mail-qv1-xf3c.google.com with SMTP id kd28-20020a056214401c00b0053cd4737a42sf3326186qvb.22
-        for <lists+open-iscsi@lfdr.de>; Fri, 10 Feb 2023 07:33:20 -0800 (PST)
+Received: from mail-io1-xd37.google.com (mail-io1-xd37.google.com [IPv6:2607:f8b0:4864:20::d37])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EEF9693975
+	for <lists+open-iscsi@lfdr.de>; Sun, 12 Feb 2023 19:59:13 +0100 (CET)
+Received: by mail-io1-xd37.google.com with SMTP id u6-20020a6be406000000b00716ceebf132sf7226044iog.1
+        for <lists+open-iscsi@lfdr.de>; Sun, 12 Feb 2023 10:59:13 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1676228352; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=sRArY8ZrQzjVet3MUp09u/rozn45+4tX2tkBWRA3Pg7KQQ9titJR8abNaTnXb//IHL
+         g15umrC9S3Pbrr0xYsVrOYog+F31Gb0Qq2Hm4RmNyuvHPi1mwVQRcJq4EhCh7qNii9pP
+         LK8F2bpBRxmO0bNm2f3QZA8j/kknbIFci/YpVkt01sAAS0XlH/U//1x+/VbjVZ96l6k9
+         2tZVJrkTNYpYCekWLuFOpM3+w7+uHxCCUrAJ/cGfHXENgIww36DIrdPJ8WzTRVPvqqT/
+         ixGgAs2KkC8RH1Hu+SEKzOar/HX42wTHpl9OFtyZIpZ6jHGmWrAsIDYy4GQfhqW0BqAF
+         CdDg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:message-id:in-reply-to:to
+         :references:date:subject:mime-version:from:sender:dkim-signature
+         :dkim-signature;
+        bh=J1mpVTCJ1/gN+e82vPVOSudHnnl3lNMsYn8gy4jFrfQ=;
+        b=vIQB6YYKVlpJj2Tvd+nQTGK9CgxoBGJ367EgvOzujSlqnBruAbdaxhh9CjOep1ivtQ
+         zZC+U/b9MWSHYTM/4uchlex9HcdQ/FRA45RRGxZUl/0NNlJIyOkdMJjOl8Gs/xKsJ+Vn
+         p3Lm3IrxwD2ChzY/WFWGhBTOB43qokqt4h9vKPU2oz6gmsrWi6dv/tSwk7PY5eTXOr1H
+         etDrHqPvsWHlkoBnMGu4XLq53x4jE4ZmZWzolM9Cih48aHxvA5EKs+3NbRvX1o1l8yqu
+         UGTaOmnrxXXBthem+V3Q0kZu1wJoWGq8RKUFjiCAEk7LJYgnhUURWq9bQAcwezAah9yf
+         WGNg==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=AckGqtCM;
+       spf=pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::102f as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlegroups.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:x-original-sender
-         :mime-version:subject:message-id:to:from:date:sender:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SgFqUAbUMBFqCCL5zbHPJuekW9AwoZZwIT1W2QGln4o=;
-        b=kSQXLidCaj2DfrgG6qzMYrNDT/nvc/Otritg+2bIl4ob5CnLeMcg5n3S3Et2PstqYe
-         bQ6lwlM7mbg7OiByPrLheLJjAWE0xscYfUIzmqjXZOG4kBa6A8TbfzGQLRCTRUti62o0
-         bvlmgZubMhkOTTt00hkI+qK998IV3wg8g7va6jZvr/WzwqK0gySk/rovxqOvg4XaYlxY
-         s2IRZwvDXw33Du6GsWcdWB5aYAcVZry78hoJ73LcNd+bqXd8dSAOWzUTFuaziT0Sai1m
-         VFYw4pJ1ed8q4XnShVi1LEE+8vQoO5UeFoGoI3CnLrL/UDawKKscFm+a7OcssM0w5Dyo
-         8bpw==
+         :list-id:mailing-list:precedence:reply-to
+         :x-original-authentication-results:x-original-sender:message-id
+         :in-reply-to:to:references:date:subject:mime-version:from:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J1mpVTCJ1/gN+e82vPVOSudHnnl3lNMsYn8gy4jFrfQ=;
+        b=msS7rnlOSWtm87YXLiNYLe2O8hXQNBZnAxa0rOQigAEQ5vfl+82jk5qIa7V9ZIrbjE
+         JbNrqHg8RUkZeEoT3tsoIPASQmGveAgP696dyei2h2vMuvRYqIC4rqjvML4Hr1uNq5Q/
+         kMxTo4yUvz9pMb/bBE5QroLmkrffpfPO3WhjjuPxrmDTNKiz4rz7Li8mXjd/qpXfBmlC
+         9zNUq018VKBeAb0G5tLXn8dZ3bQqFBB9WIIvF4YsN2XJUmZXSqYpF3he43JLNEnlOmbc
+         R408wYXjLuaEAd1Ey8Z3N1kX1zFTcq3fljvsVijYpYe4Jr9jgT51tr4sEyL6ThCmu8RH
+         mNrA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:x-original-sender
-         :mime-version:subject:message-id:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=SgFqUAbUMBFqCCL5zbHPJuekW9AwoZZwIT1W2QGln4o=;
-        b=OJnOOjIUjIuzJy3GqMOkfFcJK+lKnQcydbgoLVrWHpXnB2RCUsk1T4xpjZDNTsU9Zv
-         ZjkH3NdRl6Z1mRbGrmBGc0h4f7Pr971a1GP107fHoj76pFLD3OpYL63V9Lq+GUihgq7Z
-         G7wmqJ0HioySA2YFyLbZXDcak21Ze1J8Rp8U0ieY/8FYd8dpqx16IKVFJVJ8QFBQkHq4
-         N/VQp/NJ6n9gCdU1PLepFmur4PlAueo6uUonw2cdLZkReMwjKEwb1acMcKuFQR0Y5pGx
-         28OCszRzVqI1LrDY9ayo3yeDuKIrleupUnceqlFYfnxH1HBtCOVXByaTCVlWeRon/c3C
-         pN3g==
+         :list-id:mailing-list:precedence:reply-to
+         :x-original-authentication-results:x-original-sender:message-id
+         :in-reply-to:to:references:date:subject:mime-version:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J1mpVTCJ1/gN+e82vPVOSudHnnl3lNMsYn8gy4jFrfQ=;
+        b=YL82HijVp9IKy8JKFBq3Ww1ouBLJznSQ+8ynr74qw4XT52CSgOS5HPsc511SL5Naz2
+         g3Y1NjHRJkC9B6CeoiPSI9lIO9PNQfVMOIyREtisz7m7wY4GRbljydEBzvYSbjcLJ4hA
+         K6OlXi3izRZM8r/x1sOz8hqppsk6a2p1LZ/vXGlqJuP53IR5HyfGhPKPl9GgN+wxNTxE
+         APg4nsGbe/28a28fwjzIDWZJAooDtgG89tzfkXdrYCRDrfeKQLFxUoCB9dC+1TVfGloN
+         OoQuz3k26VQVUEWjLHiB8eNjKQ9CJxRn6RtzdN+w9+M7iZuI/W897MxWi/oqndolSEZe
+         HkYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-sender:mime-version:subject:message-id:to:from:date
+         :x-original-authentication-results:x-original-sender:message-id
+         :in-reply-to:to:references:date:subject:mime-version:from
          :x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SgFqUAbUMBFqCCL5zbHPJuekW9AwoZZwIT1W2QGln4o=;
-        b=pmfLJrN9XgbtsA4Ogh6sBciHO8MsHGjYy5OpxJ/PPPGrJg1WQt18CWfoX9LqTs3PxO
-         kSk5X2q/B656IGZCasPopX832xWXXEmFrPIn1lSBqlOEkUN7h2ir/pFbDCRb6t9vQ7tW
-         JJysFZdqaC/QfhfZPi4ok76DTY3Mb3BQXufd6+OwaiDU8cEhSZWoUezcoMWRKvuRXnA0
-         bEnOZG6JQX5dEp4wP+cRXTeNTPpdxEPgM7RJUHrWh//vVT6CDE/hMXNquMvs81XfjQaZ
-         SZFfBcXw5oKpf5TfcrQJsZWrI/ubldw/U1PM5buQodKCDeYzaIk3uNr4BOdWUjUUSXlo
-         ar4A==
+        bh=J1mpVTCJ1/gN+e82vPVOSudHnnl3lNMsYn8gy4jFrfQ=;
+        b=4s+/D0HE7DAqSQFwFb04lEjEBnsQd356nEZyaIDnt5uqBaT5LeQ7EcozH0EIrxPQYo
+         OQS3nn1ielQuG4KCxZCtOdUWVfeF7lpO6jVcH7t2TPWmUFTGOiT9UWI22QQg6SxSCuSb
+         A2CyB+Blxu2TnIeS0i9uFwc7CEHWQssI0ZSZ4ImF+EFJ6rN+y28gAIbPFz4rw0tIEfOI
+         Ldto7fRAmf6ZkOXql03lFlhlDj4msSPN5J3kS0v0+bJY84DWrcXx2sFdArzqAGQFByT7
+         JSP3Sw2zJWFaYNpYHb+vPtRAdoAP70SW+UoNp7Gt/krBtPXnWPBuzOIcVIzhpmgNMjwr
+         /PRg==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AO0yUKU0456F8VO7rF1CbsqjbiGiHkvUTFVpeu2ZAOeZmely98Rn6pTy
-	kOI0iQxigAeAgBfh9wmECWE=
-X-Google-Smtp-Source: AK7set8MHYwWX2KnZa0WhcFLc+OV/53hsk7qu6yO/waq06CwbpWh6ls8xDTHsYWSENBIViezD3onXQ==
-X-Received: by 2002:ac8:5b90:0:b0:3b8:409b:799e with SMTP id a16-20020ac85b90000000b003b8409b799emr3265087qta.340.1676043196996;
-        Fri, 10 Feb 2023 07:33:16 -0800 (PST)
+X-Gm-Message-State: AO0yUKUB0TX52BoYBB4I87qEl46lz9cpGHllMo5G23jOqQG1OIVCGktT
+	r/1x8Hgna8637y48+vg9jyk=
+X-Google-Smtp-Source: AK7set+wNRq0ale8D5k6N+miWyym8Etcz2mIm66ebGR1p3mxY/BTlvN7Nf88uTb6uw9iC2qF7GJM7Q==
+X-Received: by 2002:a02:ce8d:0:b0:3bd:e9ae:def0 with SMTP id y13-20020a02ce8d000000b003bde9aedef0mr13187166jaq.68.1676228351961;
+        Sun, 12 Feb 2023 10:59:11 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:ac8:67c4:0:b0:3ac:c6f0:fe49 with SMTP id r4-20020ac867c4000000b003acc6f0fe49ls6107595qtp.7.-pod-prod-gmail;
- Fri, 10 Feb 2023 07:33:15 -0800 (PST)
-X-Received: by 2002:ac8:7f83:0:b0:3b8:345e:d9aa with SMTP id z3-20020ac87f83000000b003b8345ed9aamr2546727qtj.267.1676043195138;
-        Fri, 10 Feb 2023 07:33:15 -0800 (PST)
-Date: Fri, 10 Feb 2023 07:33:14 -0800 (PST)
-From: Turritopsis Dohrnii Teo En Ming <tdtemccna@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <3b3e946f-0e51-4ab5-9bd9-25a779056816n@googlegroups.com>
-Subject: I have successfully mounted iSCSI targets from Synology NAS in
- Debian 11 Linux server for a construction company at Defu Lane 10,
- Singapore on 10 Feb 2023 Fri
-MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_2768_189937641.1676043194298"
-X-Original-Sender: tdtemccna@gmail.com
+Received: by 2002:a05:6e02:ca4:b0:315:326d:f382 with SMTP id
+ 4-20020a056e020ca400b00315326df382ls1320704ilg.11.-pod-prod-gmail; Sun, 12
+ Feb 2023 10:59:10 -0800 (PST)
+X-Received: by 2002:a05:6e02:1bcc:b0:315:45c5:917d with SMTP id x12-20020a056e021bcc00b0031545c5917dmr921090ilv.15.1676228350372;
+        Sun, 12 Feb 2023 10:59:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1676228350; cv=none;
+        d=google.com; s=arc-20160816;
+        b=o+VIcj4hMWJlBMqW56sAOw3UYrRmjmlTuuWkrZYVy17fs/yAhkENxqB0/wj0VdnI5Z
+         HAInzvOKgluunxqKqDdpZqhXVvSjvNx+4BNU8qNCM14LZtsGWgpUmngyybkyHc4kFSV4
+         DNb92FlzthjvqT3qpriP6HlRv3SMkp5MCZ213VxMGcFqkE7ap9xIoUY/yGRSjVCjwwpo
+         Z/AIa3r5c0I8et2E5dKMoqosQPbVXsv/i6NBEu4NN/vdvDFbRbdMBSA3Bj9CtXedpRu9
+         q4qZiEnAFNi08IBW2TyMEAHdqaDwCWdH7IqjPPYH9vTgAsKy/yFkSECdFu0Z5ZTGVg/k
+         Cv+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version:from
+         :dkim-signature;
+        bh=RxdGZ/9BCriSjSodEwkLHguULkUQXNAr9xvzJRpnqD0=;
+        b=jsNaVeTlF3SFn43Mu6NtZ+HBMPfTyuClSOlVMJZ0eU6zaTIrx4KFZEN8aKn7b8uYPy
+         VTMSoMjxlKi+ORotm3/meelu29knY6inBBlp18jRgP9Ec/0Hk43dffyarkMVZpHAtTpI
+         AyGBdvrLaeSQNanG2pOqfZrydiZZ384TCvra5bjjfxelfEvTZDYp6ix3+fk3jzEdqkly
+         RuHK6zDnLbAOs06/aaxXaNIjDvyIwtm7XE7NaleRt9vkkP6LEb09xf0h26RDpb233Ijw
+         G4w3IexWoQZGzS4CYf2qo8zL7aIgZ09lPa3tZHzup6jA0sDB49Ai+BJaCEOGcrRIpKLw
+         lsDw==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=AckGqtCM;
+       spf=pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::102f as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com. [2607:f8b0:4864:20::102f])
+        by gmr-mx.google.com with ESMTPS id c4-20020a056e020cc400b0031538deaabbsi192547ilj.5.2023.02.12.10.59.10
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Feb 2023 10:59:10 -0800 (PST)
+Received-SPF: pass (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::102f as permitted sender) client-ip=2607:f8b0:4864:20::102f;
+Received: by mail-pj1-x102f.google.com with SMTP id on9-20020a17090b1d0900b002300a96b358so10234356pjb.1
+        for <open-iscsi@googlegroups.com>; Sun, 12 Feb 2023 10:59:10 -0800 (PST)
+X-Received: by 2002:a17:90b:2247:b0:234:156:dda7 with SMTP id hk7-20020a17090b224700b002340156dda7mr387522pjb.28.1676228349355;
+        Sun, 12 Feb 2023 10:59:09 -0800 (PST)
+Received: from smtpclient.apple ([2601:1c0:4d7f:138e::3])
+        by smtp.gmail.com with ESMTPSA id cl14-20020a17090af68e00b00230ab56a1f3sm2285279pjb.51.2023.02.12.10.59.08
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 12 Feb 2023 10:59:08 -0800 (PST)
+From: Lee Duncan <leeman.duncan@gmail.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_B272DD26-C9F1-4610-8A80-3E8F4D5729F1"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.300.101.1.3\))
+Subject: Re: Digest for open-iscsi@googlegroups.com - 1 update in 1 topic
+Date: Sun, 12 Feb 2023 10:58:57 -0800
+References: <00000000000054a69d05f467c41a@google.com>
+To: open-iscsi@googlegroups.com
+In-Reply-To: <00000000000054a69d05f467c41a@google.com>
+Message-Id: <4EEF6C4C-D7C8-4C31-B391-353DD7150C4C@gmail.com>
+X-Mailer: Apple Mail (2.3731.300.101.1.3)
+X-Original-Sender: leeman.duncan@gmail.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@gmail.com header.s=20210112 header.b=AckGqtCM;       spf=pass
+ (google.com: domain of leeman.duncan@gmail.com designates 2607:f8b0:4864:20::102f
+ as permitted sender) smtp.mailfrom=leeman.duncan@gmail.com;       dmarc=pass
+ (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -81,99 +152,39 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_2768_189937641.1676043194298
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2769_1727110784.1676043194298"
 
-------=_Part_2769_1727110784.1676043194298
+--Apple-Mail=_B272DD26-C9F1-4610-8A80-3E8F4D5729F1
 Content-Type: text/plain; charset="UTF-8"
 
-Subject: I have successfully mounted iSCSI targets from Synology NAS in 
-Debian 11 Linux server for a construction company at Defu Lane 10, 
-Singapore on 10 Feb 2023 Fri
+This links to a proprietary iSCSI test suite. Not sure I approve of advertising here.
 
-Good day from Singapore,
-
-I have successfully mounted iSCSI targets from Synology NAS in Debian 11 
-Linux server for a construction company at Defu Lane 10, Singapore on 10 
-Feb 2023 Friday.
-
-These are the 5 reference guides I have followed. Please use the following 
-guides in sequence.
-
-[1] How to Configure Static IP on Debian 10
-
-Link: https://www.snel.com/support/how-to-configure-static-ip-on-debian-10/
-
-[2] Debian SourcesList
-
-Link: https://wiki.debian.org/SourcesList
-
-[3] About the /etc/resolv.conf File
-
-Link: 
-https://docs.oracle.com/en/operating-systems/oracle-linux/6/admin/about-etc-resolve.html
-
-[4] iSCSI: Introduction and Steps to Configure iSCSI Initiator and Target
-
-Link: 
-https://calsoftinc.com/blogs/2017/03/iscsi-introduction-steps-configure-iscsi-initiator-target.html
-
-[5] How Do You Make an iSCSI Target in Synology?
-
-Link: https://linuxhint.com/make-iscsi-target-synology/#b6
-
-Please also note that openssh-server was not installed. To install it, run
-
-# apt install openssh-server
-
-Edit /etc/ssh/sshd_config
-
-and set
-
-PermitRootLogin yes
-
-# systemctl restart sshd
-
-Regards,
-
-Mr. Turritopsis Dohrnii Teo En Ming
-Targeted Individual in Singapore
-Blogs:
-https://tdtemcerts.blogspot.com
-https://tdtemcerts.wordpress.com
+> On Feb 10, 2023, at 11:43 PM, open-iscsi@googlegroups.com wrote:
+> 
+> https://calsoftinc.com/blogs/2017/03/iscsi-introduction-steps-configure-iscsi-initiator-target.html
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/3b3e946f-0e51-4ab5-9bd9-25a779056816n%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/4EEF6C4C-D7C8-4C31-B391-353DD7150C4C%40gmail.com.
 
-------=_Part_2769_1727110784.1676043194298
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail=_B272DD26-C9F1-4610-8A80-3E8F4D5729F1
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
 
-Subject: I have successfully mounted iSCSI targets from Synology NAS in Deb=
-ian 11 Linux server for a construction company at Defu Lane 10, Singapore o=
-n 10 Feb 2023 Fri<br /><br />Good day from Singapore,<br /><br />I have suc=
-cessfully mounted iSCSI targets from Synology NAS in Debian 11 Linux server=
- for a construction company at Defu Lane 10, Singapore on 10 Feb 2023 Frida=
-y.<br /><br />These are the 5 reference guides I have followed. Please use =
-the following guides in sequence.<br /><br />[1] How to Configure Static IP=
- on Debian 10<br /><br />Link: https://www.snel.com/support/how-to-configur=
-e-static-ip-on-debian-10/<br /><br />[2] Debian SourcesList<br /><br />Link=
-: https://wiki.debian.org/SourcesList<br /><br />[3] About the /etc/resolv.=
-conf File<br /><br />Link: https://docs.oracle.com/en/operating-systems/ora=
-cle-linux/6/admin/about-etc-resolve.html<br /><br />[4] iSCSI: Introduction=
- and Steps to Configure iSCSI Initiator and Target<br /><br />Link: https:/=
-/calsoftinc.com/blogs/2017/03/iscsi-introduction-steps-configure-iscsi-init=
-iator-target.html<br /><br />[5] How Do You Make an iSCSI Target in Synolog=
-y?<br /><br />Link: https://linuxhint.com/make-iscsi-target-synology/#b6<br=
- /><br />Please also note that openssh-server was not installed. To install=
- it, run<br /><br /># apt install openssh-server<br /><br />Edit /etc/ssh/s=
-shd_config<br /><br />and set<br /><br />PermitRootLogin yes<br /><br /># s=
-ystemctl restart sshd<br /><br />Regards,<br /><br />Mr. Turritopsis Dohrni=
-i Teo En Ming<br />Targeted Individual in Singapore<br />Blogs:<br />https:=
-//tdtemcerts.blogspot.com<br />https://tdtemcerts.wordpress.com<br />
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=3Dus-ascii"></head><body style=3D"overflow-wrap: break-word; -webkit-nbsp-=
+mode: space; line-break: after-white-space;">This links to a proprietary iS=
+CSI test suite. Not sure I approve of advertising here.<br><div><br><blockq=
+uote type=3D"cite"><div>On Feb 10, 2023, at 11:43 PM, open-iscsi@googlegrou=
+ps.com wrote:</div><br class=3D"Apple-interchange-newline"><div><a href=3D"=
+https://calsoftinc.com/blogs/2017/03/iscsi-introduction-steps-configure-isc=
+si-initiator-target.html" style=3D"font-family: arial; font-style: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphan=
+s: auto; text-align: start; text-indent: 0px; text-transform: none; white-s=
+pace: normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: au=
+to; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">=
+https://calsoftinc.com/blogs/2017/03/iscsi-introduction-steps-configure-isc=
+si-initiator-target.html</a></div></blockquote></div><br></body></html>
 
 <p></p>
 
@@ -184,11 +195,8 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/3b3e946f-0e51-4ab5-9bd9-25a779056816n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/3b3e946f-0e51-4ab5-9bd9-25a779056816n%40googlegroups.com</a>.=
-<br />
+om/d/msgid/open-iscsi/4EEF6C4C-D7C8-4C31-B391-353DD7150C4C%40gmail.com?utm_=
+medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgid/open-=
+iscsi/4EEF6C4C-D7C8-4C31-B391-353DD7150C4C%40gmail.com</a>.<br />
 
-------=_Part_2769_1727110784.1676043194298--
-
-------=_Part_2768_189937641.1676043194298--
+--Apple-Mail=_B272DD26-C9F1-4610-8A80-3E8F4D5729F1--
