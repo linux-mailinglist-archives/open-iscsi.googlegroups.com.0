@@ -1,266 +1,152 @@
-Return-Path: <open-iscsi+bncBCHM7NWZ3UFBB7FMSGQQMGQE3GJXPYY@googlegroups.com>
+Return-Path: <open-iscsi+bncBAABBHF4S6QQMGQEA3BNBDY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pj1-x103f.google.com (mail-pj1-x103f.google.com [IPv6:2607:f8b0:4864:20::103f])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18EF46CEC9C
-	for <lists+open-iscsi@lfdr.de>; Wed, 29 Mar 2023 17:17:19 +0200 (CEST)
-Received: by mail-pj1-x103f.google.com with SMTP id b1-20020a17090a8c8100b002400db03706sf4364078pjo.0
-        for <lists+open-iscsi@lfdr.de>; Wed, 29 Mar 2023 08:17:19 -0700 (PDT)
-ARC-Seal: i=3; a=rsa-sha256; t=1680103037; cv=pass;
+Received: from mail-oa1-x37.google.com (mail-oa1-x37.google.com [IPv6:2001:4860:4864:20::37])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC2346D0E53
+	for <lists+open-iscsi@lfdr.de>; Thu, 30 Mar 2023 21:08:14 +0200 (CEST)
+Received: by mail-oa1-x37.google.com with SMTP id 586e51a60fabf-17e3d37b3e6sf10441895fac.22
+        for <lists+open-iscsi@lfdr.de>; Thu, 30 Mar 2023 12:08:14 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1680203293; cv=pass;
         d=google.com; s=arc-20160816;
-        b=znDY5JlT6874QwX13i17r/UZ7K4C1BRJWkFg7w6PrHpS/e1LJ1IGnup1vBJB7uS91F
-         9dKHP2LOABi9KjLedWLy8r55p54TZH80L/7ksLG0FCG4E6abkQi5SvJCoHFUtIv7kcoR
-         mGjDaW4tM3jLmQBD3U/lh9peg4yWpA2JVXBjmFRY/sICHWN/+Ufu9RA+HBdFCoqyBkuC
-         pKJ6OjXNDHY6HeKXUkGF8ynRgrzf+eTiazo5su9Uv+pVKFHFg7sXoDq3AobwXe5fy2OL
-         wRaL22wSH9dD0pqFeju9Or1yTBkiwgNU+LXxddt0hsZb5/osqTy3kbsBmn/UjBNhXU9S
-         sL3g==
-ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        b=Q6R2bs6CSjvX/1+/Cw6FtDpvRrWO5Yx3YhE4k3peZ9zu4waPuqniEdT1pVJEKGz4rT
+         NjfvcMsUgBs5p9eUh3TLYjIHfqHNGe/CfeTcjUQP0Tzm4SzqLxha7o4KhSf1CwpVzuT/
+         ESN2bL040Gin3UR1JCkN2WCNsGnowPadMz6s8kGYOQoKrWjoriT2HG4qvsu8Pfs+WBYT
+         7w1fBsBxubXN0RBBw0AdVKzK8v0gTiYvn2VqB/T+/yCE+WkR9gDwn4gdkAI02BW6pHW4
+         tQtUcLiJ3Jt0MaLaAaKTGldqCDJvdtCCYTrdHkJ8fQOwihToxwk02Ur35CZT77I+NvFE
+         C41w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:in-reply-to
-         :from:content-language:references:cc:to:subject:user-agent:date
-         :message-id:sender:dkim-signature;
-        bh=p4KEb0FX65TKAVGr/xAUl1WVLESLLpJRwixM4IQ+ryo=;
-        b=C0dUApaXZju5ib2rSiCeA2s1gCUklp3rghGTeC26yZOZvvqBPQ+sISESCc49CaC11w
-         FCM5GEarn6SBtcnjTJlmNV/YuZ6zwcvhxbOCpwEQKCWVcUBNQ4DoU/VF7XnK+iD3OpSh
-         /ImDGP48fAWE1q/zh0WuErDgWvdNml6xl/eadRH1Lrx6849xA/SLYYBM3HN/xm0Oz3iW
-         VUa7kV1FmVD9+8J5SeW9qr36XXIyRVdIXZ7O2J5AyQ6qUQczQstiv4FUl2pcKLJiB0Xu
-         ccYD7hv7ZImqS+tvP+AV/Ip45irMyWRX8q+45weRNwO9XQcg7tEZUKLWfdckJdYVoAAS
-         mOuA==
-ARC-Authentication-Results: i=3; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2022-7-12 header.b="AXQy/3d6";
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=yTO+2FYA;
-       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:sender:dkim-signature;
+        bh=MCFKomgn695p1rUPuOwsCzHmlr2pvX9ha3fD+w6NZVc=;
+        b=x4x1A7pu1mJ+FoV5la1iJ1CNdHr5oTgegYwWcf3XJ88AXe771y9nxLt9PZD65gFgQW
+         nCQHtdOnBcAY09YgyNaop+7/CMeozEsTpFzJkU3+k6mCSORBSSxnsaC3+BLNFmvQL/Xm
+         0LEOWrWG4/N7r74n5bcglgEESIMXnLMn9cp8K26gzlCj5454HulDdU2y4oeBN7OMftj5
+         Fj+VjJcyHQfVVXWu8Nd3gDGVIhqxe6sHqT7fYpwfoByl9gJ1Ku4TLTjNjHxcUUSixuIk
+         E6BYkOuwIiAXDc/pcqa6itWQeqU9Kc1gqAI+ICzgPuMhTVbZF+cqO5fkxWV9NybSM7Op
+         NFOQ==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       spf=pass (google.com: domain of zhongjinghua@huaweicloud.com designates 45.249.212.56 as permitted sender) smtp.mailfrom=zhongjinghua@huaweicloud.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20210112; t=1680103037;
+        d=googlegroups.com; s=20210112; t=1680203293;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
-         :in-reply-to:from:content-language:references:cc:to:subject
-         :user-agent:date:message-id:sender:from:to:cc:subject:date
+         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=p4KEb0FX65TKAVGr/xAUl1WVLESLLpJRwixM4IQ+ryo=;
-        b=Q2fCCA8zXf+dDQJD81g/4xJcy8pYoQyDoCMuCeZHTaL2Um1oC5LKLTZd1syxfmaAlg
-         yomljXpCaGbrwbzIVVuhEINmZskTSRk/IyjyGhV9Rvjt2fU8vuQ+HF/6VP2Pa6uPwskB
-         poJYy1UUeGyUy8GUilOjRg20TBG40YQOfpQy1i0wGpDkoZlBcKYFN5lGTfSn+xcgrSXs
-         z7Oi1lsRS3sa/aVMywSuDVuaThGeMijwOs0ODEnAcV06emkoubVguHKjTsXhYSYsB3cW
-         R9DZAOFPkPdm9tF2n16xAi5qmMzJZQ6x3AZvjL7bj3ggRrtXFbnuz5jBu40JJXksIFpP
-         76wA==
+        bh=MCFKomgn695p1rUPuOwsCzHmlr2pvX9ha3fD+w6NZVc=;
+        b=NONy8Qi43dm7/lzUSE71kLiZOFCqZl+CeEPdn9rUK1UKIIaM6eqOXKseCyGWI3gNXB
+         DRehMHucE+9oXm5JvXy6zLISG3CnJlWjqyUqBYAhtEWuH6VRtAGnmRTIcMgKw2El798t
+         pIQWCvsHHGEU/Iodx6aoJBQ+M7wFqopEAjjSEIlQmq0PyjRP6ki+aGUgy0b67Aj/F2q6
+         S6ZFyk88OvHx2UBWr1MWBY3tGSZpF2WTYQuL7wMzQUYKalTPgFWvzUIFMvElCj4YcZs1
+         9v9ZPuly4UZRrx5a1RvWMQBf03lAyDb878zyF4J6cZG2ZsVxnD5so+ze+FkUJvKTy7ud
+         Edvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680103037;
+        d=1e100.net; s=20210112; t=1680203293;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
+         :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
-         :in-reply-to:from:content-language:references:cc:to:subject
-         :user-agent:date:message-id:x-gm-message-state:sender:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p4KEb0FX65TKAVGr/xAUl1WVLESLLpJRwixM4IQ+ryo=;
-        b=gT4kpmyjnQv6MyaDJaH02rA7jcXfE++i2SkZn1gUuaMakggzv4Td4dAoozCzVVEN9M
-         fIyy7664Kep2L0n8QBbPWZFO/jZ6eLn3ZL+Mma6+P//WsP9lWJj+xYtNAwOgncpBJ9Nt
-         FK247SXKptVxXd7C9JOYo0P30KKJfL0I2Vk9dsuZkBPMiq0U2ISukvdOvz6fP4fwhmP+
-         ZQD7tC+ylT9I+V7/f2DaKshftkQ1jB51jbzq1SRN760x4b4ReEZUlJzFNDWqpuNGmv2j
-         O6PwFjY4Qg6UAGCfCZ4TuK03g/ysXaN1rZLUwbtjVX3VC7FyvKtSmPvHxEz0TOgdfV/w
-         Uzrg==
+         :message-id:date:subject:cc:to:from:x-gm-message-state:sender:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=MCFKomgn695p1rUPuOwsCzHmlr2pvX9ha3fD+w6NZVc=;
+        b=Gq/VEvvRioIAT/MROoS2iXunD8/aYNx2nPRpzcbqB882O2TfwrYrxPSbcaQ98Jiv3Y
+         1VCFhGYT7rK1tIHRhDWESXa0Kw1VNmIMLQPG0LB+vVddcAllNzn+MFkfc3eyZ8Rvjr9D
+         KTou942WP+2S3Bh4ZBfgpusBJ3XlHPHjrtqM2iA2aC0AxmqVdUmiDUa0zaYnH/8pBUaa
+         vmH95My/40LuNFI6YzLtdVkNcIPp8dGxskJvNi8yDhmZW6ebmJduc8/Tngd50GqcQQf/
+         Z2kHhO9XCEd5ACc7/pwiCZEccCaApOW6ktT8+sNGns9TBCinnXnqZGmspBZe8IjsJf2A
+         KCgQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AAQBX9fI8dH6vVtpw5DTtGIvqqbtEdN1OnVQoKuJGLXWBUpk1q6gL0AE
-	vTkjCI5Vg2qFcgRRa3dT2X8=
-X-Google-Smtp-Source: AKy350ZitNATW4IA52k95UFRS8nj4bXTJdjih6pyE9PXcNmKuVy/ojNYuqYJxM6/8OZp3+X3y9gvJg==
-X-Received: by 2002:a05:6a00:124e:b0:625:cf6d:b272 with SMTP id u14-20020a056a00124e00b00625cf6db272mr5647228pfi.6.1680103037424;
-        Wed, 29 Mar 2023 08:17:17 -0700 (PDT)
+X-Gm-Message-State: AO0yUKVe0qdanq6xxnK/PQ8pYiAKoLdYSOirTFIn8t3P3PJnD5cIcQpS
+	b7WwWIaR1tf3GjU8Gkn936k=
+X-Google-Smtp-Source: AK7set/1mRZKpON+t9Vrpb1JONB9YJowshJx28DiOhft1POlComSM/GduEe4qD78Lac3ng5p0OZBVQ==
+X-Received: by 2002:a05:687c:198:b0:17e:3201:41b0 with SMTP id yo24-20020a05687c019800b0017e320141b0mr7895684oab.5.1680203293183;
+        Thu, 30 Mar 2023 12:08:13 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:90a:1992:b0:237:7ef0:5b8 with SMTP id
- 18-20020a17090a199200b002377ef005b8ls2447341pji.3.-pod-canary-gmail; Wed, 29
- Mar 2023 08:17:14 -0700 (PDT)
-X-Received: by 2002:a05:6a20:1e58:b0:db:9537:2c3 with SMTP id cy24-20020a056a201e5800b000db953702c3mr18849373pzb.34.1680103034029;
-        Wed, 29 Mar 2023 08:17:14 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1680103034; cv=pass;
+Received: by 2002:a05:6870:9a2a:b0:180:2c8e:4c3e with SMTP id
+ fo42-20020a0568709a2a00b001802c8e4c3els468425oab.5.-pod-prod-gmail; Thu, 30
+ Mar 2023 12:08:11 -0700 (PDT)
+X-Received: by 2002:a05:6871:60cb:b0:17e:2e88:40dc with SMTP id qz11-20020a05687160cb00b0017e2e8840dcmr6068616oab.11.1680203291868;
+        Thu, 30 Mar 2023 12:08:11 -0700 (PDT)
+Received: by 2002:a05:6808:188a:b0:387:2d72:b0f4 with SMTP id 5614622812f47-3895eb64024msb6e;
+        Wed, 29 Mar 2023 00:18:07 -0700 (PDT)
+X-Received: by 2002:a05:6808:984:b0:384:833:2a79 with SMTP id a4-20020a056808098400b0038408332a79mr6985593oic.48.1680074287390;
+        Wed, 29 Mar 2023 00:18:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1680074287; cv=none;
         d=google.com; s=arc-20160816;
-        b=KC+Jzw6ue5IbQm/aMS4iFPjxOctn/J8h35JsYJCXwTZI+mGSNUEzncalIka+P0sfAG
-         apMAdX9hOfbdwzjHFBJvFW6/d6YbwJRs3bQokB8qhUnav03wSygjvzVT91Qgf9/s4TOt
-         wxsuO+TKP7ItYQdXIyDLrBAd0PUOrdjToAS2GXDtLvOLIsJutEKLyXGj99CTpstSFsuw
-         VWcbj+9sdnOi8iKENtzGXbNdVoeDNoU6lrBHXq9XyAePEbAEWY709EmpLVdEa6EMXTxR
-         MPe0Z1bBbA/Ac6CKHh8tFKdcpmGup0K4K7oEEZts8qfVnKzCo6QeXeT4yejgX+KtGLOA
-         UuDA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:content-transfer-encoding:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:date
-         :message-id:dkim-signature:dkim-signature;
-        bh=yti9TrTabufrn9zIAC0PfS6N1ZiafDcsNcw85ERs1Z0=;
-        b=kWnkrlqqpLWfyiGeTeYKcgfGOQTjdLzqXIZryUvpOEkWYsi08HB5iD4/mV+PHOrP88
-         FYAltBRoCHzzt33rjwWv/a39/6k9pFjhawuggH2Ctm7pLnOgp/+TcSKpuInqD0rGNqKt
-         1txrjsrcjQXew/oLaqO/xFuJ/kz4YvaC7X6G9jx0bkFNy0LE8pgElb5t4z5c8PGWq2M6
-         0MR5NKWkX1aiAsUrKLcN9B+9ko5FFRyNjuA9kw44q6qrEB1tU1qKn93GGk5O/rOZySiq
-         rcTS1l+ZgZyp3ftvJIbSUyM5P5fsnUtfd/88LwxR1cbKMLZYK+XVvelzdcTynpyXLgde
-         KEJw==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2022-7-12 header.b="AXQy/3d6";
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=yTO+2FYA;
-       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com. [205.220.177.32])
-        by gmr-mx.google.com with ESMTPS id bh27-20020a056a00309b00b00625965308absi1770312pfb.3.2023.03.29.08.17.13
+        b=fmZHHh+zgmX0pwn8jBUp44LUXVHY8YaOOC5yga9ZuEdHp1ImczDp3QkU550m2EtZI4
+         I3Y9K+I6EemgYnpeFztQK/tGTS7jkB6v8j2ucHywI33FEfEr1BmuuS4CjS6u9r9SUbSP
+         2TKzNUR49Fp4bRbCm4VcXr9i7JGvityVARZUGBtIVNi6aebg+fvuqYVqe0zNutb6O3KZ
+         9UMoNt3m0Y588wE/sm8Oy8mp5utlkTCl4fjIWSk2lbt5MB3tFmTgDe2ZJ94FV64tIWmM
+         fbfjFfO9/lGTLn/QVAxfMiZHWyapoL+N1KiZbZNDQjjCi4Mup4xWo6nMalsCJ8N03Lva
+         WBbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from;
+        bh=rFtikJjWMTw0fpXqeUYk2bXOJVKYtWFbo5m75FcqWzE=;
+        b=eUMaWfbZ7SKEWmSi5eB5T7E6WPEuiHkLXfK4JX7UlrchYkrw0JE21IHlkdzUZNF8r3
+         0iSRv7uueATpt+/sI7pWbiQi2lYaABvJfjRPiBxg53U3wTTifp0fooLz1kXF9vYptSgW
+         8Xt3HVjmbZWzxeQctL9qcMULhpAQIbYb2vJ0+GyzSwHgWdcc1LaG8A+sNeg5ENcwGWBr
+         OTJnwshHgt+sUzjy/Pk3bWDyy0gGtTYPrcNM61cCYrlIll1JQOABlhfSVUNvwMoLaoay
+         +vVIErKn75WJsIOd1fnvSB87jUZ4a0d56rUtLDnsVrtKD3w8XoWKc1mLgvc88xby1ZUz
+         MkMw==
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       spf=pass (google.com: domain of zhongjinghua@huaweicloud.com designates 45.249.212.56 as permitted sender) smtp.mailfrom=zhongjinghua@huaweicloud.com
+Received: from dggsgout12.his.huawei.com (dggsgout12.his.huawei.com. [45.249.212.56])
+        by gmr-mx.google.com with ESMTPS id r10-20020a54488a000000b0038756a0f744si871080oic.0.2023.03.29.00.18.07
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 Mar 2023 08:17:13 -0700 (PDT)
-Received-SPF: pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) client-ip=205.220.177.32;
-Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32TEYSN2026809;
-	Wed, 29 Mar 2023 15:17:13 GMT
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3pmq79847b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 29 Mar 2023 15:17:13 +0000
-Received: from pps.filterd (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5) with ESMTP id 32TEIofl036465;
-	Wed, 29 Mar 2023 15:17:12 GMT
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2108.outbound.protection.outlook.com [104.47.55.108])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3phqdfr6np-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 29 Mar 2023 15:17:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cPDRtyS8X+714ugsa4cMuaObdA+XM0KBmpxRb2XYsq/sVcJi0ZLbltVt2B5Ap5yUnBIAXjm7Q7jIPYGO5oM8QRAgIV8aHeUWAXpOVRGt9rHcSWPqkjfkFIBrzWCcazS5ytdNIRD13bxkqXDF1cgKjxWe/1BWtDAgpjRvOKSC7o+6Un72/lbyDpgBIoD0TLr0WcG6WH6ja3jWUCoLqOTZWI4Xf2DcX5qwuMCB2s9mVShPicOsvb1Jf7CP/w8ZPRs5udVoKLl7O9Kl8R8HXEHTBwwPagXe328rDlRi+B1dqokgRxDmxkn+IBL0xYnvZrPqXKIcPsX7xxfE2fRNxtdokQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yti9TrTabufrn9zIAC0PfS6N1ZiafDcsNcw85ERs1Z0=;
- b=NAbyzKOFsp6NBgPzKg4K00YUDFKWXqMOXIFpD41lbVyqNPbqwPR46hxRrEw2N/SsY3j24dZpm88LMXch6sDP3tUHlCBCxx6qSaVic40rpuyiTpAYkkR09h0XA6/R6BMcd74tkp0u9HezZUUxfo3AJjI5CgEwroMBNJ8Z9nPE7Y4O1pSByssjmsK5yY+3icrFhFzcWKlg1HYWso8fq/Sn68/tFt5nH5g37XrKKEN/PrmymwIxkBEY4eXgsOt3nl1ptwW9fy6MXbwYbXJ6SQVU67p11J2q0zBsJVvwuAceB3jaN5lA2eE+0IgA7Kl3b/CiIYZIxhoA37XcHw/f7Dfg6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-Received: from DM5PR10MB1466.namprd10.prod.outlook.com (2603:10b6:3:b::7) by
- SA2PR10MB4794.namprd10.prod.outlook.com (2603:10b6:806:113::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6254.20; Wed, 29 Mar 2023 15:17:09 +0000
-Received: from DM5PR10MB1466.namprd10.prod.outlook.com
- ([fe80::dcf6:889b:21f3:7425]) by DM5PR10MB1466.namprd10.prod.outlook.com
- ([fe80::dcf6:889b:21f3:7425%6]) with mapi id 15.20.6222.035; Wed, 29 Mar 2023
- 15:17:09 +0000
-Message-ID: <15e892ef-0ab4-b2c9-bfc7-6cc3ba221c4a@oracle.com>
-Date: Wed, 29 Mar 2023 10:17:07 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] scsi: iscsi_tcp: Check the sock is correct before
- iscsi_set_param
-To: Zhong Jinghua <zhongjinghua@huaweicloud.com>, lduncan@suse.com,
-        cleech@redhat.com, jejb@linux.vnet.ibm.com, martin.petersen@oracle.com
-Cc: open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, zhongjinghua@huawei.com,
-        yi.zhang@huawei.com, yukuai3@huawei.com, houtao1@huawei.com
-References: <20230329071739.2175268-1-zhongjinghua@huaweicloud.com>
-Content-Language: en-US
-From: Mike Christie <michael.christie@oracle.com>
-In-Reply-To: <20230329071739.2175268-1-zhongjinghua@huaweicloud.com>
-Content-Type: text/plain; charset="UTF-8"
-X-ClientProxiedBy: DM6PR02CA0087.namprd02.prod.outlook.com
- (2603:10b6:5:1f4::28) To DM5PR10MB1466.namprd10.prod.outlook.com
- (2603:10b6:3:b::7)
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 00:18:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zhongjinghua@huaweicloud.com designates 45.249.212.56 as permitted sender) client-ip=45.249.212.56;
+Received: from mail02.huawei.com (unknown [172.30.67.169])
+	by dggsgout12.his.huawei.com (SkyGuard) with ESMTP id 4PmdDf4kXdz4f3jYP
+	for <open-iscsi@googlegroups.com>; Wed, 29 Mar 2023 15:17:54 +0800 (CST)
+Received: from huaweicloud.com (unknown [10.175.127.227])
+	by APP3 (Coremail) with SMTP id _Ch0CgCnUyEi5iNklZgMFw--.48573S4;
+	Wed, 29 Mar 2023 15:17:56 +0800 (CST)
+From: Zhong Jinghua <zhongjinghua@huaweicloud.com>
+To: lduncan@suse.com,
+	cleech@redhat.com,
+	jejb@linux.vnet.ibm.com,
+	martin.petersen@oracle.com
+Cc: open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	zhongjinghua@huawei.com,
+	yi.zhang@huawei.com,
+	yukuai3@huawei.com,
+	houtao1@huawei.com
+Subject: [PATCH] scsi: iscsi_tcp: Check the sock is correct before iscsi_set_param
+Date: Wed, 29 Mar 2023 15:17:39 +0800
+Message-Id: <20230329071739.2175268-1-zhongjinghua@huaweicloud.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM5PR10MB1466:EE_|SA2PR10MB4794:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9293f848-4bf1-484f-e826-08db3068aa41
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hf2Oscr9GRWQVPoOah3omMJRYMnSfNDs94KpbmAmQmZAz25OcnQAXAYBf6QYFm2YD4rdyRmDLlB6B3IzdxpExE0RtUXXhFIqzT1of0WTLlumcxXhhsEp7j2wgN4oKlgklm0jWbOvM1kc4RnClDMOBZ/QXUvn0RK5YBHDGyNwNKe83mrHLkfT4g04pzE3axLewn61PxRJSJDpvwI7soPJusHW6PESLLuRSJAYHk7K2tuavrvYHI8RISilLgjGfpYaDZpbJFzBu+S2pttaI0Ncx6BuUl2tJ8MhyJTAjbdsp/nCL/BXZyfdlIVgv+z/ijqRrPVQiwBb23a5zDjPENgCwtyT1GqAU4lvwdL8Cs3Jf+kk8mzN9jP0Hu6UgLH1OJKldNay6qfN33ye5xwoLh6iF9eCsaqOB4TIhg8uuwL7zSIJXAmzukeHFLovlisjaZwN1OOlYz/5H7ZKzx+NVc0nHQh1+5P8vY7wJALFM1+D9JrFnX7bMOgtM7OqZ6pkDZ3RqQJFmXlKGNyDldP8aoNm/nX92nl7YzQBc0NWAWi9NakfCEmPbzGZa2qq+veDHlR1zTJUlT9J2sIaGKn+JJjTuUDxGnUmi7Rg4NOkTxKpYUS6zumWnViPZDpY1hVUW2JIvVErJRTA1242x8CMDfJrhg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR10MB1466.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(376002)(136003)(346002)(396003)(39860400002)(366004)(451199021)(6486002)(478600001)(36756003)(2616005)(83380400001)(31696002)(86362001)(38100700002)(6506007)(6512007)(26005)(53546011)(186003)(8936002)(41300700001)(5660300002)(2906002)(7416002)(31686004)(4744005)(8676002)(6636002)(316002)(4326008)(66556008)(66946007)(66476007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ajJsbmloa1BDTFkxaEJJbFZtaWN1S2ZjbDBkT2FJMW1walFLWTRqZk9KTTVo?=
- =?utf-8?B?b0tYMnNvb1M1Mm4vOUZCb2xrbFJpWEpJVHdQNTdlNStWWDFGZHI4dXduK3Fk?=
- =?utf-8?B?eUEvb3pLeWlPNS9WSENzbmxoUmhYaTIwYURGeGY3T3V1MEY1aVFWR29YeHQw?=
- =?utf-8?B?NlI2TGxHbHFmem5VdGZxZHpoRGh1QlQxbWlYdFhvMEt6Y1QyR3orcC82Kzgz?=
- =?utf-8?B?bk5XUTRUY1g2UGZNQmVIbW9lcThOOTNQNlpKclZJTVFCMk04M01KcVpIdmZa?=
- =?utf-8?B?Q2VMN3Z3Q1dyRWRJNkxacDYySk9JWXdMTWpscVFuOGlwZmlHOFJUNmN1TGZG?=
- =?utf-8?B?ZG1Wamc4a0pxS1N0R0N3eERmM1FxTE1HRnRjZlNoUE9zRTVvUHBuZzN5L2tK?=
- =?utf-8?B?NXlaODBoM1RIVjFteG00alQ5QzlUcCtwcnVpaXZvTUxVQXRSY0tQUTFLN2lp?=
- =?utf-8?B?Qk81R3d5ejl2S2NWdE0rVmZKNUI4UTFzR21GT3pMeVFVVEZJNEZQR0VHOVdt?=
- =?utf-8?B?UXJnbFFRbmNyN0d0dVVKZzRyck5HUEMycDVZbGI0Q0k0L1hXbmN5ZE1pdGZk?=
- =?utf-8?B?blpDY2xKZ0xySStaNUtnVDd6aTdNQzRJQVlTYkxvTG9OMGtWc2FTTlR0STNX?=
- =?utf-8?B?UWxodVVQd1ZhZVFhMmlzTUtLRThZL29MNHZwUmRwRkpZMm5rWVU2Y1AxaTFw?=
- =?utf-8?B?dWpmVTNvTG5peTBlZUJjUXRiWVNpMlhUeHZ4L3l2V2UrQW0rTTJjN0JhRmFW?=
- =?utf-8?B?S2dzY2cyRzRxMXFHeGhDWU1Fc014MGZRaHJTS3IrY0VueXhMS0xSUFh5NEls?=
- =?utf-8?B?TGhnbE8xcjRuUUxKTmh0ZHV5UDFsUk1idWFnYnRXY3lDMFpiL3ZmendhU3pw?=
- =?utf-8?B?eXl5cnVGYTF3ZlErT0pjT051TnFzRWZoUWN6RVZHbVR2NTZ1ZHJ4SUlPUnpR?=
- =?utf-8?B?VURpbDhOYUFtbHVCeWRlNnh3cU5VSEZCK3NBdFA3L2kyRW9kSVRSU2Z1VHg1?=
- =?utf-8?B?UUxlYUJ1TjlPRzJHRExBdE05TG0vVmZvcXJYaWtKV3A3RmZCSCtKWnpJbkMv?=
- =?utf-8?B?d1ZYa1FJbnNmekJEY2c3bGdqQXJ0QkpBVS9JZzltcUd6MW0vRlI0R3pwUXdD?=
- =?utf-8?B?d1BGWURJbVVTanRyVXc1S2kwOXVIYUZRS1NxNnJwYWV5dU5LbzdZTWY2UjhE?=
- =?utf-8?B?aEgzQW9NVDFpeWZmUTNGZm83MTc3ZCsrZG5ucUs2cXczMnJIZUwrWGNEb3BU?=
- =?utf-8?B?L29aN0R6anhWVEdkTFBWYnlQY25HcG1nWDdyUjVmWURITnFZWm1mTzJpUm5P?=
- =?utf-8?B?M2RTRVpvL3RxY1BYV2ZrSXpxQnZRelNSRkliQmJGeUxqSGE3Y3lRUHF4OU9C?=
- =?utf-8?B?bXBub2tXSko4NFZ2cGgrZmlMZ1l5NlhmSnl5amt2Y3VQSStTWnZTRnI4MDVs?=
- =?utf-8?B?WlRKbHgwa2RlVGlvSXBBQys0VjZKZUhGVlZ6VnJObCtGUnBnYnRVSjI3U2N1?=
- =?utf-8?B?RDFqVVprWDFtT2NKcGV5aHpOSXFIYmlQbmtjN3B3dWkxYndtcTNjbTE3N2Z4?=
- =?utf-8?B?emc5WG1RNG9OVm9BczE1QWRHOVlYRjhpdTUrcGQyMHI2UlhLUTFWV20yblNO?=
- =?utf-8?B?UXJkZUdaRGFGTytKbDZhUTFVVEdXNWpQbU5oamJ3YklvMlBYdDMvQWdybnpr?=
- =?utf-8?B?Rmh3Um5pazlLQ3JVcEhEODBpU2UwUHZPbE9USys4a1YrL1RnWkNjbmx3aFF3?=
- =?utf-8?B?V1Z2QVE2cDNSVmNFZ2dOSUtLclVuSmpPRkswYW1HSUxaRzM3QWtRY3ZDcWVP?=
- =?utf-8?B?Wm1YK1JROFFmMmFCdExLbmt3Qi9yNUg2VFJrcmpwdmpwVk9DTmJ5dzhCY2Np?=
- =?utf-8?B?Y0l6WUFGbUI2TmNGd05xRTEyeEZIMUo5amFZVW5xQVlsU3lveHdPSDdmdFhK?=
- =?utf-8?B?REFpamZOdGxTdG5rd05MQk5vU1JPNWFNdDY2MTBOM2oyN1dXVlZJeVBUM0cy?=
- =?utf-8?B?UTZGN3BTOHhVemg5UEovaWZVRVBsQndia0lSNWxrNWdQTDg3TVY4UVpUeFgx?=
- =?utf-8?B?anpGZkh3Y21ZcDNqTi9QTDI5c1ZlM1hxTXllaEZ2UTFCdzluRmNtL3NBMytR?=
- =?utf-8?B?d0FvOXJCcHo3c2phODlrdGN4TXRqaVVKUStzcGNiUFgyR3U1R1dTL1ZWdFE5?=
- =?utf-8?B?eXc9PQ==?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?utf-8?B?RklMQndZLzV4OFlYdnpVY3ZyM2lXbGxWakI5bDRoL0tWN3NZajlubHMwM0JS?=
- =?utf-8?B?ZS9QZHdQSFU5UkRUUm45d3ZWK1ZoOEpuRCtPYWhZSytJQ0x5NFY5MXp0QmhG?=
- =?utf-8?B?TE1EcEt0QitzbEFJRHNHNEtnazIvZzhQcFA4eGpZOGs4YkF3cTN5eDkrb3dS?=
- =?utf-8?B?UEJoMXlkZzl4eGZJaDNkZVRLdDFDeUo2eXJnMzU3c2E0aVdUU1ZOV3gzUnVt?=
- =?utf-8?B?RlRiZnZnY054TXBPaTdiMkk3WEc2bG1KenBXYmlVaE5VWGdOWk10U2JaZlBN?=
- =?utf-8?B?SmxCOFIzMlY0S1MxdE9ybTcwakZRMkF4eXYvLzVzVTFvaUxoeVNoa2kvQzZk?=
- =?utf-8?B?ZmtkZ1ljci9XclVYcDNaZ29sMnFSYkM1TWdVZGFoR0J1Y29FY2hHSENUd0VR?=
- =?utf-8?B?bU1JVDE3MjhqbTFUeXI4Qno5VFhzeVB5dVFCSmh6a3ZLdXROdkJGZXIzY2pW?=
- =?utf-8?B?bml5M01GTGZhVjJxeWRRNVZwWnQ5UEZJYkNDSi8rTVg0V0dXSUVBVEZuQjk5?=
- =?utf-8?B?cEZjbTA1eE1nREtidUxrWk1YbVFpaTRIU0xqMWdYZFZvTlo5QjFtTjA3bFhh?=
- =?utf-8?B?UE9XdFNuY0w4K3ZubDFZQVJwT1EvZVJON3kvYVBVYXNQZFUvUWY5NHI4K3ZX?=
- =?utf-8?B?QWZJY1BMcjhDUlZSYUNWS21ZQXV6bU5VVzNkTnlsRDd4cENSUzkwbEpsOFpL?=
- =?utf-8?B?cGd1OGdnYXUzK1pvZktqWlY3ejFxa0NybkU4c1dSa29XOFRDV0lSVHZ5OWR3?=
- =?utf-8?B?RFBwbmZ0YlA4Q2xCYUZWZm5FMzExcXlxQUxKZHRQRHE4dzc3bC9Qc1l3OXFi?=
- =?utf-8?B?QzNBSkV1VW96SWtrbEdoZVpEOEhaWTJmdmpnUlJVYnFZVlRDU080ajAyUWp5?=
- =?utf-8?B?RnUzcUROZUs2dFhDam5Zc1J6OE1URXVHYzMwYXgwK1dFTmZpYktBRk5jMUJY?=
- =?utf-8?B?YkdCSnR5ampaZURVSys1cXpiNmx2L2JrN28rZThNK0hTMysxeXA0aWxDUGZO?=
- =?utf-8?B?eXppSXhGcnFzZkNndXNnMjJCdFM1QjdBVi8waFZHamRUUHNpTXBuRGVkTmVa?=
- =?utf-8?B?UjNlNm1XNnBLUlpibHVBM0JTendQa04rU0c0K2VlOVZPM1FidW5mVXZlUlc4?=
- =?utf-8?B?RlZFNDZWQjBsSjJUcVFyaWhES0lJNWV0UWtpV2xkYzRiTC9LSjEvelN0V3Mz?=
- =?utf-8?B?ZWUyUzQzcDZ3QzhDa3VNWnNhWUFZYkx2dzNBeW1DTDhiNlRjaTRoV2dqUVU4?=
- =?utf-8?B?RnRyWnpFdzFYUWU1M2JITFVXaWhteW9veVR1RTU4ZnRGMkxNdG5Bay8zcUpl?=
- =?utf-8?Q?gXQ60pbUdG1lY=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9293f848-4bf1-484f-e826-08db3068aa41
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR10MB1466.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2023 15:17:09.6166
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eHJDGseHUI1nHSlAZ+CGKWnlk7qzLSQaeFZdyDpPs3A7c4fAiGNaRL9KGDc/qUHc7cFJC2k5rnA7qu+YY6y6K5NCV8FwHefGNBEuY+fKHvg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4794
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-29_08,2023-03-28_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 spamscore=0
- phishscore=0 mlxscore=0 mlxlogscore=999 suspectscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2303290120
-X-Proofpoint-ORIG-GUID: 7bhKs3rryZy38ZpP8GDU-oznrSXIlDf7
-X-Proofpoint-GUID: 7bhKs3rryZy38ZpP8GDU-oznrSXIlDf7
-X-Original-Sender: michael.christie@oracle.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2022-7-12 header.b="AXQy/3d6";
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com
- header.b=yTO+2FYA;       arc=pass (i=1 spf=pass spfdomain=oracle.com
- dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of michael.christie@oracle.com designates
- 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+X-CM-TRANSID: _Ch0CgCnUyEi5iNklZgMFw--.48573S4
+X-Coremail-Antispam: 1UD129KBjvJXoW7tryUGrW5Ar4xAw1ruryfWFg_yoW8Gw4kpa
+	1UK34UJws8G3909Fn0gF45uFWYq398GrWIyFWjg343Z3WSkF9IkFWkJ347CFW5Krn7Xrn3
+	trWqqFy5uF1qk3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUk2b4IE77IF4wAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k2
+	6cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4
+	vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7Cj
+	xVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x
+	0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG
+	6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFV
+	Cjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7MxAIw28I
+	cxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
+	IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI
+	42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42
+	IY6xAIw20EY4v20xvaj40_WFyUJVCq3wCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E
+	87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUrR6zUUUUU
+X-CM-SenderInfo: x2kr0wpmlqwxtxd6x35dzhxuhorxvhhfrp/
+X-CFilter-Loop: Reflected
+X-Original-Sender: zhongjinghua@huaweicloud.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of zhongjinghua@huaweicloud.com designates 45.249.212.56
+ as permitted sender) smtp.mailfrom=zhongjinghua@huaweicloud.com
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
-X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -269,27 +155,47 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 3/29/23 2:17 AM, Zhong Jinghua wrote:
-> From: Zhong Jinghua <zhongjinghua@huawei.com>
-> 
-> The correctness of sock should be checked before assignment to avoid
-> assigning wrong values.
-> 
-> Commit
-> "scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling getpeername()"
-> introduced this change. This change may lead to inconsistent values of
-> tcp_sw_conn->sendpage and conn->datadgst_en.
-> 
-> Fix it by moving the position of the assignment.
-> 
-> Fixes: 57569c37f0ad ("scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling getpeername()")
-> Signed-off-by: Zhong Jinghua <zhongjinghua@huawei.com>
+From: Zhong Jinghua <zhongjinghua@huawei.com>
 
-Thanks.
+The correctness of sock should be checked before assignment to avoid
+assigning wrong values.
 
-Reviewed-by: Mike Christie <michael.christie@oracle.com>
+Commit
+"scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling getpeername()"
+introduced this change. This change may lead to inconsistent values of
+tcp_sw_conn->sendpage and conn->datadgst_en.
+
+Fix it by moving the position of the assignment.
+
+Fixes: 57569c37f0ad ("scsi: iscsi: iscsi_tcp: Fix null-ptr-deref while calling getpeername()")
+Signed-off-by: Zhong Jinghua <zhongjinghua@huawei.com>
+---
+ drivers/scsi/iscsi_tcp.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
+index 882e8b81b490..b32f3ca3e7d0 100644
+--- a/drivers/scsi/iscsi_tcp.c
++++ b/drivers/scsi/iscsi_tcp.c
+@@ -726,13 +726,12 @@ static int iscsi_sw_tcp_conn_set_param(struct iscsi_cls_conn *cls_conn,
+ 		iscsi_set_param(cls_conn, param, buf, buflen);
+ 		break;
+ 	case ISCSI_PARAM_DATADGST_EN:
+-		iscsi_set_param(cls_conn, param, buf, buflen);
+-
+ 		mutex_lock(&tcp_sw_conn->sock_lock);
+ 		if (!tcp_sw_conn->sock) {
+ 			mutex_unlock(&tcp_sw_conn->sock_lock);
+ 			return -ENOTCONN;
+ 		}
++		iscsi_set_param(cls_conn, param, buf, buflen);
+ 		tcp_sw_conn->sendpage = conn->datadgst_en ?
+ 			sock_no_sendpage : tcp_sw_conn->sock->ops->sendpage;
+ 		mutex_unlock(&tcp_sw_conn->sock_lock);
+-- 
+2.31.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/15e892ef-0ab4-b2c9-bfc7-6cc3ba221c4a%40oracle.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230329071739.2175268-1-zhongjinghua%40huaweicloud.com.
