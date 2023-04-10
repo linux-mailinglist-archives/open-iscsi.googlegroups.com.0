@@ -1,116 +1,115 @@
-Return-Path: <open-iscsi+bncBCYMVIPVXQMBBWF62GQQMGQEQ3HV7QQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBCYMVIPVXQMBBYV62GQQMGQEZPP3JDI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wm1-x33c.google.com (mail-wm1-x33c.google.com [IPv6:2a00:1450:4864:20::33c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 656CA6DCB61
-	for <lists+open-iscsi@lfdr.de>; Mon, 10 Apr 2023 21:11:22 +0200 (CEST)
-Received: by mail-wm1-x33c.google.com with SMTP id c19-20020a05600c0a5300b003f07515bce8sf2647914wmq.5
-        for <lists+open-iscsi@lfdr.de>; Mon, 10 Apr 2023 12:11:22 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1681153882; cv=pass;
+Received: from mail-il1-x140.google.com (mail-il1-x140.google.com [IPv6:2607:f8b0:4864:20::140])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F3C86DCB62
+	for <lists+open-iscsi@lfdr.de>; Mon, 10 Apr 2023 21:11:32 +0200 (CEST)
+Received: by mail-il1-x140.google.com with SMTP id u6-20020a926006000000b003232594207dsf4647158ilb.8
+        for <lists+open-iscsi@lfdr.de>; Mon, 10 Apr 2023 12:11:32 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1681153891; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Xp0s9t4hV5koGff0eiEYcVeh/+2Fb/s4FegnwJHJ1q3guNC4++1aaUAkZSO0RX5ZLn
-         0aXcTGIjtLKEdf8EsWdJzapSKwSbgaJWh8ctYsYYLerjzoocpTubG5XTIunpTmoTp6ZX
-         3eNnew5IjLY8eetVrH5lONDlfcPYCKtLZNIxzF1EfTPLdttwGgZzU8kcTym49nffsiXk
-         J335ovOWbRo15IT/i6r1/yQf3nBr2cEf+G0GSrj1wz3glbARp2ES7lIWExvlN5bNRdu/
-         5PA94MXZ+o5cW54HFUF57J+O9igW79YJoet9JGzEC6GBVG8gYl6B4U0m23uFkq1VnoAt
-         ZciQ==
+        b=E4REaSdQ3/BDzYY3QNVrzKP/Hb1mHV8JvkAfeOvSSYRKOcURlUmzGD5ptcg+QtoKeW
+         i6g/O0Pz//RatWnSCYt66DcdUoI1MY+9+GJ++5CKVh0MHnDrznM7TOeiaFq5Z3BQeerk
+         vOdgFfO2pGYIEFc1oAvCfR1B+XbUMQ1NjxiWarGIvNv2N5MelJ9QfSKenRCATmhSoocm
+         qenvW1xKUYDuR2mMegxaL+rMqih/ZaE9/OikrLF9BcXfL3/5HFCf04ej+xcLmZFNPCID
+         HBq580VuHzvtWIfRZU044ln8yzz4TYcOVUB7hQs1ZojlCBBGNrJPpreQ2opnVPnR8BNj
+         FKMw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=SJxEMZa0ZT0Rd9IHRuIGWqB9ghAbGQu90ApnNSLlHmY=;
-        b=CaHy7W3l/+BiyxRQjZSvnDSp0bA/cvAwSyD3Zy/Pby0oTAA/izd4GHTrStTgvruFdb
-         hA4XUIFsLBR3pKvD5XAIEyvQRjYzI6B+CqCCxTljNn5IAjIFb5SBOHUxuWMqqtUkgQ+K
-         Fhr0XN1xhPCqFKDRXjfMOugkmnLzFN7+bkESVVu3n2xyDLpIgXo61JgmSkVXBI+YAoid
-         aR0Wc+tjDRGR/WdIgUOzo+NeVTClpLbnY2Im6H4tVH8qql38V6VSQQLcnFhPl0MpzqYy
-         /G8CzI/dBcPrdfaPZDkpQHARvVECkhma3FSUZy6JSvQsZ5SDHxSRqgfECQBzGGddgAg+
-         6CZQ==
+        bh=1XL5DM25Oc4AUG6WAmFDI9GY6UMJnwcdd0tMsCo6XC4=;
+        b=vUARaCa6bdB2Oi9Z0tdsiX4EYodUrBG7Ag92fN6goMygiH4jp6oVnm6ev1PH6sMmVl
+         2onYIWKK6tJbdfcmLh45bvLcGrAghsZFQdI298PMlA4QrU9Azdp/xSpeLT7NfLuqd1YB
+         NvR0SJ5NuZhZKnWGxNR0URQMejIf3k54v07BzcClb2b/C983q0Vcq3OLznilFjVPZNxS
+         86PPwpqdgsBTUlH1K6NsAdu3oCUe/8DQ0C6AJIlY8YmdWJ1TBWbhnsAi0gL5zqEHtE5g
+         dY55FNdKDxMepIn6rlZ5w0uDa3aHGzLhOsYlqYKuuwD/wIchC4IvUyYfGSVEkVjjFn3q
+         kTUQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=AQYMnHzF;
-       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=ddodI9Jj;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20221208; t=1681153882;
+        d=googlegroups.com; s=20221208; t=1681153891;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
          :references:in-reply-to:message-id:date:subject:cc:to:from:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SJxEMZa0ZT0Rd9IHRuIGWqB9ghAbGQu90ApnNSLlHmY=;
-        b=tf50+htc+JCqt01ZE2ABGbFsqjlGwDO2yekBUNDtVk9cqNYChoB0arIFJyLrzCZ5R9
-         ewoG71hLNRRZlDZgJWU0krspqPXJLub6WWI6B4nv2GgD0quUoaOf3UBQvsn5gOjPWT+Z
-         WmVdrJNJ5eONus/CL8hOYt0UOzxvfHviynSOHp+bRwbU27f3Rz6R1OcxruIb0HKsX7dD
-         6U7TH0c0nbRDU6cj/KYHBti5es1caARLMyQfX5FT3S+ERRbII6eKwZzgd3kMem1HRO+x
-         bKuchzzLV+iT2AB+bq86N2vf5xks4wkxHhf9AtG1vZKe1dhvIlaexTckhRSvQnYijQcF
-         POjA==
+        bh=1XL5DM25Oc4AUG6WAmFDI9GY6UMJnwcdd0tMsCo6XC4=;
+        b=CrKdueoBb5RoK2mnib8Jj/fQdkoxjh+uZ7DCWbe0gJ82kl4MhvAMrHzpUpu75+pJoN
+         F63+zf8uw8EKfGjkXDVqkqijD9Th9czDmUX2R6BVP2yYM5eOxmfgbW9aE2m6Ziryw467
+         7U+8DE78+UgRVe0lX626Up8dVN99X144qLyqw7bpCiMIvbAznME+T9GtMtD95WJPISiy
+         yhpZlxDImUOju90QUZCzgTmpvD/xtG0shTzn65R8SuaiDFdavMT/BqFyEkhZpHXPw3QP
+         QcBPf3S8Xe/lPxb1SnIzkf95/8FkMeAr/s5MPPMfva7ZE95yk+SW4+6XhJT2ANtppLIc
+         xU4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681153882;
+        d=1e100.net; s=20210112; t=1681153891;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
          :references:in-reply-to:message-id:date:subject:cc:to:from
          :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SJxEMZa0ZT0Rd9IHRuIGWqB9ghAbGQu90ApnNSLlHmY=;
-        b=d+W8LSOY0KABIYtwTrN4qaWOfQMyLx1DpXYLqeD32wABcNCEbySPT83TtYhZR1R+SF
-         Lf8vGuG09osNBbaj8A/m66S6b4HHOjogCFhRCmsvM7Gmp6PErOggzJByEYnRbrDnj7Ly
-         OdPGk/FFpSHUA6DpTjLAB+4k1XEr1Q6BjhzBwziRCfe+x2fSi7YRIzJvJPnHJu14B6IA
-         MbLyl3xQ7aG2vztl6vbfVNESJairs0/SyP1vAbDyyOghF9K6q9b8zHfrSERVtldpzq37
-         APTMGozlSRACyiNtuNZhsrX1hWco7mlFBXAHp2n2PunLF2jmlJqKmtchkBxeHkqDv1qB
-         qAyQ==
+        bh=1XL5DM25Oc4AUG6WAmFDI9GY6UMJnwcdd0tMsCo6XC4=;
+        b=mcawsISbdHa5bHfYFNyCGLyhwGiVHv6TbahiiKEpwGejWn2XucnnesnE//gEpv8LOC
+         /eVZwsx52tnliTUe958rUYzuxYcWHxaUV7bI9c7U8smZiHCHY9RbLN12A8QL1x8QPFlE
+         Sceik+QWhOBi4PUDYsGhHv1AOJ7TWkPOb3WS/3zlizO5KsJhv+IVAKXbA1IcIl3OCoBv
+         5NMJ7kXNDJiT14BZfcpU82msunDNp+dGH/gS1SxrJ2R6p+jzBN5rHcuobyt1iKC+Vtg8
+         0bTCM2y7dpbSJow686o/cPW2arvUi9yenctEGYynIz4FN0f9Sgfogl9WtqKt8fL7c0hw
+         WoOA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AAQBX9dJR5WKDeVl9BPRKFT1ei/MRHe08rZc4xneycDj3E0L+ZIEQgeI
-	6LfHq8kA5gw8hwmZoMvPpxA=
-X-Google-Smtp-Source: AKy350aPK/tofAV8dChkoVDWteqxwA7TsA/pt+n7xDi+gl6IXQ231tFyp8gJZssUUiHXYaBKiGPagQ==
-X-Received: by 2002:a05:6000:1acb:b0:2ee:e45d:71cf with SMTP id i11-20020a0560001acb00b002eee45d71cfmr3479316wry.6.1681153881843;
-        Mon, 10 Apr 2023 12:11:21 -0700 (PDT)
+X-Gm-Message-State: AAQBX9flKOUUagyBiSJ648j3w7b/Y1zoIMT0uW+f+VAKCd0/CPXtez9j
+	6L/hU5JsvniuUQe3OOPcI8o=
+X-Google-Smtp-Source: AKy350Z7QjF9FnXJepwEm+88fQMdZMQLORiOkjFjtb30prc9mojMkGmMPFLyVA16nWZ0SvJEw0ORqA==
+X-Received: by 2002:a05:6e02:1c28:b0:328:4e63:795f with SMTP id m8-20020a056e021c2800b003284e63795fmr6082471ilh.0.1681153891274;
+        Mon, 10 Apr 2023 12:11:31 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:600c:470e:b0:3f0:87a0:98f8 with SMTP id
- v14-20020a05600c470e00b003f087a098f8ls1634109wmo.2.-pod-control-gmail; Mon,
- 10 Apr 2023 12:11:19 -0700 (PDT)
-X-Received: by 2002:a7b:ce11:0:b0:3ed:da74:ab0c with SMTP id m17-20020a7bce11000000b003edda74ab0cmr5600851wmc.19.1681153878995;
-        Mon, 10 Apr 2023 12:11:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1681153878; cv=none;
+Received: by 2002:a92:874d:0:b0:326:4b:d61a with SMTP id d13-20020a92874d000000b00326004bd61als10090417ilm.1.-pod-prod-gmail;
+ Mon, 10 Apr 2023 12:11:29 -0700 (PDT)
+X-Received: by 2002:a92:4b03:0:b0:328:136e:141e with SMTP id m3-20020a924b03000000b00328136e141emr7134633ilg.24.1681153889879;
+        Mon, 10 Apr 2023 12:11:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1681153889; cv=none;
         d=google.com; s=arc-20160816;
-        b=e7zdKwKHlYo6y7GYqiceqlEheL0uYqlZd/Ko5pFCzn8dgI4rbj4IZbGUFg+2bkVAkO
-         y/XHpfNslB3e6DvNHgOZTzKxALe/4rmt5d5MwTGI9NOM4VpBNtvm5ec3lA48uMs/iWix
-         s8bSuEMERtupmjps+TOccUY7rdXBw9QBgQaV1Q0yvnraBwAxpIZfw9PEZ0cUk8R9D5xx
-         9Brpw/Lsh7lS64r3PvDPhHkMGBgEe2696Dvc4sJa/Ds9w9ugB6B4P0SZT4TvFurQatsZ
-         RI2v4KjzUujrR4CfimPBVMkdUVOx/rpHVdqJ9gETrBJ6jXUZ9nexKCj/5e6DVaFkwvHQ
-         MKXw==
+        b=TYyGiNPoebnvrlKxSegqFAhbrV6cVPWLrE4dzIeMqBsInloFDnXlkDfYUFQZeS3Qn2
+         EDyeAfihwyr2vNnWNFJmh00Cj0JDS9lgYVcc+24EM/8nKXwllOMaoDWw55SAuq09q7Pr
+         s5OeVmFoHtHL6w67Z8I7I+3MNFEfhbn6gG8Bvi7QGATuIVlJPzdNo2MrVXS2Bk8lrtEP
+         pOtDuGB1DIMq6uBXXXomI7HTBhBiVeLq5t4Ha42+O+tcc1urfaSgpq7q+WCr+cwhAtXq
+         9HoYwNgbjNutthRV9XBkzvtyzDvDIFyFLqFhqN7DmoVblJnZzrytR96FcXt5WvV30GTC
+         dipA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=ingp0g90/6/pJ2ejREIp3ERyxmWHuGCQrWwdDlHfBW0=;
-        b=iP9PuHg9E2GeKd5iL3MCY1Our+P7kyduazg0g+F93F8aKK7GJPaRUnFNUZ7zOwj62Z
-         dMZUF84gDu3jZYmJvGI6EAPqO4rDnRkKPDvut8JgjvWXaPcGXap9sfUe+XGYhs5ma1rq
-         pyiurwMY6ugPqz1b/T2EgnbSiyvUkpv5jrKr+fGqx/RwKHuMozBR3V4ZXFbB+4u8ql1b
-         g8OpmKf83wy6OnsKIBek7/4oun+6HesXvOt0beK0irEc8oxaLT7HsXEmzx+WegEGOogJ
-         gAZwM+4LQP4SA4wmkg4u5t8Kw/4nQZm2PIxyhpWAx4Elz2ZtQoyIwRxp4DxH1OnuHjtX
-         BC/A==
+        bh=FhYtLENcNtcLyj9Yw2HJ5wz9v0cgAEwMxc8s0tHjoZA=;
+        b=dX45V0nSpBWKtSXRD3u4D6uKoqyivvrdIkcOR8OM9xSBQzaeEIv+oJ48F9Z9w/2BLu
+         XndFIyUSzbJQaxlgNk+QP7w3aVbKiJKKYRiVtpBzjTFpvvbCL1dNUKseK4n/mVuqWO5o
+         Ur4FHe+LDbio7Rlueb5TvdiZiGY6pAshVs88E8LyKjaW7DOXoPT5ybvMup6DZp41t1Xg
+         EgIjlnUB1J4PXUo1u4jYsUZUhFR4DHAtCQGRHOKL+Ocqdenj3+EdJdsTePRnzPdzT0xk
+         sxQiDnlP7sVpfCXK2m7OCPxT6RsCNub5ALb7AA0YWfvn/l5bp9vlWwOkE3aUI+kD8iEZ
+         eswQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=AQYMnHzF;
-       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=ddodI9Jj;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.133.124])
-        by gmr-mx.google.com with ESMTPS id i13-20020a5d584d000000b002c6ec127706si502009wrf.0.2023.04.10.12.11.18
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.129.124])
+        by gmr-mx.google.com with ESMTPS id n13-20020a056e02148d00b0032887adb207si648497ilk.4.2023.04.10.12.11.29
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Apr 2023 12:11:18 -0700 (PDT)
-Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.133.124 as permitted sender) client-ip=170.10.133.124;
+        Mon, 10 Apr 2023 12:11:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) client-ip=170.10.129.124;
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
  [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-76-4hfpA3S2N629Bubp-1eNOA-1; Mon, 10 Apr 2023 15:11:12 -0400
-X-MC-Unique: 4hfpA3S2N629Bubp-1eNOA-1
+ us-mta-339-g0sfIhgJOKebvqPo2cb-6w-1; Mon, 10 Apr 2023 15:11:13 -0400
+X-MC-Unique: g0sfIhgJOKebvqPo2cb-6w-1
 Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com [10.11.54.1])
 	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id CC9F7101A54F;
-	Mon, 10 Apr 2023 19:11:11 +0000 (UTC)
+	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 9B7DD185A78B;
+	Mon, 10 Apr 2023 19:11:12 +0000 (UTC)
 Received: from localhost.redhat.com (unknown [10.2.16.6])
-	by smtp.corp.redhat.com (Postfix) with ESMTP id 1B28E40C83AC;
+	by smtp.corp.redhat.com (Postfix) with ESMTP id F2BED40C20FA;
 	Mon, 10 Apr 2023 19:11:11 +0000 (UTC)
 From: Chris Leech <cleech@redhat.com>
 To: linux-scsi@vger.kernel.org,
@@ -119,18 +118,18 @@ To: linux-scsi@vger.kernel.org,
 	Lee Duncan <leeman.duncan@gmail.com>,
 	netdev@vger.kernel.org
 Cc: Chris Leech <cleech@redhat.com>
-Subject: [PATCH 10/11] iscsi: make session and connection lists per-net
-Date: Mon, 10 Apr 2023 12:10:32 -0700
-Message-Id: <20230410191033.1069293-2-cleech@redhat.com>
+Subject: [PATCH 11/11] iscsi: force destroy sesions when a network namespace exits
+Date: Mon, 10 Apr 2023 12:10:33 -0700
+Message-Id: <20230410191033.1069293-3-cleech@redhat.com>
 In-Reply-To: <83de4002-6846-2f90-7848-ef477f0b0fe5@suse.de>
 References: <83de4002-6846-2f90-7848-ef477f0b0fe5@suse.de>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.1 on 10.11.54.1
 X-Original-Sender: cleech@redhat.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@redhat.com header.s=mimecast20190719 header.b=AQYMnHzF;
+ header.i=@redhat.com header.s=mimecast20190719 header.b=ddodI9Jj;
        spf=pass (google.com: domain of cleech@redhat.com designates
- 170.10.133.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+ 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
@@ -146,271 +145,48 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Eliminate the comparisions on list lookups, and it will make it easier
-to shut down session on net namespace exit in the next patch.
+The namespace is gone, so there is no userspace to clean up.
+Force close all the sessions.
+
+This should be enough for software transports, there's no implementation
+of migrating physical iSCSI hosts between network namespaces currently.
 
 Signed-off-by: Chris Leech <cleech@redhat.com>
 ---
- drivers/scsi/scsi_transport_iscsi.c | 104 ++++++++++++++++------------
- 1 file changed, 61 insertions(+), 43 deletions(-)
+ drivers/scsi/scsi_transport_iscsi.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
 diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index 9a176ea0d866..3a068d8eca2d 100644
+index 3a068d8eca2d..8fafa8f0e0df 100644
 --- a/drivers/scsi/scsi_transport_iscsi.c
 +++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -1734,17 +1734,16 @@ static DECLARE_TRANSPORT_CLASS_NS(iscsi_connection_class,
+@@ -5200,9 +5200,27 @@ static int __net_init iscsi_net_init(struct net *net)
  
- struct iscsi_net {
- 	struct sock *nls;
-+	spinlock_t sesslock;
-+	struct list_head sesslist;
-+	spinlock_t connlock;
-+	struct list_head connlist;
-+	struct list_head connlist_err;
- };
- 
- static int iscsi_net_id __read_mostly;
- static DEFINE_MUTEX(rx_queue_mutex);
- 
--static LIST_HEAD(sesslist);
--static DEFINE_SPINLOCK(sesslock);
--static LIST_HEAD(connlist);
--static LIST_HEAD(connlist_err);
--static DEFINE_SPINLOCK(connlock);
--
- static uint32_t iscsi_conn_get_sid(struct iscsi_cls_conn *conn)
+ static void __net_exit iscsi_net_exit(struct net *net)
  {
- 	struct iscsi_cls_session *sess = iscsi_dev_to_session(conn->dev.parent);
-@@ -1759,19 +1758,18 @@ static struct iscsi_cls_session *iscsi_session_lookup(struct net *net,
- {
- 	unsigned long flags;
- 	struct iscsi_cls_session *sess;
--	struct net *ns;
-+	struct iscsi_net *isn;
++	struct iscsi_cls_session *session, *tmp;
++	struct iscsi_transport *transport;
+ 	struct iscsi_net *isn;
++	unsigned long flags;
++	LIST_HEAD(sessions);
  
--	spin_lock_irqsave(&sesslock, flags);
--	list_for_each_entry(sess, &sesslist, sess_list) {
-+	isn = net_generic(net, iscsi_net_id);
-+
-+	spin_lock_irqsave(&isn->sesslock, flags);
-+	list_for_each_entry(sess, &isn->sesslist, sess_list) {
- 		if (sess->sid == sid) {
--			ns = iscsi_sess_net(sess);
--			if (ns != net)
--				continue;
--			spin_unlock_irqrestore(&sesslock, flags);
-+			spin_unlock_irqrestore(&isn->sesslock, flags);
- 			return sess;
- 		}
- 	}
--	spin_unlock_irqrestore(&sesslock, flags);
-+	spin_unlock_irqrestore(&isn->sesslock, flags);
- 	return NULL;
- }
- 
-@@ -1783,19 +1781,18 @@ static struct iscsi_cls_conn *iscsi_conn_lookup(struct net *net, uint32_t sid,
- {
- 	unsigned long flags;
- 	struct iscsi_cls_conn *conn;
--	struct net *ns;
-+	struct iscsi_net *isn;
- 
--	spin_lock_irqsave(&connlock, flags);
--	list_for_each_entry(conn, &connlist, conn_list) {
-+	isn = net_generic(net, iscsi_net_id);
-+
-+	spin_lock_irqsave(&isn->connlock, flags);
-+	list_for_each_entry(conn, &isn->connlist, conn_list) {
- 		if ((conn->cid == cid) && (iscsi_conn_get_sid(conn) == sid)) {
--			ns = iscsi_conn_net(conn);
--			if (ns != net)
--				continue;
--			spin_unlock_irqrestore(&connlock, flags);
-+			spin_unlock_irqrestore(&isn->connlock, flags);
- 			return conn;
- 		}
- 	}
--	spin_unlock_irqrestore(&connlock, flags);
-+	spin_unlock_irqrestore(&isn->connlock, flags);
- 	return NULL;
- }
- 
-@@ -2207,6 +2204,9 @@ EXPORT_SYMBOL_GPL(iscsi_alloc_session);
- int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
- {
- 	struct Scsi_Host *shost = iscsi_session_to_shost(session);
-+	struct iscsi_cls_host *ihost = shost->shost_data;
-+	struct net *net = iscsi_host_net(ihost);
-+	struct iscsi_net *isn = net_generic(net, iscsi_net_id);
- 	unsigned long flags;
- 	int id = 0;
- 	int err;
-@@ -2250,9 +2250,9 @@ int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
- 		goto release_dev;
- 	}
- 
--	spin_lock_irqsave(&sesslock, flags);
--	list_add(&session->sess_list, &sesslist);
--	spin_unlock_irqrestore(&sesslock, flags);
-+	spin_lock_irqsave(&isn->sesslock, flags);
-+	list_add(&session->sess_list, &isn->sesslist);
-+	spin_unlock_irqrestore(&isn->sesslock, flags);
- 
- 	iscsi_session_event(session, ISCSI_KEVENT_CREATE_SESSION);
- 	ISCSI_DBG_TRANS_SESSION(session, "Completed session adding\n");
-@@ -2322,15 +2322,17 @@ static int iscsi_iter_destroy_conn_fn(struct device *dev, void *data)
- 
- void iscsi_remove_session(struct iscsi_cls_session *session)
- {
-+	struct net *net = iscsi_sess_net(session);
-+	struct iscsi_net *isn = net_generic(net, iscsi_net_id);
- 	unsigned long flags;
- 	int err;
- 
- 	ISCSI_DBG_TRANS_SESSION(session, "Removing session\n");
- 
--	spin_lock_irqsave(&sesslock, flags);
-+	spin_lock_irqsave(&isn->sesslock, flags);
- 	if (!list_empty(&session->sess_list))
- 		list_del(&session->sess_list);
--	spin_unlock_irqrestore(&sesslock, flags);
-+	spin_unlock_irqrestore(&isn->sesslock, flags);
- 
- 	if (!cancel_work_sync(&session->block_work))
- 		cancel_delayed_work_sync(&session->recovery_work);
-@@ -2541,20 +2543,22 @@ static int iscsi_iter_force_destroy_conn_fn(struct device *dev, void *data)
- void iscsi_force_destroy_session(struct iscsi_cls_session *session)
- {
- 	struct iscsi_transport *transport = session->transport;
-+	struct net *net = iscsi_sess_net(session);
-+	struct iscsi_net *isn = net_generic(net, iscsi_net_id);
- 	unsigned long flags;
- 
- 	WARN_ON_ONCE(system_state == SYSTEM_RUNNING);
- 
--	spin_lock_irqsave(&sesslock, flags);
-+	spin_lock_irqsave(&isn->sesslock, flags);
- 	if (list_empty(&session->sess_list)) {
--		spin_unlock_irqrestore(&sesslock, flags);
-+		spin_unlock_irqrestore(&isn->sesslock, flags);
- 		/*
- 		 * Conn/ep is already freed. Session is being torn down via
- 		 * async path. For shutdown we don't care about it so return.
- 		 */
- 		return;
- 	}
--	spin_unlock_irqrestore(&sesslock, flags);
-+	spin_unlock_irqrestore(&isn->sesslock, flags);
- 
- 	device_for_each_child(&session->dev, NULL,
- 			      iscsi_iter_force_destroy_conn_fn);
-@@ -2625,6 +2629,8 @@ int iscsi_add_conn(struct iscsi_cls_conn *conn)
- 	int err;
- 	unsigned long flags;
- 	struct iscsi_cls_session *session = iscsi_dev_to_session(conn->dev.parent);
-+	struct net *net = iscsi_sess_net(session);
-+	struct iscsi_net *isn = net_generic(net, iscsi_net_id);
- 
- 	err = device_add(&conn->dev);
- 	if (err) {
-@@ -2640,9 +2646,9 @@ int iscsi_add_conn(struct iscsi_cls_conn *conn)
- 		return err;
- 	}
- 
--	spin_lock_irqsave(&connlock, flags);
--	list_add(&conn->conn_list, &connlist);
--	spin_unlock_irqrestore(&connlock, flags);
-+	spin_lock_irqsave(&isn->connlock, flags);
-+	list_add(&conn->conn_list, &isn->connlist);
-+	spin_unlock_irqrestore(&isn->connlock, flags);
- 
- 	return 0;
- }
-@@ -2657,11 +2663,14 @@ EXPORT_SYMBOL_GPL(iscsi_add_conn);
-  */
- void iscsi_remove_conn(struct iscsi_cls_conn *conn)
- {
-+	struct net *net = iscsi_conn_net(conn);
-+	struct iscsi_net *isn = net_generic(net, iscsi_net_id);
-+
- 	unsigned long flags;
- 
--	spin_lock_irqsave(&connlock, flags);
-+	spin_lock_irqsave(&isn->connlock, flags);
- 	list_del(&conn->conn_list);
--	spin_unlock_irqrestore(&connlock, flags);
-+	spin_unlock_irqrestore(&isn->connlock, flags);
- 
- 	transport_unregister_device(&conn->dev);
- 	device_del(&conn->dev);
-@@ -3432,20 +3441,21 @@ iscsi_set_path(struct net *net, struct iscsi_transport *transport,
- 	return err;
- }
- 
--static int iscsi_session_has_conns(int sid)
-+static int iscsi_session_has_conns(struct net *net, int sid)
- {
-+	struct iscsi_net *isn = net_generic(net, iscsi_net_id);
- 	struct iscsi_cls_conn *conn;
- 	unsigned long flags;
- 	int found = 0;
- 
--	spin_lock_irqsave(&connlock, flags);
--	list_for_each_entry(conn, &connlist, conn_list) {
-+	spin_lock_irqsave(&isn->connlock, flags);
-+	list_for_each_entry(conn, &isn->connlist, conn_list) {
- 		if (iscsi_conn_get_sid(conn) == sid) {
- 			found = 1;
- 			break;
- 		}
- 	}
--	spin_unlock_irqrestore(&connlock, flags);
-+	spin_unlock_irqrestore(&isn->connlock, flags);
- 
- 	return found;
- }
-@@ -4157,7 +4167,7 @@ iscsi_if_recv_msg(struct net *net, struct sk_buff *skb,
- 		session = iscsi_session_lookup(net, ev->u.d_session.sid);
- 		if (!session)
- 			err = -EINVAL;
--		else if (iscsi_session_has_conns(ev->u.d_session.sid))
-+		else if (iscsi_session_has_conns(net, ev->u.d_session.sid))
- 			err = -EBUSY;
- 		else
- 			transport->destroy_session(session);
-@@ -4166,15 +4176,16 @@ iscsi_if_recv_msg(struct net *net, struct sk_buff *skb,
- 		session = iscsi_session_lookup(net, ev->u.d_session.sid);
- 		if (!session)
- 			err = -EINVAL;
--		else if (iscsi_session_has_conns(ev->u.d_session.sid))
-+		else if (iscsi_session_has_conns(net, ev->u.d_session.sid))
- 			err = -EBUSY;
- 		else {
-+			struct iscsi_net *isn = net_generic(net, iscsi_net_id);
- 			unsigned long flags;
- 
- 			/* Prevent this session from being found again */
--			spin_lock_irqsave(&sesslock, flags);
-+			spin_lock_irqsave(&isn->sesslock, flags);
- 			list_del_init(&session->sess_list);
--			spin_unlock_irqrestore(&sesslock, flags);
-+			spin_unlock_irqrestore(&isn->sesslock, flags);
- 
- 			queue_work(system_unbound_wq, &session->destroy_work);
- 		}
-@@ -5176,6 +5187,13 @@ static int __net_init iscsi_net_init(struct net *net)
- 	if (!nls)
- 		return -ENOMEM;
  	isn = net_generic(net, iscsi_net_id);
 +
-+	INIT_LIST_HEAD(&isn->sesslist);
-+	spin_lock_init(&isn->sesslock);
-+	INIT_LIST_HEAD(&isn->connlist);
-+	INIT_LIST_HEAD(&isn->connlist_err);
-+	spin_lock_init(&isn->connlock);
++	/* force session destruction, there is no userspace anymore */
++	spin_lock_irqsave(&isn->sesslock, flags);
++	list_for_each_entry_safe(session, tmp, &isn->sesslist, sess_list) {
++		list_move_tail(&session->sess_list, &sessions);
++	}
++	spin_unlock_irqrestore(&isn->sesslock, flags);
++	list_for_each_entry_safe(session, tmp, &sessions, sess_list) {
++		device_for_each_child(&session->dev, NULL,
++				      iscsi_iter_force_destroy_conn_fn);
++		transport = session->transport;
++		transport->destroy_session(session);
++	}
 +
- 	isn->nls = nls;
- 	return 0;
+ 	netlink_kernel_release(isn->nls);
+ 	isn->nls = NULL;
  }
 -- 
 2.39.2
@@ -418,4 +194,4 @@ index 9a176ea0d866..3a068d8eca2d 100644
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230410191033.1069293-2-cleech%40redhat.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230410191033.1069293-3-cleech%40redhat.com.
