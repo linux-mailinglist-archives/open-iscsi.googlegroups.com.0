@@ -1,149 +1,146 @@
-Return-Path: <open-iscsi+bncBCHZVHVFVMARBMEK2SQQMGQE4KF4FJY@googlegroups.com>
+Return-Path: <open-iscsi+bncBCYMVIPVXQMBBAOC22QQMGQEAUYAQPY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wm1-x33b.google.com (mail-wm1-x33b.google.com [IPv6:2a00:1450:4864:20::33b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A5BA6DD38A
-	for <lists+open-iscsi@lfdr.de>; Tue, 11 Apr 2023 08:58:58 +0200 (CEST)
-Received: by mail-wm1-x33b.google.com with SMTP id j14-20020a05600c1c0e00b003f066d2638asf4792409wms.8
-        for <lists+open-iscsi@lfdr.de>; Mon, 10 Apr 2023 23:58:58 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1681196337; cv=pass;
+Received: from mail-oo1-xc39.google.com (mail-oo1-xc39.google.com [IPv6:2607:f8b0:4864:20::c39])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F1C86DE366
+	for <lists+open-iscsi@lfdr.de>; Tue, 11 Apr 2023 20:03:47 +0200 (CEST)
+Received: by mail-oo1-xc39.google.com with SMTP id z141-20020a4a4993000000b00537d702c199sf2981898ooa.15
+        for <lists+open-iscsi@lfdr.de>; Tue, 11 Apr 2023 11:03:47 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1681236226; cv=pass;
         d=google.com; s=arc-20160816;
-        b=lybyghnWCzLnHtyXRD1nBQeLPZT301f4xeQLBFGliKgyKGok6wtvm6BMaBbwipYuJ5
-         +WYsLrGGaDJFtIeCncQqN662a0iQaJsMYYwvycclUDzVoDGZhPc94qmHHIjWrxv1xh5o
-         d+lVQrlqDgFx6ZAcEZEXE/vTksO+ITu+7D0A6OnmLHL84H3UsBy+iFxrKQj1QYjfN3px
-         5Zrx9umPwgYvXiteZBwqd5h5OynPJhN9K6ZWoDS0iIskFvqrgUhnqfiqDzGe2Lx2BzVr
-         RvJRyJtG/5dcd8EMEPJ8lbTqXnU0tUcK/u1KW5rFBbUF2UeFCJSFwXrj7G+lSxZzmGVl
-         aE6Q==
+        b=0ldlwDe086NVmj15/1FLGopluBRv+4kZEi01xcyRcRtZSIlFl4VusNcz1yXRXdHRg1
+         1z3c/wNwfDZzxJBFFoXorasqCgHu/vYUTrFCyVNHCxygpWHX1GWDOM27qjPBLRc9jDdL
+         rNpz3hupKrGh3rWHDKVtSnBlJ3XYOOEsY43YQ/G1/lT+vMY79Fq6RfF58R+VDFyGrGVk
+         urUBmBDpTb8b6aW1nj236gOYTOhX4W0NGGW/GfqJhGnoCejXMt8UYzyx2akv0l2Nu7oH
+         pIrESp7rpUmohDl4md7wwZlNIwbQpxcM7w405w9dSNJ5jLgh0kgtFg0TufSxbxi63+7H
+         tw/A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
-         :in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:sender:dkim-signature;
-        bh=MkPWy8i3gIpsLoeWwDAlEsZ0w4K2xPzFMQ2JOpCk6A4=;
-        b=bIRUQjwvPa0ZIY8QL4uSNwcu5WeAaHJJPh6KX3bHMlALLVvBgAWiMrZF4trCu/6Got
-         wfF4ycIKIVsN4ePv/3DGMYcLEJqdYGBxNUFdKTFbVnOjaHcEWsUh6cwhCWCR3JZcAkao
-         ixA7gYuOhe5FOwhOcO5jY7q2+eDmMH/q/9yBREO/yT7LpggQdgd3yAxJUDlZhxJlQhcA
-         sHDXXXuOHGRMm8QL4aaFmaIZGZyoRYqFLXqZqQP6fDqDDn3+dCfTmlhnOj3AGco5uCLH
-         Vyl+j5QS/8fI1dYlWR81qZZ2K5yOOrFoZYjOfKvyuF/L34B1y1VIGRQSypSvHb5z0bID
-         oMTw==
+         :list-id:mailing-list:precedence:reply-to:in-reply-to
+         :content-disposition:mime-version:references:mail-followup-to
+         :message-id:subject:cc:to:from:date:sender:dkim-signature;
+        bh=hL0+VjVG64mnpE/GNETg14tOF3V84DQE/rb5h2XowHA=;
+        b=lO5jJMqFx22jjTFo1S9kktY6WY9el6DGsu0J6djAzRZeeSSQaBGKPHZzhDNpdWWK4r
+         1RWaf6WbDJzfOGtmO8/vaoookzr8H6DIOdYcvxyhTAy1Eug+6D6bSk61O+LVN4kJWJDB
+         ap1txvO/LSL+V1zLt/gN1qPjHdTATDDSfAa/Dbojb3NMAZPvO75tdB2tfqCik5nUC0SO
+         2dnL/oj1eTRx9ewHBXx90D5hxO6X9TQ7obSFrkn0edCPKzHYk0t6M+BGzsFw+YdCnAq5
+         Cv0G8FAun2FN94HqlhwEC/E1Zi1NNN5cmNX8qV025F4hzulRZ5yY4VDN8x8l6bq7nQXA
+         3Uwg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@suse.de header.s=susede2_rsa header.b=jPw3SUMb;
-       dkim=neutral (no key) header.i=@suse.de header.s=susede2_ed25519 header.b=5qCCkeKW;
-       spf=pass (google.com: domain of hare@suse.de designates 195.135.220.28 as permitted sender) smtp.mailfrom=hare@suse.de;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.de
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=EMqkQwyS;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20221208; t=1681196337;
+        d=googlegroups.com; s=20221208; t=1681236226;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=MkPWy8i3gIpsLoeWwDAlEsZ0w4K2xPzFMQ2JOpCk6A4=;
-        b=G/z7mOADSDQGWumWYLtT6LBICN8GRl/NBnbC/DCvy2zqy4jVxZyV0gv4KejamhYP/9
-         oezXagBo++1csJoe0zrstgxz5y+Sg06JLIdS8fGl1bFvJePAzV/y7A9jPPNcPzoRwq2o
-         qvpw9AEP+SHzVpY69ekIFKsehRurANnwoa2qgVHo+4FZaQNK7YZ/+QZrG4wkywL3yLbT
-         ZWn1IxNbn8f2GnuMh6PTNHAQMcqYE84Xso3mUpb4yrls/d5BkygDql9rT2AbCaU1rXmV
-         aG7U37mJHp1yHNG9T0HNRrmgnrfZJLj56M3F3K4QloD+puxiVX5r87Ob+fdyKiR33Ha/
-         /Sbw==
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :content-disposition:mime-version:references:mail-followup-to
+         :message-id:subject:cc:to:from:date:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hL0+VjVG64mnpE/GNETg14tOF3V84DQE/rb5h2XowHA=;
+        b=cCJqM8qyBoTGCME2XW4qputGkXlcB/00V4l77h3mXJu/ZndghSPoqJ/Zk5hUx2GYcE
+         Cj0rXSqiI9ie43J8/XnE0xo3yoQ8fUqNOpeDTS1X4LKt9foVnv6sx5+Zfs/23d+bxfq7
+         saMn752/GK3oUBhItwNw4bPzVBepsu/yPAxCy26r8BZr0MPwQGgNJ8mjTOvXPKQXuurt
+         3xdIUuEIj4DtXfAgtcHSKIEQIk26T6T3gWdOtNE2otfmjqx+PEdqHb/Kzamvshmg8EAn
+         Vftwr2rwEEbN/U9x8SnfnHckjydBwvEh48En3w94uLRcBtfGhZbjfEsp7vOEvsDJRN1t
+         u+Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681196337;
+        d=1e100.net; s=20210112; t=1681236226;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MkPWy8i3gIpsLoeWwDAlEsZ0w4K2xPzFMQ2JOpCk6A4=;
-        b=4rXOl40ZTuXDVlE5apcF3Yhh8XLosmqeayzfstLA2HW48b9i7elQzKvsXhlhbC06Rx
-         QL5LZV/srRn5QI4KyIXr9FMDB6WsU50XvQq1zsqF1l1SJ1XVmtfcBOYPg4MFlqw2FZ+P
-         7xAJVdFn7dh0nMqX/aEoWckL4TPFMzFF5b+6YSrY0eXlbRYdWpHq2i//vkEery15ImU+
-         yOZfCdF7wnVVw0uCK+ZWb0USUjgFdhPoVBXNUBJNB8mSmLAZfmjEU4aaMJs1vSXePNN9
-         Sv+eQwl7L3nQP5ny8u+HL8Nr4XYGaljWc3oW8KhljiYTirbkAiCWL4GdjGI+qbPecf7I
-         xcTw==
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :content-disposition:mime-version:references:mail-followup-to
+         :message-id:subject:cc:to:from:date:x-beenthere:x-gm-message-state
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=hL0+VjVG64mnpE/GNETg14tOF3V84DQE/rb5h2XowHA=;
+        b=cEehA0loVONmUli68+VDDBpGH4CdT9uQl4W/tKdcfvG9EMpEssw41mtNx+LLDoS/Zq
+         eHj2ZKNfc84fGydo6lK5Qa9Qh1kG4Gcqk1xbY26U+Rfvl9mZ7Rm+cGyQ2heFBj6LSpOK
+         7d4OtCq7VgQHVTfWiT8qHyer5TMzozNwLELokqEp3MvK09uRDm9YuJFdwZovoW04JLlX
+         Yxwgso2/4pwK/CGO+mNXQzBg74lsx9pRRFVZXZAIpWA3uSVgdAfFpo2RRVoUHj5TMMYU
+         k6nt+oYkWcYwTaEs+XnwY0zZ7Y1jWuOJa2+lkZaw0n3z6eH26nnhDsg0DpaSmS+4aCrc
+         vbrA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AAQBX9ckuRI5J9G/lykXGF33kVLu/6qUG7pIqIcgwnzus414k1LVio8A
-	LwWLOHn1Dy9ZP3nnBZggwSg=
-X-Google-Smtp-Source: AKy350b3b5Co4gPasmokST8Bc5cM2VxCkrA97gGi+aNpYymjDqLacXbAo0/xjZqaWlAx5ABHWW4dOw==
-X-Received: by 2002:adf:f84e:0:b0:2cf:e995:afef with SMTP id d14-20020adff84e000000b002cfe995afefmr394591wrq.13.1681196337706;
-        Mon, 10 Apr 2023 23:58:57 -0700 (PDT)
+X-Gm-Message-State: AAQBX9ditDf4vti0V7dYB6I+0lBaNT1qPfUGEEeA6qTUEA8LCS4YEgwH
+	vj17O5eiLUXzmSBiwh9wLHM=
+X-Google-Smtp-Source: AKy350bKyYPYeLc0JE7K+h3pKnHXo8vQiSmbqbht7+CHlKFulScNSVKc5+kjTWHV7hdMYJY/P5JUkQ==
+X-Received: by 2002:a05:6870:e392:b0:183:fa09:d20b with SMTP id x18-20020a056870e39200b00183fa09d20bmr6754679oad.5.1681236226059;
+        Tue, 11 Apr 2023 11:03:46 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:600c:3b0f:b0:3f0:7f3f:3a4b with SMTP id
- m15-20020a05600c3b0f00b003f07f3f3a4bls3885099wms.3.-pod-control-gmail; Mon,
- 10 Apr 2023 23:58:55 -0700 (PDT)
-X-Received: by 2002:a1c:7303:0:b0:3ed:276d:81a4 with SMTP id d3-20020a1c7303000000b003ed276d81a4mr1221755wmb.32.1681196335137;
-        Mon, 10 Apr 2023 23:58:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1681196335; cv=none;
+Received: by 2002:a05:6870:f228:b0:16d:c495:95f9 with SMTP id
+ t40-20020a056870f22800b0016dc49595f9ls13980398oao.0.-pod-prod-gmail; Tue, 11
+ Apr 2023 11:03:44 -0700 (PDT)
+X-Received: by 2002:a05:6870:461a:b0:184:1e48:dfd0 with SMTP id z26-20020a056870461a00b001841e48dfd0mr8064908oao.46.1681236224624;
+        Tue, 11 Apr 2023 11:03:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1681236224; cv=none;
         d=google.com; s=arc-20160816;
-        b=qK6dPPcDm0BO5rBWMNY2n5Pz9/3SRKqtagqyQGOmPAd7zUMXOaqCwNSv+KNsYf1HJ1
-         s7ocO+u93xAbe7D75rZIqmP9QHmDWkC5/8xXUwg29wkjf8cesFL7q2Dr+cX95XjyYChG
-         L9ErIoFX7ryPFFs0o67T4zUyMCQUiILRWNv89MlZa9OPq62g8lfiMg1rhB1LOcLyJXIX
-         DtQQIOy670dEypUGTIeGKXNskXTQkpKIv9j/PZpUkH+eF5LIdi2K4yD42SL7i0iT9iNO
-         U/BZFjBlqDuIYdTL7sJP35foe3GrPhqirVz913SGUe/IiSrmBcyV319Ne2Nz3kOkR/wG
-         gvGg==
+        b=eDoMA4MULlyJjTR2WZlxciOvde8Zf1g6s2M+wN8kHur2Ehn1IXDvSU2ci2lqIKuf0r
+         b8dk4AcBsC2G1laZhD5rUzbWVgfdVXPDMAfFmYkEV0FqRe0xJbMZV9/AWTAic8njg6uN
+         ReRHuRbXmX5GTP5C6iOcXsJSpScndLp8aayRYe2G5fXjD+8jF52tADdfakNdEcHpUWqS
+         d0y+i53kpLAeEgBElMFrfYwUJfMj4ZADvIgZ5SMhsmYm2XOKq67BWFC8KZA6IVkfEWMz
+         BmFq+3W4Ayghbd/9AKjv7mMYhGpSzRBCWDG6pSnJsNZiGyZ1CCuGRXIB7VXvlbGqRnx6
+         w2Ow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :dkim-signature:dkim-signature;
-        bh=FWRIpt3u2RkZ57l/yE6etWt/OArtq4m6SrxMv/Sixoo=;
-        b=rfpzw4dYWZ29zCiSDgga/JG10yu1mKUV7DJQZG03eyBLpMFbYJtSA/R5mR9FeDM6b+
-         Jo8OUbv2QUKFZINI2sYwzaUcvQXpsLKQzoGIHPYLGcX2LuCgQze+te1Rl/56abMaclLI
-         5Zkob05LXG7u6AXPq9A1LyzIj+rVgBGD9n5n/uKiLotjSzbqhxxCPEUM3oWVs8U94HWh
-         OXl9DXjsf8tXsbH70Gv38U8TH9efPXh+jd+MKQKF6swt9oBsGi5pINZZiOXj6GpIJDzE
-         7yL4EAVzrL0ZzCpmNcB5bD946AsLR05tMzBsguC2n10C6xC3+mlo2wkFs3xCa4NBlLAP
-         R4pw==
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:dkim-signature;
+        bh=B3FiBjdgWlBkkLUpYsHnBiWcE8rxx2EUpI7csz5XeCw=;
+        b=P9p7zP9hyeU2W95qlKaqMMoWmiFyQ+CznNKzKPUjen5961w746Q7060JiM8Q7kTOph
+         50C2g3LkWsffa0B3uZNx8ZRGyfs1OtZx0H8ERqzclwlQSbnnN1IGu8fWHRDaAGwAP60g
+         ZIK55ZzC87yChVkOtKOZYxST2oSXcj6Fiv95QzkX7g4rDx3Id4IHKQUFC8DUUbrAW7Ld
+         ek/jGLcxgCiP6T0TP3f0aDyim6GmajONff18S1HGNzw/BrcX++P1H6ayH7gN0S6WVC9z
+         /Hv/+ywZ/P+e8Zhda8Mt0YrYJxX5vH9Kf2mdwVgAJQCheYTbU5I/iBQ7icDDx7VMzaaN
+         i3zQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@suse.de header.s=susede2_rsa header.b=jPw3SUMb;
-       dkim=neutral (no key) header.i=@suse.de header.s=susede2_ed25519 header.b=5qCCkeKW;
-       spf=pass (google.com: domain of hare@suse.de designates 195.135.220.28 as permitted sender) smtp.mailfrom=hare@suse.de;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.de
-Received: from smtp-out1.suse.de (smtp-out1.suse.de. [195.135.220.28])
-        by gmr-mx.google.com with ESMTPS id bh24-20020a05600c3d1800b003edf4802580si44863wmb.2.2023.04.10.23.58.55
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=EMqkQwyS;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.129.124])
+        by gmr-mx.google.com with ESMTPS id x17-20020a056870e39100b0018423c84676si1452006oad.1.2023.04.11.11.03.44
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Apr 2023 23:58:55 -0700 (PDT)
-Received-SPF: pass (google.com: domain of hare@suse.de designates 195.135.220.28 as permitted sender) client-ip=195.135.220.28;
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        Tue, 11 Apr 2023 11:03:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) client-ip=170.10.129.124;
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-551-5mtcnPw4Pdm_SWKoi2-NRw-1; Tue, 11 Apr 2023 14:03:40 -0400
+X-MC-Unique: 5mtcnPw4Pdm_SWKoi2-NRw-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.rdu2.redhat.com [10.11.54.6])
+	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id BEA6421A48;
-	Tue, 11 Apr 2023 06:58:54 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-	(No client certificate requested)
-	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 92E8B13519;
-	Tue, 11 Apr 2023 06:58:54 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-	by imap2.suse-dmz.suse.de with ESMTPSA
-	id yGqtIS4FNWSGVgAAMHmgww
-	(envelope-from <hare@suse.de>); Tue, 11 Apr 2023 06:58:54 +0000
-Message-ID: <b3cad686-fa03-b7a4-01c3-9293a7421582@suse.de>
-Date: Tue, 11 Apr 2023 08:58:54 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
+	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 89E8C884EC3;
+	Tue, 11 Apr 2023 18:03:39 +0000 (UTC)
+Received: from localhost (unknown [10.2.16.6])
+	by smtp.corp.redhat.com (Postfix) with ESMTPS id DD3772166B31;
+	Tue, 11 Apr 2023 18:03:38 +0000 (UTC)
+Date: Tue, 11 Apr 2023 11:03:37 -0700
+From: Chris Leech <cleech@redhat.com>
+To: Hannes Reinecke <hare@suse.de>
+Cc: Lee Duncan <leeman.duncan@gmail.com>, linux-scsi@vger.kernel.org,
+	open-iscsi@googlegroups.com, netdev@vger.kernel.org,
+	Lee Duncan <lduncan@suse.com>
 Subject: Re: [RFC PATCH 5/9] iscsi: set netns for iscsi_tcp hosts
-Content-Language: en-US
-To: Lee Duncan <leeman.duncan@gmail.com>, linux-scsi@vger.kernel.org,
- open-iscsi@googlegroups.com, netdev@vger.kernel.org,
- Lee Duncan <lduncan@suse.com>
+Message-ID: <20230411180337.GA1234639@localhost>
+Mail-Followup-To: Hannes Reinecke <hare@suse.de>,
+	Lee Duncan <leeman.duncan@gmail.com>, linux-scsi@vger.kernel.org,
+	open-iscsi@googlegroups.com, netdev@vger.kernel.org,
+	Lee Duncan <lduncan@suse.com>
 References: <cover.1675876731.git.lduncan@suse.com>
  <566c527d12f6ed56eeb40952fef7431a0ccdc78f.1675876735.git.lduncan@suse.com>
- <82eb95ac-2dca-7a7a-116a-2771c4551bab@suse.de> <ZDSoH193jm2jOZKA@localhost>
-From: Hannes Reinecke <hare@suse.de>
-In-Reply-To: <ZDSoH193jm2jOZKA@localhost>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Original-Sender: hare@suse.de
+ <82eb95ac-2dca-7a7a-116a-2771c4551bab@suse.de>
+ <ZDSoH193jm2jOZKA@localhost>
+ <b3cad686-fa03-b7a4-01c3-9293a7421582@suse.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Disposition: inline
+In-Reply-To: <b3cad686-fa03-b7a4-01c3-9293a7421582@suse.de>
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.6
+X-Original-Sender: cleech@redhat.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@suse.de header.s=susede2_rsa header.b=jPw3SUMb;       dkim=neutral
- (no key) header.i=@suse.de header.s=susede2_ed25519 header.b=5qCCkeKW;
-       spf=pass (google.com: domain of hare@suse.de designates 195.135.220.28
- as permitted sender) smtp.mailfrom=hare@suse.de;       dmarc=pass (p=NONE
- sp=NONE dis=NONE) header.from=suse.de
+ header.i=@redhat.com header.s=mimecast20190719 header.b=EMqkQwyS;
+       spf=pass (google.com: domain of cleech@redhat.com designates
+ 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -157,291 +154,38 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 4/11/23 02:21, Chris Leech wrote:
-> On Tue, Mar 14, 2023 at 05:29:25PM +0100, Hannes Reinecke wrote:
->> On 2/8/23 18:40, Lee Duncan wrote:
->>> From: Lee Duncan <lduncan@suse.com>
->>>
->>> This lets iscsi_tcp operate in multiple namespaces.  It uses current
->>> during session creation to find the net namespace, but it might be
->>> better to manage to pass it along from the iscsi netlink socket.
->>>
->> And indeed, I'd rather use the namespace from the iscsi netlink socket.
->> If you use the namespace from session creation you'd better hope that
->> this function is not called from a workqueue ...
->=20
-> The cleanest way I see to do this is to split the transport
-> session_create function between bound and unbound, instead of checking
-> for a NULL ep.  That should cleanly serperate out the host-per-session
-> behavior of iscsi_tcp, so we can pass in the namespace without changing
-> the other drivers.
->=20
-> This is what that looks like on top of the existing patches, but we can
-> merge it in and rearrange if desired.
->=20
-> - Chris
->=20
-> ---
->=20
-> Distinguish between bound and unbound session creation with different
-> transport functions, instead of just checking for a NULL endpoint.
->=20
-> This let's the transport code pass the network namespace into the
-> unbound session creation of iscsi_tcp, without changing the offloading
-> drivers which all expect an bound endpoint.
->=20
-> iSER has compatibility checks to work without a bound endpoint, so
-> expose both transport functions there.
->=20
-> Signed-off-by: Chris Leech <cleech@redhat.com>
-> ---
->   drivers/infiniband/ulp/iser/iscsi_iser.c | 41 +++++++++++++++++-------
->   drivers/scsi/iscsi_tcp.c                 | 16 ++++-----
->   drivers/scsi/iscsi_tcp.h                 |  1 +
->   drivers/scsi/scsi_transport_iscsi.c      | 17 +++++++---
->   include/scsi/scsi_transport_iscsi.h      |  3 ++
->   5 files changed, 52 insertions(+), 26 deletions(-)
->=20
-> diff --git a/drivers/infiniband/ulp/iser/iscsi_iser.c b/drivers/infiniban=
-d/ulp/iser/iscsi_iser.c
-> index 6865f62eb831..ca8de612d585 100644
-> --- a/drivers/infiniband/ulp/iser/iscsi_iser.c
-> +++ b/drivers/infiniband/ulp/iser/iscsi_iser.c
-> @@ -593,20 +593,10 @@ static inline unsigned int iser_dif_prot_caps(int p=
-rot_caps)
->   	return ret;
->   }
->  =20
-> -/**
-> - * iscsi_iser_session_create() - create an iscsi-iser session
-> - * @ep:             iscsi end-point handle
-> - * @cmds_max:       maximum commands in this session
-> - * @qdepth:         session command queue depth
-> - * @initial_cmdsn:  initiator command sequnce number
-> - *
-> - * Allocates and adds a scsi host, expose DIF supprot if
-> - * exists, and sets up an iscsi session.
-> - */
->   static struct iscsi_cls_session *
-> -iscsi_iser_session_create(struct iscsi_endpoint *ep,
-> +__iscsi_iser_session_create(struct iscsi_endpoint *ep,
->   			  uint16_t cmds_max, uint16_t qdepth,
-> -			  uint32_t initial_cmdsn)
-> +			  uint32_t initial_cmdsn, struct net *net)
->   {
->   	struct iscsi_cls_session *cls_session;
->   	struct Scsi_Host *shost;
-> @@ -694,6 +684,32 @@ iscsi_iser_session_create(struct iscsi_endpoint *ep,
->   	return NULL;
->   }
->  =20
-> +/**
-> + * iscsi_iser_session_create() - create an iscsi-iser session
-> + * @ep:             iscsi end-point handle
-> + * @cmds_max:       maximum commands in this session
-> + * @qdepth:         session command queue depth
-> + * @initial_cmdsn:  initiator command sequnce number
-> + *
-> + * Allocates and adds a scsi host, expose DIF supprot if
-> + * exists, and sets up an iscsi session.
-> + */
-> +static struct iscsi_cls_session *
-> +iscsi_iser_session_create(struct iscsi_endpoint *ep,
-> +			  uint16_t cmds_max, uint16_t qdepth,
-> +			  uint32_t initial_cmdsn) {
-> +	return __iscsi_iser_session_create(ep, cmds_max, qdepth,
-> +					   initial_cmdsn, NULL);
-> +}
-> +
-> +static struct iscsi_cls_session *
-> +iscsi_iser_unbound_session_create(struct net *net,
-> +				  uint16_t cmds_max, uint16_t qdepth,
-> +				  uint32_t initial_cmdsn) {
-> +	return __iscsi_iser_session_create(NULL, cmds_max, qdepth,
-> +					   initial_cmdsn, net);
-> +}
-> +
->   static int iscsi_iser_set_param(struct iscsi_cls_conn *cls_conn,
->   				enum iscsi_param param, char *buf, int buflen)
->   {
-> @@ -983,6 +999,7 @@ static struct iscsi_transport iscsi_iser_transport =
-=3D {
->   	.caps                   =3D CAP_RECOVERY_L0 | CAP_MULTI_R2T | CAP_TEXT=
-_NEGO,
->   	/* session management */
->   	.create_session         =3D iscsi_iser_session_create,
-> +	.create_unbound_session =3D iscsi_iser_unbound_session_create,
->   	.destroy_session        =3D iscsi_iser_session_destroy,
->   	/* connection management */
->   	.create_conn            =3D iscsi_iser_conn_create,
-> diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
-> index 171685011ad9..b78239f25073 100644
-> --- a/drivers/scsi/iscsi_tcp.c
-> +++ b/drivers/scsi/iscsi_tcp.c
-> @@ -922,7 +922,7 @@ iscsi_sw_tcp_conn_get_stats(struct iscsi_cls_conn *cl=
-s_conn,
->   }
->  =20
->   static struct iscsi_cls_session *
-> -iscsi_sw_tcp_session_create(struct iscsi_endpoint *ep, uint16_t cmds_max=
-,
-> +iscsi_sw_tcp_session_create(struct net *net, uint16_t cmds_max,
->   			    uint16_t qdepth, uint32_t initial_cmdsn)
->   {
->   	struct iscsi_cls_session *cls_session;
-> @@ -931,11 +931,6 @@ iscsi_sw_tcp_session_create(struct iscsi_endpoint *e=
-p, uint16_t cmds_max,
->   	struct Scsi_Host *shost;
->   	int rc;
->  =20
-> -	if (ep) {
-> -		printk(KERN_ERR "iscsi_tcp: invalid ep %p.\n", ep);
-> -		return NULL;
-> -	}
-> -
->   	shost =3D iscsi_host_alloc(&iscsi_sw_tcp_sht,
->   				 sizeof(struct iscsi_sw_tcp_host), 1);
->   	if (!shost)
-> @@ -952,6 +947,9 @@ iscsi_sw_tcp_session_create(struct iscsi_endpoint *ep=
-, uint16_t cmds_max,
->   		goto free_host;
->   	shost->can_queue =3D rc;
->  =20
-> +	tcp_sw_host =3D iscsi_host_priv(shost);
-> +	tcp_sw_host->net_ns =3D net;
-> +
->   	if (iscsi_host_add(shost, NULL))
->   		goto free_host;
->  =20
-> @@ -968,7 +966,6 @@ iscsi_sw_tcp_session_create(struct iscsi_endpoint *ep=
-, uint16_t cmds_max,
->   		goto remove_session;
->  =20
->   	/* We are now fully setup so expose the session to sysfs. */
-> -	tcp_sw_host =3D iscsi_host_priv(shost);
->   	tcp_sw_host->session =3D session;
->   	return cls_session;
->  =20
-> @@ -1074,7 +1071,8 @@ static int iscsi_sw_tcp_slave_configure(struct scsi=
-_device *sdev)
->  =20
->   static struct net *iscsi_sw_tcp_netns(struct Scsi_Host *shost)
->   {
-> -	return current->nsproxy->net_ns;
-> +	struct iscsi_sw_tcp_host *tcp_sw_host =3D iscsi_host_priv(shost);
-> +	return tcp_sw_host->net_ns;
->   }
->  =20
->   static struct scsi_host_template iscsi_sw_tcp_sht =3D {
-> @@ -1104,7 +1102,7 @@ static struct iscsi_transport iscsi_sw_tcp_transpor=
-t =3D {
->   	.caps			=3D CAP_RECOVERY_L0 | CAP_MULTI_R2T | CAP_HDRDGST
->   				  | CAP_DATADGST,
->   	/* session management */
-> -	.create_session		=3D iscsi_sw_tcp_session_create,
-> +	.create_unbound_session	=3D iscsi_sw_tcp_session_create,
->   	.destroy_session	=3D iscsi_sw_tcp_session_destroy,
->   	/* connection management */
->   	.create_conn		=3D iscsi_sw_tcp_conn_create,
-> diff --git a/drivers/scsi/iscsi_tcp.h b/drivers/scsi/iscsi_tcp.h
-> index 68e14a344904..f0020cb22f59 100644
-> --- a/drivers/scsi/iscsi_tcp.h
-> +++ b/drivers/scsi/iscsi_tcp.h
-> @@ -53,6 +53,7 @@ struct iscsi_sw_tcp_conn {
->  =20
->   struct iscsi_sw_tcp_host {
->   	struct iscsi_session	*session;
-> +	struct net *net_ns;
->   };
->  =20
->   struct iscsi_sw_tcp_hdrbuf {
-> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_tran=
-sport_iscsi.c
-> index 8fafa8f0e0df..4d346e79468e 100644
-> --- a/drivers/scsi/scsi_transport_iscsi.c
-> +++ b/drivers/scsi/scsi_transport_iscsi.c
-> @@ -3144,14 +3144,21 @@ static int
->   iscsi_if_create_session(struct iscsi_internal *priv, struct iscsi_endpo=
-int *ep,
->   			struct iscsi_uevent *ev, pid_t pid,
->   			uint32_t initial_cmdsn,	uint16_t cmds_max,
-> -			uint16_t queue_depth)
-> +			uint16_t queue_depth, struct net *net)
->   {
->   	struct iscsi_transport *transport =3D priv->iscsi_transport;
->   	struct iscsi_cls_session *session;
->   	struct Scsi_Host *shost;
->  =20
-> -	session =3D transport->create_session(ep, cmds_max, queue_depth,
-> -					    initial_cmdsn);
-> +	if (ep) {
-> +		session =3D transport->create_session(ep, cmds_max, queue_depth,
-> +						    initial_cmdsn);
-> +	} else {
-> +		session =3D transport->create_unbound_session(net, cmds_max,
-> +							    queue_depth,
-> +							    initial_cmdsn);
-> +	}
-> +
->   	if (!session)
->   		return -ENOMEM;
->  =20
-> @@ -4145,7 +4152,7 @@ iscsi_if_recv_msg(struct net *net, struct sk_buff *=
-skb,
->   					      portid,
->   					      ev->u.c_session.initial_cmdsn,
->   					      ev->u.c_session.cmds_max,
-> -					      ev->u.c_session.queue_depth);
-> +					      ev->u.c_session.queue_depth, net);
->   		break;
->   	/* MARK */
->   	case ISCSI_UEVENT_CREATE_BOUND_SESSION:
-> @@ -4160,7 +4167,7 @@ iscsi_if_recv_msg(struct net *net, struct sk_buff *=
-skb,
->   					portid,
->   					ev->u.c_bound_session.initial_cmdsn,
->   					ev->u.c_bound_session.cmds_max,
-> -					ev->u.c_bound_session.queue_depth);
-> +					ev->u.c_bound_session.queue_depth, net);
->   		iscsi_put_endpoint(ep);
->   		break;
->   	case ISCSI_UEVENT_DESTROY_SESSION:
-> diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_tran=
-sport_iscsi.h
-> index 0c3fd690ecf8..4d8a3d770bed 100644
-> --- a/include/scsi/scsi_transport_iscsi.h
-> +++ b/include/scsi/scsi_transport_iscsi.h
-> @@ -79,6 +79,9 @@ struct iscsi_transport {
->   	struct iscsi_cls_session *(*create_session) (struct iscsi_endpoint *ep=
-,
->   					uint16_t cmds_max, uint16_t qdepth,
->   					uint32_t sn);
-> +	struct iscsi_cls_session *(*create_unbound_session) (struct net *net,
-> +					uint16_t cmds_max, uint16_t qdepth,
-> +					uint32_t sn);
->   	void (*destroy_session) (struct iscsi_cls_session *session);
->   	struct iscsi_cls_conn *(*create_conn) (struct iscsi_cls_session *sess,
->   				uint32_t cid);
+On Tue, Apr 11, 2023 at 08:58:54AM +0200, Hannes Reinecke wrote:
+> On 4/11/23 02:21, Chris Leech wrote:
+> > diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
+> > index 0c3fd690ecf8..4d8a3d770bed 100644
+> > --- a/include/scsi/scsi_transport_iscsi.h
+> > +++ b/include/scsi/scsi_transport_iscsi.h
+> > @@ -79,6 +79,9 @@ struct iscsi_transport {
+> >   	struct iscsi_cls_session *(*create_session) (struct iscsi_endpoint *ep,
+> >   					uint16_t cmds_max, uint16_t qdepth,
+> >   					uint32_t sn);
+> > +	struct iscsi_cls_session *(*create_unbound_session) (struct net *net,
+> > +					uint16_t cmds_max, uint16_t qdepth,
+> > +					uint32_t sn);
+> >   	void (*destroy_session) (struct iscsi_cls_session *session);
+> >   	struct iscsi_cls_conn *(*create_conn) (struct iscsi_cls_session *sess,
+> >   				uint32_t cid);
+> 
+> I'm not _that_ happy with these two functions; but can't really see a way
+> around it.
+> Can't we rename the 'unbound' version to
+> 'create_session_ns' or something?
 
-I'm not _that_ happy with these two functions; but can't really see a=20
-way around it.
-Can't we rename the 'unbound' version to
-'create_session_ns' or something?
+Yes, in my mind I was matching the netlink commands, but those are
+create_session and create_bound_session. I got it exactly backwards
+with which one had the additional text.
 
-Cheers,
+I'm OK with changing to a shorter name, like the one you suggested.
 
-Hannes
---=20
-Dr. Hannes Reinecke                Kernel Storage Architect
-hare@suse.de                              +49 911 74053 688
-SUSE Software Solutions GmbH, Maxfeldstr. 5, 90409 N=C3=BCrnberg
-HRB 36809 (AG N=C3=BCrnberg), Gesch=C3=A4ftsf=C3=BChrer: Ivo Totev, Andrew
-Myers, Andrew McDonald, Martje Boudien Moerman
+Thanks,
+- Chris
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/b3cad686-fa03-b7a4-01c3-9293a7421582%40suse.de.
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230411180337.GA1234639%40localhost.
