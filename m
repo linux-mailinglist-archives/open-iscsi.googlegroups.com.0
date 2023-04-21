@@ -1,142 +1,137 @@
-Return-Path: <open-iscsi+bncBCYMVIPVXQMBBAGXQWRAMGQEKU2N45Y@googlegroups.com>
+Return-Path: <open-iscsi+bncBCYMVIPVXQMBBN5TRCRAMGQEXMQTCZQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf37.google.com (mail-qv1-xf37.google.com [IPv6:2607:f8b0:4864:20::f37])
-	by mail.lfdr.de (Postfix) with ESMTPS id 325106E99C5
-	for <lists+open-iscsi@lfdr.de>; Thu, 20 Apr 2023 18:42:42 +0200 (CEST)
-Received: by mail-qv1-xf37.google.com with SMTP id 6a1803df08f44-5ef626ad00fsf12588856d6.3
-        for <lists+open-iscsi@lfdr.de>; Thu, 20 Apr 2023 09:42:42 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1682008961; cv=pass;
+Received: from mail-pf1-x43f.google.com (mail-pf1-x43f.google.com [IPv6:2607:f8b0:4864:20::43f])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC2446EA2FC
+	for <lists+open-iscsi@lfdr.de>; Fri, 21 Apr 2023 07:06:02 +0200 (CEST)
+Received: by mail-pf1-x43f.google.com with SMTP id d2e1a72fcca58-63b54d92622sf1342558b3a.0
+        for <lists+open-iscsi@lfdr.de>; Thu, 20 Apr 2023 22:06:02 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1682053561; cv=pass;
         d=google.com; s=arc-20160816;
-        b=EF5BAxQMe8vUaN9PYbrwrGcWoIxjcwnZV6GvG8ZJpP5dr/H8aq8R4+cQejgpxh2JgU
-         sijseS85NIJYBX52KYgsLyhSzaOWlXrtycKRLv9SdMZNOm+9D6m4U4fS5Yn/LchCiCCG
-         cvf6J8aqTAS3AwnnHfBywkzkdSDt7cC/NflthRfoN7vy8uMqbHRYJWwg0sQGmgmXShIB
-         qYqU2gK8aBHUTgMyW87BpGHIO5GCZbTnNd/2v2CCIVYn7DWsWXkC5dsjDc6Tvc6hcKTK
-         EetPt7iwI4wK8N+XM02eEBqiImjGucxtFf+Jhcg4RNeWtoxJAX6Jfor/cVFnZwQooA/P
-         jBWw==
+        b=1CWWe9aPyZ0xdrs5gPbbP9nHRDT13LEkHgMZ7IPJRuvSnOnwFitQ7k/XsiON39MTzo
+         hEUJ3w0IknCwINwY54nG3h1KaWEvibzDva35pEYdO76wQOUdqYjFfWsvtKgVQGx2kfx6
+         mWCR7AKD+KMRZFCWB5Qow8kCRmssJ2nzaYIigyu3/YF3D+MKxStEIxG1BsKkMcmjF9yy
+         sICl6szfn1g/pZ2wm65oYM7AQiLL69rZyTxh/34onn2V2F9D9abJxLyQnxxRPxV9X3NV
+         0whR2//1KwO2vNfjtt5p53bdNynLpaSKen/TGqpSLlbazw3tRdZ89jPVZVSrx5UBvW4+
+         kHmQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:in-reply-to
-         :content-disposition:mime-version:references:mail-followup-to
-         :message-id:subject:cc:to:from:date:sender:dkim-signature;
-        bh=tc2FEfhpHVyAUvvliyz1TnMHOvTWftM3dS05XyCKeV0=;
-        b=GetFtQKZa929ImexBELsTCITP2hlvIcqXdbNgIV/il4oQ0lYc6jfM3oLOp7H7SyqM0
-         we4QSAXwN3GFTYUDxUnuGj5Cf8ruZW5bGKznLnD5w96bZSS8G6nsSLMbGs7w+dKocMHm
-         ev2E8c3RcS32S9mXhEM5QpXedubDNrLsRqB7jIE2eaF7A1gNDOXc8aeyN6ecyNHVx0iR
-         bpXhPylzO0629ydDl7+3Lk3ityw196DVXhniLvTidu6u8Bt+DTk+TG79fF1XMWvU4QKh
-         p5o/CJ6hVvrOq41VhYd6Xu64dSO77jay//D/Y3bgCW1+dDPPzYqrRH3h7Bb8Dl96Fx1f
-         7YbA==
+         :list-id:mailing-list:precedence:reply-to:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:sender
+         :dkim-signature;
+        bh=yO5XlQgcYmGa2zdXz9v1G+i7QXVms8OEw5T+HGAl7zo=;
+        b=PlsDvOpYQBqsitSRY6Z8c0tERjVibkcHRYsbU8+VUJ5HDZwRTcPn34nJAE4smg1S3A
+         13COSSIU4bO0hrMH3yc8KorJOtsHNE1Lbd5r222wPVUCMAAFJGZbAbEf+Lel+n2Y3jOD
+         6AOlKnFSCMVG3ejKE/UR7CbDXAA/o3AN8D71L6xOyuxWXwLAPvtowA4YN49Msd96TzVu
+         +sLlnZf7YanY6AnLZmWXW23sV8MxxD1PgszXO72K524cpvRD/kmSaG8G9UQ7oS88+kOR
+         cRGFvm6B+xFWQNv5jBXSX6/kI7B3oSf/d7pqHDDNDVR5AO50oIwIeHhfax8+WZVy+YtX
+         ArUg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=EBFaksbz;
-       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=FzQuLcB0;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20221208; t=1682008961; x=1684600961;
+        d=googlegroups.com; s=20221208; t=1682053561; x=1684645561;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-disposition:mime-version:references:mail-followup-to
-         :message-id:subject:cc:to:from:date:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tc2FEfhpHVyAUvvliyz1TnMHOvTWftM3dS05XyCKeV0=;
-        b=X8zL0+5ESJWu2R+QXHcVWQzDVbXiWaM/WU/y+NMXdm6tN1yU9RBUzTpUfHCT2zzQ8H
-         PCoWQbprwzXLhujq4flspCJVv5sXB0/Vdult7jelFM3jhwckp6AJaQGO+URHeJh1C9Fi
-         oea7qUO7ws5CEQ8asE7lUgyBDHOCMANrLez54emWBxoV5sM+FFKVFFg2OznOq7iymctd
-         XR2tLRBKplvbLSTdsrD07HE9JWsF9h15dbu0pnJwJAUh/yQE5dAW/VT7ptJ9210/kOiW
-         m0hHavbwXzscUxIfVnqSTs4+zRIjmYBiQ/bpOJ1gQDxu6aH+q/DnedQsfE4JjC81ZI4U
-         Rpsg==
+         :x-original-authentication-results:x-original-sender:mime-version
+         :references:in-reply-to:message-id:date:subject:cc:to:from:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yO5XlQgcYmGa2zdXz9v1G+i7QXVms8OEw5T+HGAl7zo=;
+        b=rH2vzWR9cdFsYdwgtIKF1jjRk7mSwd5cboAai160ERiHDxK8rS116Y2FNsJZ13JER0
+         ZZggj4NdxbFY4OBItaScGpQb7FDDohmrQ80x8JFp4P06k1GfIT53kSWo6eJsC3OZ76kC
+         WzBIGS9/otYvDPHNRjCKBVIwHBnJoES3RANxQO19oWqEdcy1GNzMJF2/YJdnzi9h4lUY
+         waXiP8q9Zvc6FqA1km5SAyS4pvNEe9Gyxj6p+hCYjvLFZ3qsFTwOKP+h536cas9F8/Oq
+         SPkOmvtow13ubNMVwJGNuIWTPau/2LZA/X3FPsIC+kYoMAB2M3JAdk1epcH7O0/RY3W0
+         ywXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682008961; x=1684600961;
+        d=1e100.net; s=20221208; t=1682053561; x=1684645561;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-disposition:mime-version:references:mail-followup-to
-         :message-id:subject:cc:to:from:date:x-beenthere:x-gm-message-state
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=tc2FEfhpHVyAUvvliyz1TnMHOvTWftM3dS05XyCKeV0=;
-        b=RPutbuFKwRKhakka+gCEknqtR/7UncUKNXn8P9z3J302DWjTYsO58gZjYjVewEsCuH
-         gZbZh59YFG3FkKk7/AdlyEBJuJDAG2X3Yzr/M3+z8ItUZEJ5skOm8Y83iiOKIEPt+N3x
-         5tSlKFZI1mgxmOj8unWAih3MlwPEMS3pcukt0aSmKR2AHxcOe9kCAsryFstDio/Xg8al
-         pHLwxCR9iB4C40IL7RHsOesPs7BtzIDMQd+UWQ5wTqHvGA35vXOSE6nqa1PvP8uJ9WY1
-         Lkpv6ZDAvw8qkVvT1H30YnYlU/SN2b5lJezwiBUv6VvzTqtKW7dVIA8u/Wc4zumm2Vvw
-         Z4Mg==
+         :x-original-authentication-results:x-original-sender:mime-version
+         :references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yO5XlQgcYmGa2zdXz9v1G+i7QXVms8OEw5T+HGAl7zo=;
+        b=JrB4Ms9+414D59qKRbon8JRINYYehI815VC1gX3qL1QXfabbpFxMBWnrU+smKNXw7g
+         xXP56gA+cdyM50J07jTiuFANGZdVLWReSC6TKiiV966kwDBSN8U3XHexf700S2ahtN7w
+         7X+ECvYVvnWntO5TQbRA0+u6TiqXVvljDv0bNlYkM18sUhUV+buwEr+gooRQDO7HR5TS
+         4MQBTYLEnwiGUIpFsWUUUqv7OvMwqCoiaxTYot5j4BU/3B7KXc8xkWzdYos0EMUvHLqD
+         QGNecXf3N7Ntfo/HVqW4NoJUDAwHoW3MA7RVwBbLE61zCmugW2tehPsccM5sXgessJnt
+         F7Rw==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AAQBX9ei8JRVsQpYOhIKMObz2rcshfj2DkN+2G+VlfGHJCW/pWLKFP8E
-	OYIRHVKlqbYP71yESXjleW4=
-X-Google-Smtp-Source: AKy350Y+Wqt3K81xJGrFt1S4dP12iyq95VaNTFz8er0FVp+YxugOkjSqEvq7qkOh4O7ZtoG8cahT/g==
-X-Received: by 2002:a05:6214:1631:b0:5ef:423d:3f83 with SMTP id e17-20020a056214163100b005ef423d3f83mr306040qvw.7.1682008960839;
-        Thu, 20 Apr 2023 09:42:40 -0700 (PDT)
+X-Gm-Message-State: AAQBX9deEMMRw4VX/yIqnuGXRQSq0gHO+Z3g9xBjDyfOZ++BBKUGeCfd
+	s8PdDjjNRR8MmqXvD8Mm7co=
+X-Google-Smtp-Source: AKy350aV8rKbGqfaZfRmcOEiQR+xPfp9Nj47XTjm00RHb36dkkYNDteDKhF1r5eMoB7BLej+icw+Nw==
+X-Received: by 2002:a05:6a00:2e97:b0:62d:9bea:2a0c with SMTP id fd23-20020a056a002e9700b0062d9bea2a0cmr1652133pfb.4.1682053561322;
+        Thu, 20 Apr 2023 22:06:01 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:622a:4a09:b0:3ef:4181:88b4 with SMTP id
- fv9-20020a05622a4a0900b003ef418188b4ls2403751qtb.5.-pod-prod-gmail; Thu, 20
- Apr 2023 09:42:39 -0700 (PDT)
-X-Received: by 2002:ac8:4e87:0:b0:3ef:2649:44ae with SMTP id 7-20020ac84e87000000b003ef264944aemr3364206qtp.13.1682008958941;
-        Thu, 20 Apr 2023 09:42:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1682008958; cv=none;
+Received: by 2002:a63:2602:0:b0:517:a9ee:45c1 with SMTP id m2-20020a632602000000b00517a9ee45c1ls914963pgm.4.-pod-prod-gmail;
+ Thu, 20 Apr 2023 22:05:59 -0700 (PDT)
+X-Received: by 2002:a05:6a00:14c1:b0:63d:47c8:856e with SMTP id w1-20020a056a0014c100b0063d47c8856emr5134206pfu.2.1682053559069;
+        Thu, 20 Apr 2023 22:05:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1682053559; cv=none;
         d=google.com; s=arc-20160816;
-        b=HxUA/JAV2lGW0Hd8ClTnbiwhFOErfN2WGK29JYGU9pC/H738hnC7i/87abcN/GibTw
-         5VOr3FXJBr/sMDWGLnI7Qe0BU1kjPYsQjb5RHdwvjn1kSElNVj+V8mQY5NMTAcsHpbO8
-         ROvJMAsUN5aCVoJN2bMLWOHyHThr8go+vJXPbeOs0SsI3+S7pbFwndZlvHf2hcyWweVE
-         H2Sza5VJhlnsNQfc443+n2c3axM4wFGrxCDVw5VF13oa+Xfj/mxrJKyi10oRBMeEpKQN
-         qXicEYweL2nqlcW1SdjVEjpmbO3TIgfl2JLA6TMNIIAazFjlOTlqnJs0jUyXo6JQ6S7X
-         ysbA==
+        b=ppfFg7IvyR0VKlIHFi7V00LwDDiHNcyNrE2pC/ogD/LO+ygp6PLFXDOWM7Eh6m94zc
+         nCPRTAXnfHBzIRV49duj1WydhCVFZ108dWvAdX3imV6XddqK6ReSs7CrdO2wH0Fv9L5h
+         oq68VVLsk2p3RT3qpBZgNRj9fpd6CBw6HzUiERcmvDHcpwwUD8WZH5PfG5gVjr5Pk1x9
+         qVhvjxMNtzSiVoonbZP1rC0NH9ExBS0O6avpXlpBfpdBHdKpcko2qpxNL1PWW/+ITTQf
+         0JtlPKWCBCv6tStgaPLR/MRVFctTE4oVFHtni2bbELB7/LeLaHdnlq6Vzv9IV3JlLh0G
+         K8NQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:dkim-signature;
-        bh=I6fTE8uyJF5qu0Pi8nEHi/Tjr/m72N2RiPgDazf02xk=;
-        b=glDh3tXaNai+LF1xzhO4f/jj7eTO79kf+upmrT2GCECZXSEgn7kYUgH86RX5dCJ2EW
-         R2GiO2FmWFeYSUm5J9Jnb4kP/WXNO1FqlLTsgN7yUh9q2lFNYEAc2tTLqNwdiJU77w4/
-         23Oerzz6tfv0YzPxeLOvgYt5x+LUCAhAjzXh5q5ZCl8hVfmOZ1EhaFoMZygAC3AuAZCe
-         n+gKtFhk2PVsA+25cuIYIh5JhtXLzPiTCW4kATk43QAVcD2NeJb0HUirqUNcqTecvIWE
-         AxCsglkCgb8YnBfLYrxfgNuZhcpDUmwnAcMkAieCnAWXlyhjYKYKxiMc7vV6IOXzQTC1
-         vs6g==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:dkim-signature;
+        bh=0q9oxwPDsSiWxgEq0uCvInxnqKmFGfsxHg50UrYoaWY=;
+        b=C0xAa1hjgs3HpoBaaeiz7lSk2Up++UPghuqcukY8zbDye7EXW6HiE2iBIUNsyU9sHw
+         m0wHbWLZ4qHBemk+5tfZ09Z9hxveJI2A3DDik/klLyewYU4Z3EOL2kI/ZmVeTwO4hMyX
+         I2alMTvvTrXPR8Mlpx1jaN0qiTFkGFHQNNA7jW+or1zcPdkXf+5XYsC7Oq9zKRLXHlgJ
+         xO8XYg46RiHXDif9iSjlPQBxiTU/C34NWBCuVFXfy5l/kXYaOw67Gu5vLkGUTQ5fjFRk
+         l/SCF71+333oyZUZtX0VHW6YXdTA4SfiI0ktamu+9ADvOFFiu12yQKnEupH3F4zx2IN6
+         pzAg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=EBFaksbz;
-       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=FzQuLcB0;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.129.124])
-        by gmr-mx.google.com with ESMTPS id dv24-20020a05620a1b9800b0074e0ec27c8dsi95486qkb.0.2023.04.20.09.42.38
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.133.124])
+        by gmr-mx.google.com with ESMTPS id o16-20020a056a0015d000b0063b78539553si151442pfu.3.2023.04.20.22.05.58
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 09:42:38 -0700 (PDT)
-Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) client-ip=170.10.129.124;
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+        Thu, 20 Apr 2023 22:05:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.133.124 as permitted sender) client-ip=170.10.133.124;
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-375-CJwRyV7GMX6wC-bShp44cQ-1; Thu, 20 Apr 2023 12:42:35 -0400
-X-MC-Unique: CJwRyV7GMX6wC-bShp44cQ-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com [10.11.54.4])
+ us-mta-646-QL6K3lDeOVaIDaN80H9LAw-1; Fri, 21 Apr 2023 01:05:53 -0400
+X-MC-Unique: QL6K3lDeOVaIDaN80H9LAw-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com [10.11.54.2])
 	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 7E4B6185A78F;
-	Thu, 20 Apr 2023 16:42:34 +0000 (UTC)
-Received: from localhost (unknown [10.2.16.204])
-	by smtp.corp.redhat.com (Postfix) with ESMTPS id EB19B2026D16;
-	Thu, 20 Apr 2023 16:42:33 +0000 (UTC)
-Date: Thu, 20 Apr 2023 09:42:32 -0700
+	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 552721C05EC3;
+	Fri, 21 Apr 2023 05:05:53 +0000 (UTC)
+Received: from localhost.redhat.com (unknown [10.2.16.204])
+	by smtp.corp.redhat.com (Postfix) with ESMTP id BEC074020BED;
+	Fri, 21 Apr 2023 05:05:52 +0000 (UTC)
 From: Chris Leech <cleech@redhat.com>
-To: Lee Duncan <leeman.duncan@gmail.com>
-Cc: linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com,
-	netdev@vger.kernel.org, Lee Duncan <lduncan@suse.com>
+To: Lee Duncan <leeman.duncan@gmail.com>,
+	linux-scsi@vger.kernel.org,
+	open-iscsi@googlegroups.com
+Cc: Lee Duncan <lduncan@suse.com>,
+	Chris Leech <cleech@redhat.com>
 Subject: Re: [RFC PATCH 2/9] iscsi: associate endpoints with a host
-Message-ID: <20230420164232.GA27885@localhost>
-Mail-Followup-To: Lee Duncan <leeman.duncan@gmail.com>,
-	linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com,
-	netdev@vger.kernel.org, Lee Duncan <lduncan@suse.com>
-References: <cover.1675876731.git.lduncan@suse.com>
- <154c7602b3cc59f8af44439249ea5e5eb75f92d3.1675876734.git.lduncan@suse.com>
+Date: Thu, 20 Apr 2023 22:05:18 -0700
+Message-Id: <20230421050521.49903-1-cleech@redhat.com>
+In-Reply-To: <20230420164232.GA27885@localhost>
+References: <20230420164232.GA27885@localhost>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
-In-Reply-To: <154c7602b3cc59f8af44439249ea5e5eb75f92d3.1675876734.git.lduncan@suse.com>
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.4
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.2
 X-Original-Sender: cleech@redhat.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@redhat.com header.s=mimecast20190719 header.b=EBFaksbz;
+ header.i=@redhat.com header.s=mimecast20190719 header.b=FzQuLcB0;
        spf=pass (google.com: domain of cleech@redhat.com designates
- 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+ 170.10.133.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -149,54 +144,35 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Wed, Feb 08, 2023 at 09:40:50AM -0800, Lee Duncan wrote:
-> Right now the iscsi_endpoint is only linked to a connection once that
-> connection has been established.  For net namespace filtering of the
-> sysfs objects, associate an endpoint with the host that it was
-> allocated for when it is created.
-> 
-> Signed-off-by: Chris Leech <cleech@redhat.com>
-> Signed-off-by: Lee Duncan <lduncan@suse.com>
-> ---
-> 
-> diff --git a/drivers/infiniband/ulp/iser/iscsi_iser.c b/drivers/infiniband/ulp/iser/iscsi_iser.c
-> index 6b7603765383..212fa7aa9810 100644
-> --- a/drivers/infiniband/ulp/iser/iscsi_iser.c
-> +++ b/drivers/infiniband/ulp/iser/iscsi_iser.c
-> @@ -802,7 +802,7 @@ static struct iscsi_endpoint *iscsi_iser_ep_connect(struct Scsi_Host *shost,
->  	struct iser_conn *iser_conn;
->  	struct iscsi_endpoint *ep;
->  
-> -	ep = iscsi_create_endpoint(0);
-> +	ep = iscsi_create_endpoint(shost, 0);
->  	if (!ep)
->  		return ERR_PTR(-ENOMEM);
+I managed to fix the iSER endpoint issue by making endpoints created
+without a host valid again. Once I had iSER working, I went ahead and
+made it network namespace aware as well.
 
-I started trying[1] to look at iSER, and I think this is a problem.
-iSER is the only iSCSI driver that uses endpoint objects, but does not
-require then to be bound to a host.  That means that
-iscsi_iser_ep_connect can be called with a null shost.
+Only tested with software roce (rxe) against the kernel target.
 
-So this fails, and not in a new namespace.
-It just breaks iSER entirely.
+I think the net_exit code might need to do a bit more with iSER.
+I'm going to look into that, then I'll merge some of these patches that
+fix earlier patches together, and get a new clean version of the set
+posted.
 
-I think we need to preserve support for the iscsi_endpoint device
-having a virtual device path for iSER.
+Chris Leech (3):
+  iscsi iser: fix iser, allow virtual endpoints again
+  iscsi iser: direct network namespace support for endpoints
+  iscsi iser: enable network namespace awareness in iser
 
-Also, enabling net namespace support for iSER might require the ability
-to create an endpoint directly in a namespace instead of on a host.
-Kind of like the create_session discussion for iscsi_tcp.
+ drivers/infiniband/ulp/iser/iscsi_iser.c | 13 ++++---
+ drivers/scsi/iscsi_tcp.c                 | 10 ++----
+ drivers/scsi/iscsi_tcp.h                 |  1 -
+ drivers/scsi/libiscsi.c                  | 12 +++++++
+ drivers/scsi/scsi_transport_iscsi.c      | 45 +++++++++++++++++++-----
+ include/scsi/libiscsi.h                  |  4 +++
+ include/scsi/scsi_transport_iscsi.h      |  9 ++++-
+ 7 files changed, 71 insertions(+), 23 deletions(-)
 
-- Chris
-
-[1] I say trying, becuase before going and borrowing an RDMA setup I
-thought I'd give the kernel target and either siw or rxe a try. The
-isert module seems to have issues with siw, and I think maybe any iWARP,
-where setting enable_iser on a port will try and re-use the TCP port
-number and fail due to it being in use.  With rxe my host failed, but
-that's becuase of this create_endpoint issue.
+-- 
+2.39.2
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230420164232.GA27885%40localhost.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230421050521.49903-1-cleech%40redhat.com.
