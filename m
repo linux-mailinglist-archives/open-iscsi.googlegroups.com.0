@@ -1,127 +1,126 @@
-Return-Path: <open-iscsi+bncBC4LXIPCY4NRBOH63ORAMGQEFTLFZEA@googlegroups.com>
+Return-Path: <open-iscsi+bncBC4LXIPCY4NRB64M3SRAMGQENJUBQ2A@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-lf1-x139.google.com (mail-lf1-x139.google.com [IPv6:2a00:1450:4864:20::139])
-	by mail.lfdr.de (Postfix) with ESMTPS id 950146F9671
-	for <lists+open-iscsi@lfdr.de>; Sun,  7 May 2023 03:30:34 +0200 (CEST)
-Received: by mail-lf1-x139.google.com with SMTP id 2adb3069b0e04-4ef455ba989sf1736706e87.0
-        for <lists+open-iscsi@lfdr.de>; Sat, 06 May 2023 18:30:34 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1683423034; cv=pass;
+Received: from mail-wr1-x43e.google.com (mail-wr1-x43e.google.com [IPv6:2a00:1450:4864:20::43e])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCCA6F9683
+	for <lists+open-iscsi@lfdr.de>; Sun,  7 May 2023 04:01:33 +0200 (CEST)
+Received: by mail-wr1-x43e.google.com with SMTP id ffacd0b85a97d-3077e683b25sf1321685f8f.3
+        for <lists+open-iscsi@lfdr.de>; Sat, 06 May 2023 19:01:33 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1683424892; cv=pass;
         d=google.com; s=arc-20160816;
-        b=kaSdDbby5W36wf9tt08UCi9f6VjVIG85pIxwLq57f7Ref4wmaO55zDHl4XR+ycUzY9
-         JS01Vn3cTI8Xd+daZdTGHv8Zdy9ekX1cj664InRxhhBa4vGQN2HmZq4SmpoifS32R072
-         cLEZSK/CFWX0xnJwWIcWQ8kP5jQtM/nR+255zHpyPU2MTPQ1z05keHygVdkyCGApdOH3
-         1Oh9vryj615DxYGyOL33Gakl+f/8bTv8OS/OnB8Gpq41EyAqEnYm3s2HRLPYKEcwRnFP
-         KKO54VwLGJiV8Di7UFdymKmk3reNXpzOiDOIWVkx68htfao8+Ox9p8EwbSY4ccR5dOD5
-         vlFw==
+        b=EYxxQ2uFJ1xuQUx4saJCf7OfHzkIx8OOfo0Xg06slcKaT3H4YXldCHUWCHD8O+qQI2
+         xVRjMkI4GG5AW6LJLLbpETiGip5lDfc5feVvo88E/rW3MgwxishsgtzFDue2UXGunOgg
+         w9OLjZl9+ikflSdALekMmyGhELjGiwj/1LuDCw4ywjPj7Yi7XgfjSpgqmnrzYnEVqtya
+         U13PDQIVR7gKpRZEZ/KKDySmFYunrBoRjFu3m/kN8g0/3e5uE0cDYdtMUJiVOmZhLEdk
+         ic3Y2guhk9KPqP3k0lLQkPLEqWNmsrg+OjlCwXlseKGGLVNa2YPzpPP3gqUuiTZpQ9En
+         dndQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:in-reply-to
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:sender:dkim-signature;
-        bh=jmZZaCKJYFou1iXQzJO6tHl+SoaKe5HqifTSyCQK+tQ=;
-        b=rlYn90aIScvyUFzWaOi3N0AEiO7BkaKkaFSep82Ubkcy+3GVxnkCIwzEk7N7fcJG7+
-         zWnE+LjiGiOIG0U9gFpF/sjxvTGqLVogRC3tKvsLMPx6hoLNI95cGNWf4laa3hjls2Aj
-         UqHCiP/huPVUFAsR3ZoyFZyukrAFinDDjM2nVsJvS8v2tVvbF9chlW7P40JKiKmObvu8
-         3a0ncqzfSYPqsP7KZC7NEwpf/+XUKMxb8w448pxKedVeT0gwsLoWJ5Jo4ydRLBbnTlfQ
-         M6HCSta/lUfqOmMx0MT8mUMGHl/jeazIDbUXbPA7sZP8RPZAgV94bGaev/Zv55W5lrZd
-         JeGA==
+        bh=DBPj94wzu0f/vZcZs546TaA2D0wfsHGnUInoGcn4IOo=;
+        b=OSF8kw5++PHr0KMxbdODgwnnC/Ztq3tcQXqb2Ce49zof7mBxdYcDtxDwPS6T117GUX
+         fbdE/ZhRLLPsLaUxeXe3FEAnA/4eBEZ99EzU77v1ulVp5Yz2occR8UZlmrWbVWo01M2m
+         gwdU3Am0swvBPe+rWE9vel2srfmHSIeAPZlbLSXt+gAiD182mBHGKxRg7BQ+FKJIMZB+
+         CtEp3I4iaa3v8bXkjme+qIUbufmKfhkMdoCSxMJ0aSNQ4ldzagjcca2QxRohC8N0K0jY
+         +wQm+ZiQlV/CxERLuVqIc5eSwyZNyM2R5pTfnFVDXy0FBBfpvuTjTrQH7INtK0b2b8/4
+         pZMQ==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@intel.com header.s=Intel header.b=E6ZGrpAE;
-       spf=pass (google.com: domain of lkp@intel.com designates 192.55.52.120 as permitted sender) smtp.mailfrom=lkp@intel.com;
+       dkim=pass header.i=@intel.com header.s=Intel header.b=NYDXWLs3;
+       spf=pass (google.com: domain of lkp@intel.com designates 134.134.136.100 as permitted sender) smtp.mailfrom=lkp@intel.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20221208; t=1683423034; x=1686015034;
+        d=googlegroups.com; s=20221208; t=1683424892; x=1686016892;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:in-reply-to
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=jmZZaCKJYFou1iXQzJO6tHl+SoaKe5HqifTSyCQK+tQ=;
-        b=IKaGPg1y6RoIrTU3O+wxkuAYzdImGwnKx700yQLJbaNNM2fatd1s3lp1PN58KAlzdu
-         SPyNmap+dcrqj339pm0CHA5DYGZAYzMqz+xQ5qNEHpgbz4e8f9SRUx95vTswiM++m1et
-         eiKrhcWhPjVuciH03+vVzz33OipgvcVI1HCgkO0pFnoURxoVsvGsVK79QQbFmnujjTgq
-         6hVRbOel6kijwPrwQPRU6W3QCPmJjLO7X1j334vKGaYd6vSxltOzqZk0rGMjvkHnW+cr
-         yXnrI7KL2LzcESuWJowh1gjl0KFNihq6wGGXY/0ALW35zp0+fI8DJzJk2xvutZTN++Do
-         hE5Q==
+        bh=DBPj94wzu0f/vZcZs546TaA2D0wfsHGnUInoGcn4IOo=;
+        b=SUSf8aiQ1WH23vubncrRX2+AEYYmXcr61yo1V/YqVX40KXbz3EPRPes0/olIF9LLrz
+         6BCmYLgR5uJo3kQBpmu26PBXfeUm/hPhF4kuJs1Kcznfa0tgH40EC6hKq3TT8CNpBxJt
+         4ald0HoVeWmofoc5R4TVk/S5WwEOFrsHwvBOypRW4o9ES5ORqPt+Ml2sSOOjOkoeK2ga
+         8JK9AV0+EqAbmJbUmtMhw5584CMpEypJ5adBzO/H7/htvANYy9vE4ZlItEYWCXI16aTV
+         9rZHTGemVk3JNTajKMygXlhQb4PIx8XmBSV9/UEqE0H9df7EXqNzjUMmRv5POGiHgl35
+         ooKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683423034; x=1686015034;
+        d=1e100.net; s=20221208; t=1683424892; x=1686016892;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:in-reply-to
          :content-disposition:mime-version:references:message-id:subject:cc
          :to:from:date:x-beenthere:x-gm-message-state:sender:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jmZZaCKJYFou1iXQzJO6tHl+SoaKe5HqifTSyCQK+tQ=;
-        b=Dp/nIdixfDJJ7yzxGESt7Y6kpYmvHY8AfzehBDJCU/yud59tprgD/PAcN0zxvVJX1X
-         p12QbyJVwidBUJ/4baPc9sbq2koPo8qygMpc9Q1tIYFjr2Elv+O3BEyeTugWKV2UFLzl
-         2zJqlkpe1R2Lb6RmEF2xnzbZ6WbzwJAxr4m1E1VCG4lQmw7d6diNfm9W6/xNIcL1zFzc
-         iCyP/I9F9GPLIO78fZox2824w8H9oEhx5RzTGjnIKFTAlI27gqrlKiqTrKS6IeN01B/R
-         pERzoyJPO1J9W74Du5EU2b3nHhh5vzNcB5cSxJPB1o8gKpP7+xqLoBINE8zI6bIEUYpZ
-         pmPg==
+        bh=DBPj94wzu0f/vZcZs546TaA2D0wfsHGnUInoGcn4IOo=;
+        b=MJCoqjPgComkSZcERrHtpTzlnaeXeZfv0e4Qa0UjXlcJL5rBsQCrjfMKvUv/95BUiU
+         qoZKvMBir5rQtJbfPbhsCIUUSJaM50Jwkm2j3Ggo7rOeuD3QrW7SihRymEHqk02/Fo9b
+         6NZ0rrhqTVKS5uGbPPHZW8SWNlREPMSRRhvSYFIBM9yYYTSV0AcViI8UQFoXXjnBSDib
+         xeGXnac/J2Lxhp/U3g5iLSEUn+NcfAit/T/tG8DWXOjZujvYTYCe59votnPU6HFvzosG
+         12tAcnl/Q2kzgLP8l0w6ByvrmTvX/ajOakeg6tRQqpdpmBJC9pljmHg+Qg32UQuckP3s
+         wyLA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AC+VfDxs2cD4d4RNMZtrh2vWXVhpB4QZk+209UN1gOyB/ChRRf6RU0Fp
-	KFxRg5c3RC2dl5CrXEIgq98=
-X-Google-Smtp-Source: ACHHUZ7alnQ8QZFf6BdaqKBSFCQDnK4+Sy6nHjrWB4M7je8nAuUDThPQQdI+NQd5bp9hATovegPNYA==
-X-Received: by 2002:ac2:43b8:0:b0:4f0:b01:94d2 with SMTP id t24-20020ac243b8000000b004f00b0194d2mr1452582lfl.4.1683423033774;
-        Sat, 06 May 2023 18:30:33 -0700 (PDT)
+X-Gm-Message-State: AC+VfDzenGkL6PwndtSK03mV9PncSiURE3oC2UBL7e5X+3lIkbwB1+hJ
+	sfKk7VGA1+0mc+9iBklN2Ek=
+X-Google-Smtp-Source: ACHHUZ5ri1zCXautKpzFXuErxS0Ay+xWulTPUotVm+J7n9Ym8QzSewLgibXz9zIFRlLZ7ZPW/sm6xw==
+X-Received: by 2002:adf:dccc:0:b0:307:7cea:bbdb with SMTP id x12-20020adfdccc000000b003077ceabbdbmr1065485wrm.5.1683424892644;
+        Sat, 06 May 2023 19:01:32 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a2e:8913:0:b0:2ac:6805:ece7 with SMTP id d19-20020a2e8913000000b002ac6805ece7ls2595559lji.6.-pod-prod-gmail;
- Sat, 06 May 2023 18:30:30 -0700 (PDT)
-X-Received: by 2002:a05:651c:2318:b0:2ad:80a0:9391 with SMTP id bi24-20020a05651c231800b002ad80a09391mr349635ljb.23.1683423030856;
-        Sat, 06 May 2023 18:30:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1683423030; cv=none;
+Received: by 2002:a5d:5c0c:0:b0:2f4:1b04:ed8f with SMTP id cc12-20020a5d5c0c000000b002f41b04ed8fls5426685wrb.1.-pod-prod-gmail;
+ Sat, 06 May 2023 19:01:30 -0700 (PDT)
+X-Received: by 2002:a5d:4c49:0:b0:306:2c16:8361 with SMTP id n9-20020a5d4c49000000b003062c168361mr4486252wrt.22.1683424890180;
+        Sat, 06 May 2023 19:01:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1683424890; cv=none;
         d=google.com; s=arc-20160816;
-        b=QSfWDLF1Pvu4dG4jYIDw4ucKvrivQ/UBmBwhc+qpHA0Do6W3Sj6OSHmdmuk28nVWpz
-         QfKGUYnPocJm8kTT6Y67k1YjJ6HtTfI2fEeQvXcX/euZ4lSmfAEYxLQtAgnNU849m9RT
-         B9FdfIjY5ikgI/TCAx1SdsqaCEpHozOSYUIG4qRu62jJiJF0OldHXtjVkYe8Kuw3hLuc
-         /v/OPzS3z2nfvYU0ZUYgMg4CG97H6QFinyNikQlAkdIqeOFOMK6G3tijByVFv+8cC0Jv
-         tuLJ2SYrpyRGIOOMsN/VT3Nq2YvLmewkzBEWXQutBS1x7kYuO3LWsdc3U8TZrHmpd7sf
-         opPw==
+        b=cFzHRJwJLZd0iRuBOioQhoCHOJuRL7eN5axDNDo/ptOq9MEvZbU0afafKOav7zj7gf
+         0Jh5OH36zrF8gjz+CZxe5A1UF6B/NCVYDuz63C8FsONW7FpPnmb4IUS0xp6xj47pgmb/
+         MtSnvWylnI+FOs1qhxS/ZaFyQ34nQlMXSQEtd38O3nISn5MlTWH56BVjBJVc5hTQ7koZ
+         5Caqt69/V5KNuzIpKDYs5/N9aRhBL+tQ0kJYMzliIgUoQLRUxeqGQBpqcdFLjcIwRHjb
+         Spph6dqZAKfQR/2EcZ8BqUw9woGoRS+iS1PigkMTgbQ1DFdpgT3lnFDYbQRmDjqATI29
+         Y3Zw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:dkim-signature;
-        bh=X7Dyo35sqNNBMKqvBmyaSEUH02FbtneJfcqsq7RHGrE=;
-        b=005S6kAfvsvOOg1q6vjueziGkUafaxHFmxHAC1FeOlkOxwYREeALUBLMIpO/COr2ap
-         R9VGqQXCaua++nkHkSwlTH/98HlI4dbhpwoG1dKYXtL4BPYqAn4NB9Aq0iKFJI1qYwn8
-         91R0povF3ADBQA7FeBQaOSa8OyvxFYoQEStwkZ2AKwrm2q1zzPLgKR1kLWKldcUDO3g8
-         OcEN9dQaFeZ3kNtV42fQtD2nxAGM5nfSGt4oeBBILWykJMIrVilT7VVmFFBVM0qtmsLs
-         n0ARPIAkS0/0C6DslpkVpzFcTmqpK7drFHtSQcqVEwsENYMYblmF0V30EEwjJMa9YzUq
-         juqA==
+        bh=SqbQCGJJYZ+i5zT483x2DTJNDRIiPP/bPrPmhdAiQTk=;
+        b=K2wvPoM0tIzEaz4mpfi0XmxpgqULp3Ng8YiNU2M05R3xB5CorS/kEGQyVzDCPs64VT
+         3XmfL02eBNLRlxqGOJLCvofPXmohC3XWaCIYWXAgQ7SWr4YSyx0fonb+iDs4Gg2FgusB
+         vPfZ677v1OwB3k+nHg0fvnefEdD/t1zxxqoKBVPkMmub/j2v/51GbGH+ONO1NiU4mLWs
+         dvFENUsA2G+4d3ovsYQIH+BfCkZejrR2bApbXBslodveuuodk5SulP7/XyMdSuk1YrMf
+         QOSTRA/apqbhuQ1L/URSPQWG7uRWGofdQFysOkoRTKo7zjyue/WA+sf5XfrCXcgsIm+C
+         enlw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@intel.com header.s=Intel header.b=E6ZGrpAE;
-       spf=pass (google.com: domain of lkp@intel.com designates 192.55.52.120 as permitted sender) smtp.mailfrom=lkp@intel.com;
+       dkim=pass header.i=@intel.com header.s=Intel header.b=NYDXWLs3;
+       spf=pass (google.com: domain of lkp@intel.com designates 134.134.136.100 as permitted sender) smtp.mailfrom=lkp@intel.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
-Received: from mga04.intel.com (mga04.intel.com. [192.55.52.120])
-        by gmr-mx.google.com with ESMTPS id u15-20020a05651c130f00b002a8ba7c9a04si225683lja.7.2023.05.06.18.30.29
+Received: from mga07.intel.com (mga07.intel.com. [134.134.136.100])
+        by gmr-mx.google.com with ESMTPS id bx29-20020a5d5b1d000000b003062765f97esi331733wrb.6.2023.05.06.19.01.29
         for <open-iscsi@googlegroups.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 06 May 2023 18:30:30 -0700 (PDT)
-Received-SPF: pass (google.com: domain of lkp@intel.com designates 192.55.52.120 as permitted sender) client-ip=192.55.52.120;
-X-IronPort-AV: E=McAfee;i="6600,9927,10702"; a="348259147"
+        Sat, 06 May 2023 19:01:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lkp@intel.com designates 134.134.136.100 as permitted sender) client-ip=134.134.136.100;
+X-IronPort-AV: E=McAfee;i="6600,9927,10702"; a="414991600"
 X-IronPort-AV: E=Sophos;i="5.99,256,1677571200"; 
-   d="scan'208";a="348259147"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2023 18:30:28 -0700
+   d="scan'208";a="414991600"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2023 19:01:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10702"; a="728606711"
+X-IronPort-AV: E=McAfee;i="6600,9927,10702"; a="675620276"
 X-IronPort-AV: E=Sophos;i="5.99,256,1677571200"; 
-   d="scan'208";a="728606711"
+   d="scan'208";a="675620276"
 Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 06 May 2023 18:30:25 -0700
+  by orsmga006.jf.intel.com with ESMTP; 06 May 2023 19:01:26 -0700
 Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1pvTEH-0000YJ-09;
-	Sun, 07 May 2023 01:30:25 +0000
-Date: Sun, 7 May 2023 09:29:51 +0800
+	id 1pvTiH-0000Z5-1Y;
+	Sun, 07 May 2023 02:01:25 +0000
+Date: Sun, 7 May 2023 10:01:20 +0800
 From: kernel test robot <lkp@intel.com>
 To: Chris Leech <cleech@redhat.com>, Lee Duncan <lduncan@suse.com>,
 	linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com,
 	netdev@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Chris Leech <cleech@redhat.com>
+Cc: oe-kbuild-all@lists.linux.dev, Chris Leech <cleech@redhat.com>
 Subject: Re: [PATCH 06/11] iscsi: set netns for tcp and iser hosts
-Message-ID: <202305070938.QRjcW4tq-lkp@intel.com>
+Message-ID: <202305070951.jhFIquOM-lkp@intel.com>
 References: <20230506232930.195451-7-cleech@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -129,8 +128,8 @@ Content-Disposition: inline
 In-Reply-To: <20230506232930.195451-7-cleech@redhat.com>
 X-Original-Sender: lkp@intel.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@intel.com header.s=Intel header.b=E6ZGrpAE;       spf=pass
- (google.com: domain of lkp@intel.com designates 192.55.52.120 as permitted
+ header.i=@intel.com header.s=Intel header.b=NYDXWLs3;       spf=pass
+ (google.com: domain of lkp@intel.com designates 134.134.136.100 as permitted
  sender) smtp.mailfrom=lkp@intel.com;       dmarc=pass (p=NONE sp=NONE
  dis=NONE) header.from=intel.com
 Reply-To: open-iscsi@googlegroups.com
@@ -160,36 +159,27 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Leech/iscsi-create-
 base:   https://git.kernel.org/pub/scm/linux/kernel/git/mkp/scsi.git for-next
 patch link:    https://lore.kernel.org/r/20230506232930.195451-7-cleech%40redhat.com
 patch subject: [PATCH 06/11] iscsi: set netns for tcp and iser hosts
-config: powerpc-randconfig-r016-20230507 (https://download.01.org/0day-ci/archive/20230507/202305070938.QRjcW4tq-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project b0fb98227c90adf2536c9ad644a74d5e92961111)
+config: i386-randconfig-a005 (https://download.01.org/0day-ci/archive/20230507/202305070951.jhFIquOM-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
 reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install powerpc cross compiling tool for clang build
-        # apt-get install binutils-powerpc-linux-gnu
         # https://github.com/intel-lab-lkp/linux/commit/a287abe6fb8da0c4af44c1d83fad9ca4fcb7184f
         git remote add linux-review https://github.com/intel-lab-lkp/linux
         git fetch --no-tags linux-review Chris-Leech/iscsi-create-per-net-iscsi-netlink-kernel-sockets/20230507-073308
         git checkout a287abe6fb8da0c4af44c1d83fad9ca4fcb7184f
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/scsi/
+        make W=1 O=build_dir ARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/scsi/
 
 If you fix the issue, kindly add following tag where applicable
 | Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202305070938.QRjcW4tq-lkp@intel.com/
+| Link: https://lore.kernel.org/oe-kbuild-all/202305070951.jhFIquOM-lkp@intel.com/
 
 All warnings (new ones prefixed by >>):
 
->> drivers/scsi/scsi_transport_iscsi.c:234:1: warning: no previous prototype for function '__iscsi_create_endpoint' [-Wmissing-prototypes]
-   __iscsi_create_endpoint(struct Scsi_Host *shost, int dd_size, struct net *net)
-   ^
-   drivers/scsi/scsi_transport_iscsi.c:233:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   struct iscsi_endpoint *
-   ^
-   static 
-   1 warning generated.
+>> drivers/scsi/scsi_transport_iscsi.c:234:1: warning: no previous prototype for '__iscsi_create_endpoint' [-Wmissing-prototypes]
+     234 | __iscsi_create_endpoint(struct Scsi_Host *shost, int dd_size, struct net *net)
+         | ^~~~~~~~~~~~~~~~~~~~~~~
 
 
 vim +/__iscsi_create_endpoint +234 drivers/scsi/scsi_transport_iscsi.c
@@ -262,4 +252,4 @@ https://github.com/intel/lkp-tests
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/202305070938.QRjcW4tq-lkp%40intel.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/202305070951.jhFIquOM-lkp%40intel.com.
