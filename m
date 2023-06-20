@@ -1,117 +1,117 @@
-Return-Path: <open-iscsi+bncBDLIXLMFVAERBTOGW2SAMGQEK37ZZNI@googlegroups.com>
+Return-Path: <open-iscsi+bncBDLIXLMFVAERBTX4Y2SAMGQEQCD45MI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wr1-x43b.google.com (mail-wr1-x43b.google.com [IPv6:2a00:1450:4864:20::43b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 833C27340A4
-	for <lists+open-iscsi@lfdr.de>; Sat, 17 Jun 2023 14:13:05 +0200 (CEST)
-Received: by mail-wr1-x43b.google.com with SMTP id ffacd0b85a97d-30e4d85e1ffsf2356726f8f.0
-        for <lists+open-iscsi@lfdr.de>; Sat, 17 Jun 2023 05:13:05 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1687003985; cv=pass;
+Received: from mail-il1-x138.google.com (mail-il1-x138.google.com [IPv6:2607:f8b0:4864:20::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E00736F5E
+	for <lists+open-iscsi@lfdr.de>; Tue, 20 Jun 2023 16:57:21 +0200 (CEST)
+Received: by mail-il1-x138.google.com with SMTP id e9e14a558f8ab-3426ee45975sf15835335ab.0
+        for <lists+open-iscsi@lfdr.de>; Tue, 20 Jun 2023 07:57:21 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1687273040; cv=pass;
         d=google.com; s=arc-20160816;
-        b=F6i6Cwy6USkK25okbSRNIiec6uLbIT9VTpf7/ApPKgnbC21rMxSOFhcB4waSzBe+BU
-         8og1Fi/Oixiu8wqlFLc+NkfkzBAh5Ukqmo1h/Ad64d5l7YjQ4qlc5XxaqGwErlybnerN
-         ON6hK1l/GbvNxQm1P5XILYraU6knZJfEtMx/to2QQSDb0z/RcFQ1ij15IvLHUNVQSWNh
-         V3+6kTYhlJve7yc6SUxts/sTtSbptw2dpb4LhnIy1hUwfYDA2YovKkpybF6FJuSQJHSZ
-         UFsLgvN+VpXnLFqjdNDVaqf7qh3FrfSUKlHuQRAyoL3p8iAEY4CsCjeXU4TPuJtegUlL
-         FGBQ==
+        b=V8TdLwqLaYg4KOPeQOp5gaLd7KzPhACmdDDDc9FM9XbPR0Xw1ed4nzrzO7cCO2nvif
+         gsrm/pu+X0NEYQYJMA0RqaS95aKXp9PqBGBVLNbUneugMYoTIAk0OW0uB+hy2AeFSyMj
+         LyGMoOlmsOIb8k6pzaw1fFeD74kjyjNBz3227Q2EMF9uo0OtLYcqh4bgnsx/K8+LqEs2
+         1Gu9nmW48RZu4nL0Wpzdjsz61grFrkwPXTKTmbe3rd/x7UZhauBjPaWqAP9OLrPNZKCf
+         QSBO4rIbS0LyoSbigyKAI4IMivwwV7A9EtQjZjrqqhLxWnSVKmu8YDA7TiaU0kEIDDor
+         6M9A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=9snvdf6nCkKex5Ppxa/UCk79Bkz6wJWonK0TKibNHGA=;
-        b=nvlHfQJyF2ojlkZxffcYLmTofauIN3ppnqQ/erCp6ZBVG/qOQZiknOp0OE1Xcz1IlO
-         v/YSqGX6G4cxk5Fxd1J4uOK5ninYwskRHQNwFYcO+aYZhE/18Z7rgxaoWaEdfsL8cERv
-         XYVg1xAQXyHwEkgRIgTWeimACSHAsUjfp3cHEvb8EDo8eNOfyLVdP8H+tO15A51Ocpaw
-         1s9Q4swXna8j5eUFo30XXanfWtNvp0SswOvPD+ZMFW8GSR20iUWQKgyI5/KUpCJB7o11
-         s+BJ3Mxp6lnl2cfen/agJZpdNO9ZO0+k+219yoK3BwTSX4C8m5gRTCp+mkcKw+f5NiFy
-         AQWw==
+        bh=B/GN6xos2TxqnkeiAZVBb79U6HW+uCkc8QvfjRPn5MM=;
+        b=SzRRSpy31YHbA+LGGYPRJdy6TNx4JK9BM8zWNsI9P8M8wO2F1HiKV4bXWn+nndv8Nt
+         vYczDSYsrzKRdE4FqMC3rQCzzemADenKm/Nbf9lJ08zNA4Eek1zdfsPyh2wtMkiGySl7
+         pL+sUGp0szA6445sEoB+mUQSjNW7eUBM13E5JH+qmzPW6Q9OS5H0o5vVayjqij6tuKlx
+         a0EzhpnwySAgrnnN/2AoOEcwNiM7zMV4Eul4JVPc2UbFVxQd5yd0pMqou1H/illAy5/L
+         h0MHwCrjBOcXQ1V7Rin5qfRwqkF7RpDCK2uSUOa/I0CCMibbdENDlgDT6LextjnARht7
+         uIsA==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=BJNAUcr0;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=Tm0JM7GF;
        spf=pass (google.com: domain of dhowells@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=dhowells@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20221208; t=1687003985; x=1689595985;
+        d=googlegroups.com; s=20221208; t=1687273040; x=1689865040;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
          :references:in-reply-to:message-id:date:subject:cc:to:from:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9snvdf6nCkKex5Ppxa/UCk79Bkz6wJWonK0TKibNHGA=;
-        b=q/x1dWVkKIPQFXeQUAhfJASEp5uk6onba+x8HrgGTait/SLnxrWafkagA1cRaQHWiD
-         +cKcNR1YsIDRWvg4VzcU+hOdXJdZtxdtx9t4kvrnEIlRt5ongckD8SihL8+XeJo7hj4C
-         zrFgW36NQbJGykqCXIIJc+4TvERK4e+28QYjAI/e/YDk3J3/CVSXWLp4J5AmJ96a1swd
-         4ZQ0HQN/3a1+4hUOrWhoXo7FSrgS9ReOXrg8CIAxS2RMG0caAg6DZKhJutwlT0Ed9ku+
-         WYSrCMsaHGZDgDapVnaW1faQvIVh0CxuBrAEUldE1j9b+30dG4HXaOoObTVyDpGDXF/2
-         DoJA==
+        bh=B/GN6xos2TxqnkeiAZVBb79U6HW+uCkc8QvfjRPn5MM=;
+        b=sbE8+O+GIXWlxvvV9rDCsn05J3P2NGgTLYNZXtvjmHi9KCWN1sMvUyq21DAZQXnXFH
+         anOZxVcpw0LoF1wOLsK+zuBCQYn0YqFTxv1v9wC7G4tJQpndLL8xOmasS7pNu0rsfud6
+         vus7zuMpidixBqBODopyhoM/up2pmMQ8HdFHjSmxfKKbUQhblDor957Q6OI4hKoX7TpY
+         PKSRih/rUKJggBDrPzw7WjdfLurDjdqIpMpWS85Jbs/j91Qcgd9ifRqjCqqmGbqveZ6I
+         axCghjj+afofvVXCs2K3QGzzVjmB/nfglQ6gGsp29/HjKQSkmFqX5TUU0Qh50t3OTAD+
+         D3CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687003985; x=1689595985;
+        d=1e100.net; s=20221208; t=1687273040; x=1689865040;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
          :references:in-reply-to:message-id:date:subject:cc:to:from
          :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9snvdf6nCkKex5Ppxa/UCk79Bkz6wJWonK0TKibNHGA=;
-        b=lBRjkD1orIe8MpV8ztalhHJTeIkeor6vLRbXsJUHqnrWY4wd5CqGxV5oa9+C7WTT+L
-         sDZPQWYV8Ku96UnZCJUf32FT+oNP0DbZ7X66VCymXo7zUCveMTXdhlJdsjaIO9ilhlYP
-         nZNqyPUANybgwpfGT9irsUzzhcF1zIM7WJDS/2hnWlx1b0XiZKA5CJihCoRbq36MLfYN
-         5tMAMBhuw8O3rrdQnHc89iHkJcyrKCv6E5SlPvSp8kasBXthx06oZo7Cmja81yINRAUB
-         1ilpLOgG7wqwaWylxL9dImo3Dh6L1MOjZnrynBOUvTevUcbBF6ueRNAfnTpUtVt9+9oj
-         vcEw==
+        bh=B/GN6xos2TxqnkeiAZVBb79U6HW+uCkc8QvfjRPn5MM=;
+        b=h1R9sT4pd7Hi7XaKWWcJDtsrk0uvV9ewVWl0gwSbsFRziwLCxfgFnOiBL1i0euVNzo
+         UZe5KStKn2Y/82dr+3Fx3E65Ye2SD5oPzaSyA/dVnzLVEQo2T705VF1LfooBnBWQCd4+
+         FkKkYm0uu+D/FlIxx787yhNz9154bFSf5tiJ4eGDvpJF7b2IllcFOEi3pCl/4fPzsHBR
+         aL9lQD9sFsJKSzfvDR/qYHIaIZL0jafMIEePG9YhQoLrSGNid2ub6xehAA9vZiWm7gnl
+         CnYWmZKQAdxMtHzQV3nQ76kzoa+xZpQhkGvdfw2pbUHpkKxhWlXE5mvgPvcF0WEkU6sz
+         j/CA==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AC+VfDyhqrFT7NU7clJPdkzTWWLa8QZ/GnI/EnQzii5dCRNbLjY9WyM/
-	YCQLD5rsl6vPDHsCmvOdy/w=
-X-Google-Smtp-Source: ACHHUZ6cxxHEnlFAkz2lJsqJcyug3O31fA8C2qCeN5sORiCRepJo9YafyQj9Phec33mjzX+p2FfrbA==
-X-Received: by 2002:adf:ea09:0:b0:311:15e0:1b38 with SMTP id q9-20020adfea09000000b0031115e01b38mr3741382wrm.49.1687003984082;
-        Sat, 17 Jun 2023 05:13:04 -0700 (PDT)
+X-Gm-Message-State: AC+VfDxjxGaiMAgQqBPc2xMY3NAKeNith2H3rp6dkJmPDMD75VYs4BB5
+	jX8altszafnUyOCqNu43EUc=
+X-Google-Smtp-Source: ACHHUZ5MzBU3b45jtecSy1cFpiDKjzQW28/gg7nv68hKB2Xr8pJEDIoPjIg1YzmKqrrIJP/qqG/xWQ==
+X-Received: by 2002:a92:c98e:0:b0:335:1ed:359b with SMTP id y14-20020a92c98e000000b0033501ed359bmr4108770iln.15.1687273039983;
+        Tue, 20 Jun 2023 07:57:19 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6000:61c:b0:30b:3044:3bd8 with SMTP id
- bn28-20020a056000061c00b0030b30443bd8ls104159wrb.0.-pod-prod-09-eu; Sat, 17
- Jun 2023 05:13:00 -0700 (PDT)
-X-Received: by 2002:a5d:4f8a:0:b0:309:5188:5928 with SMTP id d10-20020a5d4f8a000000b0030951885928mr3716431wru.35.1687003980701;
-        Sat, 17 Jun 2023 05:13:00 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1687003980; cv=none;
+Received: by 2002:a05:6e02:130e:b0:340:5d8:9a53 with SMTP id
+ g14-20020a056e02130e00b0034005d89a53ls1107544ilr.1.-pod-prod-09-us; Tue, 20
+ Jun 2023 07:57:18 -0700 (PDT)
+X-Received: by 2002:a92:d141:0:b0:343:13e1:68ad with SMTP id t1-20020a92d141000000b0034313e168admr4214186ilg.10.1687273038166;
+        Tue, 20 Jun 2023 07:57:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1687273038; cv=none;
         d=google.com; s=arc-20160816;
-        b=oLLFl8p5A3sTzZim3PXX+bSlWatjRs+Kg3+6ch5BT/HJsVWKUFkCyM6yGG29h3soQb
-         eaqIIn/blVsEXlbp6eydCKiJU45yK2MJbZvL3702/2SO+ZKw1hDea+zerGbZNZ6PzCeJ
-         Ia3VOMb4YXyECzxad05aPFwCbPb3cA+BPGf40urV/PUtg8jpdnzY3y6TwB6SnkLxVvsN
-         jbWa2IxOL6h/KHVe+Fpmanc4JD8StHnRVATNsKolwipr3rPJZRk0St1VnjGnHJ20fXsG
-         qvTpmLTuTZzuwgoAipA1hYbTPCfxwUiOrOeMBWoy9hanC9+v3GdFfcajHWxBq46u59a+
-         jCeg==
+        b=AvMf+SiDmeh00fAY5Ov0tJ6BSfyaLUKZISZ7nx1fZ3E7tIm6IE+QB4m4r57Qozaj2i
+         dWrJsZNczUs/QEUiGgaKfNh0NsE4EqEGJn5Xar7iTzMXRm5fUTnKpyuYegjtznqLwn76
+         wVz6YA1ju6F3VsDvBBUqqD5vyGHX4uRBXlewB1mf59CYptjo+3Iu+T4R5mVmnHhg5KBJ
+         ZhwYVaY/Ccn/loR19d4uR7XDBf9WQ0bQk5spMPXaGzhk/cEr1obE3ncJxiYBz1VE43Cx
+         zhY55PMAe9o4yaG4ZF5hyJu8qgNEm4WDRKp+ey4Ubbl2VsJ6B1cfL3FsRe/7qynEMlAS
+         e0+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
         bh=bszGYXAPCfyFrCrKXBgf4DyEzlv1vS1+csO6wWtbX4c=;
-        b=d+EK+WV4fKzs5OU4MVlLFdOcM6s2xsV9PiP7/EO3Xp2ZXIih5MAoBL25SSWVECt/8O
-         J23asoVp3VN6XLbDO40HLehoYyXt/LEQgy4EpMIdePO8J9hgNOCPwrXrTD7L3my6Pa77
-         mD7s1ZqKgtHai14sqaIpvjzeYVY7MyuBG1oTvpElDsunLPmQH0R6FRt4FkHQkKmjrtq8
-         AUZcMISR9z+4yc5f0LQQqm+FkD6S0hcQULbjejT3lCZqAJr6DeMEB6fjXj45g6AHYjSH
-         8rTnq49jRgsnYkyJmBGnkRUUh8dx3/jk5L2HM8S8hJnV6RsdkGjkAKnhTbRojCDSuatM
-         CyVw==
+        b=SgFs4QzdCJW4Ol6xX0tIhMW/cC6ElKgoeXTdMp7mNUuyAlFrm7n7bSkr7KT/QFQkGs
+         sCUCLfqGJmM9VIUjqOyd+RMbKPLKWehF9ddlWcrv61WsGH1E4W8A93Xk7fkBjEzZjSQD
+         5AKNpkDLb5oXUaf412JwOPLcci7CTf1X8L0ncGFch4HrXnasPE9LZ6XCpeAZl1PLmtdj
+         d8Y5C1VEUUNzLG05ZVDV8Kyd6s3S2GtgMkWdBJwnw6YupFm73UgMYKjzEHihOeSNZrtv
+         vWuaq8C33N3WcARntC6q9zUg9/BkC6UtbYtmxHb+mOHE9r8xogxTWXCcfVa40F+ICfVM
+         87tA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=BJNAUcr0;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=Tm0JM7GF;
        spf=pass (google.com: domain of dhowells@redhat.com designates 170.10.133.124 as permitted sender) smtp.mailfrom=dhowells@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.133.124])
-        by gmr-mx.google.com with ESMTPS id bq2-20020a5d5a02000000b003111816630dsi375881wrb.5.2023.06.17.05.13.00
+        by gmr-mx.google.com with ESMTPS id n14-20020a056e02148e00b0032e1027cbf4si202306ilk.1.2023.06.20.07.57.18
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 05:13:00 -0700 (PDT)
+        Tue, 20 Jun 2023 07:57:18 -0700 (PDT)
 Received-SPF: pass (google.com: domain of dhowells@redhat.com designates 170.10.133.124 as permitted sender) client-ip=170.10.133.124;
 Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
  [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-436-185vvMv5PdOOlfFYb8ORMQ-1; Sat, 17 Jun 2023 08:12:55 -0400
-X-MC-Unique: 185vvMv5PdOOlfFYb8ORMQ-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com [10.11.54.4])
+ us-mta-180-5iBq3k2zOLaeVvGBHbh90g-1; Tue, 20 Jun 2023 10:57:13 -0400
+X-MC-Unique: 5iBq3k2zOLaeVvGBHbh90g-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.rdu2.redhat.com [10.11.54.5])
 	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 192423C11C6A;
-	Sat, 17 Jun 2023 12:12:54 +0000 (UTC)
-Received: from warthog.procyon.org.com (unknown [10.42.28.51])
-	by smtp.corp.redhat.com (Postfix) with ESMTP id 903F92026D49;
-	Sat, 17 Jun 2023 12:12:51 +0000 (UTC)
+	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 176203C1BFD2;
+	Tue, 20 Jun 2023 14:54:42 +0000 (UTC)
+Received: from warthog.procyon.org.com (unknown [10.42.28.4])
+	by smtp.corp.redhat.com (Postfix) with ESMTP id 9E84B422B0;
+	Tue, 20 Jun 2023 14:54:39 +0000 (UTC)
 From: David Howells <dhowells@redhat.com>
 To: netdev@vger.kernel.org
 Cc: David Howells <dhowells@redhat.com>,
@@ -136,16 +136,16 @@ Cc: David Howells <dhowells@redhat.com>,
 	open-iscsi@googlegroups.com,
 	linux-scsi@vger.kernel.org,
 	target-devel@vger.kernel.org
-Subject: [PATCH net-next v2 15/17] iscsi: Use sendmsg(MSG_SPLICE_PAGES) rather than sendpage
-Date: Sat, 17 Jun 2023 13:11:44 +0100
-Message-ID: <20230617121146.716077-16-dhowells@redhat.com>
-In-Reply-To: <20230617121146.716077-1-dhowells@redhat.com>
-References: <20230617121146.716077-1-dhowells@redhat.com>
+Subject: [PATCH net-next v3 16/18] iscsi: Use sendmsg(MSG_SPLICE_PAGES) rather than sendpage
+Date: Tue, 20 Jun 2023 15:53:35 +0100
+Message-ID: <20230620145338.1300897-17-dhowells@redhat.com>
+In-Reply-To: <20230620145338.1300897-1-dhowells@redhat.com>
+References: <20230620145338.1300897-1-dhowells@redhat.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.4
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.5
 X-Original-Sender: dhowells@redhat.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@redhat.com header.s=mimecast20190719 header.b=BJNAUcr0;
+ header.i=@redhat.com header.s=mimecast20190719 header.b=Tm0JM7GF;
        spf=pass (google.com: domain of dhowells@redhat.com designates
  170.10.133.124 as permitted sender) smtp.mailfrom=dhowells@redhat.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
@@ -322,4 +322,4 @@ index b14835fcb033..6231fa4ef5c6 100644
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230617121146.716077-16-dhowells%40redhat.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230620145338.1300897-17-dhowells%40redhat.com.
