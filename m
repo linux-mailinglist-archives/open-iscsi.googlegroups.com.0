@@ -1,137 +1,145 @@
-Return-Path: <open-iscsi+bncBAABBFPV76SQMGQE5MAOSHY@googlegroups.com>
+Return-Path: <open-iscsi+bncBCYMVIPVXQMBBMMLQCTAMGQE7EH5D3A@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oa1-x3c.google.com (mail-oa1-x3c.google.com [IPv6:2001:4860:4864:20::3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96145761EB3
-	for <lists+open-iscsi@lfdr.de>; Tue, 25 Jul 2023 18:38:48 +0200 (CEST)
-Received: by mail-oa1-x3c.google.com with SMTP id 586e51a60fabf-1bb8e028beesf2271163fac.3
-        for <lists+open-iscsi@lfdr.de>; Tue, 25 Jul 2023 09:38:48 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1690303127; cv=pass;
+Received: from mail-oo1-xc3a.google.com (mail-oo1-xc3a.google.com [IPv6:2607:f8b0:4864:20::c3a])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B4B76200D
+	for <lists+open-iscsi@lfdr.de>; Tue, 25 Jul 2023 19:26:12 +0200 (CEST)
+Received: by mail-oo1-xc3a.google.com with SMTP id 006d021491bc7-565b0ec169asf10703568eaf.0
+        for <lists+open-iscsi@lfdr.de>; Tue, 25 Jul 2023 10:26:11 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1690305970; cv=pass;
         d=google.com; s=arc-20160816;
-        b=Bjujvsk0y05xlpfu1uUQDETKsjUbUMatWpfUZghztCM8rlSQ5E0/6067kEpiJ15PyN
-         J/jb+gJbG5X8NI1579TJQ1fUWEfVZCGeRQBi1WS4V/iLJGVcoCiEnF9w5Nu08+6mbdNU
-         tGV7puUiXiLi5Gxv9HjIDoa3Gkt/ht0YFqWRVOn7KGQLwY3gRCcdBr/kGoVd5pRkbjTt
-         SvXccH5qFYGmtyMad296l8gUXz3M75qTPy8J5et0WW4btvmm08yorlP2HfLZETZ3znbn
-         5XybDX/uLjVfpqxGmqBzF7nGCWqtCX47ilrtvMWqFSYT3YKwNsVVke80uqGFpIQN4azH
-         IHxQ==
+        b=H2AZOLvRydOkt8AAxiruBPA0LFLporhp0GMutVy4PF60+6JIzwmiLVk7cfEmoEVmYO
+         koK59RwtdzQynKkdiCNKfUM7NfNXF9C14FgxEbOWX13hcjgLO79QcoSE/SihkpOScVVO
+         mjDIgcaXNau2ZACTH2dQbtDsW/6RoTClDa8FJ/0CZoscY5gZaER2CCSlgLCDXlVgxjOA
+         Cmog7Fl+JOyOD7uG2KuV2w8CiOI7GfX+gczZUiXcZhvSIZGXRI7ugOJZiEBQJEwoAqzC
+         EmM414J7uDAxY7p8ZkpsKFvga2F4ldinW1OrCymL+gIkr4mgsi29G8gupsg1qpmEMKe0
+         sImQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
-         :date:subject:cc:to:from:dkim-signature;
-        bh=CoBS6YgJCmE2Ahr87+WbvsaAs3+8JB97l+9rx2ltG5k=;
-        fh=nya2RMvejbE6n4IJx5qWTwo1bK9FWOrMOuIfl7Oiv9E=;
-        b=gOyGV0ENVd1l/dBTx61UWg7870xPStcN+5n77guyOsGpu6snR83gswkSGvQBY8FKE1
-         pL0fcjoFveonI2al/D1oV2UqAmiCY2WuEakL0JubDfF//iiaiQYS9O4NVAjm9nVqgk0T
-         W1+qk0/zCfDQP4y38NIulfk8KuHKCv38YrcPHouZrTLkJ5guJHOovtzaa+yfVrI5nxz9
-         I7PFl4nE4eoUtMYeRsgRLRPlrJGRmme7EYjMqL16z/dO0Ltg+3vQI8LnVPJ3tpjBJgHm
-         6HJwSHkeizWOKWGzjnVYqaaOortHm4OsRmZp5dQhaYz8/Fx6eyOQAv01aKuw0IcHOQ+m
-         7mog==
+         :list-id:mailing-list:precedence:reply-to:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:sender:dkim-signature;
+        bh=2BP0oXBRhGaY9c+SYGGKa6Xp2Ax4YJcUnOI3KCHAepY=;
+        fh=8nBWZbT6HMHubtHHd8IzkZgCrQUggc0mHHXc9tiMbbQ=;
+        b=a4CttYDJqNwq8s1kT6YFG29OwC/BgIAw62OHQsl+gdEzoJXsndv4m53xb8zdw3EJTK
+         0F+EOAwYiY8BD9fNqHKrEuvbHGTlPDlHfFrdr3Z9jLyYeQBWBPZW9Wq/G7BZRtzTB2NL
+         HVNP0usQZtUzhuXm03wrp5alOiglbAic2zzUSGXzHZHQmOsMcr6RzMhV8SZksGP59WLA
+         zZ8brdOyRGdGto1st65keJMPcLHuqnhjNRypIIrU9ndO7YofmIBJhSA/VeWdzM9ihMt0
+         Kifnp1Z+QKjk4RmJbxIZlOTZlv2IrpYNG+0FmZwQhMfJ6UQnQ3rbgyxwauQDqe/OAjac
+         JYGw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of yuehaibing@huawei.com designates 45.249.212.255 as permitted sender) smtp.mailfrom=yuehaibing@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=NRihcwTj;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20221208; t=1690303127; x=1690907927;
+        d=googlegroups.com; s=20221208; t=1690305970; x=1690910770;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CoBS6YgJCmE2Ahr87+WbvsaAs3+8JB97l+9rx2ltG5k=;
-        b=eKgnrhjKTip5+Ir+Y++cSHoVhThBmdS+STUOZhD5QqwxaOtsh3ir0pWh9FVmp8X5KN
-         yHA6AUfaoylWmOrQb9p8Ehu9BUmccETbwxfLaGftzh2ag3V5e7fxXq74inPVCoRvwYFN
-         awJIPcz7P3VzLKbQvfAE1YF4MgWX04ilNGIjX1RkwpRmVnt3CIRi6uHhezUJbxmty91M
-         N/u+wuFIJ51aeiupvgkJruarqK078B/bT9pIPlttzxTrdHIDd8L3ybqtquNXyd6WOOra
-         X+twbzkoc8s6HqL9DAlJUiTVRZpXiJsUvDb579Wy+t8JhndzX/RH69IwJP7UkZTEfrh2
-         rE/Q==
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=2BP0oXBRhGaY9c+SYGGKa6Xp2Ax4YJcUnOI3KCHAepY=;
+        b=gxt29dJveKDAtnpAoKhwV+sSoln1ckhIRmSW49gNDqpOfubugrmtpKLw61rikFI61g
+         3ityQDx9TosqxAm+taRmBN41h3DIbqYpZDtLocbDkS+lGIGX5iF6UNbLs1aexxLZgcwU
+         O4pidOKF8AUFl9rXHan7dJ7YSam2Y+e/U/spY8upAnC8m0QMWRT9OjaoBINPim/ppKc8
+         8uoxslVUFpalabK2K2t6Ly7+fhPQafRmuv6j+pTqTzEl6SAD/tmXDmGeRsOT1YHEzqf5
+         OPts3hi9toZS2cSXksW9Chsl9DFJZWcgdjAXFgu4IUihB20JFrM19s38ONHgysNdFUt8
+         ROSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690303127; x=1690907927;
+        d=1e100.net; s=20221208; t=1690305970; x=1690910770;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :message-id:date:subject:cc:to:from:x-beenthere:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CoBS6YgJCmE2Ahr87+WbvsaAs3+8JB97l+9rx2ltG5k=;
-        b=LBdjq0eZJ/thxS/NrSb5F+3wwlyClcb1A0dvoADLgMOHof/fO0RpCGLXdvzm/5SWUo
-         TgSZmWjXmQDA6DvVmCfznFhrHAlKPC2B3waTuhHH2urUGfvhOIXsO5S9Ojb6PL5JciJU
-         cIDvZJ6QgK5JYCFN0ruvknC8IgJw122i/kvUK61mM0em0DKU5YU225y/52H8O8sFuRiL
-         6HP0guWvJzFj5tRjKmIxu8f2DGvrnr/Zb37kzMnqn05SfHBpIz5UsSpohNRCAFq1LJhd
-         W2zYap581rcph0HbTcZsSE96sjW7NcEWZAmDJ6gpA7Y0l9jeHCnTIdGaVS0eGA+yQZOV
-         +dqA==
-X-Gm-Message-State: ABy/qLaAoMnwDOfnVx5799dT1k7gF4004fNFBusy/NjzOiuiSu3JOkKo
-	RZPNXy62/8AlWlhlOWL8DE8=
-X-Google-Smtp-Source: APBJJlGwl4/RRZZoUMMOaDfHhhPBVfGxoHpAgC198UhkLdRM3ILPjZKFIbH/mrYg73I4jpW4thCm+w==
-X-Received: by 2002:a05:6871:29b:b0:1b3:f010:87c2 with SMTP id i27-20020a056871029b00b001b3f01087c2mr14982382oae.30.1690303127019;
-        Tue, 25 Jul 2023 09:38:47 -0700 (PDT)
+         :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:x-beenthere:x-gm-message-state:sender:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2BP0oXBRhGaY9c+SYGGKa6Xp2Ax4YJcUnOI3KCHAepY=;
+        b=Lk7DpOLxLcGStc2d526oML5n78U1rKetb3vtxC3H09jFmJ+HWv5/2sCvKwwhB7YLaY
+         Wlsl07wWo9O0gYwpjKhZpCC1j5xhxMx3Z82T/owfXNvKLTQuoFEiSCKSFcFeEjEa+JCd
+         oLbqxjkiMwy9KEMrUNhFLOQoq71ErH5z180XHTg/aPf8v4/RD5H6xpp8Bej3xIzuVNvh
+         dXYhdcBpJBSrioE1vdeVso18jL7dwcuuikcY2TywIZmhdaEGWU2JHI4cIFPry44W1D3v
+         KVI19xXtDkx64+au3stuV/YXxuYdZeCB28LG3IqV0YKdZhPaDWWcrwGCdttpSIpwAalO
+         KUxA==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: ABy/qLZYiFW2nMphCKz4bDwm0pSORxTs63SMrp+XL7JbX8qMZ3Avq/B/
+	BBp1F3PVHZOYOZazWPUpO0o=
+X-Google-Smtp-Source: APBJJlG+UD1tC+c5SgAKlKF2zHS+6M4Y4ZvLY/JVsmx1gUjw5Zf9dmlyv9J6W92/rFV6i3Yc+f52yA==
+X-Received: by 2002:a4a:2a4f:0:b0:563:49fd:e772 with SMTP id x15-20020a4a2a4f000000b0056349fde772mr9541296oox.4.1690305970421;
+        Tue, 25 Jul 2023 10:26:10 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6870:170e:b0:1aa:1314:488f with SMTP id
- h14-20020a056870170e00b001aa1314488fls287292oae.0.-pod-prod-00-us; Tue, 25
- Jul 2023 09:38:45 -0700 (PDT)
-X-Received: by 2002:a05:6830:3a0a:b0:6b9:2c07:8849 with SMTP id di10-20020a0568303a0a00b006b92c078849mr4221588otb.0.1690303125685;
-        Tue, 25 Jul 2023 09:38:45 -0700 (PDT)
-Received: by 2002:a05:6808:114e:b0:3a3:5e72:c801 with SMTP id 5614622812f47-3a596308f3emsb6e;
-        Tue, 25 Jul 2023 07:15:41 -0700 (PDT)
-X-Received: by 2002:a05:6871:5ce:b0:1b7:27fd:cfff with SMTP id v14-20020a05687105ce00b001b727fdcfffmr15008096oan.21.1690294540500;
-        Tue, 25 Jul 2023 07:15:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1690294540; cv=none;
+Received: by 2002:a4a:2c56:0:b0:565:9c61:ce9b with SMTP id o83-20020a4a2c56000000b005659c61ce9bls559292ooo.1.-pod-prod-08-us;
+ Tue, 25 Jul 2023 10:26:08 -0700 (PDT)
+X-Received: by 2002:aca:230c:0:b0:397:f946:1e5 with SMTP id e12-20020aca230c000000b00397f94601e5mr12032028oie.15.1690305968522;
+        Tue, 25 Jul 2023 10:26:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1690305968; cv=none;
         d=google.com; s=arc-20160816;
-        b=Zav38ldOBeVsjsdUUPH1Yy15QW1sxeNGebF4bKU3CB3z/30CYn/telSTfQ3thsBBDK
-         Ut2G5o/iCRn8ttuD0dGeGz8sxW0yNEQF2cDxUxv46ejVtuUrQETVqkF+QSBSLzX4FzHM
-         d5ekNX3I9g+JGodiGB8GLST5bAOVIg9A+j5HxxEHox2Xtuv/OyTkvxp01FDTiZbSmykD
-         IF1lvmQZZZNDIpSwJrrL2rWCk0ojuyMImNqS7/ty8gaR/81bAnrCsD4md7hdE5w53QrL
-         V0T3cYB22NL/cvqA7ocsVGFFFNUUONJnAQLKif/acTXaApVl9J7b32catgA1M6gzlgHd
-         1CpQ==
+        b=urb2tawMQ261SJxZ1pVf5hOan+KK/iuA0/AcKk0e6Xs0opSfzP8TWgpKHrnMgfRW/8
+         v3eiARvZFMgMKG+2lbySlE8KceufoRT15sAIYbREmV04OB242LDuHZFTXhbPaI5K0aGW
+         j+DetkIIZ8zudrC7a8QNUYolc3cv4o2nx9V52sPrK9yTgIbbIJvfAUTy79GB7DGVstT6
+         siMzYNt8QXfk9Y5xqt/tMHKnbTiV8aEgDBlF5M6SeBgWBIqNUEKNV6ZJgDaPuOnKQT2H
+         0X62WOzUUWH7qrI8NByf1iUBXNA+e9o7oPBElzXTMn/hcZT9ptJP0U9HvILF/pUgudl2
+         +MkQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:message-id:date:subject:cc:to:from;
-        bh=8bCjTOJ+QHU8C+ls37gysCMKcBwyOGNCRvrfVuyiM2E=;
-        fh=SiWq8fVTjruF4fizG+K/iRzYqD7/BcFY3W836TLkxkY=;
-        b=fl9gec3R1tT8Kf7b4kNY3obwbQDhrmdSpao4D851jJ944GdnTtIV4bSt0rV72gjwT4
-         s+Kl1Oxq9m1pemX1SJBGeAf2tA3wePLZ5pL+HVHD7FUhBaMeK9dGjtHrr6//r3gzqTcC
-         ULT9tUbnMCvqT4FTObhuHPSjIrclcj2vV0GCgnssEN1JcL0zTsgZpb/NDgUpQ4FAuHWm
-         T8zCE7pyS8vm3HrSFa9iVvQUFMDavJH68EAQOsoyiZK2kGRADO3Pfx7f8PV5NJRMVOTW
-         csv9Qe0NuHl+S4EEflYxsmG8ULBPb2clPspd/Ic/SH63BYS9G4Vd43qnSZMK5oYcS0B0
-         CaVQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:dkim-signature;
+        bh=RfdbdDNr9lvtPioh6nTqIGvUGGU1L46kxvnNKym7qno=;
+        fh=8nBWZbT6HMHubtHHd8IzkZgCrQUggc0mHHXc9tiMbbQ=;
+        b=Ung6pEH9Dz6RuoN43ibVrhBULnI0gzTTRf0FSP6vp4UHAfyv5DRtP1q9STH9m74XPT
+         F7Gg77C47bEHD0Zoq2g8o4skqgnSprXTriemP6u9x2kW6zNn6VLXtC8Vqh8weo22/YA2
+         Heg5syWbP47Z8MjtYSTLr8j2m1Or0jHj6h0ehOZMvcAMDjzpFgPhtPzUr+wzRUOO78tW
+         906xRw9d+OXC3io6NUGO5xUWSlop8DXCG80qDu8hgDAX9gdXmxQURepQQzpA7PO6vayq
+         7Zldysliz0F7jXMJKjRpqidL8Q9wzPSP1xWRoerIUojmLYcS0cp9f61r5uUaqoE9Dk1X
+         UbRw==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of yuehaibing@huawei.com designates 45.249.212.255 as permitted sender) smtp.mailfrom=yuehaibing@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com. [45.249.212.255])
-        by gmr-mx.google.com with ESMTPS id mt10-20020a0568706b0a00b001bb2231a1a0si595781oab.0.2023.07.25.07.15.40
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=NRihcwTj;
+       spf=pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com. [170.10.129.124])
+        by gmr-mx.google.com with ESMTPS id m2-20020ad44d42000000b00630039463bcsi827145qvm.6.2023.07.25.10.26.08
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 25 Jul 2023 07:15:40 -0700 (PDT)
-Received-SPF: pass (google.com: domain of yuehaibing@huawei.com designates 45.249.212.255 as permitted sender) client-ip=45.249.212.255;
-Received: from canpemm500007.china.huawei.com (unknown [172.30.72.55])
-	by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4R9JvB2F3fz1GDJD;
-	Tue, 25 Jul 2023 22:14:46 +0800 (CST)
-Received: from localhost (10.174.179.215) by canpemm500007.china.huawei.com
- (7.192.104.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 25 Jul
- 2023 22:15:37 +0800
-From: "'YueHaibing' via open-iscsi" <open-iscsi@googlegroups.com>
-To: <lduncan@suse.com>, <cleech@redhat.com>, <michael.christie@oracle.com>,
-	<jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <haowenchao@huawei.com>,
-	<yuehaibing@huawei.com>
-CC: <open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH -next] scsi: iscsi: Remove unused extern declaration iscsi_lookup_iface()
-Date: Tue, 25 Jul 2023 22:15:31 +0800
-Message-ID: <20230725141531.10424-1-yuehaibing@huawei.com>
-X-Mailer: git-send-email 2.10.2.windows.1
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 10:26:08 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cleech@redhat.com designates 170.10.129.124 as permitted sender) client-ip=170.10.129.124;
+Received: from mimecast-mx02.redhat.com (66.187.233.73 [66.187.233.73]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-283-OHXZMGCyMXOPHFdKEVYPvQ-1; Tue, 25 Jul 2023 13:26:03 -0400
+X-MC-Unique: OHXZMGCyMXOPHFdKEVYPvQ-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com [10.11.54.4])
+	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 6A8E51C09040;
+	Tue, 25 Jul 2023 17:25:59 +0000 (UTC)
+Received: from rhel-developer-toolbox-latest (unknown [10.2.16.250])
+	by smtp.corp.redhat.com (Postfix) with ESMTPS id 39BB1200B66C;
+	Tue, 25 Jul 2023 17:25:56 +0000 (UTC)
+Date: Tue, 25 Jul 2023 10:25:54 -0700
+From: Chris Leech <cleech@redhat.com>
+To: Lin Ma <linma@zju.edu.cn>
+Cc: lduncan@suse.com, michael.christie@oracle.com, jejb@linux.ibm.com,
+	martin.petersen@oracle.com, vikas.chaudhary@qlogic.com,
+	JBottomley@parallels.com, mchan@broadcom.com, benli@broadcom.com,
+	ogerlitz@voltaire.com, open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] scsi: iscsi: Add length check for nlattr payload
+Message-ID: <ZMAFoszXQ3vwc9It@rhel-developer-toolbox-latest>
+References: <20230725024529.428311-1-linma@zju.edu.cn>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.174.179.215]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- canpemm500007.china.huawei.com (7.192.104.62)
-X-CFilter-Loop: Reflected
-X-Original-Sender: yuehaibing@huawei.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of yuehaibing@huawei.com designates 45.249.212.255 as
- permitted sender) smtp.mailfrom=yuehaibing@huawei.com;       dmarc=pass
- (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-X-Original-From: YueHaibing <yuehaibing@huawei.com>
+Content-Disposition: inline
+In-Reply-To: <20230725024529.428311-1-linma@zju.edu.cn>
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.4
+X-Original-Sender: cleech@redhat.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@redhat.com header.s=mimecast20190719 header.b=NRihcwTj;
+       spf=pass (google.com: domain of cleech@redhat.com designates
+ 170.10.129.124 as permitted sender) smtp.mailfrom=cleech@redhat.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
+X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -140,29 +148,33 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-This is not used anymore, so can be removed.
+On Tue, Jul 25, 2023 at 10:45:29AM +0800, Lin Ma wrote:
+> The current NETLINK_ISCSI netlink parsing loop checks every nlmsg to
+> make sure the length is bigger than the sizeof(struct iscsi_uevent) and
+> then calls iscsi_if_recv_msg(...).
+> 
+>   nlh = nlmsg_hdr(skb);
+>   if (nlh->nlmsg_len < sizeof(*nlh) + sizeof(*ev) ||
+>     skb->len < nlh->nlmsg_len) {
+>     break;
+>   }
+>   ...
+>   err = iscsi_if_recv_msg(skb, nlh, &group);
+> 
+> Hence, in iscsi_if_recv_msg, the nlmsg_data can be safely converted to
+> iscsi_uevent as the length is already checked.
+> 
+> However, in the following parsing, the length of nlattr payload is never
+> checked before the payload is converted to other data structures in some
+> consumers. A bad one for example is function iscsi_set_path(...) who
+> converts the payload to type iscsi_path without any checks.
 
-Signed-off-by: YueHaibing <yuehaibing@huawei.com>
----
- include/scsi/scsi_transport_iscsi.h | 1 -
- 1 file changed, 1 deletion(-)
+Thank you for doing the code review on this, I think these changes look
+good.
 
-diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
-index 34c03707fb6e..fb3399e4cd29 100644
---- a/include/scsi/scsi_transport_iscsi.h
-+++ b/include/scsi/scsi_transport_iscsi.h
-@@ -472,7 +472,6 @@ extern struct iscsi_iface *iscsi_create_iface(struct Scsi_Host *shost,
- 					      uint32_t iface_type,
- 					      uint32_t iface_num, int dd_size);
- extern void iscsi_destroy_iface(struct iscsi_iface *iface);
--extern struct iscsi_iface *iscsi_lookup_iface(int handle);
- extern char *iscsi_get_port_speed_name(struct Scsi_Host *shost);
- extern char *iscsi_get_port_state_name(struct Scsi_Host *shost);
- extern int iscsi_is_session_dev(const struct device *dev);
--- 
-2.34.1
+Reviewed-by: Chris Leech <cleech@redhat.com>
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230725141531.10424-1-yuehaibing%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/ZMAFoszXQ3vwc9It%40rhel-developer-toolbox-latest.
