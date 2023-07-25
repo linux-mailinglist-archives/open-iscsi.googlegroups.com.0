@@ -1,149 +1,137 @@
-Return-Path: <open-iscsi+bncBCIKNOFMWQGRBXPO7SSQMGQEZ43DB6I@googlegroups.com>
+Return-Path: <open-iscsi+bncBAABBFPV76SQMGQE5MAOSHY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ot1-x337.google.com (mail-ot1-x337.google.com [IPv6:2607:f8b0:4864:20::337])
-	by mail.lfdr.de (Postfix) with ESMTPS id B49AA7605F5
-	for <lists+open-iscsi@lfdr.de>; Tue, 25 Jul 2023 04:45:51 +0200 (CEST)
-Received: by mail-ot1-x337.google.com with SMTP id 46e09a7af769-6b9d34de264sf9836098a34.0
-        for <lists+open-iscsi@lfdr.de>; Mon, 24 Jul 2023 19:45:51 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1690253150; cv=pass;
+Received: from mail-oa1-x3c.google.com (mail-oa1-x3c.google.com [IPv6:2001:4860:4864:20::3c])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96145761EB3
+	for <lists+open-iscsi@lfdr.de>; Tue, 25 Jul 2023 18:38:48 +0200 (CEST)
+Received: by mail-oa1-x3c.google.com with SMTP id 586e51a60fabf-1bb8e028beesf2271163fac.3
+        for <lists+open-iscsi@lfdr.de>; Tue, 25 Jul 2023 09:38:48 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1690303127; cv=pass;
         d=google.com; s=arc-20160816;
-        b=MLcf/j7UFECCznsJEmoiwdmXA+ldOrf4SSBfkZhkNiPjWfXzMz+J1dsqDeL6Q7FEjc
-         USpZlBs+ASpZrg3mdEQbOMgJtGPlQzs4UzqAlWnyO9GlaACNPjugPHE40Bk9wu0/eCMH
-         53DLVtVy7GnX2TzPNgEA1BNh4+O5VZaaJbUSqBwQ5vq76s1MSfk5TWi9tAVvZPlDaPM+
-         YdYdAa5M6gPZeG2ZBhHyLT6VT8eMhZTc28lVNc46/mpuvE843uEfP3psHyUxSRKL22/n
-         fHVT+XSmQcnjfRqMZ7JwzRPk3XCpAsbktwAHIvvXNZuc3YhDOnYg38ptXaXNqTxzCUhN
-         hMvw==
+        b=Bjujvsk0y05xlpfu1uUQDETKsjUbUMatWpfUZghztCM8rlSQ5E0/6067kEpiJ15PyN
+         J/jb+gJbG5X8NI1579TJQ1fUWEfVZCGeRQBi1WS4V/iLJGVcoCiEnF9w5Nu08+6mbdNU
+         tGV7puUiXiLi5Gxv9HjIDoa3Gkt/ht0YFqWRVOn7KGQLwY3gRCcdBr/kGoVd5pRkbjTt
+         SvXccH5qFYGmtyMad296l8gUXz3M75qTPy8J5et0WW4btvmm08yorlP2HfLZETZ3znbn
+         5XybDX/uLjVfpqxGmqBzF7nGCWqtCX47ilrtvMWqFSYT3YKwNsVVke80uqGFpIQN4azH
+         IHxQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:message-id:date:subject:cc
-         :to:from:mime-version:sender:dkim-signature;
-        bh=szhNujcdx0hjV9x65DwcRmON+Akh/hXVpqNwztxEB8k=;
-        fh=vwEEfjY7oiwSg1ay1D8wxvq8/4FXR31uYswVfQKJ698=;
-        b=OND5MS5FDk42hXDISBvvb2YOorir+VrouN8R2XjI+bk8IpjzLwQQgefeeDj5exY+5o
-         NviCppz8fXq9/xzyVyV+2EWS1nM7QA3O6fPlx2UdT6RxhQPuxW0cInQbOSVokJiIbybq
-         WQ+6I0dAdI/P45+FTFaKIRsdNoV9MSUbpy/nlufbJleH+LRvUCVhnveqrQ2w2+j+xw6q
-         LgbpNUG0eMWacCY2ilVl4Y35Ehqpe23t+nkeDz3oLSwwMGAgNM8CSJ7mOJXKK9v+4a+u
-         v2gvMJpT+hSC4eIcjU2IvxFf2I1LyGKvra6vvfPxbcq2fG1v8tOuT5gZeD8JOl7NOrQn
-         1UtQ==
+         :list-id:mailing-list:precedence:reply-to:mime-version:message-id
+         :date:subject:cc:to:from:dkim-signature;
+        bh=CoBS6YgJCmE2Ahr87+WbvsaAs3+8JB97l+9rx2ltG5k=;
+        fh=nya2RMvejbE6n4IJx5qWTwo1bK9FWOrMOuIfl7Oiv9E=;
+        b=gOyGV0ENVd1l/dBTx61UWg7870xPStcN+5n77guyOsGpu6snR83gswkSGvQBY8FKE1
+         pL0fcjoFveonI2al/D1oV2UqAmiCY2WuEakL0JubDfF//iiaiQYS9O4NVAjm9nVqgk0T
+         W1+qk0/zCfDQP4y38NIulfk8KuHKCv38YrcPHouZrTLkJ5guJHOovtzaa+yfVrI5nxz9
+         I7PFl4nE4eoUtMYeRsgRLRPlrJGRmme7EYjMqL16z/dO0Ltg+3vQI8LnVPJ3tpjBJgHm
+         6HJwSHkeizWOKWGzjnVYqaaOortHm4OsRmZp5dQhaYz8/Fx6eyOQAv01aKuw0IcHOQ+m
+         7mog==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of linma@zju.edu.cn designates 159.89.151.119 as permitted sender) smtp.mailfrom=linma@zju.edu.cn
+       spf=pass (google.com: domain of yuehaibing@huawei.com designates 45.249.212.255 as permitted sender) smtp.mailfrom=yuehaibing@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20221208; t=1690253150; x=1690857950;
+        d=googlegroups.com; s=20221208; t=1690303127; x=1690907927;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:message-id:date
-         :subject:cc:to:from:mime-version:sender:from:to:cc:subject:date
+         :x-original-authentication-results:x-original-sender:mime-version
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=szhNujcdx0hjV9x65DwcRmON+Akh/hXVpqNwztxEB8k=;
-        b=kRzgOImbYyJtTLMVCLgka4kUDnVkmKj+OrHEmYQ0jIeecUG71h5bt8G3F5oGMypVoW
-         o9g6wW6HBo5AkXinm/lKdR13UgoQtDRk6S2UlmMh9qngjnOkt/jGp90doYwrz+sN+DRK
-         wufHwagjNZDrRyxPD3EDAai84f/jQGiE6oufY5xO3YpXvReqJAJJwc0k4ol0taZ14e5l
-         BKJ+igrT4B896LsF3otHuW1UP5jn8UG1bHy3u9IHNhDUKeivo9S/3uHE7ucvMOPTdW68
-         Gcz+UAgUBvZErRYm9VWfzJ6r7X9w8iPI0W/6jQP8YR9y/QP8zEsrNFVkDyPIeLTCVkRn
-         Vk1A==
+        bh=CoBS6YgJCmE2Ahr87+WbvsaAs3+8JB97l+9rx2ltG5k=;
+        b=eKgnrhjKTip5+Ir+Y++cSHoVhThBmdS+STUOZhD5QqwxaOtsh3ir0pWh9FVmp8X5KN
+         yHA6AUfaoylWmOrQb9p8Ehu9BUmccETbwxfLaGftzh2ag3V5e7fxXq74inPVCoRvwYFN
+         awJIPcz7P3VzLKbQvfAE1YF4MgWX04ilNGIjX1RkwpRmVnt3CIRi6uHhezUJbxmty91M
+         N/u+wuFIJ51aeiupvgkJruarqK078B/bT9pIPlttzxTrdHIDd8L3ybqtquNXyd6WOOra
+         X+twbzkoc8s6HqL9DAlJUiTVRZpXiJsUvDb579Wy+t8JhndzX/RH69IwJP7UkZTEfrh2
+         rE/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690253150; x=1690857950;
+        d=1e100.net; s=20221208; t=1690303127; x=1690907927;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:message-id:date
-         :subject:cc:to:from:x-beenthere:mime-version:x-gm-message-state
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=szhNujcdx0hjV9x65DwcRmON+Akh/hXVpqNwztxEB8k=;
-        b=W1/jQKnN/BxQOvliFSSZ4Hoq7Qp8BbblYt+/EYoegW9jj9UyRLTqMp9ZB6adPaPVpF
-         3OsfFiSl7mv9t/xwd5xY0LhNwTGd6qhuB4gWigPK7udxuE3LWYA5t/D7/HeWA2a/ns98
-         2jBtL7hoAcanD4llB/M9jvT9Jjevvn3zfyoHsdsYiwaPl8t6lPqdzZXvG+KnSwBbf4mi
-         FyNytqmvpon/+K2DCMBgJp5ly+Km4Fyh6OCvYrM0iCbuDXFCvxZJO2LgKJsFZjRjmJ8X
-         1wqoSU75rFqc6G8fcRzKH9szLe5K34SFl1mX27jinf4uKJ6YjdN+Qv+eNYmh4Ovc/6ZZ
-         T2Mw==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: ABy/qLaeNKOvkFBrfKFyQfkLo2zwlM0CwXudLHU0oYoTeCgMCbjjnoNm
-	qAgy11XvyZRXBEwE8U8UraU=
-X-Google-Smtp-Source: APBJJlFQJ7EznkaazfNEmuzFDxLC0PPMo6stY0cZbgCnA0Uek87ERq+8SvAJivIGp/4MO4oaZCCwGA==
-X-Received: by 2002:a05:6870:c6a5:b0:1b0:18e8:9536 with SMTP id cv37-20020a056870c6a500b001b018e89536mr13475812oab.52.1690253150436;
-        Mon, 24 Jul 2023 19:45:50 -0700 (PDT)
-MIME-Version: 1.0
+         :list-id:mailing-list:precedence:reply-to
+         :x-original-authentication-results:x-original-sender:mime-version
+         :message-id:date:subject:cc:to:from:x-beenthere:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CoBS6YgJCmE2Ahr87+WbvsaAs3+8JB97l+9rx2ltG5k=;
+        b=LBdjq0eZJ/thxS/NrSb5F+3wwlyClcb1A0dvoADLgMOHof/fO0RpCGLXdvzm/5SWUo
+         TgSZmWjXmQDA6DvVmCfznFhrHAlKPC2B3waTuhHH2urUGfvhOIXsO5S9Ojb6PL5JciJU
+         cIDvZJ6QgK5JYCFN0ruvknC8IgJw122i/kvUK61mM0em0DKU5YU225y/52H8O8sFuRiL
+         6HP0guWvJzFj5tRjKmIxu8f2DGvrnr/Zb37kzMnqn05SfHBpIz5UsSpohNRCAFq1LJhd
+         W2zYap581rcph0HbTcZsSE96sjW7NcEWZAmDJ6gpA7Y0l9jeHCnTIdGaVS0eGA+yQZOV
+         +dqA==
+X-Gm-Message-State: ABy/qLaAoMnwDOfnVx5799dT1k7gF4004fNFBusy/NjzOiuiSu3JOkKo
+	RZPNXy62/8AlWlhlOWL8DE8=
+X-Google-Smtp-Source: APBJJlGwl4/RRZZoUMMOaDfHhhPBVfGxoHpAgC198UhkLdRM3ILPjZKFIbH/mrYg73I4jpW4thCm+w==
+X-Received: by 2002:a05:6871:29b:b0:1b3:f010:87c2 with SMTP id i27-20020a056871029b00b001b3f01087c2mr14982382oae.30.1690303127019;
+        Tue, 25 Jul 2023 09:38:47 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6870:d60b:b0:19f:9f28:a580 with SMTP id
- a11-20020a056870d60b00b0019f9f28a580ls1656950oaq.1.-pod-prod-05-us; Mon, 24
- Jul 2023 19:45:49 -0700 (PDT)
-X-Received: by 2002:a05:6870:a2cd:b0:1ba:9a49:d967 with SMTP id w13-20020a056870a2cd00b001ba9a49d967mr12304053oak.23.1690253148987;
-        Mon, 24 Jul 2023 19:45:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1690253148; cv=none;
+Received: by 2002:a05:6870:170e:b0:1aa:1314:488f with SMTP id
+ h14-20020a056870170e00b001aa1314488fls287292oae.0.-pod-prod-00-us; Tue, 25
+ Jul 2023 09:38:45 -0700 (PDT)
+X-Received: by 2002:a05:6830:3a0a:b0:6b9:2c07:8849 with SMTP id di10-20020a0568303a0a00b006b92c078849mr4221588otb.0.1690303125685;
+        Tue, 25 Jul 2023 09:38:45 -0700 (PDT)
+Received: by 2002:a05:6808:114e:b0:3a3:5e72:c801 with SMTP id 5614622812f47-3a596308f3emsb6e;
+        Tue, 25 Jul 2023 07:15:41 -0700 (PDT)
+X-Received: by 2002:a05:6871:5ce:b0:1b7:27fd:cfff with SMTP id v14-20020a05687105ce00b001b727fdcfffmr15008096oan.21.1690294540500;
+        Tue, 25 Jul 2023 07:15:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1690294540; cv=none;
         d=google.com; s=arc-20160816;
-        b=zo6oaEuVcn8NZIeh4+8BE2xdQfnMQLfOnIizajI9STqq2mD2PrW3MshO3MSpNMj8lM
-         RmKzFCcarUF6+zrFRAwguXiCa8ksKPKoeWXh9ZiRd6gej06JFBCuJfqs1rUypQV+Mjeu
-         SdHuroecZP9e9eXEAklID7JDyYh6LrpwxlZSwt1ldYXYxfUzltCMkNfucP4nDdIaxQjH
-         XOhxQ4q4myzizmWkQA9fsABNA77bNcpG4J2jcfiTxV7A5g8QJhKwSVGYlG1vO9v3/W0j
-         jeSrFCJcfBjeOdtY0yDhFDeb99Hr/kW1LynqDHoDWyMCNYTO/OzZ6LSBxEkSPbW6HOqs
-         Y7Qw==
+        b=Zav38ldOBeVsjsdUUPH1Yy15QW1sxeNGebF4bKU3CB3z/30CYn/telSTfQ3thsBBDK
+         Ut2G5o/iCRn8ttuD0dGeGz8sxW0yNEQF2cDxUxv46ejVtuUrQETVqkF+QSBSLzX4FzHM
+         d5ekNX3I9g+JGodiGB8GLST5bAOVIg9A+j5HxxEHox2Xtuv/OyTkvxp01FDTiZbSmykD
+         IF1lvmQZZZNDIpSwJrrL2rWCk0ojuyMImNqS7/ty8gaR/81bAnrCsD4md7hdE5w53QrL
+         V0T3cYB22NL/cvqA7ocsVGFFFNUUONJnAQLKif/acTXaApVl9J7b32catgA1M6gzlgHd
+         1CpQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=message-id:date:subject:cc:to:from;
-        bh=uW4fW7VtucLlm8UnVQ2NrMbm8zk1gfq4AdZHE5TM0Bc=;
-        fh=vwEEfjY7oiwSg1ay1D8wxvq8/4FXR31uYswVfQKJ698=;
-        b=vWDpBbDBVAmvthVUvSYzzmt5UMkwb6C2QLoNW2p1TX1JQv3g7+x2S0jGYJMxI7sMmx
-         zEsH4pLaxgucPgZe2i8kFCqp//SmunwKzmKXbLnc2LKVAX/Vpp/HUhIHLaUppvgAQfh5
-         /9nWFtwnSrMXDAn3F+MsLICyzY+L80i4niJiW5MPKJ0Dzb6cXgc/NtY1JaE3XLQPMntY
-         5NhCFxEqkLdY+f4dUtuzP1LcLmWQBkFBm+YonfpnTnisEP1eUu8bTOD3c9GUgwi0r5tE
-         67otetq747GSI1hra15ditkqjyo1DL4qqqd7tasuBOv3pBmB8gXvUw48JxuCgNwYhiyh
-         O3cw==
+        h=mime-version:message-id:date:subject:cc:to:from;
+        bh=8bCjTOJ+QHU8C+ls37gysCMKcBwyOGNCRvrfVuyiM2E=;
+        fh=SiWq8fVTjruF4fizG+K/iRzYqD7/BcFY3W836TLkxkY=;
+        b=fl9gec3R1tT8Kf7b4kNY3obwbQDhrmdSpao4D851jJ944GdnTtIV4bSt0rV72gjwT4
+         s+Kl1Oxq9m1pemX1SJBGeAf2tA3wePLZ5pL+HVHD7FUhBaMeK9dGjtHrr6//r3gzqTcC
+         ULT9tUbnMCvqT4FTObhuHPSjIrclcj2vV0GCgnssEN1JcL0zTsgZpb/NDgUpQ4FAuHWm
+         T8zCE7pyS8vm3HrSFa9iVvQUFMDavJH68EAQOsoyiZK2kGRADO3Pfx7f8PV5NJRMVOTW
+         csv9Qe0NuHl+S4EEflYxsmG8ULBPb2clPspd/Ic/SH63BYS9G4Vd43qnSZMK5oYcS0B0
+         CaVQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of linma@zju.edu.cn designates 159.89.151.119 as permitted sender) smtp.mailfrom=linma@zju.edu.cn
-Received: from zg8tmtu5ljg5lje1ms4xmtka.icoremail.net (zg8tmtu5ljg5lje1ms4xmtka.icoremail.net. [159.89.151.119])
-        by gmr-mx.google.com with ESMTP id gb27-20020a056870671b00b001bb6f89348esi220109oab.1.2023.07.24.19.45.48
-        for <open-iscsi@googlegroups.com>;
-        Mon, 24 Jul 2023 19:45:48 -0700 (PDT)
-Received-SPF: pass (google.com: domain of linma@zju.edu.cn designates 159.89.151.119 as permitted sender) client-ip=159.89.151.119;
-Received: from localhost.localdomain (unknown [125.119.240.231])
-	by mail-app2 (Coremail) with SMTP id by_KCgC3v4tZN79kPYeCCg--.10631S4;
-	Tue, 25 Jul 2023 10:45:45 +0800 (CST)
-From: Lin Ma <linma@zju.edu.cn>
-To: lduncan@suse.com,
-	cleech@redhat.com,
-	michael.christie@oracle.com,
-	jejb@linux.ibm.com,
-	martin.petersen@oracle.com,
-	vikas.chaudhary@qlogic.com,
-	JBottomley@Parallels.com,
-	mchan@broadcom.com,
-	benli@broadcom.com,
-	ogerlitz@voltaire.com,
-	open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Lin Ma <linma@zju.edu.cn>
-Subject: [PATCH v1 2/2] scsi: iscsi: Add strlen check in iscsi_if_set_{host}_param
-Date: Tue, 25 Jul 2023 10:45:45 +0800
-Message-Id: <20230725024545.428519-1-linma@zju.edu.cn>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: by_KCgC3v4tZN79kPYeCCg--.10631S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxCFWUGFy5Cw45WFyDtry7Wrg_yoW5GFyrpF
-	WrW345A3yUJrZ2kwnrXr4rKrWSkFs3XrWDtFW8t3s8ArZ8KFy5Ka9rKw4Y9FyUArs8Xw1Y
-	gayUt3W5Wr12krJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvE14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lc2xSY4AK67AK6r4UMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r
-	1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CE
-	b7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0x
-	vE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF
-	0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWI
-	evJa73UjIFyTuYvjfUomiiDUUUU
-X-CM-SenderInfo: qtrwiiyqvtljo62m3hxhgxhubq/
-X-Original-Sender: linma@zju.edu.cn
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of linma@zju.edu.cn designates 159.89.151.119 as
- permitted sender) smtp.mailfrom=linma@zju.edu.cn
-Reply-To: open-iscsi@googlegroups.com
+       spf=pass (google.com: domain of yuehaibing@huawei.com designates 45.249.212.255 as permitted sender) smtp.mailfrom=yuehaibing@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+Received: from szxga08-in.huawei.com (szxga08-in.huawei.com. [45.249.212.255])
+        by gmr-mx.google.com with ESMTPS id mt10-20020a0568706b0a00b001bb2231a1a0si595781oab.0.2023.07.25.07.15.40
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 25 Jul 2023 07:15:40 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yuehaibing@huawei.com designates 45.249.212.255 as permitted sender) client-ip=45.249.212.255;
+Received: from canpemm500007.china.huawei.com (unknown [172.30.72.55])
+	by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4R9JvB2F3fz1GDJD;
+	Tue, 25 Jul 2023 22:14:46 +0800 (CST)
+Received: from localhost (10.174.179.215) by canpemm500007.china.huawei.com
+ (7.192.104.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 25 Jul
+ 2023 22:15:37 +0800
+From: "'YueHaibing' via open-iscsi" <open-iscsi@googlegroups.com>
+To: <lduncan@suse.com>, <cleech@redhat.com>, <michael.christie@oracle.com>,
+	<jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <haowenchao@huawei.com>,
+	<yuehaibing@huawei.com>
+CC: <open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH -next] scsi: iscsi: Remove unused extern declaration iscsi_lookup_iface()
+Date: Tue, 25 Jul 2023 22:15:31 +0800
+Message-ID: <20230725141531.10424-1-yuehaibing@huawei.com>
+X-Mailer: git-send-email 2.10.2.windows.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [10.174.179.215]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ canpemm500007.china.huawei.com (7.192.104.62)
+X-CFilter-Loop: Reflected
+X-Original-Sender: yuehaibing@huawei.com
+X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
+ (google.com: domain of yuehaibing@huawei.com designates 45.249.212.255 as
+ permitted sender) smtp.mailfrom=yuehaibing@huawei.com;       dmarc=pass
+ (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+X-Original-From: YueHaibing <yuehaibing@huawei.com>
+Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
-X-Spam-Checked-In-Group: open-iscsi@googlegroups.com
 X-Google-Group-Id: 856124926423
 List-Post: <https://groups.google.com/group/open-iscsi/post>, <mailto:open-iscsi@googlegroups.com>
 List-Help: <https://groups.google.com/support/>, <mailto:open-iscsi+help@googlegroups.com>
@@ -152,76 +140,29 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-The function iscsi_if_set_param and iscsi_if_set_host_param converts
-nlattr payload to type char* and then call C string handling functions
-like sscanf and kstrdup.
+This is not used anymore, so can be removed.
 
-  char *data = (char*)ev + sizeof(*ev);
-  ...
-  sscanf(data, "%d", &value);
-
-However, since the nlattr is provided by the user-space program and
-the nlmsg skb is allocated with GFP_KERNEL instead of GFP_ZERO flag
-(see netlink_alloc_large_skb in netlink_sendmsg), the dirty data
-remained in the heap can cause OOB read for those string handling
-functions.
-
-By investigating how the bug is introduced, we find it is really
-interesting as the old version parsing code starting from commit
-fd7255f51a13 ("[SCSI] iscsi: add sysfs attrs for uspace sync up")
-treated the nlattr as integer bytes instead of string and had length
-check in iscsi_copy_param.
-
-  if (ev->u.set_param.len != sizeof(uint32_t))
-    BUG();
-
-But, since the commit a54a52caad4b ("[SCSI] iscsi: fixup set/get param
-functions"), code treated the nlattr as C string while forggeting to add
-any strlen checks, hence leave the possibility of OOB.
-
-This patch fixes the potential OOB by adding the strlen check before
-accessing the buf. If the data passes this check, all low-level
-set_param handlers can safely treat this buf as legal C string.
-
-Fixes: fd7255f51a13 ("[SCSI] iscsi: add sysfs attrs for uspace sync up")
-Fixes: 1d9bf13a9cf9 ("[SCSI] iscsi class: add iscsi host set param event")
-Signed-off-by: Lin Ma <linma@zju.edu.cn>
+Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
-V1 -> V2: resend with correct CC list
+ include/scsi/scsi_transport_iscsi.h | 1 -
+ 1 file changed, 1 deletion(-)
 
- drivers/scsi/scsi_transport_iscsi.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-index 62b24f1c0232..8ade01da3045 100644
---- a/drivers/scsi/scsi_transport_iscsi.c
-+++ b/drivers/scsi/scsi_transport_iscsi.c
-@@ -3030,6 +3030,10 @@ iscsi_if_set_param(struct iscsi_transport *transport, struct iscsi_uevent *ev, u
- 	if (!conn || !session)
- 		return -EINVAL;
- 
-+	/* data will be regarded as NULL-ended string, do length check */
-+	if (strlen(data) > ev->u.set_param.len)
-+		return -EINVAL;
-+
- 	switch (ev->u.set_param.param) {
- 	case ISCSI_PARAM_SESS_RECOVERY_TMO:
- 		sscanf(data, "%d", &value);
-@@ -3203,6 +3207,10 @@ iscsi_set_host_param(struct iscsi_transport *transport,
- 		return -ENODEV;
- 	}
- 
-+	/* see similar check in iscsi_if_set_param() */
-+	if (strlen(data) > ev->u.set_host_param.len)
-+		return -EINVAL;
-+
- 	err = transport->set_host_param(shost, ev->u.set_host_param.param,
- 					data, ev->u.set_host_param.len);
- 	scsi_host_put(shost);
+diff --git a/include/scsi/scsi_transport_iscsi.h b/include/scsi/scsi_transport_iscsi.h
+index 34c03707fb6e..fb3399e4cd29 100644
+--- a/include/scsi/scsi_transport_iscsi.h
++++ b/include/scsi/scsi_transport_iscsi.h
+@@ -472,7 +472,6 @@ extern struct iscsi_iface *iscsi_create_iface(struct Scsi_Host *shost,
+ 					      uint32_t iface_type,
+ 					      uint32_t iface_num, int dd_size);
+ extern void iscsi_destroy_iface(struct iscsi_iface *iface);
+-extern struct iscsi_iface *iscsi_lookup_iface(int handle);
+ extern char *iscsi_get_port_speed_name(struct Scsi_Host *shost);
+ extern char *iscsi_get_port_state_name(struct Scsi_Host *shost);
+ extern int iscsi_is_session_dev(const struct device *dev);
 -- 
-2.17.1
+2.34.1
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230725024545.428519-1-linma%40zju.edu.cn.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230725141531.10424-1-yuehaibing%40huawei.com.
