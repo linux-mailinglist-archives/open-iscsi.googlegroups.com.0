@@ -1,136 +1,145 @@
 Return-Path: <open-iscsi+bncBAABBQODW2UAMGQEWZ5NRDY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc3d.google.com (mail-oo1-xc3d.google.com [IPv6:2607:f8b0:4864:20::c3d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 283D27AB364
-	for <lists+open-iscsi@lfdr.de>; Fri, 22 Sep 2023 16:16:36 +0200 (CEST)
-Received: by mail-oo1-xc3d.google.com with SMTP id 006d021491bc7-57b2fa97912sf2839119eaf.1
-        for <lists+open-iscsi@lfdr.de>; Fri, 22 Sep 2023 07:16:36 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1695392195; cv=pass;
+Received: from mail-oa1-x3f.google.com (mail-oa1-x3f.google.com [IPv6:2001:4860:4864:20::3f])
+	by mail.lfdr.de (Postfix) with ESMTPS id D49717AB362
+	for <lists+open-iscsi@lfdr.de>; Fri, 22 Sep 2023 16:16:35 +0200 (CEST)
+Received: by mail-oa1-x3f.google.com with SMTP id 586e51a60fabf-1dc27f84cbcsf3125652fac.1
+        for <lists+open-iscsi@lfdr.de>; Fri, 22 Sep 2023 07:16:35 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1695392194; cv=pass;
         d=google.com; s=arc-20160816;
-        b=ltYTgcpwolE8m/PTA5KBLEEO4Zurnz7/novC1mDy8rSbGlPkZXEBm7d4sk9MLp6YRm
-         YYQLbejKgjNnoPCXT200JVXSGR0uCHQRvpJfINFygMCXRCwXWDMEDgGUVBvQgte6f8bk
-         8/7amWiS98RixoI7UFSpoG1VLO/SeanthAwVGHwXCpAHwRh90ylKJEXDH8uSKJS3HMHY
-         rbhhtbZn207IbBCs6GYBTJ1aPMbTdDIToIGNFCjKQstjo/2TaDH+unSz7Fq4Srvp5/CB
-         YbdXHf4HL0HKcDU9x2bLSin3xE3RxhPFmQfi4rm6/ssdSTVncEjMs6GsVked3YDf8vs9
-         RTWQ==
+        b=P+dntHkGGLf0Tyi9vcQH+ukalO8GNJFgavlbF/Y+zp9Po2LXVlTMtMrn8jbrXMKK0M
+         xIgzpuWlrBYW4tygx0z03ppOsF68dn2g2ddo4Ajf2IxzC4eaBGCxzNfgPM//iAKeLNIu
+         jlCGt3HiZfZpK0y1mbWf/zMS8MdqmPiD19zN8ay8uYebKFGyt4O0XSABF4htD7mWXDJc
+         dh5+ujVBgOA52KcXI7XZajBZI+dKRR+KKpQYBWf+2tK7EvKRnH9FVF7b7MAGVme/GFcP
+         5Hij0J/hPxtXKol+j2jTi4MGwS4LcMq9Yrv4JqNNZPgM9zf6pakCzZqYb0SM6zvA25TU
+         d1/w==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:dkim-signature;
-        bh=91q32kFw5VgRnwh9xOWQfZU+fyDLwMig/eiV1uh2W+M=;
-        fh=czI/RuS43lIcejQG7heSpqlilKbUywFjC/3GVjzlias=;
-        b=QnGmw2dGTtN2QrNPC0b4I+0TqlOItb4zIzLS/A+CQQ7k+IwuZp9RBFniZj6sc0RLBi
-         BOuNPfoYLHC8LsxlUMbcMPeuIgb1YO6/1irPKWDvou693E+HmVMmM/3IoCnkiuuvI3YP
-         0CNZirMabMpuavJIVYVsqwAvkk37++yKzaSUmZCqn38NMQw5dYDEW6/xPb1ku1Vv4Hea
-         mtgX3afOTaUPwnUV1u9xhALmnTeU6n++QhLa1oTUAy5fn9E8jTJuI7oy2qaUUEyCI+rv
-         B+nFc0IydtniFvMG+YwnSV43gyJsEyWQCOyLr5WFmZzcClslpSpmVPjEgofqlf1s/uMM
-         vD/Q==
+         :list-id:mailing-list:precedence:reply-to:in-reply-to:organization
+         :from:references:cc:to:content-language:subject:user-agent
+         :mime-version:date:message-id:sender:dkim-signature;
+        bh=tR+1kqaqZqQ5o6HSPeMmp900QDxyP4FsV/zxq8Wk+Yo=;
+        fh=UEpFMKOqyweapDowiE7VvOt2ySza3HVObMQ+Ezn7xQ0=;
+        b=LRWWp8EghFsTue5tFXm6ZC1EZTHSBwLht8aBbFzeeaixVYxFu8jjaJOqH5SiGbpzca
+         0JKYx4kEUlXh1Nt5f8IBDY8lJ/jVNIvyJnbfhlQLcdwJGhjlooVCh0fqcR1dzv200K9k
+         bwonceCPz/2TePD6QG+4XmpIwg//lFVDdgbFBmRzrQhGOGDXOKp9d0Ipm5s6l4GWoObg
+         v6wW2+Jy5hBcFQR2/d3eNEonG7CqBgejsE446YfjPOfmUUNK7cLa+JYN9t+jGW4lXtMr
+         j3DYMFJ2TlZLvKcNEe19Bfy/c7E2uEU+NDG61pcH7GBwFCn/9lWvqleJq/o0cyqt45Zo
+         cAQg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao2@huawei.com designates 45.249.212.189 as permitted sender) smtp.mailfrom=haowenchao2@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=a9Hq6mkk;
+       spf=pass (google.com: domain of dlemoal@kernel.org designates 2604:1380:40e1:4800::1 as permitted sender) smtp.mailfrom=dlemoal@kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1695392195; x=1695996995; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1695392194; x=1695996994; darn=lfdr.de;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=91q32kFw5VgRnwh9xOWQfZU+fyDLwMig/eiV1uh2W+M=;
-        b=Q0zYSGN4jDrlqmmrNhOzv6326cR9wG7cJ1WwjZUC7JgHersQzNTRW2fPpTaRxnnz1O
-         lbKSuErlMF1NZ/+wov0pK26rR27omiV+9E9elwmng8/EfvZCyYyxUb6t7k74JT4cS6Mz
-         XP63udFSFVeoNA+uLFYrdPBSrlSe9sVUJSylQSezdgh7Ls5qCZnhZhfw2T8mb7tbiQeK
-         tjlyC5eG9XNZLVMc8nmW8dSWv+YZWiXVNiAYqK87oI/N9NDnYN1De5CIZavrpWgsxUm8
-         srhN47yxEceYF/GLST1Ol2gAhfG8vnFOGMF8d9Fu+u1oK2eQk+iuV49b6TzLZKP0V+ye
-         71EQ==
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :organization:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:sender:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=tR+1kqaqZqQ5o6HSPeMmp900QDxyP4FsV/zxq8Wk+Yo=;
+        b=essd13VQokm5ymvqmnLsPDcSMy2dq6BQ8FY0OQtFJaK+sI8q+WPi1x6kBJM+h7v30M
+         R9XXkQboke3qJARs79cjI00VSE/7d7e0O0FZQrs48Z9Igy8rkEvaLJptrqo5u67Yf2y4
+         WQdrgl4+ANwLlPjEABd/kiOFlTJhqLHw/Q7j3u/UCIgt4hrUTV8k60afVPCVbXbRKdH0
+         BbCSQcNFHm2+otcOPGTIZQ/e3htrquNCILeO21OavrT1tH2HJKR/RbSyiRVLWildpjPo
+         1bRtYBn0F+MemHllgOKvIQMgR7hTL2B1Lx2GzU+yvuqwqgCNzErfgXJ2MABsBvb3HQRo
+         v9Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695392195; x=1695996995;
+        d=1e100.net; s=20230601; t=1695392194; x=1695996994;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-beenthere:x-gm-message-state:from:to:cc:subject:date:message-id
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :organization:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:x-beenthere
+         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=91q32kFw5VgRnwh9xOWQfZU+fyDLwMig/eiV1uh2W+M=;
-        b=s5ws//uTHAxGFbmw9r6UuMMqSt09yh59fXJifQsIx4+o7DzUu3ywtWDi3Fuv0eG2py
-         KjS/2RCQ6uwapXmWox7uPBX8LnhfOYH4gFTqxJYz/8V3gGu6LKzwZ6WoPEIrtd/+h7/g
-         lx93a2s2mC9bJs9kN2GNFNVPZufaQ+dI6i6wyXOjTy21WSKae2LnWG92bKLCRl0b68DQ
-         S9vqbGvpcMvk3JQuK1KvRtHgOzwQyEMtzAt2vagkxViN8S3xARENVAvSjfgWvJliHs+x
-         GsbCeOvuXYMAy1Ubaskd+hVAdZ8PAIXhPkPtTfe+ereCcNF25YwiN4sm9oWPprZNMD6K
-         Twjw==
-X-Gm-Message-State: AOJu0YwUmMViiD5LLzB4jthXIT9AnJ5le5G1xwUkog1oZC1ktqKgcOuy
-	jIFL+UfL23IPAvM9XoMDS84=
-X-Google-Smtp-Source: AGHT+IG9UuitqGQIST6i+ZEp7kfcpEQD4SmxVQnqpLL1seupJbvEb0Td0zcU6F5SPefRFlrbVoQ6Og==
-X-Received: by 2002:a4a:614d:0:b0:56d:2229:5f94 with SMTP id u13-20020a4a614d000000b0056d22295f94mr8122131ooe.6.1695392194893;
+        bh=tR+1kqaqZqQ5o6HSPeMmp900QDxyP4FsV/zxq8Wk+Yo=;
+        b=IwvfsBdfUpJXitJf+jNABOX3GDJ4WX/LKgY98poCkSIfTaffU91AzFEFFU5XsNoT5S
+         ea8+hqpRYe0I2c4nkEZHKWitgsNFiO1d5hVMBCVgm+HSwcrXdCgJssKjyhyG0JBwsnG/
+         6GiNdHxeFre8ileEUXRRwrDp4lanJNNQ6ntF/6tgy9dxY3rrC0jZpWtYfdenU71bu34P
+         5IM87VGkFGcU+YCj0lsP5lo6+vOeauZsWkoADfQvlIm8+LRt744LbonW5l2DlyQD3Qls
+         dS7CBRZjarAr/thOjyCsR0QMwQ5vK6J2tRM8Fm7HhC+CuXWf6W1FaMAddEBlzGTxO4AG
+         Z2xg==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: AOJu0Yy0F+7N2urJPhO/4Kea8SWRuoPUkrTpJwrE9hs8d0bcGAwroiwL
+	l1KGwd6UWGv7SbfNfEdID6Q=
+X-Google-Smtp-Source: AGHT+IG1t2G/7yOh3rNN97OfipXtHj9iQVMF1U5njWVElfCj8OdUq+C2134Va2tzo3lJqdG+3Uvffw==
+X-Received: by 2002:a05:6870:330f:b0:1d0:c53c:19e5 with SMTP id x15-20020a056870330f00b001d0c53c19e5mr9703290oae.39.1695392194712;
         Fri, 22 Sep 2023 07:16:34 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a4a:a744:0:b0:57b:7aef:9d04 with SMTP id h4-20020a4aa744000000b0057b7aef9d04ls671747oom.0.-pod-prod-08-us;
- Fri, 22 Sep 2023 07:16:33 -0700 (PDT)
-X-Received: by 2002:a05:6808:199a:b0:3a7:2570:dd11 with SMTP id bj26-20020a056808199a00b003a72570dd11mr4263635oib.6.1695392193585;
+Received: by 2002:a05:6870:eca4:b0:1d6:cbc7:fb45 with SMTP id
+ eo36-20020a056870eca400b001d6cbc7fb45ls1323560oab.0.-pod-prod-05-us; Fri, 22
+ Sep 2023 07:16:33 -0700 (PDT)
+X-Received: by 2002:a05:6870:1a98:b0:1d6:4b44:a3d0 with SMTP id ef24-20020a0568701a9800b001d64b44a3d0mr3591426oab.6.1695392193588;
         Fri, 22 Sep 2023 07:16:33 -0700 (PDT)
-Received: by 2002:a05:620a:8ecc:b0:773:bc0c:3d88 with SMTP id af79cd13be357-7741801c10dms85a;
-        Fri, 22 Sep 2023 02:39:40 -0700 (PDT)
-X-Received: by 2002:a1f:d881:0:b0:496:1ad2:9d0f with SMTP id p123-20020a1fd881000000b004961ad29d0fmr7575362vkg.1.1695375579841;
-        Fri, 22 Sep 2023 02:39:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1695375579; cv=none;
+Received: by 2002:a05:6808:11c3:b0:3a8:7920:a17f with SMTP id 5614622812f47-3adeec4b398msb6e;
+        Fri, 22 Sep 2023 05:50:06 -0700 (PDT)
+X-Received: by 2002:a05:6a20:8f1c:b0:15d:5e1e:181f with SMTP id b28-20020a056a208f1c00b0015d5e1e181fmr4364712pzk.43.1695387006150;
+        Fri, 22 Sep 2023 05:50:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1695387006; cv=none;
         d=google.com; s=arc-20160816;
-        b=dl4KLFBb7JayWADK8c2BjgVkXsjl4HlSCMowVMMu1RHWxTU30wAOZkc3P1B01py6CS
-         lxK6CSkOmSZEiX0/QDSLEIPkM9wuT5oDyk4dTFs/4LYOoh9SXZ40O13IeSELNX0k9zhw
-         gOqQOxKBfnDPaGbGKVGG9/oEcogUXhNhxAMabvhsUz6+ZZ2WwK7F+ieb3gWa7N8v7tLE
-         +TvZqr8o0JJC5EvntKmYXCmn9f7Vt4i07BslnFkatxFlKmhtfgUNyPWmCCFECtMA2qR+
-         YzM7VYNu0sYmLTObmX2pnReSYHebclENEhAFolMGL0V+ymmsZ18CzSHrDjWsCIvMd2rM
-         3/wQ==
+        b=cYPcsSZlXmKfzZw1u14Mbg1LCgtQsAHbOo3+WaMSVFLuJp99EXDRYdDlNbioXiBxW6
+         Ux/CjQ9kRY4dq9eZu65G35tSWoNtwRmEnrWAj0k6axPoZD7gvhnayv6xvB29N6JHhJeI
+         N6cjfK0LMnqEFEB/jAmti7qzlY/j/X4Ern5zR4Sv3yezWfNvm7oOR2BEuGJVLWNMFAg4
+         t1dZ/HjfIZxgHmXvp8uSqK00I8iWFTOsUE2HUBAYnSCRaDQ2bAUI7TZA79chO6hwa9tV
+         hcYRJaDbjNXMawUddJ88CQDhsW4U7hKx+C0GQm7ZeNRXZayBGKyo9dk2564haL4WUS2w
+         lPgg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from;
-        bh=rPA8MSMJ8Ho8H+VmpnWrqcLPduKaYRFcpo3eauznfsA=;
-        fh=czI/RuS43lIcejQG7heSpqlilKbUywFjC/3GVjzlias=;
-        b=rCHFK5zKXi5HpBTP2hJltuAWYF9EEHK4xkvcYKyDKEzqF9mgwUmbz0f7JZxEpCvs26
-         Cxw4hBv96dasp2Q/IuTqDJudYvO97lg9gzaw4lF7i1WvMGwDwMF3qBnzi09bmoQ0pem0
-         XeRNHy9KeaHHe5igrMtujonWqOI7tIMop9tKZpVsTJWVJ3sIhkTmr/PWdvKQ3ZlxvkHP
-         31m0wBWmaJzTw6Fmf1vqeMBLABBpf9JP9wlUktjxjpiT/ab8DzHNf37FHLqVIvurFQz2
-         IQc+a7V0XaWRoNF98T4TTouoBMSkAFwlfmYazeBgcK2RCVUVUarn5JPwWG4VPbTa/UQy
-         lmgw==
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:dkim-signature;
+        bh=Wy7P1iFXeqsvz/8pNRnHifKZlT3r1E+U4CFwH8MtEtI=;
+        fh=UEpFMKOqyweapDowiE7VvOt2ySza3HVObMQ+Ezn7xQ0=;
+        b=athOudbgQuGzT+mBitmsFR9EXDLoFDQ6FxtEVqvbl36hCMGyjH+OJ8WN4Pck5h6fdw
+         BUYF+uv+RCGTBr/I1gAmNvg/HXByA9wvgUY8D+prH34j+PazBjJPBdW73dEJWzn3KJTZ
+         39b7ILXaAl0ltjJ1KQrEKJwQQZa02+dcRsqjuosOeMJzX4BJuaJVxEhxEch9tEKiSzrJ
+         ONoUST7i62T6jQz5+6Yy65HanVFNlJSHBh/pUyHvh9M8XabIM8ILsqy7w+n+p6I26hy9
+         ohv2DRQ+dLDF/Q/AW8VPgiTwiRQOpUMvx4217a7ZdvpLb/qFfyRS+HqqSAxjXad9i6k+
+         iLRg==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao2@huawei.com designates 45.249.212.189 as permitted sender) smtp.mailfrom=haowenchao2@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com. [45.249.212.189])
-        by gmr-mx.google.com with ESMTPS id bw3-20020a056122190300b004937daab34esi225885vkb.4.2023.09.22.02.39.39
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=a9Hq6mkk;
+       spf=pass (google.com: domain of dlemoal@kernel.org designates 2604:1380:40e1:4800::1 as permitted sender) smtp.mailfrom=dlemoal@kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: from sin.source.kernel.org (sin.source.kernel.org. [2604:1380:40e1:4800::1])
+        by gmr-mx.google.com with ESMTPS id mz10-20020a17090b378a00b0027197e2f839si163802pjb.1.2023.09.22.05.50.05
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 22 Sep 2023 02:39:39 -0700 (PDT)
-Received-SPF: pass (google.com: domain of haowenchao2@huawei.com designates 45.249.212.189 as permitted sender) client-ip=45.249.212.189;
-Received: from kwepemm000012.china.huawei.com (unknown [172.30.72.56])
-	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4RsRvj2s01zMlmt;
-	Fri, 22 Sep 2023 17:35:29 +0800 (CST)
-Received: from build.huawei.com (10.175.101.6) by
- kwepemm000012.china.huawei.com (7.193.23.142) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.31; Fri, 22 Sep 2023 17:39:06 +0800
-From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
-To: "James E . J . Bottomley" <jejb@linux.ibm.com>, "Martin K . Petersen"
-	<martin.petersen@oracle.com>, <open-iscsi@googlegroups.com>,
-	<linux-scsi@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <louhongxiang@huawei.com>, Wenchao Hao
-	<haowenchao2@huawei.com>
-Subject: [PATCH 2/2] scsi: Add comment of target_destroy in scsi_host_template
-Date: Fri, 22 Sep 2023 17:38:42 +0800
-Message-ID: <20230922093842.2646157-3-haowenchao2@huawei.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230922093842.2646157-1-haowenchao2@huawei.com>
-References: <20230922093842.2646157-1-haowenchao2@huawei.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Sep 2023 05:50:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of dlemoal@kernel.org designates 2604:1380:40e1:4800::1 as permitted sender) client-ip=2604:1380:40e1:4800::1;
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by sin.source.kernel.org (Postfix) with ESMTPS id 034AECE2359;
+	Fri, 22 Sep 2023 12:50:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9F5DC433C8;
+	Fri, 22 Sep 2023 12:50:01 +0000 (UTC)
+Message-ID: <ea28de69-8b9d-8ff8-b7fc-eb780123f055@kernel.org>
+Date: Fri, 22 Sep 2023 05:50:01 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.15.1
+Subject: Re: [PATCH 1/2] scsi: core: cleanup scsi_dev_queue_ready()
+Content-Language: en-US
+To: Wenchao Hao <haowenchao2@huawei.com>,
+ "James E . J . Bottomley" <jejb@linux.ibm.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, louhongxiang@huawei.com
+References: <20230922093842.2646157-1-haowenchao2@huawei.com>
+ <20230922093842.2646157-2-haowenchao2@huawei.com>
+From: Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <20230922093842.2646157-2-haowenchao2@huawei.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [10.175.101.6]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- kwepemm000012.china.huawei.com (7.193.23.142)
-X-CFilter-Loop: Reflected
-X-Original-Sender: haowenchao2@huawei.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao2@huawei.com designates 45.249.212.189 as
- permitted sender) smtp.mailfrom=haowenchao2@huawei.com;       dmarc=pass
- (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-X-Original-From: Wenchao Hao <haowenchao2@huawei.com>
+X-Original-Sender: dlemoal@kernel.org
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@kernel.org header.s=k20201202 header.b=a9Hq6mkk;       spf=pass
+ (google.com: domain of dlemoal@kernel.org designates 2604:1380:40e1:4800::1
+ as permitted sender) smtp.mailfrom=dlemoal@kernel.org;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=kernel.org
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -143,32 +152,83 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Add comment to tell callback function target_destroy of
-scsi_host_template is called in atomic context.
+On 2023/09/22 2:38, Wenchao Hao wrote:
+> This is just a cleanup for scsi_dev_queue_ready() to avoid
+> redundant goto and if statement, it did not change the origin
+> logic.
+> 
+> Signed-off-by: Wenchao Hao <haowenchao2@huawei.com>
+> ---
+>  drivers/scsi/scsi_lib.c | 35 ++++++++++++++++++-----------------
+>  1 file changed, 18 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/scsi/scsi_lib.c b/drivers/scsi/scsi_lib.c
+> index ca5eb058d5c7..f3e388127dbd 100644
+> --- a/drivers/scsi/scsi_lib.c
+> +++ b/drivers/scsi/scsi_lib.c
+> @@ -1254,28 +1254,29 @@ static inline int scsi_dev_queue_ready(struct request_queue *q,
+>  	int token;
+>  
+>  	token = sbitmap_get(&sdev->budget_map);
+> -	if (atomic_read(&sdev->device_blocked)) {
+> -		if (token < 0)
+> -			goto out;
+> +	if (token < 0)
+> +		return -1;
 
-Signed-off-by: Wenchao Hao <haowenchao2@huawei.com>
----
- include/scsi/scsi_host.h | 3 +++
- 1 file changed, 3 insertions(+)
+This is changing how this function works...
 
-diff --git a/include/scsi/scsi_host.h b/include/scsi/scsi_host.h
-index 49f768d0ff37..a72248fa5adf 100644
---- a/include/scsi/scsi_host.h
-+++ b/include/scsi/scsi_host.h
-@@ -245,6 +245,9 @@ struct scsi_host_template {
- 	 * midlayer calls this point so that the driver may deallocate
- 	 * and terminate any references to the target.
- 	 *
-+	 * Note: this callback in called with spin_lock held, so donot
-+	 * call functions might cause schedule
-+	 *
- 	 * Status: OPTIONAL
- 	 */
- 	void (* target_destroy)(struct scsi_target *);
+>  
+> -		if (scsi_device_busy(sdev) > 1)
+> -			goto out_dec;
+> +	/*
+> +	 * device_blocked is not set at mostly time, so check it first
+> +	 * and return token when it is not set.
+> +	 */
+> +	if (!atomic_read(&sdev->device_blocked))
+> +		return token;
+
+...because you reversed the tests order.
+
+>  
+> -		/*
+> -		 * unblock after device_blocked iterates to zero
+> -		 */
+> -		if (atomic_dec_return(&sdev->device_blocked) > 0)
+> -			goto out_dec;
+> -		SCSI_LOG_MLQUEUE(3, sdev_printk(KERN_INFO, sdev,
+> -				   "unblocking device at zero depth\n"));
+> +	/*
+> +	 * unblock after device_blocked iterates to zero
+> +	 */
+> +	if (scsi_device_busy(sdev) > 1 ||
+> +	    atomic_dec_return(&sdev->device_blocked) > 0) {
+
+And here too, you are changing how the function works. The atomic_dec may not be
+done if the first condition is true.
+
+> +		sbitmap_put(&sdev->budget_map, token);
+> +		return -1;
+>  	}
+>  
+> +	SCSI_LOG_MLQUEUE(3, sdev_printk(KERN_INFO, sdev,
+> +			 "unblocking device at zero depth\n"));
+> +
+>  	return token;
+> -out_dec:
+> -	if (token >= 0)
+> -		sbitmap_put(&sdev->budget_map, token);
+> -out:
+> -	return -1;
+>  }
+>  
+>  /*
+
 -- 
-2.32.0
+Damien Le Moal
+Western Digital Research
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20230922093842.2646157-3-haowenchao2%40huawei.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/ea28de69-8b9d-8ff8-b7fc-eb780123f055%40kernel.org.
