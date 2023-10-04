@@ -1,141 +1,142 @@
-Return-Path: <open-iscsi+bncBCN4FJF4WYLRBNFS2OUAMGQEOZB3PPY@googlegroups.com>
+Return-Path: <open-iscsi+bncBCUJ7YGL3QFBBFG462UAMGQEQ4HNXYA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc40.google.com (mail-oo1-xc40.google.com [IPv6:2607:f8b0:4864:20::c40])
-	by mail.lfdr.de (Postfix) with ESMTPS id A32937B106C
-	for <lists+open-iscsi@lfdr.de>; Thu, 28 Sep 2023 03:39:02 +0200 (CEST)
-Received: by mail-oo1-xc40.google.com with SMTP id 006d021491bc7-57be2b0e95csf12353752eaf.1
-        for <lists+open-iscsi@lfdr.de>; Wed, 27 Sep 2023 18:39:02 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1695865141; cv=pass;
+Received: from mail-pg1-x53d.google.com (mail-pg1-x53d.google.com [IPv6:2607:f8b0:4864:20::53d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A37D7B895F
+	for <lists+open-iscsi@lfdr.de>; Wed,  4 Oct 2023 20:25:28 +0200 (CEST)
+Received: by mail-pg1-x53d.google.com with SMTP id 41be03b00d2f7-5779937c75dsf42817a12.3
+        for <lists+open-iscsi@lfdr.de>; Wed, 04 Oct 2023 11:25:28 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1696443926; cv=pass;
         d=google.com; s=arc-20160816;
-        b=xwYw4z6vKmpp5yZJN5HnajxAN57DHkVUCR4ULrzWv4bFLdnklDPQzdkmY7OgH4giMe
-         P2sKbTNdnJRVtrONZWYyj5kTxsnfCpC/7vSHD/NbcSEOr+TOGose0LWhH3w1KQEZl/Xr
-         ekSQtHryrjxSbxAkabiFqzcFVUQ9SJpT1QJKRY5SqIgjYAFsV4aV4JbI1ylwUe9cmZTM
-         bCLV2mciD7+wSQGcEVQFt819xyX2AhmefQhvhRFndmx+jaLp4eR9ZhJVYqeLkoUWiEU6
-         iQ8ronaOM36T21cxIxCv4ua5Zg9l3iyCuq6a1r5ZBI+VQsRAzisK9nAx+mFKHugcXtAM
-         0LEw==
+        b=P0dQ3u9XH9b7bidoGGEX8RiXH1IIQK2TTt6qSD6uzt/t1DuHi+0bzHXW3yYZ1uK/eq
+         k2W1zClImDkwGpG8+I4gNzviLY+ayfmmoymlPxxDuiPYKmGi09K4q7RGMWTZ3bS0TdN+
+         vCzhX6pggYPgXv9aONCP12br4MkoUTzq754uiy3HqrVZEPcpOmbJlcQJOF/i+PrSQ4Jl
+         tNLQtX//KpW3Ylwl9NCWhoYh7D1dV8xL07h2Kvwqmk09ttvff5TuFAFeeuOJTXqf0Imw
+         Jll4IpB/pmZ5W+DDu3i4knxZdxZye5KBPxA10XKAHWj+oKMMwhYxEHZ0xveDkqxP4Jus
+         RcKQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:reply-to:content-transfer-encoding
-         :in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:dkim-signature;
-        bh=xMiENaXGOSpyfXIseyzNYwhbPR4EienlS/3teWcevCA=;
-        fh=1P8NgU50PxHZdbwZcm0RhGfpfaEszaZZUlNuX7tjKbk=;
-        b=ai7AO3j4PAyaHCnonuu1cPGkscbU7r61K/KNsVppjHt0SWGu64kY6VVcncWLdpzFx+
-         p2+vkt4DQp7tdJujBOzml2TDkhjudaq3OdXU68M+7/nKRKx0Tq+TDiiZfsLsoYDG0tPH
-         q7jGSraf6kh7NFiuUNtXVn/kKqAU3exGxlWVuPhnKDTnfm6uHbeKtAjAuLn3Q7rBfFfI
-         jtddqhtFEI03yb8UxQvN34BRXI+HQXSO/rmmotQAATGj45UV0YGNwpLpH8XAxppWvtqb
-         3VOqgK/cigOo0Nt7yJ+WFoq2x+PZMqpiuxDG9DZzgl0lNk85WmQJNofA1V5F1/d+68n+
-         55+Q==
+         :list-id:mailing-list:precedence:reply-to:mime-version:user-agent
+         :references:in-reply-to:message-id:date:subject:cc:to:from:sender
+         :dkim-signature;
+        bh=CNDx1fzLr/1MLM22Z+/svoaHZXAlKf0GdUK7PQTN27o=;
+        fh=bC5Pm5AidGJpV8OaBa10vI/SZxEoZ0aNW+CZAH6oMDA=;
+        b=y6O46+Hipbg5kmXsaK1h9UdxVJqtIWNHWydsB6Xsn7zOY8j49JPjCMpc5wKOVWN2BU
+         yL9CebP2wn4+MHziNU1hER4KB1QsCZRGTPzC1OU25ixmFnISENFNTf3Nr0KPl/EVTJJT
+         Nr3V1OzyCt0kizL6o8hTpmRAM9Xa5AeCsF/NCFKwFr3KpFbmQuYoh7egF5LNLzRk3lpg
+         UvEV1QAEpOYep4MWj/FD/nW9CTxPqAZ3TIyfM+q1I3wa469/Gyr2c0Xrm/h/dZ+Zv5aU
+         PLNmXvbWhqcGJSf1+aN8N70teXqJmNXpxcYjXoYRFbIGLfZWoAu1fjS1samTykaoLWgY
+         ROHg==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao2@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=haowenchao2@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=PzHdzHVl;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 145.40.73.55 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1695865141; x=1696469941; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1696443926; x=1697048726; darn=lfdr.de;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xMiENaXGOSpyfXIseyzNYwhbPR4EienlS/3teWcevCA=;
-        b=AWUXmdExYHcaOozXqzGy88DZMxhcxH3SeqFNLO9nDOuGYt8O41+Bpj0PPGIHS/K7Pa
-         qc/moqlypBlHJnvngedIVBc6KKHCLsq3SGg12UfCRpkPpeozn8yHrh4P1VgLM3DwJRsY
-         J3x52t+F9pwo45bD/EkMigPDSxkKH4jumgRNhQcGqRmUsRhzAstLOCfWE6VfmU/9HiqG
-         RFZIVv9J/f/D7YfDc1hWMDBxCbzCFvxTuxkYbh1oK9cw9y7SLxBvSztikaFyQC9ifixB
-         5h0UbOE+g6EUs+u9XMOojPkvs8exVCO1aNVMT1WgiRlbRTejSJl3gEr+aYM8f98TjwPZ
-         1YCQ==
+         :x-original-authentication-results:x-original-sender:mime-version
+         :user-agent:references:in-reply-to:message-id:date:subject:cc:to
+         :from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=CNDx1fzLr/1MLM22Z+/svoaHZXAlKf0GdUK7PQTN27o=;
+        b=sbVp/PI7JZXpdPTDCIZDenWOuI7oJAkM/SOgYLkP2DFNTJ+FR8hDoGHo6Ih9f5w0LE
+         XNhxA/mZGHdLh2PVkWcdVwTcsgMlCt7KEaZIOLFcPnAYbiFdQQwN+ej64OY7XUtmFVhX
+         CJl24Xhd4sQDUcnispGzbYuV3063LcFTZ3TudtRMZlvI3reoS00CV9nsenQD2iPdU3EY
+         2qjk2lzXQYb0gxFLxiQLeEvzQ/eaA/rWFB04x/twwqdjugr8A1zf/k1dkxwgPlFrdE0z
+         qkCAyW8wcXy9smfVcczRYzsUIGqtgAWW/4xC2Bf+1UhUAKVC5ozr6D0tNYG5idaJ9GnD
+         mQ1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695865141; x=1696469941;
+        d=1e100.net; s=20230601; t=1696443926; x=1697048726;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-beenthere:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xMiENaXGOSpyfXIseyzNYwhbPR4EienlS/3teWcevCA=;
-        b=gAbSSZMzH1t1e2RM7osW6lpaLmmruWM5Z70uCErlAwDjQmodqUFPINuXl+CpeLGkw5
-         Dmjd9KqZkPFpEmswFoiZr/hUmaoqrjiOr5shG1MxWDwdZM4JktmAgIIDWRVjhj4Q20rk
-         4QKY1ESC3R4Fc6GeECCO/QaU3XIDXMM4Fv0lJGN5GJCUk/91M3RqpMHVm9OOV8oeUoDE
-         sa+9lSXYkqapvkNzQUzZkxrx9emT0IpTpg8M66kGlerxN7D5QMHQ/zVsfLVLRiH+vay3
-         Cc1Xu1BffmCEPf8JeJMMEvk/Iq54c2Awp1mbSur9XPhoWnRr3lPrpDgb5hG/oLp8sLBx
-         X+Ng==
-X-Gm-Message-State: AOJu0YxadRmW6o0TbhKvTESP6i/xHds+YspMgAGH8S8qfIMea0CJRcF2
-	FwjT5VCMHMTMY1Z+Sssek3I=
-X-Google-Smtp-Source: AGHT+IHQFyE2Q2KWMFZCB6ad62cImaJaxbk9SNL9X4ki/BtImn7bWAUt8adKwEPKahcFGGmKbFoqpA==
-X-Received: by 2002:a4a:271a:0:b0:57d:e5e7:6d00 with SMTP id l26-20020a4a271a000000b0057de5e76d00mr3696615oof.6.1695865141120;
-        Wed, 27 Sep 2023 18:39:01 -0700 (PDT)
+         :x-original-authentication-results:x-original-sender:mime-version
+         :user-agent:references:in-reply-to:message-id:date:subject:cc:to
+         :from:x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CNDx1fzLr/1MLM22Z+/svoaHZXAlKf0GdUK7PQTN27o=;
+        b=NMYULeVdC0SKf4OIMD21L8SiZhxg740e8A/IWLarRceI1AM+B/V0k3PeGVs405H5IV
+         6o/dC0Wm/L5SiR2/OarabiKcDalGpI29cGbZFqzgv0X+nLH8BzoxRR6avrjCAXUYLlwd
+         KPckP7uEBAqVh3deRK3pAQ0qvLbru3Meq3g6v+q3VYqCZ3PUUGy7odLPrkeOx19NeJgv
+         ngs7KkrL0xVvb3tEIAcJ/i2/3YShLkb/4gXlu42Tv9pHJVY5fskvDsAH0TyxQYmqgVug
+         Oaa0rxs3agq3Jx/FD/NPohETVreep20JPEPZ5z0ZmBeEAESlEoK3SS7T6+mRuA5La1lG
+         r7uQ==
+Sender: open-iscsi@googlegroups.com
+X-Gm-Message-State: AOJu0YzFICwcKRCXYYnVk8ShY3HjYMVMJ4cjbzLT2KJMvjprZAPXkROa
+	4kXLuqdpigVgFFHnmagHS2k=
+X-Google-Smtp-Source: AGHT+IFfsO3im+1n43cLH7SBczQV/13TMNOIHzyJ1sxkSNMEcW80igv3sWuYtreusV5ZaWZ3FLdwaQ==
+X-Received: by 2002:a05:6a20:948a:b0:15d:7af9:5642 with SMTP id hs10-20020a056a20948a00b0015d7af95642mr2413555pzb.28.1696443926246;
+        Wed, 04 Oct 2023 11:25:26 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a4a:b2c1:0:b0:57b:7aef:9d1a with SMTP id l1-20020a4ab2c1000000b0057b7aef9d1als224623ooo.0.-pod-prod-05-us;
- Wed, 27 Sep 2023 18:38:59 -0700 (PDT)
-X-Received: by 2002:a05:6808:614:b0:39c:59e2:dd79 with SMTP id y20-20020a056808061400b0039c59e2dd79mr3572497oih.36.1695865139345;
-        Wed, 27 Sep 2023 18:38:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1695865139; cv=none;
+Received: by 2002:aa7:99de:0:b0:68f:bb64:bb4a with SMTP id v30-20020aa799de000000b0068fbb64bb4als60930pfi.0.-pod-prod-05-us;
+ Wed, 04 Oct 2023 11:25:24 -0700 (PDT)
+X-Received: by 2002:a17:90b:88e:b0:269:3771:7342 with SMTP id bj14-20020a17090b088e00b0026937717342mr2692451pjb.18.1696443923906;
+        Wed, 04 Oct 2023 11:25:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1696443923; cv=none;
         d=google.com; s=arc-20160816;
-        b=XnsRYH+chMlxP3QEXjIewSwOfb6nzk84zZ+AH1awo2cc38PnW3njuuLc8qwoVWUWeU
-         5ikVGCUwhlq4R8n/D9XpsZdJLqvY2d9x1oL7iFG5okacJzYQv5NH6dAn0OYqVQ4jntXK
-         yDHT17AuOFFTyKMZokBBLycgdH5e5+0hTrbQohJCZ4GsLuQSY1HrViTvIrc7lZCld/KQ
-         Qa9pgttVR0v9d3IHX5Ozh2fNQCin83j/OaAimv8XOuFGVeH4at7tcl6CUCTA+4b1kBVq
-         3RiwtWMyECcLguQ2n1n009yae8sG4HXkchISUGzynC4sWRxWEL7x7KTW0/emWxCvOUgD
-         NeWw==
+        b=qqh5J5keDOfj5pMqfVGmgPnVIBq/Ko77E1Nzrisdxty4ZKvTbMaPeMxmAt8iTgXJJA
+         +H8wy4gvWSq2gdKSey6cJ0cz0ZxNyYNLSP/161z8iQy4/RzjIUpuxxaLIJ/hIb6YNabV
+         YJEMKGFb9+k0yk6IuCdC4eX5bcTVutRcQ6vPskvBl5Rng5KOU+LnPF9a/H3C1cJ1lkzn
+         pXoDE6RWZJ9GyWobGD5EpF01Z8DJrHBZ8Jbnm+EmDALCDdj3ybciblvgWSAU/rfNPDNw
+         u+7MOLnVJy70/9OZvTDfbrY2yI/MZXMtELk93yND0BGVYs4iM61Q9sW2rHOhu7bxFngc
+         9SWg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id;
-        bh=fi81aShWy6tCOr93YRLR3TenrwGigytbikQHhfqP6N0=;
-        fh=1P8NgU50PxHZdbwZcm0RhGfpfaEszaZZUlNuX7tjKbk=;
-        b=zk4R02hVdgwG8I18kW/0aEheCzno0Dz+6JgZeC7oQFOh1ezymkd1VG0KZ2+aR7drXg
-         E3lyNR3neKeV44mWzE5sfhSITNjj1Z7FEUZHcmtbyRVqNTvLWukI3pbGEASfoNIH8rPZ
-         9J2SBhkW0Nh0a6RwSmP7eaa+Y3+iolXcw2Njj3pxgG/bONduoKiri1tSUon1zWcczAcV
-         xK+2D96ALjx37eOTwkRFjZhO1Jz5uo3H4pc9vIdUaSGkpvnPvkVKQ+J5ZSapwoh3YYKm
-         mTyZ0SsZ2UjvliroxWanhdpw3pJBlnXt/KBFlqV0fHAKJzAE8/SrHdVz1X0QaWr/B79t
-         cCOw==
+        h=content-transfer-encoding:mime-version:user-agent:references
+         :in-reply-to:message-id:date:subject:cc:to:from:dkim-signature;
+        bh=Dk5DAbA9IbiE1AdEASNYsp9hr3yYcLEJlyvZHlfxq3U=;
+        fh=bC5Pm5AidGJpV8OaBa10vI/SZxEoZ0aNW+CZAH6oMDA=;
+        b=Wlbl6La0dmqfi55rqHK9p6Am5UARxyZRCtQcwXSbNhajO8UGXj4KCaJ6Cr2qHAUT4Z
+         KtfU3fMDEsxOEYW3haa5kmszrrffV5h86by4QDJJWQTbNEoVQzBIIFVFgcttxUHsTgxK
+         zYEyINF/BLiNR0DfaB1+gTLPYkrqQwo1n3o8QuDzsACS56krWUOeW4N4JsMBeE+2S/8S
+         64C40wJAlBJ6v/k861Jg5F9m6espGrX2HBlzULo1WiijPmysjQX2g9kFtQwt47NdfTNF
+         /X/RRsSY0hYk9vJaOAmkSsdeKYhxrvtnC9+uwrqMA0ruIWM7cFXVvioq+8pNRb31WdVW
+         iWBQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of haowenchao2@huawei.com designates 45.249.212.187 as permitted sender) smtp.mailfrom=haowenchao2@huawei.com;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com. [45.249.212.187])
-        by gmr-mx.google.com with ESMTPS id cp5-20020a056a00348500b00690fb1968c4si1357375pfb.2.2023.09.27.18.38.59
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=PzHdzHVl;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 145.40.73.55 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+Received: from sin.source.kernel.org (sin.source.kernel.org. [145.40.73.55])
+        by gmr-mx.google.com with ESMTPS id gk13-20020a17090b118d00b0026d54cdea99si209994pjb.0.2023.10.04.11.25.23
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 27 Sep 2023 18:38:59 -0700 (PDT)
-Received-SPF: pass (google.com: domain of haowenchao2@huawei.com designates 45.249.212.187 as permitted sender) client-ip=45.249.212.187;
-Received: from kwepemm000012.china.huawei.com (unknown [172.30.72.53])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Rwx0S45CdzrStx;
-	Thu, 28 Sep 2023 09:36:40 +0800 (CST)
-Received: from [10.174.178.220] (10.174.178.220) by
- kwepemm000012.china.huawei.com (7.193.23.142) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.31; Thu, 28 Sep 2023 09:38:56 +0800
-Message-ID: <382fe161-95fb-3249-32cf-07058f81a4bc@huawei.com>
-Date: Thu, 28 Sep 2023 09:38:55 +0800
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Oct 2023 11:25:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 145.40.73.55 as permitted sender) client-ip=145.40.73.55;
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id BAE90CE1E4E;
+	Wed,  4 Oct 2023 18:25:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACBE1C433C7;
+	Wed,  4 Oct 2023 18:25:18 +0000 (UTC)
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	patches@lists.linux.dev,
+	Eric Dumazet <edumazet@google.com>,
+	Lee Duncan <lduncan@suse.com>,
+	Chris Leech <cleech@redhat.com>,
+	Mike Christie <michael.christie@oracle.com>,
+	"James E.J. Bottomley" <jejb@linux.ibm.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 6.5 067/321] scsi: iscsi_tcp: restrict to TCP sockets
+Date: Wed,  4 Oct 2023 19:53:32 +0200
+Message-ID: <20231004175232.295425568@linuxfoundation.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231004175229.211487444@linuxfoundation.org>
+References: <20231004175229.211487444@linuxfoundation.org>
+User-Agent: quilt/0.67
+X-stable: review
+X-Patchwork-Hint: ignore
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v5 01/10] scsi: scsi_debug: create scsi_debug directory in
- the debugfs filesystem
-Content-Language: en-US
-To: <dgilbert@interlog.com>, "James E . J . Bottomley" <jejb@linux.ibm.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	<open-iscsi@googlegroups.com>, <linux-scsi@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <louhongxiang@huawei.com>
-References: <20230922092906.2645265-1-haowenchao2@huawei.com>
- <20230922092906.2645265-2-haowenchao2@huawei.com>
- <8c7cfe09-d145-4387-91cf-da9d4e2398e1@interlog.com>
-From: "'Wenchao Hao' via open-iscsi" <open-iscsi@googlegroups.com>
-In-Reply-To: <8c7cfe09-d145-4387-91cf-da9d4e2398e1@interlog.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Originating-IP: [10.174.178.220]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- kwepemm000012.china.huawei.com (7.193.23.142)
-X-CFilter-Loop: Reflected
-X-Original-Sender: haowenchao2@huawei.com
-X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of haowenchao2@huawei.com designates 45.249.212.187 as
- permitted sender) smtp.mailfrom=haowenchao2@huawei.com;       dmarc=pass
- (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
-X-Original-From: Wenchao Hao <haowenchao2@huawei.com>
+X-Original-Sender: gregkh@linuxfoundation.org
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@linuxfoundation.org header.s=korg header.b=PzHdzHVl;       spf=pass
+ (google.com: domain of gregkh@linuxfoundation.org designates 145.40.73.55 as
+ permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 Reply-To: open-iscsi@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -148,80 +149,56 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 2023/9/28 9:13, Douglas Gilbert wrote:
-> On 2023-09-22 05:28, Wenchao Hao wrote:
->> Create directory scsi_debug in the root of the debugfs filesystem.
->> Prepare to add interface for manage error injection.
->>
->> Acked-by: Douglas Gilbert <dgilbert@interlog.com>
->> Signed-off-by: Wenchao Hao <haowenchao2@huawei.com>
->> ---
->> =C2=A0 drivers/scsi/scsi_debug.c | 6 ++++++
->> =C2=A0 1 file changed, 6 insertions(+)
->>
->> diff --git a/drivers/scsi/scsi_debug.c b/drivers/scsi/scsi_debug.c
->> index 9c0af50501f9..35c336271b13 100644
->> --- a/drivers/scsi/scsi_debug.c
->> +++ b/drivers/scsi/scsi_debug.c
->> @@ -41,6 +41,7 @@
->> =C2=A0 #include <linux/random.h>
->> =C2=A0 #include <linux/xarray.h>
->> =C2=A0 #include <linux/prefetch.h>
->> +#include <linux/debugfs.h>
->> =C2=A0 #include <net/checksum.h>
->> @@ -862,6 +863,8 @@ static const int device_qfull_result =3D
->> =C2=A0 static const int condition_met_result =3D SAM_STAT_CONDITION_MET;
->> +static struct dentry *sdebug_debugfs_root;
->> +
->> =C2=A0 /* Only do the extra work involved in logical block provisioning =
-if one or
->> =C2=A0=C2=A0 * more of the lbpu, lbpws or lbpws10 parameters are given a=
-nd we are doing
->> @@ -7011,6 +7014,8 @@ static int __init scsi_debug_init(void)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto driver_unreg=
-;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> +=C2=A0=C2=A0=C2=A0 sdebug_debugfs_root =3D debugfs_create_dir("scsi_deb=
-ug", NULL);
->=20
-> debugfs_create_dir() can fail and return NULL. Looking at other drivers, =
-most
-> seem to assume it will work. Since the scsi_debug driver is often used to=
- test
-> abnormal situations, perhaps adding something like:
->  =C2=A0=C2=A0=C2=A0 if (!sdebug_debugfs_root)
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_info("%s: failed to create=
- initial debugfs directory\n", __func__);
->=20
-> might save someone a bit of time if a NULL dereference on sdebug_debugfs_=
-root
-> follows later. That is what the mpt3sas driver does.
->=20
+6.5-stable review patch.  If anyone has any objections, please let me know.
 
-Yes, I would fix it by checking return value of debugfs related call
-after your review suggestions for other patches.
+------------------
 
-> Doug Gilbert
->=20
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (k =3D 0; k < hosts_to_add; k++) {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (want_store &&=
- k =3D=3D 0) {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 ret =3D sdebug_add_host_helper(idx);
->> @@ -7057,6 +7062,7 @@ static void __exit scsi_debug_exit(void)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sdebug_erase_all_stores(false);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xa_destroy(per_store_ap);
->> +=C2=A0=C2=A0=C2=A0 debugfs_remove(sdebug_debugfs_root);
->> =C2=A0 }
->> =C2=A0 device_initcall(scsi_debug_init);
->=20
->=20
+From: Eric Dumazet <edumazet@google.com>
 
---=20
-You received this message because you are subscribed to the Google Groups "=
-open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/=
-open-iscsi/382fe161-95fb-3249-32cf-07058f81a4bc%40huawei.com.
+[ Upstream commit f4f82c52a0ead5ab363d207d06f81b967d09ffb8 ]
+
+Nothing prevents iscsi_sw_tcp_conn_bind() to receive file descriptor
+pointing to non TCP socket (af_unix for example).
+
+Return -EINVAL if this is attempted, instead of crashing the kernel.
+
+Fixes: 7ba247138907 ("[SCSI] open-iscsi/linux-iscsi-5 Initiator: Initiator code")
+Signed-off-by: Eric Dumazet <edumazet@google.com>
+Cc: Lee Duncan <lduncan@suse.com>
+Cc: Chris Leech <cleech@redhat.com>
+Cc: Mike Christie <michael.christie@oracle.com>
+Cc: "James E.J. Bottomley" <jejb@linux.ibm.com>
+Cc: "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc: open-iscsi@googlegroups.com
+Cc: linux-scsi@vger.kernel.org
+Reviewed-by: Mike Christie <michael.christie@oracle.com>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/scsi/iscsi_tcp.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/scsi/iscsi_tcp.c b/drivers/scsi/iscsi_tcp.c
+index 9ab8555180a3a..8e14cea15f980 100644
+--- a/drivers/scsi/iscsi_tcp.c
++++ b/drivers/scsi/iscsi_tcp.c
+@@ -724,6 +724,10 @@ iscsi_sw_tcp_conn_bind(struct iscsi_cls_session *cls_session,
+ 		return -EEXIST;
+ 	}
+ 
++	err = -EINVAL;
++	if (!sk_is_tcp(sock->sk))
++		goto free_socket;
++
+ 	err = iscsi_conn_bind(cls_session, cls_conn, is_leading);
+ 	if (err)
+ 		goto free_socket;
+-- 
+2.40.1
+
+
+
+-- 
+You received this message because you are subscribed to the Google Groups "open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20231004175232.295425568%40linuxfoundation.org.
