@@ -1,111 +1,111 @@
-Return-Path: <open-iscsi+bncBDGIZD433YCRB67AQCUQMGQEEFI625Y@googlegroups.com>
+Return-Path: <open-iscsi+bncBDGIZD433YCRBZHMQGUQMGQEYEVJ2TQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qv1-xf3e.google.com (mail-qv1-xf3e.google.com [IPv6:2607:f8b0:4864:20::f3e])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389D07BBC70
-	for <lists+open-iscsi@lfdr.de>; Fri,  6 Oct 2023 18:06:22 +0200 (CEST)
-Received: by mail-qv1-xf3e.google.com with SMTP id 6a1803df08f44-66ac99ce80esf22889116d6.1
-        for <lists+open-iscsi@lfdr.de>; Fri, 06 Oct 2023 09:06:22 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1696608381; cv=pass;
+Received: from mail-ot1-x33a.google.com (mail-ot1-x33a.google.com [IPv6:2607:f8b0:4864:20::33a])
+	by mail.lfdr.de (Postfix) with ESMTPS id 738E17BC0EA
+	for <lists+open-iscsi@lfdr.de>; Fri,  6 Oct 2023 23:04:39 +0200 (CEST)
+Received: by mail-ot1-x33a.google.com with SMTP id 46e09a7af769-6c626bfcd3fsf3130026a34.3
+        for <lists+open-iscsi@lfdr.de>; Fri, 06 Oct 2023 14:04:39 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1696626278; cv=pass;
         d=google.com; s=arc-20160816;
-        b=fAZN8opaRTBuVehNE+iSLiu1JluXeN7pf/gcI3JRuZlAovpI4LpA1AoEk9Zkgb7SJp
-         BJwDYPaNbpbsw1RaqL6Gn0W7u9dG/R66ATbgCS8h593REoKctcV7BjNWhrR9mrofduNP
-         +e6nO4Ka+dA51eSPQPd2m6OezwJOiqQI8B2BoJYXHWsyHhZN6hHKuqo0i/6+sfapBRRr
-         jnboksqgKAUkr4xJGS0keY3wt5NWYEtUnEUSozIBquGwFMuU8P8uTnDGH/HXTB+ecO8H
-         gHaZuLf2F4l1KJLY8cT7pP2a6s5OqD8YHTvIUppi0By5GXU6MOh4WewmIG2j62Tp9qk1
-         Fp+Q==
+        b=DOAQldR189u5HS5QCDisUtFoPx7PtNB7K8QwWN0pTWXuVZvlwOD4If9BbsIFsVunuj
+         ckZrLK5utOl5qFK6cL5W2NuEUnpWm66wC8TG3/EP8g73f0e6YEXxmVMaZyUMacIOPEs5
+         lkseur5YmimDqavpnjJOeJdkdipktQ7udma/8Gr2BDybleqd77Lr5xnNC4pqJTpvEB60
+         ahNoYrJgF5Qr5MF2SJ1MRCtYcV/KypxUpq6+Z8kp8UuBgqNZXsTrmk64/4b7RtKTDTYf
+         lNoAS0IoB8xfuhKixOBPBIbMCQS1nkk2oahAFOg4F8enuUPQqV2gKd2z8hM6QCw6QWu1
+         IHbg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:in-reply-to:from:content-language
          :references:cc:to:subject:reply-to:user-agent:mime-version:date
          :message-id:sender:dkim-signature;
-        bh=2n+lym8X07bKVoogMLt2gT7QxuKfTBGWR0NawzJvzoU=;
+        bh=VU9UtwEeNZZt4YHRF7yqnvwogcsbCxGUJWAYWuPV+84=;
         fh=UEpFMKOqyweapDowiE7VvOt2ySza3HVObMQ+Ezn7xQ0=;
-        b=FHOI5IvSubG4y0JSDxLv3nfmLt8eIUZGHVwE9RBgJ5FGrSOXFwv/0E7Dvpox8hyELp
-         zAfEv6+In7qXDyvPJ+utN2+EINC98pXI45LoEDL5VQnU6lST9Y/y4JjESLnv+fdsMWxl
-         ou6kM+wa02MfQxWGuMIopGSmzg2Jv68+N9ujug1L6ZfHGPMlQ1K18azTB27Oako0pjA/
-         BDX7DXDIUIEsBoTUDa83pIDBSgOK4lYqoZukYtaSdWJw3YyjZlEOXZkDDyuw8cfkeikD
-         4kIsKX0CPxHj5yvvWP+sx+x9A1lqgFIM32CeRCzQRLSL06Sev8SttRZx+0z/JMSwn+So
-         +9hQ==
+        b=W95df4RwazpC4OPjJmZt4l46m7odKb/OVeIYqU7BuCZgkxAIN1rWiqxEJkQ9NyRrF0
+         52vL4/QO3vw0kHeOALi5x5YAGQmJV+fzoBJdv9Xb8+6d+gSbP42SwvRgrPtfRZNpFa4J
+         9Po2UvGAr2jdXj+Lhkl2wfcr5LgsPI1qbMUvKbNIY01bBaP2dXG/aJnFVcHLjHpIDalE
+         S6u8Otd9olk7s6Zz0ycnGAPOoDEYqI0f7dQ5SVK8gJYTdJdP+Dqw1om9TIkPHjkpS+tV
+         h90Kyk9bRQvgCQ0+v9LvjVXdcBHxJwN2SCk3i7buhy3WvMZSwGdSazc/0f2LUYKG4w+d
+         F21g==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.137 as permitted sender) smtp.mailfrom=dgilbert@interlog.com
+       spf=pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.136 as permitted sender) smtp.mailfrom=dgilbert@interlog.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1696608381; x=1697213181; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1696626278; x=1697231078; darn=lfdr.de;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:x-original-authentication-results
          :x-original-sender:in-reply-to:from:content-language:references:cc
          :to:subject:reply-to:user-agent:mime-version:date:message-id:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2n+lym8X07bKVoogMLt2gT7QxuKfTBGWR0NawzJvzoU=;
-        b=PUuxIGvBEVe+leiGR9wiY5O1qdRqNplJ8g48d/9iEK50XRCoOl6TpA6nso8cGyr9/7
-         m1LI3v824ayrV9qouq6Okehh+B5LUVE2P/QEnFvvbJKk/ZPXudLocyl9n753l7U+P9Pz
-         Lq6uPqq+OSUADHA9M4pcNME9rya+dhVaiQkPxoXOd40zXDaWMb37dc2pFUm4XQ/fF+w4
-         8zVetMDb1b3JaA6OHOxfBwDIFrF3KcpmQddLlbTwZHibRtRg6a2fFM0HFObfwg3x11EJ
-         WvUzpo+qP1Qzq24/M2yUvdqWfLDIfEI2OXERENyUwse3L5VDKduUngV1f4eq7em1rt9b
-         8QqQ==
+        bh=VU9UtwEeNZZt4YHRF7yqnvwogcsbCxGUJWAYWuPV+84=;
+        b=ud6Mu4+tUf8fJP8i3uF8q5yq9+rFlZc9IrK5BmBODi4Lgxq6iIePrmD28O1XZ8w93Q
+         ZtACkttPrkhbD6TNdJw6dasdrwgiCrKt99D06WOYMMW1PTdllXq6oA+YOBlwmVKaQVDU
+         ng/0VPOm5Rc9wCrM4WholWAYbtw09NtbuHZRqDGiuh+u4Q3N0AwcSM6m9VYYl3n6FsUO
+         VNoVxuVAya+lol91990QWF4HHJZQgEx+Q52poX+uv7oIisAHjPMd1zEEFhbXHAFK0ak6
+         IJQ0lR35qEySgxldPobrvNMsG5YwBeHgPF8vWEaWwi7P0jD6z3A5OBH++IQ6gmsafMiW
+         QqAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696608381; x=1697213181;
+        d=1e100.net; s=20230601; t=1696626278; x=1697231078;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence
          :x-original-authentication-results:x-original-sender:in-reply-to
          :from:content-language:references:cc:to:subject:reply-to:user-agent
          :mime-version:date:message-id:x-beenthere:x-gm-message-state:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2n+lym8X07bKVoogMLt2gT7QxuKfTBGWR0NawzJvzoU=;
-        b=vCyjW5rvWiv1A0+wQjLiKlozjveVXv6GY0mYWSQ6wOjxMsWjfkdnrsbZOtjmK2a85H
-         v0AUZ9KuOkdaA3EWKDWM9L8ykvX6qiMq9auZVO5tqCPSO7V0VNahMccvtu/mw0AMm+Z+
-         zhCe44+BtOT+jq+2KQ5Up7Q+EisXh5I19qMaesUjRj/v5vEC5iIDc2rzFvYL94Hc6KwQ
-         e2WLhIo1HW9HTDJob1N3z0Pu5UDF3xRigz3EGylQKDLUnN5QsjtVBE/kP1/+AEtB9Fz5
-         XqBL0Kodfz4LDdE7eNdOWI3KsMsikC2z0yTKZldHNxBtZ5dly76dkEq6dHD3ZjPifnbj
-         flRg==
+        bh=VU9UtwEeNZZt4YHRF7yqnvwogcsbCxGUJWAYWuPV+84=;
+        b=oDpEq0FY1NgOImp8O4CGQgmkMboIF4/bR+O0TvTR5LF7a4/UXRHceU/Wfqp/Jg80Cn
+         6oYOinOfVx88Uqcwh9PyqG+fCnP4AtJ9uMvOt5J8kZ+UmvzCm1J/DVxRwavwzTHPYcnr
+         x85CczUBjRmMT4ukK//wKz+mfh3/3WjC5QBdxxhqSkC/a3pDbEshx9uRJxd4eWoF6M9E
+         zcYTUQOCFmB5NIzMK7gdK+uUBNsS/lMWjFs5gWKm6dYIeGD7NKZiW0svv1agiD+P2tPV
+         lR0bvJoif/R/6FaRpeQ2o/4IGkTMzHCDdySgVKa6L4BTppS+MxDaxOp5F1Z5LUwsrjlq
+         WB7Q==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOJu0Yzb1vUH/Fnu9VuZ9V/WBJcUongTgz0t9z/f5XdEQFe41nffMjQ7
-	oWoIQS53pChcAPSJ9rAaqpo=
-X-Google-Smtp-Source: AGHT+IF92XesnEMYO13fhm3thVgClkDCgTOV7PweMvEMIgkv1EImc2wWbgIqdaO/q+m1JIsDMnkrRw==
-X-Received: by 2002:a0c:de04:0:b0:65a:2d16:c2 with SMTP id t4-20020a0cde04000000b0065a2d1600c2mr8371623qvk.46.1696608380796;
-        Fri, 06 Oct 2023 09:06:20 -0700 (PDT)
+X-Gm-Message-State: AOJu0YyvBoXDrHLerrd9t0Bq0xS6Ehw1Ix87JsoKfcdCLzNPtG1zsB65
+	M3FCcD+ta7x2moLoGXuX7Bk=
+X-Google-Smtp-Source: AGHT+IEomzUvlpaNhWXzq31f1dWQQkJt7MifswFXAZBxSwZAlaLV78AE/FClo+Jb2aNPZfCGyIq6GA==
+X-Received: by 2002:a05:6830:59:b0:6b9:b600:536 with SMTP id d25-20020a056830005900b006b9b6000536mr9372954otp.27.1696626278182;
+        Fri, 06 Oct 2023 14:04:38 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a0c:db04:0:b0:65a:fea4:8eed with SMTP id d4-20020a0cdb04000000b0065afea48eedls2044583qvk.2.-pod-prod-07-us;
- Fri, 06 Oct 2023 09:06:18 -0700 (PDT)
-X-Received: by 2002:a67:f5cb:0:b0:44d:5435:a3f with SMTP id t11-20020a67f5cb000000b0044d54350a3fmr8053338vso.29.1696608378294;
-        Fri, 06 Oct 2023 09:06:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1696608378; cv=none;
+Received: by 2002:a4a:5101:0:b0:57b:6a17:53f6 with SMTP id s1-20020a4a5101000000b0057b6a1753f6ls736280ooa.1.-pod-prod-06-us;
+ Fri, 06 Oct 2023 14:04:35 -0700 (PDT)
+X-Received: by 2002:a05:6808:10ce:b0:3ab:83fe:e182 with SMTP id s14-20020a05680810ce00b003ab83fee182mr11174394ois.1.1696626275748;
+        Fri, 06 Oct 2023 14:04:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1696626275; cv=none;
         d=google.com; s=arc-20160816;
-        b=XmwRR2EhF1IJ83nTYRj9bG8ca6wCdsvRSE2gE8I1V5Q/RPXIhr7tQZ8pFC02do60T1
-         x4JFK/MGKg2AgZz0DcyheJr+2n64S/C7jHHiR9dan5hclYGzowpfa3FLnbCSAQpcZho+
-         6MkTHgscWLF/iW9O6rqIe9kGsub91bV51GxtKVJxoGK4wK19NAu9xoaUHDZiunOW5prr
-         viiWA2giw0/MLPjFTbYWalDQedesVnlsT+z7zh8EY1Y8ZrtaLjeFEnWMG1qXTt9uNwYt
-         fMt9Vg3xk3BFHBCbJT+paX9hkN/T4WI01NkCWI98yqV4utJUyJz2O44K8I4346DOPYt7
-         dEbA==
+        b=tkVG72yjuwH8Q6MGs3JGiG4mhDEosJEABxMJtcPDN2EpttN7OlY6PxTDsXFuasWmhz
+         hlyUH/qX3mj+YF69dhhKkFt+aOluXPdWpSuyyXWUrPY5VYeHWtQZApAkjWMydRbKl2Ky
+         8YBc0bg2bxaS8Di2ALkZeVk8OXnu9ZOlHkCYSV7pLEIrZOjDQ8JIGyPfUBM3yESEDUmf
+         hoq1AxfMOE0w0CFvpvnE4a8G8XBR9zgTh4OiMbu06Vbg/CoWaWcgsVUe/7eE3gHJFUr8
+         2lUUOvkYIS1myY8SFowIz0zB8x+39XJj7wnR6axaITb2pfQaJCKXqpmBgE/rEZXRAs57
+         OV8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:reply-to:user-agent:mime-version:date
          :message-id;
-        bh=8u/HTZWaOS+hiZdD7UT2LjW5P8SCs51OtwBtGDuNJYM=;
+        bh=yj43vwptagfwvCdfkzoN17PBrKYRHeh0WSweT/AmTjk=;
         fh=UEpFMKOqyweapDowiE7VvOt2ySza3HVObMQ+Ezn7xQ0=;
-        b=KnGEJIzDn+r24aqZfIjhX7q+42SnGLZ9m81HWltKHqEd3sIbw8aU7wNv2hdaraL8jU
-         zLWVkyDKhYkKNQymXaMtHqhmq/zXeGzsojRDfGwht4FGjQ9OFrGk8ERPKZWY3o5pNdWF
-         PV5dHOlSa/Xbeiv9giU+fHSEDszhFNfrB1WAdqRwAZKch2OrYXiGvubCCxaKMhKscPTV
-         0RKhEecHe6Nzl6tK1cSsf3jFHOsyZ2Tw2LWdD/91QCrKf7iXVf8e6PV0cAvkm4+6EmPz
-         ZMMJvR7omD1gVpFR3L96xV6l8h3dtUr36KcHRIayIlfZxI7EX52JdhxwoGN9sK5srNGn
-         nkqg==
+        b=ztqu02VVlMWCgkhUtkLYZKQzU428S60003YDEzgsiA3NZD2JtUrl9O4Il7LYjTMg2p
+         ofAdl/y/fYaocO5ZUkipAikqfwODgro1uiNSu60r6zYEEy51D4eTMQFoy/GhFWOynoSS
+         BQkxYiLWoY1Nybg0HOM0AcoaQ9nosiyfL/WpkI1uittEX0mGjfRbfu7JH7hhxoijq4Xx
+         CxVzqrBVYk4g2ySHCD5iW5frsJN75PdqV7nEsk8xz1UVH0Pu/pVjFqbfizy1BeapDUu/
+         CkV9jgxfDuH8vQCP2jptFmD4UBmLHjpEOH9Qv48bV8lBhEp+jnBeI7FlHG5WnZRm5J3s
+         +KSA==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.137 as permitted sender) smtp.mailfrom=dgilbert@interlog.com
-Received: from mp-relay-02.fibernetics.ca (mp-relay-02.fibernetics.ca. [208.85.217.137])
-        by gmr-mx.google.com with ESMTPS id d17-20020a056102149100b0045258d13d6esi902494vsv.2.2023.10.06.09.06.18
+       spf=pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.136 as permitted sender) smtp.mailfrom=dgilbert@interlog.com
+Received: from mp-relay-01.fibernetics.ca (mp-relay-01.fibernetics.ca. [208.85.217.136])
+        by gmr-mx.google.com with ESMTPS id gq17-20020a056808399100b003adc07017bfsi429727oib.3.2023.10.06.14.04.35
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 09:06:18 -0700 (PDT)
-Received-SPF: pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.137 as permitted sender) client-ip=208.85.217.137;
+        Fri, 06 Oct 2023 14:04:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.136 as permitted sender) client-ip=208.85.217.136;
 Received: from mailpool-fe-02.fibernetics.ca (mailpool-fe-02.fibernetics.ca [208.85.217.145])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mp-relay-02.fibernetics.ca (Postfix) with ESMTPS id B4E5975C23;
-	Fri,  6 Oct 2023 16:06:17 +0000 (UTC)
-Received: from localhost (mailpool-mx-01.fibernetics.ca [208.85.217.140])
-	by mailpool-fe-02.fibernetics.ca (Postfix) with ESMTP id 9CA07609E6;
-	Fri,  6 Oct 2023 16:06:17 +0000 (UTC)
+	by mp-relay-01.fibernetics.ca (Postfix) with ESMTPS id A30AAE179C;
+	Fri,  6 Oct 2023 21:04:34 +0000 (UTC)
+Received: from localhost (mailpool-mx-02.fibernetics.ca [208.85.217.141])
+	by mailpool-fe-02.fibernetics.ca (Postfix) with ESMTP id 89C6C60BBD;
+	Fri,  6 Oct 2023 21:04:34 +0000 (UTC)
 X-Virus-Scanned: Debian amavisd-new at
 X-Spam-Flag: NO
 X-Spam-Score: -0.199
@@ -114,36 +114,36 @@ X-Spam-Status: No, score=-0.199 tagged_above=-999 required=5
 	tests=[ALL_TRUSTED=-1, BAYES_50=0.8, URIBL_BLOCKED=0.001]
 	autolearn=no autolearn_force=no
 Received: from mailpool-fe-02.fibernetics.ca ([208.85.217.145])
-	by localhost (mail-mx-01.fibernetics.ca [208.85.217.140]) (amavisd-new, port 10024)
-	with ESMTP id KjewNH7qp8jC; Fri,  6 Oct 2023 16:06:15 +0000 (UTC)
-Received: from [192.168.48.17] (host-104-157-209-188.dyn.295.ca [104.157.209.188])
+	by localhost (mail-mx-02.fibernetics.ca [208.85.217.141]) (amavisd-new, port 10024)
+	with ESMTP id zZQtcZxEEU-n; Fri,  6 Oct 2023 21:04:33 +0000 (UTC)
+Received: from [192.168.2.19] (lnsm3-torontoxn-142-116-140-195.internet.virginmobile.ca [142.116.140.195])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: dgilbert@interlog.com)
-	by mail.ca.inter.net (Postfix) with ESMTPSA id D05BD6091D;
-	Fri,  6 Oct 2023 16:06:14 +0000 (UTC)
-Message-ID: <8c48129a-1afe-4189-a1f8-3c60e2375ad2@interlog.com>
-Date: Fri, 6 Oct 2023 12:06:14 -0400
+	by mail.ca.inter.net (Postfix) with ESMTPSA id CB7066091D;
+	Fri,  6 Oct 2023 21:04:32 +0000 (UTC)
+Message-ID: <fd68ba92-7736-4924-945e-4bb238a02860@interlog.com>
+Date: Fri, 6 Oct 2023 17:04:30 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Reply-To: open-iscsi@googlegroups.com
-Subject: Re: [PATCH v5 07/10] scsi: scsi_debug: Add new error injection abort
- failed
+Subject: Re: [PATCH v5 08/10] scsi: scsi_debug: Add new error injection reset
+ lun failed
 To: Wenchao Hao <haowenchao2@huawei.com>,
  "James E . J . Bottomley" <jejb@linux.ibm.com>,
  "Martin K . Petersen" <martin.petersen@oracle.com>,
  open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org, louhongxiang@huawei.com
 References: <20230922092906.2645265-1-haowenchao2@huawei.com>
- <20230922092906.2645265-8-haowenchao2@huawei.com>
+ <20230922092906.2645265-9-haowenchao2@huawei.com>
 Content-Language: en-CA
 From: Douglas Gilbert <dgilbert@interlog.com>
-In-Reply-To: <20230922092906.2645265-8-haowenchao2@huawei.com>
+In-Reply-To: <20230922092906.2645265-9-haowenchao2@huawei.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 X-Original-Sender: dgilbert@interlog.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of dgilbert@interlog.com designates 208.85.217.137 as
+ (google.com: domain of dgilbert@interlog.com designates 208.85.217.136 as
  permitted sender) smtp.mailfrom=dgilbert@interlog.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -158,7 +158,7 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
  <https://groups.google.com/group/open-iscsi/subscribe>
 
 On 2023-09-22 05:29, Wenchao Hao wrote:
-> Add error injection type 3 to make scsi_debug_abort() return FAILED.
+> Add error injection type 3 to make scsi_debug_device_reset() return FAILED.
 > Fail abort command foramt:
 
 s/foramt/format/
@@ -167,7 +167,7 @@ s/foramt/format/
 >    +--------+------+-------------------------------------------------------+
 >    | Column | Type | Description                                           |
 >    +--------+------+-------------------------------------------------------+
->    |   1    |  u8  | Error type, fixed to 0x3                              |
+>    |   1    |  u8  | Error type, fixed to 0x4                              |
 >    +--------+------+-------------------------------------------------------+
 >    |   2    |  s32 | Error count                                           |
 >    |        |      |  0: this rule will be ignored                         |
@@ -181,64 +181,61 @@ s/foramt/format/
 > Examples:
 >      error=/sys/kernel/debug/scsi_debug/0:0:0:1/error
 >      echo "0 -10 0x12" > ${error}
-> will make the device return FAILED when abort inquiry command 10 times.
 
-Tested with:
-    # sg_raw -t 10 -r 1k /dev/sg1 12 00 00 00 60 00
+These examples are misleading. Same with the one in patch 7/10 . The example
+should be showing an invocation that exercises _this_ patch. So the first
+byte of the echo should be 4 not the 0 shown above.
 
-After 10 seconds (the timeout specified to sg_raw) I saw this:
-    >>> transport error: Host_status=0x03 [DID_TIME_OUT]
+Doug Gilbert
 
-And the
-     # cat /sys/kernel/debug/scsi_debug/1\:0\:0\:0/error
-
-Count value changed from -10 up to 0 for each invocation of the INQUIRY
-command. Thereafter the INQUIRY command worked.
-
-Looks good.
-
-   Tested-by: Douglas Gilbert <dgilbert@interlog.com>
-
+> will make the device return FAILED when try to reset lun with inquiry
+> command 10 times.
+>      error=/sys/kernel/debug/scsi_debug/0:0:0:1/error
+>      echo "0 -10 0xff" > ${error}
+> will make the device return FAILED when try to reset lun 10 times.
+> 
+> Usually we do not care about what command it is when trying to perform
+> reset LUN, so 0xff could be applied.
 > 
 > Signed-off-by: Wenchao Hao <haowenchao2@huawei.com>
 > ---
->   drivers/scsi/scsi_debug.c | 40 +++++++++++++++++++++++++++++++++++++++
->   1 file changed, 40 insertions(+)
+>   drivers/scsi/scsi_debug.c | 39 +++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 39 insertions(+)
 > 
 > diff --git a/drivers/scsi/scsi_debug.c b/drivers/scsi/scsi_debug.c
-> index fe1f7421f617..8a16cb9642a6 100644
+> index 8a16cb9642a6..db8ab6cad078 100644
 > --- a/drivers/scsi/scsi_debug.c
 > +++ b/drivers/scsi/scsi_debug.c
-> @@ -293,6 +293,8 @@ enum sdebug_err_type {
->   	ERR_FAIL_CMD		= 2,	/* make specific scsi command's */
->   					/* queuecmd return succeed but */
+> @@ -295,6 +295,8 @@ enum sdebug_err_type {
 >   					/* with errors set in scsi_cmnd */
-> +	ERR_ABORT_CMD_FAILED	= 3,	/* control return FAILED from */
-> +					/* scsi_debug_abort() */
+>   	ERR_ABORT_CMD_FAILED	= 3,	/* control return FAILED from */
+>   					/* scsi_debug_abort() */
+> +	ERR_LUN_RESET_FAILED	= 4,	/* control return FAILED from */
+> +					/* scsi_debug_device_reseLUN_RESET_FAILEDt() */
 >   };
 >   
 >   struct sdebug_err_inject {
-> @@ -970,6 +972,7 @@ static int sdebug_error_show(struct seq_file *m, void *p)
->   	list_for_each_entry_rcu(err, &devip->inject_err_list, list) {
+> @@ -973,6 +975,7 @@ static int sdebug_error_show(struct seq_file *m, void *p)
 >   		switch (err->type) {
 >   		case ERR_TMOUT_CMD:
-> +		case ERR_ABORT_CMD_FAILED:
+>   		case ERR_ABORT_CMD_FAILED:
+> +		case ERR_LUN_RESET_FAILED:
 >   			seq_printf(m, "%d\t%d\t0x%x\n", err->type, err->cnt,
 >   				err->cmd);
 >   		break;
-> @@ -1031,6 +1034,7 @@ static ssize_t sdebug_error_write(struct file *file, const char __user *ubuf,
->   
+> @@ -1035,6 +1038,7 @@ static ssize_t sdebug_error_write(struct file *file, const char __user *ubuf,
 >   	switch (inject_type) {
 >   	case ERR_TMOUT_CMD:
-> +	case ERR_ABORT_CMD_FAILED:
+>   	case ERR_ABORT_CMD_FAILED:
+> +	case ERR_LUN_RESET_FAILED:
 >   		if (sscanf(buf, "%d %d %hhx", &inject->type, &inject->cnt,
 >   			   &inject->cmd) != 3)
 >   			goto out_error;
-> @@ -5504,9 +5508,39 @@ static void stop_all_queued(void)
->   	mutex_unlock(&sdebug_host_list_mutex);
+> @@ -5578,10 +5582,40 @@ static void scsi_debug_stop_all_queued(struct scsi_device *sdp)
+>   				scsi_debug_stop_all_queued_iter, sdp);
 >   }
 >   
-> +static int sdebug_fail_abort(struct scsi_cmnd *cmnd)
+> +static int sdebug_fail_lun_reset(struct scsi_cmnd *cmnd)
 > +{
 > +	struct scsi_device *sdp = cmnd->device;
 > +	struct sdebug_dev_info *devip = (struct sdebug_dev_info *)sdp->hostdata;
@@ -251,7 +248,7 @@ Looks good.
 > +
 > +	rcu_read_lock();
 > +	list_for_each_entry_rcu(err, &devip->inject_err_list, list) {
-> +		if (err->type == ERR_ABORT_CMD_FAILED &&
+> +		if (err->type == ERR_LUN_RESET_FAILED &&
 > +		    (err->cmd == cmd[0] || err->cmd == 0xff)) {
 > +			ret = !!err->cnt;
 > +			if (err->cnt < 0)
@@ -266,21 +263,21 @@ Looks good.
 > +	return 0;
 > +}
 > +
->   static int scsi_debug_abort(struct scsi_cmnd *SCpnt)
+>   static int scsi_debug_device_reset(struct scsi_cmnd *SCpnt)
 >   {
->   	bool ok = scsi_debug_abort_cmnd(SCpnt);
+>   	struct scsi_device *sdp = SCpnt->device;
+>   	struct sdebug_dev_info *devip = sdp->hostdata;
 > +	u8 *cmd = SCpnt->cmnd;
 > +	u8 opcode = cmd[0];
 >   
->   	++num_aborts;
+>   	++num_dev_resets;
 >   
-> @@ -5515,6 +5549,12 @@ static int scsi_debug_abort(struct scsi_cmnd *SCpnt)
->   			    "%s: command%s found\n", __func__,
->   			    ok ? "" : " not");
+> @@ -5592,6 +5626,11 @@ static int scsi_debug_device_reset(struct scsi_cmnd *SCpnt)
+>   	if (devip)
+>   		set_bit(SDEBUG_UA_POR, devip->uas_bm);
 >   
-> +	if (sdebug_fail_abort(SCpnt)) {
-> +		scmd_printk(KERN_INFO, SCpnt, "fail abort command 0x%x\n",
-> +			    opcode);
+> +	if (sdebug_fail_lun_reset(SCpnt)) {
+> +		scmd_printk(KERN_INFO, SCpnt, "fail lun reset 0x%x\n", opcode);
 > +		return FAILED;
 > +	}
 > +
@@ -291,4 +288,4 @@ Looks good.
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/8c48129a-1afe-4189-a1f8-3c60e2375ad2%40interlog.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/fd68ba92-7736-4924-945e-4bb238a02860%40interlog.com.
