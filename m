@@ -1,110 +1,112 @@
-Return-Path: <open-iscsi+bncBDGIZD433YCRBQPPRSUQMGQEIFRFXGY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDGIZD433YCRB6XQRSUQMGQEGKDYT4Y@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-il1-x13c.google.com (mail-il1-x13c.google.com [IPv6:2607:f8b0:4864:20::13c])
-	by mail.lfdr.de (Postfix) with ESMTPS id A14EA7BD119
-	for <lists+open-iscsi@lfdr.de>; Mon,  9 Oct 2023 01:14:12 +0200 (CEST)
-Received: by mail-il1-x13c.google.com with SMTP id e9e14a558f8ab-352642849b2sf28170465ab.3
-        for <lists+open-iscsi@lfdr.de>; Sun, 08 Oct 2023 16:14:12 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1696806851; cv=pass;
+Received: from mail-pj1-x103b.google.com (mail-pj1-x103b.google.com [IPv6:2607:f8b0:4864:20::103b])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C3AD7BD11D
+	for <lists+open-iscsi@lfdr.de>; Mon,  9 Oct 2023 01:17:18 +0200 (CEST)
+Received: by mail-pj1-x103b.google.com with SMTP id 98e67ed59e1d1-27733adfb12sf4313834a91.1
+        for <lists+open-iscsi@lfdr.de>; Sun, 08 Oct 2023 16:17:18 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1696807036; cv=pass;
         d=google.com; s=arc-20160816;
-        b=YubxUmvvd/UP4x+gqR6suSBj+EoDleFODiYzrvbFaJB1x9sLBRIvqf7iJKL0X2RoYi
-         zha++Yfj1VPW1il3Ej1xkjJm95SjeFISIWs4jcmsYJhX3k739LWk/4uXQqpEKz8dq4iK
-         iHrajjEc9Snk7Vo7LgGEFxFoEI2koBn+X10npJ+ntItY1wmSM1jepQEtwEdRoKbNUQWx
-         eAk2JoiLDOPocoKSfDzZF9htD1x1Oo70nPGvx55YidSM0cZKlaOTx0C0tdm/HGieTXaX
-         zycfjiyzl5gtT7PbX/41ICE5D4MMsY4lMOpgtvZQ7FAY24fOkbMmoRoNG9F2yekZ+W9L
-         7RGw==
+        b=oZaxldcoDkKaPHBnvhpXEIxJvFybg52ihx680sm0oKFN6P3JPJ/CnmbFkZmM+T98eC
+         PsOCmMnJefpNI6lGXVeTgwyyH4k5Jl4QcsKnm49EcXRbHKpgxGRjy/qpGeseSZ4v5NQE
+         fpFAUj8M3wVr+DVBji8VwQP8kTCqDEZctvdGo4fYiogu9PoOjZKX935zksm/yZsl4cGa
+         S6IZKVwqpFU7scx/94a5o36ne9yQDPokjlSg8P+d+kOuXGICx6CuPAPmTQD5rYRBQQfN
+         /koPq5xOFF0vpqzpFI0WFq4jmDbNzzPZvSXYBKfupRSjyZkILhHNx5RsGnuf2ULXKOEx
+         Q21A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
-         :list-id:mailing-list:precedence:in-reply-to:content-language
-         :references:cc:to:reply-to:subject:from:user-agent:mime-version:date
+         :list-id:mailing-list:precedence:in-reply-to:from:references:cc:to
+         :content-language:subject:reply-to:user-agent:mime-version:date
          :message-id:sender:dkim-signature;
-        bh=bRHfURCBMFLniGV3XDyadmEKElNtrIXK7515iC9h+r8=;
-        fh=oQBFtupM2DJNP90cSEJuUHZ5nWSImwDzrtDtb03ybG4=;
-        b=oThunQ+bF9If9iqJcF9IA4iAO7kwYs6+dY+rRO4K5ZF5NKirtEPaVqDbXbbUZk353I
-         3mqsJKdpaJdQ2loO8/MlXMxCLzNtJM3WBPwyEmWuRod90ohrkMyn6jxDzGbokufUbkC0
-         f1AKh7U4nO3tj0/blKXIc4LsA/LE5lZ6exsmYKC+yKIs0CQqmVgnxSoZ1b5phqSQjr9D
-         juIY2PbjQkYvsi1HSXgX5uWXqstx70ky06z0/rqeqPFLeDtwLqw8psJosBRt/5ys8wOZ
-         eE7xUQPiKwVSCpUmowT9xH1953BNQYFOZhyVzpJXaHkeqQetpv05YUL9ShcILEuw68dt
-         5uQw==
+        bh=3SWlBANkP5h2TJ64nRzGsJZF9ATYxtUy1Nkdw8WYleI=;
+        fh=UEpFMKOqyweapDowiE7VvOt2ySza3HVObMQ+Ezn7xQ0=;
+        b=AbO/nhYfMr1G6Qj58WM0cau6WWH2lThGVdG02716cQ2oJwByQhxf+jApFBMRF7yMTq
+         rAADAC89t3yj3uG5yE+5v//NQXmbtQXQ9Wm78hiKo3+3ycpT+fBmv0xLqhO0L2mVfJr6
+         TdS7wh3M5FJtmFlT1aCrx8b/1M46AW5XexhoJBJa3tH2gHgqLs3Clj55QENVWMiRZ8RH
+         WyE1a86eCMv/IlAADjdkNsCpMtj5f7c+oU8vIvqK21rhGXHZGYmhrwk4JogqRkLJy9h9
+         yZJkEmsDO9WoQgtQHzDqZwMK1RQe0zcXRbchfssvpiq4iwEwn65OaeJTX6/BjZ9reUkW
+         jGVw==
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       spf=pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.137 as permitted sender) smtp.mailfrom=dgilbert@interlog.com
+       spf=pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.136 as permitted sender) smtp.mailfrom=dgilbert@interlog.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1696806851; x=1697411651; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1696807036; x=1697411836; darn=lfdr.de;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:x-original-authentication-results
-         :x-original-sender:in-reply-to:content-language:references:cc:to
-         :reply-to:subject:from:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=bRHfURCBMFLniGV3XDyadmEKElNtrIXK7515iC9h+r8=;
-        b=Z1Y1zld0AzfNFeINHxopjgaBkxHihhg5y6pyz7SMYNLL7DxglgLKT/ec0ywml7c4Bs
-         4KZgc+aUEU0tk586JwcpdOJBMPqzmMR9HDHi4dsmvjj48cDGIIvQ96Dz3sBFijkeKWVQ
-         E46pQHNcZzcEyMXV+QjSkKu9cgzxRkI13TbcFrSl/OFu76dJIQ+hw/cZouJfvi4HsLe9
-         FFEtS+XUIgQPb+2g6Br0nqbmoX8l3qtGVnBKopqZ47YWQCOyMPKk6hJemgsmfQ62CUGG
-         4me59qQYxuXn214RdLj7gpc98t3zwqaGmtp3nil3jvdRxWUZkq6tgrHgCudAYb2Kuj2p
-         /bZw==
+         :x-original-sender:in-reply-to:from:references:cc:to
+         :content-language:subject:reply-to:user-agent:mime-version:date
+         :message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=3SWlBANkP5h2TJ64nRzGsJZF9ATYxtUy1Nkdw8WYleI=;
+        b=mr4BvqDKmNGrwZ7EWnx6N4F7NvD007fVsF0w9fP6xq9jL5wRAE5d75Kkk0GQxj8w0J
+         J8ZOcLddhBbm5hIT6QQ4Wi9v3Lphzi/9wCg2DyQNYJIURHFnyCuyLHBe8Nqitd/gn5IF
+         CWZiKV6PAYYKOvvFV6FhJd34fySikxla+fTrqCCGHIbg6M6AxJJU/B0u3N46R8KVgnAX
+         HD8s07Qv9bjqaMexIz/xm/FpvazXqq6GTSjraI3cPjtrBSuyRNxZ0oglivlrE95ba0W/
+         VE22JTwAIG6371PvMTgc2V+p1NTUAZo7UAYwZH6ndYGfZt7K2F6FYBuD9Qe6EBLzzOrb
+         DVSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696806851; x=1697411651;
+        d=1e100.net; s=20230601; t=1696807036; x=1697411836;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence
          :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-language:references:cc:to:reply-to:subject:from:user-agent
+         :from:references:cc:to:content-language:subject:reply-to:user-agent
          :mime-version:date:message-id:x-beenthere:x-gm-message-state:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bRHfURCBMFLniGV3XDyadmEKElNtrIXK7515iC9h+r8=;
-        b=KAYJRjBS3t3LZRPLC0IEk9wk3Fx3/ZATefveXU5Er+AJiiTQHE+yAweX2nPmBd0YzZ
-         hvdnNMWvYy0CzLRKbEecxNfII2PiqJJtgjZD3DcsGlF8ySgBiP4LBvS8/36EWGmZf/nv
-         U+gttRajNHccNbVi3YZSWb+PB9I+MUGGwOzm3xKX4I9ZhqFOF04/t+0kmxih8WnTXgDL
-         rqz/5dbXCL61YW1ELIF5TUljrR0tFjanCFQbDLcY8o1I7z/4+DPdHKiQTQZNWjF/pUqs
-         yZuwBlxqXuDid9h9XnxcmxhtZKdrj2LT/6gZWRzKoCn5a2379uDMUlRSYBKl0GFWWrae
-         iDUQ==
+        bh=3SWlBANkP5h2TJ64nRzGsJZF9ATYxtUy1Nkdw8WYleI=;
+        b=G9avn0FcQynz7hc3+4UbsTvZGafFz1cKr+MyBAfM6viEBcERmsm7MUp7y1UBxL5p09
+         8Ytqn9lPE/W0gzf9YPy3O9Udzxo8ilnNX2jOsm4rIaucN2z/eShMsv47n6wkLEz0vL/I
+         AliPR1oLClPAMte3NwIR6bk6GQzcGgwTWjtJ5L4HIkPkSy6MoK849PxAjIqoRRopb8mt
+         mX4wZQMq/sypeiPlQgtn219hskg+sfrFsdhEkk8IQ1uTsyObZ0RU1YI5AoxGt3FazaK+
+         /l+IchtINvbB558aSHFOI+xIAcISiBmlS9jjCiRJcmU5rwWQP3EkVp5isSt62JYbGt8l
+         i//g==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOJu0YzSZynxNX51GUv1msXv35K/KAAkVGlLMEgMEW47AgqtUY6jVIdC
-	NM7/E+l+orO+B7CCsyEskM8=
-X-Google-Smtp-Source: AGHT+IE5rVg2luc5Xcvzv5Rvq0fmkL3q1e5ZOnZQXy0U9u6au51c4YZh0Cxm3yPo2QZVcOAFBcUk4Q==
-X-Received: by 2002:a05:6e02:20c8:b0:34f:c9b4:5f9e with SMTP id 8-20020a056e0220c800b0034fc9b45f9emr18446638ilq.19.1696806851071;
-        Sun, 08 Oct 2023 16:14:11 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yy8L/Uq7QPWi7JZwAFrsCMMWD9eX577jJ4HxoRnQn+DVK4TGi+r
+	1ts4aoixd24rbo4RA4ocJybYoA==
+X-Google-Smtp-Source: AGHT+IGiFXHuc/kutbXigJO9fXSHvF+/ZAvV2eH5m5bUE3SXMUvGi4MBZmxhUtSleKQb4ztgfwgpmw==
+X-Received: by 2002:a17:90b:1810:b0:279:dae:2d3f with SMTP id lw16-20020a17090b181000b002790dae2d3fmr17050935pjb.22.1696807036190;
+        Sun, 08 Oct 2023 16:17:16 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a92:3409:0:b0:352:91db:eb45 with SMTP id b9-20020a923409000000b0035291dbeb45ls1524534ila.0.-pod-prod-06-us;
- Sun, 08 Oct 2023 16:14:08 -0700 (PDT)
-X-Received: by 2002:a05:6e02:973:b0:352:a35c:f23a with SMTP id q19-20020a056e02097300b00352a35cf23amr13484288ilt.23.1696806848109;
-        Sun, 08 Oct 2023 16:14:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1696806848; cv=none;
+Received: by 2002:a17:90b:280b:b0:277:3d4c:6176 with SMTP id
+ qb11-20020a17090b280b00b002773d4c6176ls3809996pjb.1.-pod-prod-00-us-canary;
+ Sun, 08 Oct 2023 16:17:13 -0700 (PDT)
+X-Received: by 2002:a05:6a20:12ca:b0:159:c07d:66f0 with SMTP id v10-20020a056a2012ca00b00159c07d66f0mr17058118pzg.6.1696807033577;
+        Sun, 08 Oct 2023 16:17:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1696807033; cv=none;
         d=google.com; s=arc-20160816;
-        b=rEq77sb0J0B2MwGh6ug7rflLHGFXFHHb2CZD3YuqN5Ml+2tPZPlz3D62FziIEYrOl/
-         B/2zwDnMQ2NPa9jgGw0jJQR6ZihAm5FDKTb/ph1Uw7c75u9WOW2VjKCQferQUxOirX92
-         EnNRbGU5Z4yqRKq1CvvZ0azR87R5K1esA9q6v4OTFU7U/n43PxvTj6ENwy1pfxVJqUoc
-         tbb2J6WbRg0Bwa9UYNArXGawDSc95iA/nBk41WXATvnyHG0uiBXhj4yzgGiAv5GqE3AC
-         ga3Mg/m8c3Oo12jPa0kf+/Oerg1wKxO0vqp9InlKZiiDeqRUPrcDcyAJM2CiljP6GNsy
-         UWwA==
+        b=0iCzjtcslwyvIrMpsWIRPya/4SP17VrMVTZacg4+FWTEXrd3WrxWhUHrSe43JCcWcB
+         8AymSMUTLErnAAiToosnpE4IjEvKY7JXw+/aLMx2VFmac9UPoGKeGNE0fsLp2h746+iL
+         dOXGAZ/GMcJiX0Fb2VrAbFYBl9gVmiB3Xrnikovx5h/accaPEDpg5F/ynvF8W4nc9zsS
+         GHp04ZoJL3Zs6GGLMhqndD2VyIGSQE2UJRlnFfo/ZLC5ZEmOPQ+fxNAsQinqNL8LM8ZW
+         fRsho88ayWXKYwFxOUAqnlf8V0U49FZk0eQeuGfzGDtK8FIQYGtIbdKMz0LZtJop2/ev
+         kWag==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id;
-        bh=9FYYMTxUhm305lOdQ6+5pzw1R2HCwmolZy+4PsyF//A=;
-        fh=oQBFtupM2DJNP90cSEJuUHZ5nWSImwDzrtDtb03ybG4=;
-        b=jRyk6WxT7qfXXd/JRchfEkyAez/Of2aqNJ0eFQnc+YEWVubSOPjL7R06mae+thn3xx
-         khvSi8yJLXFLdHiLaIdoocaIyinOK/4K/MYllLd5nugMjVubL1iv98B5YYwOtuUnKvvE
-         aoVigw6D4VUM+nITvSSkLGL0Fk4XVtu+jqqvpWyWnwkxCyrBB4bUh+1gBiL528lcLBPC
-         Sx+QTkFleFFCtr10kdS5jM7P1A4lM1cZBKkwwHICcduNLCNiEeFq7ndhWj+q67/S6d4S
-         RSC2I+lniREjyhHimsfhfaR3/o5y1CNamgBRIn3nEvlIBGEZgy+Kk2GwtrKMvSQeSZ7T
-         O2qQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:reply-to:user-agent:mime-version:date
+         :message-id;
+        bh=E0EjtfcP7p2Ip9Li9ereBqwMQ5UIGWLUIIU2+loQQiQ=;
+        fh=UEpFMKOqyweapDowiE7VvOt2ySza3HVObMQ+Ezn7xQ0=;
+        b=kK/qGaak/GLflAba3aIkJ+TMO+GYw+GRHYhcZubHVM+He/gdYrybNfqPL9whibOTcd
+         tOR3FJ73urbBOZlegzqBXPnX2VlB1HfkFwsA9eK+YtGGkxcRbZU+84IuL66D8QLarxyZ
+         nF2jSxPQ6TcqI+7Q9y1Sx9/LYcgagq2p0nikvUbyH2mpchgUvhgjzMRIaJdYchhyGtvU
+         z2ErfW0bvVKvXMw54vINtUgeeFPY3X77uIEAl0JpHFR+cj0rAyzP6jvt0Awld9ga58v7
+         SI8xLpcIKUz3RsvueTEsrGln4epe+gyO9RWZAw/PwflOoAqgWQnqF+xVHSotC8Ig+fXj
+         WSWQ==
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       spf=pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.137 as permitted sender) smtp.mailfrom=dgilbert@interlog.com
-Received: from mp-relay-02.fibernetics.ca (mp-relay-02.fibernetics.ca. [208.85.217.137])
-        by gmr-mx.google.com with ESMTPS id o1-20020a634e41000000b00569ee9c848fsi569894pgl.0.2023.10.08.16.14.07
+       spf=pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.136 as permitted sender) smtp.mailfrom=dgilbert@interlog.com
+Received: from mp-relay-01.fibernetics.ca (mp-relay-01.fibernetics.ca. [208.85.217.136])
+        by gmr-mx.google.com with ESMTPS id o1-20020a634e41000000b00569ee9c848fsi570245pgl.0.2023.10.08.16.17.13
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Oct 2023 16:14:08 -0700 (PDT)
-Received-SPF: pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.137 as permitted sender) client-ip=208.85.217.137;
+        Sun, 08 Oct 2023 16:17:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of dgilbert@interlog.com designates 208.85.217.136 as permitted sender) client-ip=208.85.217.136;
 Received: from mailpool-fe-02.fibernetics.ca (mailpool-fe-02.fibernetics.ca [208.85.217.145])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mp-relay-02.fibernetics.ca (Postfix) with ESMTPS id 95C7A765D3;
-	Sun,  8 Oct 2023 23:14:04 +0000 (UTC)
+	by mp-relay-01.fibernetics.ca (Postfix) with ESMTPS id DA5F8E1947;
+	Sun,  8 Oct 2023 23:17:09 +0000 (UTC)
 Received: from localhost (mailpool-mx-01.fibernetics.ca [208.85.217.140])
-	by mailpool-fe-02.fibernetics.ca (Postfix) with ESMTP id 7F9296091F;
-	Sun,  8 Oct 2023 23:14:04 +0000 (UTC)
+	by mailpool-fe-02.fibernetics.ca (Postfix) with ESMTP id C39346091F;
+	Sun,  8 Oct 2023 23:17:09 +0000 (UTC)
 X-Virus-Scanned: Debian amavisd-new at
 X-Spam-Flag: NO
 X-Spam-Score: -0.199
@@ -114,36 +116,35 @@ X-Spam-Status: No, score=-0.199 tagged_above=-999 required=5
 	autolearn=no autolearn_force=no
 Received: from mailpool-fe-02.fibernetics.ca ([208.85.217.145])
 	by localhost (mail-mx-01.fibernetics.ca [208.85.217.140]) (amavisd-new, port 10024)
-	with ESMTP id vr5ko5C6duzg; Sun,  8 Oct 2023 23:14:03 +0000 (UTC)
+	with ESMTP id n9tGbeY3WSBp; Sun,  8 Oct 2023 23:17:09 +0000 (UTC)
 Received: from [192.168.48.17] (host-104-157-209-188.dyn.295.ca [104.157.209.188])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: dgilbert@interlog.com)
-	by mail.ca.inter.net (Postfix) with ESMTPSA id 95C4B60455;
-	Sun,  8 Oct 2023 23:14:02 +0000 (UTC)
-Message-ID: <a517343d-cd37-4faa-8c26-c4e0c1217777@interlog.com>
-Date: Sun, 8 Oct 2023 19:14:02 -0400
+	by mail.ca.inter.net (Postfix) with ESMTPSA id B336660455;
+	Sun,  8 Oct 2023 23:17:08 +0000 (UTC)
+Message-ID: <d61e88d3-e1b7-44e0-ba9b-f633be0b5b30@interlog.com>
+Date: Sun, 8 Oct 2023 19:17:08 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Douglas Gilbert <dgilbert@interlog.com>
-Subject: Re: [PATCH v5 09/10] scsi: scsi_debug: Add debugfs interface to fail
- target reset
 Reply-To: open-iscsi@googlegroups.com
+Subject: Re: [PATCH v5 10/10] scsi: scsi_debug: Add param to control sdev's
+ allow_restart
+Content-Language: en-CA
 To: Wenchao Hao <haowenchao2@huawei.com>,
  "James E . J . Bottomley" <jejb@linux.ibm.com>,
  "Martin K . Petersen" <martin.petersen@oracle.com>,
  open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, louhongxiang@huawei.com,
- kernel test robot <oliver.sang@intel.com>
+Cc: linux-kernel@vger.kernel.org, louhongxiang@huawei.com
 References: <20230922092906.2645265-1-haowenchao2@huawei.com>
- <20230922092906.2645265-10-haowenchao2@huawei.com>
-Content-Language: en-CA
-In-Reply-To: <20230922092906.2645265-10-haowenchao2@huawei.com>
+ <20230922092906.2645265-11-haowenchao2@huawei.com>
+From: Douglas Gilbert <dgilbert@interlog.com>
+In-Reply-To: <20230922092906.2645265-11-haowenchao2@huawei.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 X-Original-Sender: dgilbert@interlog.com
 X-Original-Authentication-Results: gmr-mx.google.com;       spf=pass
- (google.com: domain of dgilbert@interlog.com designates 208.85.217.137 as
+ (google.com: domain of dgilbert@interlog.com designates 208.85.217.136 as
  permitted sender) smtp.mailfrom=dgilbert@interlog.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -158,24 +159,37 @@ List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegro
  <https://groups.google.com/group/open-iscsi/subscribe>
 
 On 2023-09-22 05:29, Wenchao Hao wrote:
-> The interface is found at
-> /sys/kernel/debug/scsi_debug/target<h:c:t>/fail_reset where <h:c:t>
-> identifies the target to inject errors on. It's a simple bool type
-> interface which would make this target's reset fail if set to 'Y'.
+> Add new module param "allow_restart" to control if setup
+> scsi_device's allow_restart flag. This is used to test scsi
+> command finished with sense_key 0x6, asc 0x4 and ascq 0x2
 > 
 > Signed-off-by: Wenchao Hao <haowenchao2@huawei.com>
-> Reported-by: kernel test robot <oliver.sang@intel.com>
 
-Tested by setting 'echo 1 > /sys/bus/pseudo/drivers/scsi_debug/opts'
-and observing 'tail -f /var/log/syslog'. Looks good including that
-fail_reset is readable so its current state can be checked.
+Hi,
+Looked at this and verified that the allow_restart flag of scsi_debug
+devices (disks ?) is usually 0 and when the scsi_debug module is
+started with allow_restart=1 then the allow_restart flag does indeed
+change to 1. For example:
+    # cat /sys/class/scsi_disk/1\:0\:0\:0/allow_restart
+    1
+
+That ASC/ASCQ code means: "Logical unit not ready, initializing command
+required" according to my library. Played around with sg_start but didn't
+see any change in how it reacts. According to scsi_device.h that flag's
+description is: "issue START_UNIT in error handler" which implies it
+changes how the EH handler reacts.
+
+Perhaps the 3 line patch description could say a little more about how
+to use this new parameter...
 
 Tested-by: Douglas Gilbert <dgilbert@interlog.com>
 
 <snip>
 
 
+
+
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/a517343d-cd37-4faa-8c26-c4e0c1217777%40interlog.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/d61e88d3-e1b7-44e0-ba9b-f633be0b5b30%40interlog.com.
