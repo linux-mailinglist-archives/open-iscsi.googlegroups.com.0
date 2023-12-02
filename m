@@ -1,71 +1,71 @@
-Return-Path: <open-iscsi+bncBCIYZHV4RMNRBMGMU6VQMGQEFXLLFPI@googlegroups.com>
+Return-Path: <open-iscsi+bncBCIYZHV4RMNRB4MUVWVQMGQEPWECDLQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oo1-xc3a.google.com (mail-oo1-xc3a.google.com [IPv6:2607:f8b0:4864:20::c3a])
-	by mail.lfdr.de (Postfix) with ESMTPS id B49F7800CA7
-	for <lists+open-iscsi@lfdr.de>; Fri,  1 Dec 2023 14:57:07 +0100 (CET)
-Received: by mail-oo1-xc3a.google.com with SMTP id 006d021491bc7-58d8e773afasf2434342eaf.1
-        for <lists+open-iscsi@lfdr.de>; Fri, 01 Dec 2023 05:57:07 -0800 (PST)
+Received: from mail-oo1-xc37.google.com (mail-oo1-xc37.google.com [IPv6:2607:f8b0:4864:20::c37])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BDC801D79
+	for <lists+open-iscsi@lfdr.de>; Sat,  2 Dec 2023 16:17:08 +0100 (CET)
+Received: by mail-oo1-xc37.google.com with SMTP id 006d021491bc7-58d8e773afasf3863370eaf.1
+        for <lists+open-iscsi@lfdr.de>; Sat, 02 Dec 2023 07:17:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1701439026; x=1702043826; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1701530226; x=1702135026; darn=lfdr.de;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:x-original-sender
          :mime-version:subject:message-id:to:from:date:sender:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wP0+3jbq84/GEQIL2/f0v9kgPg6JhTav5tM3pQadzg4=;
-        b=BfflLZkzaIdlgduVgqPc8pquZoJIO8D5LgQKXSTlAnh48KFsIWevpoLVcEFq4cznzg
-         8NyqQ2aF7ZIZ/kjd7YnBUXXrYw6BVme6vRiBTSFR/XGgTdxWCWScWdGbaarhBu7TgFHf
-         qhi8rwwrydtHw80Lqaj5AqRGPF71yqjNb1bBTKfNYx+RRSOg/vdE8S3rLbMD4wMK9wsA
-         x7gPQYpVWlhISZ6FIzvR2DzCmrtlcSlKs3sROCkzy75mhlWplfpK9PWRRFgBbn6wFcqp
-         xzzsMLINg26xyR6xrueUtwe8xst8LGbjgivhsRWP5tk2Fqjim6DTzMTV5fv3C8JHqE91
-         zvSQ==
+        bh=d1uO4p25pHwP7ESsWuMB8IFLH4VzGAWqTkVq/9xuQWI=;
+        b=SpocHAeWAzvIZUX50Qq1d9XCVv3OFv3F7UaxWB9vAljZICGKY0hUgjs8BoeNGmGE2D
+         aT5Sttjgku8VNuVkI6W0YIIiYWIs7xjmDlD/2cx62YOc7z2is2s0dSrtJwAmhl68nOsa
+         16tcclziqu2W/62izbTcZ7gNzOF0PnVEGk7LvCRxPIVD1mbhGRerMG0UurhfmX8e47zn
+         xuoVlG9F7MOdDoblBDWVs9hDRETZjguvVUWjSuX0sJmmdm2dqEe7MD1KDQRF7UlBsQv4
+         3E1D92qMxLrN1E77q3/2ftsyLLsW1ZJ9M09zp4OJqf/U9oLf42Egj/CFZGqzGrYKEk01
+         c08Q==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701439026; x=1702043826; darn=lfdr.de;
+        d=gmail.com; s=20230601; t=1701530226; x=1702135026; darn=lfdr.de;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :list-id:mailing-list:precedence:reply-to:x-original-sender
          :mime-version:subject:message-id:to:from:date:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=wP0+3jbq84/GEQIL2/f0v9kgPg6JhTav5tM3pQadzg4=;
-        b=JUdPiq/njsF1QlKR2EmhvZD+jY/Cei5Qcof/uzI8eLPsX6wyrad0zVYxVmFwnnHJvo
-         f/bpg4Y8pdAPyls2OVPdPOeXHCbsv+CCfLsrMpEC1Tb1KP0wQrgwC1yXhgaYbp3J4OVN
-         Jgc9FgjtQiljc3Mxw6RawiF4DjYNPY7V7vYz945A4MEYyoJujWfLX+6Q6MlR5KVHORLQ
-         5qMJOOQGON40JqAY/vjnO28JAL/IPfbyqoGxonZfy7eeev55hsAfj6uhfxfB3oSrG4ZD
-         PVN54+/trCGvsYjUNzInyOTEehYmLaTFq1SQr/ZEweznczNhhdWX5ANRLRZlKKHQLc2V
-         7+eg==
+        bh=d1uO4p25pHwP7ESsWuMB8IFLH4VzGAWqTkVq/9xuQWI=;
+        b=NUd/i9xKcAPUn4Xsy14FZ4r8w2UymscDYyNc/jdnS7L+8z34Y4sDzSpc6BjjHvlZNO
+         5aKfD11Gg8cYtrKQMeP9j5DlZ/3MNNuMLXn5IZSslBiB5laDTno7hDaNFQ+nDwlLuH/q
+         fCloNMoXQWoH9Fq4ae9XfF/hPFzjGNJ6uSCJW5Le1YxtXXMAOhlw3AfqcOMsi6rO2VV+
+         ow4KekK0T0FivVuBw3ANME9nxRW2KAdSf2johOUvavUnXQdmF+DR0f4ZHmzvvlMaQawL
+         9gH73lDx1KzQwM5s50/c/9Q9C0ukcsqpXTvplADufNAoJ2pWeDrOe/q2ukhlz3/ubVtG
+         +3VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701439026; x=1702043826;
+        d=1e100.net; s=20230601; t=1701530226; x=1702135026;
         h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-sender:mime-version:subject:message-id:to:from:date
          :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wP0+3jbq84/GEQIL2/f0v9kgPg6JhTav5tM3pQadzg4=;
-        b=KFRyL4GqtShCiSVAZW1bekgu3ono5Aj3Vn6oFyhFJWzaWzIz1re+e3qCceUOVBEE/b
-         +DGjo12Bec/Vgm8hQDYdJvqWcOkg6OP3E6uu9fXZFsMmNiwYCP1TgUa/zPnqsW/y5rpA
-         4gKp8mrJk4ZfbzmPlZ5wex18NQAJ/ijADrXuoXG/qg0AwWO+I8hN2Qurm8Dog+WHx8Tv
-         jwH8L/bCXMTO3P3LzWvtjeVBHnMuhV6JDqSNz2zSwWnSwJtZOqPxm3EOi3ADlGeIOT9b
-         p3UIwPiHPSV/I7vC8LkYUkimQREJBNiuMA4WBi2QqSh8H99zashQlCjlfgc70dCrKK+P
-         Y11w==
+        bh=d1uO4p25pHwP7ESsWuMB8IFLH4VzGAWqTkVq/9xuQWI=;
+        b=X3MHTJG0CQzFPrFLSr/7UZaxAoz5OJhR9MguE6+g1SSgkqMJVtjxrEJOEUT4ABZPop
+         DKyDe2NWvmGiruoMp1UOsAr1BBfR6KE7gMPpwiCmP5t608EdG9dSriF+t6d6mCf14UoP
+         IpHX53NIouuG45Q05MVEp+FU231SagrX9ilnpkxf6V4Mp6jhdjgiJiJnWRr+13aBIDnO
+         sCKvBnG0Ud7nf6rCBeCRaTA1Qo48KJ/47nhhXf94vt2v8sId2SH7tBXPWLvQs393OjdH
+         KIS93hauYh1Pcez/nwfgeZ0y7JXloyhco4wCEQZSTh/4VjaykfzY2YFKUVk6uS2AU0aG
+         WXJQ==
 Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOJu0Yy9eVsLf6XwxVTMbipVlNedsSAil5in5SDQmRBqFfLiVVDEr6FD
-	7lGzTVBPEuB5R2IRI5mx+Ww=
-X-Google-Smtp-Source: AGHT+IHPddQZo4cDySCRNnj5GnQ1GGxnqEQwogt0NjzZl0D+5ml88iwCGWUivxhNbVu1hekJX7+Icw==
-X-Received: by 2002:a05:6358:9217:b0:16f:ec86:698a with SMTP id d23-20020a056358921700b0016fec86698amr8939889rwb.9.1701439026156;
-        Fri, 01 Dec 2023 05:57:06 -0800 (PST)
+X-Gm-Message-State: AOJu0YzJrQ9hLZZTK7eQI8ut1lgws2SG1ft1v1KQvsuDc7ppM95oGtSi
+	H+Kj/FuAwIWlJnEKxuNl75o=
+X-Google-Smtp-Source: AGHT+IFor/BHhyUOoZYGIUEbEGntdlqTODq7jVWH5Np3MAWFnipfQhinJSdU1WWWPmXigABAMe9vCA==
+X-Received: by 2002:a05:6870:a10c:b0:1f9:e965:191d with SMTP id m12-20020a056870a10c00b001f9e965191dmr1836476oae.56.1701530226686;
+        Sat, 02 Dec 2023 07:17:06 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6a00:8e04:b0:68a:47ec:f3fb with SMTP id
- io4-20020a056a008e0400b0068a47ecf3fbls1938940pfb.2.-pod-prod-04-us; Fri, 01
- Dec 2023 05:57:03 -0800 (PST)
-X-Received: by 2002:a05:6a00:3907:b0:6be:aed:7ad0 with SMTP id fh7-20020a056a00390700b006be0aed7ad0mr5903863pfb.2.1701439023136;
-        Fri, 01 Dec 2023 05:57:03 -0800 (PST)
-Date: Fri, 1 Dec 2023 05:57:02 -0800 (PST)
+Received: by 2002:a05:6870:8893:b0:1fa:1efd:f65a with SMTP id
+ m19-20020a056870889300b001fa1efdf65als2350365oam.1.-pod-prod-06-us; Sat, 02
+ Dec 2023 07:17:04 -0800 (PST)
+X-Received: by 2002:a05:6870:15c2:b0:1fa:f57b:dd2a with SMTP id k2-20020a05687015c200b001faf57bdd2amr635923oad.3.1701530224762;
+        Sat, 02 Dec 2023 07:17:04 -0800 (PST)
+Date: Sat, 2 Dec 2023 07:17:03 -0800 (PST)
 From: Vickie Rud <vrud44718@gmail.com>
 To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <4e3826f9-46d9-4906-a17f-d16c3d81084bn@googlegroups.com>
-Subject: Brutal Doom V16 Download
+Message-Id: <095f95c3-360a-4e27-83eb-023ee9198ccdn@googlegroups.com>
+Subject: Cbr 929 Rr Fireblade Ficha Tecnica
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
-	boundary="----=_Part_21874_1855630048.1701439022156"
+	boundary="----=_Part_42526_1628789777.1701530223964"
 X-Original-Sender: vrud44718@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
@@ -80,128 +80,33 @@ List-Subscribe: <https://groups.google.com/group/open-iscsi/subscribe>, <mailto:
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_21874_1855630048.1701439022156
+------=_Part_42526_1628789777.1701530223964
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_21875_474821072.1701439022157"
+	boundary="----=_Part_42527_453572942.1701530223964"
 
-------=_Part_21875_474821072.1701439022157
+------=_Part_42527_453572942.1701530223964
 Content-Type: text/plain; charset="UTF-8"
 
-However, thankfully enough you (we) have been given some brand-new weapons 
-(hand grenades, for example) and fatality (execution) moves, all of which 
-will come in handy against the hordes of hell, Sergeant Mark IV has also 
-added tons of new features and improvements to BD v20 (such as better 
-graphics, new death animations, sound effects, etc.), the biggest change of 
-course, would be the fact that Brutal Doom is now more brutal than ever 
-before (just watch our Brutal Doom v20 video further down the page).\n\nSo 
-I cant really say that there are a lot of cons or downsides to Brutal Doom 
-v20. I mean, its the best version of Brutal Doom to date. It owns pretty 
-much every single FPS game there is, and you can download the mod for free! 
-To be honest, the only cons that I can think of right now, is that there 
-are some bugs and compatibility problems with BD v20 (not everyone might 
-experience this), and the enemy a.i acts rather stupid at times (slow 
-reflexes, shots their own, makes foolish decisions, etc.).\n\nBrutal Doom 
-V16 Download\nDownload File https://ssurll.com/2wHjbA\n\n\n\nIn-between 
-entries of this legendary FPS franchise, players have time to try other 
-first-person shooters along the lines of Doom. Doom (2016) has a story that 
-deals with the afterlife and is complicated enough that it isn't convoluted 
-or unnecessary. Set on the planet Mars, the protagonist Doom Slayer must 
-endure an onslaught of demonic entities. These are brutal games like Doom 
-fans of the franchise need to play.\n\nUpdated March 25, 2022, by Ritwik 
-Mitra: Doom was one of the most groundbreaking FPS titles of all time. The 
-game was nothing short of an absolute blast, paving the way for these 
-shooters to become the norm in PC gaming and still defining trends to this 
-day. A big part of what made Doom such a popular title was the sheer levels 
-of brutality present in the game, with enemies exploding in heaps of gore 
-with the right weapons. Players who want to check out more games in the 
-same vein should try out the following games on this list.\n\nSome of these 
-deaths were extremely brutal, with players being able to hit different 
-parts of a dead body and watch these areas react realistically to the 
-bullets being aimed their way. It was an extremely violent game that has 
-become a cult classic of sorts nowadays.\n\nThis multiplayer tactical 
-first-person shooter might not let players run rampant with their guns, but 
-the degree of violence in this game is pretty intense. This makes it a 
-great candidate for brutal games like Doom.\n\nA downside to Bulletstorm is 
-that it does not offer too great of a challenge, even on its highest 
-difficulty. Therefore, this is one game that allows players to brutally 
-demolish fodder enemies without the constant fear that the same will happen 
-in reverse. Also, Duke Nukem is in some versions.\n\nAt its core, the DOOM 
-series has a simple elegance about it. A lone space marine must go up 
-against the armies of Hell in brutal, fast-paced combat while navigating 
-mazelike levels for keys, health and ammo. Beginning in 2016, the rebooted 
-series brought those same sensibilities to modern audiences with new twists 
-reflecting evolutions in game design since 1993. DOOM (2016) and DOOM 
-Eternal were both huge releases with millions of copies sold and dozens of 
-award nominations between them.\n\nIf you haven't already downloaded the id 
-Software classics DOOM and DOOM II from the Switch eShop, what the hell are 
-you waiting for? Now there's even more reason to check out both of these 
-titles - with Bethesda today another exciting add-on.\n\n mjharper Most 
-likely both. I just downloaded the mod in Doom 1. You do have to log in 
-with/create a Bethesda account to download add-ons, although they're nice 
-enough to only ask for your email address if you have to create an account 
-(and make your password on a PC/smart device).\n\n\n eebf2c3492\n
+Cbr 929 Rr Fireblade Ficha Tecnica
+
+*DOWNLOAD* https://t.co/KafRdLy9x3
+
+
+eebf2c3492
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/4e3826f9-46d9-4906-a17f-d16c3d81084bn%40googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/095f95c3-360a-4e27-83eb-023ee9198ccdn%40googlegroups.com.
 
-------=_Part_21875_474821072.1701439022157
+------=_Part_42527_453572942.1701530223964
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>However, thankfully enough you (we) have been given some brand-new wea=
-pons (hand grenades, for example) and fatality (execution) moves, all of wh=
-ich will come in handy against the hordes of hell, Sergeant Mark IV has als=
-o added tons of new features and improvements to BD v20 (such as better gra=
-phics, new death animations, sound effects, etc.), the biggest change of co=
-urse, would be the fact that Brutal Doom is now more brutal than ever befor=
-e (just watch our Brutal Doom v20 video further down the page).\n\nSo I can=
-t really say that there are a lot of cons or downsides to Brutal Doom v20. =
-I mean, its the best version of Brutal Doom to date. It owns pretty much ev=
-ery single FPS game there is, and you can download the mod for free! To be =
-honest, the only cons that I can think of right now, is that there are some=
- bugs and compatibility problems with BD v20 (not everyone might experience=
- this), and the enemy a.i acts rather stupid at times (slow reflexes, shots=
- their own, makes foolish decisions, etc.).\n\nBrutal Doom V16 Download\nDo=
-wnload File https://ssurll.com/2wHjbA\n\n\n\nIn-between entries of this leg=
-endary FPS franchise, players have time to try other first-person shooters =
-along the lines of Doom. Doom (2016) has a story that deals with the afterl=
-ife and is complicated enough that it isn't convoluted or unnecessary. Set =
-on the planet Mars, the protagonist Doom Slayer must endure an onslaught of=
- demonic entities. These are brutal games like Doom fans of the franchise n=
-eed to play.\n\nUpdated March 25, 2022, by Ritwik Mitra: Doom was one of th=
-e most groundbreaking FPS titles of all time. The game was nothing short of=
- an absolute blast, paving the way for these shooters to become the norm in=
- PC gaming and still defining trends to this day. A big part of what made D=
-oom such a popular title was the sheer levels of brutality present in the g=
-ame, with enemies exploding in heaps of gore with the right weapons. Player=
-s who want to check out more games in the same vein should try out the foll=
-owing games on this list.\n\nSome of these deaths were extremely brutal, wi=
-th players being able to hit different parts of a dead body and watch these=
- areas react realistically to the bullets being aimed their way. It was an =
-extremely violent game that has become a cult classic of sorts nowadays.\n\=
-nThis multiplayer tactical first-person shooter might not let players run r=
-ampant with their guns, but the degree of violence in this game is pretty i=
-ntense. This makes it a great candidate for brutal games like Doom.\n\nA do=
-wnside to Bulletstorm is that it does not offer too great of a challenge, e=
-ven on its highest difficulty. Therefore, this is one game that allows play=
-ers to brutally demolish fodder enemies without the constant fear that the =
-same will happen in reverse. Also, Duke Nukem is in some versions.\n\nAt it=
-s core, the DOOM series has a simple elegance about it. A lone space marine=
- must go up against the armies of Hell in brutal, fast-paced combat while n=
-avigating mazelike levels for keys, health and ammo. Beginning in 2016, the=
- rebooted series brought those same sensibilities to modern audiences with =
-new twists reflecting evolutions in game design since 1993. DOOM (2016) and=
- DOOM Eternal were both huge releases with millions of copies sold and doze=
-ns of award nominations between them.\n\nIf you haven't already downloaded =
-the id Software classics DOOM and DOOM II from the Switch eShop, what the h=
-ell are you waiting for? Now there's even more reason to check out both of =
-these titles - with Bethesda today another exciting add-on.\n\n mjharper Mo=
-st likely both. I just downloaded the mod in Doom 1. You do have to log in =
-with/create a Bethesda account to download add-ons, although they're nice e=
-nough to only ask for your email address if you have to create an account (=
-and make your password on a PC/smart device).\n\n\n eebf2c3492\n</div>
+<div><h2>Cbr 929 Rr Fireblade Ficha Tecnica</h2><br /><p><b>DOWNLOAD</b> ht=
+tps://t.co/KafRdLy9x3</p><br /><br /></div><div></div><div> eebf2c3492</div=
+><div></div><div></div><div></div><div></div><div></div><div><p></p></div><=
+div></div><div></div>
 
 <p></p>
 
@@ -212,11 +117,11 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/4e3826f9-46d9-4906-a17f-d16c3d81084bn%40googlegroups.=
+om/d/msgid/open-iscsi/095f95c3-360a-4e27-83eb-023ee9198ccdn%40googlegroups.=
 com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/4e3826f9-46d9-4906-a17f-d16c3d81084bn%40googlegroups.com</a>.=
+id/open-iscsi/095f95c3-360a-4e27-83eb-023ee9198ccdn%40googlegroups.com</a>.=
 <br />
 
-------=_Part_21875_474821072.1701439022157--
+------=_Part_42527_453572942.1701530223964--
 
-------=_Part_21874_1855630048.1701439022156--
+------=_Part_42526_1628789777.1701530223964--
