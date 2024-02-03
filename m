@@ -1,237 +1,134 @@
-Return-Path: <open-iscsi+bncBCHM7NWZ3UFBB6UK36WQMGQEFMVCVAQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBD54HHNYIIINPWH2VUDBUBAQOSCY2@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yb1-xb3c.google.com (mail-yb1-xb3c.google.com [IPv6:2607:f8b0:4864:20::b3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9BD5840A21
-	for <lists+open-iscsi@lfdr.de>; Mon, 29 Jan 2024 16:34:21 +0100 (CET)
-Received: by mail-yb1-xb3c.google.com with SMTP id 3f1490d57ef6-dc64b659a9csf4802758276.3
-        for <lists+open-iscsi@lfdr.de>; Mon, 29 Jan 2024 07:34:21 -0800 (PST)
-ARC-Seal: i=3; a=rsa-sha256; t=1706542460; cv=pass;
+Received: from mail-wm1-x33e.google.com (mail-wm1-x33e.google.com [IPv6:2a00:1450:4864:20::33e])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38EE08488E2
+	for <lists+open-iscsi@lfdr.de>; Sat,  3 Feb 2024 22:12:59 +0100 (CET)
+Received: by mail-wm1-x33e.google.com with SMTP id 5b1f17b1804b1-40fb3b64751sf16636155e9.1
+        for <lists+open-iscsi@lfdr.de>; Sat, 03 Feb 2024 13:12:59 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1706994778; cv=pass;
         d=google.com; s=arc-20160816;
-        b=GILArdri7KYplKtBpcAdt8du58lpPGlS7pES+TQol+Xcsb7LyiNr6ZzTKaLbjwHfnB
-         mim2aocfLVdLoLOL1ypk3bo+tOHz8v2XJVicu0uwIak4uPt9+FYwrCsBJmHwvjdxeU2r
-         VKMlbbc6gJHgioV3rFXYpXmP1LKp3ONGk95t/s2eN33+IF1PWv+NSYiKi+7g/mxocAcL
-         xP/Un7Hnu/WZb7PFB5DUhSJjDRLv3n88S+0GUUxilCimLcL+EkEOXdyOmZwLI3N9qHT1
-         qsVtgTC+At7tABPqs7AVwGDCJaZOK2O9b59jxFVDg3sgdAFFNhFROgHKDdSS66saBosd
-         FmIw==
-ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        b=eZcJWXMhMkron9Z+vB21rBvBuu0Af4/IIA8+DPGJLcfh85ASmx76K47pgehXprM5Ev
+         RgGLS5FR50MbsEF+I0ZFd4MvdFhfnJClPJnLEfnf5vGTjIqy8xk4QNlhCSwG1FJbbFwY
+         j4EJP2OikDQJ2QUJ3ZmaQ/wyhrRu2DQmjYlevDaIYatrk5lFPiyzZizgzszgzul/gt+N
+         keTt0vp83ZPzB7rMwp8bc7rP7MIPFLOebEEamMtgwbTTBixaVMIjSGC/zL/MqE2mRcoC
+         Yvi/bD1WXXRvF5QvdcXqQXwjCyKLZKW7AywHLB1Fx+uEm1CkgvPJs1hC3oTYNbrzqlzA
+         S3Zg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:mime-version:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:date
-         :message-id:sender:dkim-signature;
-        bh=z3hCbHXiWXPlC0aF5uAyZcsMOw9bycRnwsqU+Ygw9KA=;
-        fh=uIm0gx6Kq4HM0g41T8h6eMWnt/oqe3VU1FJ8f1lYtTg=;
-        b=vanYK8wD9wKUo/Upi3CfSunAMHZEzeh9G0o92zRJoxk55U9Agp2GU6jK2yERrYB1Nh
-         2YAqbK/Xzbal4zrpDeXx5HDm07CbpFwqN7hGnRo+/fsd5wA82nTeZOXVpo1B7phfFZpH
-         4oyl5Yz3/w80ZSLQXVfFHLNP8uQbn121BBc21Mpxv69qy9GQ8TLaqI1e95dp7dFIqhi3
-         Z8icODJq62JMinnB8bPA8cjvPZPtMrY180fpOWnaDJ6kd40Q8uFzlga2SaKk1zEqftIA
-         rPNXGiKZSGq2rKRiM9GtY6+pYcho0eCBntu8OyLv3VrJQde5YXOtdja6jxv66dpI3TQW
-         /jVg==
-ARC-Authentication-Results: i=3; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2023-11-20 header.b="d2s4hqx/";
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=E91ihVSo;
-       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+         :mailing-list:precedence:reply-to:content-transfer-encoding:cc:to
+         :subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=AevhlY9LwLhgeJaz8moE5K33oOx4s3R/oDNevvT20yE=;
+        fh=niSz3v3rp3bIwMoOS6KNauslvivZRVDIJs5XZjONpOg=;
+        b=gTSaRH9QZj+6S5xjAXFEs8W7IZiVQVICCzep8sJHuLJph+7e04hHSqSToLRoHMYtlR
+         ae4e1ST00Ykqnq0nq7R1XJ8ky/Wv//SgKJNuUMY5K+p3DXC8LjPaaNAjLFHR8g/G/Z1W
+         RppUS83RdL7aXtxkUoQO8kYB0yB62/rn3fwU3uS9I19pinkZ5x1wj1h6B7/bMu5hNEoa
+         lKzThJwHTuGhJ5fYbw7yyvpXh0Parhi+nKyknRV+yQztDZ37MnJ7ueu/LG82QBrzuhp3
+         wL+oVHBfAjfzBJ95eEqgiA5N8wGKtsext2gvZ8vKTkC7IhTjJKU/0vF2jlQ/ydjlqBxX
+         9JGQ==
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@suse.com header.s=google header.b=e7AaulLi;
+       spf=pass (google.com: domain of lduncan@suse.com designates 2a00:1450:4864:20::529 as permitted sender) smtp.mailfrom=lduncan@suse.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1706542460; x=1707147260; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1706994778; x=1707599578; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:mime-version:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:date:message-id:sender:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=z3hCbHXiWXPlC0aF5uAyZcsMOw9bycRnwsqU+Ygw9KA=;
-        b=W+HIvcCmxdroLBUbUj9IPgfPiCAqAFqpCO0KSeEUlV0W/3qt2zvl7vPBs7V0viylVl
-         pkNrtRwd+XN8YQnpFDJTkDq2FwKeSs3mf/zTd2+y7PrYFz9ltlfiXhBnFyC8C/y2r3EY
-         KmFFIoc7NlbngdgXqnmOIJVA1rmmX0hWjrY/I1ZNUqXbQ4Fak+lTI9lfzO9U0AsbiWtB
-         43UPEEZzW6oMpzObnSeSveu8I84PmeHk4bXgwN79TaRrEitawCgKfzGnA8R0Ctu20zj6
-         6pSl7JuNqCEh5j7ldrWPQpdAgVGfsl723M9UhsLshKhRZhpEjxN5P+cEp4Qfm3BmzTwl
-         +b8g==
+         :x-original-sender:content-transfer-encoding:cc:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AevhlY9LwLhgeJaz8moE5K33oOx4s3R/oDNevvT20yE=;
+        b=rvhlO0dV32K0G9Ivk4dh6uPlQhhTQm5CxzyREsAF0bDQBdykPIWKxvY/6lrNoWL5Tw
+         Q4wtO7esKkNYYQr/js5c2mjQ01z30RnsQMT+9lfDlDoJUzb7hE0kSn7+Xs3KBHbTXLS7
+         tBtDwSc89Qc8PK6TU+sMErAAwa6LXwYH7Zvcy0cFKZH+4144BjZtoBeefMWfjSjTHHST
+         ovgNTQKDqk4xYX84ySy2+vTWuv/jnwVulqK4tPNnJB/4aBaVbVbrPCJQCoNeYomftblW
+         gw4+3ep46/nqcXfSi4BI/+3U+j+2mRxOGWNO01zjPs53S/iPozh287Zkp8PBENuUEK8s
+         3KLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706542460; x=1707147260;
+        d=1e100.net; s=20230601; t=1706994778; x=1707599578;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :in-reply-to:from:content-language:references:cc:to:subject
-         :user-agent:date:message-id:x-beenthere:x-gm-message-state:sender
+         :x-original-authentication-results:x-original-sender
+         :content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-beenthere:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=z3hCbHXiWXPlC0aF5uAyZcsMOw9bycRnwsqU+Ygw9KA=;
-        b=beSnM0a2qRGKnR9zI2YQmI+Z+sibDoFggrhwt5i6YtC2Ay36GCWIIXzA/qHhbL9ran
-         uSLXK8nypGtbyG2L8MLuPTYV7i6TwhJe9uTDYEnvol4eTUfhdB2gvlcBSQGw/MdlZR0D
-         WsAJ/BMn3CfFPcVuX39GVeCfBBtH4Oossg6UU91jFXXGBTGSlAVPdaiH927SBRgxqTQf
-         P8+ArHvd3wR+kZZiwm4Bb5PSkXLSOsTpbL9ckET0JOt1WszOB2+q4gZBeSidz7q8RC1W
-         ctZfKCmWOkdJdQgk8Uz1Qp7PrlynHIcOtWSbr8v37/fe+NnsUZElEtsiT5VE+kxoqw66
-         w4kA==
-Sender: open-iscsi@googlegroups.com
-X-Gm-Message-State: AOJu0YyudLOnr/qjOBWT1Ep69YbLKr6kxFIDvatuNuh1fc1CwFm6oWs7
-	ZQtfArfyyJDvW3Ujr0p78PpeIdMw5EL9mW/jtWA4GconGFWxkTZz
-X-Google-Smtp-Source: AGHT+IFZEYL8czDoXXkbInkRYII5wl0lPJ3dCSkSFMz6ME/gx4IXTilnaHoMgvoDNNrJnM5VG/oH6Q==
-X-Received: by 2002:a05:6902:2210:b0:dbe:a688:8ab8 with SMTP id dm16-20020a056902221000b00dbea6888ab8mr3513902ybb.0.1706542460388;
-        Mon, 29 Jan 2024 07:34:20 -0800 (PST)
+        bh=AevhlY9LwLhgeJaz8moE5K33oOx4s3R/oDNevvT20yE=;
+        b=WmEwNEwwHdnVwHScgjckpfJZPrZaHuZsvcfCEXxVc5Z0WZtmQ8ZyOk2z02tDRrOJbc
+         NNyNK8EoEfX+A5ygmOSaaqC1VZOikzpK64dlQn8vD9u6HPe+u+0psniOpHzHe3UM08Pn
+         QvCYPu3xyMIRU7K/NENY+S/kumASdBFIPm3fTm/vSMPG+QYcRUobwyIZRBk6LgSZCxHo
+         DAFwtxbZGXZmp3Zdt8KwpIEq9FsyG4P+W+YUTF7C1GEsdL1YjnRu3m0UkEmX58+YRT7e
+         kdsTg01YMGZgNDdmKKCQ4S6EEg81FpxRKTqSrGub++VrJ1QykZgfVRD3fM/23fMqlwAi
+         DHZg==
+X-Gm-Message-State: AOJu0Yz7Kcw4yujLpgXJSpeCuXApp4AA3LPp+E6F33V5vqDfDZSO09aq
+	zCG3Vbh97fBJ6T8YTiv3mt/tsmpOzurTfbevJJR+AxGdnfAlHkPK
+X-Google-Smtp-Source: AGHT+IEfLN7TU3LGkmIVPndugChN2tPSsJSPMsQW/garAfGS90t+7tPgculLxx2MCvuL58CQUZnQXQ==
+X-Received: by 2002:a05:600c:4fc6:b0:40e:f557:738d with SMTP id o6-20020a05600c4fc600b0040ef557738dmr1512674wmq.26.1706994777911;
+        Sat, 03 Feb 2024 13:12:57 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6902:704:b0:dc2:1b5a:3ea4 with SMTP id
- k4-20020a056902070400b00dc21b5a3ea4ls262711ybt.0.-pod-prod-08-us; Mon, 29 Jan
- 2024 07:34:18 -0800 (PST)
-X-Received: by 2002:a0d:e612:0:b0:5ff:9866:5f18 with SMTP id p18-20020a0de612000000b005ff98665f18mr4113437ywe.46.1706542458050;
-        Mon, 29 Jan 2024 07:34:18 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1706542458; cv=pass;
+Received: by 2002:a05:600c:1546:b0:40e:6522:eed8 with SMTP id
+ f6-20020a05600c154600b0040e6522eed8ls1341071wmg.2.-pod-prod-02-eu; Sat, 03
+ Feb 2024 13:12:54 -0800 (PST)
+X-Received: by 2002:a05:600c:5254:b0:40f:d1e4:60b6 with SMTP id fc20-20020a05600c525400b0040fd1e460b6mr1605431wmb.21.1706994773687;
+        Sat, 03 Feb 2024 13:12:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1706994773; cv=none;
         d=google.com; s=arc-20160816;
-        b=Pc4Kw7524FQZn/0BXnM/ZC0Npau24y55RLgBGEYIubThrEUWqd989urQUW+M0HwG3f
-         R+Avd0yT0stQnfcm5Myde4WQuITfQev43EtzlPKrnhoJp5qBlOobtB6YxRsXiwZDWra/
-         zgpbrPvQ4BqDKnPC6iAesxNUuYoJ2wzodfHMtg0kd7psCI3ONgK6NBjJw88NluXshDfj
-         FfmmOhUStKoFMnIAYcCmMNREiFaJBz5XMagCtpzv9qkN3tjQByLzaB1KdGTjYUUNqdBS
-         AvwpP/BHZOhIicWOarqjRY/+dJcksKl7a/0YitXyI8lQ6p0QSeR80Zm5unD/YA3DvqvW
-         cUOA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=mime-version:content-transfer-encoding:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:date
-         :message-id:dkim-signature:dkim-signature;
-        bh=DKHniiFvs1zTmftY1pIjlStJ4iNekZmtQvYgXlv/VnI=;
-        fh=uIm0gx6Kq4HM0g41T8h6eMWnt/oqe3VU1FJ8f1lYtTg=;
-        b=n+pO+MVif3i3QKO6h8M0JGUBO+YeiAiM7HYcUCABEt5F+XzIdg8oPxVPOkL/aSAgzB
-         uG7EY6sYSY8tNzsHJvaKpPu4X8t0EhMc1wOSZnpoFEOHTgzeR0e4y9cLef9kASpVa+zj
-         jZP7VucnrbdkMAq98GsH9QXYGbqAKaBiq//650K8RukxdP7wvy5QNbR9iC1x374pDeRT
-         7eXMDFe0rx4t8rxRn87ft/N8I4Ai4nvgJ3ZYQrc1Ydfyna9kr5uhOGd50T7+JNoWSa8h
-         N24IqD1Cx+OUnMRxgwgefngArYbQhWn/d0/3K3z5n9gdyRnx4HBnQr04IyVTsO524SF2
-         /z3w==
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2023-11-20 header.b="d2s4hqx/";
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=E91ihVSo;
-       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com. [205.220.177.32])
-        by gmr-mx.google.com with ESMTPS id t77-20020a818350000000b005ff8ec284fasi807820ywf.1.2024.01.29.07.34.18
+        b=csqJ9FfxesjGuirwYV/9DOYuZYCO3kMQoJQWHUPbJ2wlXMhqaLY7eMbxDqei/6RnAT
+         K0qZWlRgxgxvKNspDl+Le9Eertsg9Fro8Bwf247wIRTCaIybB9fpOY5BkOw32l9HXP6q
+         mM9kD8n4TOk1+oalkuvvlNvrNEwyi8sn4Ud9n8zWMT3aRsO8W9P9mvyjmnMtCRK0vu2c
+         NxFmVICEHRhD0+KqLdMhmSOwifWZp9yq0i6HOMAidHgoYnfopDEHhaGRNEw2g/guYnL8
+         fKrSuFEKuKgZ7gbw6SjP4BQa/8/7WHyfdG265sk8pyqWT9osd0Mzd37hsE3vySXp9CE9
+         B2DQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=8wTplBP8Qcn6WEm+IfMMBshhvnI94zgtW6tqzNQZV3o=;
+        fh=niSz3v3rp3bIwMoOS6KNauslvivZRVDIJs5XZjONpOg=;
+        b=u/PjEUdOGPKPCtLEciFV4ox9hVQqB+5KPFfKC+DFdrg+CvIled2ZZ0YptLTlmROaS2
+         gkh2AlOmEkR6dTXMK+BF8x8iQhKyJJ1MNzx8DAwQHXxnmiPsw3D44qNLea7E8LZ8U6ap
+         pRTbR/b3rdwgFwt9WGwyK2SE+q/wMLe5duSQxLX9h25sjjVSHGbNp3YYW0cFYeTfmlg1
+         1t9awek5a1Sj13yNp/rnajzIa8D3bF1WvLIPnkGSU2Wuareooyk1Nqisqf/041j/PABU
+         BNH0nKYRnRnQNUE/9W65/+EpAXa9MH98b32b3u4L8+vT7mGyZfemLou/4A/lOxgHFX67
+         T0uA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@suse.com header.s=google header.b=e7AaulLi;
+       spf=pass (google.com: domain of lduncan@suse.com designates 2a00:1450:4864:20::529 as permitted sender) smtp.mailfrom=lduncan@suse.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
+X-Forwarded-Encrypted: i=0; AJvYcCX6qv8uQnwlwZylty9wkYSs3xz8+zHRef3Tr/UELwu40fepKyPmRIlHS9mZizLjJDyRJ4zT8kCgnwD966jcn5jsO9XbnVpUZs6Jv5Y=
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com. [2a00:1450:4864:20::529])
+        by gmr-mx.google.com with ESMTPS id fm24-20020a05600c0c1800b0040ee0a44a92si124296wmb.2.2024.02.03.13.12.53
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 Jan 2024 07:34:18 -0800 (PST)
-Received-SPF: pass (google.com: domain of michael.christie@oracle.com designates 205.220.177.32 as permitted sender) client-ip=205.220.177.32;
-Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 40T9hwaE002916;
-	Mon, 29 Jan 2024 15:34:17 GMT
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3vvseuc62q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 29 Jan 2024 15:34:17 +0000
-Received: from pps.filterd (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.19/8.17.1.19) with ESMTP id 40TEowIq031537;
-	Mon, 29 Jan 2024 15:34:16 GMT
-Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2168.outbound.protection.outlook.com [104.47.58.168])
-	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 3vvr961gb1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 29 Jan 2024 15:34:16 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dImkyi9RX/z2S6Y6kLFa+MczzfPM7K3en2JBMUt53AYeBBtGGwvh2zJKl5v47d/m2NhreEJGF2GZZwjbl7EqSsKH2GV8mWALhGVoMjQCmQZwWcs406bDDYNQ5K0hzq+Kz8YOsvDPcNyQ418u/mMEm87CEADjAe90JSDqgZ8HARo5Cwl3ynzSd0JSVLf3BcUUGufgqDIDdyh5xJN8bXt8d1j1cbgI3zny+x6HOZp6iUSr79iSbwElLPJG5nh7cZFXps0pZ70qmFNjykbtLkzsPDBaQvyMzVwbMJMUalEBAK3Y2LrxVGQJs0Om3A5fZoISDztoe8STsYOkV8ueQ6sMuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DKHniiFvs1zTmftY1pIjlStJ4iNekZmtQvYgXlv/VnI=;
- b=aTDpTtupHXK0bPIrdvwlamNT+kfTpwOz7jbKueMKKMuR2RnuA9ECshWUjn95OT1mDnpbe+SVABQDDuJN+bh6pUTZ8CDTHJw6LRE2P8s/ilx7Img7oWZn+qj0MfrXQXvd3P9pQZpiL0co2Iu0zSe6qq4gFcIg4DDtUpvV9mIxtFEdL9hUxVlYuqDBvIv+oD2H93pcxpPE2pNXI7m3jbecuWQyL0M8epgY2mi3hdXcaEg7/vl/aVzhh+xlS8/vf1I57WyDIC6P38EyYs32vZt6ZzrHi0GiTxNuLXPeuDE1nyyRnpCd4nEbHTNUivQaqitW5XlsVJW/yC4RNY/iRXTYFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-Received: from CY8PR10MB7243.namprd10.prod.outlook.com (2603:10b6:930:7c::10)
- by MW4PR10MB5702.namprd10.prod.outlook.com (2603:10b6:303:18c::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Mon, 29 Jan
- 2024 15:34:13 +0000
-Received: from CY8PR10MB7243.namprd10.prod.outlook.com
- ([fe80::45f0:7588:e47c:a1ac]) by CY8PR10MB7243.namprd10.prod.outlook.com
- ([fe80::45f0:7588:e47c:a1ac%7]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
- 15:34:13 +0000
-Message-ID: <9db727d3-1f82-4dd5-ad62-a04d17f6dfed@oracle.com>
-Date: Mon, 29 Jan 2024 09:34:11 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] scsi: iscsi: fix iscsi ida memory leak
-To: Guixin Liu <kanie@linux.alibaba.com>, lduncan@suse.com, cleech@redhat.com,
-        jejb@linux.ibm.com, martin.petersen@oracle.com
-Cc: open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
-References: <20240129090410.11105-1-kanie@linux.alibaba.com>
-Content-Language: en-US
-From: Mike Christie <michael.christie@oracle.com>
-In-Reply-To: <20240129090410.11105-1-kanie@linux.alibaba.com>
-Content-Type: text/plain; charset="UTF-8"
-X-ClientProxiedBy: DS7PR03CA0212.namprd03.prod.outlook.com
- (2603:10b6:5:3ba::7) To CY8PR10MB7243.namprd10.prod.outlook.com
- (2603:10b6:930:7c::10)
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 03 Feb 2024 13:12:53 -0800 (PST)
+Received-SPF: pass (google.com: domain of lduncan@suse.com designates 2a00:1450:4864:20::529 as permitted sender) client-ip=2a00:1450:4864:20::529;
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-55ad2a47b7aso4186821a12.3
+        for <open-iscsi@googlegroups.com>; Sat, 03 Feb 2024 13:12:53 -0800 (PST)
+X-Received: by 2002:a05:6402:1615:b0:55f:2c48:abe0 with SMTP id
+ f21-20020a056402161500b0055f2c48abe0mr2372686edv.23.1706994773306; Sat, 03
+ Feb 2024 13:12:53 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR10MB7243:EE_|MW4PR10MB5702:EE_
-X-MS-Office365-Filtering-Correlation-Id: 37fd75b6-3ce5-499c-8a39-08dc20dfbee9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Pxab6bdLaiWUB9DUmxzf8fUdLX1JciNhB1oaASkgWahrAEMVwk93mfaWhfSADaPHKefY75G1VDJkv1mCUoFSvxUhxNl9WwkOW+PbsKR3GNLNVnVg+yxYafX9MSj9R8w74++ChgnkriWQ+nbc8SkNKfZhxH/nB9wDtvOhVNAB14P7Vn9KpoX4PcnJBeNL9a8sTZc31ThN5m/yVfrEnRw9A6cr28GLjyYeLK9cWubkSLOGx6zUUq0XmaSv3j6aSqcAnFP6WLh37sR815UYBMF+2XJRGS5XoZ3v6Zzvo5j0ARQ8hfYmJAxvbottncmiY+kzH3odMwD4wP9xOAs6/PfsDz52YfMQBEW/hleY2swp7AYbqDd9ObH9dg/MkxXIzM32eHKpkYE97TRfAsvByM2JhUZh6KdOzRrDcEsSTDwkVYxIMMlHGF8pFA1EBUBp3FgOX4r3+tbdkGv6VlUiyInIGuOiAEUlQxDYopd/vOGtgKmmcPUS5qTWUKwglUlkw9rrfO6V6ScojnjuOJnSDPjV192UbWQxaY0jdUxnHF5CD2cBcnI1/RJlIc9+XNeB7gtg8lZ2vdDF6Yx2rEqbmoilNBV5hkisFaQX1GBpcXBdEmC0vA4Vh+CSR73T37+3tnxKa8bVUkzD0Vwvmj1ASNTOAg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR10MB7243.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(39860400002)(366004)(136003)(396003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(53546011)(2616005)(26005)(38100700002)(8936002)(5660300002)(8676002)(4326008)(6506007)(2906002)(41300700001)(6486002)(478600001)(6512007)(66946007)(66556008)(6636002)(316002)(66476007)(36756003)(86362001)(31696002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V0ViMXRiQzkzQ3VVZFpCbmRHdXVrYjgxc1lsRkNTM3dsYURPUFlhMmtJZGw2?=
- =?utf-8?B?NUxpdUxrQUJ6aTdZbzFFTjVZd3dTclJjME9PSDZSTW5wcmgyVDFwYWREbGJF?=
- =?utf-8?B?T0pnZ2s5bGNQemhOaFJTT1VGQXZ5dTJiVFFvZjlPdVl4cjNHbGJxcDZmQWJF?=
- =?utf-8?B?bVlHbkNjeE1hWmpoWVRHZXlPNWtHN0RjTEgxdEJHUjUxTEhIYmJSSHlNa3d4?=
- =?utf-8?B?cnFubU5JT280YjZaWkdYWTlUeG0xRWM4MVl3SWFBRlhESkRSbzcySTFjN3JX?=
- =?utf-8?B?LytqKzVNZDVYb3YzdnNDOXpFa0xrZllhU3lMQkV4dC9sWDUxaEVRRm5peER3?=
- =?utf-8?B?U29PRU9nekZJZUExbDlnUy9yQmYyYmR4MXNJQkV5SlVXUU44MFFsZE9ISEJz?=
- =?utf-8?B?MTh5U0V1ak1pL2trOU5iZmY1eGJlUmVQRjA1RlZycEFIaUVWQm9uWFFPWE16?=
- =?utf-8?B?Z2ZSS3ZKdGVmNjJxdWNCNTJBNVZ1by8rOEFzWmJGcjRTalBXWEJLODViYjRC?=
- =?utf-8?B?MlZmQU9naXpYV24vVXhtZHV1dDNrbHB2eDk2bFZSTlhoZWMreWh1ZzFJbUhh?=
- =?utf-8?B?Q3ZUZlB1MFBNRVFvRnF4a1VjMktBdUNNcGZwa3FGSWZFY21pZGdJNTkzenBk?=
- =?utf-8?B?YmhFRzJJTUpqeVRHOVVBWStqbHc2RWRFSHdBWWpMdUkrakNFUldhcmMvUnJO?=
- =?utf-8?B?WVB0L3kxT081Z0hMZm5ZQnpQOXBPb1JLZzJaWThoS3kxYXVsR0RmSHJCQ0VW?=
- =?utf-8?B?S3lqNHRBdkJmYmZ5M29mU2RzVkIzM2cyMXFVa21jRjNuWmFSNHZLbnA3Q2ZT?=
- =?utf-8?B?MkEzZEJUa3hvQVE0QlV3UjhtSnV4b2FNemhqSVFSWDQ5NXRYRlJHWXNFcHpw?=
- =?utf-8?B?Ky9iTm5oOHAyVXV2VzJjZ0RJQ09tNGJjR3VWb09sUlNVNzNoSHZDWDgxdWdH?=
- =?utf-8?B?b3hjWE1ibUJYcC90dEVTTnp4L1NCa1NoVDdidVBPUEF5bHY0bWhFRHZ4N0NY?=
- =?utf-8?B?U0IxUHBSajU0dnppYWlzdnpFa3ZrVWZTVUpoMUwrWDJLT0ZKY0NvQ0YwOTVa?=
- =?utf-8?B?NUJKMTFSSW1XZGRVaWdacTYyamxuM25maU9HOGkzdFZJTkxHekgwdGM5djJ1?=
- =?utf-8?B?Q25ody9ab3FIeUV4NjNTT1RSWTArMzhuY0lPcS8xaGY5SVQ5aUJwL09PekY2?=
- =?utf-8?B?SGhCbE55MHkvbUJReVF1UmErTWFxT2RMZ1B4M1ZKak5OYkRMN2NwbmZXZEln?=
- =?utf-8?B?OWp6OUUwcGNWd2Yya0N3dVhValVXQlEwbWVseHJRcjVsdkdWT3RocjB3OWRi?=
- =?utf-8?B?ZUpSV0NTak5mMXlwN0orQ283UWVhMnlDOWZOWVp2UXlPOHVsTlU2STlGV0ZX?=
- =?utf-8?B?WGxiNSswUndmKzlxcmVzNXh4QVBFUWprN01tejJGaEd3OUljUFdBa1BtSXk4?=
- =?utf-8?B?VFU1RVdNdmlGVy9Vc2tUUDViYUNURGZlMlRkVE1DSTg4ZFI5UXVFcVV6TTFM?=
- =?utf-8?B?RjdkVEVaSWpxVzZrYUl0L0Z0RkRRNWE0VFJ0aUw0eVBubEtMRy9ZV3poUnkz?=
- =?utf-8?B?TmczVmlGS0VTZVEzc1MvV2ZWOERLb2RjWC9XTGtSTlFvVGYxcTVQaUNvaUd2?=
- =?utf-8?B?MTN3LzNjaTJQMUZuUldVR2lWVXE0OTd1MWZsY284SE5DSTI1NDVPZzN4ZFVi?=
- =?utf-8?B?RUNMQWtFbG1BTzhZdEZuajVMbmdoM1A0S1plVjY1bjRKL3NxcUxqTTBWOXVo?=
- =?utf-8?B?WHlDcXNVbnBCMzkvUkhGZlFjQnRrbXFDYlJJcGkvUlliYVhrRWlSbTYrb2dt?=
- =?utf-8?B?WjdSR1d6S08zSkMzcTM4bFRZZ2JxN1hXZGRIVmg5c0FGNUZpckJWRXJRLzI0?=
- =?utf-8?B?MEdjRGwvY0QvZWY2SmY5N1k5WXlKRjNucTIyWEZBNFBqRU05a2p3dmVwRWMx?=
- =?utf-8?B?d3VXU2lVUUtIVkNEN2krVTQycWxOd0pOejB5UHdhckszNldXck0yR1gzZm5O?=
- =?utf-8?B?bDFvZGFjRDMzSDFFd1JCaGdyWWpZSzFYUFh0N09TZDgzU1hIUEIyQXViOXM4?=
- =?utf-8?B?dkpoZG9HU2I2ZG9YTUxsRVI0TG13UkJabkorbGI4M0RGNk0vcXBJU05Nekw3?=
- =?utf-8?B?OUsrbTFTLzA3eVh0dithS3RYWWFaZ012RXZZS1d6VHZoOC9KSkZrU3lSTHMw?=
- =?utf-8?B?elE9PQ==?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: gnfBJTv/BixUGd9c6KMnJXZm2fm1w4d5cfAuJzAdz1Stw++KfWR6T9cM7AYm7Iu/OSdQJ950oeccsDDN/bErKIX781n7P27kU2oT5b109d7+kROrQB2aa9f+LtfTnIedf+s2sz2lIy2hnlPXIBwnA98UywqeJqo0VM5HXdqAAsIzjnvrKUr+3eCWqOP097guRbz9ajShTeea3JkJ9VTH2LDx/ZW9Q3YK1JRAwxf4x/tmqV4LKdBK+0lKdncx9fUQW0jAC96c+dadtme0Q67qY2NERlNQkERkVGda32fRpqKMmnaTsic9sZsHB6AQmdjd78U0fZKYRerUbW9t+ZDUrXZaPu7i2RNzuRi47jOG3DZ1tZyqOwqC707oNHugyVo+l97whtF/ZratGgmI9CA/mzZGlN67DE8Sq5XXUwIIWW/OeonA/45KxWe0C2YqA34HeOcWZN5vBNKVumqOTUZnkhpKpN0vdOD8+uGL7pAMFqQDyYojM9Jdlvi8y0InJP0lGnRJpGqv9LgmuFwyoVdFjJdgLSsnHSglxybe2I8WdJKT393IrcpZ7SYo7+COrbsoTzD6CNjKuL6D3TOkllr0KgRsTvm0d7WhZ99UY76L7WY=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 37fd75b6-3ce5-499c-8a39-08dc20dfbee9
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR10MB7243.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 15:34:13.3830
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MPY8jHRm6Y7Eae6aMF1LeS7ZoC2CPpghuGv6ay9OyFcPZjOtAge8pUmIwe9RTBJDAxg+l02/00FlBYWK8Fd1pENxEglnegWXI6FkCoc6oWo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB5702
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-29_10,2024-01-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 bulkscore=0 malwarescore=0
- mlxscore=0 mlxlogscore=999 spamscore=0 adultscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
- definitions=main-2401290114
-X-Proofpoint-ORIG-GUID: 8mTRukkz2GQmndQMygaUsnT-4Y_E_U-T
-X-Proofpoint-GUID: 8mTRukkz2GQmndQMygaUsnT-4Y_E_U-T
-X-Original-Sender: michael.christie@oracle.com
+References: <20240203-bus_cleanup-scsi-v1-0-6f552fb24f71@marliere.net> <20240203-bus_cleanup-scsi-v1-2-6f552fb24f71@marliere.net>
+In-Reply-To: <20240203-bus_cleanup-scsi-v1-2-6f552fb24f71@marliere.net>
+From: "'Lee Duncan' via open-iscsi" <open-iscsi@googlegroups.com>
+Date: Sat, 3 Feb 2024 13:12:42 -0800
+Message-ID: <CAPj3X_UbiLY4MQaUjHkijpSi1LvjG-1BSfO5td7rk__2weshZQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] scsi: iscsi: make iscsi_flashnode_bus const
+To: "Ricardo B. Marliere" <ricardo@marliere.net>
+Cc: Hannes Reinecke <hare@suse.de>, "James E.J. Bottomley" <jejb@linux.ibm.com>, 
+	"Martin K. Petersen" <martin.petersen@oracle.com>, Chris Leech <cleech@redhat.com>, 
+	Mike Christie <michael.christie@oracle.com>, linux-scsi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, open-iscsi@googlegroups.com, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Original-Sender: lduncan@suse.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2023-11-20 header.b="d2s4hqx/";
-       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com
- header.b=E91ihVSo;       arc=pass (i=1 spf=pass spfdomain=oracle.com
- dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
-       spf=pass (google.com: domain of michael.christie@oracle.com designates
- 205.220.177.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+ header.i=@suse.com header.s=google header.b=e7AaulLi;       spf=pass
+ (google.com: domain of lduncan@suse.com designates 2a00:1450:4864:20::529 as
+ permitted sender) smtp.mailfrom=lduncan@suse.com;       dmarc=pass
+ (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=suse.com
+X-Original-From: Lee Duncan <lduncan@suse.com>
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -244,40 +141,56 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On 1/29/24 3:04 AM, Guixin Liu wrote:
-> The iscsi_sess_ida should be destroy when the iscsi module exit.
-> 
-> Signed-off-by: Guixin Liu <kanie@linux.alibaba.com>
+On Sat, Feb 3, 2024 at 10:38=E2=80=AFAM Ricardo B. Marliere
+<ricardo@marliere.net> wrote:
+>
+> Now that the driver core can properly handle constant struct bus_type,
+> move the iscsi_flashnode_bus variable to be a constant structure as well,
+> placing it into read-only memory which can not be modified at runtime.
+>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Suggested-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Signed-off-by: Ricardo B. Marliere <ricardo@marliere.net>
 > ---
->  drivers/scsi/scsi_transport_iscsi.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
-> index 3075b2ddf7a6..3c5b42390c47 100644
+>  drivers/scsi/scsi_transport_iscsi.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_tran=
+sport_iscsi.c
+> index 3075b2ddf7a6..af3ac6346796 100644
 > --- a/drivers/scsi/scsi_transport_iscsi.c
 > +++ b/drivers/scsi/scsi_transport_iscsi.c
-> @@ -5046,6 +5046,7 @@ static void __exit iscsi_transport_exit(void)
->  	class_unregister(&iscsi_endpoint_class);
->  	class_unregister(&iscsi_iface_class);
->  	class_unregister(&iscsi_transport_class);
-> +	ida_destroy(&iscsi_sess_ida);
+> @@ -1201,7 +1201,7 @@ static const struct device_type iscsi_flashnode_con=
+n_dev_type =3D {
+>         .release =3D iscsi_flashnode_conn_release,
+>  };
+>
+> -static struct bus_type iscsi_flashnode_bus;
+> +static const struct bus_type iscsi_flashnode_bus;
+>
+>  int iscsi_flashnode_bus_match(struct device *dev,
+>                                      struct device_driver *drv)
+> @@ -1212,7 +1212,7 @@ int iscsi_flashnode_bus_match(struct device *dev,
 >  }
->  
->  module_init(iscsi_transport_init);
+>  EXPORT_SYMBOL_GPL(iscsi_flashnode_bus_match);
+>
+> -static struct bus_type iscsi_flashnode_bus =3D {
+> +static const struct bus_type iscsi_flashnode_bus =3D {
+>         .name =3D "iscsi_flashnode",
+>         .match =3D &iscsi_flashnode_bus_match,
+>  };
+>
+> --
+> 2.43.0
+>
 
-When this is called the ida will be empty so I don't think we have to
-call this. From the comments:
+Reviewed-by: Lee Duncan <lduncan@suse.com>
 
-/**
- * ida_destroy() - Free all IDs.
- * @ida: IDA handle.
- *
- * Calling this function frees all IDs and releases all resources used
- * by an IDA.  When this call returns, the IDA is empty and can be reused
- * or freed.  If the IDA is already empty, there is no need to call this
- * function.
-
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/9db727d3-1f82-4dd5-ad62-a04d17f6dfed%40oracle.com.
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/CAPj3X_UbiLY4MQaUjHkijpSi1LvjG-1BSfO5td7rk__2weshZQ%40mail.gmail=
+.com.
