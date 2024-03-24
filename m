@@ -1,112 +1,112 @@
-Return-Path: <open-iscsi+bncBDUNBGN3R4KRBBH3QKYAMGQEIB6BMUQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBDUNBGN3R4KRBCP3QKYAMGQEQRHU6EQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pj1-x1040.google.com (mail-pj1-x1040.google.com [IPv6:2607:f8b0:4864:20::1040])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF89F8882C9
-	for <lists+open-iscsi@lfdr.de>; Mon, 25 Mar 2024 00:55:51 +0100 (CET)
-Received: by mail-pj1-x1040.google.com with SMTP id 98e67ed59e1d1-29b8f702cbfsf2795097a91.1
-        for <lists+open-iscsi@lfdr.de>; Sun, 24 Mar 2024 16:55:51 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1711324550; cv=pass;
+Received: from mail-io1-xd37.google.com (mail-io1-xd37.google.com [IPv6:2607:f8b0:4864:20::d37])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB0B8882CC
+	for <lists+open-iscsi@lfdr.de>; Mon, 25 Mar 2024 00:55:56 +0100 (CET)
+Received: by mail-io1-xd37.google.com with SMTP id ca18e2360f4ac-7c75dee76c0sf257060739f.1
+        for <lists+open-iscsi@lfdr.de>; Sun, 24 Mar 2024 16:55:56 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1711324555; cv=pass;
         d=google.com; s=arc-20160816;
-        b=OD879mYgzVH8mgDjqo2yiQXLLIglFbqR0vlNvV5w63P/hRKNH6cBZxP8BuNFKZt4I3
-         0TSlfMBzQjK/I1nJ4AFkBgbkILMt5bdnOmJY3V32rNnkMP8cnDdmY/uXbqEkm7Mo5T+T
-         elYEsk0VnH0o3eb4t3gAiX8Cy1toa4p9HZE3K5zs3//Fa1/ltNQ8FXVrbObVePr5DizR
-         z2Y8jFDc80nS2N5mWPC6v2nXFKCqXwCX6VrpxhYCz2Swz6DiB2W2az6ogr0PYWkwdHW1
-         vKHOywtLUCuPLoDTkKdrQRs/M7jJHzwUB8d6AKzd+acofbFqdwaxDTZKp5Uhu85KWjfi
-         RTmA==
+        b=xbS3hvJ3BHV2S+9tIKQNk3HIrfkLJGb9h36ctCtjeOYKMsag/zP1S6bqdB9nbRcamu
+         LAalbT3SkTt6stWuoSPoeJ4vhUqiXPpkkf+80oRprSRcPGGBQX68X9P//iRDA2qUeA2U
+         X5V9kjS1jvjrSEo4HLTY2MqtnpscvIv/PBc7rLm+5AZpyYMKiJkUptYODcidi+iQG4ps
+         Q/Nj7iUo1VZU3SI3lLKznue17wSimX51MhY5TGVT+yGsJsGGNEXwrHQ/fLNnmfB2ZL7w
+         /foXdm0u9jU+hBTR0dRg1SZDaUWUXk2tuO9OrgB4/0KXPY9wphyjY3DOTSAtVe/uVyFy
+         JkxQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:sender
          :dkim-signature;
-        bh=gNKVwpJhB9Q5HY5RYwWuwapWTkmJOMnlxIi/roAfst4=;
-        fh=psFurlnRCm2eBihauVbghPlTmjW+2Eppb+BFXO3HXVM=;
-        b=jo3n7/5zSQwAQ4r+wy/eq/pPm5hx8yAGYwt2gOHnMaSdAHr4X7Mv/j2OKRtIw3mzC4
-         k/A5p7zjZEyiVnrLiYbg3LWgFrAbWDm1QFi4S8zNdhLze24PBBfXzPpzz9N3NfnX+/6t
-         qoR4lzJOJsxJlPy8+wcHBBkAF8KaiPODO0ic/F9KCAgMBoTsEsZa1DWU8BXDV3B+Cj5D
-         1rjkBa8VLDaIPWot1YexDnJ8pL7YSo2IMSYnu2BYPClQRjaaEYm6IcU99LE09QceWbqa
-         TvwIl8q/NOkKTmppHc4ooU7rrAyH6n+/fuNqXNBgkbUuyqmNnEPnhxnfhV49LwmSTILh
-         XVHg==;
+        bh=6+4DkStXxWjTEU0tbj3hKNmrudU95zrFCsYG8uCOYBM=;
+        fh=2/L+8EmD5j0Vn64cQsG93h12LAIqVTR1xPJzYZiPtw0=;
+        b=q4o19S3VrUM5QLDKTKeKHP1HlkHTTgzU7DKyTd/QzsthL4zMAIVq+WPwFBjU3OUYzx
+         IEw45Ys30hOeh5eyOLZFXBkfaprWBlCEQN4SgELRb+HmbzqesDrp7031dN4KQSNkiOQR
+         XLzbbRvghUX4Q93qxTUi0s0OnyWR8R2TQoVH7LDYThosMGWj/DSJMSBvCMgc4MZZf5gt
+         UERBkwSrm873GPGtYk7g1Pmim7IlGN/DV+NKxW+xBzBqWWK+iPwLpMb/mFrdIDctIG6R
+         0XTXGN2dZOmLNWHxgfumZZhVVfyYbhYx7MqDS0limKxQFd6+EOxh0TxVRsGeJ/jwphCA
+         lRng==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=XbCc2oME;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=BfOP82s5;
        spf=none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) smtp.mailfrom=BATV+9b69c840030af2843ecd+7518+infradead.org+hch@bombadil.srs.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1711324550; x=1711929350; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1711324555; x=1711929355; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
          :x-original-sender:mime-version:references:in-reply-to:message-id
          :date:subject:cc:to:from:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gNKVwpJhB9Q5HY5RYwWuwapWTkmJOMnlxIi/roAfst4=;
-        b=RUnchx414DnoZ+0UG+bJuxf9fagu/c9WXox4h0buJE8mm/VhHVz/cRpUIGryzLfjXB
-         de4FBkLF8UBzLbpjyzD5j6QS4IxIhxayC2S/Un2xgi97dkcJJ9euP9dG0nrpuFz9w6TR
-         7ZS6llkuvEpDoLPqZCqBSfK766miXwqhbWUDkH7Dmhc27RfE3fVJLG7QXK0FKNOPAmxZ
-         VWs+0OprCInO0DhL6L6QD2bOUWR69ACm7GY6wOyB+LsqRu7NBjzAJOjIfsq+1vd2y/kj
-         r47mM6hTE3/hP+wRq0GZ+C3moEC7Mx3Eak79yGSiBcAyT1oLNupbobCzy3Mm4A9rOeKc
-         Z/2g==
+        bh=6+4DkStXxWjTEU0tbj3hKNmrudU95zrFCsYG8uCOYBM=;
+        b=Jqn1Czm92s3Nid/S+Wq103VXDuZQe8tyUMsSGro0te/Ine/01w2pKwOvCEXENWhi5G
+         L4r6dFPLbkb7G+4o2L6oOJpeDbrvG2Bso4W3gMt/jbVkGEc4EfM+gs8jsdxuOc/B1hUo
+         cQ23IE8OKIbOLCgc60S4fBsEX88vN0NL02HGX9VjLDIbpOi75brAKUgrBNHatfEq2x/p
+         kFmO+vBIu1B4slvTbbWWuLLBq6m8yKH3Qou+E5OM+M4ny5IE2cq/tGqMgOUPDwQUcaSP
+         jgqwb/rzDpWfz0b5JQ9IK5trR+jdVsVP7OyU/cMue5Ou+SY/QK6s5H/SmL4z1rHHuCGZ
+         9iPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711324550; x=1711929350;
+        d=1e100.net; s=20230601; t=1711324555; x=1711929355;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender:mime-version
          :references:in-reply-to:message-id:date:subject:cc:to:from
          :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gNKVwpJhB9Q5HY5RYwWuwapWTkmJOMnlxIi/roAfst4=;
-        b=BkZ3u9smWI8GatTotofagywk5jfptscglL1URWEsGHvUUC613xTCVn5B4R2E7MG+H6
-         h35KMJIOqcgshBT+0ETpdx2Xbt0UC/9sjyR2Bb2tA56Mr1Q67IYfWXK3oc4oUpnWVjmJ
-         tQ3wj32rWHTgtjbvTfan74PNgPtlzAF3PA/RVXPkaYqMR4+UThSSo+I9XIqlh3D5F95m
-         RqVwFLkq8VhvvMn4YrMLcaGyAcg63uwIFr7dokkX//+ZMB4bkiJ4T7ejIDXjFAntlY3J
-         ZQeSon8KsN0Z7eR2Ny52b/IbNf37CdsGG1u1JfOfp7+TRMhdiJOLJVjniFWz5GVa8Mwp
-         H2pQ==
+        bh=6+4DkStXxWjTEU0tbj3hKNmrudU95zrFCsYG8uCOYBM=;
+        b=C/T/CHBA89pb19UczD+K5RuxiNjlMgpIMUcLLV7968ZFzCY+WmeCzeUjCqkFY2mTXC
+         Sf3sByDKd1o/tELMehU8sCEFDDYYW9Y/EBFRWpcC836XDlFcXZrxch7JlUktBlKJ0Lgo
+         pfL5w/7MNhwbdr+Ipy/61Qe+24lcQgD88Co7fiJzUy/uO845YWhn2VF2Yam9LdAfg1pF
+         pardjiLZITDMfBfet8ETts6db8gdcV7qXphtsPv/I+lC+L/Ms0ezr/cSYRmozruHk3+0
+         otS0YjExq0SgefU1cmZbke6Px+2fUWcG0FtMb9kzljNAz191BFu7ZtEm54vH0I0TaPw+
+         H0Vw==
 Sender: open-iscsi@googlegroups.com
-X-Forwarded-Encrypted: i=2; AJvYcCXTEhoerYse2MULZGCoAICKzsh9CaicG8Ji8tkbAQ0ubidHNMFEVaWuFW5eqb3yumnWzbwRjfZZEi2n40jjqcRX8MihSm4AgOs=
-X-Gm-Message-State: AOJu0YzoSF1aDx5n8EibUO4rPfIfQtHfkONPjB6gxAQuR8cLVGJe5gZ6
-	WAUPw+hi20z5HAatKmT+z/oLxX9GFa4C0vN8BqBkmjoUkog9DgO0
-X-Google-Smtp-Source: AGHT+IENzgj8VVV/uW5/GozCFYIfe+AQQ5XK2E4LvjUVrFB7uR6qPSiyjbpLgCwisWQuAUgUyESxXQ==
-X-Received: by 2002:a17:90b:1b52:b0:2a0:5a54:7474 with SMTP id nv18-20020a17090b1b5200b002a05a547474mr2235558pjb.0.1711324550181;
-        Sun, 24 Mar 2024 16:55:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXWw7oRPlGgyN14k3XgWKJzxdWXH0EpOtPQDv8iJTgXIiNUqAvZZciZ7a2p5gommPzjH9eAmWPVfkvBbtK9r19av3tEQQeikcM=
+X-Gm-Message-State: AOJu0Yy8Z5um9pHZLFrU/E716+0n+MiMaShtrBuq4kZibMU5sLQar1kq
+	9tkrRjaLwn9TS6yKdXWPwo8Fpifn7nIlfnbKTyezHXKckWynwWP1Dgw=
+X-Google-Smtp-Source: AGHT+IE4r2dpQaTDTvnH796s2L8avfTaM0dC/vuRoII8EqVEmTF2FXSTQ5ixtc0IZuOHkYXvBdHKdw==
+X-Received: by 2002:a05:6e02:19cb:b0:366:fea2:8e69 with SMTP id r11-20020a056e0219cb00b00366fea28e69mr4062856ill.16.1711324555198;
+        Sun, 24 Mar 2024 16:55:55 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:90b:4b10:b0:2a0:2b14:7b50 with SMTP id
- lx16-20020a17090b4b1000b002a02b147b50ls1573258pjb.1.-pod-prod-07-us; Sun, 24
- Mar 2024 16:55:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=2; AJvYcCXqjDNEYFQMauFOn+lJWO5afpcR4dTZ06gSPTwWfVOY2S7r180RLAcpGMKYo8W8b784S/CnIe6Ue0EWP3Dg+zKLzmOTZ+Z45QDix0A=
-X-Received: by 2002:a05:6a20:8f0b:b0:1a3:b153:5f4e with SMTP id b11-20020a056a208f0b00b001a3b1535f4emr5208278pzk.54.1711324547589;
-        Sun, 24 Mar 2024 16:55:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1711324547; cv=none;
+Received: by 2002:a05:6e02:1526:b0:366:a73a:603 with SMTP id
+ i6-20020a056e02152600b00366a73a0603ls1131761ilu.0.-pod-prod-00-us; Sun, 24
+ Mar 2024 16:55:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUBzOeBIZyTMjQGWDMBaN9+ecO0MUdE8tc9u2ZepOTOcDxCbQlyBZY6XqhJjMDD3NVHi+Juirnr7O2w7EsRixedGpOw1kuyMwWezKU=
+X-Received: by 2002:a05:6e02:1d94:b0:368:7571:686d with SMTP id h20-20020a056e021d9400b003687571686dmr4291171ila.1.1711324553207;
+        Sun, 24 Mar 2024 16:55:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1711324553; cv=none;
         d=google.com; s=arc-20160816;
-        b=nTzkgyJg5oCGgVm9vot+nHjfAUvVgg91VM8R00Qk3qOtKXlCIVvetd23B+nAz0ZjlM
-         C8vQzsHfxZWg8CqVvj5M66lIhZpJpX42j11tXiw5UKiF2p4Ln1vOwR9r95zhr1wvUalU
-         DpSEw9ZtN4HpBkVq6n4XvfWF8uwlGgEUm8QxbDLE0xwsMebRK4k2j/X1oMLqFQdTA69b
-         rfsITmpKC+4Pgiu+yxnODeASWQvBExhVvK+V7aFavhCvXGelhUomLmECDcSi6lK/zRI1
-         XORHjJ8Ml+3Tk35utB7zmTlvWXzptrJD4oDZJ4/Rg2e8fC1IT1sYO8JPPivBZWp+PMpb
-         fK9Q==
+        b=Wca2txWLsEoOq4cb4b0BBPulXp+l8P2l6W5wgPemJXrAzuB9BKpk0RTNkL7pFbywFR
+         K4yp5T9lzRHd4ibMiI3++6psU/gt004CrRkZOb4PMNsAKY8yOr71+CE6zcu/ps0MAkp9
+         C1nkMOA8sJhezuuRMpRrlNznQMSVjK4rQHxjKSJRDal4Mp/A/KaQ6S3tA65iXu3AEtd0
+         Ysr4Zwe5SB59zqWmmDNR/aHu2Z4MtQDodpVjvyeIERPJlUcvrQ6A4LSuSEEF+80Cj1J5
+         cZorI8UIwHUg9k0oOTcbFmIILWVeazWARYwpcJZxw5BMJy5gG66tx+O3JuWn6ixMH8Ix
+         S1hg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=WXYhCbVwCEU0UHf+sQtOcxTHe5YrehjKDolUaK54+l0=;
+        bh=n/G3RdcsG/UHdocEiANoLj+Yss9HtHvu5C4t+MOMe/A=;
         fh=t86CCijjmN/1ilkIT+VdM3oaZOxEhtNXSf8+ryhWOUU=;
-        b=p2ldBdqs/6RxbKBLixrZ36uPXr5VRRc0y7HFARTOZ+h9j5ch1X8+t9b4+uc2K0kb4Q
-         xsflD22OQ/I1wu3CrIGILzlPgA7DGUlqMlEz3pp8VXavKnQNA+5g0H9f1Ra5ajV5WgcZ
-         WBi/CaoilcLOtQRUp/aGbsZ6GerAslOCIebbeo3rIhafzCjPA1cBJX5B29SdDF2ozkyx
-         H5veX/8J5IFjSu+Pr5JjZjJ0fMkOQ01LXRAVwJ8LgUCvT7PxSk+oiBr1EVv7yXA8H+Qy
-         zs3+pjT5AJpoLBrIqJzdoeuqRkcx1WXGEQdSIyuLMJwjCYmpGnTa5igM/XOyR7b0IuTr
-         Yslw==;
+        b=aO3wgrAuvin/Cl2507zEnyiETgjGmonsLG0+mP0Oyi1z+HNZE5hbNUkWhDkv97VFLC
+         pUSTLJ/UHIo/uRgAluNyJQgsJSnztiu2B841FsItyFO2Jx/lzYTEhL6ANvya3JyH8qBS
+         fogMhz4wOqfi4vG7J7Bt/g1uJ6B//yuDqu4FzY4t3noiT1jcZ9gJoq1aKt9EJMUqCpMY
+         tJbcO/D8KKauJSS+yZe5nbSCtGjrF7Ymcqqm//h7sVdBrBUia09Io3jodKwbKJ2TDGZl
+         LS4eCmt9Xvuzzh4YlY4qtxsGRYwJIBGhd5uFlaITJIgB6UU+RivQPuItQiav+YwqmtWn
+         j0rQ==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=XbCc2oME;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=BfOP82s5;
        spf=none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) smtp.mailfrom=BATV+9b69c840030af2843ecd+7518+infradead.org+hch@bombadil.srs.infradead.org
 Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:3::133])
-        by gmr-mx.google.com with ESMTPS id kc12-20020a17090333cc00b001dcd7469086si256061plb.4.2024.03.24.16.55.47
+        by gmr-mx.google.com with ESMTPS id v18-20020a05663812d200b0047c19d050d0si105244jas.2.2024.03.24.16.55.51
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Mar 2024 16:55:47 -0700 (PDT)
+        Sun, 24 Mar 2024 16:55:51 -0700 (PDT)
 Received-SPF: none (google.com: bombadil.srs.infradead.org does not designate permitted sender hosts) client-ip=2607:7c80:54:3::133;
 Received: from [210.13.83.2] (helo=localhost)
 	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1roXge-0000000DzZ6-3X9j;
-	Sun, 24 Mar 2024 23:55:37 +0000
+	id 1roXgi-0000000Dzai-1gDh;
+	Sun, 24 Mar 2024 23:55:40 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: Jens Axboe <axboe@kernel.dk>,
 	"Martin K. Petersen" <martin.petersen@oracle.com>
@@ -150,9 +150,9 @@ Cc: Damien Le Moal <dlemoal@kernel.org>,
 	linux-samsung-soc@vger.kernel.org,
 	linux-usb@vger.kernel.org,
 	usb-storage@lists.one-eyed-alien.net
-Subject: [PATCH 09/23] scsi: use the atomic queue limits API in scsi_add_lun
-Date: Mon, 25 Mar 2024 07:54:34 +0800
-Message-Id: <20240324235448.2039074-10-hch@lst.de>
+Subject: [PATCH 10/23] scsi: add a device_configure method to the host template
+Date: Mon, 25 Mar 2024 07:54:35 +0800
+Message-Id: <20240324235448.2039074-11-hch@lst.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240324235448.2039074-1-hch@lst.de>
 References: <20240324235448.2039074-1-hch@lst.de>
@@ -160,7 +160,7 @@ MIME-Version: 1.0
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Original-Sender: hch@lst.de
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@infradead.org header.s=bombadil.20210309 header.b=XbCc2oME;
+ header.i=@infradead.org header.s=bombadil.20210309 header.b=BfOP82s5;
        spf=none (google.com: bombadil.srs.infradead.org does not designate
  permitted sender hosts) smtp.mailfrom=BATV+9b69c840030af2843ecd+7518+infradead.org+hch@bombadil.srs.infradead.org
 Reply-To: open-iscsi@googlegroups.com
@@ -176,102 +176,104 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-Switch scsi_add_lun to use the atomic queue limits API to update the
-max_hw_sectors for devices with quirks.
+This is a version of ->slave_configure that also takes a queue_limits
+structure that the caller applies, and thus allows drivers to reconfigure
+the queue using the atomic queue limits API.
+
+In the long run it should also replace ->slave_configure entirely as
+there is no need to have two different methods here, and the slave
+name in addition to being politically charged also has no basis in
+the SCSI standards or the kernel code.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- drivers/scsi/scsi_scan.c | 49 ++++++++++++++++++++--------------------
- 1 file changed, 24 insertions(+), 25 deletions(-)
+ drivers/scsi/scsi_scan.c | 33 +++++++++++++++++++--------------
+ include/scsi/scsi_host.h |  4 ++++
+ 2 files changed, 23 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/scsi/scsi_scan.c b/drivers/scsi/scsi_scan.c
-index 205ab3b3ea89be..699356d7d17545 100644
+index 699356d7d17545..8e05780f802523 100644
 --- a/drivers/scsi/scsi_scan.c
 +++ b/drivers/scsi/scsi_scan.c
-@@ -874,6 +874,7 @@ static int scsi_probe_lun(struct scsi_device *sdev, unsigned char *inq_result,
+@@ -227,7 +227,7 @@ static int scsi_realloc_sdev_budget_map(struct scsi_device *sdev,
+ 
+ 	/*
+ 	 * realloc if new shift is calculated, which is caused by setting
+-	 * up one new default queue depth after calling ->slave_configure
++	 * up one new default queue depth after calling ->device_configure
+ 	 */
+ 	if (!need_alloc && new_shift != sdev->budget_map.shift)
+ 		need_alloc = need_free = true;
+@@ -874,8 +874,9 @@ static int scsi_probe_lun(struct scsi_device *sdev, unsigned char *inq_result,
  static int scsi_add_lun(struct scsi_device *sdev, unsigned char *inq_result,
  		blist_flags_t *bflags, int async)
  {
-+	struct queue_limits lim;
- 	int ret;
++	const struct scsi_host_template *hostt = sdev->host->hostt;
+ 	struct queue_limits lim;
+-	int ret;
++	int ret, ret2;
  
  	/*
-@@ -1004,19 +1005,6 @@ static int scsi_add_lun(struct scsi_device *sdev, unsigned char *inq_result,
- 	if (*bflags & BLIST_SELECT_NO_ATN)
- 		sdev->select_no_atn = 1;
- 
--	/*
--	 * Maximum 512 sector transfer length
--	 * broken RA4x00 Compaq Disk Array
--	 */
--	if (*bflags & BLIST_MAX_512)
--		blk_queue_max_hw_sectors(sdev->request_queue, 512);
--	/*
--	 * Max 1024 sector transfer length for targets that report incorrect
--	 * max/optimal lengths and relied on the old block layer safe default
--	 */
--	else if (*bflags & BLIST_MAX_1024)
--		blk_queue_max_hw_sectors(sdev->request_queue, 1024);
--
- 	/*
- 	 * Some devices may not want to have a start command automatically
- 	 * issued when a device is added.
-@@ -1077,19 +1065,22 @@ static int scsi_add_lun(struct scsi_device *sdev, unsigned char *inq_result,
- 
- 	transport_configure_device(&sdev->sdev_gendev);
- 
-+	/*
-+	 * No need to freeze the queue as it isn't reachable to anyone else yet.
-+	 */
-+	lim = queue_limits_start_update(sdev->request_queue);
-+	if (*bflags & BLIST_MAX_512)
-+		lim.max_hw_sectors = 512;
-+	else if (*bflags & BLIST_MAX_1024)
-+		lim.max_hw_sectors = 1024;
-+	ret = queue_limits_commit_update(sdev->request_queue, &lim);
-+	if (ret)
-+		goto fail;
+ 	 * XXX do not save the inquiry, since it can change underneath us,
+@@ -1073,22 +1074,26 @@ static int scsi_add_lun(struct scsi_device *sdev, unsigned char *inq_result,
+ 		lim.max_hw_sectors = 512;
+ 	else if (*bflags & BLIST_MAX_1024)
+ 		lim.max_hw_sectors = 1024;
+-	ret = queue_limits_commit_update(sdev->request_queue, &lim);
 +
- 	if (sdev->host->hostt->slave_configure) {
- 		ret = sdev->host->hostt->slave_configure(sdev);
--		if (ret) {
--			/*
--			 * if LLDD reports slave not present, don't clutter
--			 * console with alloc failure messages
--			 */
--			if (ret != -ENXIO) {
--				sdev_printk(KERN_ERR, sdev,
--					"failed to configure device\n");
--			}
--			return SCSI_SCAN_NO_RESPONSE;
--		}
-+		if (ret)
-+			goto fail;
++	if (hostt->device_configure)
++		ret = hostt->device_configure(sdev, &lim);
++	else if (hostt->slave_configure)
++		ret = hostt->slave_configure(sdev);
++
++	ret2 = queue_limits_commit_update(sdev->request_queue, &lim);
++	if (ret2 && !ret)
++		ret = ret2;
+ 	if (ret)
+ 		goto fail;
  
- 		/*
- 		 * The queue_depth is often changed in ->slave_configure.
-@@ -1115,8 +1106,16 @@ static int scsi_add_lun(struct scsi_device *sdev, unsigned char *inq_result,
+-	if (sdev->host->hostt->slave_configure) {
+-		ret = sdev->host->hostt->slave_configure(sdev);
+-		if (ret)
+-			goto fail;
+-
+-		/*
+-		 * The queue_depth is often changed in ->slave_configure.
+-		 * Set up budget map again since memory consumption of
+-		 * the map depends on actual queue depth.
+-		 */
++	/*
++	 * The queue_depth is often changed in ->device_configure.
++	 *
++	 * Set up budget map again since memory consumption of the map depends
++	 * on actual queue depth.
++	 */
++	if (hostt->device_configure || hostt->slave_configure)
+ 		scsi_realloc_sdev_budget_map(sdev, sdev->queue_depth);
+-	}
+ 
+ 	if (sdev->scsi_level >= SCSI_3)
+ 		scsi_attach_vpd(sdev);
+diff --git a/include/scsi/scsi_host.h b/include/scsi/scsi_host.h
+index b0948ab69e0fa6..1959193d47e7f5 100644
+--- a/include/scsi/scsi_host.h
++++ b/include/scsi/scsi_host.h
+@@ -211,7 +211,11 @@ struct scsi_host_template {
+ 	 *     up after yourself before returning non-0
+ 	 *
+ 	 * Status: OPTIONAL
++	 *
++	 * Note: slave_configure is the legacy version, use device_configure for
++	 * all new code.
  	 */
- 	if (!async && scsi_sysfs_add_sdev(sdev) != 0)
- 		return SCSI_SCAN_NO_RESPONSE;
--
- 	return SCSI_SCAN_LUN_PRESENT;
-+
-+fail:
-+	/*
-+	 * If the LLDD reports LU not present, don't clutter the console with
-+	 * alloc failure messages.
-+	 */
-+	if (ret != -ENXIO)
-+		sdev_printk(KERN_ERR, sdev, "failed to configure device\n");
-+	return SCSI_SCAN_NO_RESPONSE;
- }
++	int (* device_configure)(struct scsi_device *, struct queue_limits *lim);
+ 	int (* slave_configure)(struct scsi_device *);
  
- #ifdef CONFIG_SCSI_LOGGING
+ 	/*
 -- 
 2.39.2
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20240324235448.2039074-10-hch%40lst.de.
+To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/20240324235448.2039074-11-hch%40lst.de.
