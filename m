@@ -1,74 +1,272 @@
-Return-Path: <open-iscsi+bncBCRKJ2M45MFBBNUS3O2AMGQENIBOARQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBCHM7NWZ3UFBBW7VUS4AMGQEMQHLYAI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yb1-xb3c.google.com (mail-yb1-xb3c.google.com [IPv6:2607:f8b0:4864:20::b3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5070E9331C7
-	for <lists+open-iscsi@lfdr.de>; Tue, 16 Jul 2024 21:25:46 +0200 (CEST)
-Received: by mail-yb1-xb3c.google.com with SMTP id 3f1490d57ef6-e02fff66a83sf10142181276.0
-        for <lists+open-iscsi@lfdr.de>; Tue, 16 Jul 2024 12:25:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1721157945; x=1721762745; darn=lfdr.de;
+Received: from mail-ot1-x337.google.com (mail-ot1-x337.google.com [IPv6:2607:f8b0:4864:20::337])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4948899A6CC
+	for <lists+open-iscsi@lfdr.de>; Fri, 11 Oct 2024 16:49:06 +0200 (CEST)
+Received: by mail-ot1-x337.google.com with SMTP id 46e09a7af769-717d5ad62a2sf506636a34.2
+        for <lists+open-iscsi@lfdr.de>; Fri, 11 Oct 2024 07:49:06 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1728658142; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=GBE+uBEIqs3ceIK29YzkqTMNhGP740g65F8WUDY87KtA3gQ14loI7zgHZ+XlS/4yux
+         uz2n8JRmfk/IrOXkIxfNjmQmKFKivOvcxDJp2AZKls+AD9MQsRk9tYD/2uBfMACeTcC4
+         JMO7fTKeDrt6qP0PRmzDlxo+fJbNQfic1QZo58b/jnpthVewu7ApolfWM/JR0iAO27D1
+         QSPj+xZh0Ym8l8+m66wDsVlp2/4zfOao0XYZogTPpRIUNSrHE4vcQW0gYXYSYbJXW7wc
+         BB6iefxuw4rThcRHTJ207dEaGzGXEdG0et3YYOb153rSzJE/5Q72poFw/Ssp8eKK4lUY
+         dedA==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:x-original-sender:mime-version
-         :subject:message-id:to:from:date:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Yxjzlyq5g+MbE0KEQbcb89USVRkVKuzLOqL63JIIBQ=;
-        b=OUfUJxNs+GoYN+aY+4mDjeiMKi7/s+wfBIdPCqrM9wEi3iNmYZ2MVMUNgMfCJNlB+y
-         NJpIW+p4YeSANZVPPTV+YdacWpzWCxKtSTjt+mQhZuaFaZWAru9Eq4iU7DOZJTFsdK+I
-         C6Au3GaCstwge3HNLIpP7IoKtpuKs8Bumv+blY8BrPj5Ey+9mjoMTgzBvhf7hb5bT34H
-         qmgyot6bntYflThmaTrGWjRzGtpW50ebONWZ2de4rxpEY5R2gN6dnYqntdPYJol22Ash
-         djpc+Jt456RF2Y2PaT5NnP8e/34h7ecmE60PSqvEzdCWv1Y8nAStJbmsMsBQ47izhUFt
-         rTGg==
+         :mailing-list:precedence:reply-to:mime-version
+         :content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:date:message-id:dkim-signature;
+        bh=Rl5drYpWn2V3PGTW4oo252eNQGZBaMipUnrvzusYwHo=;
+        fh=FS0+hgXnpRR9q49BL1+n8+ICXIvEB7bvs/AgDUhAPA8=;
+        b=dESBJ8LdJIw2S8mvxGmOpOIl2RhdeGHxmqPKXA4sI+bcPdpq12Ad+hBunWLe26HcT8
+         7y6+UiO1DUN/Z3X1jgjU09GHuxlwBwqw4PiYpWgJM+BHRnjVHkYpOZ8JeKjGjmh+ci4A
+         +S8t19UZZD/I7eFytZWo6BsLzWD/jjM5oaM9llI/sRiMc8jDFb026ukRDIWSe5BDUIrt
+         9bbQwHEtmCIdvEmfKJ0k3xpILM06hw4ydPFm1NG3iYO5zEMr1K4LXLvb+qK4CIUPsnGu
+         lkBnaq8hRnkyqwm/Jen5MeHDQNnm2awASFw1smPAM75ZKS9qYyL3q/D7fYp6t6FgIixY
+         jUWA==;
+        darn=lfdr.de
+ARC-Authentication-Results: i=3; gmr-mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2023-11-20 header.b=Mr9M28Ln;
+       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=wNuzo9dZ;
+       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
+       spf=pass (google.com: domain of michael.christie@oracle.com designates 205.220.165.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721157945; x=1721762745; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1728658142; x=1729262942; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:x-original-sender:mime-version
-         :subject:message-id:to:from:date:from:to:cc:subject:date:message-id
+         :mailing-list:precedence:reply-to:x-original-authentication-results
+         :x-original-sender:mime-version:content-transfer-encoding
+         :in-reply-to:from:content-language:references:cc:to:subject
+         :user-agent:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6Yxjzlyq5g+MbE0KEQbcb89USVRkVKuzLOqL63JIIBQ=;
-        b=MQz/nI9Y3Wq5Wm8ZSzj4uybVW8bWj/E3FmnQw8OL/HPF5iUI9Q/0Ef8OjffbOVJwAi
-         akgHZRAaPgodGFI403EAu4O+/7eoKO1I0A4bhitpKZfsXqLxg8+9eNM3B77qNWAWb4ia
-         A8tBq3/+uXzGU6g9zDMgB/rLNWTLwHcuVY85HEK6g4ytVOxv3wzMaGqDSM8ZEQHj/ikJ
-         O1hfQeGlo6GQ8WL01ybZzdsKmvZvygMVZMCVmZ/LuQ82GYsoOrCpcFDEzWmVVwrglJ7M
-         S8nCtcj0Nvk2n+9YwexUbV2gvhd3x6qgFWvSVCE5M/MK4aEwNmQbZZBqZppOu8+v4RG+
-         vPjw==
+        bh=Rl5drYpWn2V3PGTW4oo252eNQGZBaMipUnrvzusYwHo=;
+        b=Cas+lSq95uCB3rL7W2dNgQb/hxPW7IKDtUnu8mwU3H72GoSiJV4oihDYZQB6ccJhAB
+         e7MeCfyhVLIkwhFoKEg32TjQYLqpRSIM4RpKOSnhVuhzlhr4oCcQA0glrZWuYG4kXgGD
+         LQ8ENPE8EXFYLxDZ/mH7nV+RYO8ycgcg0YD9ZMNbUDfn8WRvg9GAuqUJVuLiGlxvNyqh
+         TJxaL3b8dYr+0Y5k+0oKsMshG++zQ7NIND5tNR9Ym1Ev57RymwzJww1NUoYD2j1MC48/
+         84mJut50dKTkCHUj8utmEgJClW9W2EKSq8tu/Mdi4BtcOg1Ujc4UfwJKlVUj5elhP5UC
+         hErA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721157945; x=1721762745;
+        d=1e100.net; s=20230601; t=1728658142; x=1729262942;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-sender:mime-version:subject:message-id:to:from:date
-         :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Yxjzlyq5g+MbE0KEQbcb89USVRkVKuzLOqL63JIIBQ=;
-        b=QzOQVqGrgCmQEVgTXoUxks/8GsSx9vniLc3o4TZff+Dt9AJoUlZdwujPW6VSXCEG/b
-         8qC2S0Op1xOu+/wPZ4JrtcI+l9gWDwmj8fdz3lrZsCawFcf8MYoHfJB0sPrsRLe3Ggx0
-         mWjJSoH4c4IbXN/3o6qqDemuzl2bLe0ER6YdLS2KIDm2KHKC86XxGM1jGWqSSqmsy5Cz
-         /TcBA/bPxehthD3SGICZTO1N9BovELupqbPOmlNzTi17EPkTfE3h1vO7EnAn6zHJZqg7
-         L1+aDbEGmavBzMn0oPogacKPf49ecZeYuk2H7q1WY+VUQ8vRVBvi4NP53TqGhL6tFJj+
-         2+hA==
-Sender: open-iscsi@googlegroups.com
-X-Forwarded-Encrypted: i=1; AJvYcCXGYIy4y4dBIXOhqmAYy4vydllc9gqpjyVIOP5ViQfvYKJowyJaTNBAK61nQGtLA6p8aZkh+AG24St2SX8cs0l0uCo/jogEbSA=
-X-Gm-Message-State: AOJu0YyJ0ebR66SjdaBonRZdkd4Cb4HI1AcY9sDFT1bDMUpFHvr/GnDn
-	BhygbkvKjP86LcdzHA3fS2LAOrZ6AhNDZGpm3vwI8X0B8LCRrgqj
-X-Google-Smtp-Source: AGHT+IHF1NTNmlKbb5qozop/GpwRmfNF4R+aeZETV2+PFVXv1e01IW3wkcuquB0sr8A+hNApCGzm3Q==
-X-Received: by 2002:a05:6902:118d:b0:e05:e2d5:666c with SMTP id 3f1490d57ef6-e05e2d573c6mr1405420276.24.1721157945083;
-        Tue, 16 Jul 2024 12:25:45 -0700 (PDT)
+         :x-original-authentication-results:x-original-sender:mime-version
+         :content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:date:message-id:x-beenthere
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rl5drYpWn2V3PGTW4oo252eNQGZBaMipUnrvzusYwHo=;
+        b=CPkhRGgKmRTjY4QaZRNwslAJuspRqQPX6W+VfppS/zda1nsNQUtIEbst5kxofqO0ol
+         xmkBe+oPFDfJET7ZXyJRfjXDY6Hxw5OurRxSNtWfgeRm0Mym6Ky34RCfCVFdICqrIfRR
+         JS8mJF7UniSPxJICX5mOv2UdTY3vUqjWlHa6blkYw7CeeGOLg+jBEcvtahPYhjYX/hNg
+         ZxLN9sPfjHsNqi7qkrioiZ3SrhAgN3zSOeigW8holXWKwlvWS2VBv3EEeqIBxN8BeAG3
+         dASDR1A+ieNxq3uafeUQbXJHQPQFjCJoXnQrBX5p8Muf1mNayDdyNLY8830VL88YcQ8I
+         M8kg==
+X-Forwarded-Encrypted: i=3; AJvYcCVMJGMrw3jJakmhFNT+FFi8eXBvHcSbEnAHZg2fh94PWzWht66F8W12KITrwDtmrNiUBQ32zw==@lfdr.de
+X-Gm-Message-State: AOJu0YwKXs5Jl1/OQkxYfv5SFbdOr4RemsuOqgxylAgbLDBf8fEHZFk6
+	QDjVJktHArPw2fvjzlW1T849Xbb31PD7qqSv9DGcAMuxHDs1w63R
+X-Google-Smtp-Source: AGHT+IFDuiydxJ8dFLlIJXL0YrH5f2dEX2nSruKwaf/igTslfHAEVYsYeSZFi4DSdIthgX/4NebhEQ==
+X-Received: by 2002:a05:6830:2b29:b0:716:aae4:7b97 with SMTP id 46e09a7af769-717d6491089mr2740353a34.19.1728658141982;
+        Fri, 11 Oct 2024 07:49:01 -0700 (PDT)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6902:2b91:b0:e03:bbb7:44d9 with SMTP id
- 3f1490d57ef6-e0578eaadd6ls9908591276.0.-pod-prod-08-us; Tue, 16 Jul 2024
- 12:25:41 -0700 (PDT)
-X-Received: by 2002:a05:690c:428b:b0:62d:fbf:920a with SMTP id 00721157ae682-66381ea8892mr205237b3.10.1721157941225;
-        Tue, 16 Jul 2024 12:25:41 -0700 (PDT)
-Date: Tue, 16 Jul 2024 12:25:40 -0700 (PDT)
-From: "ajhu...@gmail.com" <ajhutchin@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <fe79d2d1-4b30-4a16-81e7-0e54f49a6c33n@googlegroups.com>
-Subject: [BUG]: Null pointer exception from parallel calls to
- iscsi_stop_conn
+Received: by 2002:a4a:d691:0:b0:5e5:c4eb:d560 with SMTP id 006d021491bc7-5e990e9a098ls597355eaf.2.-pod-prod-04-us;
+ Fri, 11 Oct 2024 07:48:59 -0700 (PDT)
+X-Received: by 2002:a05:6820:1e8a:b0:5e1:ea03:928f with SMTP id 006d021491bc7-5eb1a304840mr1464222eaf.7.1728658138938;
+        Fri, 11 Oct 2024 07:48:58 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1728658138; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=aYotePtHXN6S68JyrAPSLZw1OydIsQ9mgwltsGk4VgZX174xIGfqK6QeI8IYtqOJHf
+         pY6ZVZKG2XVLmUOUF4D36r4gIc9PjZagQT2cUA0kiY6iw3GxQKiBxk7h6vG6uQc937FZ
+         OpmNuA2/SCZz43OeJ8/RbgvjSB5Mv3r3cSfDCxSAQwSsUGx7ecfohS257G+Nzn9h3Fz8
+         22GT536cEEFCl5rYrs8nxa2B1iXt8P9Pmc4OZA4l9M//xxHwBOPEVYe00GZC8fYWH0BF
+         huG2XW2dfxEI7PyeDIlBPh9fmYHKKE07s/ZwDt2TjhrhHvkYRUvnKYqY/4tdoxv/n9aU
+         OtFw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:content-transfer-encoding:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:date
+         :message-id:dkim-signature:dkim-signature;
+        bh=KzKhx4k+gncUVqciIZUrDoUn0fOhlqjxMf+77FvDmjs=;
+        fh=pV2/hfFpIUHQ4KeLt7wp5D62YGrcdEX33rfOthGrVKQ=;
+        b=WSABrGve5hZSVSR9fEtS0awXMV4eIC0EX2KLVJenRgjvqE09zIJEZHfdxrxpSrO7J3
+         +fKd2PJWycdB2LUEDqwljwtYJuarlDjPzKMkcBkDwUi9bt2tVJ9rWsKneuTe0/MZ8wR9
+         C0ZQ16ln33X3kQbr2DLIR5pxfVyayXJ25CPINW2ifgluirzBtr7npx8JVGpqocnA6z/X
+         E12OnIwh2IyHeg9RO+kWjvm4l1+ObNOvdoddMujfUWfMMvlDQbysiJIVxwqa8GNWLSaN
+         nu8SDf/MV/SC70oLZvG0RzMs/mfY0/0oriihTOsQyNLtqwedYtItlihkyDKMkzA5olC6
+         MxdA==;
+        dara=google.com
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2023-11-20 header.b=Mr9M28Ln;
+       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com header.b=wNuzo9dZ;
+       arc=pass (i=1 spf=pass spfdomain=oracle.com dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
+       spf=pass (google.com: domain of michael.christie@oracle.com designates 205.220.165.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com. [205.220.165.32])
+        by gmr-mx.google.com with ESMTPS id 46e09a7af769-717d0037d54si150164a34.4.2024.10.11.07.48.58
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 11 Oct 2024 07:48:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of michael.christie@oracle.com designates 205.220.165.32 as permitted sender) client-ip=205.220.165.32;
+Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49BCpWp3020226;
+	Fri, 11 Oct 2024 14:48:55 GMT
+Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta01.appoci.oracle.com [138.1.114.2])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 42306en1dj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 11 Oct 2024 14:48:55 +0000 (GMT)
+Received: from pps.filterd (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 49BDxh6d033347;
+	Fri, 11 Oct 2024 14:48:54 GMT
+Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2174.outbound.protection.outlook.com [104.47.57.174])
+	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 422uwbcc86-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 11 Oct 2024 14:48:54 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IFpJmyTIzeKuVB7HOkyYZZYg7JKCi9YSpY0MalsTjsidBNQN5yqS5jXgNdl9cR/q0Byvx8aU/ArjPRyMEhs/nKn+PBplW4A7JbJlS6klqAgIGVJ8oOyKqflFvVVnyiLDOLf0hkJSUIMqJqrUHOjZV+jD/vuvm8dF7V0LtKpH0W+5BIVwU3VV8KE79NzVeKzcZgPb35NbufC3h5K1DAcZRDhFQV8ARlKoD2PjJD8Npf3yHvBaxIQ/tz7zWijP756TKwm3YPtPvHVLXtnrMwmqhLNrkKi+GviSf3+w4ls9AMSRyeXUAIwwRlZVdUjCk/IzykApI/zhDBeuaQ5Wo6dRxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KzKhx4k+gncUVqciIZUrDoUn0fOhlqjxMf+77FvDmjs=;
+ b=UVm5bvivwfxlxXMP7Yvju+Df2ndwuHGEHYuMrM9YH4vU9SD26JQ8r82ScWBdcr7jICdVv4AUNn281Cp+cLvBhZypKuo3mh038fJxGIRmv5nZasLaF74hRT6updCAEN496i5X9CXvvPO00xbEd5zfl6hefPRa69WdTI4BLs4ccVSfzOZO5zlFnpZ6grIdCVUaz6Rn5WWqNGmHWZzOJPnN5PxkOK41Hctr1bB61Oh8PfpajWqg7zQggS2psGc9DOlYePAsm9FBirPhAOGtK+l6194b0S1jDCdEYfAOeM8CZTs2sTVpealOwSzGHdaaoU20+DLBDImWZlzNTMUVLNNbCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+Received: from CY8PR10MB7243.namprd10.prod.outlook.com (2603:10b6:930:7c::10)
+ by SA1PR10MB7709.namprd10.prod.outlook.com (2603:10b6:806:3a9::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.20; Fri, 11 Oct
+ 2024 14:48:52 +0000
+Received: from CY8PR10MB7243.namprd10.prod.outlook.com
+ ([fe80::b779:d0be:9e3a:34f0]) by CY8PR10MB7243.namprd10.prod.outlook.com
+ ([fe80::b779:d0be:9e3a:34f0%6]) with mapi id 15.20.8048.018; Fri, 11 Oct 2024
+ 14:48:52 +0000
+Message-ID: <ead203fc-abf5-49b1-b34c-64b97d3fecd6@oracle.com>
+Date: Fri, 11 Oct 2024 09:48:45 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] scsi: libiscsi: Set expecting_cc_ua flag when stop_conn
+To: Xiang Zhang <hawkxiang.cpp@gmail.com>, lduncan@suse.com, cleech@redhat.com,
+        ames.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
+        james.smart@broadcom.com, ram.vegesna@broadcom.com,
+        njavali@marvell.com
+Cc: open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20241011081807.65027-1-hawkxiang.cpp@gmail.com>
+Content-Language: en-US
+From: "michael.christie via open-iscsi" <open-iscsi@googlegroups.com>
+In-Reply-To: <20241011081807.65027-1-hawkxiang.cpp@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: LNXP265CA0028.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:5c::16) To CY8PR10MB7243.namprd10.prod.outlook.com
+ (2603:10b6:930:7c::10)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_4202_372998066.1721157940123"
-X-Original-Sender: ajhutchin@gmail.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY8PR10MB7243:EE_|SA1PR10MB7709:EE_
+X-MS-Office365-Filtering-Correlation-Id: 381741de-28ca-40fc-6ac0-08dcea03d29c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?a0VnN1JOOVJzNmpRV2xWTzRrZ0RubjNSa1pKQ2ZHTWFYZlRvUHdkMnFuQk5j?=
+ =?utf-8?B?S1BLL0VlZFg0QTZuOUFBc2U2RVc3TXpaSjNyY3NvYVhKbW5RbndRcDNGWnNZ?=
+ =?utf-8?B?dGJ5QTlHV3hmMGkydGNzMUVsNGw2QnR2M05wT2hFS21RVnV1bmhFSnRlanRH?=
+ =?utf-8?B?V0RYOFpjdURweVV2VElpVGZBZmYrbm1oRHZzaUxjdlZ0aUdENE5DNThWdEho?=
+ =?utf-8?B?cCtpZSthYWZSMjRmOFdQTlVUKy9QSjBZZGRjN2k3QXlvT2o0ZXJFT3J0dUQ3?=
+ =?utf-8?B?SDRtNndYb1JwTmszZG5pb3FweisrMEFIdUp1bG5RNmRkbXF1Um5LK0RCVE9o?=
+ =?utf-8?B?dGw5STg2VmY0QWlpRnZ2bHlpU0UxbzZSUTFEZ3NuN1RKSEdVZ1JpbnhzQlJ4?=
+ =?utf-8?B?UHA1dmRjN0VPbVhDcDkwdFhxZk1IK05iRFkzL0xLMkhZZElndzdKZ0ZsOTBV?=
+ =?utf-8?B?RCtaKzZVYzRDa1A1QnNkNjNIKzk2RHhOTC9oYWNLVWwwQnZmc1pRd3BubitB?=
+ =?utf-8?B?bzJ0VTl5enFpMVlRZDBIQzZIUm5yaHlBY2tVRzhobjBXV3REckRQN1oxZDBY?=
+ =?utf-8?B?OTZhUTg4VVUrTzFUMFk5Qk0zem5lYVdiVHRidm02NEhlQzl1dU5EWktQMW9u?=
+ =?utf-8?B?cHdWZjQ3dFp0cmJzc2R0Y1lwdDUvMGkwcEN0eGVyZXYxRmdlVFlrcXp0bkRK?=
+ =?utf-8?B?UDliS0NVcXp6Yk5TUU9OVGpodFdBUi90Y0VlVmRZT3d6M3JnR1AwYU5ERkdV?=
+ =?utf-8?B?bExmbTJaUm9lQUo1RjVjaWI5a1hUZG1RSG8rRmtVYmpib2lpbW9DMUxNMEc2?=
+ =?utf-8?B?b3RHcTNRZVFYV29nTGc2QWlLcW1oZWUrekUwcDErcDhQVGxOTU5Fc0lTTE5Y?=
+ =?utf-8?B?Q2pOdlpaYjJubUZTSGs2SVNORUIza2FoNjhHRGpJOCsydlJXeTFnTm9adkdI?=
+ =?utf-8?B?VXJBWjR4Y1NjcmM0UFJ5UnpNdGZHT2oraXRhQUc4RWRmTG5aV2s4T3A4bVJT?=
+ =?utf-8?B?d3B6aisvbEIycVc2UEtSSk5pd3hwTGxaVmNCWXNsMjMzQjhYZEg1NnhYUS9X?=
+ =?utf-8?B?a2pqS1g3cExLdS92UU5vMElFMWJrMWlpMkx4anVWeDhSVnFOOFJUbzIxRUxT?=
+ =?utf-8?B?Y0VXVlJLQ2FyTDJjc0paVG93Z2Q3RjdMcDZaWmxJU2NwaFhSQjJjMkZVSUs3?=
+ =?utf-8?B?ejJNZ3BQUjZJQUU5RU9LZ09STEExb0VBMytiVWFrd0VKTGZZTzU1Z3V1dkFM?=
+ =?utf-8?B?eldsMGVHRmtpQ1FvczZHRDRqNWtYR0NnNTI2ckFwU1NERlRQbHk5NnNKKzM0?=
+ =?utf-8?B?TGxCMlEwNlBMZTZab2hjZHE2aXd2dUtwcUkxdHl6aFpKanlGaGw1M3BxU0hr?=
+ =?utf-8?B?cml6VjJhYlpORlNkM2kxeTl1MzRZbkJCUkRHcU42M09zTXJpVExXZ0VIWmpS?=
+ =?utf-8?B?aFNrajBVNUZrdzB1QklDR0ZmZGt3M0MyNFRiME1rUnQ0aG9BK2ZNTXpWSjk3?=
+ =?utf-8?B?STB6L09hamRDL1ByWitrUE96NXJ4em9ScFdhZGQ4UytHYkFaWlBNNmh3OE5n?=
+ =?utf-8?B?V0wxa3pkUytlM3B6SG1YV3JsZ3VvVFVFdUNnYzdZUzkwQ3RmQmhBaS9yQU8v?=
+ =?utf-8?B?Q0pFVU5mMDE3MngrUHdoVDBCT2xZZTRVZzlQWlVYZUd0bVhRNlkydkN4cE1V?=
+ =?utf-8?B?UW4rZUNzOVNXakNHT1h0QmZaZTAxRG5KS3BWUG4yYlptNHV6dEVSamZ3PT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR10MB7243.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVVscERISFVtbTJZYnViRVFMbXZNZ1hwMUlEdG5mOHV4cmt0TlRYL0FTOC83?=
+ =?utf-8?B?bGw4bkpkWDdUYk5uV2FmdXJQR043eStCSWFsVWN0eTJhV3BsUW9hZmpRcXhr?=
+ =?utf-8?B?Sjhxbmp5MWNGZzBLdUNiSm0vVENmVzg5R2Roenk1TWdjOW5TdXNBSUVEc1lF?=
+ =?utf-8?B?L1ViR013d3YzSEJ5WDgvd0tVek1CL0V2ekpzZG1jcHZENEtkV015eEtqR28w?=
+ =?utf-8?B?YXRZVXZGVmZQTFAxT1dZSjhTZmx3ZnNHWjZkSUpsanpVV3hNNnkxY1lwRUVj?=
+ =?utf-8?B?YWZsY09TVWd4c3pDbmR0UVBGTURWSHJ6SFlZM1JPeHdQRHM0TU1Dd2NPbmxV?=
+ =?utf-8?B?V044NlNXYmdFRitXanZrd2hvdmxML0E2eUxIY1NoeUVSdmhkZlpoMnZUZm15?=
+ =?utf-8?B?MzdwVkR6d2VyNDdqbmIxSWlvLzdCR1NvMTlETC93aVhlOGNWMHNPWThiaFNR?=
+ =?utf-8?B?YmVJNXc3UHpBMCsxWE5wQ0ptQjlOTmNoTCswWkNGZ0lCMFlTYTNGZEVwYnQz?=
+ =?utf-8?B?U2NkVm5vLzVuOUJWdmd3VCtjVVhpMDByUXBOUkxVcVpDbDlpNGtSeDRLQStk?=
+ =?utf-8?B?WGo0WUpIQ0lhWk84TVZYRzJreUZsUC8rTWZDRUZQK01MMWZPczc0RzlmTDNl?=
+ =?utf-8?B?ZktNMUx1Q3dpUTJrRG1PQ1FnWmk4dVBuSERqb1JqT2dESy9tSnpzdmhvaXR4?=
+ =?utf-8?B?M3hRNnRBS1AxZzdUOTZIOUYzdHRpdEtlUUR4UzhyRDJzdDZsUUxhZHJJek5u?=
+ =?utf-8?B?OGFRUWxGcVp2QlUyU0cxT054Z1ZnNExQdHdrdVpWMS9MZUpjbnNjZUtESkgv?=
+ =?utf-8?B?TTBMWWlXZk1MV25mTFdBTytXYkM3MC9vc2J1bWNkWllIY1l1dUU0NVJDNG4w?=
+ =?utf-8?B?ZEdoR1lkUm1ZaFRraGVwVlZpTlpIYTFFUUpKZkE2ZEVRU3dNOC9zRk5GUlhn?=
+ =?utf-8?B?VGFSMzVXdmJDUFlHQmdJN3cza2NTRjZyNTJ4MDQwZXV0R2VDOUU1ejVnV0J1?=
+ =?utf-8?B?MlRDb2UzeGVlQ0ZBeFhmNHVKMHJPaEhCSlJwdkRLRVhzc1l5M1ZqMVkwcXli?=
+ =?utf-8?B?M1JxOUI0dWZVcUREcEovdkk5VzdYNGl5QmY1VFpFRVROdmV0ZVRXVTJJUHBs?=
+ =?utf-8?B?Qlk2RGFFTzJWYjVCVGluRnljTTBOaTAreVp0aFNJTkxLU05qd3dUaGxBQlYx?=
+ =?utf-8?B?SGtIeUc3OWVsbmxaME9lNDNSYnR2a2RGM3RnWlAxMFIyeTFsbTNpdzd2VTJp?=
+ =?utf-8?B?bTBMRWh6anpuek51S0FSVHZLTWtJRG05eTYyMkxCZU5EMEhtV3ZhWHcxOW8y?=
+ =?utf-8?B?RnFKNFRLRDBBdktFMk9iRFpVdFhsbXJicFZjdEt1azkxY0NyakEydHc5cU93?=
+ =?utf-8?B?S2owL0l0VlI1TTdubkNsdisvaTJTZ2U0M3BaTnV1ellCc0o0V0FzLzAvYmsz?=
+ =?utf-8?B?MVhWMHlYbGlxV3hxeUtxdS9pTXZ5N3RMa1YvQ3RudlEwWWlVdS9ERTR0ZGFM?=
+ =?utf-8?B?YS80bW0xZXhpQktTY1BvdjhEWWw0MENFYVZYa2FLMjdxUU9sSWlSYXZEcGdk?=
+ =?utf-8?B?dFkyb2ZkelFxRmlOKzVwU0gwUTl3UDFVYWc2UDdqaHdJTHRlWU9PN3BxbzB5?=
+ =?utf-8?B?NitQYmx4WVZKS2dUQnBVVGFObG1vL2ViNzZXWTgxUFo1YW5WanBrZ0h6by9r?=
+ =?utf-8?B?aW1XT0Z4V2s0ZVg1QWdxT2EwSHdxWEIxTFVYZ0pobHY3VzBIWHBiSjYxdWp2?=
+ =?utf-8?B?cVhkMVoxVE9MRmNwSk1FdkxZNlZJQVhEcG1kdnBHdVJXZVhHUWZrSkEzU1JN?=
+ =?utf-8?B?elBKbjlvK2NQaFQyVERNTUw4bjhpeG9Ca0dONFhKbU1seTBWNFJwbzJMRzBZ?=
+ =?utf-8?B?YU9yaGdTdmhKb2xWSmY5RVBxYjhCMGtkbzF6N3A0Yyt5QStmbDdUT2c0akFJ?=
+ =?utf-8?B?cUwyc1ZCUkRpZWNTYTJrcWF2STUvU1lJbUptZFM1NkNsWDc5YnNWdlZqTnJR?=
+ =?utf-8?B?MVpnWmxzM0RmUExSdTNnYU9wbFpvQVRvaXo3U1R6WGJzd0k3NGZmdWFXSmor?=
+ =?utf-8?B?V2F4NlZoMEVYVVNlMEJzMVVXNWlZVXNCTTJCTU0xSVN6UTFLM0w2SEQ3aW9Q?=
+ =?utf-8?B?aXVQTHJvdnMrWmdHZGxrT3FRUEhoc0NqcHpZQWt0akt4VHkrQnlMc1V5QkJS?=
+ =?utf-8?B?cUE9PQ==?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: C0eumE9zfakBC129ScoW7YLwLjIcEKusDD5VvbQnndyC+3zmqnPO4H6aeUKyw3CcgA/cyMCjyDAQNHINqXdpQJltHyojwj/+vr9D1WtcntLEi7wsJH+j1jo8uaelXCtfn42yrh62TsEqRMP2ro1/DAQOK8HcfUYH9+69aTcLDjvQrDL/yboijzWTep8yIefPBslx98Jp9uB7bqzEkxTeUfyTndY5brTVyZ+Yl5ofEFhLvzXn266q9A8wZi+5LtVfhVlkEHRZnqvc07zNkrwstbd6rLDXgE2zdMVIEreg0HmwjZSoKRqiRb3cyWu6OWwoVNjIscgwAT5cOnexumoDezs5UAEhJb2YE6ZhkysmM/wz47Y3Ooe28duB+dD2LP5TpbUkjoxUk0OWFNjBAd7j40ujeQppypqPcH8g1DN5IKIRdjGB0oq1UKgJ5KkaeL208LZrfeBmEwJlIxW5gfktDmDsHr6b4a/n7EosmrJxWaf4T2xTbI0pLsQDUCIA0fzOYdaJMOPfjNuLOpyLsiNh4PFkR83QJZ7INLTlBeYTXVRvXIm58rJTR9/LjpV54qE07qi3i97yBk5pN+Ap2074d9oys2eSchBl6TUUDDIPRik=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 381741de-28ca-40fc-6ac0-08dcea03d29c
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR10MB7243.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2024 14:48:52.1350
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6hLmx31TYYnxSSKZ+UmxUUJ+LfgE4OKYVjnOzos4Lfl/F4RcuiJofNIwf4iPTCHfCqlehC9xbp2q7qqZpa9l06I2ioBTLAJ+uEdcyh1T2Sw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB7709
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-11_12,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 adultscore=0
+ phishscore=0 mlxscore=0 suspectscore=0 bulkscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2409260000 definitions=main-2410110102
+X-Proofpoint-GUID: 8qHbSomLArFSIZGAnvgZpsnnPNlTc6gc
+X-Proofpoint-ORIG-GUID: 8qHbSomLArFSIZGAnvgZpsnnPNlTc6gc
+X-Original-Sender: michael.christie@oracle.com
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@oracle.com header.s=corp-2023-11-20 header.b=Mr9M28Ln;
+       dkim=pass header.i=@oracle.onmicrosoft.com header.s=selector2-oracle-onmicrosoft-com
+ header.b=wNuzo9dZ;       arc=pass (i=1 spf=pass spfdomain=oracle.com
+ dkim=pass dkdomain=oracle.com dmarc=pass fromdomain=oracle.com);
+       spf=pass (google.com: domain of michael.christie@oracle.com designates
+ 205.220.165.32 as permitted sender) smtp.mailfrom=michael.christie@oracle.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
+X-Original-From: michael.christie@oracle.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -81,187 +279,81 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_4202_372998066.1721157940123
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_4203_1027305076.1721157940123"
+CC'ing the fibre channel experts because they might have the same issue.
 
-------=_Part_4203_1027305076.1721157940123
-Content-Type: text/plain; charset="UTF-8"
+On 10/11/24 3:18 AM, Xiang Zhang wrote:
+> Initiator need to recover session and reconnect to target, after calling =
+stop_conn. And target will rebuild new session info, and mark ASC_POWERON_R=
+ESET ua sense for scsi devices belong to the target(device reset). After re=
+covery, first scsi command(scmd) request to target will get ASC_POWERON_RES=
+ET(ua sense) + SAM_STAT_CHECK_CONDITION(status) in response.
+> According to scsi code: "scsi_done --> scsi_complete --> scsi_decide_disp=
+osition --> scsi_check_sense", if expecting_cc_ua =3D 0, scmd response with=
+ ASC_POWERON_RESET(ua sense) will ignore "cmd->retries <=3D cmd->allowed", =
+fail directly. It will cause SCSI return io_error to upper layer without re=
+try.
 
-Hi. I reviewed a kdump generated by a NULL pointer exception during 
-termination of an iSCSI session. In this instance, the termination of the 
-session was due to a 'Target-Not-Found' error from target during login. 
+Just want to make sure I understand the problem.
 
-The system is running SLES15 SP4 ( v5.14.21 )
- 
-crash> bt
-PID: 61755  TASK: ffff88ae57e4c380  CPU: 6   COMMAND: "kworker/u40:3"
- #0 [ffffc90006b6fae8] machine_kexec at ffffffff8106af4e
- #1 [ffffc90006b6fb38] __crash_kexec at ffffffff81168dce
- #2 [ffffc90006b6fc00] panic at ffffffff8191aa0f
- #3 [ffffc90006b6fc88] oops_end at ffffffff8102e3dd
- #4 [ffffc90006b6fca8] page_fault_oops at ffffffff8107b6fb
- #5 [ffffc90006b6fd28] exc_page_fault at ffffffff81923610
- #6 [ffffc90006b6fd50] asm_exc_page_fault at ffffffff81a00f39
-    [exception RIP: iscsi_sw_tcp_release_conn+111]
-    RIP: ffffffffc0c8243f  RSP: ffffc90006b6fe08  RFLAGS: 00010202
-    RAX: 0000000000000000  RBX: ffff8881cb225388  RCX: 0000000000000001
-    RDX: ffff88adbf660900  RSI: ffffffff81f7cb84  RDI: ffff88adbf660980
-    RBP: ffff888ad68cd140   R8: 0000000000000001   R9: 0000000000000001
-    R10: 0000000000000000  R11: 00000000000001d2  R12: ffff8881cb225388
-    R13: ffff8881cb2256a8  R14: ffff8881cb2256a8  R15: ffff888105d8ca05
-    ORIG_RAX: ffffffffffffffff  CS: 0010  SS: 0018
- #7 [ffffc90006b6fe38] iscsi_sw_tcp_conn_stop at ffffffffc0c825fd 
-[iscsi_tcp]
- #8 [ffffc90006b6fe58] iscsi_stop_conn at ffffffffc0f276f3 
-[scsi_transport_iscsi]
- #9 [ffffc90006b6fe78] iscsi_cleanup_conn_work_fn at ffffffffc0f277f8 
-[scsi_transport_iscsi]
-#10 [ffffc90006b6fea0] process_one_work at ffffffff810b5766
-#11 [ffffc90006b6fed8] worker_thread at ffffffff810b595d
-#12 [ffffc90006b6ff10] kthread at ffffffff810bdb63
-#13 [ffffc90006b6ff50] ret_from_fork at ffffffff8100204f
+Does the failure only happen with tape or passthrough or if removable is
+set?
 
-Based on code review and journal logs, iscsid detects the login error and 
-initiates a TERM stop from user space. In parallel, the kernel driver 
-detects a socket error and initiates a RECOVERY stop on the connection.  
+For commands coming from sd, then scsi_io_completion will end up calling
+scsi_io_completion_action and seeing the UNIT_ATTENTION and will retry.
+I'm not saying we shouldn't do a fix like you did below. Just want to
+make sure I understand the case you describe above.
 
-*Initiated by iscsid*
 
-iscsi_recv_login_rsp ->
-  iscsi_login_eh ->
-    session_conn_shutdown ->
-      kstop_conn ->
-       iscsi_if_transport_conn ->
-         iscsi_if_stop_conn ->
-           iscsi_stop_conn(conn, STOP_CONN_TERM)
+> If we set expecting_cc_ua=3D1 in fail_scsi_tasks, SISC will retry the scm=
+d which is response with ASC_POWERON_RESET. The scmd second request to targ=
+et can successful, because target will clear ASC_POWERON_RESET in device pe=
+nding ua_sense_list after first scmd request.
 
-*Initiated by error on TCP socket*
 
-iscsi_sw_sk_state_check ->
-  iscsi_conn_failure ->
-    iscsi_conn_error_event ->
-      iscsi_conn_error_event ->
-        queue_work(iscsi_conn_cleanup_workq, &conn->cleanup_work);
-        .
-        .
-        iscsi_cleanup_conn_work_fn ->
-          iscsi_stop_conn(conn, STOP_CONN_RECOVER);
+What does "SISC" stand for?
 
-The null pointer exception occurred in the* iscsi_stop_conn *call initiated 
-from the worker thread for cleanup. Both *iscsi_sw_tcp_conn_stop* and 
-*iscsi_sw_tcp_release_conn* check for a NULL sock pointer in the connection 
-but the call to *iscsi_sw_tcp_conn_restore_callbacks* within 
-*iscsi_sw_tcp_release_conn* does not leaving a small window where the 
-connection's socket pointer can be set to NULL by the other 
-*iscsi_stop_conn* call running in parallel resulting in this exception.
+>=20
+> Signed-off-by: Xiang Zhang <hawkxiang.cpp@gmail.com>
+> ---
+>  drivers/scsi/libiscsi.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
+> index 0fda8905eabd..317e57be32b3 100644
+> --- a/drivers/scsi/libiscsi.c
+> +++ b/drivers/scsi/libiscsi.c
+> @@ -629,9 +629,10 @@ static void __fail_scsi_task(struct iscsi_task *task=
+, int err)
+>  		conn->session->queued_cmdsn--;
+>  		/* it was never sent so just complete like normal */
+>  		state =3D ISCSI_TASK_COMPLETED;
+> -	} else if (err =3D=3D DID_TRANSPORT_DISRUPTED)
+> +	} else if (err =3D=3D DID_TRANSPORT_DISRUPTED) {
+>  		state =3D ISCSI_TASK_ABRT_SESS_RECOV;
+> -	else
+> +		sc->device->expecting_cc_ua =3D 1;
 
-It would be simple enough to add a check for a NULL socket pointer in *iscsi_sw_tcp_conn_restore_callbacks 
-*but I'm not convinced that is the correct solution. It looks to me that 
-the resulting state of the session and connections would be different 
-depending on which of the two calls executes first. If the cleanup thread 
-successfully stop the connection with RECOVERY,  it will set the socket 
-pointer in the connection to NULL and this will short circuit the iscsid 
-TERMINATE and keep it from modifying the connection/session states. 
 
-Also, I noticed that the cleanup thread's call to iscsi_stop_conn is made 
-while holding the ep_mutex while the call made from the iscsid is not. 
-Should the call from iscsid to iscsi_stop_conn be made while holding the 
-ep_mutex? 
+The failure case can happen with other transports like fibre channel
+right? If it's common I think we want this in the core scsi code.
 
-Thanks in advance, 
-Adam 
+For iscsi, we want to set expecting_cc_ua whenever we call
+scsi_block_targets() or whenever we return DID_TRANSPORT_DISRUPTED or
+DID_TRANSPORT_FAILFAST.
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion on the web visit https://groups.google.com/d/msgid/open-iscsi/fe79d2d1-4b30-4a16-81e7-0e54f49a6c33n%40googlegroups.com.
+FC developers, I'm not sure if that's the case for you. For example if
+your driver called fc_remote_port_delete -> scsi_block_targets but then
+the issue is resolved quickly, like for a quick cable pull, and you
+called fc_remote_port_add, could there be cases where you did not get a
+I_T Nexus loss/reset type of issue?
 
-------=_Part_4203_1027305076.1721157940123
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Or is it the case where anytime a fc driver calls fc_remote_port_delete
+then you will expect a UA after calling fc_remote_port_add again?
 
-Hi. I reviewed a kdump generated by a NULL pointer exception during termina=
-tion of an iSCSI session. In this instance, the termination of the session =
-was due to a 'Target-Not-Found' error from target during login.=C2=A0<div><=
-br /></div><div>The system is running SLES15 SP4 ( v5.14.21 )</div><div>=C2=
-=A0</div><div><font face=3D"Courier New">crash&gt; bt<br />PID: 61755 =C2=
-=A0TASK: ffff88ae57e4c380 =C2=A0CPU: 6 =C2=A0 COMMAND: "kworker/u40:3"<br /=
->=C2=A0#0 [ffffc90006b6fae8] machine_kexec at ffffffff8106af4e<br />=C2=A0#=
-1 [ffffc90006b6fb38] __crash_kexec at ffffffff81168dce<br />=C2=A0#2 [ffffc=
-90006b6fc00] panic at ffffffff8191aa0f<br />=C2=A0#3 [ffffc90006b6fc88] oop=
-s_end at ffffffff8102e3dd<br />=C2=A0#4 [ffffc90006b6fca8] page_fault_oops =
-at ffffffff8107b6fb<br />=C2=A0#5 [ffffc90006b6fd28] exc_page_fault at ffff=
-ffff81923610<br />=C2=A0#6 [ffffc90006b6fd50] asm_exc_page_fault at fffffff=
-f81a00f39<br />=C2=A0 =C2=A0 [exception RIP: iscsi_sw_tcp_release_conn+111]=
-<br />=C2=A0 =C2=A0 RIP: ffffffffc0c8243f =C2=A0RSP: ffffc90006b6fe08 =C2=
-=A0RFLAGS: 00010202<br />=C2=A0 =C2=A0 RAX: 0000000000000000 =C2=A0RBX: fff=
-f8881cb225388 =C2=A0RCX: 0000000000000001<br />=C2=A0 =C2=A0 RDX: ffff88adb=
-f660900 =C2=A0RSI: ffffffff81f7cb84 =C2=A0RDI: ffff88adbf660980<br />=C2=A0=
- =C2=A0 RBP: ffff888ad68cd140 =C2=A0 R8: 0000000000000001 =C2=A0 R9: 000000=
-0000000001<br />=C2=A0 =C2=A0 R10: 0000000000000000 =C2=A0R11: 000000000000=
-01d2 =C2=A0R12: ffff8881cb225388<br />=C2=A0 =C2=A0 R13: ffff8881cb2256a8 =
-=C2=A0R14: ffff8881cb2256a8 =C2=A0R15: ffff888105d8ca05<br />=C2=A0 =C2=A0 =
-ORIG_RAX: ffffffffffffffff =C2=A0CS: 0010 =C2=A0SS: 0018<br />=C2=A0#7 [fff=
-fc90006b6fe38] iscsi_sw_tcp_conn_stop at ffffffffc0c825fd [iscsi_tcp]<br />=
-=C2=A0#8 [ffffc90006b6fe58] iscsi_stop_conn at ffffffffc0f276f3 [scsi_trans=
-port_iscsi]<br />=C2=A0#9 [ffffc90006b6fe78] iscsi_cleanup_conn_work_fn at =
-ffffffffc0f277f8 [scsi_transport_iscsi]<br />#10 [ffffc90006b6fea0] process=
-_one_work at ffffffff810b5766<br />#11 [ffffc90006b6fed8] worker_thread at =
-ffffffff810b595d<br />#12 [ffffc90006b6ff10] kthread at ffffffff810bdb63<br=
- />#13 [ffffc90006b6ff50] ret_from_fork at ffffffff8100204f</font><br /></d=
-iv><div><br /></div><div>Based on code review and journal logs, iscsid dete=
-cts the login error and initiates a TERM stop from user space. In parallel,=
- the kernel driver detects a socket error and initiates a RECOVERY stop on =
-the connection. =C2=A0<br /><br /><b>Initiated by iscsid</b><br /><br />isc=
-si_recv_login_rsp -&gt;<br />=C2=A0 iscsi_login_eh -&gt;<br />=C2=A0 =C2=A0=
- session_conn_shutdown -&gt;<br />=C2=A0 =C2=A0 =C2=A0 kstop_conn -&gt;<br =
-/>=C2=A0 =C2=A0 =C2=A0 =C2=A0iscsi_if_transport_conn -&gt;<br />=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0iscsi_if_stop_conn -&gt;<br />=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0iscsi_stop_conn(conn, STOP_CONN_TERM)<br /><span style=
-=3D"white-space: pre;">	</span><b><br />Initiated by error on TCP socket</b=
-><br /><br />iscsi_sw_sk_state_check -&gt;<br />=C2=A0 iscsi_conn_failure -=
-&gt;<br />=C2=A0 =C2=A0 iscsi_conn_error_event -&gt;<br />=C2=A0 =C2=A0 =C2=
-=A0 iscsi_conn_error_event -&gt;<br />=C2=A0 =C2=A0 =C2=A0 =C2=A0 queue_wor=
-k(iscsi_conn_cleanup_workq, &amp;conn-&gt;cleanup_work);<br />=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 .<br />=C2=A0 =C2=A0 =C2=A0 =C2=A0 .<br />=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 iscsi_cleanup_conn_work_fn -&gt;<br />=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 iscsi_stop_conn(conn, STOP_CONN_RECOVER);<br /></div><div><br />=
-</div><div>The null pointer exception occurred in the<i> iscsi_stop_conn </=
-i>call initiated from the worker thread for cleanup. Both <i>iscsi_sw_tcp_c=
-onn_stop</i> and <i>iscsi_sw_tcp_release_conn</i> check for a NULL sock poi=
-nter in the connection but the call to <i>iscsi_sw_tcp_conn_restore_callbac=
-ks</i> within <i>iscsi_sw_tcp_release_conn</i> does not leaving a small win=
-dow where the connection's socket pointer can be set to NULL by the other <=
-i>iscsi_stop_conn</i> call running in parallel resulting in this exception.=
-<br /></div><div><br /></div><div>It would be simple enough to add a check =
-for a NULL socket pointer in=C2=A0<i>iscsi_sw_tcp_conn_restore_callbacks </=
-i>but I'm not convinced that is the correct solution. It looks to me that t=
-he resulting state of the session and connections would be different depend=
-ing on which of the two calls executes first. If the cleanup thread success=
-fully stop the connection with RECOVERY,=C2=A0 it will set the socket point=
-er in the connection to NULL and this will short circuit the iscsid TERMINA=
-TE and keep it from modifying the connection/session states.=C2=A0</div><di=
-v><br /></div><div>Also, I noticed that the cleanup thread's call to iscsi_=
-stop_conn is made while holding the ep_mutex while the call made from the i=
-scsid is not. Should the call from iscsid to iscsi_stop_conn be made while =
-holding the ep_mutex?=C2=A0</div><div><br /></div><div>Thanks in advance,=
-=C2=A0</div><div>Adam=C2=A0</div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion on the web visit <a href=3D"https://groups.google.c=
-om/d/msgid/open-iscsi/fe79d2d1-4b30-4a16-81e7-0e54f49a6c33n%40googlegroups.=
-com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msg=
-id/open-iscsi/fe79d2d1-4b30-4a16-81e7-0e54f49a6c33n%40googlegroups.com</a>.=
-<br />
-
-------=_Part_4203_1027305076.1721157940123--
-
-------=_Part_4202_372998066.1721157940123--
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion on the web visit https://groups.google.com/d/msgid/=
+open-iscsi/ead203fc-abf5-49b1-b34c-64b97d3fecd6%40oracle.com.
