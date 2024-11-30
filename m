@@ -1,170 +1,139 @@
-Return-Path: <open-iscsi+bncBDNYNPOAQ4GBB2GAYS4QMGQEJAY3D5I@googlegroups.com>
+Return-Path: <open-iscsi+bncBC65ZG75XIPRBVWFVO5AMGQE6WH753A@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oa1-x3c.google.com (mail-oa1-x3c.google.com [IPv6:2001:4860:4864:20::3c])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E199C34AD
-	for <lists+open-iscsi@lfdr.de>; Sun, 10 Nov 2024 22:06:52 +0100 (CET)
-Received: by mail-oa1-x3c.google.com with SMTP id 586e51a60fabf-29571f13c49sf1828081fac.1
-        for <lists+open-iscsi@lfdr.de>; Sun, 10 Nov 2024 13:06:52 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1731272811; cv=pass;
+Received: from mail-wm1-x33f.google.com (mail-wm1-x33f.google.com [IPv6:2a00:1450:4864:20::33f])
+	by mail.lfdr.de (Postfix) with ESMTPS id 450399DEFCE
+	for <lists+open-iscsi@lfdr.de>; Sat, 30 Nov 2024 11:03:09 +0100 (CET)
+Received: by mail-wm1-x33f.google.com with SMTP id 5b1f17b1804b1-4349df2d87dsf24317715e9.2
+        for <lists+open-iscsi@lfdr.de>; Sat, 30 Nov 2024 02:03:09 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1732960988; cv=pass;
         d=google.com; s=arc-20240605;
-        b=XKBSGZYq3syRaVpFUms9XRjmXZ960K1G2oSwgqJ6JLP7otBcvnN8SnW7RfJHmY20c/
-         VUqzAe6Va67HBY1NRHZLJnHct1op7R7s4wMgYZVJXaKzG0kdqUoA/plt+eL6a9oMv65/
-         CzXM7CJOuLAkDawR/eYp8gT5RDVoidTOUEhPC0gso5B3eeSxG8RVtq8nrEJEP/o8wCOJ
-         gi79IJSLFedCLRM+z8IKKmKdpwYdIuVCEoeqbHouj7yJcvbx2X38mkl2UYOKrF63GdNt
-         r9rXDErMcuRA4DIlQOk2CgWx/Uh/mOrTgR3Vm7QuYkpiPuKzlsQKecdQJsVLJqVhTu43
-         Jzqw==
+        b=NvpsrYnfqWP6fpY2CymhkfsD73ERGT8qnkiGDSw/9x3Xy0XoMkmRILcHj48rtmlNOU
+         ggtKu3+DZ278CpT58CUNO4lPQ3pqG0mODeJVVRKmRu4bJKVUoZtWx1IZ/e9Dus+0JVRf
+         qeV3npEsvuWHc0Hzd/vy0gFCQXbt0VRcyCzB/h3y+FhL9YLQcwJzQL7GEkS33MsLh2tw
+         7KISS+ZWO2qmFmyPnUiHbOJsMqC3o+p366oorARVZ+gwGKo2QQ0hlWmaK/rUj55Ig/U4
+         19/Vv3ZR4y6/iQ6UkDaI0PzqnstHy/nsVUEwxx2HSgL95fhsCEmAbTiIF0f7dlSfzEzF
+         L8gQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :sender:dkim-signature;
-        bh=KDpqSWyC67vdsD+RoffdbjjB0LNTStyb+vljQCn5iac=;
-        fh=Kb1BYf+EPDxnuG9YSUfru6YlUdI9c8YAx+EyGtJ8q5w=;
-        b=XH9me13wZils82ZN/bpx6eOM3D3BLwMCIxroL4qyj9k7xhNn41nfCYiFczsT0L7Vtf
-         GSudWDJ4mDWrdt6j4JcOkiuI298pvqksYoKXtzAc/UtuuBEzDfQCJmrlTHj87IAlJnuB
-         XHhk6KffI+bRrx8imTdp6BLRzq36TsN8Cw7qNBgGbJ+mJTi1tKBONIogr3P0ydikGNvK
-         nY8Ec5B8vkNdmw0AktYV+3p5RWvmn1h6xtuset+4oEAnEm7LvPSqNzLlJvfrph1wwSqs
-         jHo9wvsEFqQDjda9Ghn6165a8/RljYB1UL1Vue6NQbMDfZhKqSRP1IjfUenCjkuKrfnH
-         RFuA==;
+         :mailing-list:precedence:reply-to:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:sender:dkim-signature;
+        bh=xYNp+wGbhQ3P7SwqmyEfA2uToZMLfWf3VSLgW+bvwjc=;
+        fh=rlm/Bqua7YxuTOSkyawuj7ATX91DRm8+YjHI3NqmI5Q=;
+        b=lEzm0H7LWLI0KgpNerYZySERxLd8hiQzKHiO/wtAwscT9qetqjcUR080/V9MlwKm/v
+         KqZbPHjXumVX+cXHXv4fmdAEcxWoSYfzDoXBeFH97/qPsYXWHE63XSCHBOwfrQi0VtNr
+         UabmfuWgrg95mFfOXUrIpB5VfZSIHVHtMjjMFeR5D40K1mD0j0jFJlQ+5v2KGq2xCvip
+         OvQKixlp3Qlacy+vr2X+S9axHHcn4uHQ4wOg1ok38IX0BNyJRpueoNw30MLrmjvLXeeV
+         6yayhhJHOwvCUFdD9METr3ZcoTFx0acF1PDYJPha/xJRzWr6EKThYvhQqchuhJZx5u2o
+         jPlA==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@embeddedor.com header.s=default header.b=NAy9tZrN;
-       spf=pass (google.com: domain of gustavo@embeddedor.com designates 44.202.169.33 as permitted sender) smtp.mailfrom=gustavo@embeddedor.com
+       dkim=pass header.i=@linaro.org header.s=google header.b=atJBIeLa;
+       spf=pass (google.com: domain of dan.carpenter@linaro.org designates 2a00:1450:4864:20::42c as permitted sender) smtp.mailfrom=dan.carpenter@linaro.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org;
+       dara=pass header.i=@googlegroups.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1731272811; x=1731877611; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1732960988; x=1733565788; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:in-reply-to:from:content-language:references:cc
-         :to:subject:user-agent:mime-version:date:message-id:sender:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KDpqSWyC67vdsD+RoffdbjjB0LNTStyb+vljQCn5iac=;
-        b=G1zFEQlFYwwgjZlCWDLdih4bJOsmqbJIASFJ2d5pW1zOqGU1VmuceAbbMZ2ZQkaqMR
-         7uTmVHBQKbBd7iRJj5HqKx3+9kH3hw8fKIWIc2mpFO+XxFQJA6+QUy36dxDtUtSjJZqt
-         3DBuszKr/KI0WeD05WsbClE9aniUDB2fi5Q8KHhOGzcKb7rMGrLYCCuk9Xe4nd+eZppf
-         2YJywS+CazgIix7GZbIw91LM8ng1T3nJMRUfDTEsO1dodCps4+wOhNFjH46z8fHp/UrQ
-         ORvlEdrS3d6FPmjJ6Wi0O5dCBskk9AeYQcW1t0HxaXVXsRmcFOnmTcvOAIieS6G78wDX
-         dMyg==
+         :x-original-sender:content-disposition:mime-version:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xYNp+wGbhQ3P7SwqmyEfA2uToZMLfWf3VSLgW+bvwjc=;
+        b=Sd09FeHnHYZWY4xDwC1d6MwI+FNWzDF1FOFTytHexwjOrgkVGdVE1nPlJmlPSOa5jn
+         uwRbOnm3/x4eSk7ZeI6USYD5Blm2rgzoi/LZmJcUfkMMQhkNYJziqFMi1OznGI3SOHIi
+         wNF6omoXGwU/6bab73FlPxDHuUTrvHl8LOve1nORtElvPIx3ydmMyapXppm9VLfgv24J
+         O1EmR+9qkYLcwCI6KxpyZMiC9z3KLzvkBzrtQBghNqMXUobBmG/uH0Bj6HLep/3MXCDp
+         LIDhH66ppvueGxOsnaY1waYcoFXZ6PRF/DdQXPvz/+wQBkRrSbnYdIEqRJUWlbBWLlUW
+         VDyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731272811; x=1731877611;
+        d=1e100.net; s=20230601; t=1732960988; x=1733565788;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :from:content-language:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-beenthere:x-gm-message-state:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KDpqSWyC67vdsD+RoffdbjjB0LNTStyb+vljQCn5iac=;
-        b=bcDAYkX/g5OaacAiSd7JGHz1h3ZVsBUBP9rqYBwnoqS+MDDPPhyKebbH5uuBOQ7/6a
-         b4XV3MMWG/lVkpKBjwWZNJJSgaUY9z6EfxCz6MS+01kASQaZGTFTz+P6rFkfxbpwATrd
-         Kl4tDnv+dX89kTQS5uuZRyWUwY2b/mnOmnzz8X8FSblCMCT95c+yRTWQw99KegjmJbp0
-         +CBuNGgKoRaxx63LPfV7+swAAqEs93gqDVHWKmC4wX/pf3tumO6IXCfhLLCGBbQwezgd
-         c/R9o2TLWdaR/7jPLT+PbYw2pxdi1oilCxAEQVP4eXU9BPnq6dmzvBRN9YH77iad8mvc
-         1Y/Q==
+         :x-original-authentication-results:x-original-sender
+         :content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xYNp+wGbhQ3P7SwqmyEfA2uToZMLfWf3VSLgW+bvwjc=;
+        b=w9ioKqk63Ye7WFLk9D9NoK1QvI6NoMf3aE9wf+9HeHEfjInGOgeX8qqpxWp8D7RJhD
+         0SaFXuyE+LxqP3funFIZyFOkEmMSnCjV2+Qe9W6nA+Uqbn1beZQXMzSXMN0T5dOsLYB6
+         3vGrYNBqG/g7lrEFffecEi6sS7flaYRtaNsRhL1/FYaivOXiIQ00MuwNJsXoH4SQL5v5
+         k9a5Gx38zmm6Lxy88xM0uMq+Q7qRN42zZlXbeN43ht7oB6zF1ZcqtwgdzpUMu3tLn3eP
+         5wPa/IhDKBQca3/xb26ZP5ZC2l8d/YXUTUSznWBckla+i99pQSZBMBPpOTCPydEuYsk0
+         T2fw==
 Sender: open-iscsi@googlegroups.com
-X-Forwarded-Encrypted: i=2; AJvYcCU9tcjLQI6tze0gRJtdRpBqg4v7Gqco+twEKitRaZmQhjIrZ8TUgOgmIBB5wfn07lqYGHWd5A==@lfdr.de
-X-Gm-Message-State: AOJu0YzUe17BVI6CRdS4GtfS+avi+OqYH4HDgLQJQC1CwJbq87JPfmBM
-	T3Nv6b3ytZ8OTqzDSO5t2GyH3NJAtU+PkgqNKDNCx37Xmymr/Rnp
-X-Google-Smtp-Source: AGHT+IHfVMG/QvVgdb2dIwYalav3clDVdm6DDFbNEDcCAOLtGe3QzMLfotgd3EmrJziBH/uFLy9QPg==
-X-Received: by 2002:a05:6871:53c5:b0:288:783d:a0d3 with SMTP id 586e51a60fabf-295600076c9mr7685582fac.3.1731272811130;
-        Sun, 10 Nov 2024 13:06:51 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWyy56foV2F6bELyL55erP6Bs/vdbHlOw5CGZy1M4lt9ygj32WyVupggxB0MrJ77HxieYUj2A==@lfdr.de
+X-Gm-Message-State: AOJu0Yw8gTlYIgvOq6NzWnAvWI2vrQD9iXzeHfDs4Qn6OmHbFNvJ9Fzy
+	yBVABeqALGpUNUWg91yK4FBCoOX55PzNUNaddE0Kb6lr+p5iTlfw
+X-Google-Smtp-Source: AGHT+IGN2x5KlhtMJYvN/UrKYwnNwy6jo9l2r+M6feeZ9VuR8PKE2hviiut0YvbqJ6rMDiGUEBUioA==
+X-Received: by 2002:a05:600c:3590:b0:431:5f8c:ccb9 with SMTP id 5b1f17b1804b1-434a9dcf254mr180871705e9.17.1732960987940;
+        Sat, 30 Nov 2024 02:03:07 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:6870:330e:b0:287:bd77:a787 with SMTP id
- 586e51a60fabf-29540997ab9ls1209504fac.0.-pod-prod-02-us; Sun, 10 Nov 2024
- 13:06:48 -0800 (PST)
-X-Forwarded-Encrypted: i=2; AJvYcCUJlMnyZsmZZ/o3JeDUQwFOTAN3s8tZbJfQvr1CsjFCSA3OCZNQTwDFxIPQzF7Ag5Rm3RoyiiVdAK1X@googlegroups.com
-X-Received: by 2002:a05:6808:2390:b0:3e5:f7c0:b8f1 with SMTP id 5614622812f47-3e7946cb547mr8987233b6e.32.1731272807817;
-        Sun, 10 Nov 2024 13:06:47 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1731272807; cv=none;
+Received: by 2002:a05:600c:190c:b0:434:a059:b74e with SMTP id
+ 5b1f17b1804b1-434afce9494ls1113695e9.2.-pod-prod-05-eu; Sat, 30 Nov 2024
+ 02:03:01 -0800 (PST)
+X-Received: by 2002:a05:600c:5493:b0:432:d735:cc71 with SMTP id 5b1f17b1804b1-434a9de8e1emr145656435e9.25.1732960980875;
+        Sat, 30 Nov 2024 02:03:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732960980; cv=none;
         d=google.com; s=arc-20240605;
-        b=jWgb10SPrClfd+i1ras1uBah1SLRkocnrJrI8vOKFyai4HjqAsUs1dDTo+yOMuCPMm
-         p2KhLk5rzWThGR/iJB07F90OIHctuPt3m2pqrBf9D9bU+w8NWq1cDi2k4PR6vZynJWsm
-         x8m1pc2/6xmHNOtAkUmDl0bElmcaWwRc3QYLwC2OJPxkfedHhQQiEIRsNfcGlVTYPugB
-         MI3GOo+/przQfX4hw3q+mo5ly7vtYPAJJ1annwQ6xeQTutAurbEYz7Cu/fitIooPSyRO
-         nzSoplwjLe4OZfWpooNryCyXxPIGFiXxXeSN/sE0zKsB50Yw5dnp6pIn9a8EXuLol4HP
-         Ht8g==
+        b=fCiDbXuB3jjxjMQKIBfEOT69+yCqB8lo/SURPZKouWTW7vmoOWdi1DORZPd4lCeRJu
+         yiVDU9onPESRqPut4wBfLi8LvOW25R1orSJ1J30x9J4dSm6b539t0K2gzuhJ6dHISFYS
+         N5F8NEudiP7BxjSN+6zo12b6eGomU8kX2odDpjpAaD/o+5Db2TbwCJwVbSlUZNv8Y9RQ
+         WKoG8PPfMGcY9qSUILqKDKz/ROpVWS1movnHixUu3L3EdIaUZ2CZV+veYwFOCEAsaBoL
+         THBfEzmtFGK9mWE5O1dnx5wMcFfq8tUeRsebPgPOmI2qj3mXnimiD42axhp+CzUIa12a
+         2GSQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :dkim-signature;
-        bh=o0adg+1j4txtlNvaOHyqcPDOTVdpAEqtR1MV+0wO+Sw=;
-        fh=QwfNGvpb4Gb8MhL0zKj5O/WtWuEoZN3wIcJ+gLm4Xi8=;
-        b=BgfP5Q0f+8pmHkByklJpKQBSREwVUIiWCeFByPu/JJk7D3VotO59gVlffrfhkkTKYa
-         B1ed4nnkYETMTaJX5/pI9KiVL3eEgXqaKUFfkr0Rgh0owPplP3jubv2Nud7e8wQ1TlMF
-         Z+RGw+kbl+teE8wFXSPyc8rp8JjD1NozJi+Zs4B6aZ5O8yscC2LLPxc4gxn/Qql+q1m5
-         ctHSSIhPdjoWSDZ4yA6X6QHWZXoOZNky0c6Rz0eGuOTW0M1c0hSdylzG1hWKdHvgbSSX
-         n0eNZrl2UXjcnNX1W5b9TsUq3XCrFb5SIm7B0P3fu0Jd+g7oiKYLofYf60bZEd/slQ5N
-         ZmNw==;
+        bh=tUSjny8lV8zXEJCshKiN4IFoow0xfVyMjpOxrIHAZpI=;
+        fh=lpDwMhjHjpBURYt2fOrQk21HLzKlVQu+DXoMttAO3PM=;
+        b=U7bqHXJovO2SO8Lp4dv4ojckKnfLCa4DeI2ol/OUE5syF3N4Sl0sTe2GBLMCtucaOY
+         MCODU+72GZTBno9TsfY/V8bLrZHCCWW2ngiFr0FBez8QpNAVdneDU/Z3ixFymzasZ38G
+         1JnnXwC0jUWtMpVBhmCp4JmO00u3sysgtuCjWyaVGEC1xII9Ohgbxq7roWv8dVTNwwjv
+         IL09hqV869uGcEnQF3F6Xsr4i/xhLMez8JAThqACsrp66i3kTK6d2Jr6OtWnhAzpkP7q
+         z1oUA1qcN5UyhDdYxr/JIWCKCvVp+ynqFbI/Z/ngvODwiqx8ifKPSgAdmYcF/wshdFJY
+         5+YQ==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@embeddedor.com header.s=default header.b=NAy9tZrN;
-       spf=pass (google.com: domain of gustavo@embeddedor.com designates 44.202.169.33 as permitted sender) smtp.mailfrom=gustavo@embeddedor.com
-Received: from omta034.useast.a.cloudfilter.net (omta034.useast.a.cloudfilter.net. [44.202.169.33])
-        by gmr-mx.google.com with ESMTPS id 5614622812f47-3e78cd58e81si308404b6e.3.2024.11.10.13.06.47
+       dkim=pass header.i=@linaro.org header.s=google header.b=atJBIeLa;
+       spf=pass (google.com: domain of dan.carpenter@linaro.org designates 2a00:1450:4864:20::42c as permitted sender) smtp.mailfrom=dan.carpenter@linaro.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org;
+       dara=pass header.i=@googlegroups.com
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com. [2a00:1450:4864:20::42c])
+        by gmr-mx.google.com with ESMTPS id 5b1f17b1804b1-434a972ae69si1755625e9.1.2024.11.30.02.03.00
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 10 Nov 2024 13:06:47 -0800 (PST)
-Received-SPF: pass (google.com: domain of gustavo@embeddedor.com designates 44.202.169.33 as permitted sender) client-ip=44.202.169.33;
-Received: from eig-obgw-5004a.ext.cloudfilter.net ([10.0.29.221])
-	by cmsmtp with ESMTPS
-	id A69ttJk8crKrbAF8xtDtCy; Sun, 10 Nov 2024 21:06:47 +0000
-Received: from gator4166.hostgator.com ([108.167.133.22])
-	by cmsmtp with ESMTPS
-	id AF8vtMYXZWvXpAF8wtI84Y; Sun, 10 Nov 2024 21:06:46 +0000
-X-Authority-Analysis: v=2.4 cv=LtdZyWdc c=1 sm=1 tr=0 ts=67312066
- a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=GtNDhlRIH4u8wNL3EA3KcA==:17
- a=IkcTkHD0fZMA:10 a=VlfZXiiP6vEA:10 a=7T7KSl7uo7wA:10
- a=-Klr6mLr8pg6UDE4wXQA:9 a=QEXdDO2ut3YA:10 a=Xt_RvD8W3m28Mn_h3AK8:22
-Received: from [177.238.21.80] (port=43976 helo=[192.168.0.21])
-	by gator4166.hostgator.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <gustavo@embeddedor.com>)
-	id 1tAF8v-0045Jd-02;
-	Sun, 10 Nov 2024 15:06:45 -0600
-Message-ID: <8bc69322-f630-4235-9ee0-501e02623dd7@embeddedor.com>
-Date: Sun, 10 Nov 2024 15:06:35 -0600
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Nov 2024 02:03:00 -0800 (PST)
+Received-SPF: pass (google.com: domain of dan.carpenter@linaro.org designates 2a00:1450:4864:20::42c as permitted sender) client-ip=2a00:1450:4864:20::42c;
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-385d6e36de7so1926626f8f.0
+        for <open-iscsi@googlegroups.com>; Sat, 30 Nov 2024 02:03:00 -0800 (PST)
+X-Gm-Gg: ASbGnctGlKPJ5OjVkac76dEa3fIqcFW5HgNwZtQQD/lXaW75nQQCQzI5NsNinGBCJYR
+	75fg0eDV1g3Uv9Su1jY0ICD5GcS85CKHWnmumj0sPNMaTucHbrcs+patfhUBkU/QwlJLH0jzuEx
+	eeSlVmgGVWOgFZf79HQci2jYMaFLy1kTWHHM1AixvfHiDiF+mb/hT6nSL+FqUbHCsqoOpxOBgRn
+	nD2pPHt5chgu1aJk/FBuRRLOXGsMsouxfrOhKFx7noGKAKuCIw82dAI6LbrpOF5y0kkWaOt
+X-Received: by 2002:a5d:64e9:0:b0:385:e8ce:7494 with SMTP id ffacd0b85a97d-385e8ce75e1mr693291f8f.31.1732960980289;
+        Sat, 30 Nov 2024 02:03:00 -0800 (PST)
+Received: from localhost (h1109.n1.ips.mtn.co.ug. [41.210.145.9])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5996c11d0sm261875266b.16.2024.11.30.02.02.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Nov 2024 02:02:59 -0800 (PST)
+Date: Sat, 30 Nov 2024 13:02:56 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Nilesh Javali <njavali@marvell.com>
+Cc: open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
+Subject: [bug report] [SCSI] iscsi_transport: Add support to display CHAP
+ list and delete CHAP entry
+Message-ID: <01b69135-e06b-4797-bb3f-95e537e06689@stanley.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] scsi: Replace zero-length array with flexible array
- member
-To: Thorsten Blum <thorsten.blum@linux.dev>, Lee Duncan <lduncan@suse.com>,
- Chris Leech <cleech@redhat.com>, Mike Christie
- <michael.christie@oracle.com>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-hardening@vger.kernel.org,
- open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241110151749.3311-2-thorsten.blum@linux.dev>
- <202411110336.IDRXgcR4-lkp@intel.com>
-Content-Language: en-US
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <202411110336.IDRXgcR4-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - googlegroups.com
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 177.238.21.80
-X-Source-L: No
-X-Exim-ID: 1tAF8v-0045Jd-02
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.0.21]) [177.238.21.80]:43976
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 3
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfOuhrISCSjH1MGo3bp4Qj5hqXGJhOB3hDE69SEFRXP0guwiQ9H9lVwzlBAV8pKux32OGQSQNSAOy243vKIo5JLxeHMw5pl7kJH4lc6GS/jBESiM8M57j
- lpEmuRg367+JgHdFbyftRUAnBv706EZOVCuVkzSqwQ5vn/dxciFPGRGWGhD9ZOFgfyrfFdKditijA3Gml/Mv6YpKWgN/GiO7KJu9XZjUHNCXuXBI6jh+Flfk
-X-Original-Sender: gustavo@embeddedor.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Disposition: inline
+X-Original-Sender: dan.carpenter@linaro.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@embeddedor.com header.s=default header.b=NAy9tZrN;       spf=pass
- (google.com: domain of gustavo@embeddedor.com designates 44.202.169.33 as
- permitted sender) smtp.mailfrom=gustavo@embeddedor.com
+ header.i=@linaro.org header.s=google header.b=atJBIeLa;       spf=pass
+ (google.com: domain of dan.carpenter@linaro.org designates
+ 2a00:1450:4864:20::42c as permitted sender) smtp.mailfrom=dan.carpenter@linaro.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org;
+       dara=pass header.i=@googlegroups.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -177,20 +146,102 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
+[ This code is obviously really old, but the warning may still be worth looking
+  at.  -dan ]
 
+Commit 6260a5d22122 ("[SCSI] iscsi_transport: Add support to display
+CHAP list and delete CHAP entry") from Feb 27, 2012 (linux-next),
+leads to the following Smatch static checker warning:
 
->     In file included from drivers/scsi/scsi_transport_iscsi.c:23:
->>> include/scsi/scsi_bsg_iscsi.h:62:18: error: flexible array member in a struct with no named members
->        62 |         uint32_t vendor_rsp[];
->           |                  ^~~~~~~~~~
+	drivers/scsi/scsi_transport_iscsi.c:3341 iscsi_get_chap()
+	warn: potential user controlled sizeof overflow '56 + chap_buf_size' '56 + 0-u32max'
 
-This won't be an issue in the near future, but for now just use DECLARE_FLEX_ARRAY().
+drivers/scsi/scsi_transport_iscsi.c
+    3319 static int
+    3320 iscsi_get_chap(struct iscsi_transport *transport, struct nlmsghdr *nlh)
+    3321 {
+    3322         struct iscsi_uevent *ev = nlmsg_data(nlh);
 
-Thanks
---
-Gustavo
+Smatch marks nlmsg_data() as untrusted.
+
+    3323         struct Scsi_Host *shost = NULL;
+    3324         struct iscsi_chap_rec *chap_rec;
+    3325         struct iscsi_internal *priv;
+    3326         struct sk_buff *skbchap;
+    3327         struct nlmsghdr *nlhchap;
+    3328         struct iscsi_uevent *evchap;
+    3329         uint32_t chap_buf_size;
+    3330         int len, err = 0;
+    3331         char *buf;
+    3332 
+    3333         if (!transport->get_chap)
+    3334                 return -EINVAL;
+    3335 
+    3336         priv = iscsi_if_transport_lookup(transport);
+    3337         if (!priv)
+    3338                 return -EINVAL;
+    3339 
+    3340         chap_buf_size = (ev->u.get_chap.num_entries * sizeof(*chap_rec));
+
+This warning is for 32 bits but it affects 64bit as well because chap_buf_size
+is a u32.  Potentially this "ev->u.get_chap.num_entries * sizeof(*chap_rec)"
+multiply could integer wrap.
+
+--> 3341         len = nlmsg_total_size(sizeof(*ev) + chap_buf_size);
+
+Then nlmsg_total_size() has some addition and the + sizeof(*ev) as well and len
+is stored as an int.
+
+    3342 
+    3343         shost = scsi_host_lookup(ev->u.get_chap.host_no);
+    3344         if (!shost) {
+    3345                 printk(KERN_ERR "%s: failed. Could not find host no %u\n",
+    3346                        __func__, ev->u.get_chap.host_no);
+    3347                 return -ENODEV;
+    3348         }
+    3349 
+    3350         do {
+    3351                 int actual_size;
+    3352 
+    3353                 skbchap = alloc_skb(len, GFP_KERNEL);
+    3354                 if (!skbchap) {
+    3355                         printk(KERN_ERR "can not deliver chap: OOM\n");
+    3356                         err = -ENOMEM;
+    3357                         goto exit_get_chap;
+    3358                 }
+    3359 
+    3360                 nlhchap = __nlmsg_put(skbchap, 0, 0, 0,
+    3361                                       (len - sizeof(*nlhchap)), 0);
+    3362                 evchap = nlmsg_data(nlhchap);
+    3363                 memset(evchap, 0, sizeof(*evchap));
+    3364                 evchap->transport_handle = iscsi_handle(transport);
+    3365                 evchap->type = nlh->nlmsg_type;
+    3366                 evchap->u.get_chap.host_no = ev->u.get_chap.host_no;
+    3367                 evchap->u.get_chap.chap_tbl_idx = ev->u.get_chap.chap_tbl_idx;
+    3368                 evchap->u.get_chap.num_entries = ev->u.get_chap.num_entries;
+    3369                 buf = (char *)evchap + sizeof(*evchap);
+    3370                 memset(buf, 0, chap_buf_size);
+    3371 
+    3372                 err = transport->get_chap(shost, ev->u.get_chap.chap_tbl_idx,
+    3373                                     &evchap->u.get_chap.num_entries, buf);
+    3374 
+    3375                 actual_size = nlmsg_total_size(sizeof(*ev) + chap_buf_size);
+    3376                 skb_trim(skbchap, NLMSG_ALIGN(actual_size));
+    3377                 nlhchap->nlmsg_len = actual_size;
+    3378 
+    3379                 err = iscsi_multicast_skb(skbchap, ISCSI_NL_GRP_ISCSID,
+    3380                                           GFP_KERNEL);
+    3381         } while (err < 0 && err != -ECONNREFUSED);
+    3382 
+    3383 exit_get_chap:
+    3384         scsi_host_put(shost);
+    3385         return err;
+    3386 }
+
+regards,
+dan carpenter
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/8bc69322-f630-4235-9ee0-501e02623dd7%40embeddedor.com.
+To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/01b69135-e06b-4797-bb3f-95e537e06689%40stanley.mountain.
