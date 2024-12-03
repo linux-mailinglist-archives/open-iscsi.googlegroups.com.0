@@ -1,197 +1,191 @@
-Return-Path: <open-iscsi+bncBCUJ7YGL3QFBB3XYXO5AMGQEMKT3IDQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBDXO746SYYBRBDU5XS5AMGQEEEDMTVI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pj1-x1037.google.com (mail-pj1-x1037.google.com [IPv6:2607:f8b0:4864:20::1037])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43769E1C5F
-	for <lists+open-iscsi@lfdr.de>; Tue,  3 Dec 2024 13:41:24 +0100 (CET)
-Received: by mail-pj1-x1037.google.com with SMTP id 98e67ed59e1d1-2ee3206466asf4168117a91.1
-        for <lists+open-iscsi@lfdr.de>; Tue, 03 Dec 2024 04:41:24 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1733229683; cv=pass;
+Received: from mail-pg1-x53d.google.com (mail-pg1-x53d.google.com [IPv6:2607:f8b0:4864:20::53d])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3BA9E1E75
+	for <lists+open-iscsi@lfdr.de>; Tue,  3 Dec 2024 14:58:43 +0100 (CET)
+Received: by mail-pg1-x53d.google.com with SMTP id 41be03b00d2f7-7fc62de66b5sf5605242a12.2
+        for <lists+open-iscsi@lfdr.de>; Tue, 03 Dec 2024 05:58:43 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1733234321; cv=pass;
         d=google.com; s=arc-20240605;
-        b=V5BFDmW9rUZG7vFt7Ikk92hhCTPGw9TpqI2PQ+o0ve8b9vVYpr90i+cQ2+xKMlwwQF
-         kHdcpVzAVshdlc4E/sLupUgwcPUTmrCwI6laTtsKq8J3RTb2D+XF9ZtvnfpoWQqQ18lm
-         LyYosbtjH/mj7pKaLveqHxrTnz0PCRSHXYN8ZxArQPmX0veCfxv0RvC2VFBy4uNrPqPW
-         vwjNAQ66NsSbaEHYJSwTd2azw/hMFRmbno3Qu6iOSBvnqQOzvx3Xb6ynYg63uuPHGSIq
-         53Ebna12xmRek+KHd/1rw30BcgvKRZHBYgqFUhz6jMG2xfDeiSAktKBiIspuBsxSsYd4
-         rF6w==
+        b=Gp0hYr3akcVG7T21ROvnxsDfOzADYRrRtrDOl4NFk3PZ3amG3BCLc1pwBILMVBSple
+         w/LzZlufivDLCC42YIQlrHtCXxFBEnU1RclkLw/m7/znC2iBOuv/wuQ1We6Z4lKOdgT+
+         2gXkIKYPgsqeVeJ3fwSnH98aiccQY+LH4wBPyyB1jN5OqmzYNhHeReEi/Niph4jIKyf4
+         Jxu237sCINWV/WiniXnSvYC1bPEmsAG3Q4E6ox1V9nnxYyYokYEKOXy18Ua0ZIAvOBX3
+         krC2juHGoaoF35Rn0C6NTb4MxqhFNcbGIgkIPIvJtMwfu5nz59QxvWFRgbkao+5truJE
+         +wtw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:in-reply-to
-         :content-transfer-encoding:content-disposition:mime-version
-         :references:message-id:subject:cc:to:from:date:sender:dkim-signature;
-        bh=9n5I5tghhdiqO1JwpTnQzrqPBUGEYpiOBplUjKTaUbM=;
-        fh=jqafaYfKhMwb8aKeCu5fHDseE6Kwrq9rC2L3XE9+urw=;
-        b=Gmc1y+/s6faLQFd0T+5XB1Cd3t6rfLZ8NygaGda0NfrcALuEqqKZvTsAizoh1HfMWj
-         /yhEqwSRdjU93W8wOChaW47oOZEyuzP9ARoyQPDElxbbRrc1v1HoLGvF/DFMdUqEFlqz
-         Kk0RJgLRDzH4irDJArGX3np7KPDHc7QC19oz5zAniYuXbjuYQAj6ieK1VNBp6uAFwUyu
-         78tyahqMUCZpqi+VJp2POQwMfO9LPv0hbM5DOq2NhbVORC9DW5WgKxNOMioFV4F7qeAm
-         RvDmrocQMG+KH3GFj4i2KC/5+mkVFzkqhrWAO0toHifK3B/pD7JobkIRGIcuWE4zDF23
-         UBYw==;
+         :mailing-list:precedence:reply-to:content-transfer-encoding
+         :mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:sender:dkim-signature;
+        bh=O06SiXvRIidTtgwAh8a8hgOOhOaRsM1LAhJs8FBsg0Y=;
+        fh=CFy9RjUky1sQPINxpXaojJlkaA7p8KrrXqVt1JJ+2xw=;
+        b=V8LyD/d5cV8L18F6o0oJ53O9s7kFP2PS3dHaUfKblfMVxDNyvTCsPrgREtXZuSU7Kg
+         zCpqJBCr7+YSgsQQ4XOiajs1ug1qPQHCo1z33NAzViwBNoEM2kun/i3QDMa4sGHCf/er
+         QuFX8zdOgLpmsAF4r60FO5f2zu7DvBB5yL7BhRxzqDSnBPHoS79Ec17d9jc9mwPHjmPi
+         Ydf+eQyc7HtmmGO0Dt4Bp49veIjrUXDUoC1aLKviK+ulaVxXRZIJwYalh6+LLzS6suPH
+         2cgtQ5xLjQfUbBBugbb39SjBRJhoUY/JwDbwqDJ7qFqBo/4vGmCCMUTqBXFw651LgWL2
+         rV7g==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=1Unb6vnj;
-       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=HLHxETwe;
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=HLHxETwe;
+       spf=pass (google.com: domain of james.bottomley@hansenpartnership.com designates 96.44.175.130 as permitted sender) smtp.mailfrom=James.Bottomley@hansenpartnership.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1733229683; x=1733834483; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1733234321; x=1733839121; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=9n5I5tghhdiqO1JwpTnQzrqPBUGEYpiOBplUjKTaUbM=;
-        b=YUjViKhkaE9woZRx1lpKWsbQiGXqbVYVvtJPCApmq1ak6Wb0LK95FAwd87UxfNBEEs
-         RjYR0o6banomdFRBEaLcKOR7z7VlxDLr9vWxyEF0b8BeW/u/dIBPMoA34W1S54//zBTl
-         5/BRgxdq1osSFxE3tvKFc3qYB+/pnzHhh6OCLtBvWvRVuOjmfaSKDG59xzq1HT0aIlrG
-         L1NI/zpZ3JHZKaQxM9RG1/8/DgsTvLKyvxCWC0x5GoHOld+mj7NW5zDz+nT7LFqifJC1
-         wEp79qkZCv89BME+Oq8CFQRUeQLP+WGnxNsB+McDM/e3H1qa627kZ2haOHUVBUWXCn5R
-         y7bQ==
+         :x-original-sender:content-transfer-encoding:mime-version:user-agent
+         :references:in-reply-to:date:cc:to:from:subject:message-id:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O06SiXvRIidTtgwAh8a8hgOOhOaRsM1LAhJs8FBsg0Y=;
+        b=gITCy8qBianlVZUE/aLoMkrN412NDrVZdGpTR1nkOo0fxhqni0bSi40raEPy5VkFh2
+         BE7l7EI8reTfX7CuNDu5zD0TKOFeCrdSch/VVcMEzkohNB/8rK1FkS6jn//UwPUB7qPx
+         p9a0zjxkhUDLsvEqfpTOvCpyPG3p8iQe/s5bU1IFQKIb2Fdz+JH2XCS93y2PtW21F8G3
+         wLYVWPHRWfS/jWTgwPzf3yU4uhSrd9rrjJa/JYH8eu/5bvjQbqjM6dYUqGRFsi5YF0PU
+         conBAj/9VsHwBp62w/WbeSmT0DYBdF/uVJrTSAR+GTlYwa3f0uqU//yEW9Pe+eGd+s2S
+         2+HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733229683; x=1733834483;
+        d=1e100.net; s=20230601; t=1733234321; x=1733839121;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-transfer-encoding:content-disposition:mime-version
-         :references:message-id:subject:cc:to:from:date:x-beenthere
+         :x-original-authentication-results:x-original-sender
+         :content-transfer-encoding:mime-version:user-agent:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-beenthere
          :x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9n5I5tghhdiqO1JwpTnQzrqPBUGEYpiOBplUjKTaUbM=;
-        b=EbuJxX6vvIMth+UreEBOFsMnmoKZhakaMDFzAEnY9hBne5RinNixMCoh2NLJZWMv01
-         pNp1Zl7I7QDw+LhS+PG4qNqymHc1SqvbQO/tcHtVexbFJq8yMDvfjZ2YNV6tcEnfrbnS
-         sELmrYux9h7wh4YKnDgaM2T4F14SIVOw3b5PEcYUfi6hvPrSXwIv6G3N4S1bcX86LVqw
-         wrFcNts4llCi47Z4/cfZFdG8sPMlVz1TQck6RY0DsUSjjGdsRPccEtTEQfn9y6sSUPxh
-         i7b1Le34/H6D78tDGv0/Gd3QxtezbapJoG7MjY+at2e8+x9p+e4X8/MJ6IQMg0jLRYA0
-         4cuQ==
+        bh=O06SiXvRIidTtgwAh8a8hgOOhOaRsM1LAhJs8FBsg0Y=;
+        b=LBKe/93Jmy303emae5c0L/n+1u+mxweSTlcsMfzaVsBYVU3fXmbSkcWgjF1aWnPc/K
+         K/gQ/ipM1xZb+08nUDAiz0AvYRZD7bkq/CLvKF4rstaT+upOyArdPS6EmjCqPBswYzR5
+         bEYI9uTW4tsqHrgzLQL372DsiMduTRtvdr1unhteKRmbVjgkXbBgc1rl6Tx58EUGk86g
+         E5jHWT22UX722fafDQ/LW/NOL1QeUlWivn7LrrlVRPzGDR/OIcD3NiM4T7YfRTsuGGbu
+         Wxq37PJVqksq0DRgPD9zRMq77/GJSFioX7XUkFnGr9bJKhBrzkaljwAfZtR1mLl7HP+T
+         MFqQ==
 Sender: open-iscsi@googlegroups.com
-X-Forwarded-Encrypted: i=2; AJvYcCUDu2Y3Joq06OYz2eBIjQUrsBV80c0w83L04E7UVPEzLFVDiTYHbNctwMTqVSLADpazkFXO3Q==@lfdr.de
-X-Gm-Message-State: AOJu0YxB7hrIro0Wa/bhDubhh+ZYAVyQCId5y40oMt4d4hPnEZreLb+V
-	PyRZItpl3dDIJ3LtnZBs5bDluSjXYMBCK117KPZp9fPkVOtWxgsm
-X-Google-Smtp-Source: AGHT+IGLPg778bkoXJ1NP/TS44JNf4N8ZVspUc1VkD4t9Xgz4FtJjBb8Emq4UFdppWZmL49kcc05DA==
-X-Received: by 2002:a17:90b:5109:b0:2ea:8aac:6ac1 with SMTP id 98e67ed59e1d1-2ef0262ba43mr3383152a91.15.1733229682901;
-        Tue, 03 Dec 2024 04:41:22 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUcZWXGle7eJKKQ0OdC2Jyktiy5GjvsK6PeLwkYS1SGSr/ohhkWPcnUrY+Y+wEzTxtsgDQ95w==@lfdr.de
+X-Gm-Message-State: AOJu0Yz5MMBGUmFxK1AQdVw58LMr5VqG6veAuYOjOBHpSCr1+05KS7W7
+	RkDqQn3reTfDbAVbCahiE+427fjppRHlgKoSS09Wiybltc+ZOoWZ
+X-Google-Smtp-Source: AGHT+IFk0W0pP8IIJYx3e8fQZ5hym/8kO3lCQi79DILTLnDFatSDHdw9rhylGstd478oFztrCJfUrQ==
+X-Received: by 2002:a05:6a20:918d:b0:1e0:d6ef:521a with SMTP id adf61e73a8af0-1e1653a7c14mr3666736637.1.1733234321231;
+        Tue, 03 Dec 2024 05:58:41 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:90b:4a0d:b0:2ee:753f:e8c3 with SMTP id
- 98e67ed59e1d1-2ee753fe9bals1712514a91.0.-pod-prod-00-us; Tue, 03 Dec 2024
- 04:41:16 -0800 (PST)
-X-Forwarded-Encrypted: i=2; AJvYcCX5daX7f6jh3Iua6PNL1q9cS9O8eCENJEk5v0M3PQTqaA+wOzdHDZLBqpZ1u8Akr3tofInrwYVqSKyP@googlegroups.com
-X-Received: by 2002:a17:90b:3502:b0:2ee:7504:bb3d with SMTP id 98e67ed59e1d1-2ef01565452mr3905531a91.0.1733229676410;
-        Tue, 03 Dec 2024 04:41:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1733229676; cv=none;
+Received: by 2002:aa7:8281:0:b0:725:46c2:fbe7 with SMTP id d2e1a72fcca58-72546c2fc47ls3477128b3a.1.-pod-prod-03-us;
+ Tue, 03 Dec 2024 05:58:37 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUIidCGjcyVTIcTiFYqpNBtT6GcFlPSvz44R0Y3hQJ0Eh2EgGzEHnw1FtzOFYf1M8vR/jkokDydAFaJ@googlegroups.com
+X-Received: by 2002:a05:6a00:2e07:b0:724:f404:7101 with SMTP id d2e1a72fcca58-7257fa45dbamr3208401b3a.1.1733234317166;
+        Tue, 03 Dec 2024 05:58:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733234317; cv=none;
         d=google.com; s=arc-20240605;
-        b=jZyjyHTrhe4/+n+z9f+xAsZhjN+hyCgmtH7/8wTomNdmXe1Fl9wXysugZQyOC78sPO
-         sG4OFVJz4RqXcXixGODRuu2nzNydfAJdGPaQQ532jI49MiClFdKrGCqrwtSQ1dL61ql0
-         4KhYL2C4EG94pbjo15e3n5Ddd7j/J7x5ZVouBy51vednTk+hp6WG9s9b3m+Ok7Y13vB0
-         ASxMbhuUUdtmGKDG/yMaB7TqMLU265FXtkU1GTnnnniego14OKUF33/i0pLw6LWrtRU6
-         dS5QcWmvyVQ/ZLH67DtcYO0+Nj239rjv/uI/msh3m9Voatk5cfq9AKkpYFCo+2Fp2FQU
-         9/oQ==
+        b=L9IcfEmNEs4TdtEQu3YmAK49s1iKRksz145RPzAA01LAxEtbqSWUXdo2mQiSIPNjcQ
+         8XlQgyJA9on74UKm72fyTd/tDZT3ObV/8Knp0FkAYYob4v6/fRBPmNq9TfcFpNPblCee
+         QwHKLzfqO3w6YLJHVRI+FaD72mNPRwKGHUfrFvIl2NtDOrorIlyMITWIY++QDFBehyr4
+         gGxYncYeds4rY5rLoTBDsXb5dzNMyXtyQ4qkCWrvJ5s5ug/RjuvzGzmMCmvSCfaZ+ldP
+         8EAcvohlDRJPz7wIulikPE4LYDfZZ7/f+1EQA9ScvgEQfYRqXW4R/ODZ3DFuCvFRXoRV
+         kaOw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:mime-version:user-agent:references
+         :in-reply-to:date:cc:to:from:subject:message-id:dkim-signature
          :dkim-signature;
-        bh=7lvdz4NYpSvXhqvvUM5Arn/eRox7yqZnVcuZIabisLE=;
-        fh=6c+4aaAZrVAIq/BJSoBwzOUpXO3Ibts2aOtjGSz154U=;
-        b=Z5weQapSJv5cx2MQ8trFT4sMqXJW3DWikQqLjPp/D0YLwVyZ46D9iHBncKqTTpSbuW
-         648K7ir2tTwwitpvDSbGWOXDq7qBlVpHXklb0tpg0ZH1ApxZux+iB/6tZ3bVlXHAxkIi
-         +2Fe29fb942/VIavcwHTmFjx87SMNhMUUcWgzvfClt+/lT8+U5+tLuZYkC2ZFGm+9yIs
-         2GIFbykgRdY3rlUyhbVYUKiKQr1SR58vC2JJ9GGnBbOWHohffnbUPzpgQblQqrsEqcfA
-         c0jbc5YFclSsMy29TDtHy6fOva36HNI6nt3JNQgezBsxcnpB5qBDMP+BJT3hMJwGmdt6
-         b5zA==;
+        bh=Kf7crbb0fpn1qjE7M5Xj2inOsmMty268qLui5ks7IFo=;
+        fh=s/JQ7+FM87ecO5ocYNLGt7sd8jAsm9jRLVPY+dpNOMk=;
+        b=QFp9XJ//WFPPY1vHlZviDnpYqU7/aDF52Wx2TfcmqTCvfCED4dDtuvjzVlE+g2ql2W
+         3bnRIwIk2PRA0IQN+XApNF9+8+EZOTw92yt6VYsFKILLTNcUOZigIMsXddBzAlUCzHBa
+         +aqesU9L3oVdkcVVtx7C/I8UKUrdACEN5mOvJhoILO+yLbYbj38fRytIBjrMlbAwYOvW
+         JNmi+GN3Jp+oxprTjqZy08MZBNCvwonW04d2SNsbZO+6EpapONlxEkOb96VIR3/je9l4
+         CNHJBde53O28SjyAkkEceYKUExoxW3nuDTlcED+8XsLjDaP1dpap9nMes9yui27oVLEA
+         Zruw==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=1Unb6vnj;
-       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org. [147.75.193.91])
-        by gmr-mx.google.com with ESMTPS id 98e67ed59e1d1-2ee2a85c98bsi456323a91.0.2024.12.03.04.41.16
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=HLHxETwe;
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=HLHxETwe;
+       spf=pass (google.com: domain of james.bottomley@hansenpartnership.com designates 96.44.175.130 as permitted sender) smtp.mailfrom=James.Bottomley@hansenpartnership.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
+Received: from bedivere.hansenpartnership.com ([96.44.175.130])
+        by gmr-mx.google.com with ESMTPS id 41be03b00d2f7-7fc9f72ee67si636571a12.1.2024.12.03.05.58.37
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 04:41:16 -0800 (PST)
-Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) client-ip=147.75.193.91;
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 0D707A41571;
-	Tue,  3 Dec 2024 12:39:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95C16C4CECF;
-	Tue,  3 Dec 2024 12:41:13 +0000 (UTC)
-Date: Tue, 3 Dec 2024 13:41:10 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Martin Tuma <martin.tuma@digiteqautomotive.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Andreas Noever <andreas.noever@gmail.com>,
-	Michael Jamet <michael.jamet@intel.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Yehezkel Bernat <YehezkelShB@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Dave Jiang <dave.jiang@intel.com>, Ira Weiny <ira.weiny@intel.com>,
-	Takashi Sakamoto <o-takashi@sakamocchi.jp>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
-	Mike Christie <michael.christie@oracle.com>,
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Nilesh Javali <njavali@marvell.com>,
-	Manish Rangankar <mrangankar@marvell.com>,
-	GR-QLogic-Storage-Upstream@marvell.com,
-	Davidlohr Bueso <dave@stgolabs.net>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Alison Schofield <alison.schofield@intel.com>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Jens Axboe <axboe@kernel.dk>, Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pwm@vger.kernel.org, nvdimm@lists.linux.dev,
-	linux1394-devel@lists.sourceforge.net, linux-serial@vger.kernel.org,
-	linux-sound@vger.kernel.org, open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org, linux-cxl@vger.kernel.org,
-	sparclinux@vger.kernel.org, linux-block@vger.kernel.org,
-	arm-scmi@vger.kernel.org, linux-efi@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	Zijun Hu <quic_zijuhu@quicinc.com>
+        Tue, 03 Dec 2024 05:58:37 -0800 (PST)
+Received-SPF: pass (google.com: domain of james.bottomley@hansenpartnership.com designates 96.44.175.130 as permitted sender) client-ip=96.44.175.130;
+Received: from localhost (localhost [127.0.0.1])
+	by bedivere.hansenpartnership.com (Postfix) with ESMTP id EA9E31287992;
+	Tue, 03 Dec 2024 08:58:33 -0500 (EST)
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+ by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavis, port 10024)
+ with ESMTP id fwoc-_7eWgu1; Tue,  3 Dec 2024 08:58:33 -0500 (EST)
+Received: from lingrow.int.hansenpartnership.com (unknown [IPv6:2601:5c4:4302:c21::a774])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 2A12D1287986;
+	Tue, 03 Dec 2024 08:58:28 -0500 (EST)
+Message-ID: <8eb7c0c54b280b8eb72f82032ede802c001ab087.camel@HansenPartnership.com>
 Subject: Re: [PATCH v2 00/32] driver core: Constify API device_find_child()
  and adapt for various existing usages
-Message-ID: <2024120320-manual-jockey-dfd1@gregkh>
+From: James Bottomley <James.Bottomley@HansenPartnership.com>
+To: Zijun Hu <zijun_hu@icloud.com>, Greg Kroah-Hartman
+	 <gregkh@linuxfoundation.org>
+Cc: Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthias Brugger <matthias.bgg@gmail.com>,
+  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Jean
+ Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,  Martin
+ Tuma <martin.tuma@digiteqautomotive.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Andreas Noever <andreas.noever@gmail.com>, Michael
+ Jamet <michael.jamet@intel.com>, Mika Westerberg
+ <mika.westerberg@linux.intel.com>, Yehezkel Bernat <YehezkelShB@gmail.com>,
+  Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Andrew Lunn <andrew@lunn.ch>,  Vladimir Oltean
+ <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Dan Williams
+ <dan.j.williams@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Dave
+ Jiang <dave.jiang@intel.com>, Ira Weiny <ira.weiny@intel.com>, Takashi
+ Sakamoto <o-takashi@sakamocchi.jp>, Jiri Slaby <jirislaby@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,  Srinivas Kandagatla
+ <srinivas.kandagatla@linaro.org>, Lee Duncan <lduncan@suse.com>, Chris
+ Leech <cleech@redhat.com>,  Mike Christie <michael.christie@oracle.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>, Nilesh Javali
+ <njavali@marvell.com>, Manish Rangankar <mrangankar@marvell.com>, 
+ GR-QLogic-Storage-Upstream@marvell.com, Davidlohr Bueso
+ <dave@stgolabs.net>,  Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Alison Schofield <alison.schofield@intel.com>, Andreas Larsson
+ <andreas@gaisler.com>, Stuart Yoder <stuyoder@gmail.com>, Laurentiu Tudor
+ <laurentiu.tudor@nxp.com>, Jens Axboe <axboe@kernel.dk>, Sudeep Holla
+ <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>, Ard
+ Biesheuvel <ardb@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, linux-kernel@vger.kernel.org,
+  dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pwm@vger.kernel.org,  nvdimm@lists.linux.dev,
+ linux1394-devel@lists.sourceforge.net,  linux-serial@vger.kernel.org,
+ linux-sound@vger.kernel.org,  open-iscsi@googlegroups.com,
+ linux-scsi@vger.kernel.org,  linux-cxl@vger.kernel.org,
+ sparclinux@vger.kernel.org,  linux-block@vger.kernel.org,
+ arm-scmi@vger.kernel.org, linux-efi@vger.kernel.org, 
+ linux-remoteproc@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
+Date: Tue, 03 Dec 2024 08:58:26 -0500
+In-Reply-To: <b9885785-d4d4-4c72-b425-3dc552651d7e@icloud.com>
 References: <20241203-const_dfc_done-v2-0-7436a98c497f@quicinc.com>
- <g32cigmktmj4egkq2tof27el2yss4liccfxgebkgqvkil32mlb@e3ta4ezv7y4m>
- <9d34bd6f-b120-428a-837b-5a5813e14618@icloud.com>
-MIME-Version: 1.0
+	 <g32cigmktmj4egkq2tof27el2yss4liccfxgebkgqvkil32mlb@e3ta4ezv7y4m>
+	 <9d34bd6f-b120-428a-837b-5a5813e14618@icloud.com>
+	 <2024120320-manual-jockey-dfd1@gregkh>
+	 <b9885785-d4d4-4c72-b425-3dc552651d7e@icloud.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
+User-Agent: Evolution 3.42.4
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <9d34bd6f-b120-428a-837b-5a5813e14618@icloud.com>
-X-Original-Sender: gregkh@linuxfoundation.org
+X-Original-Sender: James.Bottomley@hansenpartnership.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@linuxfoundation.org header.s=korg header.b=1Unb6vnj;       spf=pass
- (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as
- permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;       dmarc=pass
- (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+ header.i=@hansenpartnership.com header.s=20151216 header.b=HLHxETwe;
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216
+ header.b=HLHxETwe;       spf=pass (google.com: domain of james.bottomley@hansenpartnership.com
+ designates 96.44.175.130 as permitted sender) smtp.mailfrom=James.Bottomley@hansenpartnership.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -204,42 +198,32 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Tue, Dec 03, 2024 at 08:23:45PM +0800, Zijun Hu wrote:
-> On 2024/12/3 20:00, Uwe Kleine-K=C3=B6nig wrote:
-> > Hello,
+On Tue, 2024-12-03 at 21:02 +0800, Zijun Hu wrote:
+> On 2024/12/3 20:41, Greg Kroah-Hartman wrote:
+> > On Tue, Dec 03, 2024 at 08:23:45PM +0800, Zijun Hu wrote:
+[...]
+> > > or squash such patch series into a single patch ?
+> > >=20
+> > > various subsystem maintainers may not like squashing way.
 > >=20
-> > On Tue, Dec 03, 2024 at 08:33:22AM +0800, Zijun Hu wrote:
-> >> This patch series is to constify the following API:
-> >> struct device *device_find_child(struct device *dev, void *data,
-> >> 		int (*match)(struct device *dev, void *data));
-> >> To :
-> >> struct device *device_find_child(struct device *dev, const void *data,
-> >> 				 device_match_t match);
-> >> typedef int (*device_match_t)(struct device *dev, const void *data);
+> > Agreed, so look into either doing it in a bisectable way if at all
+> > possible.=C2=A0 As I don't see a full series here, I can't suggest how
+> > it needs to happen :(
 > >=20
-> > This series isn't bisectible. With only the first two patches applied I
-> > hit:
 >=20
-> yes. such patch series needs to be merge as atomic way.
->=20
-> Hi Greg,
->=20
-> is it possible to ONLY merge such patch series by atomic way into your
-> driver-core tree?
+> let me send you a full series later and discuss how to solve this
+> issue.
 
-Nope!
+It's only slightly more complex than what we normally do: modify all
+instances and then change the API.  In this case you have an additional
+problem because the prototype "const void *" will cause a mismatch if a
+function has "void *".  The easiest way to solve this is probably to
+make device_find_child a macro that coerces its function argument to
+having a non const "void *" and then passes off to the real function.=20
+If you do that in the first patch, then you can constify all the
+consumers and finally remove the macro coercion in the last patch.
 
-> or squash such patch series into a single patch ?
->=20
-> various subsystem maintainers may not like squashing way.
-
-Agreed, so look into either doing it in a bisectable way if at all
-possible.  As I don't see a full series here, I can't suggest how it
-needs to happen :(
-
-thanks,
-
-greg k-h
+James
 
 --=20
 You received this message because you are subscribed to the Google Groups "=
@@ -247,4 +231,4 @@ open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to open-iscsi+unsubscribe@googlegroups.com.
 To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/=
-2024120320-manual-jockey-dfd1%40gregkh.
+8eb7c0c54b280b8eb72f82032ede802c001ab087.camel%40HansenPartnership.com.
