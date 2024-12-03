@@ -1,139 +1,197 @@
-Return-Path: <open-iscsi+bncBC65ZG75XIPRBVWFVO5AMGQE6WH753A@googlegroups.com>
+Return-Path: <open-iscsi+bncBCUJ7YGL3QFBB3XYXO5AMGQEMKT3IDQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-wm1-x33f.google.com (mail-wm1-x33f.google.com [IPv6:2a00:1450:4864:20::33f])
-	by mail.lfdr.de (Postfix) with ESMTPS id 450399DEFCE
-	for <lists+open-iscsi@lfdr.de>; Sat, 30 Nov 2024 11:03:09 +0100 (CET)
-Received: by mail-wm1-x33f.google.com with SMTP id 5b1f17b1804b1-4349df2d87dsf24317715e9.2
-        for <lists+open-iscsi@lfdr.de>; Sat, 30 Nov 2024 02:03:09 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1732960988; cv=pass;
+Received: from mail-pj1-x1037.google.com (mail-pj1-x1037.google.com [IPv6:2607:f8b0:4864:20::1037])
+	by mail.lfdr.de (Postfix) with ESMTPS id C43769E1C5F
+	for <lists+open-iscsi@lfdr.de>; Tue,  3 Dec 2024 13:41:24 +0100 (CET)
+Received: by mail-pj1-x1037.google.com with SMTP id 98e67ed59e1d1-2ee3206466asf4168117a91.1
+        for <lists+open-iscsi@lfdr.de>; Tue, 03 Dec 2024 04:41:24 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1733229683; cv=pass;
         d=google.com; s=arc-20240605;
-        b=NvpsrYnfqWP6fpY2CymhkfsD73ERGT8qnkiGDSw/9x3Xy0XoMkmRILcHj48rtmlNOU
-         ggtKu3+DZ278CpT58CUNO4lPQ3pqG0mODeJVVRKmRu4bJKVUoZtWx1IZ/e9Dus+0JVRf
-         qeV3npEsvuWHc0Hzd/vy0gFCQXbt0VRcyCzB/h3y+FhL9YLQcwJzQL7GEkS33MsLh2tw
-         7KISS+ZWO2qmFmyPnUiHbOJsMqC3o+p366oorARVZ+gwGKo2QQ0hlWmaK/rUj55Ig/U4
-         19/Vv3ZR4y6/iQ6UkDaI0PzqnstHy/nsVUEwxx2HSgL95fhsCEmAbTiIF0f7dlSfzEzF
-         L8gQ==
+        b=V5BFDmW9rUZG7vFt7Ikk92hhCTPGw9TpqI2PQ+o0ve8b9vVYpr90i+cQ2+xKMlwwQF
+         kHdcpVzAVshdlc4E/sLupUgwcPUTmrCwI6laTtsKq8J3RTb2D+XF9ZtvnfpoWQqQ18lm
+         LyYosbtjH/mj7pKaLveqHxrTnz0PCRSHXYN8ZxArQPmX0veCfxv0RvC2VFBy4uNrPqPW
+         vwjNAQ66NsSbaEHYJSwTd2azw/hMFRmbno3Qu6iOSBvnqQOzvx3Xb6ynYg63uuPHGSIq
+         53Ebna12xmRek+KHd/1rw30BcgvKRZHBYgqFUhz6jMG2xfDeiSAktKBiIspuBsxSsYd4
+         rF6w==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:content-disposition:mime-version
-         :message-id:subject:cc:to:from:date:sender:dkim-signature;
-        bh=xYNp+wGbhQ3P7SwqmyEfA2uToZMLfWf3VSLgW+bvwjc=;
-        fh=rlm/Bqua7YxuTOSkyawuj7ATX91DRm8+YjHI3NqmI5Q=;
-        b=lEzm0H7LWLI0KgpNerYZySERxLd8hiQzKHiO/wtAwscT9qetqjcUR080/V9MlwKm/v
-         KqZbPHjXumVX+cXHXv4fmdAEcxWoSYfzDoXBeFH97/qPsYXWHE63XSCHBOwfrQi0VtNr
-         UabmfuWgrg95mFfOXUrIpB5VfZSIHVHtMjjMFeR5D40K1mD0j0jFJlQ+5v2KGq2xCvip
-         OvQKixlp3Qlacy+vr2X+S9axHHcn4uHQ4wOg1ok38IX0BNyJRpueoNw30MLrmjvLXeeV
-         6yayhhJHOwvCUFdD9METr3ZcoTFx0acF1PDYJPha/xJRzWr6EKThYvhQqchuhJZx5u2o
-         jPlA==;
+         :mailing-list:precedence:reply-to:in-reply-to
+         :content-transfer-encoding:content-disposition:mime-version
+         :references:message-id:subject:cc:to:from:date:sender:dkim-signature;
+        bh=9n5I5tghhdiqO1JwpTnQzrqPBUGEYpiOBplUjKTaUbM=;
+        fh=jqafaYfKhMwb8aKeCu5fHDseE6Kwrq9rC2L3XE9+urw=;
+        b=Gmc1y+/s6faLQFd0T+5XB1Cd3t6rfLZ8NygaGda0NfrcALuEqqKZvTsAizoh1HfMWj
+         /yhEqwSRdjU93W8wOChaW47oOZEyuzP9ARoyQPDElxbbRrc1v1HoLGvF/DFMdUqEFlqz
+         Kk0RJgLRDzH4irDJArGX3np7KPDHc7QC19oz5zAniYuXbjuYQAj6ieK1VNBp6uAFwUyu
+         78tyahqMUCZpqi+VJp2POQwMfO9LPv0hbM5DOq2NhbVORC9DW5WgKxNOMioFV4F7qeAm
+         RvDmrocQMG+KH3GFj4i2KC/5+mkVFzkqhrWAO0toHifK3B/pD7JobkIRGIcuWE4zDF23
+         UBYw==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@linaro.org header.s=google header.b=atJBIeLa;
-       spf=pass (google.com: domain of dan.carpenter@linaro.org designates 2a00:1450:4864:20::42c as permitted sender) smtp.mailfrom=dan.carpenter@linaro.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org;
-       dara=pass header.i=@googlegroups.com
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=1Unb6vnj;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1732960988; x=1733565788; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1733229683; x=1733834483; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:content-disposition:mime-version:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xYNp+wGbhQ3P7SwqmyEfA2uToZMLfWf3VSLgW+bvwjc=;
-        b=Sd09FeHnHYZWY4xDwC1d6MwI+FNWzDF1FOFTytHexwjOrgkVGdVE1nPlJmlPSOa5jn
-         uwRbOnm3/x4eSk7ZeI6USYD5Blm2rgzoi/LZmJcUfkMMQhkNYJziqFMi1OznGI3SOHIi
-         wNF6omoXGwU/6bab73FlPxDHuUTrvHl8LOve1nORtElvPIx3ydmMyapXppm9VLfgv24J
-         O1EmR+9qkYLcwCI6KxpyZMiC9z3KLzvkBzrtQBghNqMXUobBmG/uH0Bj6HLep/3MXCDp
-         LIDhH66ppvueGxOsnaY1waYcoFXZ6PRF/DdQXPvz/+wQBkRrSbnYdIEqRJUWlbBWLlUW
-         VDyA==
+         :x-original-sender:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=9n5I5tghhdiqO1JwpTnQzrqPBUGEYpiOBplUjKTaUbM=;
+        b=YUjViKhkaE9woZRx1lpKWsbQiGXqbVYVvtJPCApmq1ak6Wb0LK95FAwd87UxfNBEEs
+         RjYR0o6banomdFRBEaLcKOR7z7VlxDLr9vWxyEF0b8BeW/u/dIBPMoA34W1S54//zBTl
+         5/BRgxdq1osSFxE3tvKFc3qYB+/pnzHhh6OCLtBvWvRVuOjmfaSKDG59xzq1HT0aIlrG
+         L1NI/zpZ3JHZKaQxM9RG1/8/DgsTvLKyvxCWC0x5GoHOld+mj7NW5zDz+nT7LFqifJC1
+         wEp79qkZCv89BME+Oq8CFQRUeQLP+WGnxNsB+McDM/e3H1qa627kZ2haOHUVBUWXCn5R
+         y7bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732960988; x=1733565788;
+        d=1e100.net; s=20230601; t=1733229683; x=1733834483;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender
-         :content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xYNp+wGbhQ3P7SwqmyEfA2uToZMLfWf3VSLgW+bvwjc=;
-        b=w9ioKqk63Ye7WFLk9D9NoK1QvI6NoMf3aE9wf+9HeHEfjInGOgeX8qqpxWp8D7RJhD
-         0SaFXuyE+LxqP3funFIZyFOkEmMSnCjV2+Qe9W6nA+Uqbn1beZQXMzSXMN0T5dOsLYB6
-         3vGrYNBqG/g7lrEFffecEi6sS7flaYRtaNsRhL1/FYaivOXiIQ00MuwNJsXoH4SQL5v5
-         k9a5Gx38zmm6Lxy88xM0uMq+Q7qRN42zZlXbeN43ht7oB6zF1ZcqtwgdzpUMu3tLn3eP
-         5wPa/IhDKBQca3/xb26ZP5ZC2l8d/YXUTUSznWBckla+i99pQSZBMBPpOTCPydEuYsk0
-         T2fw==
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :content-transfer-encoding:content-disposition:mime-version
+         :references:message-id:subject:cc:to:from:date:x-beenthere
+         :x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9n5I5tghhdiqO1JwpTnQzrqPBUGEYpiOBplUjKTaUbM=;
+        b=EbuJxX6vvIMth+UreEBOFsMnmoKZhakaMDFzAEnY9hBne5RinNixMCoh2NLJZWMv01
+         pNp1Zl7I7QDw+LhS+PG4qNqymHc1SqvbQO/tcHtVexbFJq8yMDvfjZ2YNV6tcEnfrbnS
+         sELmrYux9h7wh4YKnDgaM2T4F14SIVOw3b5PEcYUfi6hvPrSXwIv6G3N4S1bcX86LVqw
+         wrFcNts4llCi47Z4/cfZFdG8sPMlVz1TQck6RY0DsUSjjGdsRPccEtTEQfn9y6sSUPxh
+         i7b1Le34/H6D78tDGv0/Gd3QxtezbapJoG7MjY+at2e8+x9p+e4X8/MJ6IQMg0jLRYA0
+         4cuQ==
 Sender: open-iscsi@googlegroups.com
-X-Forwarded-Encrypted: i=2; AJvYcCWyy56foV2F6bELyL55erP6Bs/vdbHlOw5CGZy1M4lt9ygj32WyVupggxB0MrJ77HxieYUj2A==@lfdr.de
-X-Gm-Message-State: AOJu0Yw8gTlYIgvOq6NzWnAvWI2vrQD9iXzeHfDs4Qn6OmHbFNvJ9Fzy
-	yBVABeqALGpUNUWg91yK4FBCoOX55PzNUNaddE0Kb6lr+p5iTlfw
-X-Google-Smtp-Source: AGHT+IGN2x5KlhtMJYvN/UrKYwnNwy6jo9l2r+M6feeZ9VuR8PKE2hviiut0YvbqJ6rMDiGUEBUioA==
-X-Received: by 2002:a05:600c:3590:b0:431:5f8c:ccb9 with SMTP id 5b1f17b1804b1-434a9dcf254mr180871705e9.17.1732960987940;
-        Sat, 30 Nov 2024 02:03:07 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUDu2Y3Joq06OYz2eBIjQUrsBV80c0w83L04E7UVPEzLFVDiTYHbNctwMTqVSLADpazkFXO3Q==@lfdr.de
+X-Gm-Message-State: AOJu0YxB7hrIro0Wa/bhDubhh+ZYAVyQCId5y40oMt4d4hPnEZreLb+V
+	PyRZItpl3dDIJ3LtnZBs5bDluSjXYMBCK117KPZp9fPkVOtWxgsm
+X-Google-Smtp-Source: AGHT+IGLPg778bkoXJ1NP/TS44JNf4N8ZVspUc1VkD4t9Xgz4FtJjBb8Emq4UFdppWZmL49kcc05DA==
+X-Received: by 2002:a17:90b:5109:b0:2ea:8aac:6ac1 with SMTP id 98e67ed59e1d1-2ef0262ba43mr3383152a91.15.1733229682901;
+        Tue, 03 Dec 2024 04:41:22 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a05:600c:190c:b0:434:a059:b74e with SMTP id
- 5b1f17b1804b1-434afce9494ls1113695e9.2.-pod-prod-05-eu; Sat, 30 Nov 2024
- 02:03:01 -0800 (PST)
-X-Received: by 2002:a05:600c:5493:b0:432:d735:cc71 with SMTP id 5b1f17b1804b1-434a9de8e1emr145656435e9.25.1732960980875;
-        Sat, 30 Nov 2024 02:03:00 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1732960980; cv=none;
+Received: by 2002:a17:90b:4a0d:b0:2ee:753f:e8c3 with SMTP id
+ 98e67ed59e1d1-2ee753fe9bals1712514a91.0.-pod-prod-00-us; Tue, 03 Dec 2024
+ 04:41:16 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCX5daX7f6jh3Iua6PNL1q9cS9O8eCENJEk5v0M3PQTqaA+wOzdHDZLBqpZ1u8Akr3tofInrwYVqSKyP@googlegroups.com
+X-Received: by 2002:a17:90b:3502:b0:2ee:7504:bb3d with SMTP id 98e67ed59e1d1-2ef01565452mr3905531a91.0.1733229676410;
+        Tue, 03 Dec 2024 04:41:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733229676; cv=none;
         d=google.com; s=arc-20240605;
-        b=fCiDbXuB3jjxjMQKIBfEOT69+yCqB8lo/SURPZKouWTW7vmoOWdi1DORZPd4lCeRJu
-         yiVDU9onPESRqPut4wBfLi8LvOW25R1orSJ1J30x9J4dSm6b539t0K2gzuhJ6dHISFYS
-         N5F8NEudiP7BxjSN+6zo12b6eGomU8kX2odDpjpAaD/o+5Db2TbwCJwVbSlUZNv8Y9RQ
-         WKoG8PPfMGcY9qSUILqKDKz/ROpVWS1movnHixUu3L3EdIaUZ2CZV+veYwFOCEAsaBoL
-         THBfEzmtFGK9mWE5O1dnx5wMcFfq8tUeRsebPgPOmI2qj3mXnimiD42axhp+CzUIa12a
-         2GSQ==
+        b=jZyjyHTrhe4/+n+z9f+xAsZhjN+hyCgmtH7/8wTomNdmXe1Fl9wXysugZQyOC78sPO
+         sG4OFVJz4RqXcXixGODRuu2nzNydfAJdGPaQQ532jI49MiClFdKrGCqrwtSQ1dL61ql0
+         4KhYL2C4EG94pbjo15e3n5Ddd7j/J7x5ZVouBy51vednTk+hp6WG9s9b3m+Ok7Y13vB0
+         ASxMbhuUUdtmGKDG/yMaB7TqMLU265FXtkU1GTnnnniego14OKUF33/i0pLw6LWrtRU6
+         dS5QcWmvyVQ/ZLH67DtcYO0+Nj239rjv/uI/msh3m9Voatk5cfq9AKkpYFCo+2Fp2FQU
+         9/oQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :dkim-signature;
-        bh=tUSjny8lV8zXEJCshKiN4IFoow0xfVyMjpOxrIHAZpI=;
-        fh=lpDwMhjHjpBURYt2fOrQk21HLzKlVQu+DXoMttAO3PM=;
-        b=U7bqHXJovO2SO8Lp4dv4ojckKnfLCa4DeI2ol/OUE5syF3N4Sl0sTe2GBLMCtucaOY
-         MCODU+72GZTBno9TsfY/V8bLrZHCCWW2ngiFr0FBez8QpNAVdneDU/Z3ixFymzasZ38G
-         1JnnXwC0jUWtMpVBhmCp4JmO00u3sysgtuCjWyaVGEC1xII9Ohgbxq7roWv8dVTNwwjv
-         IL09hqV869uGcEnQF3F6Xsr4i/xhLMez8JAThqACsrp66i3kTK6d2Jr6OtWnhAzpkP7q
-         z1oUA1qcN5UyhDdYxr/JIWCKCvVp+ynqFbI/Z/ngvODwiqx8ifKPSgAdmYcF/wshdFJY
-         5+YQ==;
+        bh=7lvdz4NYpSvXhqvvUM5Arn/eRox7yqZnVcuZIabisLE=;
+        fh=6c+4aaAZrVAIq/BJSoBwzOUpXO3Ibts2aOtjGSz154U=;
+        b=Z5weQapSJv5cx2MQ8trFT4sMqXJW3DWikQqLjPp/D0YLwVyZ46D9iHBncKqTTpSbuW
+         648K7ir2tTwwitpvDSbGWOXDq7qBlVpHXklb0tpg0ZH1ApxZux+iB/6tZ3bVlXHAxkIi
+         +2Fe29fb942/VIavcwHTmFjx87SMNhMUUcWgzvfClt+/lT8+U5+tLuZYkC2ZFGm+9yIs
+         2GIFbykgRdY3rlUyhbVYUKiKQr1SR58vC2JJ9GGnBbOWHohffnbUPzpgQblQqrsEqcfA
+         c0jbc5YFclSsMy29TDtHy6fOva36HNI6nt3JNQgezBsxcnpB5qBDMP+BJT3hMJwGmdt6
+         b5zA==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@linaro.org header.s=google header.b=atJBIeLa;
-       spf=pass (google.com: domain of dan.carpenter@linaro.org designates 2a00:1450:4864:20::42c as permitted sender) smtp.mailfrom=dan.carpenter@linaro.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org;
-       dara=pass header.i=@googlegroups.com
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com. [2a00:1450:4864:20::42c])
-        by gmr-mx.google.com with ESMTPS id 5b1f17b1804b1-434a972ae69si1755625e9.1.2024.11.30.02.03.00
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=1Unb6vnj;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+Received: from nyc.source.kernel.org (nyc.source.kernel.org. [147.75.193.91])
+        by gmr-mx.google.com with ESMTPS id 98e67ed59e1d1-2ee2a85c98bsi456323a91.0.2024.12.03.04.41.16
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Nov 2024 02:03:00 -0800 (PST)
-Received-SPF: pass (google.com: domain of dan.carpenter@linaro.org designates 2a00:1450:4864:20::42c as permitted sender) client-ip=2a00:1450:4864:20::42c;
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-385d6e36de7so1926626f8f.0
-        for <open-iscsi@googlegroups.com>; Sat, 30 Nov 2024 02:03:00 -0800 (PST)
-X-Gm-Gg: ASbGnctGlKPJ5OjVkac76dEa3fIqcFW5HgNwZtQQD/lXaW75nQQCQzI5NsNinGBCJYR
-	75fg0eDV1g3Uv9Su1jY0ICD5GcS85CKHWnmumj0sPNMaTucHbrcs+patfhUBkU/QwlJLH0jzuEx
-	eeSlVmgGVWOgFZf79HQci2jYMaFLy1kTWHHM1AixvfHiDiF+mb/hT6nSL+FqUbHCsqoOpxOBgRn
-	nD2pPHt5chgu1aJk/FBuRRLOXGsMsouxfrOhKFx7noGKAKuCIw82dAI6LbrpOF5y0kkWaOt
-X-Received: by 2002:a5d:64e9:0:b0:385:e8ce:7494 with SMTP id ffacd0b85a97d-385e8ce75e1mr693291f8f.31.1732960980289;
-        Sat, 30 Nov 2024 02:03:00 -0800 (PST)
-Received: from localhost (h1109.n1.ips.mtn.co.ug. [41.210.145.9])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5996c11d0sm261875266b.16.2024.11.30.02.02.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Nov 2024 02:02:59 -0800 (PST)
-Date: Sat, 30 Nov 2024 13:02:56 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Nilesh Javali <njavali@marvell.com>
-Cc: open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org
-Subject: [bug report] [SCSI] iscsi_transport: Add support to display CHAP
- list and delete CHAP entry
-Message-ID: <01b69135-e06b-4797-bb3f-95e537e06689@stanley.mountain>
+        Tue, 03 Dec 2024 04:41:16 -0800 (PST)
+Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) client-ip=147.75.193.91;
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 0D707A41571;
+	Tue,  3 Dec 2024 12:39:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95C16C4CECF;
+	Tue,  3 Dec 2024 12:41:13 +0000 (UTC)
+Date: Tue, 3 Dec 2024 13:41:10 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Martin Tuma <martin.tuma@digiteqautomotive.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Andreas Noever <andreas.noever@gmail.com>,
+	Michael Jamet <michael.jamet@intel.com>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Yehezkel Bernat <YehezkelShB@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Vishal Verma <vishal.l.verma@intel.com>,
+	Dave Jiang <dave.jiang@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+	Takashi Sakamoto <o-takashi@sakamocchi.jp>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
+	Mike Christie <michael.christie@oracle.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Nilesh Javali <njavali@marvell.com>,
+	Manish Rangankar <mrangankar@marvell.com>,
+	GR-QLogic-Storage-Upstream@marvell.com,
+	Davidlohr Bueso <dave@stgolabs.net>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Alison Schofield <alison.schofield@intel.com>,
+	Andreas Larsson <andreas@gaisler.com>,
+	Stuart Yoder <stuyoder@gmail.com>,
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Jens Axboe <axboe@kernel.dk>, Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pwm@vger.kernel.org, nvdimm@lists.linux.dev,
+	linux1394-devel@lists.sourceforge.net, linux-serial@vger.kernel.org,
+	linux-sound@vger.kernel.org, open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org, linux-cxl@vger.kernel.org,
+	sparclinux@vger.kernel.org, linux-block@vger.kernel.org,
+	arm-scmi@vger.kernel.org, linux-efi@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	Zijun Hu <quic_zijuhu@quicinc.com>
+Subject: Re: [PATCH v2 00/32] driver core: Constify API device_find_child()
+ and adapt for various existing usages
+Message-ID: <2024120320-manual-jockey-dfd1@gregkh>
+References: <20241203-const_dfc_done-v2-0-7436a98c497f@quicinc.com>
+ <g32cigmktmj4egkq2tof27el2yss4liccfxgebkgqvkil32mlb@e3ta4ezv7y4m>
+ <9d34bd6f-b120-428a-837b-5a5813e14618@icloud.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Disposition: inline
-X-Original-Sender: dan.carpenter@linaro.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <9d34bd6f-b120-428a-837b-5a5813e14618@icloud.com>
+X-Original-Sender: gregkh@linuxfoundation.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@linaro.org header.s=google header.b=atJBIeLa;       spf=pass
- (google.com: domain of dan.carpenter@linaro.org designates
- 2a00:1450:4864:20::42c as permitted sender) smtp.mailfrom=dan.carpenter@linaro.org;
-       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org;
-       dara=pass header.i=@googlegroups.com
+ header.i=@linuxfoundation.org header.s=korg header.b=1Unb6vnj;       spf=pass
+ (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as
+ permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -146,102 +204,47 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-[ This code is obviously really old, but the warning may still be worth looking
-  at.  -dan ]
+On Tue, Dec 03, 2024 at 08:23:45PM +0800, Zijun Hu wrote:
+> On 2024/12/3 20:00, Uwe Kleine-K=C3=B6nig wrote:
+> > Hello,
+> >=20
+> > On Tue, Dec 03, 2024 at 08:33:22AM +0800, Zijun Hu wrote:
+> >> This patch series is to constify the following API:
+> >> struct device *device_find_child(struct device *dev, void *data,
+> >> 		int (*match)(struct device *dev, void *data));
+> >> To :
+> >> struct device *device_find_child(struct device *dev, const void *data,
+> >> 				 device_match_t match);
+> >> typedef int (*device_match_t)(struct device *dev, const void *data);
+> >=20
+> > This series isn't bisectible. With only the first two patches applied I
+> > hit:
+>=20
+> yes. such patch series needs to be merge as atomic way.
+>=20
+> Hi Greg,
+>=20
+> is it possible to ONLY merge such patch series by atomic way into your
+> driver-core tree?
 
-Commit 6260a5d22122 ("[SCSI] iscsi_transport: Add support to display
-CHAP list and delete CHAP entry") from Feb 27, 2012 (linux-next),
-leads to the following Smatch static checker warning:
+Nope!
 
-	drivers/scsi/scsi_transport_iscsi.c:3341 iscsi_get_chap()
-	warn: potential user controlled sizeof overflow '56 + chap_buf_size' '56 + 0-u32max'
+> or squash such patch series into a single patch ?
+>=20
+> various subsystem maintainers may not like squashing way.
 
-drivers/scsi/scsi_transport_iscsi.c
-    3319 static int
-    3320 iscsi_get_chap(struct iscsi_transport *transport, struct nlmsghdr *nlh)
-    3321 {
-    3322         struct iscsi_uevent *ev = nlmsg_data(nlh);
+Agreed, so look into either doing it in a bisectable way if at all
+possible.  As I don't see a full series here, I can't suggest how it
+needs to happen :(
 
-Smatch marks nlmsg_data() as untrusted.
+thanks,
 
-    3323         struct Scsi_Host *shost = NULL;
-    3324         struct iscsi_chap_rec *chap_rec;
-    3325         struct iscsi_internal *priv;
-    3326         struct sk_buff *skbchap;
-    3327         struct nlmsghdr *nlhchap;
-    3328         struct iscsi_uevent *evchap;
-    3329         uint32_t chap_buf_size;
-    3330         int len, err = 0;
-    3331         char *buf;
-    3332 
-    3333         if (!transport->get_chap)
-    3334                 return -EINVAL;
-    3335 
-    3336         priv = iscsi_if_transport_lookup(transport);
-    3337         if (!priv)
-    3338                 return -EINVAL;
-    3339 
-    3340         chap_buf_size = (ev->u.get_chap.num_entries * sizeof(*chap_rec));
+greg k-h
 
-This warning is for 32 bits but it affects 64bit as well because chap_buf_size
-is a u32.  Potentially this "ev->u.get_chap.num_entries * sizeof(*chap_rec)"
-multiply could integer wrap.
-
---> 3341         len = nlmsg_total_size(sizeof(*ev) + chap_buf_size);
-
-Then nlmsg_total_size() has some addition and the + sizeof(*ev) as well and len
-is stored as an int.
-
-    3342 
-    3343         shost = scsi_host_lookup(ev->u.get_chap.host_no);
-    3344         if (!shost) {
-    3345                 printk(KERN_ERR "%s: failed. Could not find host no %u\n",
-    3346                        __func__, ev->u.get_chap.host_no);
-    3347                 return -ENODEV;
-    3348         }
-    3349 
-    3350         do {
-    3351                 int actual_size;
-    3352 
-    3353                 skbchap = alloc_skb(len, GFP_KERNEL);
-    3354                 if (!skbchap) {
-    3355                         printk(KERN_ERR "can not deliver chap: OOM\n");
-    3356                         err = -ENOMEM;
-    3357                         goto exit_get_chap;
-    3358                 }
-    3359 
-    3360                 nlhchap = __nlmsg_put(skbchap, 0, 0, 0,
-    3361                                       (len - sizeof(*nlhchap)), 0);
-    3362                 evchap = nlmsg_data(nlhchap);
-    3363                 memset(evchap, 0, sizeof(*evchap));
-    3364                 evchap->transport_handle = iscsi_handle(transport);
-    3365                 evchap->type = nlh->nlmsg_type;
-    3366                 evchap->u.get_chap.host_no = ev->u.get_chap.host_no;
-    3367                 evchap->u.get_chap.chap_tbl_idx = ev->u.get_chap.chap_tbl_idx;
-    3368                 evchap->u.get_chap.num_entries = ev->u.get_chap.num_entries;
-    3369                 buf = (char *)evchap + sizeof(*evchap);
-    3370                 memset(buf, 0, chap_buf_size);
-    3371 
-    3372                 err = transport->get_chap(shost, ev->u.get_chap.chap_tbl_idx,
-    3373                                     &evchap->u.get_chap.num_entries, buf);
-    3374 
-    3375                 actual_size = nlmsg_total_size(sizeof(*ev) + chap_buf_size);
-    3376                 skb_trim(skbchap, NLMSG_ALIGN(actual_size));
-    3377                 nlhchap->nlmsg_len = actual_size;
-    3378 
-    3379                 err = iscsi_multicast_skb(skbchap, ISCSI_NL_GRP_ISCSID,
-    3380                                           GFP_KERNEL);
-    3381         } while (err < 0 && err != -ECONNREFUSED);
-    3382 
-    3383 exit_get_chap:
-    3384         scsi_host_put(shost);
-    3385         return err;
-    3386 }
-
-regards,
-dan carpenter
-
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/01b69135-e06b-4797-bb3f-95e537e06689%40stanley.mountain.
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/=
+2024120320-manual-jockey-dfd1%40gregkh.
