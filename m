@@ -1,54 +1,54 @@
-Return-Path: <open-iscsi+bncBDXO746SYYBRBI6KXS5AMGQEJT2S2NY@googlegroups.com>
+Return-Path: <open-iscsi+bncBDXO746SYYBRBBENYK5AMGQE7GJR3CI@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-pl1-x63e.google.com (mail-pl1-x63e.google.com [IPv6:2607:f8b0:4864:20::63e])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA62F9E2350
-	for <lists+open-iscsi@lfdr.de>; Tue,  3 Dec 2024 16:35:03 +0100 (CET)
-Received: by mail-pl1-x63e.google.com with SMTP id d9443c01a7336-2156cb2c3d2sf36921625ad.1
-        for <lists+open-iscsi@lfdr.de>; Tue, 03 Dec 2024 07:35:03 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1733240102; cv=pass;
+Received: from mail-yw1-x1138.google.com (mail-yw1-x1138.google.com [IPv6:2607:f8b0:4864:20::1138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 901739E3FEA
+	for <lists+open-iscsi@lfdr.de>; Wed,  4 Dec 2024 17:42:48 +0100 (CET)
+Received: by mail-yw1-x1138.google.com with SMTP id 00721157ae682-6efa5bf51d1sf43076437b3.3
+        for <lists+open-iscsi@lfdr.de>; Wed, 04 Dec 2024 08:42:48 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1733330567; cv=pass;
         d=google.com; s=arc-20240605;
-        b=BhG73wIwzseFZ2EQ/nCudGI4KLjPDxyHVoKzLReYorKVIYhEOswdD7IZGWyex1nvMH
-         80DeFfM5WkC2qTZ0YK2nWKX71ufGI1aZiT59oRRLbY7UKY0M5u6qWeQPjj3fILMsKUKp
-         e/G5C3Fg4LjDw8LrU53ts8m92anEq/Riww40omQFPgnHVR7NS/tnoQ1esWHFeBv5cJrr
-         PQxsHXeSFw0i6ovcG8nRNsK5idSbhpGrX98tnzYlPNu7j6/ZxNIruTaWGHLIV1YvxfJt
-         y5sdp/wocU2iJqJZyIobqkTp/zzQw3TQCugBUy2Dppdyj4jIQ1/eN7Sd5KsjAEMyIdz8
-         73Og==
+        b=XCNCuAMkFIgKUHSdY2YCPnYbiSoBZmOJvGuFsF6omUA8aPEyCD/M6qbDLL+Z91z/6R
+         d9hU3Lu0SEPZNPap/XRsR5M1e3T4NhYZNXZNWkc7DZt+ZSRFNueHyLINdDLuGo3+X8Ou
+         8NvWeuL6xx5I9AjMfkUjHGNqrqrbgqnEwT40YP9ZKoft0pNayQ7/9ZMFXjuDqmwuHYXN
+         qTeHzAgf1wuNJhS/30vTQ9wmbA1wtQsd1xJywxuOkyqHvft7JSWAFhify21lXRy1pD73
+         BLxFlq9AI/I92f1qutPh5oO/tjE1dU/PSpVmp8FXqcGesNrdQqdapfocql2NfeXFepMS
+         CXyw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:content-transfer-encoding
          :mime-version:user-agent:references:in-reply-to:date:cc:to:from
          :subject:message-id:sender:dkim-signature;
-        bh=QaQOi+8XRePaoFUm9oaFioMFuANM1z5N55xYKQM8GYs=;
-        fh=SdpvmksECcULDMb7p/1/XBC5TBZgI4+lE6XJyGchvA8=;
-        b=QpfPZlhPvsKtSv+t+d4SKeE61Ed2F/6kER5lZVWlwUeTqMY5NCojYLDlkTATH9AIo6
-         SXwmnyEtTJ5WCVqrNoLVO/SGFr0jUzp5Q36wTYTbhqz7VZ146iuL7ChqJ/HMAa4Ux5R/
-         C/Mt8j4A06F1itjDce64qLQW0oDzW0TWza781nIefZSdi3RyqGfDmefaEXnLJfwv42c7
-         DXU+89x26+b3xPfCucrpcGyyhMffQ76hwshOo+e65CITNORC48kQN8s7qgy0lp/KsWj8
-         4sgSD1GpWvi2nsL+7blvcDljLmZts3xauBXZTJ4Bx56FfMK7e/zyaxgVMoLMMNFI0s/Z
-         dXdg==;
+        bh=TRpm7pwk9M7BJJqyg/VvUvgce3m9bX+Ec1l+CZM/CSQ=;
+        fh=vtKRRxKwfbgmf9RrJ9m/LdWDfzzuWNiDKfUQlCOAdZg=;
+        b=iSsWilBlX8vty1C6C5ZDuCJrWEXyFAC3kfMRctUPAq8lZuQ0WhRTQyQpj7EBZeuvtZ
+         dLF0ABpeyKvL7+USOpa4onwxeeOZ4FZauCqFUgm30MDRQjs16chOh+mYo1MP8ZWFFhHz
+         CAxKMe8hguuchFNpGuKXqo7pfQz8dtl7jEAnpN7/t38GFLZyZf3hB3nGNFoVQNxlU2tG
+         79Y4KHMTAh9axw9SaWRz8wO1MN83r/jgHMatqAtyPQcoQozE9MVClbxFSNkHlfMRRMFX
+         8oCGQUXK5i2KdhFxPB0FWzrPkD/d/v5ER1WMS5h+se/HxkXupKzK1CMP0dYwS1OcpWOb
+         hk9g==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=eZ4U4tRU;
-       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=eZ4U4tRU;
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=jwLrm3XJ;
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=jwLrm3XJ;
        spf=pass (google.com: domain of james.bottomley@hansenpartnership.com designates 2607:fcd0:100:8a00::2 as permitted sender) smtp.mailfrom=James.Bottomley@hansenpartnership.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1733240102; x=1733844902; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1733330567; x=1733935367; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
          :x-original-sender:content-transfer-encoding:mime-version:user-agent
          :references:in-reply-to:date:cc:to:from:subject:message-id:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QaQOi+8XRePaoFUm9oaFioMFuANM1z5N55xYKQM8GYs=;
-        b=vVblknUwGm9fDjHVMWkxssrVoo0N+yH0ohWNZ2pHjZJZQRHU90Vm2ApY+PF1Gpe9IS
-         caQY6wvOpNgCwlzxBo4MVinA1TCh4KefaoKf9fUQfSLMezplvgmF+BFmKX1JnIU2M6rN
-         XRPvPjHkjd46NsIE625FcBqF+Y4FJ/xvwNuZa67CNZZqrbCX8d2BpG/Qu7Vdk3fBfZfQ
-         roPNnQqMNO767Uo6beBKjOw6H8SI32F2H2nMc9lxatiVO7ac3/FAAjEZMFMgV5pjIpI7
-         yG39JnkSu9k/Xt3BCsWPJ0s/gX4QBTnPhOAkpIn9aBe7gdoSnP1k0tk+JnX2ji+oFICw
-         iQCg==
+        bh=TRpm7pwk9M7BJJqyg/VvUvgce3m9bX+Ec1l+CZM/CSQ=;
+        b=Ncowr5/jFh1cUKe7mckp7Kb3fbunffNVxyNMiLVcWaaeS//gBYnC23uBP0YwEol1Rb
+         j0sg6HpGEDG6K2GAHKG2ax4rwFMUwo+Z7OyVg8lVA6QejmVkIGAmAu8Q4MIXcbQblnxb
+         cO1oC2M/SqRGGsNNHTPE/BMUzlpMYgjUtZq/Peain6U4mkQPRjizCmBwchxErUHj73Hz
+         BsneR33dFqINZnow4AXsbhbaRziKPfCsAtvK3t8Mu1b5T2qzR/+NTAIvXXhRKxONJEHC
+         IjMp9+Ffpfjco0sY27aNu0i5/S5UF7wckCLNCPoNKjCXOmxRFwms4Ka3qJ40s7l7DNJ9
+         6RhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733240102; x=1733844902;
+        d=1e100.net; s=20230601; t=1733330567; x=1733935367;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
          :x-original-authentication-results:x-original-sender
@@ -56,72 +56,71 @@ X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
          :in-reply-to:date:cc:to:from:subject:message-id:x-beenthere
          :x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QaQOi+8XRePaoFUm9oaFioMFuANM1z5N55xYKQM8GYs=;
-        b=wRCUO41sQvuAwjONL5wCgTDTkkgiAuquyIC63DkZLO4oiDn0cQFqQCymrfWVOU1hmw
-         xdJcvR6PbN50Asi7z61qPxKdKUMdbhCwSczDOneDytNKcRRYAkh5UJTa51UQO8XC6OZX
-         AZHdwy69gfuFGaBwoDBjVUksIYqA1+TQ9Oq816PfDjpJ/Ek8rNS9/5dp5NXQNo/hJRys
-         YiT2q5R4SdFBl3SMFI2yUE8+NVlKL6/nIao5tc4HgEpTjGtW8efhXKvQmArQDd+H/56D
-         6lJhE0W/HEoPKCDyUdzUVygvPAB1iOEbGV6MDeqZP9vtMA7s7HaTOmhgNkcWIn/9l5vj
-         aFXA==
+        bh=TRpm7pwk9M7BJJqyg/VvUvgce3m9bX+Ec1l+CZM/CSQ=;
+        b=Ya4d+HcHnMunpLw29xH9TEqAU0GulryFBhAXGdbUnuNZc7VqBbDOjVAyoI7ceGdQVv
+         WijltRRYfze/8ScsE8v9kn+N+UGlzXldoKqUO/rOgisI4MC/LRL13ZiaF5HcRjDI0YNb
+         gVsJqPwef0X3WhqbFpMr0UaCustpXau3P0HLHGZcpDcTbrfJ5xccvmDz1UJ1pSIouoDc
+         kP1LKoZu7vX865QKYOqUyVKtJxLH/dsvRpu+K/VOFxCGi8e3aeuCJuGO8TX1rJop+Id+
+         Xgc3CIyX4Gsch3vmwbPNydWYkQrfxljDRKtKGWfQxYx0d+hBZRjjKFpibE8g2p6BtbIJ
+         vtBw==
 Sender: open-iscsi@googlegroups.com
-X-Forwarded-Encrypted: i=2; AJvYcCXol2PaecYhyEo+Un/y/oPysu+5jgkdooUeCpTDofWoBWnj0VRYf4Z+tTl+DMVDmyQdYBHGww==@lfdr.de
-X-Gm-Message-State: AOJu0YzH2e27zBIeEJEDKCd8MCnabdZUxlVS7hNsR8G4Y/GdLRKrehZl
-	qXAX0fchh4mUHzf5dmmaRt39uXSrv1j64ACA4T3uLz5qFQFg8BSZ
-X-Google-Smtp-Source: AGHT+IHvpEj3RoH/NJMOPTtXlPIRZWpEpsKjEU3djWVsvEolRn0WrzguZ0RvfcCGzvFxyGlSEWBJVA==
-X-Received: by 2002:a17:902:d4d2:b0:215:bf1b:a894 with SMTP id d9443c01a7336-215bf1ba9bcmr32254295ad.24.1733240101775;
-        Tue, 03 Dec 2024 07:35:01 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCXkopgRH5NXSBTqhF3S13PmOXSLhe1gIy+wnAl8NJjkLFJoyvTJ2MRROy5R7+2Yto+eNzO4oA==@lfdr.de
+X-Gm-Message-State: AOJu0Yy8pTIXzEBAIZq8fT8QhLJRh8TSvjDdRd3bOg0aQWoslJUeasw5
+	Wg6By7bOJiqdU7Zi/IW49jRMbT0HUmwSduYleMyXYS3DsObzzzIO
+X-Google-Smtp-Source: AGHT+IE66mfdnEPj9QJ6TD+86V+uAnVhsT/4hLTDqK1Nmo9GJeQnApSrVfFhwthYrNcuJR2+niYZsg==
+X-Received: by 2002:a05:6902:2b85:b0:e39:59b6:4202 with SMTP id 3f1490d57ef6-e39d3e1c8aamr8864861276.22.1733330567006;
+        Wed, 04 Dec 2024 08:42:47 -0800 (PST)
 X-BeenThere: open-iscsi@googlegroups.com
-Received: by 2002:a17:903:74b:b0:215:6af2:fed6 with SMTP id
- d9443c01a7336-2156af2ff53ls19656745ad.0.-pod-prod-06-us; Tue, 03 Dec 2024
- 07:34:58 -0800 (PST)
-X-Forwarded-Encrypted: i=2; AJvYcCVSgh6p9yw9DOcD2XM9TcCfAvB/sMnAJ+Evr7AL88ru7LAKRXxSI9OFdxp3EJ/It8E46ygzr4Uw4Byd@googlegroups.com
-X-Received: by 2002:a17:903:98e:b0:215:5aba:7a8f with SMTP id d9443c01a7336-215bd269d60mr38213305ad.46.1733240097914;
-        Tue, 03 Dec 2024 07:34:57 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1733240097; cv=none;
+Received: by 2002:a25:b10d:0:b0:e38:94e3:87e with SMTP id 3f1490d57ef6-e39f1aac5b9ls47832276.0.-pod-prod-07-us;
+ Wed, 04 Dec 2024 08:42:43 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUK1yD/wCXjYiUKlgIc2rN3jjwBQhtwT2TECHhzRLXa4tCSFgNW5qgaLx+8a386j63G5xPXIpIXp8mo@googlegroups.com
+X-Received: by 2002:a05:690c:360a:b0:6ef:5119:6f28 with SMTP id 00721157ae682-6efacf64df2mr103077027b3.8.1733330563385;
+        Wed, 04 Dec 2024 08:42:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733330563; cv=none;
         d=google.com; s=arc-20240605;
-        b=O5sVX7KRoTRXk2SNff0C1o2GoWYNZJrTUHs7PsvVZeNmeJpYMb2UPrTyoKNkpQTTAs
-         ut+xZqX9d/ig5bUVJbttehd3f47S+Y2KSvPaja2WsuGO42ZFGPkaWzfIYp9XEOmSDZx3
-         /iZoCkQRAg7UIx5y05ZSmVX7Jawm7lKp5/Og3WCyaf46GoKyYZLTFEKwJ/2Lvg/OZt68
-         fYO5HECpd6vpP1KSzta7dcKz5Q6u0Wjfsf9qDgrf2D5o6jiN2/pj15KBuNXmdyvyaQgg
-         w4qubumhqx2eE1kVC13qYSZLqkxBnNsPRJ7SEwzUsS4ILJiW5TfLPH+pcuc9/D+MRLeO
-         ofmA==
+        b=k8yTCZFahHcWwI+8DXTEFrK+voQ44+KzQRUvWWcGuzMHo93JTEHuHysMHYEUFTKEVA
+         sOCZ266Sf3R8+D0pht8xgQNG6Y6oVOF0F435bGjyfDGziM11y8wpcUGyA3o2ShN8IWw+
+         gZvTPBXnZnwj/WdeyYGrnjU4e5EL6X8y/lUEBsToIsNbLbV40TabLvulGjEaLEbInwjS
+         52QiYa4nyE4AtsCS2Ce0H0snQE1FWLd3TuWcQOgmar+1rW9nDLnUyHW4oFwDYDbKU76X
+         wsi2nnW8euGYHB8cojAW1zg5qotd7wkNjTE8VRpJ6AW8Li6U+MmJShUrS3unpWf6Z3Rt
+         SvTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:mime-version:user-agent:references
          :in-reply-to:date:cc:to:from:subject:message-id:dkim-signature
          :dkim-signature;
-        bh=6OP+UCJ6wr/TGKZQnz7Bra/6Gw4liMhP5XUDX1AVETM=;
+        bh=+N30QcLm5000kN2TjeLv2fVORC4NYLWEtjbh9ZTVErE=;
         fh=xcq6sBJfibVfNOjpLIavoMKq5fWnlvCWuYHkadcx76w=;
-        b=UHu9hDLsVekBU4Y8jexQ2yPS7pNrHILv10adKOipJ9IEz7q+JErw7EdsSxXF0noHh6
-         wR/uP6DdwHf3zhAHr41NALyQ4lFz+Q63f+mbdnIB3Jj6hI22mH09N/7aBfUzocvBuwLg
-         HkUvW2Tti2D5URTP8U/YFcUCwIqQCL0c9NXP4GpgMzHbI/OhUuWEu7+HdcP/Pu3FIU+H
-         BMTSXfyu4d9qd/HawzpNFu0ObMBLsX0TL6vXhluoszdJElRSncepCGmpRtVDG2qbZaaF
-         hlq4LXbjocxIgq9BXn6fCbnC24xRNBnEDX72lIQsWwDYciU+0l1SHJn34lFtCm1+RJYD
-         U3dA==;
+        b=D65TNln19Ns/WZv3daJDhc5BhoYShYyJJOOd80LNhs2oW0Zw7oYYkGlvoDrRpiWeXv
+         8qY6mnVrvI6F/kSLUqmL/xeaOAJZ/FTR1rMsodw0eQmLYsyEhLnN5as/fM4GlEMcqhH5
+         ffTCzoH2rT7705/NvGcTYu4ib2Xntl/TFXUrynpXDCaVnzIzrwu+hkPK2FB3rgSPBDvg
+         i/EWpliOtFB/2jdTBUq6xMQ/CSxIFFwwzZLJfQtLm7vbBM5fjXiMyogHZDKSmj5ncsrm
+         sEfWzLS7fx5L5BODmdfhAQbHnvj1cDtWuIC5JqrzUrs69Zl4FLz8dJAgKgYJTpZKJsEq
+         2/Xw==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=eZ4U4tRU;
-       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=eZ4U4tRU;
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=jwLrm3XJ;
+       dkim=pass header.i=@hansenpartnership.com header.s=20151216 header.b=jwLrm3XJ;
        spf=pass (google.com: domain of james.bottomley@hansenpartnership.com designates 2607:fcd0:100:8a00::2 as permitted sender) smtp.mailfrom=James.Bottomley@hansenpartnership.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
-Received: from bedivere.hansenpartnership.com ([2607:fcd0:100:8a00::2])
-        by gmr-mx.google.com with ESMTPS id d9443c01a7336-215385fa8a6si3992365ad.6.2024.12.03.07.34.57
+Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com. [2607:fcd0:100:8a00::2])
+        by gmr-mx.google.com with ESMTPS id 00721157ae682-6ef4dc27d6asi4692577b3.2.2024.12.04.08.42.43
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 07:34:57 -0800 (PST)
+        Wed, 04 Dec 2024 08:42:43 -0800 (PST)
 Received-SPF: pass (google.com: domain of james.bottomley@hansenpartnership.com designates 2607:fcd0:100:8a00::2 as permitted sender) client-ip=2607:fcd0:100:8a00::2;
 Received: from localhost (localhost [127.0.0.1])
-	by bedivere.hansenpartnership.com (Postfix) with ESMTP id AB50D1286ACE;
-	Tue, 03 Dec 2024 10:34:56 -0500 (EST)
+	by bedivere.hansenpartnership.com (Postfix) with ESMTP id DBE1112816C9;
+	Wed, 04 Dec 2024 11:42:41 -0500 (EST)
 Received: from bedivere.hansenpartnership.com ([127.0.0.1])
  by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavis, port 10024)
- with ESMTP id voj3K1dfyxiH; Tue,  3 Dec 2024 10:34:56 -0500 (EST)
+ with ESMTP id H1OGkhq900B6; Wed,  4 Dec 2024 11:42:41 -0500 (EST)
 Received: from lingrow.int.hansenpartnership.com (unknown [IPv6:2601:5c4:4302:c21::a774])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(Client did not present a certificate)
-	by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id F32C01286A7D;
-	Tue, 03 Dec 2024 10:34:50 -0500 (EST)
-Message-ID: <108c63c753f2f637a72c2e105ac138f80d4b0859.camel@HansenPartnership.com>
+	by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 13309128116A;
+	Wed, 04 Dec 2024 11:42:36 -0500 (EST)
+Message-ID: <5c905df49a332b1136787a524955b46b6153c012.camel@HansenPartnership.com>
 Subject: Re: [PATCH v2 00/32] driver core: Constify API device_find_child()
  and adapt for various existing usages
 From: James Bottomley <James.Bottomley@HansenPartnership.com>
@@ -170,8 +169,8 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Uwe
  sparclinux@vger.kernel.org, linux-block@vger.kernel.org, 
  arm-scmi@vger.kernel.org, linux-efi@vger.kernel.org, 
  linux-remoteproc@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-Date: Tue, 03 Dec 2024 10:34:49 -0500
-In-Reply-To: <f5ea7e17-5550-4658-8f4c-1c51827c7627@icloud.com>
+Date: Wed, 04 Dec 2024 11:42:34 -0500
+In-Reply-To: <235ce0a9-1db1-4558-817b-6f92f22be5ab@icloud.com>
 References: <20241203-const_dfc_done-v2-0-7436a98c497f@quicinc.com>
 	 <g32cigmktmj4egkq2tof27el2yss4liccfxgebkgqvkil32mlb@e3ta4ezv7y4m>
 	 <9d34bd6f-b120-428a-837b-5a5813e14618@icloud.com>
@@ -180,15 +179,17 @@ References: <20241203-const_dfc_done-v2-0-7436a98c497f@quicinc.com>
 	 <8eb7c0c54b280b8eb72f82032ede802c001ab087.camel@HansenPartnership.com>
 	 <8fb887a0-3634-4e07-9f0d-d8d7c72ca802@t-8ch.de>
 	 <f5ea7e17-5550-4658-8f4c-1c51827c7627@icloud.com>
+	 <108c63c753f2f637a72c2e105ac138f80d4b0859.camel@HansenPartnership.com>
+	 <235ce0a9-1db1-4558-817b-6f92f22be5ab@icloud.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.42.4
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 X-Original-Sender: James.Bottomley@hansenpartnership.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@hansenpartnership.com header.s=20151216 header.b=eZ4U4tRU;
+ header.i=@hansenpartnership.com header.s=20151216 header.b=jwLrm3XJ;
        dkim=pass header.i=@hansenpartnership.com header.s=20151216
- header.b=eZ4U4tRU;       spf=pass (google.com: domain of james.bottomley@hansenpartnership.com
+ header.b=jwLrm3XJ;       spf=pass (google.com: domain of james.bottomley@hansenpartnership.com
  designates 2607:fcd0:100:8a00::2 as permitted sender) smtp.mailfrom=James.Bottomley@hansenpartnership.com;
        dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
 Reply-To: open-iscsi@googlegroups.com
@@ -203,83 +204,59 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Tue, 2024-12-03 at 22:56 +0800, Zijun Hu wrote:
-> On 2024/12/3 22:07, Thomas Wei=C3=9Fschuh wrote:
-> > On 2024-12-03 08:58:26-0500, James Bottomley wrote:
-> > > On Tue, 2024-12-03 at 21:02 +0800, Zijun Hu wrote:
-> > > > On 2024/12/3 20:41, Greg Kroah-Hartman wrote:
-> > > > > On Tue, Dec 03, 2024 at 08:23:45PM +0800, Zijun Hu wrote:
-> > > [...]
-> > > > > > or squash such patch series into a single patch ?
-> > > > > >=20
-> > > > > > various subsystem maintainers may not like squashing way.
-> > > > >=20
-> > > > > Agreed, so look into either doing it in a bisectable way if
-> > > > > at all possible.=C2=A0 As I don't see a full series here, I can't
-> > > > > suggest how it needs to happen :(
-> > > > >=20
-> > > >=20
-> > > > let me send you a full series later and discuss how to solve
-> > > > this issue.
+On Wed, 2024-12-04 at 20:26 +0800, Zijun Hu wrote:
+> On 2024/12/3 23:34, James Bottomley wrote:
+> > > > This also enables an incremental migration.
+> > > change the API prototype from:
+> > > device_find_child(..., void *data_0, int (*match)(struct device
+> > > *dev, void *data));
 > > >=20
-> > > It's only slightly more complex than what we normally do: modify
-> > > all instances and then change the API.=C2=A0 In this case you have an
-> > > additional problem because the prototype "const void *" will
-> > > cause a mismatch if a function has "void *".=C2=A0 The easiest way to
-> > > solve this is probably to make device_find_child a macro that
-> > > coerces its function argument to having a non const "void *" and
-> > > then passes off to the real function.  If you do that in the
-> > > first patch, then you can constify all the consumers and finally
-> > > remove the macro coercion in the last patch.
-> >=20
-> > Casting function pointers like that should be detected and trapped
-> > by control flow integrity checking (KCFI).
-> >=20
-> > Another possibility would be to use a macro and _Generic to
-> > dispatch to two different backing functions. See __BIN_ATTR() in
-> > include/linux/sysfs.h for an inspiration.
+> > > to:
+> > > device_find_child(..., const void *data_0, int (*match)(struct
+> > > device *dev, const void *data));
+> > >=20
+> > > For @data_0,=C2=A0 void * -> const void * is okay.
+> > > but for @match, the problem is function pointer type
+> > > incompatibility.
+> > >=20
+> > > there are two solutions base on discussions.
+> > >=20
+> > > 1) squashing likewise Greg mentioned.
+> > > =C2=A0=C2=A0 Do all of the "prep work" first, and then
+> > > =C2=A0=C2=A0 do the const change at the very end, all at once.
+> > >=20
+> > > 2)=C2=A0 as changing platform_driver's remove() prototype.
+> > > Commit: e70140ba0d2b ("Get rid of 'remove_new' relic from
+> > > platform driver struct")
+> > >=20
+> > > =C2=A0introduce extra device_find_child_new() which is constified=C2=
+=A0 ->
+> > > use *_new() replace ALL device_find_child() instances one by one
+> > > ->=C2=A0remove device_find_child() -> rename *_new() to
+> > > device_find_child() once.
+> > Why bother with the last step, which churns the entire code base
+> > again?
+>=20
+> keep the good API name device_find_child().
 
-That's way over complicated for this conversion: done properly there
-should be no need for _Generic() compile time type matching at all.
+Well, I think it's a good opportunity to rename the API better, but if
+that's the goal, you can still do it with _Generic() without churning
+the code base a second time.  The example is in
+slab.h:kmem_cache_create
 
-> this way may fix building error issue but does not achieve our
-> purpose. our purpose is that there are only constified
-> device_find_child().
+> > Why not call the new function device_find_child_const() and simply
+> > keep it (it's descriptive of its function).=C2=A0 That way you can have
+> > a patch series without merging and at the end simply remove the old
+> > function.
 >=20
->=20
-> > This also enables an incremental migration.
->=20
-> change the API prototype from:
-> device_find_child(..., void *data_0, int (*match)(struct device *dev,
-> void *data));
->=20
-> to:
-> device_find_child(..., const void *data_0, int (*match)(struct device
-> *dev, const void *data));
->=20
-> For @data_0,=C2=A0 void * -> const void * is okay.
-> but for @match, the problem is function pointer type incompatibility.
->=20
-> there are two solutions base on discussions.
->=20
-> 1) squashing likewise Greg mentioned.
-> =C2=A0=C2=A0 Do all of the "prep work" first, and then
-> =C2=A0=C2=A0 do the const change at the very end, all at once.
->=20
-> 2)=C2=A0 as changing platform_driver's remove() prototype.
-> Commit: e70140ba0d2b ("Get rid of 'remove_new' relic from platform
-> driver struct")
->=20
-> =C2=A0introduce extra device_find_child_new() which is constified=C2=A0 -=
-> use
-> *_new() replace ALL device_find_child() instances one by one ->=C2=A0
-> remove device_find_child() -> rename *_new() to device_find_child()
-> once.
+> device_find_child is a good name for the API, 'find' already means
+> const.
 
-Why bother with the last step, which churns the entire code base again?
-Why not call the new function device_find_child_const() and simply keep
-it (it's descriptive of its function).  That way you can have a patch
-series without merging and at the end simply remove the old function.
+Not to me it doesn't, but that's actually not what I think is wrong
+with the API name: it actually only returns the first match, so I'd
+marginally prefer it to be called device_find_first_child() ... not
+enough to churn the code to change it, but since you're doing that
+anyway it might make sense as an update.
 
 Regards,
 
@@ -291,4 +268,4 @@ open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to open-iscsi+unsubscribe@googlegroups.com.
 To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/=
-108c63c753f2f637a72c2e105ac138f80d4b0859.camel%40HansenPartnership.com.
+5c905df49a332b1136787a524955b46b6153c012.camel%40HansenPartnership.com.
