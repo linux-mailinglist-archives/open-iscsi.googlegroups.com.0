@@ -1,157 +1,136 @@
-Return-Path: <open-iscsi+bncBDVIJONZ3YDRBT652S6QMGQEU5PWYMY@googlegroups.com>
+Return-Path: <open-iscsi+bncBCUJ7YGL3QFBB3W2ZK7AMGQEDW5HWNA@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-qt1-x837.google.com (mail-qt1-x837.google.com [IPv6:2607:f8b0:4864:20::837])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5661DA3AE81
-	for <lists+open-iscsi@lfdr.de>; Wed, 19 Feb 2025 02:07:31 +0100 (CET)
-Received: by mail-qt1-x837.google.com with SMTP id d75a77b69052e-47200b35a23sf7570901cf.0
-        for <lists+open-iscsi@lfdr.de>; Tue, 18 Feb 2025 17:07:31 -0800 (PST)
-ARC-Seal: i=2; a=rsa-sha256; t=1739927250; cv=pass;
+Received: from mail-pj1-x103f.google.com (mail-pj1-x103f.google.com [IPv6:2607:f8b0:4864:20::103f])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACD7FA5F029
+	for <lists+open-iscsi@lfdr.de>; Thu, 13 Mar 2025 11:03:31 +0100 (CET)
+Received: by mail-pj1-x103f.google.com with SMTP id 98e67ed59e1d1-2ff8119b436sf1549846a91.0
+        for <lists+open-iscsi@lfdr.de>; Thu, 13 Mar 2025 03:03:31 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1741860210; cv=pass;
         d=google.com; s=arc-20240605;
-        b=f8kf0uZjPq8ZfXjLGlmool7/ByqsNFiSMavjxBrz423RLgtv4yWuox1uJvuHne8V8Q
-         AmVXKSDQjFg0N6i6EJAh1Qh9jvs6+TD11KKsFbXJPBd+IDZPR/D5J9DIW9rUThSG7FKq
-         WgmC9zzjd2yo+OhyTFQdgf7mB0mdcy7W1YvxW6E7CZG5chOwQ3VdKXCCU+ZkQ03gt8W2
-         /JgYm/4dVFghgYD+RUBVUDUa2l3jmnSLzE1V3oZQE7tKTPLYwJ+ajfvFhI1SxRtk0pFg
-         LoLhx9ZzkeXcjx3sL60ZPbyJ+oePoSTDpgZznKyxB7e0Er8eNdlrRZGdkIaCq3lQIVOC
-         q6Lw==
+        b=lvWzqu2Hzs65sXtpP+DYjCbDtjuyY8iBv0myKCvcKfjaiJnwXlqAHXhe6FbraXwPbC
+         XxBcvlwjECZFD2Br+Hu4KbygO5tRUXuK9sm1FavmH8vXLZMmeOQvdphh4NDhwz4msgIm
+         u36O24yYTz9OR3VeWnOtJ7vz9jT1Zdh9z3NV7JSjYv/LJ0NYbE7j1ONrQ8M8smBNMKhB
+         ziId2WsuWRJ/93qe5IduMYoD2iSVsSvKctgJKy9CXqH3Io0ndkY81s2cidedKX1MfuOy
+         KCo20d0dk3kytd9MHq6+6jXTyHrc+BhSuYmEla21r8t8csFV9kHGbbxg0Yi5UXpOzLcY
+         uzTQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:dkim-signature;
-        bh=bbE4CQQAqh1lVc8CiiYzeLQGMWPoXeq1VYFdMRjEGUY=;
-        fh=3/bhrkE7z8ufWd9UytBQHmv/sIcWQyjNDvAjLFhtCX8=;
-        b=foZoRo246igcemF/90uspj+Zh78ZTrcyCQC2Pz70qMNOl49s94Bptga4drhOJtw2LS
-         FeRbJH9Uz/VqTVJjxAY6C0GPOpOzWYwmXoC1Eus+ViaurNSfE+yX9ZMmqmY1FJTebYoP
-         52U0Qab+WtYUzFIxArG4OUnKkbtPKHbu1WNL4UsgWKvOkUuqln6B3bybbZoP5iXpeLSl
-         G2obs3TcM2uHwLoIxkEZxqlIOpvJnwSz42tZl5/FNpFEI29l33eWV8VSq8sq+9i8QwJN
-         +PNt5C8k+GAcCqdtyba4pxYEyoIQS6XYBh2NZ27ONVhGlrd7qwbblbFM+Y12YbqCo33P
-         VtWA==;
+         :mailing-list:precedence:reply-to:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :dkim-signature;
+        bh=tvIc8qqs1rmtEaf1ifFZPiOUIWPL5QuqNtKF08HJb2Q=;
+        fh=sf3XR4XLujz3UZk6gJHFXRQlMiaI/xwqNn7f0q+ea0Q=;
+        b=LI+dVp2PYaKCC3k4WQ1oNmRXWiwz+M+KFdwPBd5NHiNPo7WqDlAXvPKvjQ/yt8eAMY
+         xv8PykYuJ+1JVD68Oqfj3z/7lHQqkKB1XHATDRiJWnSOMSTNYHOlUBRxCUlQhjkevTaQ
+         9Vbcxe+TPB5u9AvIUt3xe94joZknvt4Jx1KmoBr64nn+7aI5R+dTc1OTnAT3qo/eKx/z
+         4jNgePU8M6vnsm1nbSzEs2nubqBqQWhu4qTeBDsASjkB6h5AOlP1dmXdVBdAEp9xPMA3
+         nlF+vWDt9klcmMs741RDtXBO33YGcHNu/AxqCchRpWTJkq8ySi+Ge+2i1slubwNhEuNw
+         h7dw==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2023-11-20 header.b=NJtVjQ1j;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=qXNFyN4z;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1739927250; x=1740532050; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1741860210; x=1742465010; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:mime-version:references:in-reply-to:message-id
-         :date:subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bbE4CQQAqh1lVc8CiiYzeLQGMWPoXeq1VYFdMRjEGUY=;
-        b=tz21Kz0+jRjat2KcjtmGy9xcWKmUfD0yuJpItA8hb5Fcgu4uL3mee+ac6XZPQTMgyo
-         uo/VhXf4D4mb+187dPDPxPDpS3lfbRGv07w9E+iXTw1YAqRtf2X1MyqZRSleORkv1yxc
-         dfN4Kba61QsiBNbc6dt+Z5sZO4apmhqQA8ecq8AR4e4goAOrOGZ/fReH5Zq2nCQL49iA
-         uXsTN3u/ajUl0UsjMGxgh4Q0dVzldn4I/XvKsTr9CeO3km9CDDy5CROVuYxSxRxgCRmp
-         XGYQPM09glJE31c0cCoRvV2VNCWzf2BCbIitnG2zE8RIPhU2ty8dE0a3nkpJ9q81MJIH
-         WdDQ==
+         :x-original-sender:in-reply-to:content-disposition:mime-version
+         :references:message-id:subject:cc:to:from:date:sender:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tvIc8qqs1rmtEaf1ifFZPiOUIWPL5QuqNtKF08HJb2Q=;
+        b=KzSfCPmv9BLuSedz7XwwH36Dv8m0eWAkUWj9W7vla4OhyH4eX3vbP5Kj8PzhHpxXvK
+         fttHZvBayPGvSBwWdCAI7cN4Ol7o/HkdVhUmyxCWUyxjPOz9IHgahPUA2NqOmYQP0W2V
+         5Sn+hf26K5pHfKyYLHyDkKtpc6KI2U7617/qQBy+ClP+KcFz035nzyncyrUF7jOLZ2vX
+         J1WqzChC1T7RMOfXQoy86RSLfZLJ/Sne4xiEkFEywLelhgJoDy9mZOxmL62zXirRFxoR
+         PMymXXUx6cT6GwSZL4Aq7BfDqz6T/BIuTgVc4ixpR6XVaAxs842Kkg4mizcm8fIoVEsp
+         GgOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739927250; x=1740532050;
+        d=1e100.net; s=20230601; t=1741860210; x=1742465010;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-beenthere:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bbE4CQQAqh1lVc8CiiYzeLQGMWPoXeq1VYFdMRjEGUY=;
-        b=wYp5hDSLBuD+lI0v9CV64NgXZ0YY1wG+myeeQCCqtWbRxZ/WhAPDyGLUmxudacktRx
-         G1qcvliwYXGCq0LDtgIz5i+YtmFDSOpgNv8y5SWB8n9yFpn0Hg40GTINyAbFt+UtHM5a
-         B+9QN2d7j03yjwjNEMCX3EudTy5LDJ1ss92QYV/G1I4z4V5rmM2X/YPmYpNfxsKEK1ux
-         Ht4jFwcRbCqeEexAM+C4mfLbmD+wBwM2R7ptoHPgH9dIlw3kHVyYvxSX8M/Y3sbYIBPZ
-         G/ixENh4h/iczO9xKUftBFJDV26FOUBG8I3Zxpn8ckYK4zt4z3wFDWCjVO/sjSg436eq
-         uVGA==
-X-Forwarded-Encrypted: i=2; AJvYcCX9UzZSia9RfNAyh5fDTM9Ka7n9Oi4s95k34EKS33Q+h37Z4Om3wUtEMWUPRngM3aOsc6Z6Jg==@lfdr.de
-X-Gm-Message-State: AOJu0YxlbKZTITTWmVD6Ue+XBnSducugZoRwe9yoM4gRu11l7W3HLo9q
-	Ncs71Ue5xhQcD9CcVz52Dhx03n83O+lE6qSAye4My7Vj5BpGGEki
-X-Google-Smtp-Source: AGHT+IEhkOq2MO2diF1XYHQOZtk+E0ekAwnHRu6a2KV6NNFqpl+s1gcbkys54Z+rLGaCc+T/gV/4cA==
-X-Received: by 2002:ac8:7f51:0:b0:46e:2d0b:e1bf with SMTP id d75a77b69052e-472080d0e88mr29888291cf.11.1739927249894;
-        Tue, 18 Feb 2025 17:07:29 -0800 (PST)
-X-BeenThere: open-iscsi@googlegroups.com; h=Adn5yVEoRd5iuslHxU4IayXQL1be4CX5B2vVfiAts3V6jFY/4Q==
-Received: by 2002:ac8:57c1:0:b0:471:b736:6cc1 with SMTP id d75a77b69052e-472080edfbals13297901cf.1.-pod-prod-00-us;
- Tue, 18 Feb 2025 17:07:26 -0800 (PST)
-X-Forwarded-Encrypted: i=2; AJvYcCXYhY21fBArBfpAI9IZsq1Hpfy5nJ2lQATLm/cm3+uCf3HvboPPgDlbf2OyhKKbrTrccfT+8dYQKklH@googlegroups.com
-X-Received: by 2002:a05:622a:16:b0:471:9e02:365e with SMTP id d75a77b69052e-472080b523dmr27389261cf.8.1739927246730;
-        Tue, 18 Feb 2025 17:07:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1739927246; cv=none;
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:x-beenthere:x-gm-message-state:sender:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tvIc8qqs1rmtEaf1ifFZPiOUIWPL5QuqNtKF08HJb2Q=;
+        b=ByfgjMEOMgVvsEZActbfoKvXSntwDRM5AELJnna33GsCn9q/yPK9JWlKGDcJ8fjZdx
+         I4WHF0sk2ugAJnI2srLYVYcl3eE95uZKjpoCo9MPYDCI66b8MZqExjcdL3hpzBOtnSp5
+         lZ+8Js37PtpKPZ63gqszhc0NoFLlYVv4yCz0tY4Mhootg1g+uRN27oIoA/dSMT5Uf4Vs
+         vm+qV8fuUZbg9tc83WtDyLDM3ZnChwVU1t8DYz7S4jyfSJBagDaNyWiM4VXA6h0mgezL
+         +0eY6GWErr9sY7HEIW2yXWJto8uRA+09Z2zZsvsNe+kVxzOUiHg0dRatXOYFdR+kjT9Z
+         CMvw==
+Sender: open-iscsi@googlegroups.com
+X-Forwarded-Encrypted: i=2; AJvYcCWjG2hGd0rFlqU60IRCVQO8MR+2/wgssRJkavL8KSLLj5zyEvqMUauVzwyiUR3EaG+kV/rq5Q==@lfdr.de
+X-Gm-Message-State: AOJu0YxhV3hA/78DmJqCOZ+jFHAD3YcpTbGz63e0bqtvlc1Sr6xowbIf
+	T3L06gaB55tvSW/Es+Q7rJx40c3sCo82IH4jIZFpj5yoljAINkNg
+X-Google-Smtp-Source: AGHT+IED3PGyJ4AMiDNdQps5ypVuNOkb7Atds2siZemrUfJb8mkdEe6n5KVq8fqKLfBQ2UfHXFDXpg==
+X-Received: by 2002:a17:90b:384a:b0:2ff:5ec1:6c6a with SMTP id 98e67ed59e1d1-2ff7cea69acmr40426927a91.18.1741860209807;
+        Thu, 13 Mar 2025 03:03:29 -0700 (PDT)
+X-BeenThere: open-iscsi@googlegroups.com; h=Adn5yVHNra46iobsZtTAH9rtL+/E9ZXtEcFSCZ4OqfZ27dyC/Q==
+Received: by 2002:a17:90a:a105:b0:2f7:21c:a7d1 with SMTP id
+ 98e67ed59e1d1-30131bec0b2ls992697a91.0.-pod-prod-07-us; Thu, 13 Mar 2025
+ 03:03:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUsoTsf7a625OeoLjPVnmetYwEeE4IaXPIkBGA/kxjNWPZai8x6LRc5FcyizIGFo+Dv4kqiKAGu6hEX@googlegroups.com
+X-Received: by 2002:a05:6a21:68f:b0:1f5:902e:1e97 with SMTP id adf61e73a8af0-1f5902e24b4mr16562176637.41.1741860205477;
+        Thu, 13 Mar 2025 03:03:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1741860205; cv=none;
         d=google.com; s=arc-20240605;
-        b=kyb7TuKO4BdgvfxlSoNgHBK+pNgRbFNAXgSFDqauZT4QutMNacDgLOJ0r8Yo6b4/1j
-         UbrBiNGeA3Q0RT2h4UiHxw7NFMiDWQGK7iMBWtiY7DaFfDWW4is8EuPqdQAWUIT6YejL
-         W6WsweA2CwCKCrKvERDy3uOk08n39IMGxeBkuXO0LbwjXDRtoZmWWhzfcOfKciEgWMu5
-         o3zAGDHgPTsQ36AP5HIiI1AFKSom/X+Aq6KxEEBAqKS3/qlTZwiPDFX7IwNeKSDtHr3J
-         w9WdmJaBMS0bxdA2psmUw21UVCpU+ybbGQKcopaFbkCcY61VDNhWEaGMT7Ixxj+qPDnb
-         GW9g==
+        b=eJlf5Ure5s1thwKYf0D/jI7cmr16w9Tiup6H6G1UPxfVouj38/BfzyEnGGp7WcWQ7v
+         XuXG3XiGicKXEemPBkE7fgVcgBfw4/EiwFy3REdMA83QTm6pVYNBEzvVF0Xj9SHD9OIA
+         netM7MC8wyTeNlrK05wHSf4nanbQvdcRRHbIXLcOKwV1RZKM1HqYwvBcHeQJlpU3aEk9
+         gDDaiTN4NNxQWh+bOuvM5IsKSE+TgpWwncgduuk8cLRJNpcVl7wBcFws5+px3oGslpIq
+         Xal/zwMXDwE7hnQrb6DdYn0GreE9HEQ+JARSeb0xEKncu4rL5J8BbnDzdjs8Xg4UyDDD
+         qCPw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=mqBZIya0Zo9bV0vIxDWGC8d3N0v62vUQUUrJ7AutH7I=;
-        fh=KzVKXY+FJUnj/O0pguPsW7kS7WilNbhwRTviKTqGGho=;
-        b=NwVBYx88FaufZrXmRboHaPnFyAdThV9Ef33er4xf0f5qMMufCAYNXzjXFNXpmXzP5z
-         fQz7Y5giV4/rc1qRfGDjFYXbmD17PAWdyjqPA42RRpBCkiXPMl0njeG4Pvz5i2XpSCE/
-         e2D2vNb7DRTay/9kujt43IJ9pLeGMKUdzv9/sbArT091rT/VpDJ20sUwhCn68csd4Ub0
-         RhhREl+FV6sIrC4Ovx7fCjw4c/idnvBH8UgXos/ktBrc3YFAVc0MYSiTAm9KLTCPEyI8
-         zr6uUrMVjMYIGlxbkcu1AbG9U2kfePu1X/LVyA70nYkx0aJGJ2sYwoOHQwECF3GTFiSF
-         vZbg==;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:dkim-signature;
+        bh=myEPgBH9IA9IlF8jLe9nX7T8H747CvfXd83OmkPF2Fw=;
+        fh=PwFMmTnIVI/4OQYTVfyh+op4L5vYxZvF14MWM0N2TEU=;
+        b=hq+v7SqzBNClcqjOmJl/retFG5FuRGO97LD/AOzfuuoqmOUKRymHR2zIIm7bXoSfgo
+         435VGt7YwpjxZV13VB6jIh5B9mnRRxBko2KS8yV2RV/Wh/9Z6x9sI0aXfT2QwVB0q8Zw
+         dQwbfL8pC2Ezx1NKMiudEM7LEGtLg6ze99FCaGNLddgTxhWDZFl18ZuNNUy4RcohyFAn
+         JCpqmwZETvCIE2WYR6ya8x/t3SBKPOskG9oxGinlkgeRauvBgjFoSemQytiHOlmKzDnZ
+         7yShB10e2lsCflbjXjuKNgTJs6Bh1MuuJEs4XdE5Avpy//8XF6xMSZVYqyNOvQ103AuT
+         9A1w==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2023-11-20 header.b=NJtVjQ1j;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com. [205.220.165.32])
-        by gmr-mx.google.com with ESMTPS id d75a77b69052e-471efafe83fsi2277331cf.0.2025.02.18.17.07.26
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=qXNFyN4z;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+Received: from nyc.source.kernel.org (nyc.source.kernel.org. [147.75.193.91])
+        by gmr-mx.google.com with ESMTPS id d2e1a72fcca58-737116b6d1fsi48645b3a.4.2025.03.13.03.03.25
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Feb 2025 17:07:26 -0800 (PST)
-Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 205.220.165.32 as permitted sender) client-ip=205.220.165.32;
-Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51IMgfQM007528;
-	Wed, 19 Feb 2025 01:07:25 GMT
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 44w00ngkp0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 19 Feb 2025 01:07:25 +0000 (GMT)
-Received: from pps.filterd (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 51J0DSMV002247;
-	Wed, 19 Feb 2025 01:07:24 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 44w0tk1rrt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 19 Feb 2025 01:07:23 +0000
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 51J17KeT000669;
-	Wed, 19 Feb 2025 01:07:23 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 44w0tk1rq5-6;
-	Wed, 19 Feb 2025 01:07:23 +0000
-From: "'Martin K. Petersen' via open-iscsi" <open-iscsi@googlegroups.com>
-To: "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-        Lee Duncan <lduncan@suse.com>, Chris Leech <cleech@redhat.com>,
-        Mike Christie <michael.christie@oracle.com>,
-        linux-scsi@vger.kernel.org, open-iscsi@googlegroups.com,
-        Eric Biggers <ebiggers@kernel.org>
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>
-Subject: Re: [PATCH] scsi: iscsi_tcp: switch to using the crc32c library
-Date: Tue, 18 Feb 2025 20:06:54 -0500
-Message-ID: <173992713070.526057.6348295717628038082.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250207041724.70733-1-ebiggers@kernel.org>
-References: <20250207041724.70733-1-ebiggers@kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Mar 2025 03:03:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) client-ip=147.75.193.91;
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 9811AA469FA;
+	Thu, 13 Mar 2025 09:57:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7D2EC4CEDD;
+	Thu, 13 Mar 2025 10:03:23 +0000 (UTC)
+Date: Thu, 13 Mar 2025 11:03:21 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Ma Ke <make24@iscas.ac.cn>
+Cc: lduncan@suse.com, cleech@redhat.com, michael.christie@oracle.com,
+	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com,
+	James.Bottomley@steeleye.com, open-iscsi@googlegroups.com,
+	linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] [SCSI] iscsi: fix error handling in iscsi_add_session()
+Message-ID: <2025031316-frail-twitch-7313@gregkh>
+References: <20250313081507.306792-1-make24@iscas.ac.cn>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-18_11,2025-02-18_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 malwarescore=0
- mlxscore=0 spamscore=0 phishscore=0 suspectscore=0 mlxlogscore=853
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2502100000
- definitions=main-2502190006
-X-Proofpoint-GUID: UwujlG0Jhz3eK6aOGlgvsNPyhvxSx66_
-X-Proofpoint-ORIG-GUID: UwujlG0Jhz3eK6aOGlgvsNPyhvxSx66_
-X-Original-Sender: martin.petersen@oracle.com
+Content-Disposition: inline
+In-Reply-To: <20250313081507.306792-1-make24@iscas.ac.cn>
+X-Original-Sender: gregkh@linuxfoundation.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2023-11-20 header.b=NJtVjQ1j;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates
- 205.220.165.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
-X-Original-From: "Martin K. Petersen" <martin.petersen@oracle.com>
+ header.i=@linuxfoundation.org header.s=korg header.b=qXNFyN4z;       spf=pass
+ (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as
+ permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;       dmarc=pass
+ (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -164,24 +143,47 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Thu, 06 Feb 2025 20:17:24 -0800, Eric Biggers wrote:
-
-> Now that the crc32c() library function directly takes advantage of
-> architecture-specific optimizations, it is unnecessary to go through the
-> crypto API.  Just use crc32c().  This is much simpler, and it improves
-> performance due to eliminating the crypto API overhead.
+On Thu, Mar 13, 2025 at 04:15:07PM +0800, Ma Ke wrote:
+> Once device_add() failed, we should call put_device() to decrement
+> reference count for cleanup. Or it could cause memory leak.
 > 
+> As comment of device_add() says, 'if device_add() succeeds, you should
+> call device_del() when you want to get rid of it. If device_add() has
+> not succeeded, use only put_device() to drop the reference count'.
 > 
+> Found by code review.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 8434aa8b6fe5 ("[SCSI] iscsi: break up session creation into two stages")
+> Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+> ---
+>  drivers/scsi/scsi_transport_iscsi.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_transport_iscsi.c
+> index 9c347c64c315..74333e182612 100644
+> --- a/drivers/scsi/scsi_transport_iscsi.c
+> +++ b/drivers/scsi/scsi_transport_iscsi.c
+> @@ -2114,6 +2114,7 @@ int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
+>  release_dev:
+>  	device_del(&session->dev);
+>  release_ida:
+> +	put_device(&session->dev);
+>  	if (session->ida_used)
+>  		ida_free(&iscsi_sess_ida, session->target_id);
+>  destroy_wq:
 
-Applied to 6.15/scsi-queue, thanks!
+How was this tested?
 
-[1/1] scsi: iscsi_tcp: switch to using the crc32c library
-      https://git.kernel.org/mkp/scsi/c/92186c1455a2
+I do not think this change is correct at all, please prove it by showing
+how it was tested.
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+thanks,
+
+
+greg k-h
 
 -- 
 You received this message because you are subscribed to the Google Groups "open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/173992713070.526057.6348295717628038082.b4-ty%40oracle.com.
+To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/2025031316-frail-twitch-7313%40gregkh.
