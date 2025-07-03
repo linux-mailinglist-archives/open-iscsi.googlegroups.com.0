@@ -1,160 +1,143 @@
-Return-Path: <open-iscsi+bncBDVIJONZ3YDRBW5GT3BAMGQE754POWY@googlegroups.com>
+Return-Path: <open-iscsi+bncBCUJ7YGL3QFBBRNJTLBQMGQE3VUN7UQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yb1-xb3d.google.com (mail-yb1-xb3d.google.com [IPv6:2607:f8b0:4864:20::b3d])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32840AD2BB9
-	for <lists+open-iscsi@lfdr.de>; Tue, 10 Jun 2025 04:07:29 +0200 (CEST)
-Received: by mail-yb1-xb3d.google.com with SMTP id 3f1490d57ef6-e812e1573ecsf5317174276.2
-        for <lists+open-iscsi@lfdr.de>; Mon, 09 Jun 2025 19:07:29 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1749521246; cv=pass;
+Received: from mail-il1-x137.google.com (mail-il1-x137.google.com [IPv6:2607:f8b0:4864:20::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC55CAF7797
+	for <lists+open-iscsi@lfdr.de>; Thu,  3 Jul 2025 16:33:50 +0200 (CEST)
+Received: by mail-il1-x137.google.com with SMTP id e9e14a558f8ab-3ddbfe1fc8fsf192198105ab.2
+        for <lists+open-iscsi@lfdr.de>; Thu, 03 Jul 2025 07:33:50 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1751553226; cv=pass;
         d=google.com; s=arc-20240605;
-        b=E+0PTZn42R7EPnQPx2fzI+cN9MpaSmzxmevpteLhAz5hihMETPI1m8SPF/00uktATJ
-         IAmJeZVUKsUtg9xDmVHHWv4s8LTGWmAqHzQivE0i4xRw/uwrM+wIJ36zIoi4aJiFGwJ/
-         DjtUznO6bsaLGn3kWpOR+6eyrKtitpUgwu+sJFgTrzrkFrmbKSxPaVpzsupVuDQmkRJs
-         q6ExUhavkSOsCmjBsunBLMBTXEcaYBrHMKHhuWrgrrBYtgyO/xUzbhn7Nk874FOntPJL
-         QVb4ef6N444IZeBVc18s1b0ufxRGw3UsF+fBQtRN7tLmBuRFx8lWEZMBCUhheepJdw0+
-         3baw==
+        b=TCtNIJFWoMXZkdiwF75X5I24xUxu36X+gG8er8PpY7Pt6MtdpHNOkTYIg8QnY+dkaX
+         Cj9jZtmq8Ww4GKWaAUEZo2IH4KVb6jv3/iSqYdJCbrMDKFe6mBptwtTGaotNvnbutyOy
+         J9HKJTHme8dCBy8HTMBtRzDrufgC7WKYRMoha2Mb+RqfkBaCRtUBzPQajlTFRkNg/zij
+         G7w1yOBhrfFM4HkZRwMoc5IsNOdc2LLTCVnRE0nMMAjnMl8JXn95oRmpeeQRFpjz5IaE
+         kK8I7LkHQGQugdDoRrIJXjeja68v/0HapyfSS4Tmz3rn5wEbOUb3YUNDhomgFZNBZyS/
+         AT8A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:dkim-signature;
-        bh=jCWmcFqW75QJ42Os6ex978B5NgP2d3ushbFKPznZgnk=;
-        fh=2tH403fBzNpL//5FY59JISfKohEnW66aEqwLRO+1oUc=;
-        b=QxCpaeG13i8CkgQe673DJaqU91huczjLcmJjFnbPBt32rRU8MjXk3FRA6AmQ74MG2B
-         3+wByJxSgZtt4t5MIjLetpTXH8ALcaWBVrqNzUb2mtZivUEYpqRTOyIRKc96bGZruXWr
-         iLZiTHYGf7o9PbH8XcybEeVw12hAEphwNnVKb3PNfKJllq/a/8TV2tDkXWjFyHjRYLMx
-         nyK4B3RthvgDAloAHGd9aYNbNMMuhb9XRa5o59xC+A86y640RKO/I5oA9q4e27xAQHXK
-         KcJP1XgpbhmKafGUDct40yGfOVuEAos+kYBfA7y+0OTSdcPDQtx/jrDKNWvULGEDvela
-         +yEw==;
+         :mailing-list:precedence:reply-to:in-reply-to
+         :content-transfer-encoding:content-disposition:mime-version
+         :references:message-id:subject:cc:to:from:date:dkim-signature;
+        bh=ncAl1jTL0a53LMV7Tj2iFOqsDDJGgg025+B5u3fbDuA=;
+        fh=uimfhdGSzYFeebouTep8uEXbsJ8AWy9OcCy1E6iHjrw=;
+        b=TohYDa5VCwSxOGLS/t5iMCLCPg295dkqQxby6NtdX54EiutrHX3Wkpvcl15WvzJDHj
+         ZY8CWys1PWpvY/t6PoJsWeRIxbBTecoytg92qHPkULRX33wj6KIKdrjJlgP6a1cZnNzZ
+         gPaCbKVI2ASH0i4YCF80vDOaGrKT9eep7cZ2cxxhUdMjYCFP0zbTuBwoMgycbqogy49U
+         jLwSb4dgkmeqivSdPQ0QVQMj0kSUWTQaCIrBFqxvNq59xQGHtgtVAknDq7iAZmT3rwpp
+         B7hfekX7xf7F5sPU75uaxHbhuQWsPkwQ50DJnYnK5ZXK1B+ptpG4+e6PTUbWa4osjjrJ
+         DV3g==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2025-04-25 header.b=IUmJFtM1;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 205.220.177.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=NFrRFAVO;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1749521246; x=1750126046; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1751553226; x=1752158026; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:mime-version:references:in-reply-to:message-id
-         :date:subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jCWmcFqW75QJ42Os6ex978B5NgP2d3ushbFKPznZgnk=;
-        b=BgYbwkUdunWquQJ+5+YJUbMkwVwKbiNBT1zua85lwYa4cTfuC7bAaGO8otdQuTz2Yo
-         cX3CzMMgGUvZbMv6DYKQoiDklViT8yxhtcsEiC7yA/jBUYFI+LVHHnEX6zZMUgyLLzUf
-         lmRKearuTJN7ksfsFTHfgDhBb4p8omXX99y/pDWmfjNZ28wVLtltoxLrbIryAtdSCWOz
-         YNkaFg2pmMbWUwg6BWfLdTGSZmEjOXMJeT70NQWiMLB0SJoN8CNh8j+IQYBLcO6p2wlW
-         2ILGbp8YET/ti/D+MD9CWKekWoYvmXiUBOcO6BFVnvHvKeZgR9CK3ifEdxrI1d7wo2r/
-         x2RQ==
+         :x-original-sender:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ncAl1jTL0a53LMV7Tj2iFOqsDDJGgg025+B5u3fbDuA=;
+        b=hiWyJSN5xSsRE7lwKzkIawwfwVKWZ+B0TeEK+4HlvEbEXaK0dClciN+Ud/4GaHEvvO
+         0Hy6Rfoegflp5IgdX6l9r1JewR2VTeVFxTjrC6Y1Ew7B+TLenRtoNjQNn4cVDpRpDhCA
+         JbDT+ONQYfJrtyOM/tRHqW9zzDIe13OwKIaJin1HvqldPY4B9iSQ0GP8lLVA4w7Edwbu
+         0fVXtFBvaFqoNebCdWLUabH4pEXDMRRntKk04R5d+MQB+jJvitsfrDZFu5bLfUW2nyi+
+         hH8pFphHcWLOwC1uuAqTNnrYq4vrZtfYX10Qri43/B/WC9JSMXao3DAA+dpNxXeL9rf4
+         hEBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749521246; x=1750126046;
+        d=1e100.net; s=20230601; t=1751553226; x=1752158026;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-beenthere:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jCWmcFqW75QJ42Os6ex978B5NgP2d3ushbFKPznZgnk=;
-        b=MJfF0zkUl1sl1RasSuFmqEjHSxsw9zLnEXjjeyLzCi8XNSCu21U9q65FoWHpta66pY
-         Vj8ILQK4AgAjwd2E4W6dnRp/WnRIEWQG9dk5IN+nX6rxNnlT1NnhMyUFriaJyBbEH/9f
-         hccHmbjNrccnhtIY+BRVDg31butlviShgAtg42EzDJSsIlXUCcIPPgNDMjE4FvYsgtQw
-         Kw8TajtLvk1GRbDMHl7WNbrgfAqSDQGXNdhfo1aBcmat7VA/qkzCdyv7H+BRZflTakKr
-         POJ8vHHetxMLtmEc9N+WdsUhf9FDN2tJubWOyvOD+Y6zd3J82EKNaYib5yI/WvvSBBBh
-         +HEQ==
-X-Forwarded-Encrypted: i=2; AJvYcCV3PaAO+tRRVoi2JxEYgR+3tpf4Tgqx1DATLzHdJIcRB0bZ4UwhkkXxhHaOAGe8TlbsNBMNPA==@lfdr.de
-X-Gm-Message-State: AOJu0YyeFUeb+zxHvdgmAWU/t17uYDXDAqCL15lLy4rWcEmaNdgfQ5CN
-	lA1/cSujcm4RBopyVV8NZayW4RhqpUvUbwRgPp4fbazn2EN7GncA00QS
-X-Google-Smtp-Source: AGHT+IH+PWpr/64x9hgbhuFUYMVsw1wTz37Q+b112B3RAnIdPQVuWKrBeWTEdyy0uRsgjKzfSjvEqw==
-X-Received: by 2002:a05:6902:1142:b0:e7f:6fcb:a069 with SMTP id 3f1490d57ef6-e81a227c99emr18756096276.6.1749521246173;
-        Mon, 09 Jun 2025 19:07:26 -0700 (PDT)
-X-BeenThere: open-iscsi@googlegroups.com; h=AZMbMZe20tN0DYAZfauie2Bmu3SyXFuidLIoSqh4f51n5dLrdw==
-Received: by 2002:a25:b288:0:b0:e7d:5a87:b47b with SMTP id 3f1490d57ef6-e818881ef12ls4409228276.0.-pod-prod-01-us;
- Mon, 09 Jun 2025 19:07:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=2; AJvYcCWEEgGJUB9MQ0GDlJLJNRvFmPuwdCQ3fr1UVKqsyyV+pPVrfP9h6iAO1Z7hO+90gIbzRIRJU/fqTAPU@googlegroups.com
-X-Received: by 2002:a05:6902:12ca:b0:e81:868c:5b with SMTP id 3f1490d57ef6-e81a233bb0bmr19686212276.31.1749521242218;
-        Mon, 09 Jun 2025 19:07:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1749521242; cv=none;
+         :x-original-authentication-results:x-original-sender:in-reply-to
+         :content-transfer-encoding:content-disposition:mime-version
+         :references:message-id:subject:cc:to:from:date:x-beenthere
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ncAl1jTL0a53LMV7Tj2iFOqsDDJGgg025+B5u3fbDuA=;
+        b=EDTQclx8GwoIn/BGETum8bFxns2VfXDJM/adKRfVTWQBTxPCZSdVEigAM0Aks8L7oJ
+         3+E1PavcofqQEEb+wNCpE3yVDAynQ/8p8b9j0iWEmDiUnKoPR2MUbeywACvEQbgSqCkk
+         uKRNGTcbfWd7R+yLDzw6aPG9iRiKCGueX3BlFJXhPtafWqsrQ4YKYlkF6GbtIU4U5u5k
+         xySRosDcv79cDx9riZ0M6cbeN9bHPtCMtUAWWm7ro/zXSdCvBAG1B5Q2PJfpNSqTLp0A
+         3UfyFprZftLe9XsW5keFPrN8LR3GFeLvGGFjb7pGx1sbPe6vKYuOKPJi7U4LUDngk6Xm
+         twZQ==
+X-Forwarded-Encrypted: i=2; AJvYcCXNfFXpk+dlRbxltHNPYir4QJEY1Eb+o+idVKIZwy1nb8b+rSjeUUZtbJa9+67mqYJN+0+SXQ==@lfdr.de
+X-Gm-Message-State: AOJu0Yzol/BubmOZ2JswBapcmUd2godajRHkK6nnbwx50WqMoDtk3JTT
+	Fc2ECgajSlGvqpLIUq49RO62ceDvcecmKWeAy1rAZKURtMhp9BpPHboq
+X-Google-Smtp-Source: AGHT+IEe3htUYFTptI8eZUqsVxdNjX12JF5x1NdKWt3MUEC6t1EheslFPak1f/ejMDIoU6kjqvnwDw==
+X-Received: by 2002:a05:6e02:1a6f:b0:3df:3464:ab86 with SMTP id e9e14a558f8ab-3e054973fbemr82796365ab.9.1751553225394;
+        Thu, 03 Jul 2025 07:33:45 -0700 (PDT)
+X-BeenThere: open-iscsi@googlegroups.com; h=AZMbMZe+F1LF2NPNRYoHmBUUnA2F2AeHOlUcKCppqzileW27rQ==
+Received: by 2002:a05:6e02:4708:b0:3de:12e2:fba4 with SMTP id
+ e9e14a558f8ab-3e0d222357als578195ab.0.-pod-prod-02-us; Thu, 03 Jul 2025
+ 07:33:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCU82Q3N+BTzBpJhZ8bqspD+AFAM7sRyW2TmIcKwmMcnElFrvnRqfCZfWQPgiuyaJgTgFH41G2kKsU9L@googlegroups.com
+X-Received: by 2002:a05:6602:7518:b0:86c:f893:99da with SMTP id ca18e2360f4ac-876c693025dmr833765339f.0.1751553219939;
+        Thu, 03 Jul 2025 07:33:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1751553219; cv=none;
         d=google.com; s=arc-20240605;
-        b=eIIkEY4VC5nsQZKXJrNFR/hsaeehtCoODKZsQOmRpIg3x7Q69V9KB6bsNBJ9sq6zwI
-         Ge00x9rpX7lBoMdQHxJcz6YwQL0WqMUmIOiPZaQ1u3tvOI5H8yWqvKhVJlna5AgvBnVs
-         si04fET16If5ihZ806DgQJ1e3R5KpN5YpT/QZKl3S1aVfTj12i+jarSCtCePKCjctbPA
-         H6BP1FfDlV3Hrwt40vLShUirlSwQpsSLlzX8Zv8uKoNSQnnH3USTzFAGeFrZqYr8K0tx
-         JsBqm7q52qy1NhFeSu1tUiiSM63jxrSKqFqAXD4w8OfO/xJJr6L9yzrIPFloNQLJRMim
-         uPAA==
+        b=j19PMwYGhk8G5eDgCzm1WeByMg6oIlZWoTDBDA6LFE9nr13qOv8pK+HNO/lkpzcXh7
+         xk5NHxWgn/olXP4O1bC6Zete7m1l1/eUxstqdqEzy7yqvvKLvJMy2fRY6FuQ85n6DU/L
+         6ilFDlq/O4/eq+cgVBbm1E5kGvTZ4k2oijK7nuKR/xizmTcq3Swdfi/YrcRX4wsrG3FE
+         selFdEb3q//spgQF1KyfI79JuvoaE7UeuhP5BDZ4eN4oFVAiO7qkMESXElX+DeuqrB9P
+         2Zb0+xOY2mKdOnMxd40YFvzBAHgR8HNm87bWCiYZBZbaj2Ad6RRjQUDQqJ84QJ7He7ys
+         WzZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=Jm4iZhusmRIAIRK6bbhztOQOKbIJTVCtBKJZMx420iM=;
-        fh=F8qwu/PKqAdZp/j9D1fHpibIf91uV2sX+MWmuld/Vr8=;
-        b=A5oLIYHU3KDk2SjDkA+hdnG+gLjXBQft6UQhJ+CbSjwoDyFIBplqklLkTmNRVSky8x
-         WbIQZ3X6xxVTnUOhY55Do8RKAUZkCNstaXid44x3VDFxMTtFI+c8hUXuhXMfXufQwCQx
-         LMTyjwcklVCzpB/O8QQPD3pN8N2wD9b4xf/7rj5I0MXU9h6p1+vu8h2dZ9ebOeAubrNs
-         8Ww5t4vJHmhT5YD+h0cJ/l/ju6wVsOLk/uAOqGoYrGbUOXmBXmU/aTR9rLRbJ7bnqaRu
-         lUiiNgYl8DFyeglaFWsbhaDW6Q/TyLsA9GPADDZalg14gWd8//d7jzn03CxUE9xOFU5y
-         RsZA==;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=Ji3rhVag8fcLnvqw0eG7l+xLIeeq1UGJn46b2lH/seQ=;
+        fh=Kderfs8if28WxXsUuqMF/NnWX6pdr8gUBFLFdpURysA=;
+        b=VHIeKDsurTxMDkJlCl8gvf9SsrslR1rEAUs0CHfaltAUUZCbCydevHXjiyBOPzXK2G
+         6ZYWvGh24suL4WUJQ3HWJ3pXiLl0QyEPqnFENuDIHw7G9iNfZQcjjsrt3CIBG34Kz5NK
+         NuPCMuThb2OUpQQBX6hFQjth4/26eOeO7hp75iS82E9Z1odH47Thabnp07CuvRp6o/0l
+         +WLd9rXjtbMWftVivGkLdEMMKOCi/EjeAi1WxlOhpjaJ16GRJdgAlKZmooevqvP5+d/k
+         ORRj3/OcRv8BYGWm05sWwiVEq6hXLHfq/dUdx4AfN0zioQf+HwDT3Cu5k1LbdoKHXI5n
+         Lk2w==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@oracle.com header.s=corp-2025-04-25 header.b=IUmJFtM1;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates 205.220.177.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com. [205.220.177.32])
-        by gmr-mx.google.com with ESMTPS id 3f1490d57ef6-e81a4086280si462028276.2.2025.06.09.19.07.22
+       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=NFrRFAVO;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
+Received: from nyc.source.kernel.org (nyc.source.kernel.org. [147.75.193.91])
+        by gmr-mx.google.com with ESMTPS id ca18e2360f4ac-876c5b1cf82si20917839f.2.2025.07.03.07.33.39
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 Jun 2025 19:07:22 -0700 (PDT)
-Received-SPF: pass (google.com: domain of martin.petersen@oracle.com designates 205.220.177.32 as permitted sender) client-ip=205.220.177.32;
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 559FcrTI017589;
-	Tue, 10 Jun 2025 02:07:22 GMT
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 474c74u9mu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 10 Jun 2025 02:07:21 +0000 (GMT)
-Received: from pps.filterd (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 55A1A7eb031370;
-	Tue, 10 Jun 2025 02:07:20 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 474bv84jff-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 10 Jun 2025 02:07:20 +0000
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 55A27Kqu016523;
-	Tue, 10 Jun 2025 02:07:20 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 474bv84jet-1;
-	Tue, 10 Jun 2025 02:07:20 +0000
-From: "'Martin K. Petersen' via open-iscsi" <open-iscsi@googlegroups.com>
-To: lduncan@suse.com, cleech@redhat.com, michael.christie@oracle.com,
-        James.Bottomley@HansenPartnership.com, open-iscsi@googlegroups.com,
-        linux-scsi@vger.kernel.org, Alok Tiwari <alok.a.tiwari@oracle.com>
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-kernel@vger.kernel.org, darren.kenny@oracle.com
-Subject: Re: [PATCH] scsi: iscsi: fix incorrect error path labels for flashnode operations
-Date: Mon,  9 Jun 2025 22:06:45 -0400
-Message-ID: <174951883633.1141801.4572248277182090285.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250530193012.3312911-1-alok.a.tiwari@oracle.com>
-References: <20250530193012.3312911-1-alok.a.tiwari@oracle.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Jul 2025 07:33:39 -0700 (PDT)
+Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) client-ip=147.75.193.91;
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 51B71A53851;
+	Thu,  3 Jul 2025 14:33:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F9F7C4CEE3;
+	Thu,  3 Jul 2025 14:33:38 +0000 (UTC)
+Date: Thu, 3 Jul 2025 16:33:34 +0200
+From: "'Greg Kroah-Hartman' via open-iscsi" <open-iscsi@googlegroups.com>
+To: Li Lingfeng <lilingfeng3@huawei.com>
+Cc: cve@kernel.org, linux-kernel@vger.kernel.org,
+	linux-cve-announce@vger.kernel.org, lduncan@suse.com,
+	cleech@redhat.com, Mike Christie <michael.christie@oracle.com>,
+	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com,
+	open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
+	yangerkun <yangerkun@huawei.com>,
+	"zhangyi (F)" <yi.zhang@huawei.com>, Hou Tao <houtao1@huawei.com>,
+	"yukuai (C)" <yukuai3@huawei.com>,
+	"chengzhihao1@huawei.com" <chengzhihao1@huawei.com>
+Subject: Re: CVE-2022-50031: scsi: iscsi: Fix HW conn removal use after free
+Message-ID: <2025070318-slinging-germproof-7da9@gregkh>
+References: <2025061839-CVE-2022-50031-f2bc@gregkh>
+ <563d1da8-abd8-48e6-9aab-5a4f13859995@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-10_01,2025-06-09_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 mlxscore=0 suspectscore=0
- phishscore=0 malwarescore=0 mlxlogscore=932 spamscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2505160000
- definitions=main-2506100014
-X-Authority-Analysis: v=2.4 cv=LIpmQIW9 c=1 sm=1 tr=0 ts=68479359 cx=c_pps a=OOZaFjgC48PWsiFpTAqLcw==:117 a=OOZaFjgC48PWsiFpTAqLcw==:17 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=ZFjwF5Gz_3r7dmuddG4A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: _7ALXlVP53ua1-rp-P5BFxVJoc9viP7i
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDAxNCBTYWx0ZWRfXznH9xBxmX5Vg W/+c0sx4YQOgQwQWeVUz7aCYRY2JhGpY64C+fe0H7pPDW3xyLUbTF6/Bxqe24h4nzTBbyDZEdu1 J/Eq6lHF90K3g4vnTx66XWXuJkt2UevV03VgW3CCMCLWW3m/4EnqHl7rB4JG8vF1p4dIKxhjlaj
- nxAIdpYJaSNYyioat9G1ImqCrYvA01tpmpsj3gdjCAwrxOrcb2gpNx1S7+wnMxdg+O1Nnfpf9kl zxOx1nMCfKRLUAD7lAw2V7MQ1DxTgDruZkzCXlJOkmJaUwcaMJ2DavxCK2z+Hvw95NH5go5P+uv 8rkYSZR1WllltKMZgqQR4HrSv+Ss7JO+5FayKBTi84IN2zWKyn4IaYmJ1EhRIRXfK/SbzikyEX3
- nxKtRhY0hogBliUvbBRdfweKQmNUPWlgE5hkqlTK8ITeSr0cy/S+VRU2FVFLTVkfBg+1E2JY
-X-Proofpoint-GUID: _7ALXlVP53ua1-rp-P5BFxVJoc9viP7i
-X-Original-Sender: martin.petersen@oracle.com
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <563d1da8-abd8-48e6-9aab-5a4f13859995@huawei.com>
+X-Original-Sender: gregkh@linuxfoundation.org
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@oracle.com header.s=corp-2025-04-25 header.b=IUmJFtM1;
-       spf=pass (google.com: domain of martin.petersen@oracle.com designates
- 205.220.177.32 as permitted sender) smtp.mailfrom=martin.petersen@oracle.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=oracle.com
-X-Original-From: "Martin K. Petersen" <martin.petersen@oracle.com>
+ header.i=@kernel.org header.s=k20201202 header.b=NFrRFAVO;       spf=pass
+ (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as
+ permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;       dmarc=pass
+ (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
+X-Original-From: Greg Kroah-Hartman <gregkh@kernel.org>
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -167,27 +150,98 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Fri, 30 May 2025 12:29:35 -0700, Alok Tiwari wrote:
+On Thu, Jul 03, 2025 at 10:16:58PM +0800, Li Lingfeng wrote:
+> Hi, Greg
+>=20
+> =E5=9C=A8 2025/6/18 19:01, Greg Kroah-Hartman =E5=86=99=E9=81=93:
+> > From: Greg Kroah-Hartman <gregkh@kernel.org>
+> >=20
+> > Description
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >=20
+> > In the Linux kernel, the following vulnerability has been resolved:
+> >=20
+> > scsi: iscsi: Fix HW conn removal use after free
+> >=20
+> > If qla4xxx doesn't remove the connection before the session, the iSCSI
+> > class tries to remove the connection for it. We were doing a
+> > iscsi_put_conn() in the iter function which is not needed and will resu=
+lt
+> > in a use after free because iscsi_remove_conn() will free the connectio=
+n.
+> >=20
+> > The Linux kernel CVE team has assigned CVE-2022-50031 to this issue.
+> >=20
+> >=20
+> > Affected and fixed versions
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+> >=20
+> > 	Fixed in 5.19.4 with commit 0483ffc02ebb953124c592485a5c48ac4ffae5fe
+> > 	Fixed in 6.0 with commit c577ab7ba5f3bf9062db8a58b6e89d4fe370447e
+> >=20
+> > Please see https://www.kernel.org for a full list of currently supporte=
+d
+> > kernel versions by the kernel community.
+> >=20
+> > Unaffected versions might change over time as fixes are backported to
+> > older supported kernel versions.  The official CVE entry at
+> > 	https://cve.org/CVERecord/?id=3DCVE-2022-50031
+> > will be updated if fixes are backported, please check that for the most
+> > up to date information about this issue.
+> >=20
+> >=20
+> > Affected files
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >=20
+> > The file(s) affected by this issue are:
+> > 	drivers/scsi/scsi_transport_iscsi.c
+> >=20
+> >=20
+> > Mitigation
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >=20
+> > The Linux kernel CVE team recommends that you update to the latest
+> > stable kernel version for this, and many other bugfixes.  Individual
+> > changes are never tested alone, but rather are part of a larger kernel
+> > release.  Cherry-picking individual commits is not recommended or
+> > supported by the Linux kernel community at all.  If however, updating t=
+o
+> > the latest release is impossible, the individual changes to resolve thi=
+s
+> > issue can be found at these commits:
+> > 	https://git.kernel.org/stable/c/0483ffc02ebb953124c592485a5c48ac4ffae5=
+fe
+> > 	https://git.kernel.org/stable/c/c577ab7ba5f3bf9062db8a58b6e89d4fe37044=
+7e
+> >=20
+> Based on the details described in the linked discussion, I have concerns
+> that this patch may not fully resolve the Use-After-Free vulnerability.
+> Instead, it appears the changes could potentially introduce memory leak
+> issues.
 
-> Correct the error handling goto labels used when host lookup fails in
-> various flashnode-related event handlers:
-> - iscsi_new_flashnode()
-> - iscsi_del_flashnode()
-> - iscsi_login_flashnode()
-> - iscsi_logout_flashnode()
-> - iscsi_logout_flashnode_sid()
-> 
-> [...]
+Great, then that is a different type of issue, and when fixed, would get
+a different CVE assigned to it.
 
-Applied to 6.16/scsi-fixes, thanks!
+> Given these concerns, I'd recommend =E2=80=8Brejecting this CVE until we =
+can
+> thoroughly investigate and validate the complete solution.
 
-[1/1] scsi: iscsi: fix incorrect error path labels for flashnode operations
-      https://git.kernel.org/mkp/scsi/c/9b17621366d2
+This fixes a known issue, why would it be rejected as such?  The only
+way we would reject this is if the upstream commit is reverted because
+it was deemed to not be correct at all.  If you feel this is the case,
+please work to get that commit reverted there first.
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+Otherwise just fix the new bug :)
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/174951883633.1141801.4572248277182090285.b4-ty%40oracle.com.
+thanks,
+
+greg k-h
+
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/=
+2025070318-slinging-germproof-7da9%40gregkh.
