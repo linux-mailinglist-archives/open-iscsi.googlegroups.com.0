@@ -1,143 +1,187 @@
-Return-Path: <open-iscsi+bncBCUJ7YGL3QFBBRNJTLBQMGQE3VUN7UQ@googlegroups.com>
+Return-Path: <open-iscsi+bncBCHZVHVFVMARB56MWPBQMGQE3NUSA6A@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-il1-x137.google.com (mail-il1-x137.google.com [IPv6:2607:f8b0:4864:20::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC55CAF7797
-	for <lists+open-iscsi@lfdr.de>; Thu,  3 Jul 2025 16:33:50 +0200 (CEST)
-Received: by mail-il1-x137.google.com with SMTP id e9e14a558f8ab-3ddbfe1fc8fsf192198105ab.2
-        for <lists+open-iscsi@lfdr.de>; Thu, 03 Jul 2025 07:33:50 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1751553226; cv=pass;
+Received: from mail-wm1-x340.google.com (mail-wm1-x340.google.com [IPv6:2a00:1450:4864:20::340])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C309AFC72A
+	for <lists+open-iscsi@lfdr.de>; Tue,  8 Jul 2025 11:35:57 +0200 (CEST)
+Received: by mail-wm1-x340.google.com with SMTP id 5b1f17b1804b1-4532514dee8sf28025275e9.0
+        for <lists+open-iscsi@lfdr.de>; Tue, 08 Jul 2025 02:35:57 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1751967357; cv=pass;
         d=google.com; s=arc-20240605;
-        b=TCtNIJFWoMXZkdiwF75X5I24xUxu36X+gG8er8PpY7Pt6MtdpHNOkTYIg8QnY+dkaX
-         Cj9jZtmq8Ww4GKWaAUEZo2IH4KVb6jv3/iSqYdJCbrMDKFe6mBptwtTGaotNvnbutyOy
-         J9HKJTHme8dCBy8HTMBtRzDrufgC7WKYRMoha2Mb+RqfkBaCRtUBzPQajlTFRkNg/zij
-         G7w1yOBhrfFM4HkZRwMoc5IsNOdc2LLTCVnRE0nMMAjnMl8JXn95oRmpeeQRFpjz5IaE
-         kK8I7LkHQGQugdDoRrIJXjeja68v/0HapyfSS4Tmz3rn5wEbOUb3YUNDhomgFZNBZyS/
-         AT8A==
+        b=G0+PTfT0tJAwHQB9vyPDInHGZc8SpVleUfDCBGnuNOc+IcTiqll6sVLL5zuDcFjv/X
+         oi5dkF24isEXNU8iy3E2PNZi8AVlKTln7Ly/ebpCYYFwJxBdn/VPmjgQPVIEvWmWkjz1
+         IKNxVNSCq6Qt0VzY475BgKOXIP7sS6hhA3k2GDVxZOLf4Ih57uXwhY0HvtRjeaOyPkC+
+         s6ZKfW9V3H8z6bf+UHb2JeE0OL5H34yBkUq0qHNNX/Ekbiw1BpMVPzxNcm8pBFZfANln
+         P9fF/718yJTv+uq+YMFlJBSfXGI1iXcyew2ZrCTIgJPf+BjOB5KK817I4FOC6/uBafS+
+         Wurg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:in-reply-to
-         :content-transfer-encoding:content-disposition:mime-version
-         :references:message-id:subject:cc:to:from:date:dkim-signature;
-        bh=ncAl1jTL0a53LMV7Tj2iFOqsDDJGgg025+B5u3fbDuA=;
-        fh=uimfhdGSzYFeebouTep8uEXbsJ8AWy9OcCy1E6iHjrw=;
-        b=TohYDa5VCwSxOGLS/t5iMCLCPg295dkqQxby6NtdX54EiutrHX3Wkpvcl15WvzJDHj
-         ZY8CWys1PWpvY/t6PoJsWeRIxbBTecoytg92qHPkULRX33wj6KIKdrjJlgP6a1cZnNzZ
-         gPaCbKVI2ASH0i4YCF80vDOaGrKT9eep7cZ2cxxhUdMjYCFP0zbTuBwoMgycbqogy49U
-         jLwSb4dgkmeqivSdPQ0QVQMj0kSUWTQaCIrBFqxvNq59xQGHtgtVAknDq7iAZmT3rwpp
-         B7hfekX7xf7F5sPU75uaxHbhuQWsPkwQ50DJnYnK5ZXK1B+ptpG4+e6PTUbWa4osjjrJ
-         DV3g==;
+         :mailing-list:precedence:reply-to:content-transfer-encoding
+         :in-reply-to:from:content-language:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:sender:dkim-signature;
+        bh=fkDn2fnLK5jnvWSoTOtHJeQB/aQb8QE4S2D6iC774M0=;
+        fh=43lH7UUdq1n5u2C9aemAC+gQ3wsO2ntzDlY3CFkbWUw=;
+        b=V2zBiNW1QWJugmPz+GAKbVI7pTVi2u+ZY8C1uj7EEi5NHfaS8O7bGFMUGvHjK5X7HK
+         +4xZynxWmDCQahQS11sPbsx59/M4pIXjc3EDkP2+IxDMqxwE8JY1TLo3APe4sx1oB+U3
+         bQ8e4uMCFBljnqL4IV4w1tUnPdIPqFsAJUNXwhd07lIkgAOrHbfDk+Yn11APJMWge5gJ
+         g9VkxUJGcAupYOGTisbEKIE8sr/FnkO2mtJCybh6AXLuTYDiVF5FeJfZ7bUWeSr/H2+f
+         jPKHnT4jp6a4UPoYU6Pnx+bJrZRoB6OSMlN+SYXVt9khwMKg36WCVl+WBvr5zvudAi7P
+         Ze5g==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=NFrRFAVO;
-       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
+       dkim=pass header.i=@suse.de header.s=susede2_rsa header.b=TBGUZV5i;
+       dkim=neutral (no key) header.i=@suse.de;
+       dkim=pass header.i=@suse.de header.s=susede2_rsa header.b=TBGUZV5i;
+       dkim=neutral (no key) header.i=@suse.de;
+       spf=pass (google.com: domain of hare@suse.de designates 2a07:de40:b251:101:10:150:64:2 as permitted sender) smtp.mailfrom=hare@suse.de;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1751553226; x=1752158026; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1751967357; x=1752572157; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ncAl1jTL0a53LMV7Tj2iFOqsDDJGgg025+B5u3fbDuA=;
-        b=hiWyJSN5xSsRE7lwKzkIawwfwVKWZ+B0TeEK+4HlvEbEXaK0dClciN+Ud/4GaHEvvO
-         0Hy6Rfoegflp5IgdX6l9r1JewR2VTeVFxTjrC6Y1Ew7B+TLenRtoNjQNn4cVDpRpDhCA
-         JbDT+ONQYfJrtyOM/tRHqW9zzDIe13OwKIaJin1HvqldPY4B9iSQ0GP8lLVA4w7Edwbu
-         0fVXtFBvaFqoNebCdWLUabH4pEXDMRRntKk04R5d+MQB+jJvitsfrDZFu5bLfUW2nyi+
-         hH8pFphHcWLOwC1uuAqTNnrYq4vrZtfYX10Qri43/B/WC9JSMXao3DAA+dpNxXeL9rf4
-         hEBQ==
+         :x-original-sender:content-transfer-encoding:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=fkDn2fnLK5jnvWSoTOtHJeQB/aQb8QE4S2D6iC774M0=;
+        b=OEKP/hhK3S2dddbKyC+3eTFpxKO2pwnJzLpq1T4cEy+f42S4eFvucRZxWoi0HncgAW
+         0PBHPdtJSjuhkQotOTRiHRQf2gpFX7FDfeGQnRwY/e+/HokFC6I4mKR4Gi7zXKh9XsDc
+         hX4AHpCfha5l95ua0lM4aR3CKSK99jP7thULhW1WFvzek+Njp+QHehO+YJUHRiDuNKsl
+         n+p6ybdvDMx5R5TC8Zy+SNS16plq5typBTDpyFT+fcPeZeJ3RL0insEcRBaJlZhrIo2/
+         SUtDaM1A3J0Rr3XPdZt3z7hIEuhpLHx4oo1HJ2gkqZwE6zIKN1mPobBBDCZOdyUNdbwz
+         elmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751553226; x=1752158026;
+        d=1e100.net; s=20230601; t=1751967357; x=1752572157;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:in-reply-to
-         :content-transfer-encoding:content-disposition:mime-version
-         :references:message-id:subject:cc:to:from:date:x-beenthere
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ncAl1jTL0a53LMV7Tj2iFOqsDDJGgg025+B5u3fbDuA=;
-        b=EDTQclx8GwoIn/BGETum8bFxns2VfXDJM/adKRfVTWQBTxPCZSdVEigAM0Aks8L7oJ
-         3+E1PavcofqQEEb+wNCpE3yVDAynQ/8p8b9j0iWEmDiUnKoPR2MUbeywACvEQbgSqCkk
-         uKRNGTcbfWd7R+yLDzw6aPG9iRiKCGueX3BlFJXhPtafWqsrQ4YKYlkF6GbtIU4U5u5k
-         xySRosDcv79cDx9riZ0M6cbeN9bHPtCMtUAWWm7ro/zXSdCvBAG1B5Q2PJfpNSqTLp0A
-         3UfyFprZftLe9XsW5keFPrN8LR3GFeLvGGFjb7pGx1sbPe6vKYuOKPJi7U4LUDngk6Xm
-         twZQ==
-X-Forwarded-Encrypted: i=2; AJvYcCXNfFXpk+dlRbxltHNPYir4QJEY1Eb+o+idVKIZwy1nb8b+rSjeUUZtbJa9+67mqYJN+0+SXQ==@lfdr.de
-X-Gm-Message-State: AOJu0Yzol/BubmOZ2JswBapcmUd2godajRHkK6nnbwx50WqMoDtk3JTT
-	Fc2ECgajSlGvqpLIUq49RO62ceDvcecmKWeAy1rAZKURtMhp9BpPHboq
-X-Google-Smtp-Source: AGHT+IEe3htUYFTptI8eZUqsVxdNjX12JF5x1NdKWt3MUEC6t1EheslFPak1f/ejMDIoU6kjqvnwDw==
-X-Received: by 2002:a05:6e02:1a6f:b0:3df:3464:ab86 with SMTP id e9e14a558f8ab-3e054973fbemr82796365ab.9.1751553225394;
-        Thu, 03 Jul 2025 07:33:45 -0700 (PDT)
-X-BeenThere: open-iscsi@googlegroups.com; h=AZMbMZe+F1LF2NPNRYoHmBUUnA2F2AeHOlUcKCppqzileW27rQ==
-Received: by 2002:a05:6e02:4708:b0:3de:12e2:fba4 with SMTP id
- e9e14a558f8ab-3e0d222357als578195ab.0.-pod-prod-02-us; Thu, 03 Jul 2025
- 07:33:40 -0700 (PDT)
-X-Forwarded-Encrypted: i=2; AJvYcCU82Q3N+BTzBpJhZ8bqspD+AFAM7sRyW2TmIcKwmMcnElFrvnRqfCZfWQPgiuyaJgTgFH41G2kKsU9L@googlegroups.com
-X-Received: by 2002:a05:6602:7518:b0:86c:f893:99da with SMTP id ca18e2360f4ac-876c693025dmr833765339f.0.1751553219939;
-        Thu, 03 Jul 2025 07:33:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1751553219; cv=none;
+         :x-original-authentication-results:x-original-sender
+         :content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fkDn2fnLK5jnvWSoTOtHJeQB/aQb8QE4S2D6iC774M0=;
+        b=nBcpHni5CpRSPxORTQkUsMobGOIgDh0L7qbwmTABqa5IBsws9fmtfx2cdd/lhWCLLa
+         MifWi1gsn1KbmEZC5EY+aSn1Jxu/fBrgB36iOO23gxAuMPN4MKjftALvORrTX7UeX2DF
+         IXWUrDGMQ5527yM+Lz1okCh7GBxcJ+DPmuma6GrsjnN6KojRNOucDZo28UGYLk4h5y0U
+         oBq4Wx+NuPdcmXa7sqQxgICNDOlUpy8/cGGA4cbDuoDPbz8drlR+D8UOjw86ZJoom2xG
+         pD95ZsMOYp2lOoxZfw3NlNHQgEvCOUojB6juMCKmdaYtCL6Dj4LyE4e+4VNAhhb5U4xx
+         ae3A==
+Sender: open-iscsi@googlegroups.com
+X-Forwarded-Encrypted: i=2; AJvYcCUlYqu3KeN/6TE1hwhMhtCcLhvUO6Xa/HQJGBZSfUoGrG3Fn1Cd9QL0Lu9eBU8VngUq2UihPA==@lfdr.de
+X-Gm-Message-State: AOJu0YxNnE2iejaDoYlKGsN2nhZgLCtdea9aT5xqR83b5VwlAKm1bqls
+	AyyT+sKBGy2HPR4eEy0uungcHZsLdAcunoN8Z4XJb9cYJlJCJ5Yf6yFC
+X-Google-Smtp-Source: AGHT+IHfnt7pAZhDYTJEtjnw8fnvUZcSB4zMkbIBZaj6d/Si4lfqdY1/CNyHlPBhbxXztV2pDcLYww==
+X-Received: by 2002:adf:b651:0:b0:3a5:2a24:fbf5 with SMTP id ffacd0b85a97d-3b5dde679d6mr1373859f8f.18.1751967356699;
+        Tue, 08 Jul 2025 02:35:56 -0700 (PDT)
+X-BeenThere: open-iscsi@googlegroups.com; h=AZMbMZeF4j62yh1CatcFTTSmkFL4bcJ9saaBv8/Y5QpWpH3g0g==
+Received: by 2002:a5d:5d87:0:b0:3a4:bfde:c058 with SMTP id ffacd0b85a97d-3b49759211els1674973f8f.2.-pod-prod-02-eu;
+ Tue, 08 Jul 2025 02:35:49 -0700 (PDT)
+X-Received: by 2002:a05:6000:218a:b0:3a5:527b:64c6 with SMTP id ffacd0b85a97d-3b5dde59bfemr1448250f8f.1.1751967349160;
+        Tue, 08 Jul 2025 02:35:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1751967349; cv=none;
         d=google.com; s=arc-20240605;
-        b=j19PMwYGhk8G5eDgCzm1WeByMg6oIlZWoTDBDA6LFE9nr13qOv8pK+HNO/lkpzcXh7
-         xk5NHxWgn/olXP4O1bC6Zete7m1l1/eUxstqdqEzy7yqvvKLvJMy2fRY6FuQ85n6DU/L
-         6ilFDlq/O4/eq+cgVBbm1E5kGvTZ4k2oijK7nuKR/xizmTcq3Swdfi/YrcRX4wsrG3FE
-         selFdEb3q//spgQF1KyfI79JuvoaE7UeuhP5BDZ4eN4oFVAiO7qkMESXElX+DeuqrB9P
-         2Zb0+xOY2mKdOnMxd40YFvzBAHgR8HNm87bWCiYZBZbaj2Ad6RRjQUDQqJ84QJ7He7ys
-         WzZw==
+        b=GARzjOMLTMs5AiGEQq3WlEdPYueSpNN+T0C427uE9z4BPmnpRfbiCmZnzk1BVSzV1+
+         5IuqjKDtE1fope6MZzSEMNf5vKfzCUspVHFaN39rpODx/sCmKedGJ7urF2xxc4M3tJV9
+         DRruIhNQYpDU2dezQW+TgfvPdEJ42/2HfdRep7O8uEhupbpLcGaJM5WIW2aWo5ZQIYqn
+         Yl1UmcYf5bnhtml0GfVlImNLFQEid2b55u13pPPUfjreCwJ6u2CvmO2oKYgxI2RmeT8X
+         y+KpV2uwxkYsW42pdr612Hy5vGpMLOaIrK6dodHk/NtTGb9Z2+P+BGPuy4OfeJC20FUw
+         ZQGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :dkim-signature;
-        bh=Ji3rhVag8fcLnvqw0eG7l+xLIeeq1UGJn46b2lH/seQ=;
-        fh=Kderfs8if28WxXsUuqMF/NnWX6pdr8gUBFLFdpURysA=;
-        b=VHIeKDsurTxMDkJlCl8gvf9SsrslR1rEAUs0CHfaltAUUZCbCydevHXjiyBOPzXK2G
-         6ZYWvGh24suL4WUJQ3HWJ3pXiLl0QyEPqnFENuDIHw7G9iNfZQcjjsrt3CIBG34Kz5NK
-         NuPCMuThb2OUpQQBX6hFQjth4/26eOeO7hp75iS82E9Z1odH47Thabnp07CuvRp6o/0l
-         +WLd9rXjtbMWftVivGkLdEMMKOCi/EjeAi1WxlOhpjaJ16GRJdgAlKZmooevqvP5+d/k
-         ORRj3/OcRv8BYGWm05sWwiVEq6hXLHfq/dUdx4AfN0zioQf+HwDT3Cu5k1LbdoKHXI5n
-         Lk2w==;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :dkim-signature:dkim-signature:dkim-signature:dkim-signature;
+        bh=vIxAswFeaHobv02Z87+NVJayVXKDYgbUBdW4cNF67+M=;
+        fh=tkgkuBYYVwvjkDXCNus7+fKV83xMe/ewsAte6UXu54w=;
+        b=WuJFyD/4nqD9gYB8++RlP1+hMRZyQRke6wxMMhInRyH+TgnlYD16ykpYclhfAkXDPp
+         WZTo20HCOd/pCBqA4MGSzUYu8zuzoJPRNpSM+qKwK0wUCe/6HrQyXGrqPOmHwdsj4TEI
+         iGAXcT/qsYiJxaHP/gc/ESr+dajdKvVlbkEepcw4fyNwoLaDDHPu62/zx1VSqhTSXqp5
+         bC1+CjyE9bIePHWwkfoOt88IPpcYoG9KJOXnWUrbJdoqZm5H55xn1GfCDOkliQO5nk2V
+         rqisEYxeIbeaBrTq+cZot5GtJzgA4/PMuNgAYAZUYUxwhJ2fLwPGhqpDAqR86JPgCa97
+         Vujw==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=NFrRFAVO;
-       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org. [147.75.193.91])
-        by gmr-mx.google.com with ESMTPS id ca18e2360f4ac-876c5b1cf82si20917839f.2.2025.07.03.07.33.39
+       dkim=pass header.i=@suse.de header.s=susede2_rsa header.b=TBGUZV5i;
+       dkim=neutral (no key) header.i=@suse.de;
+       dkim=pass header.i=@suse.de header.s=susede2_rsa header.b=TBGUZV5i;
+       dkim=neutral (no key) header.i=@suse.de;
+       spf=pass (google.com: domain of hare@suse.de designates 2a07:de40:b251:101:10:150:64:2 as permitted sender) smtp.mailfrom=hare@suse.de;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.de
+Received: from smtp-out2.suse.de (smtp-out2.suse.de. [2a07:de40:b251:101:10:150:64:2])
+        by gmr-mx.google.com with ESMTPS id 5b1f17b1804b1-454cd486556si547835e9.0.2025.07.08.02.35.49
         for <open-iscsi@googlegroups.com>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 07:33:39 -0700 (PDT)
-Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as permitted sender) client-ip=147.75.193.91;
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 51B71A53851;
-	Thu,  3 Jul 2025 14:33:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F9F7C4CEE3;
-	Thu,  3 Jul 2025 14:33:38 +0000 (UTC)
-Date: Thu, 3 Jul 2025 16:33:34 +0200
-From: "'Greg Kroah-Hartman' via open-iscsi" <open-iscsi@googlegroups.com>
-To: Li Lingfeng <lilingfeng3@huawei.com>
-Cc: cve@kernel.org, linux-kernel@vger.kernel.org,
-	linux-cve-announce@vger.kernel.org, lduncan@suse.com,
-	cleech@redhat.com, Mike Christie <michael.christie@oracle.com>,
-	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com,
-	open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
-	yangerkun <yangerkun@huawei.com>,
-	"zhangyi (F)" <yi.zhang@huawei.com>, Hou Tao <houtao1@huawei.com>,
-	"yukuai (C)" <yukuai3@huawei.com>,
-	"chengzhihao1@huawei.com" <chengzhihao1@huawei.com>
-Subject: Re: CVE-2022-50031: scsi: iscsi: Fix HW conn removal use after free
-Message-ID: <2025070318-slinging-germproof-7da9@gregkh>
-References: <2025061839-CVE-2022-50031-f2bc@gregkh>
- <563d1da8-abd8-48e6-9aab-5a4f13859995@huawei.com>
+        Tue, 08 Jul 2025 02:35:49 -0700 (PDT)
+Received-SPF: pass (google.com: domain of hare@suse.de designates 2a07:de40:b251:101:10:150:64:2 as permitted sender) client-ip=2a07:de40:b251:101:10:150:64:2;
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 554F21F443;
+	Tue,  8 Jul 2025 09:35:48 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1A93C13A54;
+	Tue,  8 Jul 2025 09:35:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id nyUABXTmbGg4bAAAD6G6ig
+	(envelope-from <hare@suse.de>); Tue, 08 Jul 2025 09:35:48 +0000
+Message-ID: <c72cc8b7-f55d-4691-9161-c20d07fde99e@suse.de>
+Date: Tue, 8 Jul 2025 11:35:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] pps: Fix IDR memory leak in module exit
+To: Anders Roxell <anders.roxell@linaro.org>, lduncan@suse.com,
+ cleech@redhat.com, michael.christie@oracle.com,
+ James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com
+Cc: open-iscsi@googlegroups.com, linux-scsi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, arnd@arndb.de
+References: <20250704125536.1091187-1-anders.roxell@linaro.org>
+Content-Language: en-US
+From: Hannes Reinecke <hare@suse.de>
+In-Reply-To: <20250704125536.1091187-1-anders.roxell@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <563d1da8-abd8-48e6-9aab-5a4f13859995@huawei.com>
-X-Original-Sender: gregkh@linuxfoundation.org
+X-Spamd-Result: default: False [-4.51 / 50.00];
+	BAYES_HAM(-3.00)[99.99%];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	TO_DN_SOME(0.00)[];
+	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:mid,suse.de:dkim,suse.de:email]
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Rspamd-Queue-Id: 554F21F443
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -4.51
+X-Original-Sender: hare@suse.de
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=k20201202 header.b=NFrRFAVO;       spf=pass
- (google.com: domain of gregkh@linuxfoundation.org designates 147.75.193.91 as
- permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;       dmarc=pass
- (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
-X-Original-From: Greg Kroah-Hartman <gregkh@kernel.org>
+ header.i=@suse.de header.s=susede2_rsa header.b=TBGUZV5i;       dkim=neutral
+ (no key) header.i=@suse.de;       dkim=pass header.i=@suse.de
+ header.s=susede2_rsa header.b=TBGUZV5i;       dkim=neutral (no key)
+ header.i=@suse.de;       spf=pass (google.com: domain of hare@suse.de
+ designates 2a07:de40:b251:101:10:150:64:2 as permitted sender)
+ smtp.mailfrom=hare@suse.de;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=suse.de
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -150,93 +194,60 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-On Thu, Jul 03, 2025 at 10:16:58PM +0800, Li Lingfeng wrote:
-> Hi, Greg
+On 7/4/25 14:55, Anders Roxell wrote:
+> Add missing idr_destroy() call in pps_exit() to properly free the pps_idr
+> radix tree nodes. Without this, module load/unload cycles leak 576-byte
+> radix tree node allocations, detectable by kmemleak as:
 >=20
-> =E5=9C=A8 2025/6/18 19:01, Greg Kroah-Hartman =E5=86=99=E9=81=93:
-> > From: Greg Kroah-Hartman <gregkh@kernel.org>
-> >=20
-> > Description
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >=20
-> > In the Linux kernel, the following vulnerability has been resolved:
-> >=20
-> > scsi: iscsi: Fix HW conn removal use after free
-> >=20
-> > If qla4xxx doesn't remove the connection before the session, the iSCSI
-> > class tries to remove the connection for it. We were doing a
-> > iscsi_put_conn() in the iter function which is not needed and will resu=
-lt
-> > in a use after free because iscsi_remove_conn() will free the connectio=
-n.
-> >=20
-> > The Linux kernel CVE team has assigned CVE-2022-50031 to this issue.
-> >=20
-> >=20
-> > Affected and fixed versions
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-> >=20
-> > 	Fixed in 5.19.4 with commit 0483ffc02ebb953124c592485a5c48ac4ffae5fe
-> > 	Fixed in 6.0 with commit c577ab7ba5f3bf9062db8a58b6e89d4fe370447e
-> >=20
-> > Please see https://www.kernel.org for a full list of currently supporte=
+> unreferenced object (size 576):
+>    backtrace:
+>      [<ffffffff81234567>] radix_tree_node_alloc+0xa0/0xf0
+>      [<ffffffff81234568>] idr_get_free+0x128/0x280
+>=20
+> The pps_idr is initialized via DEFINE_IDR() at line 32 and used throughou=
+t
+> the PPS subsystem for device ID management. The fix follows the documente=
 d
-> > kernel versions by the kernel community.
-> >=20
-> > Unaffected versions might change over time as fixes are backported to
-> > older supported kernel versions.  The official CVE entry at
-> > 	https://cve.org/CVERecord/?id=3DCVE-2022-50031
-> > will be updated if fixes are backported, please check that for the most
-> > up to date information about this issue.
-> >=20
-> >=20
-> > Affected files
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >=20
-> > The file(s) affected by this issue are:
-> > 	drivers/scsi/scsi_transport_iscsi.c
-> >=20
-> >=20
-> > Mitigation
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >=20
-> > The Linux kernel CVE team recommends that you update to the latest
-> > stable kernel version for this, and many other bugfixes.  Individual
-> > changes are never tested alone, but rather are part of a larger kernel
-> > release.  Cherry-picking individual commits is not recommended or
-> > supported by the Linux kernel community at all.  If however, updating t=
-o
-> > the latest release is impossible, the individual changes to resolve thi=
-s
-> > issue can be found at these commits:
-> > 	https://git.kernel.org/stable/c/0483ffc02ebb953124c592485a5c48ac4ffae5=
-fe
-> > 	https://git.kernel.org/stable/c/c577ab7ba5f3bf9062db8a58b6e89d4fe37044=
-7e
-> >=20
-> Based on the details described in the linked discussion, I have concerns
-> that this patch may not fully resolve the Use-After-Free vulnerability.
-> Instead, it appears the changes could potentially introduce memory leak
-> issues.
+> pattern in lib/idr.c and matches the cleanup approach used by other drive=
+rs
+> such as drivers/uio/uio.c.
+>=20
+> This leak was discovered through comprehensive module testing with cumula=
+tive
+> kmemleak detection across 10 load/unload iterations per module.
+>=20
+> Fixes: eae9d2ba0cfc ("LinuxPPS: core support")
+> Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
+> ---
+>   drivers/scsi/scsi_transport_iscsi.c | 1 +
+>   1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/scsi/scsi_transport_iscsi.c b/drivers/scsi/scsi_tran=
+sport_iscsi.c
+> index c75a806496d6..adbedb58930d 100644
+> --- a/drivers/scsi/scsi_transport_iscsi.c
+> +++ b/drivers/scsi/scsi_transport_iscsi.c
+> @@ -5024,6 +5024,7 @@ static void __exit iscsi_transport_exit(void)
+>   	class_unregister(&iscsi_endpoint_class);
+>   	class_unregister(&iscsi_iface_class);
+>   	class_unregister(&iscsi_transport_class);
+> +	idr_destroy(&iscsi_ep_idr);
+>   }
+>  =20
+>   module_init(iscsi_transport_init);
 
-Great, then that is a different type of issue, and when fixed, would get
-a different CVE assigned to it.
+Errm.
+The description doesn't match the patch.
+Care to fix it up?
 
-> Given these concerns, I'd recommend =E2=80=8Brejecting this CVE until we =
-can
-> thoroughly investigate and validate the complete solution.
+Cheers,
 
-This fixes a known issue, why would it be rejected as such?  The only
-way we would reject this is if the upstream commit is reverted because
-it was deemed to not be correct at all.  If you feel this is the case,
-please work to get that commit reverted there first.
-
-Otherwise just fix the new bug :)
-
-thanks,
-
-greg k-h
+Hannes
+--=20
+Dr. Hannes Reinecke                  Kernel Storage Architect
+hare@suse.de                                +49 911 74053 688
+SUSE Software Solutions GmbH, Frankenstr. 146, 90461 N=C3=BCrnberg
+HRB 36809 (AG N=C3=BCrnberg), GF: I. Totev, A. McDonald, W. Knoblich
 
 --=20
 You received this message because you are subscribed to the Google Groups "=
@@ -244,4 +255,4 @@ open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to open-iscsi+unsubscribe@googlegroups.com.
 To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/=
-2025070318-slinging-germproof-7da9%40gregkh.
+c72cc8b7-f55d-4691-9161-c20d07fde99e%40suse.de.
