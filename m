@@ -1,144 +1,150 @@
-Return-Path: <open-iscsi+bncBDTZTRGMXIFBBG4GZDCAMGQE2XP4BDI@googlegroups.com>
+Return-Path: <open-iscsi+bncBC7KRMXASEIRBGXJZTCAMGQEWWBDHYQ@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-oa1-x3b.google.com (mail-oa1-x3b.google.com [IPv6:2001:4860:4864:20::3b])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0553DB1B446
-	for <lists+open-iscsi@lfdr.de>; Tue,  5 Aug 2025 15:12:00 +0200 (CEST)
-Received: by mail-oa1-x3b.google.com with SMTP id 586e51a60fabf-2feec31ffd9sf2315075fac.0
-        for <lists+open-iscsi@lfdr.de>; Tue, 05 Aug 2025 06:11:59 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1754399518; cv=pass;
+Received: from mail-ej1-x639.google.com (mail-ej1-x639.google.com [IPv6:2a00:1450:4864:20::639])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20E31B1C491
+	for <lists+open-iscsi@lfdr.de>; Wed,  6 Aug 2025 12:55:29 +0200 (CEST)
+Received: by mail-ej1-x639.google.com with SMTP id a640c23a62f3a-af954fb1c4fsf240103366b.3
+        for <lists+open-iscsi@lfdr.de>; Wed, 06 Aug 2025 03:55:29 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1754477728; cv=pass;
         d=google.com; s=arc-20240605;
-        b=H7L22JzO6QyO3fajL2UHVxM5ilSkuIpERW9xR/SdYPfAKoApU5hBiC7UjbGG7C/ZeS
-         Na4Pz0QjCNMDDVhSxfIpjtFUyrZMD1QUUU2In5MFSV2yUCTZ/rIZQZ4g+9ih/yOCNBLm
-         0GL9gEI90v/tr2Xkga8Qb/AF9kwYMy6IndIU0M/1QQKHVI5sTylxe96L3NEa6gLcnn63
-         4aa7AklZ41u8qk5Pf6AF4+GhyNeCyVGJrhB/VQHzTXs+F2zKk1l1DwrPSWku7Lbpptic
-         tgbHgjP8HWCp2Wco8IYxr8r48GIBTP+45Kemaf2MxKYlapIKlHZ6BP9Y9TGt+WcJXVdb
-         D8tw==
+        b=dtPKN1vGeWlQfaSGnZZL8ZZlhhNKE6IwJPhSyu1BfAJnwVBSQ0lgsPLRS6eHsbMLQF
+         KbaMchxHgrZYYA2xBoFgiWeM1cJ9C6JF071tSDS4h1o+y/mWhMtPAkyDScxBfa5GbB13
+         ijmqgu9A0qt1wNs+XDqPRJlSmxDphPZT+KZ6v+tomWC84X+nsheelpV1GEyzFgt25hvO
+         8SQQbbCow1MCTgDJvYM5RjT3gVhOqHHOFk2do0ri5tGje6Fw6c9vmoAFpKe/7Cpo6PMT
+         sh6l3SHr6ZR/+kQitSEPrSxsz6J/aphgzBkrYUWfz/M3stjT4BKzhSs0qWZTohh3PdG9
+         hYYA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:dkim-signature;
-        bh=rOf1NyAWMuiI20/ur3C2mp7ZmsfLnCwW1bckNNoDpOw=;
-        fh=f1XSH87/QzbUhm+W/xGazrLR1nruqUd5fR52+HYnMeA=;
-        b=bqCwr0XomXbvdFjjjaghxz3EuDpv6r1/H8833/pNTIhPjh+ZiswPbBFj/JC5Bkzlog
-         LmN1FTOsNVVZu+Fw8fGemFkeGQBP7sZGlld17To8Uk1nihXSKrdjyBx/fbgXDIqwvLdL
-         767BNC1jvxUyFy6ziRE+vXXEVSAQ+upC5rQitlpf67bEfbm5/UAs/XWdjwV9hORNkVJP
-         p290AMsrhwVrl3mnhZPoqtMNTT5Ez8qD84tZw6V40nzB92m+WjBrTr4rq8gL8CDNIZdw
-         gKMh+ek2KsMtvECHPSloym2JDBP9Ne6WSeHV6fyJpnx7cS/ydRZjNqqm2da9b7WNfnAg
-         5A2w==;
+         :mailing-list:precedence:reply-to:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:sender:dkim-signature
+         :dkim-signature;
+        bh=QWw02zZv9X+NsrzhpDbuNF/lcEJJx4u0GE8b4HTda2c=;
+        fh=v07ELdIPx2+cP8SQ2JS8+OgOeTTd79i64dqMXpp3Cl0=;
+        b=LphtOUZojPTKgwiufxJrHoYu1jF5jPng5km1uOD8hntjGOid7Z/mEEaqwLim90n6bd
+         VYXQKk/zP9U4ZlR4aZPigT9JOVxIa4607/szJ25gGH6qqVRkyFTSFUICuTuK7P9mTvXf
+         cOxJIBe5Hwj6SfB0PPA2rSz5fHfVneksNw19nFyWc8gJxEiC8ZXxYVMDAhu5EfOkdWQE
+         QQMPrxvnOyZ8YGmv8Hm3L6uYm+yOn/MEjqxKIgTyH/YBBcskeHSCdZ1P3/4HNAbtuHez
+         /NtWeYOylGsmmOeuanQrtWr4XL7F0ThwM/GBpkIDJY8Hn0NhA/3uz45h8RxKYbAHqKcY
+         4j2w==;
         darn=lfdr.de
 ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=KeX1sK3h;
-       spf=pass (google.com: domain of sashal@kernel.org designates 172.234.252.31 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=Ij5qTYwp;
+       spf=pass (google.com: domain of csnitish521@gmail.com designates 2a00:1450:4864:20::42d as permitted sender) smtp.mailfrom=csnitish521@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@googlegroups.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1754399518; x=1755004318; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1754477728; x=1755082528; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
          :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:mime-version:references:in-reply-to:message-id
-         :date:subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOf1NyAWMuiI20/ur3C2mp7ZmsfLnCwW1bckNNoDpOw=;
-        b=nE4qKQMHQcQqUW/l3Iy6dtKZ6BKs55BviW4Bw3uaAyh2VVJDXvS/zkRawOUW6yvaCZ
-         OYoIdk3KkpXaWAmiMKRWtO4iLySX8nHZUe1CZd//u05+PU07tcX+3NMMTGewx/TixJej
-         T6o4Led2fMnzufG59jyTOro5tfM0kAA6g4mFhq+wYaNGagBGezb+8f0IDHvjoO9rmz6o
-         c/nxlT7Dxew03T7Cb7CkNCvw+06VCQ1wiU6fs31JLSkJIFrkAFBi2zKvyARW7A+ntco3
-         DdKd+R1gq7ghI1YKsydSy/ppx4VfnqQOCkv5ToNjR83smx5QXgbaTz4fkaPR4XNaGeyJ
-         Nu5A==
+         :x-original-sender:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QWw02zZv9X+NsrzhpDbuNF/lcEJJx4u0GE8b4HTda2c=;
+        b=oSfE9FfLH4SlsnBKgwqnMkfBczqJwKdK4u2pH5KtLnEQLIS6StxoWC6vWPVoOkmiQz
+         WIRzsg/bCwy0h/G50ZFNiNUalP+feWYVQSyqXRviU4XKfWIZu662s4et87ZBXHF1X6Ms
+         Oxzbx6jPdEBMbkdqb6CYUwvPC4CfLEWLEw9OZrc6xcuDgksLCwllFr5pTxLlDN8+FTWt
+         mvY8fvCRKNZjIXJx35ciMv609gud89tViapXMrV8y4865i+U14hmKEDo/VLgVRfWDP8M
+         g67wkdMgV83V3IDZUPcNQ2PEfVwQKh3m1MjDxgxw4WUoKk1we6CLhCCO9D4NZ8/qgc9j
+         KhPQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754477728; x=1755082528; darn=lfdr.de;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:reply-to:x-original-authentication-results
+         :x-original-sender:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QWw02zZv9X+NsrzhpDbuNF/lcEJJx4u0GE8b4HTda2c=;
+        b=HWTz7g2d6GotarDQZcex3loWMKJzIyHZV7kImSowMsjXAQMCXh/s4IszsSBjvMPc+l
+         8V5QWL+UOzQVmw9wFNuu06FWPh+ie9WrYzAqiztQQV3AUQHyyd48U35/n0SNO7hUy1/0
+         /81fK1IOiU2cwZST0K+IZufnJXB/MvRR7Bkiz6VNWpyUnW30wfDbt97oknisCTs/JkLD
+         7thjDq/Gmc2SGp58vO1/jAb6IUv8yobPsSxK2+P8IkcedTT7QqaeNLyfUYMmBrk7Y+5x
+         Wn58/Z/YRFe7zHSFLjoblLT5jBvEMomiWy8rwQObPlgA5LHm55XvOGVDNwcOmg+aAVp2
+         2/nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754399518; x=1755004318;
+        d=1e100.net; s=20230601; t=1754477728; x=1755082528;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:mime-version
-         :references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-beenthere:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rOf1NyAWMuiI20/ur3C2mp7ZmsfLnCwW1bckNNoDpOw=;
-        b=l3ofgouu2ftupoCZAiCQ+jjvQgkDwYaaSUKOe5Dma/hxYnQxm3PdH3XIj+wht4nRpU
-         gvBUIbA1oiBQMaTGSWAORBQKXFQui7XZrda+oefiXsDL12hHBcqljGcMUucjF5X/p1nW
-         N7LUG64DgS2QVOVT4zyBTDtAThRr/Xq+VPGPqjEByeIJmMh6NI2BTu+4rZnfWOza/lp3
-         8AWRlAxkhmgzbkHPgAe1T+sO7uqnWQgNX3SBUUMGj7iN+fWDvcTwnLKT71kQvTFm8M5A
-         ujftooJbP8WnkLPN8HU6y1Myk00VaS47mJWbihxeUTk6DPg2hP2gxBu/tnjgu7YEpz4V
-         XIFA==
-X-Forwarded-Encrypted: i=2; AJvYcCV6HegqMlV17/FnmqXXZmS+yJM37CmZ1xe5InXhfzFgb/xfznbAZWQaBOYZuZpCY5D6/uaIOg==@lfdr.de
-X-Gm-Message-State: AOJu0YzcZSDWh6u8UXW8NzkeT5zUX9rFHJ7tKSIxmsh8qz1d7qS95Mwp
-	WPY/jAgGI79LnJe5N/6EI1E0f7oBR0udFB+0sHoeabG0RCH+Ow623QZp
-X-Google-Smtp-Source: AGHT+IFgZkQKXEGI0zr8suZtoCT3ptK8jQV+R0NwV2d+ma9uGJdI4UcF2tqPcOt5L+GBQ7FTCqUEAw==
-X-Received: by 2002:a05:6870:2391:b0:2e8:f5d4:607f with SMTP id 586e51a60fabf-30b679e6090mr7834276fac.26.1754399518423;
-        Tue, 05 Aug 2025 06:11:58 -0700 (PDT)
-X-BeenThere: open-iscsi@googlegroups.com; h=AZMbMZe2b9CgU5CgsNcfhp3GzMq2N/zErHhAvpwcBG4Ct6FhHg==
-Received: by 2002:a05:6870:c0ce:b0:30b:d237:4ffd with SMTP id
- 586e51a60fabf-30bd2382f78ls147133fac.1.-pod-prod-04-us; Tue, 05 Aug 2025
- 06:11:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=2; AJvYcCXvucJGKOdEy8sgh+Y/gOnGnX11fdcFm/bVfsVLcboO5F2pMZRDREGttXiKzJspEaHQ4tpk1MsFhd2Z@googlegroups.com
-X-Received: by 2002:a05:6871:538f:b0:30b:522a:71af with SMTP id 586e51a60fabf-30b6793c14cmr7197451fac.20.1754399513996;
-        Tue, 05 Aug 2025 06:11:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1754399513; cv=none;
+         :x-original-authentication-results:x-original-sender:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version
+         :x-beenthere:x-gm-message-state:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QWw02zZv9X+NsrzhpDbuNF/lcEJJx4u0GE8b4HTda2c=;
+        b=fK2ZOqPML7a39rt3X6C8SoCheyy3W98okHS/L0MeQhdvsjdMWhGrnkanE1oxiMFQB0
+         W0TzXuzkmoM08qa+EJMf9UZvoHOKc+DVB7MmvCLYhBCOEuyoZcjpKTGmPB245ge4WjL2
+         7KfyzS6Ko1Pk0jGslYrCcaP9o7X5ivqIr5EmueciDx7puUaCDhhKANdYFl8xzdvlxKX/
+         UmTPu565m14O1SzSkJ0NlKXXX5REqdg+mMSdXxWPuI9Q6GSABpZym76DV0Cfj+6Fz1bk
+         gvgEZn3f+Mg1P5syj4DRE6m63aDPMvcWP/n7hizZWqyN6Rk/LLa7m4Ws9TZn+wiUK++A
+         kaew==
+Sender: open-iscsi@googlegroups.com
+X-Forwarded-Encrypted: i=2; AJvYcCXL5+jakKUOz6CCciqcgKf+32B97e31lAPvENwhu5PlT6DSsicaG6GnVMR50fVLCYg1vQRK5w==@lfdr.de
+X-Gm-Message-State: AOJu0YwmACeT/fH03iSXW5/3x9wkOvjBvwxPnC+JVNGbo4LjeQD2bL9z
+	qzE63uzhmY9plKf1ujRYm0pChNQgRIdgvZLuPZQRU36UPxyOWs6bPSFZ
+X-Google-Smtp-Source: AGHT+IEOOq6Lk5Vop0X/xf2UNRzPsdcX79AdIAtSc67ClyDDX8DVbsCYupPkFPfIn9zk1EBjH6tXsQ==
+X-Received: by 2002:a17:907:3c90:b0:ae0:a116:b9d3 with SMTP id a640c23a62f3a-af992c911c8mr171233666b.60.1754477728219;
+        Wed, 06 Aug 2025 03:55:28 -0700 (PDT)
+X-BeenThere: open-iscsi@googlegroups.com; h=AZMbMZfm9YCA1j/Hsy9lapg0oXAJSLGZ1o+Zp0Iz9CF3m4KPdA==
+Received: by 2002:a05:6402:5206:b0:60c:5a6b:2698 with SMTP id
+ 4fb4d7f45d1cf-615a5d8f065ls5137073a12.1.-pod-prod-07-eu; Wed, 06 Aug 2025
+ 03:55:20 -0700 (PDT)
+X-Received: by 2002:a17:907:7b8a:b0:ae3:4f99:a5aa with SMTP id a640c23a62f3a-af992a610eamr148966966b.4.1754477719808;
+        Wed, 06 Aug 2025 03:55:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1754477719; cv=none;
         d=google.com; s=arc-20240605;
-        b=ZMILsnPLwH5LJ8XolRzB1DwFm/se8+uy/qRds0YW6YAOI38eVCdGUY/A/EC5v/DG+4
-         bY0WJP9FqHydImPjj4UeqfaVPieQBC/4NG5CBUHGJyPZHfpP66IoaKr1dsJVSI5yvznn
-         kCpZ/fucDDh4QXZCKJ+uFPHXq1IWmKQd/eZkP/7RLr2AiwcFqDFn+HmxjpDGx2L+hbnF
-         pQnM4vT4M2wMAhHnqqTYteTFk28a747iUFQVeeNSl9wwKIPnpmWwXApZYGzrzuNiEQGm
-         OJgehYdUt7K1xhDpMxg8flm6dZ62Xic7mL1abLMOWFGEFwiq88yI7kYxO3qC6Th+fMjD
-         C+Dw==
+        b=VCXeJAdvRDviHhRDXoPA+TBBHQjYWfT2cPOlBtxZuJ/8wMVgqemDyV1WVYgTUITSfQ
+         Qlp4pmd/9XoPTLHYv8UgH38R0HcZnz7hHCDaY2tEzgjq0duyBQiXnyrBwjVfaI5zdCfB
+         awY4hBpVnWWV07YKhT5ilFDslHfVZuA3MXAwscZMgBOKQn26XcL8x6wxYqd5XlXrj5vh
+         dTOF3kA2OVRjSdY1v8bOvQ3ddg51uwFV4OVnYSi/1GUpN8V///6PkKuuKEVhiNPwMKpA
+         eInxB1Piqzo2AzfzcS+D9clcRz3SBqzW97G4Iz3k61L/shNgD9nZVug+a/TrsZFAw+GY
+         z/dQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature;
-        bh=gxhbKXRRLjSQfOIlTPJ9oH+M0wEhA62psbGR9oUrM1k=;
-        fh=2yEtFTPYIM0nRV4I4FC5gmUOYbsZ+jAkF5b50u5pIKI=;
-        b=OvtUpLKsQqYl80Ba5IELtn3XOjYruAdZDBDeMkbgPnKVIvjtK7xGDIRep+5yVHNPFd
-         9DS+nLlBkc7pf0QS5Wc7PNwH8K8VKNNTNgU1TBIhiFi+G7j7c2FpsV0uUlBqfDGOUu0j
-         hy96MgKADlO/3SdDAKm/CS8gxl8J83m/7SSAw2TuK9sIPs+pYt5hXL7PM/6mrYDt9uRJ
-         Iax9k1hH/brdJWjCcrt3r0oIC9F131s6XRumsq0ReyC+3wjBDzq9ifS91wgQmfHXdttt
-         NU0owfRY2MkVMlth3TFUH5SjYp1hcVnt9zQz3SeSIJ+1PrvvUm+Dd1Co8D5vQO5wvGk7
-         GD9Q==;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=MnjVPC6kQR+C0Szj9cs/eD4BRbZQSG7zZTEWF2+RUpA=;
+        fh=brrs0Z/5hLqg+ffWd8QB4bJLZSHNZrCCuHP+x43PcwY=;
+        b=MEXCtrSCalmtrlykEF4QtS/NlENtUHgWvohhNhss9bDgNFTJyG4QpJlHM2u/beayWL
+         +eaQm+zHaQXTQnA53pIwNXWmiMyFYO+8us5Lwaen59q71ZRnxO+BZqz3wy0dE/ModLJB
+         hCWPmNXQVgMwbnuo9ZHYieqrl2pimyy63MOd/xQ5sBxiQV4Ky5uKt6IH7o2/P/cckvMn
+         ADsS5ENkFS2i9FrK6zTtzH0LXCyd1tmceskRLgnnreh6GcZonF9u1hlmJsSUBbIh5+Iu
+         uf9iMrCTk5DcOjrfqkn0ym3sHm4JB1egeVaynjLNbFL/DIUy+shBh13CTTV4p52/00M3
+         91eg==;
         dara=google.com
 ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@kernel.org header.s=k20201202 header.b=KeX1sK3h;
-       spf=pass (google.com: domain of sashal@kernel.org designates 172.234.252.31 as permitted sender) smtp.mailfrom=sashal@kernel.org;
-       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
-Received: from sea.source.kernel.org (sea.source.kernel.org. [172.234.252.31])
-        by gmr-mx.google.com with ESMTPS id 586e51a60fabf-30bbb359537si124497fac.3.2025.08.05.06.11.53
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=Ij5qTYwp;
+       spf=pass (google.com: domain of csnitish521@gmail.com designates 2a00:1450:4864:20::42d as permitted sender) smtp.mailfrom=csnitish521@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@googlegroups.com
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com. [2a00:1450:4864:20::42d])
+        by gmr-mx.google.com with ESMTPS id a640c23a62f3a-af91a0f4b9esi37629166b.2.2025.08.06.03.55.19
         for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Aug 2025 06:11:53 -0700 (PDT)
-Received-SPF: pass (google.com: domain of sashal@kernel.org designates 172.234.252.31 as permitted sender) client-ip=172.234.252.31;
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 66E27459A1;
-	Tue,  5 Aug 2025 13:11:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BF1DC4CEF0;
-	Tue,  5 Aug 2025 13:11:51 +0000 (UTC)
-From: "'Sasha Levin' via open-iscsi" <open-iscsi@googlegroups.com>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Showrya M N <showrya@chelsio.com>,
-	Potnuri Bharat Teja <bharat@chelsio.com>,
-	Chris Leech <cleech@redhat.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Sasha Levin <sashal@kernel.org>,
-	lduncan@suse.com,
-	michael.christie@oracle.com,
-	James.Bottomley@HansenPartnership.com,
-	open-iscsi@googlegroups.com,
-	linux-scsi@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.16-5.4] scsi: libiscsi: Initialize iscsi_conn->dd_data only if memory is allocated
-Date: Tue,  5 Aug 2025 09:09:31 -0400
-Message-Id: <20250805130945.471732-56-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250805130945.471732-1-sashal@kernel.org>
-References: <20250805130945.471732-1-sashal@kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Aug 2025 03:55:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of csnitish521@gmail.com designates 2a00:1450:4864:20::42d as permitted sender) client-ip=2a00:1450:4864:20::42d;
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3b780bdda21so4561919f8f.3
+        for <open-iscsi@googlegroups.com>; Wed, 06 Aug 2025 03:55:19 -0700 (PDT)
+X-Gm-Gg: ASbGncvDuQzOcEL2qAK17FmHDGA0dXOFO5gGmSVmQRys/oxTALQ17XUpc3kyLb02kot
+	Yg94gH6tRHgokYY+1c3Q9OeMjz+0FNcu5TyQlncIh+e5eFnoEY4MHUB7CYJVzbOFdr6IaJo5Y9d
+	hvPsCLxRRyg58hcR3Gy7t1q4OgUPK/7O+yP/fF0E7JNmsXKKNRUOzTtQXl0iPpRzzyDaPi9lpjm
+	JFTvqA=
+X-Received: by 2002:a05:6000:2893:b0:3b5:e084:283b with SMTP id
+ ffacd0b85a97d-3b8f48ec782mr1745951f8f.17.1754477719032; Wed, 06 Aug 2025
+ 03:55:19 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.16
-X-Original-Sender: sashal@kernel.org
+References: <CAGEDioPc0UQMtrXr4fLQbedDT4cja5WPcLV-cU6Nn-C34TNHsw@mail.gmail.com>
+In-Reply-To: <CAGEDioPc0UQMtrXr4fLQbedDT4cja5WPcLV-cU6Nn-C34TNHsw@mail.gmail.com>
+From: KUMAR NITISH <csnitish521@gmail.com>
+Date: Wed, 6 Aug 2025 16:25:07 +0530
+X-Gm-Features: Ac12FXyTnAs-v1f9ZFislHuTH6bWXMwKz0g0vu4Vx565SbGbw5NhYWNhCOj4C64
+Message-ID: <CAGEDioOELLDQhP7ZxaJ03NNFJKcEG8WH9b=W+am3NFuthewFDA@mail.gmail.com>
+Subject: Fwd: Hashing algorithm used with iSCSI for CHAP authentication
+To: open-iscsi@googlegroups.com
+Content-Type: multipart/alternative; boundary="000000000000359c9e063bb02d17"
+X-Original-Sender: csnitish521@gmail.com
 X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@kernel.org header.s=k20201202 header.b=KeX1sK3h;       spf=pass
- (google.com: domain of sashal@kernel.org designates 172.234.252.31 as
- permitted sender) smtp.mailfrom=sashal@kernel.org;       dmarc=pass
- (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=kernel.org
-X-Original-From: Sasha Levin <sashal@kernel.org>
+ header.i=@gmail.com header.s=20230601 header.b=Ij5qTYwp;       spf=pass
+ (google.com: domain of csnitish521@gmail.com designates 2a00:1450:4864:20::42d
+ as permitted sender) smtp.mailfrom=csnitish521@gmail.com;       dmarc=pass
+ (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;       dara=pass header.i=@googlegroups.com
 Reply-To: open-iscsi@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
 List-ID: <open-iscsi.googlegroups.com>
@@ -150,132 +156,112 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-From: Showrya M N <showrya@chelsio.com>
+--000000000000359c9e063bb02d17
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-[ Upstream commit 3ea3a256ed81f95ab0f3281a0e234b01a9cae605 ]
+Ping!
+If anyone has context to the query from the email below, please reply.
 
-In case of an ib_fast_reg_mr allocation failure during iSER setup, the
-machine hits a panic because iscsi_conn->dd_data is initialized
-unconditionally, even when no memory is allocated (dd_size == 0).  This
-leads invalid pointer dereference during connection teardown.
+---------- Forwarded message ---------
+From: KUMAR NITISH <csnitish521@gmail.com>
+Date: Mon, Aug 4, 2025 at 6:32=E2=80=AFPM
+Subject: Hashing algorithm used with iSCSI for CHAP authentication
+To: <open-iscsi@googlegroups.com>
 
-Fix by setting iscsi_conn->dd_data only if memory is actually allocated.
 
-Panic trace:
-------------
- iser: iser_create_fastreg_desc: Failed to allocate ib_fast_reg_mr err=-12
- iser: iser_alloc_rx_descriptors: failed allocating rx descriptors / data buffers
- BUG: unable to handle page fault for address: fffffffffffffff8
- RIP: 0010:swake_up_locked.part.5+0xa/0x40
- Call Trace:
-  complete+0x31/0x40
-  iscsi_iser_conn_stop+0x88/0xb0 [ib_iser]
-  iscsi_stop_conn+0x66/0xc0 [scsi_transport_iscsi]
-  iscsi_if_stop_conn+0x14a/0x150 [scsi_transport_iscsi]
-  iscsi_if_rx+0x1135/0x1834 [scsi_transport_iscsi]
-  ? netlink_lookup+0x12f/0x1b0
-  ? netlink_deliver_tap+0x2c/0x200
-  netlink_unicast+0x1ab/0x280
-  netlink_sendmsg+0x257/0x4f0
-  ? _copy_from_user+0x29/0x60
-  sock_sendmsg+0x5f/0x70
+Hi,
 
-Signed-off-by: Showrya M N <showrya@chelsio.com>
-Signed-off-by: Potnuri Bharat Teja <bharat@chelsio.com>
-Link: https://lore.kernel.org/r/20250627112329.19763-1-showrya@chelsio.com
-Reviewed-by: Chris Leech <cleech@redhat.com>
-Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
+This mail is regarding usage of algorithms SHA1, SHA2 and SHA3 with
+iSCSI for CHAP authentication.
+RFC 1994 mentions support for only the MD5 algorithm, I have copied
+the RFC excerpt below.
 
-LLM Generated explanations, may be completely bogus:
+"The Algorithm field is one octet and indicates the authentication
+method to be used.
+Up-to-date values are specified in the most recent "Assigned Numbers" [2].
+One value is required to be implemented: 5 CHAP with MD5 [3]"
 
-Now I see the pattern clearly! When `iscsi_alloc_conn` is called with
-`dd_size = 0`:
-- It allocates only `sizeof(*conn)` (no extra space)
-- It sets `conn->dd_data = NULL` (because dd_size is 0, the condition
-  `if (dd_size)` is false)
+Clearly the RFC does not mention other values that map to SHA1, SHA2 and SH=
+A3.
+But I see open-iscsi and scst-iscsi implementations have used values
+6, 7, 8 for these algorithms.
 
-But in the original code in `iscsi_conn_setup()`, it was unconditionally
-setting:
-```c
-conn->dd_data = cls_conn->dd_data + sizeof(*conn);
-```
+open-iscsi : auth.c
+        AUTH_CHAP_ALG_MD5 =3D 5,
+        AUTH_CHAP_ALG_SHA1 =3D 6,
+        AUTH_CHAP_ALG_SHA256 =3D 7,
+        AUTH_CHAP_ALG_SHA3_256 =3D 8,
 
-This would set `conn->dd_data` to point past the allocated memory when
-`dd_size = 0`, leading to the panic when the iSER driver tries to
-dereference it in `iscsi_iser_conn_stop()`.
+iscsi-scst : chap.c
+#define CHAP_DIGEST_ALG_MD5   5
+#define CHAP_DIGEST_ALG_SHA1  6
+#define CHAP_DIGEST_ALG_SHA256  7
+#define CHAP_DIGEST_ALG_SHA3_256  8
 
-**Backport Status: YES**
+Can someone please share details on how open-iscsi and iscsi-scst
+implementations decided to use these numbers?
+Is this covered in any specification/RFC, how would targets or other
+OSes know the value to be used?
+Please share any document references.
 
-This commit should definitely be backported to stable kernel trees for
-the following reasons:
+Thanks,
+Nitish
 
-1. **Critical Bug Fix**: This fixes a kernel panic/crash that occurs
-   during iSCSI/iSER connection teardown when memory allocation fails.
-   The panic trace shows a page fault at address `fffffffffffffff8`,
-   which is clearly an invalid pointer dereference.
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/=
+CAGEDioOELLDQhP7ZxaJ03NNFJKcEG8WH9b%3DW%2Bam3NFuthewFDA%40mail.gmail.com.
 
-2. **Real-World Impact**: The bug triggers when `ib_fast_reg_mr`
-   allocation fails during iSER setup, which can happen under memory
-   pressure. This leads to a system crash during error recovery, turning
-   a recoverable allocation failure into a fatal kernel panic.
+--000000000000359c9e063bb02d17
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-3. **Small and Contained Fix**: The fix is minimal - just adding a
-   single conditional check:
-  ```c
-  if (dd_size)
-  conn->dd_data = cls_conn->dd_data + sizeof(*conn);
-  ```
-  This only affects the initialization path when `dd_size = 0`.
+<div dir=3D"ltr"><div>Ping!<br></div>If anyone has context to the query fro=
+m the email below, please reply.<div><br><div class=3D"gmail_quote gmail_qu=
+ote_container"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded m=
+essage ---------<br>From: <b class=3D"gmail_sendername" dir=3D"auto">KUMAR =
+NITISH</b> <span dir=3D"auto">&lt;<a href=3D"mailto:csnitish521@gmail.com">=
+csnitish521@gmail.com</a>&gt;</span><br>Date: Mon, Aug 4, 2025 at 6:32=E2=
+=80=AFPM<br>Subject: Hashing algorithm used with iSCSI for CHAP authenticat=
+ion<br>To:  &lt;<a href=3D"mailto:open-iscsi@googlegroups.com">open-iscsi@g=
+ooglegroups.com</a>&gt;<br></div><br><br><div dir=3D"ltr"><pre role=3D"code=
+">Hi,<br><br>This mail is regarding usage of algorithms SHA1, SHA2 and SHA3=
+ with iSCSI for CHAP authentication. <br>RFC 1994 mentions support for only=
+ the MD5 algorithm, I have copied the RFC excerpt below.<br><br>&quot;The A=
+lgorithm field is one octet and indicates the authentication method to be u=
+sed. <br>Up-to-date values are specified in the most recent &quot;Assigned =
+Numbers&quot; [2]. <br>One value is required to be implemented: 5 CHAP with=
+ MD5 [3]&quot;<br><br>Clearly the RFC does not mention other values that ma=
+p to SHA1, SHA2 and SHA3. <br>But I see open-iscsi and scst-iscsi implement=
+ations=C2=A0have used values 6, 7, 8 for these algorithms.<br><br>open-iscs=
+i : auth.c<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 AUTH_CHAP_ALG_MD5 =3D 5,<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 AUTH_CHAP_ALG_SHA1 =3D 6,<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 AUTH_CHAP_ALG_SHA256 =3D 7,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 AUTH_CHAP=
+_ALG_SHA3_256 =3D 8,<br><br>iscsi-scst : chap.c<br>#define CHAP_DIGEST_ALG_=
+MD5 =C2=A0 5<br>#define CHAP_DIGEST_ALG_SHA1 =C2=A06<br>#define CHAP_DIGEST=
+_ALG_SHA256 =C2=A07<br>#define CHAP_DIGEST_ALG_SHA3_256 =C2=A08<br><br>Can =
+someone please share details on how open-iscsi and iscsi-scst implementatio=
+ns decided to use these numbers? <br>Is this covered in any specification/R=
+FC, how would targets or other OSes know the value to be used? <br>Please s=
+hare any document=C2=A0references.<br><br>Thanks,<br>Nitish</pre></div>
+</div></div></div>
 
-4. **No Architectural Changes**: This is a straightforward bug fix that
-   doesn't introduce new features or change any architecture. It simply
-   prevents setting an invalid pointer when no driver-specific data is
-   allocated.
+<p></p>
 
-5. **Clear Root Cause**: The issue is well-understood: when drivers like
-   iSER pass `dd_size = 0` to `iscsi_conn_setup()`, the code was
-   unconditionally calculating a pointer past the allocated memory.
-   During teardown, accessing this invalid pointer causes the panic.
+-- <br />
+You received this message because you are subscribed to the Google Groups &=
+quot;open-iscsi&quot; group.<br />
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
+si+unsubscribe@googlegroups.com</a>.<br />
+To view this discussion visit <a href=3D"https://groups.google.com/d/msgid/=
+open-iscsi/CAGEDioOELLDQhP7ZxaJ03NNFJKcEG8WH9b%3DW%2Bam3NFuthewFDA%40mail.g=
+mail.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/=
+d/msgid/open-iscsi/CAGEDioOELLDQhP7ZxaJ03NNFJKcEG8WH9b%3DW%2Bam3NFuthewFDA%=
+40mail.gmail.com</a>.<br />
 
-6. **Minimal Risk**: The change only affects the case where `dd_size =
-   0`, which is specifically the iSER driver's usage pattern. Other
-   drivers that pass non-zero `dd_size` values are unaffected.
-
-7. **Follows Stable Rules**: This meets all stable kernel criteria:
-   - Fixes a real bug that users can hit
-   - Fix is already upstream (has proper sign-offs and review)
-   - Small change (2 lines)
-   - Obviously correct
-   - Doesn't add new features
-
-The commit prevents a kernel panic during error handling in the
-iSCSI/iSER subsystem, making it an important stability fix that should
-be backported to all maintained stable kernels that include the iSER
-driver.
-
- drivers/scsi/libiscsi.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/scsi/libiscsi.c b/drivers/scsi/libiscsi.c
-index 392d57e054db..c9f410c50978 100644
---- a/drivers/scsi/libiscsi.c
-+++ b/drivers/scsi/libiscsi.c
-@@ -3185,7 +3185,8 @@ iscsi_conn_setup(struct iscsi_cls_session *cls_session, int dd_size,
- 		return NULL;
- 	conn = cls_conn->dd_data;
- 
--	conn->dd_data = cls_conn->dd_data + sizeof(*conn);
-+	if (dd_size)
-+		conn->dd_data = cls_conn->dd_data + sizeof(*conn);
- 	conn->session = session;
- 	conn->cls_conn = cls_conn;
- 	conn->c_stage = ISCSI_CONN_INITIAL_STAGE;
--- 
-2.39.5
-
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/20250805130945.471732-56-sashal%40kernel.org.
+--000000000000359c9e063bb02d17--
