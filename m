@@ -1,143 +1,75 @@
-Return-Path: <open-iscsi+bncBC7KRMXASEIRBUPB53DAMGQEHAYSYII@googlegroups.com>
+Return-Path: <open-iscsi+bncBC755V5RXMKBBTU46DDAMGQEQGFUBJY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-ed1-x537.google.com (mail-ed1-x537.google.com [IPv6:2a00:1450:4864:20::537])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D24BAC796
-	for <lists+open-iscsi@lfdr.de>; Tue, 30 Sep 2025 12:28:39 +0200 (CEST)
-Received: by mail-ed1-x537.google.com with SMTP id 4fb4d7f45d1cf-634ab12955bsf7879269a12.1
-        for <lists+open-iscsi@lfdr.de>; Tue, 30 Sep 2025 03:28:39 -0700 (PDT)
-ARC-Seal: i=2; a=rsa-sha256; t=1759228119; cv=pass;
-        d=google.com; s=arc-20240605;
-        b=NeI6riy5Q8Goa9ZO9uYR/0nfhdxWkff3b9CZ1S1ht+YW0wtWpgsj64cRozYfHtYsyc
-         cusVjPZm0sQ3/sTe3jwT4ChPoQKvRz+D2TniEH2ef5iBJ+9CZIZyQ4I9qnCOmRItgH1K
-         BoWC1t17nlRdvhqIgA5tIzj9KmgM+luD9W1oTR2zGROnEwa7uuyz/YFzYx59JWje1XYm
-         dmNXdM1b/EUSALypWYlVKE4N/3WBKEpynbEsQx1a3eg9OZt6adiOgd1qFk85kOmwQz7D
-         m9n4D7spmfebBsobtpzRrwgMC5n3Ytf2zZ/XG33+5c8M7qMK8oqz1kjYGptD5Kp9nVyd
-         ETBg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:to:subject:message-id:date:from
-         :mime-version:sender:dkim-signature:dkim-signature;
-        bh=sJZ1vXEsjYnYOb0jOBSRFTOheyCP2dz9+5ZXcGyPfcs=;
-        fh=2+rdGgQc8fVAu2jbJ7+fBAF0Qj8op9/Ijudccynu5f8=;
-        b=fQvrDyDZsKJCEPfw7F0ZaE/HRP7Bp1Idafj242Sg3rUy3sdrLU1lCBHjMUNwwVcshO
-         gdL3aSDXpA/X7bKmBa7G2p6AJgU41qvM4kZl3AoeYM+KaLYpxpP449j/vEkQchlQAlaf
-         ap5sdvC8/g8zonfvR4MrHk3n432z8/dROYendeqoM/bBiLydlmh+KWmueNu43c79Gx8D
-         igC6p7R8+3ZgS2/49OwuWmId6zerVSLQFIfl2NWSlgNpz1c+lHkTlVA10Ygrbyl7K26M
-         OAHNagwkvIe5Lj8Bairh7AWKAPvtQLRi6k2Imq3x8gxtQmpF4MaXdt8G4GX1raXTUdlb
-         oPJw==;
-        darn=lfdr.de
-ARC-Authentication-Results: i=2; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20230601 header.b=L02eULKm;
-       spf=pass (google.com: domain of csnitish521@gmail.com designates 2a00:1450:4864:20::32c as permitted sender) smtp.mailfrom=csnitish521@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
-       dara=pass header.i=@googlegroups.com
+Received: from mail-yw1-x113b.google.com (mail-yw1-x113b.google.com [IPv6:2607:f8b0:4864:20::113b])
+	by mail.lfdr.de (Postfix) with ESMTPS id 947DABAE22D
+	for <lists+open-iscsi@lfdr.de>; Tue, 30 Sep 2025 19:07:31 +0200 (CEST)
+Received: by mail-yw1-x113b.google.com with SMTP id 00721157ae682-76c0ad16289sf54399967b3.3
+        for <lists+open-iscsi@lfdr.de>; Tue, 30 Sep 2025 10:07:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1759228119; x=1759832919; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1759252050; x=1759856850; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:to:subject:message-id:date:from:mime-version
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=sJZ1vXEsjYnYOb0jOBSRFTOheyCP2dz9+5ZXcGyPfcs=;
-        b=JpT8JgC4mCHJtNAP6T7ry81AIptX5zFESwdHRJDwhMo4+ezoEfukb4TXOIgJFdVAmo
-         H/9fmHARUO+g/l21VStNjG5lfxMJAM9vWAlwJHkKKnxGW2WdAyYSd7s8N8+ylOwq0xj6
-         u92XmgsLqMNTIY6S4HBjdDf4vp6Un7TSD2qlpAHW4wxGj6sr0F3HAnXSEaRedhMWhxZL
-         eacS1xcmBh+nHEmT/OuWryohw+OZ2duYR4sBSsZ+j2VyiudEhyYwXe+FkIGFv2FEF6E0
-         ON9zynmEXL2VIhXw0uVuc/jpeOvgquuKlA0T4nBLSDCR3nb+qjXA6GGm/APjoz0lJP+0
-         zemA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759228119; x=1759832919; darn=lfdr.de;
-        h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:x-original-authentication-results
-         :x-original-sender:to:subject:message-id:date:from:mime-version:from
+         :mailing-list:precedence:reply-to:x-original-sender:mime-version
+         :subject:references:in-reply-to:message-id:to:from:date:sender:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=sJZ1vXEsjYnYOb0jOBSRFTOheyCP2dz9+5ZXcGyPfcs=;
-        b=WZY+qEcCthuQYtXRmlctwDH1M1twfxopgtCdqlX36ht2U1pBJ2wu5q/wlZU8kqyF5o
-         SMFRMyhcl7MoGtTATG3n0PwboPFtHOjXsSy4ml+UzHaxN6tYbGRA4/po+8IYLXrGW8Dp
-         BGw/CGKOtQgNUByASE6XvTObhVTCVJRI3KaXuKXcasFWCxG7IJfAaYC2PbLdmaguDH7G
-         L4qYeGlirVkuv2FJveYgyLnmcM5W+jmAienNve7qv7aibRhGdv/j4kkUdIx+Ljj2U3hp
-         q7pAAF9k4C0EvUSKrB+8U36c+72totRFOZUbih3cwVEDIRnNvOgCmg2IUyvEKAFdjI0+
-         evog==
+        bh=mGBE7QrmR09XtOGCpKujYpKW5qXD6+skXU59txAEeBQ=;
+        b=Q1g469d+Oc15ukzoWCYuNPFeOx9NXzbpeCj+x550/m8wPwbYDwN7VlwzbJZPzWmCSM
+         rEfwAAojnIUulREnqw8YGVwZDze88e2uN/LgumBqoPSfEED+9+5+dqsk+9BpnhOhS3Ow
+         e/s3UyOmiICtbbkUJgs5wZlc9gDczQYaWzbaROt/BiV3R82QvdL5J21pJ1Ti6QuE3XCb
+         vu/Yktb1oQw48nY7MN+TuUIV/xvhseuFnIcviAGv2Ej/MdGqVyQCNKCutVi0XzUJjaZI
+         BuvgHNAt/TBZNsA8c2qGedhwcIqsYFHHFk1f/3jFZducTjQ7BrWG7qhQyDTKYQEHYdKN
+         KZ6Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759252050; x=1759856850; darn=lfdr.de;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:reply-to:x-original-sender:mime-version
+         :subject:references:in-reply-to:message-id:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mGBE7QrmR09XtOGCpKujYpKW5qXD6+skXU59txAEeBQ=;
+        b=eYahjetLKwS2XXTjxbrZINxM7gizb1mmNRkeGjUyCGpNcaHdBGZQ0/jhVvEouCQIKH
+         Lu2GY4q+O81uFdKOUphYq+Tqc3PhFMPsxLDQlWyCk7JwaP1/H8FQA3Kq7BgrAGaoxRVs
+         6Mrdz3UaLC6IH+6jCJpVD6GNQUNpxzCGR4XfuobcMBXIHPDllJTL+m6ofZXlNvl6s4g4
+         qpQRNhcEgVOyasA6wKaqu8ei/7QWjqYM1zPi8eJmwFTjQ5ehajw49gYygvn+cC89/psX
+         1IPMe1gmUYQU33hnsydob3I3QMrhpBG+CLIVkjNCgCVAU9hRbFm8t52QXZOTSFm7vRK2
+         7j2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759228119; x=1759832919;
+        d=1e100.net; s=20230601; t=1759252050; x=1759856850;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-authentication-results:x-original-sender:to:subject
-         :message-id:date:from:mime-version:x-beenthere:x-gm-message-state
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=sJZ1vXEsjYnYOb0jOBSRFTOheyCP2dz9+5ZXcGyPfcs=;
-        b=m2uUp5Irc2/SjrzBSZX5WZB5uITxKRVk0U1xCiT3z2Bb1mHI37IlBnKBWWKbJ/vnpw
-         T15eGy/+gojzMxghyrV6My9P1DueuBfO60X9M5Pay4Rys9LcifzYaMXs0nv7FPywVSCT
-         IsRgBRfSq28CzwYcyhCP+c9dlFPJ7iP55AAKHqx2aoL47FMKR5DzskeIaxdG1HwS8JPM
-         EqCEroDGk1IB/37XBzgoDmMBWDMbIPoAZODVCXI7S/2YGSZC8Q485K79VBdizDNOEUPF
-         KnJVdlvighuQiG3T1Cxm0eQSLKXSOTtrv2ygjwf/YHFjDRY55MncKWi1i02Gn2dIMXad
-         4uZQ==
+         :x-original-sender:mime-version:subject:references:in-reply-to
+         :message-id:to:from:date:x-beenthere:x-gm-message-state:sender:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=mGBE7QrmR09XtOGCpKujYpKW5qXD6+skXU59txAEeBQ=;
+        b=m6O4fWfB31xGz7AFiy0GnwFqhPeWPpoJRO6BLp3QRe3g9Tm0fpW8hh2pYPIw/5E01Q
+         G8ZwXw+ud+hWV1+G8hWV9GY2wWlsUH87vlJ/27YvzbZaXAueZduAY4rnA6xHYLk604ED
+         LYAPb+b0N/NvZS9jYeOnU9lfvaQsnznEThY+PKJEfkxkrjlB8P7RHNeeCC/QkVXAor1I
+         0daUhW3sW+mzDafJUfo6WffmGLW9CG9Cv81fdso+juQrjSDqqSs6IjAGrvJ+uyC9giPI
+         Xd3oaHQ1FJn5QgH8CZF/p2nDdZjp1HCIGhL46SAk8yChTaMw6EAISrQ9RCyiy2ZaWpNz
+         5/FQ==
 Sender: open-iscsi@googlegroups.com
-X-Forwarded-Encrypted: i=2; AJvYcCVtpzDlyhftiO7gFn0mKlt8Lx8xV6QZdyYdmuR+FlhZUkCBZJP+uENH1mboDXauAnEChPoNHg==@lfdr.de
-X-Gm-Message-State: AOJu0YyH3KElU0LEN+ZftXhCrHVaZiH5FJJJihztHTZQEOaC3KP/7Zut
-	cwDX+E/pd6B5wjpwbmCyqM8q1Gcs1Dv7qEePDt10ZL9oN3jOGO9uHci7
-X-Google-Smtp-Source: AGHT+IHORQRJU7I2KKtuEpD5ohOkNSqiHluIpSd/kbZRAPvgXjwrSthcE1xCw+bDwjdJAY2yTA2/Hg==
-X-Received: by 2002:a05:6402:1659:b0:62f:1e7a:f842 with SMTP id 4fb4d7f45d1cf-6349fa91f2bmr15946048a12.27.1759228118808;
-        Tue, 30 Sep 2025 03:28:38 -0700 (PDT)
-X-BeenThere: open-iscsi@googlegroups.com; h="ARHlJd5uJGCuNqevnYNH56TUunP83BpKkI2fNKOcyf6ArXMA3g=="
-Received: by 2002:a05:6402:a0d1:b0:62f:29fc:cea0 with SMTP id
- 4fb4d7f45d1cf-6349f650df3ls5809085a12.2.-pod-prod-06-eu; Tue, 30 Sep 2025
- 03:28:31 -0700 (PDT)
-X-Received: by 2002:aa7:cd67:0:b0:633:d0b7:d6c3 with SMTP id 4fb4d7f45d1cf-6349f9cab40mr14266166a12.5.1759228111286;
-        Tue, 30 Sep 2025 03:28:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1759228111; cv=none;
-        d=google.com; s=arc-20240605;
-        b=EL4r/fBEya9n5RIMNjo8uN9hVs50WxBBO9jKAYPt2kT6GO9NdLWdhIKc93JoCAxX5W
-         hXNTx8KWIHpBP1qfXDMRy5rQk3fNS9EEXeKf/pp9WV6ijuv0sd99GCIOwESwRy8C5pTT
-         FITlGp+GJt5rkA+Wt5U41pnOs5IKj5g/kp8cbpU1WisGdwEj9VqB7vcrUzTKj7EGl6fJ
-         NT8GQnYZKdP222oo+xzq2reqgPG0F3Gxwwyq+t7JzKnQdvF3bga5qMtqDecLNNYhYfTc
-         o5eBES9w26neMzZqdubs655spAgxTPv866alAqAY00Sib5nDquD8rnQcjIJ0JLPis+DY
-         imYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=UWMvma+FWuaXKA8V1zmo/OZtYvMNalLTBR0jdNVZ3JA=;
-        fh=brrs0Z/5hLqg+ffWd8QB4bJLZSHNZrCCuHP+x43PcwY=;
-        b=k9QXCWcUSwj2j/q+gr68csKL1PQp0gWYbt+BWu5vMK3E//u4x9osgpa5Iv1tinebEU
-         w57VkJtiDSWOU01ewnLFO0jSxPrU29daoMn5SFViJK2yMc7d4wMgf6GtpYuqHVl10wGP
-         AO6PLs+f+Et5FZW6N5BywaSvkjBR5TEND0VMuEEQc9fljXKM8me/E3ePw9tP5ktqBNDW
-         vwrYJ6HEodwIVZ7YT6giC2QKD+fYHakjqr8ONPEja3t3KOTAVmiCrtBWzHLwxdESMBrr
-         uDUU2lXLk8+yYG5HMifzFzr8Fa3dQ2vQULt+b/iGfMzs5D3DaK4JQf5HWc/2aYRr6Gy5
-         ICJg==;
-        dara=google.com
-ARC-Authentication-Results: i=1; gmr-mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20230601 header.b=L02eULKm;
-       spf=pass (google.com: domain of csnitish521@gmail.com designates 2a00:1450:4864:20::32c as permitted sender) smtp.mailfrom=csnitish521@gmail.com;
-       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
-       dara=pass header.i=@googlegroups.com
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com. [2a00:1450:4864:20::32c])
-        by gmr-mx.google.com with ESMTPS id 4fb4d7f45d1cf-634a362d3afsi238232a12.1.2025.09.30.03.28.31
-        for <open-iscsi@googlegroups.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Sep 2025 03:28:31 -0700 (PDT)
-Received-SPF: pass (google.com: domain of csnitish521@gmail.com designates 2a00:1450:4864:20::32c as permitted sender) client-ip=2a00:1450:4864:20::32c;
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-46e29d65728so38892735e9.3
-        for <open-iscsi@googlegroups.com>; Tue, 30 Sep 2025 03:28:31 -0700 (PDT)
-X-Gm-Gg: ASbGncvnoARGaZWkvRsgB79Yk6zX+OyduKF6CeP8bHBqaB5DUDX5minWH8uDPrcis8T
-	pvOuICETzDYnsF4rKtAocHyWbT4eAwBPxXb8zveHi0l+kT5NcnK5zlNgSp38Q3lcAu7U901og5y
-	/eQNNB0F1MX7x4N17GLcXe+ktpLo+I4HD2pbE0R0mGrVOIe/592r+7YmN+j3FY35WZ2CxD+x1Gm
-	7cGBXO8SEIPhP9fyRSSqC9YXUxLJ40=
-X-Received: by 2002:a05:600c:8209:b0:46e:376a:c9db with SMTP id
- 5b1f17b1804b1-46e376acfbbmr170475285e9.26.1759228110393; Tue, 30 Sep 2025
- 03:28:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUlIwGsPKYAQjFZ2NAOFyHEYsCTBseE60qqA6JUBMD98yARpHvC8reoFJNc+tXNkB6vBlJZwg==@lfdr.de
+X-Gm-Message-State: AOJu0YweNORU5guTF/hx+nyqh3t9E5fduiEqTORWbPcLoXAioEKK6giB
+	PTOFGq5t5s7aVTw7Y9ACXLL6gyzh45HARJd+kh83r6b4R/Ao9McNadjY
+X-Google-Smtp-Source: AGHT+IHgUm3MUObaHv62djC2H8pvKTxuTmKiCNWOPRkl4sYFU/Z+csmjcfi7J8ZZWPpskd5lsnf+Bw==
+X-Received: by 2002:a05:690c:311:b0:776:df78:bff with SMTP id 00721157ae682-77f6f301f5dmr4967167b3.44.1759252049625;
+        Tue, 30 Sep 2025 10:07:29 -0700 (PDT)
+X-BeenThere: open-iscsi@googlegroups.com; h="ARHlJd7m6pswez5lsAb62DZ+p+7TD8iu09mkqzzZ45S+Y7Fm/A=="
+Received: by 2002:a05:690e:1518:b0:5f3:b6f7:81b4 with SMTP id
+ 956f58d0204a3-6361b5d611dls6743216d50.1.-pod-prod-05-us; Tue, 30 Sep 2025
+ 10:07:26 -0700 (PDT)
+X-Received: by 2002:a05:690c:a11:b0:734:55b6:edd8 with SMTP id 00721157ae682-77f6f144fb9mr3639517b3.6.1759252046098;
+        Tue, 30 Sep 2025 10:07:26 -0700 (PDT)
+Date: Tue, 30 Sep 2025 10:07:24 -0700 (PDT)
+From: The Lee-Man <leeman.duncan@gmail.com>
+To: open-iscsi <open-iscsi@googlegroups.com>
+Message-Id: <9c5f05f7-48b1-4335-a23a-82c9bc11d302n@googlegroups.com>
+In-Reply-To: <CAGEDioMYiPhTa6GYSgzzQwWvZAgASPmK-oHJYjt+HbfG4OpnkQ@mail.gmail.com>
+References: <CAGEDioMYiPhTa6GYSgzzQwWvZAgASPmK-oHJYjt+HbfG4OpnkQ@mail.gmail.com>
+Subject: Re: open-iscsi version 2.0-865
 MIME-Version: 1.0
-From: KUMAR NITISH <csnitish521@gmail.com>
-Date: Tue, 30 Sep 2025 15:58:18 +0530
-X-Gm-Features: AS18NWCcMp3CViIkEoZ46iynvkV6es_yZ8kRH_E-29GSlj_XUF1o5wJBY0qMLRE
-Message-ID: <CAGEDioNfg3NadnrVCc8esfcqwwKw9zTFoeH2EukBZpSTCENwxA@mail.gmail.com>
-Subject: iSCSI connection recovery timeout
-To: open-iscsi@googlegroups.com
-Content-Type: multipart/alternative; boundary="0000000000009955b2064002364a"
-X-Original-Sender: csnitish521@gmail.com
-X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
- header.i=@gmail.com header.s=20230601 header.b=L02eULKm;       spf=pass
- (google.com: domain of csnitish521@gmail.com designates 2a00:1450:4864:20::32c
- as permitted sender) smtp.mailfrom=csnitish521@gmail.com;       dmarc=pass
- (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;       dara=pass header.i=@googlegroups.com
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_218232_539555036.1759252044239"
+X-Original-Sender: leeman.duncan@gmail.com
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -150,61 +82,67 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
---0000000000009955b2064002364a
+------=_Part_218232_539555036.1759252044239
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_218233_1782844680.1759252044239"
+
+------=_Part_218233_1782844680.1759252044239
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Tuesday, September 30, 2025 at 12:13:34=E2=80=AFAM UTC-7 csnit...@gmail.=
+com=20
+wrote:
 
 Hi,
 
-As I understand, below 3 timeouts contribute to the total time taken for
-marking an iSCSI connection unavailable for IOs.
-
-noop_out_interval
-noop_out_timeout
-replacement_timeout
-
-/* timeouts in seconds */
-#define DEF_LOGIN_TIMEO         15
-#define DEF_LOGOUT_TIMEO        15
-#define DEF_NOOP_OUT_INTERVAL   10
-#define DEF_NOOP_OUT_TIMEO      15
-#define DEF_REPLACEMENT_TIMEO   120
-
-Can someone please explain why default values are higher? Do we really need
-to have these higher default values? Are these default values reduced from
-earlier open-iscsi versions to newer versions? If not, should these values
-get reduced significantly for the fact that newer network devices are
-faster?
-
-Will higher values not cause the more time for IOs to failover to other
-available paths? What are the options for faster failover?
+If someone knows the public location/source of open-iscsi version 2.0-865,=
+=20
+can you please share the exact URL? Is it an end-of-life version? What are=
+=20
+the criteria to determine whether it is an EOL version? Please share if=20
+there is a webpage for the clarifications related to it.
 
 
 Thanks,
 Nitish
 
--- 
-You received this message because you are subscribed to the Google Groups "open-iscsi" group.
-To unsubscribe from this group and stop receiving emails from it, send an email to open-iscsi+unsubscribe@googlegroups.com.
-To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/CAGEDioNfg3NadnrVCc8esfcqwwKw9zTFoeH2EukBZpSTCENwxA%40mail.gmail.com.
 
---0000000000009955b2064002364a
+The oldest version in the git repo seems to be 2.0-873. The very first=20
+commit seems to imply that the repository was previously using subversion,=
+=20
+and I highly doubt that repo is around any longer.
+
+There is no current rule about end of life -- if you can find it in the git=
+=20
+repo you can download it or build it.=20
+
+--=20
+You received this message because you are subscribed to the Google Groups "=
+open-iscsi" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to open-iscsi+unsubscribe@googlegroups.com.
+To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/=
+9c5f05f7-48b1-4335-a23a-82c9bc11d302n%40googlegroups.com.
+
+------=_Part_218233_1782844680.1759252044239
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<br><br>As I understand, below 3 timeouts contribute to=
- the total time taken for marking an iSCSI connection unavailable=C2=A0for =
-IOs.<br><br>noop_out_interval<br>noop_out_timeout<br>replacement_timeout=C2=
-=A0<br><br>/* timeouts in seconds */<br>#define DEF_LOGIN_TIMEO =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 15<br>#define DEF_LOGOUT_TIMEO =C2=A0 =C2=A0 =C2=A0 =C2=
-=A015<br>#define DEF_NOOP_OUT_INTERVAL =C2=A0 10<br>#define DEF_NOOP_OUT_TI=
-MEO =C2=A0 =C2=A0 =C2=A015<br>#define DEF_REPLACEMENT_TIMEO =C2=A0 120<div>=
-<br></div><div>Can someone please explain why default values are higher? Do=
- we really=C2=A0need to have these higher default=C2=A0values? Are these de=
-fault values reduced from earlier open-iscsi versions to newer versions? If=
- not, should these values get reduced significantly for the fact that newer=
- network devices are faster? <br><br>Will higher values not cause the more =
-time for IOs to failover to other available paths? What are the options for=
- faster failover?<br><br><br>Thanks,<br>Nitish<br><br></div></div>
+<div><div dir=3D"auto">On Tuesday, September 30, 2025 at 12:13:34=E2=80=AFA=
+M UTC-7 csnit...@gmail.com wrote:<br /></div><blockquote style=3D"margin: 0=
+px 0px 0px 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: =
+1ex;"><div dir=3D"ltr">Hi,<br /><br />If someone knows the public location/=
+source of=C2=A0open-iscsi version 2.0-865, can you please share the exact U=
+RL? Is it an end-of-life version? What are the criteria to determine whethe=
+r it is an EOL version? Please=C2=A0share if there is a webpage for the cla=
+rifications related to it.<br /><br /><br />Thanks,<br />Nitish</div></bloc=
+kquote><div><br /></div><div>The oldest version in the git repo seems to be=
+ 2.0-873. The very first commit seems to imply that the repository was prev=
+iously using subversion, and I highly doubt that repo is around any longer.=
+</div><div><br /></div><div>There is no current rule about end of life -- i=
+f you can find it in the git repo you can download it or build it.=C2=A0</d=
+iv></div>
 
 <p></p>
 
@@ -215,9 +153,10 @@ To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
 si+unsubscribe@googlegroups.com</a>.<br />
 To view this discussion visit <a href=3D"https://groups.google.com/d/msgid/=
-open-iscsi/CAGEDioNfg3NadnrVCc8esfcqwwKw9zTFoeH2EukBZpSTCENwxA%40mail.gmail=
-.com?utm_medium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/ms=
-gid/open-iscsi/CAGEDioNfg3NadnrVCc8esfcqwwKw9zTFoeH2EukBZpSTCENwxA%40mail.g=
-mail.com</a>.<br />
+open-iscsi/9c5f05f7-48b1-4335-a23a-82c9bc11d302n%40googlegroups.com?utm_med=
+ium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgid/open-isc=
+si/9c5f05f7-48b1-4335-a23a-82c9bc11d302n%40googlegroups.com</a>.<br />
 
---0000000000009955b2064002364a--
+------=_Part_218233_1782844680.1759252044239--
+
+------=_Part_218232_539555036.1759252044239--
