@@ -1,75 +1,133 @@
-Return-Path: <open-iscsi+bncBC755V5RXMKBBXFA6DDAMGQEZPIVU4Q@googlegroups.com>
+Return-Path: <open-iscsi+bncBCUJ7YGL3QFBBVNW77FAMGQEN5RKIBY@googlegroups.com>
 X-Original-To: lists+open-iscsi@lfdr.de
 Delivered-To: lists+open-iscsi@lfdr.de
-Received: from mail-yx1-xb13e.google.com (mail-yx1-xb13e.google.com [IPv6:2607:f8b0:4864:20::b13e])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76DECBAE248
-	for <lists+open-iscsi@lfdr.de>; Tue, 30 Sep 2025 19:16:15 +0200 (CEST)
-Received: by mail-yx1-xb13e.google.com with SMTP id 956f58d0204a3-635472b7ef5sf275457d50.0
-        for <lists+open-iscsi@lfdr.de>; Tue, 30 Sep 2025 10:16:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlegroups.com; s=20230601; t=1759252574; x=1759857374; darn=lfdr.de;
+Received: from mail-pj1-x1039.google.com (mail-pj1-x1039.google.com [IPv6:2607:f8b0:4864:20::1039])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82743D045FA
+	for <lists+open-iscsi@lfdr.de>; Thu, 08 Jan 2026 17:29:14 +0100 (CET)
+Received: by mail-pj1-x1039.google.com with SMTP id 98e67ed59e1d1-34e5a9de94bsf6316823a91.0
+        for <lists+open-iscsi@lfdr.de>; Thu, 08 Jan 2026 08:29:14 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1767889753; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=eTtvPt9H2MRab3YVf2cVqUwuE/lym79NC+yNiZ8FAz50w0j+skFsaeJLnXnNmk2uIO
+         suYU3XkvN+OzeOJl3QzcUn7OkIXKigQZ8UQCkqPXHQrDQkxWNm8vdkPJhiYYpg5oxifR
+         7HJ8OhPDG+LG1G+4/kZRLHzwfWHEzyTV1SQJhsJ7wtXRYS+kmzrKBzqGteoeqyzdEV8+
+         6zVppJZwIuTjRRxz0Y9a6pXUArlHegJFoyUn3zoqzrQ2OpTGLQ2SCh+pWSaqQkUtRJMg
+         c4Smu3Ifcv/xFMI3pWr6or9ysIcnOYm0hVQvqNdVreV0nac6zRcI+2rm/eTCuX9Ce9oQ
+         3xCg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:x-original-sender:mime-version
-         :subject:references:in-reply-to:message-id:to:from:date:sender:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=3TcRY4BQ921KuIfL02VQoBiKVH8DmtkmEOWQHqiiV8s=;
-        b=xxpleyuzpg7JrtK6NSf1GueN4ihRMjX+/ACm/tLUvcftu+ABgfByEpGfrT7q7jaMIK
-         GytdmRvzQTjjw7QmwW1e63ZDdYpfslw6fRXzC3KAfR178vy5Xgb2YieAAO2ygYaSMgmu
-         ZXfu4hyv7RIdTnKXljeumaoN5BnLs3NbF6WMQginv3ofOtWX8EQvcLI26HNBI9fKGcbq
-         fTkq2CHE457wcixah090+SvTN4G+lShX1apD6M7h6TalhlaM4IsA4vDdH3fNn4ChFrkT
-         u837wVadhwxunlBcpgT34ty4546WmmcmeQmnRP82q2FsNpFAMDM6T8CjJ9q0aKO3HloV
-         xUpQ==
+         :mailing-list:precedence:reply-to:content-transfer-encoding
+         :mime-version:message-id:in-reply-to:date:from:cc:to:subject:sender
+         :dkim-signature;
+        bh=JoAQKbEDR2jJpghrAGSAXZJW7NdtgYm1ESgvoqh9t7Q=;
+        fh=49V8iy5QMjtv1j0C6Kv3NXm/oaXKnYxfMj5LT+aUh5s=;
+        b=bvMA1xlRm+ul9wIi/6lAxQgt3XpIqzTKqkTfkjfOgR8WjnzRxs33U3LkKSichq8Dy7
+         p+h3gEPYbZ/SivaDW0aGXpudxAIKNyFCKlMiKPEBBJvrt4QECGK59lA6F9rCIM8RkKDF
+         HzwxeqORKY85Y7dPkmS/ry2qyFTHzOXuG2wKaQ7QQ1yzmQnW1YkysYGyyH/7BdyhI+db
+         +4dwpT5N9LxZxGoUgkhGjm8+aHfqU+LRM1Ltv610tsJ6XWX/Jww89UgK+6jluuhXpcIO
+         rJG2Ew+C87nkLau+9oyk7TYFi1J6wtL6tbwR5G58IM8n5SihJgnyJzoa7gORZ+3Kqy9p
+         5s6A==;
+        darn=lfdr.de
+ARC-Authentication-Results: i=2; gmr-mx.google.com;
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=zAjgNci5;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 2600:3c0a:e001:78e:0:1991:8:25 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759252574; x=1759857374; darn=lfdr.de;
+        d=googlegroups.com; s=20230601; t=1767889753; x=1768494553; darn=lfdr.de;
         h=list-unsubscribe:list-archive:list-help:list-post:list-id
-         :mailing-list:precedence:reply-to:x-original-sender:mime-version
-         :subject:references:in-reply-to:message-id:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3TcRY4BQ921KuIfL02VQoBiKVH8DmtkmEOWQHqiiV8s=;
-        b=d7sV/p7QcgkqsmFPiRUq+fKKtcAtQaDq8g5pse44xh9CzanXZ+uO7lTtK/5FJQCHox
-         DILlRswe/3YMhBIAZe8NLmjMgNUEEz/92VU7eoyd6csw3dDTlod7jmm46gkxrDaR3yqa
-         09VgL+PHokeKGMqVPGOir1g98cbJu7yQ5cbWpTmsMEwrNQJxnacwVQjo9W6SZPiR7YSP
-         9uk3Y+L++9arf8uhuwlAAtiML37nxhSjwN5pJQetirnCzsjIEkn3Topg8IAsSi0f5rgw
-         bZB5rHagXnJ2pKWTMLWxrHd0q/HmpPKiE6njaR/p9ggZbgGUg7pgoM5uozlYk1oxRVE3
-         Dsdw==
+         :mailing-list:precedence:reply-to:x-original-authentication-results
+         :x-original-sender:content-transfer-encoding:mime-version:message-id
+         :in-reply-to:date:from:cc:to:subject:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JoAQKbEDR2jJpghrAGSAXZJW7NdtgYm1ESgvoqh9t7Q=;
+        b=uD9z1dg0xUTBm6aS9M+auUb0TiwAf+xAUJLPbt/8YrKlBkXw4ClYLqtffC7xKQ0YKL
+         raMWrbwxrQNAQyXr5aJz4NXeHH5OZN8gfROj5jns8eHmlD0dc/JkHFGbayVHApiD24Yf
+         2F9bLyN7rtfaLH9b7qrIAYOAvC41JS3JX8VmA9560jmbZAhbjkH08CizPM14c2cMZEe8
+         zmTt8XNclMHp8/VzkiR5+KBbiSd/DdSyS70vWcbW99fiCWI5HT8zgTASPXe5B6FRZkVV
+         ZblD90frtZrpR61C2E/a6luv8RTx1HJKca1B2yXmfI7KRerZiFmlJHIPodUR6pOH+s4N
+         rqTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759252574; x=1759857374;
+        d=1e100.net; s=20230601; t=1767889753; x=1768494553;
         h=list-unsubscribe:list-archive:list-help:list-post
          :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
-         :x-original-sender:mime-version:subject:references:in-reply-to
-         :message-id:to:from:date:x-beenthere:x-gm-message-state:sender:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=3TcRY4BQ921KuIfL02VQoBiKVH8DmtkmEOWQHqiiV8s=;
-        b=EYNObqXDLUURwKj2qojRk20S8FhvyCh8bBCmxd4icAp7tpaRyatHbCaRFNdx3BrwuN
-         BbbrqnJBsx1Hr6ZJT1gUC1p+O7ExmaRnH6iZt9kASyXtEYBYr4iUbAMrEBshA8eYz5+F
-         ierzTao5xTABXt2Jw7nEnrdjsDcAigaULkSWVMzJ0iM8N1/Itx9f8zY8XPbEhMivcbwh
-         8ahRn/5NoBMarr7SPS636Fxqy5BxJORSel1zYgwb9OR/ArJe4HHrBmvmas+qr7VcjD0i
-         +7UGTSmNLwZrYxTMqI3jXHqhzuAzY5ExUVjK2tS71HZPbY1jykIz5S0hxQyQAgnu/4OW
-         qq7Q==
+         :x-original-authentication-results:x-original-sender
+         :content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :from:cc:to:subject:x-beenthere:x-gm-message-state:sender:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JoAQKbEDR2jJpghrAGSAXZJW7NdtgYm1ESgvoqh9t7Q=;
+        b=ldGsw6aRogqQ1UG0s7vpcS3b4OCxakYgOg0ikQjx4Y4Dzra9qO8sxwueKrycLP34tc
+         0YxvCEzSxEA+mpFUmyk2xF0Sv7zSgyGrQjy8MaZUuedfhxG8OIRF4OyLxl9BZHSd39Ju
+         WHjQG6F1nJfLUaKYP5BWHoFOBrQK4lS4shJlAOSf8PpU5UQUe8e17aom/FLdIW8hRZYB
+         /XyP2b5TeP1XgwMeDTxha5lU5K1f79f3XSFNzYjLsmsRXkh5/UM5xxHOFSg/A64DhGGT
+         sx24soH8ubzY6wRd+8OqY6+h+N0YC/K7PT4/8Wh1NMG0Xq3oe8L3NBH4RnJuhsusgEDz
+         YL/w==
 Sender: open-iscsi@googlegroups.com
-X-Forwarded-Encrypted: i=1; AJvYcCW6fYCnObC/IoOqlHEkvHk8G5ei2GfGXGxHtodEqg0yDjvaR3EdRRsmx0OjfprIU27I39yIZg==@lfdr.de
-X-Gm-Message-State: AOJu0Ywptbi8BYnOXGY2T0e9dISCUoTlkjZCpBnQQvEknz4gEjIyymi+
-	my6EK93Vgpt0zQUoQ+tWqtBK/GCDDo8YX8GwxP2Z+BG3J/8MvVsY4k78
-X-Google-Smtp-Source: AGHT+IGR9lSjxG64BqyF5m3YAZ5lQG0s7obMZwOdQitTxb0kd64FaMOxKP0Us5bgV6lq2Y2TwLUwBQ==
-X-Received: by 2002:a53:b091:0:b0:635:34f5:51a4 with SMTP id 956f58d0204a3-63b59a826c8mr4443240d50.13.1759252573958;
-        Tue, 30 Sep 2025 10:16:13 -0700 (PDT)
-X-BeenThere: open-iscsi@googlegroups.com; h="ARHlJd6cnVpdAOmgJwD/PxgskAD8SA+b49jsc3P4KcJJMWzARA=="
-Received: by 2002:a05:690e:4317:b0:62f:9176:6b2b with SMTP id
- 956f58d0204a3-6363612fd03ls5129589d50.1.-pod-prod-07-us; Tue, 30 Sep 2025
- 10:16:11 -0700 (PDT)
-X-Received: by 2002:a05:690c:1d:b0:76f:8f07:4908 with SMTP id 00721157ae682-77f6f315879mr6244967b3.27.1759252571112;
-        Tue, 30 Sep 2025 10:16:11 -0700 (PDT)
-Date: Tue, 30 Sep 2025 10:16:08 -0700 (PDT)
-From: The Lee-Man <leeman.duncan@gmail.com>
-To: open-iscsi <open-iscsi@googlegroups.com>
-Message-Id: <e62e1899-4394-41af-a1b9-b74868a54b6bn@googlegroups.com>
-In-Reply-To: <CAGEDioNfg3NadnrVCc8esfcqwwKw9zTFoeH2EukBZpSTCENwxA@mail.gmail.com>
-References: <CAGEDioNfg3NadnrVCc8esfcqwwKw9zTFoeH2EukBZpSTCENwxA@mail.gmail.com>
-Subject: Re: iSCSI connection recovery timeout
+X-Forwarded-Encrypted: i=2; AJvYcCX7NITtBLMoluj9mTNu5JeioZx4Ft6ZNweuxnMXEnDFAM4V2bv2FGMaYa+Js8ezcJHEcAOnrQ==@lfdr.de
+X-Gm-Message-State: AOJu0YzXG8NmG1+srXIjF51HGXJF2vOKVqHUGD/j17R8fqB58mkMYBdW
+	yL0zOX1K7KRDblTrQPPo1L2KSTT9SEg8K2GON+SHnt7JIIQmDl8xnXB0
+X-Google-Smtp-Source: AGHT+IHEUk6ciOM2LNgNZAxx3snHTPpaVH1vf3eLmL425bSaWI5VsIi3h/NKtAspoWlnZFUGqPuKtw==
+X-Received: by 2002:a05:6a20:7f93:b0:37b:98c3:4250 with SMTP id adf61e73a8af0-3898f8ddd55mr6708620637.19.1767889752675;
+        Thu, 08 Jan 2026 08:29:12 -0800 (PST)
+X-BeenThere: open-iscsi@googlegroups.com; h="AWVwgWYuiWijNUp/6a1RCjHFCsmg6LBVbEowdqLMzxeind9+5Q=="
+Received: by 2002:a17:902:6b09:b0:297:d9d1:1fb3 with SMTP id
+ d9443c01a7336-2a3e2b1869cls27194595ad.2.-pod-prod-06-us; Thu, 08 Jan 2026
+ 08:29:08 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUsJAT7MDPjBUn9Go+DFPtdNOLT+GYeYbsGtyhs6CbtonOVuskQqj4nlvXmv4LZzRkTrA5GG2WhQhJb@googlegroups.com
+X-Received: by 2002:a17:903:11cc:b0:2a0:b62e:e012 with SMTP id d9443c01a7336-2a3ee491c36mr63746225ad.38.1767889748456;
+        Thu, 08 Jan 2026 08:29:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1767889748; cv=none;
+        d=google.com; s=arc-20240605;
+        b=CvHBGhe7R8K1qQNLApQNtlTcSw6n7akbCvOim5cj5lPiwGeNpZcYwaTZb/vsKvjZMi
+         LH9hiyFjaPcAHisxXGqk1JcbkmLrTHOqwn1eUeSpOX8SZSzWXlj1ALLKycjjbmhhd+BV
+         9TNFHnu+Foe6A4ZDOtu6iTbSSCexqCCw+lUJTPHzQmEL/hghJlUnDJ1aA9TUu2KhQGq9
+         5cY1D5cDgtzAr/fadbgT8tVdTDDnUNJcX9V4Go47Z8Brd1OizGWeXWsfr8eW/eoTqqgN
+         03zWuq41p3fPcsckOp/EhoVTd41Ank4KdnxbkPXvt9FNm5pG34vJ1kuyRJYnCkFNPkqY
+         oShA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :from:cc:to:subject:dkim-signature;
+        bh=EgDuFPWYU0ba7C2fI/eBHANvZDAr2EQKvsKuIbr6MJg=;
+        fh=qQ1Z2Df6mv3/Jy3T7he/QPYJacknP5k+IQdLGl54UmE=;
+        b=BTfFF5UEYwBQs+tslqGEs9J9oJhYbVNNZ2CJY/kApAtbquQXbb/OUtTGCTtk2yA6Mp
+         bqKGwbR9eievBTxpxj4x6Ncv22Uk1eqspzOwkk/c1PF9DTcZxEzbJw276VsjqW6VFKYR
+         Lq9mVL9YbC0WJhQUIT3ys45h+p9v1YwERF6HrDpDjEOl0jHJ3UchXTCLQD+pcguIB2/n
+         hBMiL+d2ufque4iBHREKxWtzuXAoD59GQF2AI6FCZfhHxhevpOIioG/uXf5zehCNIPkC
+         F0xfOpczZx+ydeOKqml/OpGRUhaEmPj8LSVh+cyrsILgNZyc94IGcSjShRK2aeoyGomn
+         xGGg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; gmr-mx.google.com;
+       dkim=pass header.i=@linuxfoundation.org header.s=korg header.b=zAjgNci5;
+       spf=pass (google.com: domain of gregkh@linuxfoundation.org designates 2600:3c0a:e001:78e:0:1991:8:25 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+Received: from sea.source.kernel.org (sea.source.kernel.org. [2600:3c0a:e001:78e:0:1991:8:25])
+        by gmr-mx.google.com with ESMTPS id d9443c01a7336-2a3e4726083si2542605ad.5.2026.01.08.08.29.08
+        for <open-iscsi@googlegroups.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jan 2026 08:29:08 -0800 (PST)
+Received-SPF: pass (google.com: domain of gregkh@linuxfoundation.org designates 2600:3c0a:e001:78e:0:1991:8:25 as permitted sender) client-ip=2600:3c0a:e001:78e:0:1991:8:25;
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4C382403CA;
+	Thu,  8 Jan 2026 16:29:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78BC6C116C6;
+	Thu,  8 Jan 2026 16:29:07 +0000 (UTC)
+Subject: Patch "scsi: iscsi_tcp: Fix UAF during logout when accessing the shost ipaddress" has been added to the 5.10-stable tree
+To: James.Bottomley@HansenPartnership.com,ajay.kaher@broadcom.com,alexey.makhalov@broadcom.com,cleech@redhat.com,dinghui@sangfor.com.cn,gregkh@linuxfoundation.org,lduncan@suse.com,martin.petersen@oracle.com,michael.christie@oracle.com,open-iscsi@googlegroups.com,shivani.agarwal@broadcom.com,tapas.kundu@broadcom.com,vamsi-krishna.brahmajosyula@broadcom.com,yin.ding@broadcom.com
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Thu, 08 Jan 2026 17:27:40 +0100
+In-Reply-To: <20260108062222.670715-3-shivani.agarwal@broadcom.com>
+Message-ID: <2026010840-comment-unviable-dc9a@gregkh>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_110942_1428531423.1759252568166"
-X-Original-Sender: leeman.duncan@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-stable: commit
+X-Patchwork-Hint: ignore
+X-Original-Sender: gregkh@linuxfoundation.org
+X-Original-Authentication-Results: gmr-mx.google.com;       dkim=pass
+ header.i=@linuxfoundation.org header.s=korg header.b=zAjgNci5;       spf=pass
+ (google.com: domain of gregkh@linuxfoundation.org designates
+ 2600:3c0a:e001:78e:0:1991:8:25 as permitted sender) smtp.mailfrom=gregkh@linuxfoundation.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
 Reply-To: open-iscsi@googlegroups.com
 Precedence: list
 Mailing-list: list open-iscsi@googlegroups.com; contact open-iscsi+owners@googlegroups.com
@@ -82,84 +140,293 @@ List-Archive: <https://groups.google.com/group/open-iscsi
 List-Unsubscribe: <mailto:googlegroups-manage+856124926423+unsubscribe@googlegroups.com>,
  <https://groups.google.com/group/open-iscsi/subscribe>
 
-------=_Part_110942_1428531423.1759252568166
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_110943_2126322534.1759252568166"
 
-------=_Part_110943_2126322534.1759252568166
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a note to let you know that I've just added the patch titled
 
-On Tuesday, September 30, 2025 at 3:28:39=E2=80=AFAM UTC-7 csnit...@gmail.c=
-om wrote:
+    scsi: iscsi_tcp: Fix UAF during logout when accessing the shost ipaddre=
+ss
 
-Hi,
+to the 5.10-stable tree which can be found at:
+    http://www.kernel.org/git/?p=3Dlinux/kernel/git/stable/stable-queue.git=
+;a=3Dsummary
 
-As I understand, below 3 timeouts contribute to the total time taken for=20
-marking an iSCSI connection unavailable for IOs.
+The filename of the patch is:
+     scsi-iscsi_tcp-fix-uaf-during-logout-when-accessing-the-shost-ipaddres=
+s.patch
+and it can be found in the queue-5.10 subdirectory.
 
-noop_out_interval
-noop_out_timeout
-replacement_timeout=20
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
 
-/* timeouts in seconds */
-#define DEF_LOGIN_TIMEO         15
-#define DEF_LOGOUT_TIMEO        15
-#define DEF_NOOP_OUT_INTERVAL   10
-#define DEF_NOOP_OUT_TIMEO      15
-#define DEF_REPLACEMENT_TIMEO   120
 
-Can someone please explain why default values are higher? Do we really need=
+From stable+bounces-206250-greg=3Dkroah.com@vger.kernel.org Thu Jan  8 07:4=
+6:57 2026
+From: Shivani Agarwal <shivani.agarwal@broadcom.com>
+Date: Wed,  7 Jan 2026 22:22:22 -0800
+Subject: scsi: iscsi_tcp: Fix UAF during logout when accessing the shost ip=
+address
+To: stable@vger.kernel.org, gregkh@linuxfoundation.org
+Cc: lduncan@suse.com, cleech@redhat.com, michael.christie@oracle.com, James=
+.Bottomley@HansenPartnership.com, martin.petersen@oracle.com, open-iscsi@go=
+oglegroups.com, linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org, a=
+jay.kaher@broadcom.com, alexey.makhalov@broadcom.com, vamsi-krishna.brahmaj=
+osyula@broadcom.com, yin.ding@broadcom.com, tapas.kundu@broadcom.com, Ding =
+Hui <dinghui@sangfor.com.cn>, Shivani Agarwal <shivani.agarwal@broadcom.com=
+>
+Message-ID: <20260108062222.670715-3-shivani.agarwal@broadcom.com>
+
+From: Mike Christie <michael.christie@oracle.com>
+
+[ Upstream commit 6f1d64b13097e85abda0f91b5638000afc5f9a06 ]
+
+Bug report and analysis from Ding Hui.
+
+During iSCSI session logout, if another task accesses the shost ipaddress
+attr, we can get a KASAN UAF report like this:
+
+[  276.942144] BUG: KASAN: use-after-free in _raw_spin_lock_bh+0x78/0xe0
+[  276.942535] Write of size 4 at addr ffff8881053b45b8 by task cat/4088
+[  276.943511] CPU: 2 PID: 4088 Comm: cat Tainted: G            E      6.1.=
+0-rc8+ #3
+[  276.943997] Hardware name: VMware, Inc. VMware Virtual Platform/440BX De=
+sktop Reference Platform, BIOS 6.00 11/12/2020
+[  276.944470] Call Trace:
+[  276.944943]  <TASK>
+[  276.945397]  dump_stack_lvl+0x34/0x48
+[  276.945887]  print_address_description.constprop.0+0x86/0x1e7
+[  276.946421]  print_report+0x36/0x4f
+[  276.947358]  kasan_report+0xad/0x130
+[  276.948234]  kasan_check_range+0x35/0x1c0
+[  276.948674]  _raw_spin_lock_bh+0x78/0xe0
+[  276.949989]  iscsi_sw_tcp_host_get_param+0xad/0x2e0 [iscsi_tcp]
+[  276.951765]  show_host_param_ISCSI_HOST_PARAM_IPADDRESS+0xe9/0x130 [scsi=
+_transport_iscsi]
+[  276.952185]  dev_attr_show+0x3f/0x80
+[  276.953005]  sysfs_kf_seq_show+0x1fb/0x3e0
+[  276.953401]  seq_read_iter+0x402/0x1020
+[  276.954260]  vfs_read+0x532/0x7b0
+[  276.955113]  ksys_read+0xed/0x1c0
+[  276.955952]  do_syscall_64+0x38/0x90
+[  276.956347]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[  276.956769] RIP: 0033:0x7f5d3a679222
+[  276.957161] Code: c0 e9 b2 fe ff ff 50 48 8d 3d 32 c0 0b 00 e8 a5 fe 01 =
+00 0f 1f 44 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 0f 05 <48=
+> 3d 00 f0 ff ff 77 56 c3 0f 1f 44 00 00 48 83 ec 28 48 89 54 24
+[  276.958009] RSP: 002b:00007ffc864d16a8 EFLAGS: 00000246 ORIG_RAX: 000000=
+0000000000
+[  276.958431] RAX: ffffffffffffffda RBX: 0000000000020000 RCX: 00007f5d3a6=
+79222
+[  276.958857] RDX: 0000000000020000 RSI: 00007f5d3a4fe000 RDI: 00000000000=
+00003
+[  276.959281] RBP: 00007f5d3a4fe000 R08: 00000000ffffffff R09: 00000000000=
+00000
+[  276.959682] R10: 0000000000000022 R11: 0000000000000246 R12: 00000000000=
+20000
+[  276.960126] R13: 0000000000000003 R14: 0000000000000000 R15: 0000557a26d=
+ada58
+[  276.960536]  </TASK>
+[  276.961357] Allocated by task 2209:
+[  276.961756]  kasan_save_stack+0x1e/0x40
+[  276.962170]  kasan_set_track+0x21/0x30
+[  276.962557]  __kasan_kmalloc+0x7e/0x90
+[  276.962923]  __kmalloc+0x5b/0x140
+[  276.963308]  iscsi_alloc_session+0x28/0x840 [scsi_transport_iscsi]
+[  276.963712]  iscsi_session_setup+0xda/0xba0 [libiscsi]
+[  276.964078]  iscsi_sw_tcp_session_create+0x1fd/0x330 [iscsi_tcp]
+[  276.964431]  iscsi_if_create_session.isra.0+0x50/0x260 [scsi_transport_i=
+scsi]
+[  276.964793]  iscsi_if_recv_msg+0xc5a/0x2660 [scsi_transport_iscsi]
+[  276.965153]  iscsi_if_rx+0x198/0x4b0 [scsi_transport_iscsi]
+[  276.965546]  netlink_unicast+0x4d5/0x7b0
+[  276.965905]  netlink_sendmsg+0x78d/0xc30
+[  276.966236]  sock_sendmsg+0xe5/0x120
+[  276.966576]  ____sys_sendmsg+0x5fe/0x860
+[  276.966923]  ___sys_sendmsg+0xe0/0x170
+[  276.967300]  __sys_sendmsg+0xc8/0x170
+[  276.967666]  do_syscall_64+0x38/0x90
+[  276.968028]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[  276.968773] Freed by task 2209:
+[  276.969111]  kasan_save_stack+0x1e/0x40
+[  276.969449]  kasan_set_track+0x21/0x30
+[  276.969789]  kasan_save_free_info+0x2a/0x50
+[  276.970146]  __kasan_slab_free+0x106/0x190
+[  276.970470]  __kmem_cache_free+0x133/0x270
+[  276.970816]  device_release+0x98/0x210
+[  276.971145]  kobject_cleanup+0x101/0x360
+[  276.971462]  iscsi_session_teardown+0x3fb/0x530 [libiscsi]
+[  276.971775]  iscsi_sw_tcp_session_destroy+0xd8/0x130 [iscsi_tcp]
+[  276.972143]  iscsi_if_recv_msg+0x1bf1/0x2660 [scsi_transport_iscsi]
+[  276.972485]  iscsi_if_rx+0x198/0x4b0 [scsi_transport_iscsi]
+[  276.972808]  netlink_unicast+0x4d5/0x7b0
+[  276.973201]  netlink_sendmsg+0x78d/0xc30
+[  276.973544]  sock_sendmsg+0xe5/0x120
+[  276.973864]  ____sys_sendmsg+0x5fe/0x860
+[  276.974248]  ___sys_sendmsg+0xe0/0x170
+[  276.974583]  __sys_sendmsg+0xc8/0x170
+[  276.974891]  do_syscall_64+0x38/0x90
+[  276.975216]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+We can easily reproduce by two tasks:
+1. while :; do iscsiadm -m node --login; iscsiadm -m node --logout; done
+2. while :; do cat \
+/sys/devices/platform/host*/iscsi_host/host*/ipaddress; done
+
+            iscsid              |        cat
+--------------------------------+---------------------------------------
+|- iscsi_sw_tcp_session_destroy |
+  |- iscsi_session_teardown     |
+    |- device_release           |
+      |- iscsi_session_release  ||- dev_attr_show
+        |- kfree                |  |- show_host_param_
+                                |             ISCSI_HOST_PARAM_IPADDRESS
+                                |    |- iscsi_sw_tcp_host_get_param
+                                |      |- r/w tcp_sw_host->session (UAF)
+  |- iscsi_host_remove          |
+  |- iscsi_host_free            |
+
+Fix the above bug by splitting the session removal into 2 parts:
+
+ 1. removal from iSCSI class which includes sysfs and removal from host
+    tracking.
+
+ 2. freeing of session.
+
+During iscsi_tcp host and session removal we can remove the session from
+sysfs then remove the host from sysfs. At this point we know userspace is
+not accessing the kernel via sysfs so we can free the session and host.
+
+Link: https://lore.kernel.org/r/20230117193937.21244-2-michael.christie@ora=
+cle.com
+Signed-off-by: Mike Christie <michael.christie@oracle.com>
+Reviewed-by: Lee Duncan <lduncan@suse.com>
+Acked-by: Ding Hui <dinghui@sangfor.com.cn>
+Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
+[Shivani: The false parameter was not passed to iscsi_host_remove() because=
+,
+          in Linux 5.10.y, the default behavior of iscsi_host_remove() alre=
+ady
+          assumes false.]
+Signed-off-by: Shivani Agarwal <shivani.agarwal@broadcom.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/scsi/iscsi_tcp.c |   11 +++++++++--
+ drivers/scsi/libiscsi.c  |   38 +++++++++++++++++++++++++++++++-------
+ include/scsi/libiscsi.h  |    2 ++
+ 3 files changed, 42 insertions(+), 9 deletions(-)
+
+--- a/drivers/scsi/iscsi_tcp.c
++++ b/drivers/scsi/iscsi_tcp.c
+@@ -933,10 +933,17 @@ static void iscsi_sw_tcp_session_destroy
+ 	if (WARN_ON_ONCE(session->leadconn))
+ 		return;
 =20
-to have these higher default values? Are these default values reduced from=
++	iscsi_session_remove(cls_session);
++	/*
++	 * Our get_host_param needs to access the session, so remove the
++	 * host from sysfs before freeing the session to make sure userspace
++	 * is no longer accessing the callout.
++	 */
++	iscsi_host_remove(shost);
++
+ 	iscsi_tcp_r2tpool_free(cls_session->dd_data);
+-	iscsi_session_teardown(cls_session);
 =20
-earlier open-iscsi versions to newer versions? If not, should these values=
+-	iscsi_host_remove(shost);
++	iscsi_session_free(cls_session);
+ 	iscsi_host_free(shost);
+ }
 =20
-get reduced significantly for the fact that newer network devices are=20
-faster?=20
+--- a/drivers/scsi/libiscsi.c
++++ b/drivers/scsi/libiscsi.c
+@@ -2892,17 +2892,32 @@ dec_session_count:
+ }
+ EXPORT_SYMBOL_GPL(iscsi_session_setup);
+=20
+-/**
+- * iscsi_session_teardown - destroy session, host, and cls_session
+- * @cls_session: iscsi session
++/*
++ * issi_session_remove - Remove session from iSCSI class.
+  */
+-void iscsi_session_teardown(struct iscsi_cls_session *cls_session)
++void iscsi_session_remove(struct iscsi_cls_session *cls_session)
+ {
+ 	struct iscsi_session *session =3D cls_session->dd_data;
+-	struct module *owner =3D cls_session->transport->owner;
+ 	struct Scsi_Host *shost =3D session->host;
+=20
+ 	iscsi_remove_session(cls_session);
++	/*
++	 * host removal only has to wait for its children to be removed from
++	 * sysfs, and iscsi_tcp needs to do iscsi_host_remove before freeing
++	 * the session, so drop the session count here.
++	 */
++	iscsi_host_dec_session_cnt(shost);
++}
++EXPORT_SYMBOL_GPL(iscsi_session_remove);
++
++/**
++ * iscsi_session_free - Free iscsi session and it's resources
++ * @cls_session: iscsi session
++ */
++void iscsi_session_free(struct iscsi_cls_session *cls_session)
++{
++	struct iscsi_session *session =3D cls_session->dd_data;
++	struct module *owner =3D cls_session->transport->owner;
+=20
+ 	iscsi_pool_free(&session->cmdpool);
+ 	kfree(session->password);
+@@ -2920,10 +2935,19 @@ void iscsi_session_teardown(struct iscsi
+ 	kfree(session->discovery_parent_type);
+=20
+ 	iscsi_free_session(cls_session);
+-
+-	iscsi_host_dec_session_cnt(shost);
+ 	module_put(owner);
+ }
++EXPORT_SYMBOL_GPL(iscsi_session_free);
++
++/**
++ * iscsi_session_teardown - destroy session and cls_session
++ * @cls_session: iscsi session
++ */
++void iscsi_session_teardown(struct iscsi_cls_session *cls_session)
++{
++	iscsi_session_remove(cls_session);
++	iscsi_session_free(cls_session);
++}
+ EXPORT_SYMBOL_GPL(iscsi_session_teardown);
+=20
+ /**
+--- a/include/scsi/libiscsi.h
++++ b/include/scsi/libiscsi.h
+@@ -401,6 +401,8 @@ extern int iscsi_target_alloc(struct scs
+ extern struct iscsi_cls_session *
+ iscsi_session_setup(struct iscsi_transport *, struct Scsi_Host *shost,
+ 		    uint16_t, int, int, uint32_t, unsigned int);
++void iscsi_session_remove(struct iscsi_cls_session *cls_session);
++void iscsi_session_free(struct iscsi_cls_session *cls_session);
+ extern void iscsi_session_teardown(struct iscsi_cls_session *);
+ extern void iscsi_session_recovery_timedout(struct iscsi_cls_session *);
+ extern int iscsi_set_param(struct iscsi_cls_conn *cls_conn,
 
-Will higher values not cause the more time for IOs to failover to other=20
-available paths? What are the options for faster failover?
 
+Patches currently in stable-queue which might be from shivani.agarwal@broad=
+com.com are
 
-Thanks,
-Nitish
-
-
-Timeout settings, in general, are a bag of worms. There are no "right"=20
-settings because every installation can be different.
-
-If you read (and re-read) the README file that comes with open-iscsi, and=
-=20
-the iscsid.conf configuration file, they detail how some of these settings=
-=20
-might change when using multipath, or using iSCSI as your root device.
-
-The NOOP settings are evil, IMHO. I have NOOPs disabled for the=20
-distribution I support (SUSE/tumbleweed). It's a long story, but NOOPs are=
-=20
-not implemented well IMHO, since they get mixed in with the rest of the I/O=
-=20
-load. On a busy system, a NOOP may not go out right away ... it may be=20
-sitting in a queue. Bottom line, false positives (timeouts) can occur. When=
-=20
-a NOOP timeout occurs, the connection gets reset. If I/O is occuring that=
-=20
-just makes things worse!=20
-
-The login and logout timers are kind of self-explanatory. The replacement=
-=20
-timeout is more complicated, and is mentioned in detail in the documents I=
-=20
-mentioned.
-
-One could spent a bit of time playing with these values, but I caution=20
-against making them too short, as this may cause false positives,=20
-especially during heavy I/O, or if you target server is busy.
-
-Mike Christie may have more to say on these, and he's played with them far=
-=20
-more than I have.
+queue-5.10/usb-xhci-move-link-chain-bit-quirk-checks-into-one-helper-functi=
+on.patch
+queue-5.10/crypto-af_alg-zero-initialize-memory-allocated-via-sock_kmalloc.=
+patch
+queue-5.10/rdma-core-fix-kasan-slab-use-after-free-read-in-ib_register_devi=
+ce-problem.patch
+queue-5.10/ovl-use-buf-flexible-array-for-memcpy-destination.patch
+queue-5.10/cpufreq-scmi-fix-null-ptr-deref-in-scmi_cpufreq_get_rate.patch
+queue-5.10/drm-vmwgfx-fix-a-null-ptr-access-in-the-cursor-snooper.patch
+queue-5.10/scsi-iscsi_tcp-fix-uaf-during-logout-when-accessing-the-shost-ip=
+address.patch
+queue-5.10/usb-xhci-apply-the-link-chain-quirk-on-nec-isoc-endpoints.patch
+queue-5.10/scsi-iscsi-move-pool-freeing.patch
 
 --=20
 You received this message because you are subscribed to the Google Groups "=
@@ -167,63 +434,4 @@ open-iscsi" group.
 To unsubscribe from this group and stop receiving emails from it, send an e=
 mail to open-iscsi+unsubscribe@googlegroups.com.
 To view this discussion visit https://groups.google.com/d/msgid/open-iscsi/=
-e62e1899-4394-41af-a1b9-b74868a54b6bn%40googlegroups.com.
-
-------=_Part_110943_2126322534.1759252568166
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div><div dir=3D"auto">On Tuesday, September 30, 2025 at 3:28:39=E2=80=AFAM=
- UTC-7 csnit...@gmail.com wrote:<br /></div><blockquote style=3D"margin: 0p=
-x 0px 0px 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1=
-ex;"><div dir=3D"ltr">Hi,<br /><br />As I understand, below 3 timeouts cont=
-ribute to the total time taken for marking an iSCSI connection unavailable=
-=C2=A0for IOs.<br /><br />noop_out_interval<br />noop_out_timeout<br />repl=
-acement_timeout=C2=A0<br /><br />/* timeouts in seconds */<br />#define DEF=
-_LOGIN_TIMEO =C2=A0 =C2=A0 =C2=A0 =C2=A0 15<br />#define DEF_LOGOUT_TIMEO =
-=C2=A0 =C2=A0 =C2=A0 =C2=A015<br />#define DEF_NOOP_OUT_INTERVAL =C2=A0 10<=
-br />#define DEF_NOOP_OUT_TIMEO =C2=A0 =C2=A0 =C2=A015<br />#define DEF_REP=
-LACEMENT_TIMEO =C2=A0 120<div><br /></div><div>Can someone please explain w=
-hy default values are higher? Do we really=C2=A0need to have these higher d=
-efault=C2=A0values? Are these default values reduced from earlier open-iscs=
-i versions to newer versions? If not, should these values get reduced signi=
-ficantly for the fact that newer network devices are faster? <br /><br />Wi=
-ll higher values not cause the more time for IOs to failover to other avail=
-able paths? What are the options for faster failover?<br /><br /><br />Than=
-ks,<br />Nitish<br /><br /></div></div></blockquote><div><br /></div><div>T=
-imeout settings, in general, are a bag of worms. There are no "right" setti=
-ngs because every installation can be different.</div><div><br /></div><div=
->If you read (and re-read) the README file that comes with open-iscsi, and =
-the iscsid.conf configuration file, they detail how some of these settings =
-might change when using multipath, or using iSCSI as your root device.</div=
-><div><br /></div><div>The NOOP settings are evil, IMHO. I have NOOPs disab=
-led for the distribution I support (SUSE/tumbleweed). It's a long story, bu=
-t NOOPs are not implemented well IMHO, since they get mixed in with the res=
-t of the I/O load. On a busy system, a NOOP may not go out right away ... i=
-t may be sitting in a queue. Bottom line, false positives (timeouts) can oc=
-cur. When a NOOP timeout occurs, the connection gets reset. If I/O is occur=
-ing that just makes things worse!=C2=A0</div><div><br /></div><div>The logi=
-n and logout timers are kind of self-explanatory. The replacement timeout i=
-s more complicated, and is mentioned in detail in the documents I mentioned=
-.</div><div><br /></div><div>One could spent a bit of time playing with the=
-se values, but I caution against making them too short, as this may cause f=
-alse positives, especially during heavy I/O, or if you target server is bus=
-y.</div><div><br /></div><div>Mike Christie may have more to say on these, =
-and he's played with them far more than I have.</div></div>
-
-<p></p>
-
--- <br />
-You received this message because you are subscribed to the Google Groups &=
-quot;open-iscsi&quot; group.<br />
-To unsubscribe from this group and stop receiving emails from it, send an e=
-mail to <a href=3D"mailto:open-iscsi+unsubscribe@googlegroups.com">open-isc=
-si+unsubscribe@googlegroups.com</a>.<br />
-To view this discussion visit <a href=3D"https://groups.google.com/d/msgid/=
-open-iscsi/e62e1899-4394-41af-a1b9-b74868a54b6bn%40googlegroups.com?utm_med=
-ium=3Demail&utm_source=3Dfooter">https://groups.google.com/d/msgid/open-isc=
-si/e62e1899-4394-41af-a1b9-b74868a54b6bn%40googlegroups.com</a>.<br />
-
-------=_Part_110943_2126322534.1759252568166--
-
-------=_Part_110942_1428531423.1759252568166--
+2026010840-comment-unviable-dc9a%40gregkh.
